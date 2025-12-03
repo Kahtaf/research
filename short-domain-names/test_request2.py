@@ -1,0 +1,107 @@
+import requests
+import re
+import json
+from urllib.parse import urlencode
+
+# Get the page and extract CSRF token
+session = requests.Session()
+r = session.get('https://micro.domains/')
+
+csrf_match = re.search(r"var csrftoken = '([^']+)'", r.text)
+if not csrf_match:
+    print("Could not find CSRF token")
+    exit(1)
+
+csrf_token = csrf_match.group(1)
+print(f"CSRF Token: {csrf_token[:30]}...")
+print(f"Cookies: {session.cookies.get_dict()}")
+
+# Build the exact data structure from the original curl request
+data = {
+    'draw': '10',
+    'columns[0][data]': '0',
+    'columns[0][name]': '',
+    'columns[0][searchable]': 'true',
+    'columns[0][orderable]': 'false',
+    'columns[0][search][value]': '',
+    'columns[0][search][regex]': 'false',
+    'columns[1][data]': 'length',
+    'columns[1][name]': '',
+    'columns[1][searchable]': 'true',
+    'columns[1][orderable]': 'false',
+    'columns[1][search][value]': '',
+    'columns[1][search][regex]': 'false',
+    'columns[2][data]': 'price',
+    'columns[2][name]': '',
+    'columns[2][searchable]': 'true',
+    'columns[2][orderable]': 'true',
+    'columns[2][search][value]': '',
+    'columns[2][search][regex]': 'false',
+    'columns[3][data]': 'price_renewal',
+    'columns[3][name]': '',
+    'columns[3][searchable]': 'true',
+    'columns[3][orderable]': 'true',
+    'columns[3][search][value]': '',
+    'columns[3][search][regex]': 'false',
+    'order[0][column]': '2',
+    'order[0][dir]': 'asc',
+    'start': '0',
+    'length': '50',
+    'search[value]': '',
+    'search[regex]': 'false',
+    'price': '20',
+    'available': '1',
+    'has_number': '1',
+    'has_hyphen': '0',
+    'price_renewal': '20',
+    'tlds': 'null',
+    'domain_length': '5',
+    'sort': 'price',
+}
+
+headers = {
+    'accept': 'application/json, text/javascript, */*; q=0.01',
+    'accept-language': 'en-CA,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'dnt': '1',
+    'origin': 'https://micro.domains',
+    'priority': 'u=1, i',
+    'referer': 'https://micro.domains/?',
+    'sec-ch-ua': '"Chromium";v="142", "Google Chrome";v="142", "Not_A Brand";v="99"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"macOS"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'sec-gpc': '1',
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36',
+    'x-csrftoken': csrf_token,
+    'x-requested-with': 'XMLHttpRequest',
+}
+
+print("\nMaking request...")
+response = session.post(
+    'https://micro.domains/urls/',
+    headers=headers,
+    data=data,
+)
+
+print(f"Status: {response.status_code}")
+print(f"Content-Type: {response.headers.get('content-type')}")
+
+if response.status_code == 200:
+    try:
+        json_data = response.json()
+        print(f"\n✓ Got JSON!")
+        print(f"  Data count: {len(json_data.get('data', []))}")
+        print(f"  recordsTotal: {json_data.get('recordsTotal')}")
+        if json_data.get('data'):
+            print(f"\nFirst few results:")
+            for i, item in enumerate(json_data['data'][:3]):
+                print(f"  {i+1}. {item}")
+    except Exception as e:
+        print(f"Error parsing JSON: {e}")
+        print(response.text[:300])
+else:
+    print(f"\nError {response.status_code}")
+    print(response.text[:500])
