@@ -274,7 +274,10 @@ export async function analyze(exploreResult: ExploreResult): Promise<AnalysisRes
   const requestTemplates = buildRequestTemplates(apiRequests);
 
   // Save analysis
-  const analysis: AnalysisResult = { ir, harSummary, timeline, workflow, requestTemplates };
+  const analysis: AnalysisResult = {
+    ir, harSummary, timeline, workflow, requestTemplates,
+    authSignals: exploreResult.authSignals?.length ? exploreResult.authSignals : undefined,
+  };
   writeFileSync(
     join(sessionDir, 'analysis.json'),
     JSON.stringify(analysis, null, 2),

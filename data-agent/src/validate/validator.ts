@@ -164,6 +164,16 @@ export function classifyError(stderr: string, stdout: string): ClassifiedError[]
     });
   }
 
+  // Login timeout from generated scripts (exit code 2)
+  if (/Login timeout/i.test(combined) || /Login required/i.test(combined)) {
+    errors.push({
+      errorClass: 'auth_required',
+      message: 'Script paused for login but timed out',
+      hint: 'Run: data-agent login <url> — then retry.',
+      autoFixable: false,
+    });
+  }
+
   if (errors.length === 0) {
     errors.push({
       errorClass: 'unknown',

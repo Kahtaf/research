@@ -156,12 +156,22 @@ export interface ExploreDecision {
   confidence?: number;
 }
 
+/** Auth signal captured when login is detected and completed during exploration. */
+export interface AuthSignal {
+  loginUrl: string;
+  completionSignal: string;
+  newCookies: string[];
+  failedApisBeforeLogin: Array<{ url: string; status: number }>;
+  timestamp: number;
+}
+
 /** Explore session result. */
 export interface ExploreResult {
   harPath: string;
   actions: ActionWithIntent[];
   apisSeen: ObservedApiCall[];
   sessionDir: string;
+  authSignals: AuthSignal[];
 }
 
 /** Analysis result from the analysis pipeline. */
@@ -171,6 +181,7 @@ export interface AnalysisResult {
   timeline: ActionApiTimeline;
   workflow: WorkflowAnalysis;
   requestTemplates: RequestTemplate[];
+  authSignals?: AuthSignal[];
 }
 
 // --- IR Types ---

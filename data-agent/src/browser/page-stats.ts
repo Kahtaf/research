@@ -95,6 +95,7 @@ export async function getPageStats(page: Page): Promise<PageStats> {
     }
 
     const bodyText = (document.body?.innerText || '').trim();
+    const hasPasswordField = !!document.querySelector('input[type="password"]');
 
     return {
       totalElements: all.length,
@@ -108,6 +109,7 @@ export async function getPageStats(page: Page): Promise<PageStats> {
       // Send first 500 chars for block-pattern matching
       bodyTextSnippet: bodyText.slice(0, 500),
       pageTitle: document.title || '',
+      hasPasswordField,
     };
   });
 
@@ -138,13 +140,14 @@ export async function getPageStats(page: Page): Promise<PageStats> {
   }
 
   // Extremely sparse page heuristic: < 3 interactive elements AND < 30 total
-  if (!isLikelyBlocked && stats.interactiveElements < 3 && stats.totalElements < 30) {
+  // Exclude login pages — they can be sparse but are not blocked
+  if (!isLikelyBlocked && stats.interactiveElements < 3 && stats.totalElements < 30 && !stats.hasPasswordField) {
     isLikelyBlocked = true;
     blockReason = `Sparse page: ${stats.interactiveElements} interactive, ${stats.totalElements} total elements`;
   }
 
   // Very short body text on a non-trivial URL
-  if (!isLikelyBlocked && stats.bodyTextLength < 200 && stats.totalElements < 50) {
+  if (!isLikelyBlocked && stats.bodyTextLength < 200 && stats.totalElements < 50 && !stats.hasPasswordField) {
     isLikelyBlocked = true;
     blockReason = `Minimal content: ${stats.bodyTextLength} chars body text, ${stats.totalElements} elements`;
   }

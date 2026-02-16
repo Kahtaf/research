@@ -101,6 +101,26 @@ function buildGeneratePrompt(task: string, url: string, analysis: AnalysisResult
     parts.push('');
   }
 
+  // Auth signals — login detection data for generated script awareness
+  // Security: only pass cookie *names* and API *URLs*, never values/tokens
+  if (analysis.authSignals && analysis.authSignals.length > 0) {
+    parts.push('## Auth Signals (login was required during exploration)');
+    for (const signal of analysis.authSignals) {
+      parts.push(`- Login URL: ${signal.loginUrl}`);
+      if (signal.newCookies.length > 0) {
+        parts.push(`- Auth cookie names (check these exist): ${signal.newCookies.join(', ')}`);
+      }
+      if (signal.failedApisBeforeLogin.length > 0) {
+        const apis = signal.failedApisBeforeLogin.slice(0, 5);
+        parts.push(`- APIs that required auth:`);
+        for (const api of apis) {
+          parts.push(`  - ${api.status} ${api.url}`);
+        }
+      }
+    }
+    parts.push('');
+  }
+
   parts.push('Generate the automation.ts script now. Output ONLY raw TypeScript code.');
 
   return parts.join('\n');

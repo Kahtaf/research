@@ -106,6 +106,20 @@ CRITICAL PRIORITIES (in order)
    - Use `page.evaluate(() => fetch(...))` only as fallback.
    - `page.evaluate()` accepts at most ONE extra argument — wrap multiples in an object.
 
+8) Login state verification (pause for manual login):
+   - After navigating to the target site, check if you've been redirected to a login page.
+   - Detection: check for `input[type="password"]` in the DOM, or URL containing `/login`, `/signin`, `/auth`, `/sso`.
+   - Also check auth cookies if provided in the Auth Signals section.
+   - If not logged in, DO NOT exit — instead:
+     1. `console.log('Login required. Please log in using the open browser window...');`
+     2. Poll every 3 seconds: check if password field is gone AND URL no longer matches login patterns
+     3. After login detected: `console.log('Login detected! Continuing...');`
+     4. Wait for network settle, then proceed with extraction
+     5. Timeout after 5 minutes: `console.error('Login timeout. Aborting.'); process.exit(2);`
+   - DO NOT attempt to fill in credentials programmatically.
+   - DO NOT store any credentials.
+   - The browser should already be visible (`headless: false`) so the user can interact.
+
 IMPORTANT
 - Do NOT use `route.continue()` as if it returns a response.
 - If the API uses a `for (;;);` prefix, strip it before JSON.parse.
