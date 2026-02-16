@@ -81,6 +81,12 @@ For done:
 }
 ```
 
+## Login Page Handling
+If you detect a login page (password fields, "Sign in" buttons, OAuth prompts):
+- Do NOT fill in credentials or click login buttons
+- Use action "wait" with reasoning explaining you see a login page
+- The system will pause for user authentication automatically
+
 IMPORTANT:
 - Use refs from the snapshot (e.g. "e1", "e3") — NOT CSS selectors
 - Be methodical: navigate, observe, interact, record

@@ -15,8 +15,10 @@ import { getEnhancedSnapshot, getSnapshotStats } from '../browser/snapshot.js';
 import { waitForNetworkSettle } from '../browser/network-settle.js';
 import { getPageStats, formatPageStats } from '../browser/page-stats.js';
 import { initArtifactBundle, recordPageStats, appendRunLog } from '../browser/artifacts.js';
+import { detectLoginPage, waitForLoginCompletion } from '../browser/login-detect.js';
 import type {
   ActionWithIntent,
+  AuthSignal,
   ExploreDecision,
   ExploreResult,
   LlmProvider,
@@ -82,6 +84,66 @@ function loadExplorePrompt(): string {
   }
 }
 
+const MAX_LOGIN_PAUSES = 2;
+const LOGIN_TIMEOUT_MS = 300_000; // 5 minutes
+
+/**
+ * Handle a detected login page: pause for user login, wait for completion.
+ *
+ * Returns an AuthSignal if login completed, or null if it timed out / was skipped.
+ */
+async function handleLoginPause(
+  page: import('playwright').Page,
+  context: import('playwright').BrowserContext,
+  detection: import('../browser/login-detect.js').LoginDetectionResult,
+  apisSeen: ObservedApiCall[],
+  headless: boolean,
+  sessionDir: string,
+): Promise<AuthSignal | null> {
+  const loginUrl = page.url();
+
+  // In headless mode, we can't pause for user login
+  if (headless) {
+    console.log(`  Login required but running headless. Run \`data-agent login <url>\` first.`);
+    appendRunLog(sessionDir, `Login detected (headless) — aborting: ${loginUrl}`);
+    return null;
+  }
+
+  console.log(`  Login required! Detected login page (${detection.confidence} confidence)`);
+  console.log(`  Signals: ${detection.signals.join(', ')}`);
+  console.log('  Please log in using the open browser window.');
+  console.log('  Exploration will resume automatically after login.\n');
+
+  appendRunLog(sessionDir, `Login pause: ${loginUrl} — signals: ${detection.signals.join(', ')}`);
+
+  // Gather failed APIs for completion detection
+  const failedApis = apisSeen.filter(a => a.status === 401 || a.status === 403);
+
+  const completion = await waitForLoginCompletion(
+    page, context, loginUrl, failedApis, LOGIN_TIMEOUT_MS,
+  );
+
+  if (!completion.completed) {
+    console.log('  Login timed out. Run `data-agent login <url>` to log in first, then retry.');
+    appendRunLog(sessionDir, `Login timeout after ${LOGIN_TIMEOUT_MS / 1000}s`);
+    return null;
+  }
+
+  console.log(`  Login completed! (signal: ${completion.signal}, ${(completion.durationMs / 1000).toFixed(1)}s)`);
+  if (completion.newCookies.length > 0) {
+    console.log(`  New auth cookies: ${completion.newCookies.join(', ')}`);
+  }
+  appendRunLog(sessionDir, `Login complete: signal=${completion.signal} newCookies=[${completion.newCookies.join(',')}]`);
+
+  return {
+    loginUrl,
+    completionSignal: completion.signal,
+    newCookies: completion.newCookies,
+    failedApisBeforeLogin: failedApis.map(a => ({ url: a.url, status: a.status })),
+    timestamp: Date.now(),
+  };
+}
+
 /**
  * Run the explore agent loop.
  *
@@ -110,6 +172,8 @@ export async function explore(options: ExploreOptions): Promise<ExploreResult> {
 
   const actions: ActionWithIntent[] = [];
   const apisSeen: ObservedApiCall[] = [];
+  const authSignals: AuthSignal[] = [];
+  let loginPauseCount = 0;
 
   // Track all API responses
   page.on('response', (r) => {
@@ -135,6 +199,30 @@ export async function explore(options: ExploreOptions): Promise<ExploreResult> {
   console.log(`  Navigating to ${url}...`);
   await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 });
   await waitForNetworkSettle(page, { quietMs: 500, timeoutMs: 5000 });
+
+  // Check for login page after initial navigation
+  let targetDomain: string | undefined;
+  try { targetDomain = new URL(url).hostname; } catch { /* ignore */ }
+
+  const initialLoginCheck = await detectLoginPage(page, apisSeen, targetDomain);
+  if (initialLoginCheck.isLoginPage && loginPauseCount < MAX_LOGIN_PAUSES) {
+    loginPauseCount++;
+    const signal = await handleLoginPause(page, context, initialLoginCheck, apisSeen, headless, sessionDir);
+    if (signal) {
+      authSignals.push(signal);
+      // Wait for network to settle after login, then navigate back to target
+      await waitForNetworkSettle(page, { quietMs: 1000, timeoutMs: 8000 });
+      const currentUrl = page.url();
+      if (!currentUrl.includes(targetDomain ?? '')) {
+        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 });
+        await waitForNetworkSettle(page, { quietMs: 500, timeoutMs: 5000 });
+      }
+    } else {
+      // Login failed/timed out or headless — abort exploration
+      await close();
+      return { harPath, actions, apisSeen, sessionDir, authSignals };
+    }
+  }
 
   const systemPrompt = loadExplorePrompt();
 
@@ -174,6 +262,30 @@ export async function explore(options: ExploreOptions): Promise<ExploreResult> {
         }
       } else {
         consecutiveBlocked = 0;
+      }
+
+      // Login page detection (only if not already blocked)
+      if (!pageStats.isLikelyBlocked && loginPauseCount < MAX_LOGIN_PAUSES) {
+        const loginCheck = await detectLoginPage(page, apisSeen, targetDomain);
+        if (loginCheck.isLoginPage) {
+          loginPauseCount++;
+          const signal = await handleLoginPause(page, context, loginCheck, apisSeen, headless, sessionDir);
+          if (signal) {
+            authSignals.push(signal);
+            await waitForNetworkSettle(page, { quietMs: 1000, timeoutMs: 8000 });
+            // Navigate back to target if we ended up somewhere else
+            const currentUrl = page.url();
+            if (targetDomain && !currentUrl.includes(targetDomain)) {
+              await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30_000 });
+              await waitForNetworkSettle(page, { quietMs: 500, timeoutMs: 5000 });
+            }
+            continue; // re-snapshot after login
+          } else {
+            // Login failed/timed out or headless — abort
+            appendRunLog(sessionDir, 'Exploration stopped: login required but could not complete');
+            break;
+          }
+        }
       }
 
       // 2. PLAN: Ask LLM what to do next
@@ -244,6 +356,7 @@ export async function explore(options: ExploreOptions): Promise<ExploreResult> {
     url,
     actions,
     apisSeen,
+    authSignals,
     createdAt: new Date().toISOString(),
   };
   writeFileSync(join(sessionDir, 'session.json'), JSON.stringify(sessionMeta, null, 2));
@@ -251,7 +364,7 @@ export async function explore(options: ExploreOptions): Promise<ExploreResult> {
   appendRunLog(sessionDir, `Explore complete: ${actions.length} actions, ${apisSeen.length} APIs observed`);
   console.log(`  Explore complete: ${actions.length} actions, ${apisSeen.length} APIs observed`);
 
-  return { harPath, actions, apisSeen, sessionDir };
+  return { harPath, actions, apisSeen, sessionDir, authSignals };
 }
 
 /**

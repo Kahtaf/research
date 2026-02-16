@@ -169,6 +169,7 @@ async function runAutoMode(description: string, options: AutoModeOptions): Promi
   // 3. Auth check
   if (intent.requiresAuth) {
     console.log('  Auth: Using persistent browser profile');
+    console.log('  If login is needed during exploration, you will be prompted in the browser.');
   }
 
   // 4. Explore
