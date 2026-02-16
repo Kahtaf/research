@@ -113,7 +113,7 @@ for dirname, commit_date in subdirs_with_dates:
     print()  # Add blank line between entries
 
 ]]]-->
-## 14 research projects
+## 15 research projects
 
 ### [agent-login](https://github.com/Kahtaf/research/tree/main/agent-login) (2026-02-16)
 
@@ -122,6 +122,16 @@ The current landscape for AI agent authentication is shifting from human-centric
 * Universal standards for autonomous account creation and agent-specific reputation are the primary missing links.
 * Emerging protocols like [A2A](https://a2a-protocol.org/) aim to standardize agent discovery and verifiable "agent cards."
 * Modern security patterns focus on "token vaulting" to ensure raw credentials remain outside the LLM context.
+
+### [random-scheduling-service](https://github.com/Kahtaf/research/tree/main/random-scheduling-service) (2026-02-16)
+
+Repositioning [Untimely](https://untimely.app) as a dedicated "Random Scheduling as a Service" API addresses a significant technical gap in a market currently dominated by strictly deterministic cron tools. The service automates the complex logic required for unpredictable timing—such as IANA timezone math, spread distribution, and audit trails—making it a specialized utility for chaos engineering, gamification, and team engagement. Its AI-native architecture leverages the [Model Context Protocol (MCP)](https://modelcontextprotocol.io) and [llms.txt](https://llmstxt.org) conventions to ensure seamless discovery and integration by autonomous AI agents. This strategic shift transforms the platform into a foundational infrastructure layer for developers who require stochastic triggers without the fragility of DIY solutions.
+
+**Key Findings**
+* **Unfilled Market Gap:** Competitors like cron-job.org or Google Cloud Scheduler are exclusively deterministic; no existing SaaS offers native stochastic timing.
+* **Chaos Engineering Fit:** The strongest technical use case is automated fault injection where unpredictability is a core requirement rather than a feature.
+* **AI-First Design:** By serving structured metadata and MCP tools, Untimely positions itself as the default scheduling choice for agent-driven development.
+* **Webhook-First Pipeline:** The pivot focuses on a robust webhook delivery engine featuring HMAC-SHA256 signing and exponential backoff retries.
 
 ### [data-agent](https://github.com/Kahtaf/research/tree/main/data-agent) (2026-02-06)
 
