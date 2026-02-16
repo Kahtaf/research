@@ -4,9 +4,11 @@
 
 ---
 
+**Update (2026-02-16):** Sections 1, 4, 8, and part of 9 were revised after reviewing the actual Untimely source code in `/Users/kahtaf/Documents/workspace_kahtaf/untimely`.
+
 ## 1. Executive Summary
 
-[Untimely](https://untimely.app) is a consumer-facing application that schedules randomly recurring, spontaneous events. Today, it handles both the **scheduling** (deciding *when* something happens) and the **compute** (sending SMS, emails, Slack messages, and invoking LLMs). The proposed pivot strips all compute and repositions Untimely as a pure **random scheduling API layer** — when a schedule fires, it calls a developer-configured webhook. The developer decides what happens next.
+[Untimely](https://untimely.app) is a consumer-facing application that schedules randomly recurring, spontaneous events. Today, it already handles both the **scheduling** (deciding *when* something happens) and delivery compute for **email/SMS** (with optional LLM-generated content). Slack and webhook action types exist in enums/UI placeholders but are not fully implemented in the trigger pipeline yet. The proposed pivot repositions Untimely as a pure **random scheduling API layer** — when a schedule fires, it calls a developer-configured webhook. The developer decides what happens next.
 
 The strategic rationale is straightforward: **no existing scheduling service offers stochastic timing.** Every competitor — cron-job.org, Cronhub, EasyCron, Google Cloud Scheduler, Cronhooks, HookPulse, Posthook — is strictly deterministic. They fire at exact times specified by cron expressions or Unix timestamps. The concept of "fire somewhere between 9am and 5pm, roughly twice per day, at random times" does not exist on any platform. This is a genuine market gap.
 
@@ -75,6 +77,21 @@ On the surface, random scheduling looks trivial — `Math.random() * windowSize`
 
 ## 4. Proposed API Design
 
+### Current Implementation Baseline (Code-Verified)
+
+Before designing the public API, these are the key realities in the current codebase:
+
+- Auth today is cookie-session based (`token` JWT), not customer API keys.
+- Existing app APIs are primarily:
+  - `POST /api/events` (create)
+  - `PATCH /api/events/:id` (update + regenerate future schedules if rules changed)
+  - `DELETE /api/events/:id` (delete event and related rows)
+  - `GET /api/batch/trigger-events` (admin-key worker route that triggers due schedules and renews future schedules)
+- The data model already contains reusable scheduling primitives: `events`, `event_rules`, `event_schedules`, `event_actions`.
+- Trigger execution currently implements EMAIL and SMS delivery. WEBHOOK is a target state, not current behavior.
+
+The design below is therefore a **target external API contract**, not a description of the current public API surface.
+
 ### Authentication
 
 API key-based auth via the `Authorization` header:
@@ -90,7 +107,16 @@ Key design decisions:
 - **Rate limiting**: Per-key limits (e.g., 100 API requests/minute, configurable per tier).
 - **HMAC signing on outbound webhooks**: Each schedule gets a `signing_secret`. Outbound webhooks include an `Untimely-Signature` header containing `t=<timestamp>,v1=<hmac_sha256>`, following Stripe's well-documented pattern.
 
+Implementation note from current code: internal machine routes currently compare the `Authorization` header directly to `ADMIN_API_KEY`; moving to per-tenant API keys is a required pivot step.
+
 ### Core Data Model
+
+Current model vs target model:
+
+- **Current**: normalized app model (`events` + `event_rules` + `event_actions` + `event_schedules`).
+- **Target**: developer-facing schedule/execution resources with API-key ownership, webhook delivery metadata, and explicit timezone contracts.
+
+The model below remains the target contract:
 
 ```
 Schedule {
@@ -146,6 +172,8 @@ Execution {
 
 ### API Endpoints
 
+Current code does not expose this `/v1` surface yet; this table is the recommended external API contract.
+
 | Method | Path | Description |
 |--------|------|-------------|
 | `POST` | `/v1/schedules` | Create a new schedule |
@@ -198,7 +226,7 @@ curl -X POST https://api.untimely.app/v1/schedules \
 
 ### Webhook Delivery Specification
 
-When a schedule fires, Untimely POSTs to the configured URL:
+Target behavior: when a schedule fires, Untimely POSTs to the configured URL:
 
 ```http
 POST /api/kudos-trigger HTTP/1.1
@@ -217,6 +245,8 @@ Untimely-Schedule-Id: sched_01HYX3K9M7...
 - **Timeout**: 30 seconds per attempt
 - **Success**: Any 2xx response code
 - **Failure logging**: Response code and truncated body stored in the Execution record
+
+Current code note: the trigger worker currently executes EMAIL/SMS only; webhook delivery needs to be added explicitly.
 
 ---
 
@@ -309,7 +339,7 @@ This means a developer can tell their AI assistant: *"Create a random schedule t
 
 ### 6a. Webhooks (Primary Integration)
 
-The foundational integration. Every schedule fires a webhook — all other integrations are built on top of or alongside this.
+Target-state foundational integration. In the pivoted product, every schedule fires a webhook — all other integrations are built on top of or alongside this.
 
 - Generic HTTP POST/GET/PUT to any URL
 - HMAC-SHA256 signing via `Untimely-Signature` header (Stripe's pattern — well-documented, battle-tested, widely understood)
@@ -322,14 +352,14 @@ The foundational integration. Every schedule fires a webhook — all other integ
 
 Two levels of integration:
 
-1. **Basic (webhook-native)**: Developer creates a Slack Incoming Webhook URL and sets it as the schedule's target. The `body` field uses Slack Block Kit JSON for rich formatting. This works today with zero additional infrastructure.
+1. **Basic (webhook-native)**: Developer creates a Slack Incoming Webhook URL and sets it as the schedule's target. The `body` field uses Slack Block Kit JSON for rich formatting. This is the fastest launch path once webhook delivery is implemented.
 2. **Future (Slack App)**: A first-party Untimely Slack app with a `/untimely` slash command for creating and managing schedules directly from Slack. This is a convenience layer that increases surface area but requires maintaining a Slack app.
 
 Recommendation: launch with webhook-native Slack support only. Build the Slack App once there's demand.
 
 ### 6c. Discord
 
-Same pattern as Slack: POST to a Discord webhook URL with rich embed formatting in the body. Discord's webhook format is simpler than Slack's Block Kit, and the integration is trivially supported by the webhook-native architecture.
+Same pattern as Slack: POST to a Discord webhook URL with rich embed formatting in the body. Discord's webhook format is simpler than Slack's Block Kit, and this should be straightforward once webhook delivery is implemented.
 
 ### 6d. Email
 
@@ -375,10 +405,10 @@ The strongest use cases share a common trait: **unpredictability is the core req
 
 ### What to Strip from the Current Codebase
 
-- **SMS sending** (Twilio integration or equivalent) — remove entirely
-- **LLM invocation** — remove entirely
-- **Direct email composition** — replace with simple webhook-to-email-service bridge or keep as a thin "email target" option
-- **Direct Slack message composing** — replace with generic webhook POST to Slack webhook URLs
+- **Do not strip immediately**: SMS, email, and LLM paths currently power the existing product and should be phased down behind migration flags rather than removed in one cut.
+- **Refactor delivery channels**: move EMAIL/SMS/LLM into optional targets or adapters while making webhook the primary execution path.
+- **Remove dead-end abstractions** only after parity exists in the webhook-first pipeline and current users are migrated.
+- **Slack action path**: keep as future adapter; do not claim direct Slack delivery until implemented in the trigger worker.
 
 ### What to Build
 
@@ -396,10 +426,10 @@ The strongest use cases share a common trait: **unpredictability is the core req
 
 ### Infrastructure
 
-- **Database**: PostgreSQL. Stores schedules, pre-computed fire times, execution logs, API keys, and account data.
+- **Database**: continue on Cloudflare D1 initially (current implementation), with a PostgreSQL migration only if scale/query patterns justify it.
 - **Scheduling worker**: A cron-like process that runs every minute, checks for schedules whose next fire time is now or in the past, and enqueues webhook delivery jobs. For random scheduling, this worker also computes random fire times for each upcoming period and persists them.
 - **Webhook delivery queue**: SQS, Redis + BullMQ, or similar. Separate from the scheduling worker to ensure delivery retries don't block schedule evaluation.
-- **Web framework**: The current stack is Next.js. The API could be Next.js API routes, but for a developer API platform, a separate lightweight service (Hono on Cloudflare Workers, or Fastify on a VPS) may be cleaner and cheaper to run.
+- **Web framework**: the current stack is Next.js Edge routes on Cloudflare Pages. Start by productizing this surface, then split into a dedicated service only if operational complexity requires it.
 
 ### Pricing Model
 
@@ -426,7 +456,7 @@ The strongest use cases share a common trait: **unpredictability is the core req
 
 4. **The API is simple.** A developer can go from zero to a working random schedule in under 2 minutes: sign up, get API key, make one curl request. Low friction means low barrier to trial.
 
-5. **The existing codebase has the hardest part.** The random scheduling engine — with its timezone handling, spread distribution, and missed-window logic — already exists in Untimely. The pivot is about removing code and exposing an API, not building core scheduling logic from scratch.
+5. **The existing codebase has a meaningful head start.** Untimely already has persisted schedules, random trigger generation, and a trigger/renew worker. However, API-grade timezone contracts, webhook delivery reliability, and customer-facing API/auth layers still need substantial work.
 
 ### Arguments Against
 

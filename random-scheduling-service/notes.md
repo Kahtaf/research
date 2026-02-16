@@ -49,3 +49,42 @@ Researched every major scheduling service to determine if any offer random/stoch
 4. AI-native design (/llms.txt + MCP) is a genuine timing advantage — no scheduling service has this yet
 5. The biggest risk is that random scheduling is easy enough to DIY that developers won't pay for it
 6. cron-job.org's API design (RESTful, bearer auth, simple job model) is the right pattern to follow
+
+### Phase 5: Source-of-Truth Audit Against Untimely Codebase (2026-02-16)
+- Checked out PR #11 branch locally to edit the exact folder contents.
+- Reviewed actual implementation in `/Users/kahtaf/Documents/workspace_kahtaf/untimely` instead of relying on homepage assumptions.
+
+#### What I validated in code
+1. **Data model exists already for random scheduling primitives**
+   - `events`, `event_rules`, `event_schedules`, `event_actions` are implemented in Drizzle schema.
+   - Schedules are persisted (`event_schedules.triggers_at`) and materialized ahead of execution.
+2. **Auth model today is not API-key based**
+   - User routes rely on JWT cookie session (`getCurrentUser`).
+   - Admin machine routes compare `Authorization` header to `ADMIN_API_KEY`.
+3. **Existing API routes are app/internal-focused**
+   - CRUD-like behavior exists for create/update/delete event.
+   - No public versioned API (`/v1`) and no dedicated list/get event API for external clients.
+4. **Trigger worker exists and is non-trivial**
+   - `/api/batch/trigger-events` handles due triggers, stale rows, and schedule renewal.
+   - Performance-related query helpers and indexes are already present.
+5. **Action support is partial**
+   - EMAIL and SMS execution paths exist.
+   - WEBHOOK and SLACK are present in enum/UI placeholders but are not implemented in trigger execution.
+6. **Timezone handling is currently app-centric**
+   - UI converts local time to UTC `HH:mm` before persistence.
+   - Rule model does not store IANA timezone, which is required for strong API contracts.
+
+#### Documentation changes made from this audit
+- Replaced `random-scheduling-service/README.md` with a code-validated summary.
+- Added `random-scheduling-service/research-doc.md` with detailed architecture/API/schema/gap analysis.
+- Updated conclusions from "greenfield service design" to "productize existing scheduler core".
+
+#### Key correction to prior assumptions
+- Prior draft treated Untimely pivot mostly as a fresh API design exercise.
+- Code audit shows this should be approached as an incremental migration with major reuse of existing scheduling and trigger infrastructure.
+
+### Phase 6: README Surgical Revision After User Feedback (2026-02-16)
+- Reverted `random-scheduling-service/README.md` to the original PR version.
+- Applied targeted edits only where assumptions were incorrect after source review.
+- Updated sections: 1 (Executive Summary), 4 (Proposed API Design context), 6 (integration claims around webhook readiness), 8 (migration/infra assumptions), and 9 (codebase head-start claim).
+- Preserved the rest of the original narrative and appendices intact.
