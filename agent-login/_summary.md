@@ -1,0 +1,5 @@
+The current landscape for AI agent authentication is shifting from human-centric password entries to a sophisticated stack of delegated authorization, cryptographic identity, and non-interactive execution planes. Established platforms like Auth0 and Okta are adapting OAuth patterns for agentic workflows, while newer frameworks like the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) provide standardized paths for secure agent-to-tool communication. Despite these building blocks, the industry still lacks a universal "Sign in with Agent" layer capable of handling autonomous account creation and cross-service reputation. Future adoption depends on developing a composable control plane that prioritizes developer experience and robust anti-abuse controls to mitigate the risks of automated fraud.
+
+* Universal standards for autonomous account creation and agent-specific reputation are the primary missing links.
+* Emerging protocols like [A2A](https://a2a-protocol.org/) aim to standardize agent discovery and verifiable "agent cards."
+* Modern security patterns focus on "token vaulting" to ensure raw credentials remain outside the LLM context.
