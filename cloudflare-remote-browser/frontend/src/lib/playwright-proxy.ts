@@ -324,6 +324,34 @@ export class PlaywrightPageProxy {
   }): Promise<{ success: boolean; fallback?: boolean }> {
     return this.execute('solveCaptcha', [options]) as Promise<{ success: boolean; fallback?: boolean }>;
   }
+
+  async keyboard_type(text: string, options?: { delay?: number }): Promise<void> {
+    await this.execute('keyboard_type', [text, options]);
+  }
+
+  async keyboard_press(key: string): Promise<void> {
+    await this.execute('keyboard_press', [key]);
+  }
+
+  async mouse_click(x: number, y: number, options?: { button?: string; clickCount?: number }): Promise<void> {
+    await this.execute('mouse_click', [x, y, options]);
+  }
+
+  async frame_fill(frameUrlPattern: string, selector: string, value: string): Promise<void> {
+    await this.execute('frame_fill', [frameUrlPattern, selector, value]);
+  }
+
+  async frame_click(frameUrlPattern: string, selector: string, options?: { timeout?: number }): Promise<void> {
+    await this.execute('frame_click', [frameUrlPattern, selector, options]);
+  }
+
+  async frame_evaluate(frameUrlPattern: string, expression: string): Promise<unknown> {
+    return this.execute('frame_evaluate', [frameUrlPattern, expression]);
+  }
+
+  async frame_waitForSelector(frameUrlPattern: string, selector: string, options?: { timeout?: number; state?: string }): Promise<void> {
+    await this.execute('frame_waitForSelector', [frameUrlPattern, selector, options]);
+  }
 }
 
 export class PlaywrightLocatorProxy {

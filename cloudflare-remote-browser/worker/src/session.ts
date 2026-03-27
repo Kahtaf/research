@@ -81,7 +81,7 @@ export class BrowserSession {
   private viewportHeight = 600;
 
   private networkRequests: LRUCache<string, StoredNetworkRequest> = new LRUCache(NETWORK_CACHE_SIZE);
-  private capturePatterns: Map<string, { url?: RegExp; body?: RegExp }> = new Map();
+  private capturePatterns: Map<string, { url?: RegExp; body?: RegExp; accumulate?: boolean }> = new Map();
   private capturedResponses: Map<string, unknown> = new Map();
   
   private automationData: Record<string, unknown> = {};
@@ -442,7 +442,7 @@ export class BrowserSession {
 
       if (match) {
         let responseData: unknown;
-        
+
         if (request.responseBody) {
           if (request.responseBase64Encoded) {
             responseData = request.responseBody;
@@ -455,13 +455,24 @@ export class BrowserSession {
           }
         }
 
-        this.capturedResponses.set(key, {
+        const entry = {
           url: request.url,
           status: request.status,
           headers: request.responseHeaders,
           body: responseData,
-          data: responseData // Alias for easier access if script expects .data
-        });
+          data: responseData
+        };
+
+        if (patterns.accumulate) {
+          const existing = this.capturedResponses.get(key);
+          if (Array.isArray(existing)) {
+            existing.push(entry);
+          } else {
+            this.capturedResponses.set(key, [entry]);
+          }
+        } else {
+          this.capturedResponses.set(key, entry);
+        }
 
         request.capturedByKey = key;
       }
@@ -523,11 +534,14 @@ export class BrowserSession {
         let urlPattern: string | undefined;
         let bodyPattern: string | undefined;
 
+        let accumulate = false;
+
         if (typeof arg0 === 'object' && arg0 !== null) {
-          const opts = arg0 as { key: string; urlPattern?: string; bodyPattern?: string };
+          const opts = arg0 as { key: string; urlPattern?: string; bodyPattern?: string; accumulate?: boolean };
           key = opts.key;
           urlPattern = opts.urlPattern;
           bodyPattern = opts.bodyPattern;
+          accumulate = opts.accumulate || false;
         } else {
           key = args[0] as string;
           urlPattern = args[1] as string;
@@ -539,7 +553,8 @@ export class BrowserSession {
 
         this.capturePatterns.set(key, {
           url: urlPattern ? new RegExp(urlPattern) : undefined,
-          body: bodyPattern ? new RegExp(bodyPattern) : undefined
+          body: bodyPattern ? new RegExp(bodyPattern) : undefined,
+          accumulate
         });
         result = null;
       } else if (method === 'clearNetworkCaptures') {
@@ -744,6 +759,78 @@ export class BrowserSession {
         if (typeof expression !== 'string') throw new Error('waitForFunction(expression) requires a string');
         const options = (args[1] ?? undefined) as { timeout?: number; polling?: number } | undefined;
         await page.waitForFunction(expression, undefined, options);
+        return null;
+      }
+      case 'keyboard_type': {
+        const text = args[0];
+        if (typeof text !== 'string') throw new Error('keyboard_type(text) requires a string');
+        const options = (args[1] ?? undefined) as { delay?: number } | undefined;
+        await page.keyboard.type(text, options);
+        return null;
+      }
+      case 'keyboard_press': {
+        const key = args[0];
+        if (typeof key !== 'string') throw new Error('keyboard_press(key) requires a string');
+        await page.keyboard.press(key);
+        return null;
+      }
+      case 'mouse_click': {
+        const x = args[0];
+        const y = args[1];
+        if (typeof x !== 'number' || typeof y !== 'number') throw new Error('mouse_click(x, y) requires numbers');
+        const options = (args[2] ?? undefined) as { button?: 'left' | 'right' | 'middle'; clickCount?: number } | undefined;
+        this.broadcast({ type: 'automation:cursor', x, y, action: 'click' });
+        await page.mouse.click(x, y, options);
+        return null;
+      }
+      case 'frame_fill': {
+        // Fill an input inside an iframe found by URL pattern
+        const frameUrl = args[0];
+        const selector = args[1];
+        const value = args[2];
+        if (typeof frameUrl !== 'string' || typeof selector !== 'string' || typeof value !== 'string') {
+          throw new Error('frame_fill(frameUrlPattern, selector, value) requires strings');
+        }
+        const frame = page.frames().find(f => f.url().includes(frameUrl));
+        if (!frame) throw new Error(`No frame found matching URL: ${frameUrl}`);
+        await frame.fill(selector, value);
+        return null;
+      }
+      case 'frame_click': {
+        // Click an element inside an iframe found by URL pattern
+        const frameUrl = args[0];
+        const selector = args[1];
+        if (typeof frameUrl !== 'string' || typeof selector !== 'string') {
+          throw new Error('frame_click(frameUrlPattern, selector) requires strings');
+        }
+        const options = (args[2] ?? undefined) as { timeout?: number } | undefined;
+        const frame = page.frames().find(f => f.url().includes(frameUrl));
+        if (!frame) throw new Error(`No frame found matching URL: ${frameUrl}`);
+        await frame.click(selector, options);
+        return null;
+      }
+      case 'frame_evaluate': {
+        // Evaluate JS inside an iframe found by URL pattern
+        const frameUrl = args[0];
+        const expression = args[1];
+        if (typeof frameUrl !== 'string' || typeof expression !== 'string') {
+          throw new Error('frame_evaluate(frameUrlPattern, expression) requires strings');
+        }
+        const frame = page.frames().find(f => f.url().includes(frameUrl));
+        if (!frame) throw new Error(`No frame found matching URL: ${frameUrl}`);
+        return await frame.evaluate(expression);
+      }
+      case 'frame_waitForSelector': {
+        // Wait for a selector inside an iframe found by URL pattern
+        const frameUrl = args[0];
+        const selector = args[1];
+        if (typeof frameUrl !== 'string' || typeof selector !== 'string') {
+          throw new Error('frame_waitForSelector(frameUrlPattern, selector) requires strings');
+        }
+        const frame = page.frames().find(f => f.url().includes(frameUrl));
+        const options = (args[2] ?? {}) as Parameters<Page['waitForSelector']>[1];
+        if (!frame) throw new Error(`No frame found matching URL: ${frameUrl}`);
+        await frame.waitForSelector(selector, options);
         return null;
       }
       default:

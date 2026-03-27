@@ -19,5 +19,15 @@ export const providers: Record<string, ProviderConfig> = {
     color: '#E4405F',
     dataTypes: ['Profile', 'Posts', 'Followers'],
     privacyNote: 'Your credentials are used once and never stored.'
+  },
+  icloud_notes: {
+    id: 'icloud_notes',
+    name: 'iCloud Notes',
+    logo: 'https://cdn-icons-png.flaticon.com/512/0/747.png',
+    description: 'Connect your iCloud account to import your Apple Notes.',
+    script: 'icloud-notes',
+    color: '#3693F3',
+    dataTypes: ['Notes', 'Folders'],
+    privacyNote: 'Your Apple ID credentials are used once for authentication and never stored.'
   }
 };
