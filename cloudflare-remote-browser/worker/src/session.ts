@@ -86,10 +86,14 @@ export class BrowserSession {
   
   private automationData: Record<string, unknown> = {};
   private automationMode: AutomationMode = 'idle';
+  private sessionId: string | null = null;
 
   constructor(state: DurableObjectState, env: Env) {
     this.state = state;
     this.env = env;
+    state.blockConcurrencyWhile(async () => {
+      this.sessionId = await state.storage.get<string>('sessionId') ?? null;
+    });
   }
 
   /**
@@ -129,7 +133,8 @@ export class BrowserSession {
     }
 
     if (path === '/init' && request.method === 'POST') {
-      return this.initSession();
+      const body = await request.json() as { sessionId?: string };
+      return this.initSession(body.sessionId);
     }
 
     if (path === '/script' && request.method === 'POST') {
@@ -188,8 +193,13 @@ export class BrowserSession {
     return new Response('Not Found', { status: 404 });
   }
 
-  private async initSession(): Promise<Response> {
+  private async initSession(sessionId?: string): Promise<Response> {
     try {
+      if (sessionId) {
+        this.sessionId = sessionId;
+        await this.state.storage.put('sessionId', sessionId);
+      }
+
       console.log('[initSession] Starting browser session...');
       this.status = 'starting';
       this.broadcast({ type: 'status', status: 'starting' });
@@ -1566,5 +1576,19 @@ export class BrowserSession {
       } catch { /* ignore */ }
     }
     this.wsConnections.clear();
+
+    // Remove from session registry so stale sessions don't appear in the list
+    if (this.sessionId) {
+      try {
+        const reg = this.env.SESSION_REGISTRY.get(this.env.SESSION_REGISTRY.idFromName('global'));
+        await reg.fetch(new Request('http://internal/remove', {
+          method: 'POST',
+          body: JSON.stringify({ sessionId: this.sessionId }),
+          headers: { 'Content-Type': 'application/json' }
+        }));
+      } catch (e) {
+        console.error('[cleanup] Failed to remove session from registry:', e);
+      }
+    }
   }
 }

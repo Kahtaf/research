@@ -39,7 +39,11 @@ export default {
       if (path === '/sessions' && request.method === 'POST') {
         const id = crypto.randomUUID();
         const stub = env.BROWSER_SESSION.get(env.BROWSER_SESSION.idFromName(id));
-        await stub.fetch(new Request('http://internal/init', { method: 'POST' }));
+        await stub.fetch(new Request('http://internal/init', {
+          method: 'POST',
+          body: JSON.stringify({ sessionId: id }),
+          headers: { 'Content-Type': 'application/json' }
+        }));
 
         const reg = env.SESSION_REGISTRY.get(env.SESSION_REGISTRY.idFromName('global'));
         await reg.fetch(new Request('http://internal/add', {
