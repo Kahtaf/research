@@ -25,11 +25,20 @@ export function ControlPanel({
     if (!isConnected) return;
     setLoading(true);
     try {
-      await session.runScript(`await page.goto('${url}');`);
+      await session.navigate(url);
     } catch (e) {
       console.error(e);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleExecute = async () => {
+    if (!isConnected || isRunning) return;
+    try {
+      await session.runScript(script);
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -70,12 +79,22 @@ export function ControlPanel({
             <Play size={16} className="text-text-secondary" />
             <span>Playwright Script</span>
           </h2>
-          {isRunning && (
-            <span className="flex items-center gap-1.5 text-xs text-accent">
-              <Loader2 size={12} className="animate-spin" />
-              {session.status === "takeover" ? "Waiting for user" : "Running"}
-            </span>
-          )}
+          <div className="flex items-center gap-2">
+            {isRunning && (
+              <span className="flex items-center gap-1.5 text-xs text-accent">
+                <Loader2 size={12} className="animate-spin" />
+                {session.status === "takeover" ? "Waiting for user" : "Running"}
+              </span>
+            )}
+            <button
+              onClick={handleExecute}
+              disabled={!isConnected || isRunning}
+              className="flex items-center gap-1.5 bg-accent hover:bg-accent-hover text-white px-3 py-1 rounded-lg text-xs font-medium transition-colors disabled:opacity-50"
+            >
+              <Play size={12} />
+              Execute
+            </button>
+          </div>
         </div>
 
         <textarea

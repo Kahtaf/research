@@ -739,6 +739,13 @@ export class BrowserSession {
         const arg = args.length >= 2 ? args[1] : undefined;
         return await page.evaluate(expression, arg as never);
       }
+      case 'waitForFunction': {
+        const expression = args[0];
+        if (typeof expression !== 'string') throw new Error('waitForFunction(expression) requires a string');
+        const options = (args[1] ?? undefined) as { timeout?: number; polling?: number } | undefined;
+        await page.waitForFunction(expression, undefined, options);
+        return null;
+      }
       default:
         throw new Error(`Unsupported page method: ${method}`);
     }
@@ -925,7 +932,7 @@ export class BrowserSession {
       return;
     }
 
-    if (this.status !== 'takeover' || !this.cdp) return;
+    if ((this.status !== 'takeover' && this.status !== 'idle') || !this.cdp) return;
 
     switch (message.type) {
       case 'mouse':

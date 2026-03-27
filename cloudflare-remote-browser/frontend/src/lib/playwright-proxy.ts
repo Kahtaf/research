@@ -25,6 +25,17 @@ function getCommandTimeoutMs(method: string, args: unknown[]): number {
     return typeof ms === 'number' ? ms + 5_000 : 30_000;
   }
 
+  if (method === 'waitForFunction') {
+    const options = args[1];
+    if (options && typeof options === 'object' && 'timeout' in options) {
+      const timeout = (options as { timeout?: unknown }).timeout;
+      if (typeof timeout === 'number') {
+        return timeout + 5_000;
+      }
+    }
+    return 35_000;
+  }
+
   if (method === 'waitForSelector' || method === 'goto') {
     const options = args[1];
     if (options && typeof options === 'object' && 'timeout' in options) {
@@ -123,6 +134,10 @@ export class PlaywrightPageProxy {
 
   async waitForSelector(selector: string, options?: unknown): Promise<unknown> {
     return this.execute('waitForSelector', [selector, options]);
+  }
+
+  async waitForFunction(expression: string, options?: { timeout?: number; polling?: number }): Promise<unknown> {
+    return this.execute('waitForFunction', [expression, options]);
   }
 
   async waitForTimeout(timeout: number): Promise<unknown> {

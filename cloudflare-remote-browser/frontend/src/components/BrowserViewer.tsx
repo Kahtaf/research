@@ -21,6 +21,7 @@ interface BrowserViewerProps {
   onFrame: (callback: (data: string) => void) => void;
   sendInput: (message: ClientMessage) => void;
   status: SessionStatus;
+  connected: boolean;
   viewport: { width: number; height: number };
   takeoverMessage?: string;
   agentCursor: CursorState | null;
@@ -34,6 +35,7 @@ export function BrowserViewer({
   onFrame,
   sendInput,
   status,
+  connected,
   viewport,
   takeoverMessage,
   agentCursor
@@ -48,7 +50,8 @@ export function BrowserViewer({
 
   const isAgentMode = status === 'running' || status === 'starting';
   const isUserMode = status === 'takeover';
-  const isInteractive = isUserMode;
+  const isIdleBrowsing = status === 'idle' && connected;
+  const isInteractive = isUserMode || isIdleBrowsing;
 
   useEffect(() => {
     if (!isAgentMode) {
@@ -285,7 +288,7 @@ export function BrowserViewer({
         isClicking: false
       };
     }
-    if (isUserMode && userCursor && isHovering) {
+    if ((isUserMode || isIdleBrowsing) && userCursor && isHovering) {
       return {
         x: userCursor.x,
         y: userCursor.y,
@@ -294,7 +297,7 @@ export function BrowserViewer({
       };
     }
     return null;
-  }, [isAgentMode, isUserMode, agentCursor, userCursor, isHovering, viewport.width, viewport.height, idleDrift]);
+  }, [isAgentMode, isUserMode, isIdleBrowsing, agentCursor, userCursor, isHovering, viewport.width, viewport.height, idleDrift]);
 
   const displayCursor = getDisplayCursor();
 
@@ -327,7 +330,7 @@ export function BrowserViewer({
             height={viewport.height}
             tabIndex={0}
             className={`focus:outline-none bg-white block ${
-              (isAgentMode || isUserMode) ? 'cursor-none' : 'cursor-default'
+              (isAgentMode || isUserMode || isIdleBrowsing) ? 'cursor-none' : 'cursor-default'
             }`}
             onMouseDown={(e) => handleMouseEvent(e, 'mousePressed')}
             onMouseUp={(e) => handleMouseEvent(e, 'mouseReleased')}

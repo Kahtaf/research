@@ -293,6 +293,7 @@ export function ConnectionFlow({ provider }: ConnectionFlowProps) {
                 onFrame={session.setOnFrame}
                 sendInput={session.sendInput}
                 status={session.status}
+                connected={session.connected}
                 viewport={session.viewport}
                 takeoverMessage={session.takeoverMessage}
                 agentCursor={session.agentCursor}

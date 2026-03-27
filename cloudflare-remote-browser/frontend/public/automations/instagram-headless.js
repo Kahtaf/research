@@ -174,15 +174,19 @@ while (!isLoggedIn && attempts < maxAttempts) {
     const userSelector = 'input[name="username"], input[name="email"], input[aria-label*="Username"]';
     const passSelector = 'input[name="password"], input[name="pass"], input[aria-label*="Password"]';
     await page.fill(userSelector, credentials.username);
+    await page.sleep(500);
     await page.fill(passSelector, credentials.password);
-    await page.click('button[type="submit"]');
+    await page.sleep(500);
+    // Use Enter key on the password field to submit — more reliable than clicking submit button
+    await page.press(passSelector, 'Enter');
   } catch (e) {
     lastError = "Login form disappeared or became unresponsive. Retrying...";
     continue;
   }
 
   await page.setData('status', 'Authenticating...');
-  await page.sleep(8000);
+  // Wait for login navigation to fully complete (Instagram's SPA redirect can take 10+ seconds)
+  await page.sleep(12000);
 
   if (await detectChallenge()) {
     await page.setData('status', 'Captcha detected...');
@@ -239,7 +243,7 @@ while (!isLoggedIn && attempts < maxAttempts) {
             })()
           `);
           await page.sleep(5000); */
-          clickNext();
+          await clickNext();
         }
       } else {
         console.log('[instagram] Unexpected captcha result:', captchaResult);
@@ -286,23 +290,63 @@ while (!isLoggedIn && attempts < maxAttempts) {
     });
 
     try {
-      const otpSelector = 'input[name="verificationCode"], input[name="email"], input[aria-label*="Code"]';
+      const otpSelector = 'input[name="verificationCode"], input[name="email"][id^="_r_"], input[aria-label*="Code"], input[aria-label*="code"]';
       await page.fill(otpSelector, otpResult.code);
+      await page.sleep(1000);
 
-      const submitBtn = 'button:has-text("Confirm"), button:has-text("Verify"), [role="button"]:has-text("Continue")';
-      await page.click(submitBtn);
+      // Instagram's Continue button is a div[role="button"] that starts disabled.
+      // Wait for it to become enabled after code is entered, then click it.
+      try {
+        await page.waitForFunction(`
+          (() => {
+            const btn = Array.from(document.querySelectorAll('[role="button"]'))
+              .find(el => /Continue|Confirm|Verify|Next/i.test(el.innerText || ''));
+            return btn && btn.getAttribute('aria-disabled') !== 'true';
+          })()
+        `, { timeout: 10000 });
+      } catch (e) { }
+
+      const continueBtn = '[role="button"]:has-text("Continue"), [role="button"]:has-text("Confirm"), button:has-text("Confirm"), button:has-text("Continue")';
+      await page.click(continueBtn, { timeout: 5000 });
       await page.sleep(8000);
     } catch (e) { }
   }
 
-  const webInfo = await fetchWebInfo();
+  // Dismiss Instagram post-login popups ("Save your login info?", "Turn on notifications?")
+  await page.setData('status', 'Checking login status...');
+  for (let d = 0; d < 3; d++) {
+    try {
+      const dismissed = await page.evaluate(`
+        (() => {
+          const btns = Array.from(document.querySelectorAll('button, [role="button"]'));
+          const dismiss = btns.find(b => /Not now|Not Now|Skip|Cancel/i.test(b.innerText || ''));
+          if (dismiss) { dismiss.click(); return true; }
+          return false;
+        })()
+      `);
+      if (dismissed) {
+        await page.sleep(2000);
+      } else {
+        break;
+      }
+    } catch (e) { break; }
+  }
+
+  // Try fetchWebInfo with retries (page may still be settling after navigation)
+  let webInfo = null;
+  for (let r = 0; r < 3; r++) {
+    webInfo = await fetchWebInfo();
+    if (webInfo?.username) break;
+    await page.sleep(3000);
+  }
+
   if (webInfo?.username) {
     isLoggedIn = true;
     state.webInfo = webInfo;
     await page.setData('status', `Logged in as @${webInfo.username}`);
   } else {
     const url = await page.url();
-    if (url.includes('challenge') || url.includes('checkpoint')) {
+    if (url.includes('challenge') || url.includes('checkpoint') || url.includes('auth_platform')) {
       await page.setData('status', 'Final security check...');
       try {
         console.log('[instagram] Final security check - calling solveCaptcha');
@@ -325,8 +369,20 @@ while (!isLoggedIn && attempts < maxAttempts) {
         state.webInfo = finalInfo;
       }
     } else {
+      // Navigate to Instagram home and try again
       await page.goto('https://www.instagram.com/');
       await page.sleep(5000);
+      // Dismiss any popups here too
+      try {
+        await page.evaluate(`
+          (() => {
+            const btns = Array.from(document.querySelectorAll('button, [role="button"]'));
+            const dismiss = btns.find(b => /Not now|Not Now|Skip|Cancel/i.test(b.innerText || ''));
+            if (dismiss) dismiss.click();
+          })()
+        `);
+      } catch (e) { }
+      await page.sleep(2000);
       const retryInfo = await fetchWebInfo();
       if (retryInfo?.username) {
         isLoggedIn = true;

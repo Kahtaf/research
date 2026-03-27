@@ -259,6 +259,12 @@ export function useSession() {
     }
   }, [state.sessionId, destroySessionKeepData]);
 
+  const navigate = useCallback(async (url: string) => {
+    if (!state.sessionId || !playwrightProxyRef.current) return;
+    const page = playwrightProxyRef.current.createPageProxy();
+    await page.goto(url);
+  }, [state.sessionId]);
+
   const completeTakeover = useCallback(async () => {
     if (!state.sessionId) return;
     
@@ -365,6 +371,7 @@ export function useSession() {
     attachSession,
     listSessions,
     runScript,
+    navigate,
     completeTakeover,
     destroySession,
     sendInput,

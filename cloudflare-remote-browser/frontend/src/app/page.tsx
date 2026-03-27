@@ -55,14 +55,6 @@ export default function Home() {
     }
   }, [showTargetMenu]);
 
-  useEffect(() => {
-    if (session.connected && session.status === 'idle' && session.sessionId) {
-      const timer = setTimeout(() => {
-        session.runScript(script).catch(console.error);
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [session.connected, session.status, session.sessionId]); 
 
   const handleKillSession = async (sessionId: string, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
@@ -169,6 +161,7 @@ export default function Home() {
               onFrame={session.setOnFrame}
               sendInput={session.sendInput}
               status={session.status}
+              connected={session.connected}
               viewport={session.viewport}
               takeoverMessage={session.takeoverMessage}
               agentCursor={session.agentCursor}
