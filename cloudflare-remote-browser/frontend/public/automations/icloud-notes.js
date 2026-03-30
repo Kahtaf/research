@@ -134,49 +134,106 @@ let isLoggedIn = !!fullName;
 // ── Phase 3: Login flow ──────────────────────────────────────────────
 
 if (!isLoggedIn) {
-  let attempts = 0;
-  const maxAttempts = 3;
-  let lastError = null;
-  let credentials = null;
+  const APPLE_FRAME = 'idmsa.apple.com';
+  const ICLOUD_CLIENT_ID = 'd39ba9916b7251055b22c7f910e2ea796ee65e98b2ddecea8f5dde8d9d1a815d';
 
-  while (!isLoggedIn && attempts < maxAttempts) {
-    attempts++;
-
-    // Navigate to iCloud (reload on retry)
-    if (attempts > 1) {
-      await page.goto('https://www.icloud.com/');
-      await page.sleep(3000);
-    }
-
-    // Step 1: Click "Sign In" button first to load the auth iframe
-    await page.setData('status', 'Opening sign in...');
+  // Helper: check if Apple auth frame is present
+  const findAuthFrame = async () => {
     try {
-      await page.evaluate(`
-        (() => {
-          const btns = Array.from(document.querySelectorAll('button, a, [role="button"]'));
-          const signIn = btns.find(el => /^Sign\\s*In$/i.test((el.textContent || '').trim()));
-          if (signIn) { signIn.click(); return true; }
-          return false;
-        })()
-      `);
-    } catch (e) {
-      lastError = 'Could not find Sign In button. Retrying...';
-      continue;
+      const frames = await page.listFrames();
+      return frames.some(f => f.url.includes(APPLE_FRAME));
+    } catch { return false; }
+  };
+
+  // Helper: poll for auth frame to appear
+  const waitForAuthFrame = async (maxWait = 15000) => {
+    const start = Date.now();
+    while (Date.now() - start < maxWait) {
+      if (await findAuthFrame()) return true;
+      await page.sleep(1000);
     }
+    return false;
+  };
 
-    // Wait for the auth iframe to fully load
-    await page.sleep(4000);
+  // Step 1: Get the auth iframe to appear
+  await page.setData('status', 'Opening sign in...');
+  let hasAuthFrame = await findAuthFrame();
 
-    // Verify the iframe appeared
-    const hasIframe = await page.evaluate(`
-      !!document.getElementById('aid-auth-widget-iFrame')
+  // Try clicking Sign In button (works when landing page renders)
+  if (!hasAuthFrame) {
+    const clicked = await page.evaluate(`
+      (() => {
+        const btns = Array.from(document.querySelectorAll('button, a, [role="button"]'));
+        const signIn = btns.find(el => /^Sign\\s*In$/i.test((el.textContent || '').trim()));
+        if (signIn) { signIn.click(); return true; }
+        return false;
+      })()
     `);
-    if (!hasIframe) {
-      lastError = 'Login form did not load. Retrying...';
-      continue;
-    }
 
-    // Step 2: NOW ask for credentials (the browser is showing the Apple login form)
+    if (clicked) {
+      hasAuthFrame = await waitForAuthFrame(10000);
+    }
+  }
+
+  // Fallback: reload and try again — some environments need a second load
+  if (!hasAuthFrame) {
+    await page.setData('status', 'Retrying sign in...');
+    await page.goto('https://www.icloud.com/');
+    await page.sleep(5000);
+
+    const clicked = await page.evaluate(`
+      (() => {
+        const btns = Array.from(document.querySelectorAll('button, a, [role="button"]'));
+        const signIn = btns.find(el => /^Sign\\s*In$/i.test((el.textContent || '').trim()));
+        if (signIn) { signIn.click(); return true; }
+        return false;
+      })()
+    `);
+
+    if (clicked) {
+      hasAuthFrame = await waitForAuthFrame(10000);
+    }
+  }
+
+  // Fallback: inject the auth iframe programmatically
+  // (handles datacenter IPs where iCloud landing page doesn't render)
+  if (!hasAuthFrame) {
+    await page.setData('status', 'Injecting sign in...');
+    const authUrl = 'https://idmsa.apple.com/appleauth/auth/authorize/signin'
+      + '?client_id=' + ICLOUD_CLIENT_ID
+      + '&redirect_uri=' + encodeURIComponent('https://www.icloud.com')
+      + '&response_type=code'
+      + '&response_mode=web_message'
+      + '&authVersion=latest';
+
+    await page.evaluate(`
+      (() => {
+        const existing = document.getElementById('aid-auth-widget-iFrame');
+        if (existing) existing.remove();
+
+        const iframe = document.createElement('iframe');
+        iframe.id = 'aid-auth-widget-iFrame';
+        iframe.name = 'aid-auth-widget';
+        iframe.allow = 'publickey-credentials-get';
+        iframe.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;border:none;z-index:99999;background:white;';
+        iframe.src = ${JSON.stringify(authUrl)};
+        document.body.appendChild(iframe);
+        return true;
+      })()
+    `);
+
+    hasAuthFrame = await waitForAuthFrame(15000);
+  }
+
+  // Step 2: If auth frame is available, ask for credentials and sign in
+  let credentials = null;
+  let lastError = null;
+  let loginAttempts = 0;
+
+  while (hasAuthFrame && !isLoggedIn && loginAttempts < 3) {
+    loginAttempts++;
+
+    // Ask for credentials
     if (!credentials || lastError) {
       credentials = await page.getInput({
         title: 'Sign in to iCloud',
@@ -198,35 +255,30 @@ if (!isLoggedIn) {
       });
     }
 
-    // Step 3: Use frame_fill to directly fill the email input inside the cross-origin iframe
-    const APPLE_FRAME = 'idmsa.apple.com';
     await page.setData('status', 'Entering credentials...');
 
     try {
-      // Wait for the email input to appear in the Apple auth iframe
+      // Wait for the email input inside the Apple auth iframe
       await page.frame_waitForSelector(APPLE_FRAME, 'input#account_name_text_field, input[type="email"], input[name="account_name"]', { timeout: 10000 });
 
-      // Fill the email field directly
+      // Fill email
       await page.frame_fill(APPLE_FRAME, 'input#account_name_text_field, input[type="email"], input[name="account_name"]', credentials.appleId);
       await page.sleep(500);
 
-      // Click the Continue/Sign In button to submit email
+      // Click Continue button
       try {
         await page.frame_click(APPLE_FRAME, '#sign-in, button[type="submit"], .si-button', { timeout: 5000 });
       } catch (e) {
-        // Fallback: press Enter
         await page.keyboard_press('Enter');
       }
-      await page.sleep(4000);
+      await page.sleep(3000);
 
-      // Wait for password field to appear
+      // Wait for and fill password field
       await page.frame_waitForSelector(APPLE_FRAME, 'input#password_text_field, input[type="password"], input[name="password"]', { timeout: 10000 });
-
-      // Fill the password field
       await page.frame_fill(APPLE_FRAME, 'input#password_text_field, input[type="password"], input[name="password"]', credentials.password);
       await page.sleep(500);
 
-      // Click Sign In button to submit password
+      // Click Sign In
       try {
         await page.frame_click(APPLE_FRAME, '#sign-in, button[type="submit"], .si-button', { timeout: 5000 });
       } catch (e) {
@@ -247,7 +299,7 @@ if (!isLoggedIn) {
       break;
     }
 
-    // Check if 2FA is needed by looking for the verification code input IN the iframe
+    // Check if 2FA is needed
     let needs2FA = false;
     try {
       const twoFACheck = await page.frame_evaluate(APPLE_FRAME, `
@@ -259,7 +311,6 @@ if (!isLoggedIn) {
       `);
       needs2FA = !!twoFACheck;
     } catch (e) {
-      // Frame might have navigated away - check if iframe is still present
       const stillHasIframe = await page.evaluate(`!!document.getElementById('aid-auth-widget-iFrame')`);
       needs2FA = stillHasIframe;
     }
@@ -285,19 +336,16 @@ if (!isLoggedIn) {
 
       await page.setData('status', 'Verifying code...');
 
-      // Fill the verification code directly in the iframe
       try {
         await page.frame_fill(APPLE_FRAME, 'input[name="security_code"], input.form-textbox-input, input[id*="code"], input[type="tel"]', otpResult.code);
         await page.sleep(1000);
 
-        // Click the continue/verify button
         try {
           await page.frame_click(APPLE_FRAME, 'button[type="submit"], .si-button, button.button-primary', { timeout: 5000 });
         } catch (e) {
           await page.keyboard_press('Enter');
         }
       } catch (e) {
-        // Fallback to keyboard typing
         await page.keyboard_type(otpResult.code, { delay: 50 });
         await page.sleep(500);
         await page.keyboard_press('Enter');
@@ -320,7 +368,6 @@ if (!isLoggedIn) {
         }
       } catch (e) { }
 
-      // Check login status
       fullName = await checkLogin();
       if (fullName) {
         isLoggedIn = true;
@@ -329,14 +376,27 @@ if (!isLoggedIn) {
     }
 
     // Check for error messages
-    const errorCheck = await page.evaluate(`
-      (() => {
-        const text = document.body.innerText || '';
-        if (text.includes('incorrect') || text.includes('Incorrect')) return 'Incorrect Apple ID or password.';
-        if (text.includes('locked') || text.includes('disabled')) return 'This Apple ID has been locked or disabled.';
-        return null;
-      })()
-    `);
+    let errorCheck = null;
+    try {
+      errorCheck = await page.frame_evaluate(APPLE_FRAME, `
+        (() => {
+          const text = document.body?.innerText || '';
+          if (text.includes('incorrect') || text.includes('Incorrect')) return 'Incorrect Apple ID or password.';
+          if (text.includes('locked') || text.includes('disabled')) return 'This Apple ID has been locked or disabled.';
+          return null;
+        })()
+      `);
+    } catch { }
+    if (!errorCheck) {
+      errorCheck = await page.evaluate(`
+        (() => {
+          const text = document.body.innerText || '';
+          if (text.includes('incorrect') || text.includes('Incorrect')) return 'Incorrect Apple ID or password.';
+          if (text.includes('locked') || text.includes('disabled')) return 'This Apple ID has been locked or disabled.';
+          return null;
+        })()
+      `);
+    }
 
     lastError = errorCheck || 'Sign in failed. Please check your credentials.';
   }

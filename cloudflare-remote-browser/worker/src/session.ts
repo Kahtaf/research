@@ -843,6 +843,9 @@ export class BrowserSession {
         await frame.waitForSelector(selector, options);
         return null;
       }
+      case 'listFrames': {
+        return page.frames().map(f => ({ url: f.url(), name: f.name() }));
+      }
       default:
         throw new Error(`Unsupported page method: ${method}`);
     }

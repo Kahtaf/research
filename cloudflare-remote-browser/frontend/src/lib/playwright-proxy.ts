@@ -46,6 +46,16 @@ function getCommandTimeoutMs(method: string, args: unknown[]): number {
     }
   }
 
+  if (method === 'frame_waitForSelector') {
+    const options = args[2];
+    if (options && typeof options === 'object' && 'timeout' in options) {
+      const timeout = (options as { timeout?: unknown }).timeout;
+      if (typeof timeout === 'number') {
+        return timeout + 5_000;
+      }
+    }
+  }
+
   return 60_000;
 }
 
@@ -335,6 +345,10 @@ export class PlaywrightPageProxy {
 
   async mouse_click(x: number, y: number, options?: { button?: string; clickCount?: number }): Promise<void> {
     await this.execute('mouse_click', [x, y, options]);
+  }
+
+  async listFrames(): Promise<Array<{ url: string; name: string }>> {
+    return this.execute('listFrames', []) as Promise<Array<{ url: string; name: string }>>;
   }
 
   async frame_fill(frameUrlPattern: string, selector: string, value: string): Promise<void> {
