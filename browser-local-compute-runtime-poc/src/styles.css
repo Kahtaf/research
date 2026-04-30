@@ -203,6 +203,7 @@ pre {
 }
 
 #codex-config,
+#curl-command,
 #activity-log {
   margin: 14px;
   padding: 12px;

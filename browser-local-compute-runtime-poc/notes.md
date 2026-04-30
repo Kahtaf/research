@@ -87,3 +87,8 @@
   - Verified `get_text_stats` returned `charCount: 207`, `wordCount: 31`, `storage: "IndexedDB"`, and incrementing `requestCount`.
   - Reloaded the browser app and confirmed the textarea text, session URL, and request counter persisted.
   - Verified an MCP request after reload returned `requestCount: 4`, proving reconnect plus IndexedDB persistence.
+- Added a displayed `curl` verification command to the MCP connection panel.
+  - The command posts a `tools/call` request for `get_text_stats` to the generated `/portal/<sessionId>/mcp` URL.
+  - Added a copy button for the curl command.
+  - Ran `npm run build`, `npm run smoke:relay`, and `npm run smoke:mcp`; all pass.
+  - Redeployed to `https://browser-local-compute-runtime-poc.vana.workers.dev`, version `7ec78151-6d30-4810-87c7-5009a02ce758`.

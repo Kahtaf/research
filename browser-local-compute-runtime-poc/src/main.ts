@@ -45,8 +45,10 @@ const sourceText = element<HTMLTextAreaElement>("source-text");
 const resetSampleButton = element<HTMLButtonElement>("reset-sample");
 const copyUrlButton = element<HTMLButtonElement>("copy-url");
 const copyConfigButton = element<HTMLButtonElement>("copy-config");
+const copyCurlButton = element<HTMLButtonElement>("copy-curl");
 const mcpUrlAnchor = element<HTMLAnchorElement>("mcp-url");
 const codexConfig = element<HTMLPreElement>("codex-config");
+const curlCommand = element<HTMLPreElement>("curl-command");
 const activityLog = element<HTMLPreElement>("activity-log");
 
 let tunnel: { close: () => void } | undefined;
@@ -107,6 +109,10 @@ function setMcpUrl(url: string) {
 url = "${url}"
 startup_timeout_sec = 20
 tool_timeout_sec = 60`;
+  curlCommand.textContent = `curl -sS '${url}' \\
+  -H 'content-type: application/json' \\
+  -H 'mcp-protocol-version: 2025-06-18' \\
+  --data '{"jsonrpc":"2.0","id":"verify-1","method":"tools/call","params":{"name":"get_text_stats","arguments":{}}}'`;
 }
 
 async function copyText(text: string, label: string) {
@@ -203,6 +209,11 @@ copyUrlButton.addEventListener("click", () => {
 copyConfigButton.addEventListener("click", () => {
   if (codexConfig.textContent) {
     void copyText(codexConfig.textContent, "Codex config");
+  }
+});
+copyCurlButton.addEventListener("click", () => {
+  if (curlCommand.textContent) {
+    void copyText(curlCommand.textContent, "curl command");
   }
 });
 

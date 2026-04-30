@@ -13,7 +13,7 @@ demo.
 
 ```text
 https://browser-local-compute-runtime-poc.vana.workers.dev
-Current Version ID: 7b929ce0-c5dd-4856-b575-e461e623e20b
+Current Version ID: 7ec78151-6d30-4810-87c7-5009a02ce758
 ```
 
 Open the deployed URL on desktop or mobile. The app displays an MCP URL shaped
@@ -131,6 +131,11 @@ External callers use:
 ```text
 https://browser-local-compute-runtime-poc.vana.workers.dev/portal/<sessionId>/mcp
 ```
+
+The app also shows a copyable `curl` command that calls `get_text_stats`
+against the active MCP URL. Run it from another terminal to verify the public
+Cloudflare route reaches the browser tab and the browser Worker reads local
+IndexedDB state.
 
 ## Codex MCP Config
 
