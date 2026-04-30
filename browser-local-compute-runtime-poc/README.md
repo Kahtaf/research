@@ -31,6 +31,32 @@ Note: the deployment above was verified for `/health` and static COOP/COEP
 headers. A frontend default relay URL fix was added after that deployment, so
 redeploy before mobile tunnel testing.
 
+## Compute Boundary
+
+This PoC is browser-local compute with a cloud-hosted tunnel.
+
+Runs locally in the browser tab:
+
+- `/api/process` request handler.
+- Input validation with `zod`.
+- Tokenization, sorting, and frequency aggregation with `lodash-es`.
+- ID/result generation with `nanoid`.
+- Browser state persistence with IndexedDB.
+- Final JSON response construction.
+
+Runs on Cloudflare:
+
+- Static asset hosting for the web app.
+- WebSocket acceptor at `/ws/:sessionId`.
+- Public HTTP routing at `/portal/:sessionId/*`.
+- Durable Object session affinity for the active browser tab.
+- Relay-layer bearer token check and rate limiting.
+
+Cloudflare is required because browsers cannot directly accept inbound TCP/HTTP
+connections from the public internet. The Cloudflare Worker/Durable Object is a
+portal and routing layer only; it must not perform the application computation
+or read/write the browser's local IndexedDB state.
+
 ## Files
 
 - `src/main.ts`: host app orchestration and UI.

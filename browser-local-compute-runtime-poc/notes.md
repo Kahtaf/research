@@ -31,3 +31,4 @@
 - Found deployed frontend still defaulted to `https://browser-local-compute-runtime-poc.vana.workers.dev:8787/`, which prevents production tunnel connection.
 - Fixed default relay URL logic: localhost uses port `8787`; deployed origins use same-origin HTTPS/WSS.
 - Re-ran `npm run build` and `npm run smoke:relay`; both pass after the Cloudflare scaffold and production relay URL fix.
+- Clarified documentation boundary: application computation and IndexedDB state run in the browser tab; Cloudflare hosts static assets and provides the WebSocket/HTTP routing portal only.
