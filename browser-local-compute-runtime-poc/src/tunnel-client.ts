@@ -1,32 +1,27 @@
-import type {
-  RelayRequest,
-  RelayResponse,
-  RuntimeReply,
-} from "./types";
+import type { RelayRequest, RelayResponse, RuntimeReply } from "./types";
 
 type TunnelClientOptions = {
   relayHttpUrl: string;
   sessionId: string;
-  token: string;
   worker: Worker;
   onLog: (line: string) => void;
   onStatus: (status: string) => void;
   onResponse: (body: string) => void;
-  onCount: (count: number) => void;
+  onCount: () => void;
 };
 
-function websocketUrl(relayHttpUrl: string, sessionId: string, token: string) {
+function websocketUrl(relayHttpUrl: string, sessionId: string) {
   const url = new URL(relayHttpUrl);
   url.protocol = url.protocol === "https:" ? "wss:" : "ws:";
   url.pathname = `/ws/${sessionId}`;
-  url.searchParams.set("token", token);
+  url.search = "";
   return url.toString();
 }
 
-export function publicApiUrl(relayHttpUrl: string, sessionId: string) {
+export function publicMcpUrl(relayHttpUrl: string, sessionId: string) {
   const url = new URL(relayHttpUrl);
-  url.pathname = `/portal/${sessionId}/api/process`;
-  url.search = "?input=hello";
+  url.pathname = `/portal/${sessionId}/mcp`;
+  url.search = "";
   return url.toString();
 }
 
@@ -60,7 +55,7 @@ export function startTunnelClient(options: TunnelClientOptions) {
   };
 
   const handleRequest = async (request: RelayRequest) => {
-    options.onLog(`${request.method} ${request.path}?${request.query}`);
+    options.onLog(`${request.method} ${request.path}`);
 
     const reply = await new Promise<RuntimeReply>((resolve) => {
       pending.set(request.requestId, resolve);
@@ -85,25 +80,15 @@ export function startTunnelClient(options: TunnelClientOptions) {
     });
 
     options.onResponse(reply.response.body);
-
-    try {
-      const parsed = JSON.parse(reply.response.body) as { requestCount?: number };
-      if (typeof parsed.requestCount === "number") {
-        options.onCount(parsed.requestCount);
-      }
-    } catch {
-      // Non-JSON responses are not expected for this PoC.
-    }
+    options.onCount();
   };
 
   const connect = () => {
-    socket = new WebSocket(
-      websocketUrl(options.relayHttpUrl, options.sessionId, options.token),
-    );
+    socket = new WebSocket(websocketUrl(options.relayHttpUrl, options.sessionId));
 
     socket.onopen = () => {
-      options.onStatus("Tunnel connected");
-      options.onLog("relay websocket connected");
+      options.onStatus("Connected");
+      options.onLog("tunnel connected");
       heartbeat = window.setInterval(() => {
         if (socket?.readyState === WebSocket.OPEN) {
           socket.send(JSON.stringify({ type: "ping" }));
@@ -112,7 +97,9 @@ export function startTunnelClient(options: TunnelClientOptions) {
     };
 
     socket.onmessage = (event) => {
-      const message = JSON.parse(String(event.data)) as RelayRequest | { type: string };
+      const message = JSON.parse(String(event.data)) as
+        | RelayRequest
+        | { type: string };
       if (isRelayRequest(message)) {
         void handleRequest(message);
       }
@@ -122,13 +109,13 @@ export function startTunnelClient(options: TunnelClientOptions) {
       if (heartbeat) {
         window.clearInterval(heartbeat);
       }
-      options.onStatus("Tunnel disconnected");
-      options.onLog("relay websocket disconnected");
+      options.onStatus("Disconnected");
+      options.onLog("tunnel disconnected");
     };
 
     socket.onerror = () => {
-      options.onStatus("Tunnel error");
-      options.onLog("relay websocket error");
+      options.onStatus("Connection error");
+      options.onLog("tunnel websocket error");
     };
   };
 
@@ -144,7 +131,9 @@ export function startTunnelClient(options: TunnelClientOptions) {
   };
 }
 
-function isRelayRequest(message: RelayRequest | { type: string }): message is RelayRequest {
+function isRelayRequest(
+  message: RelayRequest | { type: string },
+): message is RelayRequest {
   return (
     message.type === "request" &&
     typeof (message as RelayRequest).requestId === "string" &&

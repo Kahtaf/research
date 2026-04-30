@@ -1,17 +1,7 @@
-type HistoryEntry = {
-  input: string;
-  result: string;
-  at: string;
-};
-
-export type BrowserState = {
-  requestCount: number;
-  history: HistoryEntry[];
-};
-
-const DB_NAME = "browser-local-api-state";
+const DB_NAME = "browser-local-mcp-text";
 const STORE_NAME = "kv";
-const STATE_KEY = "state";
+const TEXT_KEY = "sourceText";
+const REQUEST_COUNT_KEY = "requestCount";
 
 function openDatabase(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
@@ -51,28 +41,30 @@ function runTransaction<T>(
   );
 }
 
-export async function readState(): Promise<BrowserState> {
-  const state = await runTransaction<BrowserState | undefined>("readonly", (store) =>
-    store.get(STATE_KEY),
+export async function readText(): Promise<string | undefined> {
+  return runTransaction<string | undefined>("readonly", (store) =>
+    store.get(TEXT_KEY),
   );
-
-  return state ?? { requestCount: 0, history: [] };
 }
 
-export async function recordRequest(
-  input: string,
-  result: string,
-  at: string,
-): Promise<BrowserState> {
-  const current = await readState();
-  const next = {
-    requestCount: current.requestCount + 1,
-    history: [{ input, result, at }, ...current.history].slice(0, 20),
-  };
-
+export async function writeText(text: string): Promise<void> {
   await runTransaction<IDBValidKey>("readwrite", (store) =>
-    store.put(next, STATE_KEY),
+    store.put(text, TEXT_KEY),
   );
+}
 
+export async function readRequestCount(): Promise<number> {
+  const count = await runTransaction<number | undefined>("readonly", (store) =>
+    store.get(REQUEST_COUNT_KEY),
+  );
+  return count ?? 0;
+}
+
+export async function incrementRequestCount(): Promise<number> {
+  const current = await readRequestCount();
+  const next = current + 1;
+  await runTransaction<IDBValidKey>("readwrite", (store) =>
+    store.put(next, REQUEST_COUNT_KEY),
+  );
   return next;
 }

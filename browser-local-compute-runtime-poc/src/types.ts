@@ -18,7 +18,6 @@ export type RelayResponse = {
 
 export type RuntimeInitMessage = {
   type: "init";
-  token: string;
   sessionId: string;
 };
 
@@ -39,8 +38,6 @@ export type RuntimeErrorMessage = {
   message: string;
 };
 
-export type RuntimeMessage =
-  | RuntimeInitMessage
-  | RuntimeRequestMessage;
+export type RuntimeMessage = RuntimeInitMessage | RuntimeRequestMessage;
 
 export type RuntimeReply = RuntimeResponseMessage | RuntimeErrorMessage;

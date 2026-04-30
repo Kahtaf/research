@@ -35,3 +35,43 @@
 - Redeployed fixed Cloudflare build to `https://browser-local-compute-runtime-poc.vana.workers.dev`, version `36346451-974a-4a63-9d90-f90832d3378e`.
 - Verified live bundle uses same-origin Cloudflare relay URL instead of `:8787`.
 - Verified external `curl` to `/portal/<session>/api/process?input=hello` returns JSON computed by the browser worker through the Cloudflare Durable Object tunnel.
+- Researched browser-in-browser automation options:
+  - Puppeteer has an official browser-compatible client bundle, but it only controls a separate browser through a WebSocket/CDP endpoint; it does not launch or download a browser locally in the page.
+  - Playwright/CDP similarly expects an existing local, extension, cloud, or remote-debugging browser endpoint, not a nested browser engine in a mobile tab.
+  - BrowserPod currently documents Node.js support and Portals; its roadmap mentions future Linux-class workloads via CheerpX, but not current full Chromium/Firefox support.
+  - WebContainers run Node/WebAssembly workloads, not native browser engines; docs note mobile memory constraints and no native addons.
+  - CheerpX/WebVM can run Linux/x86 workloads client-side, but full Chromium/Firefox with CDP inside a mobile browser tab looks experimental/heavy rather than product-ready.
+  - DOM emulators such as jsdom/happy-dom are useful for static DOM-like automation, but they are not full rendering browsers and do not provide Playwright/CDP-level fidelity.
+- Inspected `vana-com/personal-server-ts` in a temporary checkout under `/tmp`.
+  - README says Node >=20 and default root files under `~/personal-server`: `data/`, `config.json`, `index.db`, `key.json`, `logs/`.
+  - Hard blockers for the current browser-worker runtime: `@hono/node-server`, `better-sqlite3`, Node `fs/path/os/net/crypto` APIs, process/env/argv/signals, local TCP listening, and `child_process` tunnel management.
+  - Tunnel subsystem downloads/extracts native `frpc`, writes config, chmods files, and spawns a native process; this cannot run in a browser tab.
+  - Portable with adapters: Hono route graph, Web3Signed/grant logic, gateway fetch client, zod schemas/scopes, viem signing/verification, OpenPGP encryption, and sync state machine shape.
+  - Browser port would need IndexedDB/OPFS storage adapters, SQLite replacement such as sql.js/wa-sqlite or IndexedDB indexes, Cloudflare/browser relay instead of frpc, browser-safe crypto shims, explicit secret handling, and lifecycle/resume semantics.
+- Refactored the PoC into an unauthenticated browser-local MCP text server.
+  - Removed BrowserPod code, `public/browserpod-project`, and `@leaningtech/browserpod`.
+  - Removed bearer-token generation, WebSocket token query params, and Authorization checks from the browser app, local relay, and Cloudflare Durable Object relay.
+  - Kept the random `sessionId` as the only temporary access barrier.
+  - Added a minimal responsive UI with textarea, sample text, IndexedDB auto-save, MCP URL, Codex config snippet, copy buttons, status, request count, and activity log.
+  - Added the warning: "Anyone with this URL can query the text while this tab is open."
+- Implemented Streamable HTTP-style MCP handling at `/mcp` inside the browser Worker.
+  - `initialize` returns server info and `tools` capability.
+  - notifications without an `id` return HTTP `202`.
+  - `tools/list` exposes `get_text`, `search_text`, and `get_text_stats`.
+  - `tools/call` reads IndexedDB text and executes the selected tool locally in the browser runtime.
+  - `get_text` supports `offset` and `maxChars` with default `20000`, hard max `100000`, plus `truncated`, `nextOffset`, and `totalChars`.
+  - `search_text` returns literal case-insensitive snippets.
+  - `get_text_stats` returns `charCount`, `byteEstimate`, `lineCount`, and `wordCount`.
+- Added `npm run smoke:mcp` and updated `npm run smoke:relay` for unauthenticated `/portal/:sessionId/mcp`.
+- Ran `npm install` to remove BrowserPod/lodash packages from the lockfile.
+- Validation after MCP refactor:
+  - `npm run build` passes.
+  - `npm run smoke:relay` passes.
+  - `npm run smoke:mcp` passes.
+  - `npm run deploy` succeeds.
+  - Redeployed to `https://browser-local-compute-runtime-poc.vana.workers.dev`, version `b11891d6-9252-4e13-acbb-5a7bcffac252`.
+  - Verified deployed `/health` and static app load.
+- No Android or iOS simulator devices were available in this environment for live mobile validation.
+- Final compatibility pass added unauthenticated MCP CORS headers for `accept`, `content-type`, `mcp-protocol-version`, and `mcp-session-id`.
+- Re-ran `npm run build`, `npm run smoke:relay`, and `npm run smoke:mcp`; all pass.
+- Redeployed final Worker script to `https://browser-local-compute-runtime-poc.vana.workers.dev`, version `7b929ce0-c5dd-4856-b575-e461e623e20b`.

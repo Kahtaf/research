@@ -5,7 +5,6 @@ import { WebSocket } from "ws";
 
 const port = 9876;
 const sessionId = "smoke-session";
-const token = "smoke-token-with-enough-entropy";
 const relay = spawn(process.execPath, ["relay/server.mjs"], {
   cwd: new URL("..", import.meta.url),
   env: {
@@ -21,9 +20,7 @@ relay.stderr.on("data", (chunk) => process.stderr.write(chunk));
 
 await delay(500);
 
-const socket = new WebSocket(
-  `ws://127.0.0.1:${port}/ws/${sessionId}?token=${token}`,
-);
+const socket = new WebSocket(`ws://127.0.0.1:${port}/ws/${sessionId}`);
 
 await new Promise((resolve, reject) => {
   socket.once("open", resolve);
@@ -56,12 +53,7 @@ socket.on("message", (data) => {
 });
 
 const response = await fetch(
-  `http://127.0.0.1:${port}/portal/${sessionId}/api/process?input=hello`,
-  {
-    headers: {
-      authorization: `Bearer ${token}`,
-    },
-  },
+  `http://127.0.0.1:${port}/portal/${sessionId}/mcp`,
 );
 
 if (!response.ok) {

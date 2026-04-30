@@ -9,20 +9,16 @@
     "preview": "vite preview --host 0.0.0.0",
     "relay": "node relay/server.mjs",
     "smoke:relay": "node scripts/relay-smoke.mjs",
+    "smoke:mcp": "node scripts/mcp-smoke.mjs",
     "deploy": "npm run build && wrangler deploy",
     "deploy:cf": "npm run deploy"
   },
   "dependencies": {
-    "@leaningtech/browserpod": "latest",
-    "lodash": "^4.17.21",
-    "lodash-es": "^4.17.21",
     "nanoid": "^5.1.6",
     "ws": "^8.18.3",
     "zod": "^4.1.13"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.21",
-    "@types/lodash-es": "^4.17.12",
     "@types/node": "^25.0.0",
     "@types/ws": "^8.18.1",
     "typescript": "^5.9.3",

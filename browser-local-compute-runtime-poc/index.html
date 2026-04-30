@@ -7,84 +7,66 @@
       name="description"
       content="Browser-local compute runtime proof of concept"
     />
-    <title>Browser Local API</title>
+    <title>Browser Text MCP</title>
   </head>
   <body>
     <main id="app">
-      <section class="hero" aria-labelledby="title">
-        <div class="hero__copy">
-          <p class="eyebrow">Ephemeral browser-hosted API</p>
-          <h1 id="title">Mobile tab as compute node</h1>
-          <p class="lede">
-            A local browser runtime receives internet requests through a routing
-            layer, computes in-browser, persists local state, and returns JSON.
-          </p>
+      <section class="topbar" aria-labelledby="title">
+        <div>
+          <p class="eyebrow">Browser-local MCP server</p>
+          <h1 id="title">Text shared from this tab</h1>
         </div>
-        <div class="status-panel" aria-live="polite">
-          <div class="status-panel__row">
+        <div class="status-strip" aria-live="polite">
+          <div>
             <span class="status-dot" id="status-dot"></span>
             <span id="status-text">Preparing runtime</span>
           </div>
-          <dl>
-            <div>
-              <dt>Mode</dt>
-              <dd id="mode-label">Tunnel worker</dd>
-            </div>
-            <div>
-              <dt>Storage</dt>
-              <dd>IndexedDB</dd>
-            </div>
+          <dl class="stats">
             <div>
               <dt>Requests</dt>
               <dd id="request-count">0</dd>
+            </div>
+            <div>
+              <dt>Saved</dt>
+              <dd id="save-state">Loading</dd>
             </div>
           </dl>
         </div>
       </section>
 
-      <section class="controls" aria-label="Runtime controls">
-        <div class="control-group">
-          <label for="relay-url">Relay URL</label>
-          <input id="relay-url" autocomplete="off" spellcheck="false" />
-        </div>
-        <div class="control-group">
-          <label for="browserpod-key">BrowserPod API key</label>
-          <input
-            id="browserpod-key"
-            autocomplete="off"
-            spellcheck="false"
-            placeholder="Optional"
-            type="password"
-          />
-        </div>
-        <div class="button-row">
-          <button id="start-tunnel" type="button">Start tunnel</button>
-          <button id="start-browserpod" type="button">Start BrowserPod</button>
-          <button id="copy-curl" type="button">Copy curl</button>
-        </div>
+      <section class="notice" role="note">
+        Anyone with this URL can query the text while this tab is open. Do not
+        paste sensitive data into this temporary demo.
       </section>
 
-      <section class="output-grid">
-        <article class="output-card">
-          <h2>Public API</h2>
-          <a id="public-url" href="#" target="_blank" rel="noreferrer"
-            >Waiting for URL</a
-          >
-          <pre id="curl-command"></pre>
-        </article>
-        <article class="output-card">
-          <h2>Last response</h2>
-          <pre id="last-response">{}</pre>
-        </article>
+      <section class="editor-shell" aria-label="Text data">
+        <div class="section-heading">
+          <h2>Local text</h2>
+          <button id="reset-sample" type="button">Reset sample</button>
+        </div>
+        <textarea id="source-text" spellcheck="true"></textarea>
       </section>
 
-      <section class="terminal-shell">
-        <div class="terminal-shell__bar">
-          <span></span>
-          <span></span>
-          <span></span>
+      <section class="mcp-shell" aria-label="MCP connection details">
+        <div class="section-heading">
+          <h2>MCP endpoint</h2>
+          <button id="copy-url" type="button">Copy URL</button>
         </div>
-        <pre id="terminal"></pre>
+        <a id="mcp-url" href="#" target="_blank" rel="noreferrer"
+          >Waiting for tunnel</a
+        >
+        <div class="section-heading compact">
+          <h2>Codex config</h2>
+          <button id="copy-config" type="button">Copy config</button>
+        </div>
+        <pre id="codex-config"></pre>
+      </section>
+
+      <section class="activity-shell" aria-label="Activity">
+        <div class="section-heading">
+          <h2>Activity</h2>
+        </div>
+        <pre id="activity-log"></pre>
       </section>
     </main>
     <script type="module" src="/src/main.ts"></script>

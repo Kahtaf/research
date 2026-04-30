@@ -83,7 +83,7 @@ function waitForBrowserResponse(session, requestId) {
 
 function visiblePublicUrl(req, sessionId) {
   const base = PUBLIC_BASE_URL ?? `http://${req.headers.host}`;
-  const url = new URL(`/portal/${sessionId}/api/process?input=hello`, base);
+  const url = new URL(`/portal/${sessionId}/mcp`, base);
   return url.toString();
 }
 
@@ -94,7 +94,8 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(204, {
       "access-control-allow-origin": "*",
       "access-control-allow-methods": "GET,POST,OPTIONS",
-      "access-control-allow-headers": "authorization,content-type",
+      "access-control-allow-headers":
+        "accept,content-type,mcp-protocol-version,mcp-session-id",
       "access-control-max-age": "600",
     });
     res.end();
@@ -114,7 +115,7 @@ const server = http.createServer(async (req, res) => {
   if (!match) {
     sendJson(res, 404, {
       error: "not_found",
-      expected: "/portal/:sessionId/api/process?input=hello",
+      expected: "/portal/:sessionId/mcp",
     });
     return;
   }
@@ -127,12 +128,6 @@ const server = http.createServer(async (req, res) => {
       error: "browser_session_unavailable",
       detail: "The mobile browser tab is not connected.",
     });
-    return;
-  }
-
-  const expectedAuthorization = `Bearer ${session.token}`;
-  if (req.headers.authorization !== expectedAuthorization) {
-    sendJson(res, 401, { error: "unauthorized" });
     return;
   }
 
@@ -180,14 +175,13 @@ const server = http.createServer(async (req, res) => {
 
 const wss = new WebSocketServer({ noServer: true });
 
-wss.on("connection", (socket, req, { sessionId, token }) => {
+wss.on("connection", (socket, req, { sessionId }) => {
   const existing = sessions.get(sessionId);
   if (existing) {
     existing.socket.close(1012, "session replaced");
   }
 
   const session = {
-    token,
     socket,
     pending: new Map(),
   };
@@ -249,15 +243,8 @@ server.on("upgrade", (req, socket, head) => {
   }
 
   const sessionId = match[1];
-  const token = url.searchParams.get("token");
-
-  if (!token || token.length < 16) {
-    socket.destroy();
-    return;
-  }
-
   wss.handleUpgrade(req, socket, head, (ws) => {
-    wss.emit("connection", ws, req, { sessionId, token });
+    wss.emit("connection", ws, req, { sessionId });
   });
 });
 

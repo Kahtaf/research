@@ -1,7 +1,6 @@
 import { handleRuntimeRequest } from "./runtime-handler";
 import type { RuntimeMessage, RuntimeReply } from "./types";
 
-let token = "";
 let sessionId = "";
 
 function reply(message: RuntimeReply) {
@@ -13,12 +12,11 @@ self.onmessage = async (event: MessageEvent<RuntimeMessage>) => {
 
   try {
     if (message.type === "init") {
-      token = message.token;
       sessionId = message.sessionId;
       return;
     }
 
-    if (!token || !sessionId) {
+    if (!sessionId) {
       reply({
         type: "runtime-error",
         requestId: message.request.requestId,
@@ -28,7 +26,6 @@ self.onmessage = async (event: MessageEvent<RuntimeMessage>) => {
     }
 
     const response = await handleRuntimeRequest(message.request, {
-      token,
       sessionId,
     });
 

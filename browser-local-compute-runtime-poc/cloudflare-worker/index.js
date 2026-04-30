@@ -17,7 +17,10 @@ function cors(response) {
   const next = new Response(response.body, response);
   next.headers.set("access-control-allow-origin", "*");
   next.headers.set("access-control-allow-methods", "GET,POST,OPTIONS");
-  next.headers.set("access-control-allow-headers", "authorization,content-type");
+  next.headers.set(
+    "access-control-allow-headers",
+    "accept,content-type,mcp-protocol-version,mcp-session-id",
+  );
   return next;
 }
 
@@ -40,18 +43,10 @@ function encodeBody(arrayBuffer) {
   return btoa(binary);
 }
 
-function publicUrl(request, sessionId) {
-  const url = new URL(request.url);
-  url.pathname = `/portal/${sessionId}/api/process`;
-  url.search = "?input=hello";
-  return url.toString();
-}
-
 export class BrowserRelay {
   constructor(state) {
     this.state = state;
     this.browserSocket = undefined;
-    this.browserToken = undefined;
     this.pending = new Map();
     this.rateLimitBuckets = new Map();
   }
@@ -79,13 +74,6 @@ export class BrowserRelay {
       return json(426, { error: "websocket_upgrade_required" });
     }
 
-    const url = new URL(request.url);
-    const token = url.searchParams.get("token");
-
-    if (!token || token.length < 16) {
-      return json(401, { error: "missing_or_weak_token" });
-    }
-
     const pair = new WebSocketPair();
     const [client, server] = Object.values(pair);
 
@@ -96,7 +84,6 @@ export class BrowserRelay {
     }
 
     this.browserSocket = server;
-    this.browserToken = token;
 
     server.addEventListener("message", (event) => {
       this.handleBrowserMessage(String(event.data));
@@ -127,11 +114,6 @@ export class BrowserRelay {
           detail: "The mobile browser tab is not connected.",
         }),
       );
-    }
-
-    const authorization = request.headers.get("authorization") ?? "";
-    if (authorization !== `Bearer ${this.browserToken}`) {
-      return cors(json(401, { error: "unauthorized" }));
     }
 
     if (this.isRateLimited(request)) {
