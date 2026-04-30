@@ -1,0 +1,12 @@
+{
+  "name": "browserpod-local-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "express": "^5.1.0",
+    "lodash": "^4.17.21",
+    "nanoid": "^5.1.6",
+    "zod": "^4.1.13"
+  }
+}

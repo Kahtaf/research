@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Browser-local compute runtime proof of concept"
+    />
+    <title>Browser Local API</title>
+  </head>
+  <body>
+    <main id="app">
+      <section class="hero" aria-labelledby="title">
+        <div class="hero__copy">
+          <p class="eyebrow">Ephemeral browser-hosted API</p>
+          <h1 id="title">Mobile tab as compute node</h1>
+          <p class="lede">
+            A local browser runtime receives internet requests through a routing
+            layer, computes in-browser, persists local state, and returns JSON.
+          </p>
+        </div>
+        <div class="status-panel" aria-live="polite">
+          <div class="status-panel__row">
+            <span class="status-dot" id="status-dot"></span>
+            <span id="status-text">Preparing runtime</span>
+          </div>
+          <dl>
+            <div>
+              <dt>Mode</dt>
+              <dd id="mode-label">Tunnel worker</dd>
+            </div>
+            <div>
+              <dt>Storage</dt>
+              <dd>IndexedDB</dd>
+            </div>
+            <div>
+              <dt>Requests</dt>
+              <dd id="request-count">0</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Runtime controls">
+        <div class="control-group">
+          <label for="relay-url">Relay URL</label>
+          <input id="relay-url" autocomplete="off" spellcheck="false" />
+        </div>
+        <div class="control-group">
+          <label for="browserpod-key">BrowserPod API key</label>
+          <input
+            id="browserpod-key"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="Optional"
+            type="password"
+          />
+        </div>
+        <div class="button-row">
+          <button id="start-tunnel" type="button">Start tunnel</button>
+          <button id="start-browserpod" type="button">Start BrowserPod</button>
+          <button id="copy-curl" type="button">Copy curl</button>
+        </div>
+      </section>
+
+      <section class="output-grid">
+        <article class="output-card">
+          <h2>Public API</h2>
+          <a id="public-url" href="#" target="_blank" rel="noreferrer"
+            >Waiting for URL</a
+          >
+          <pre id="curl-command"></pre>
+        </article>
+        <article class="output-card">
+          <h2>Last response</h2>
+          <pre id="last-response">{}</pre>
+        </article>
+      </section>
+
+      <section class="terminal-shell">
+        <div class="terminal-shell__bar">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <pre id="terminal"></pre>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
