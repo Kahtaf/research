@@ -113,7 +113,15 @@ for dirname, commit_date in subdirs_with_dates:
     print()  # Add blank line between entries
 
 ]]]-->
-## 19 research projects
+## 20 research projects
+
+### [browser-agent-in-browser-sandbox](https://github.com/Kahtaf/research/tree/main/browser-agent-in-browser-sandbox) (2026-04-30)
+
+Running full-featured coding agents like Gemini CLI and Claude Code directly within browser sandboxes is transitioning from experimental concept to reality through advanced WebAssembly runtimes. [BrowserCode](https://github.com/leaningtech/browsercode), built on the [BrowserPod](https://browserpod.io/) framework, currently enables client-side execution of an unmodified Gemini CLI by providing a POSIX-like filesystem and a Node.js environment entirely within the browser tab. While many existing "web-based" agent interfaces still rely on remote server-side compute, these emerging technologies leverage WebVM and WebContainers to eliminate external dependencies and run the agent logic locally.
+
+*   BrowserCode is the most direct implementation discovered, currently supporting Gemini CLI with plans for Claude Code and Codex.
+*   Execution is powered by x86-to-WebAssembly JIT and virtualized Linux syscalls to provide a functional CLI environment.
+*   The technology currently struggles with native binary components and TCP networking, making pure JavaScript or WASM-compatible agents the easiest initial targets.
 
 ### [browser-local-compute-runtime-poc](https://github.com/Kahtaf/research/tree/main/browser-local-compute-runtime-poc) (2026-04-30)
 

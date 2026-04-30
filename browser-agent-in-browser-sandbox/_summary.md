@@ -1,0 +1,5 @@
+Running full-featured coding agents like Gemini CLI and Claude Code directly within browser sandboxes is transitioning from experimental concept to reality through advanced WebAssembly runtimes. [BrowserCode](https://github.com/leaningtech/browsercode), built on the [BrowserPod](https://browserpod.io/) framework, currently enables client-side execution of an unmodified Gemini CLI by providing a POSIX-like filesystem and a Node.js environment entirely within the browser tab. While many existing "web-based" agent interfaces still rely on remote server-side compute, these emerging technologies leverage WebVM and WebContainers to eliminate external dependencies and run the agent logic locally.
+
+*   BrowserCode is the most direct implementation discovered, currently supporting Gemini CLI with plans for Claude Code and Codex.
+*   Execution is powered by x86-to-WebAssembly JIT and virtualized Linux syscalls to provide a functional CLI environment.
+*   The technology currently struggles with native binary components and TCP networking, making pure JavaScript or WASM-compatible agents the easiest initial targets.
