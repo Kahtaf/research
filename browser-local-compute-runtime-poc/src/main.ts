@@ -44,7 +44,15 @@ function getDefaultRelayUrl() {
   }
 
   const url = new URL(window.location.href);
-  url.port = "8787";
+  const isLocalDevHost =
+    url.hostname === "localhost" ||
+    url.hostname === "127.0.0.1" ||
+    url.hostname === "[::1]";
+
+  if (isLocalDevHost) {
+    url.port = "8787";
+  }
+
   url.pathname = "/";
   url.search = "";
   url.hash = "";

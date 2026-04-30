@@ -19,3 +19,15 @@
   - Reloaded the page and called again with `input=hello-again`; response returned `requestCount: 2`, proving IndexedDB persistence across reload in the same browser origin.
 - BrowserPod path was not live-tested because no BrowserPod API key is available in this environment.
 - Android Chrome and iOS Safari were not available in this environment; README documents expected mobile constraints and test steps.
+- Added Cloudflare Worker static-assets deployment scaffold:
+  - `wrangler.jsonc` deploys the Vite `dist` assets and a Worker script.
+  - `cloudflare-worker/index.js` implements the WebSocket relay as a Durable Object keyed by session ID.
+  - `public/_headers` keeps COOP/COEP headers for BrowserPod compatibility.
+  - `npm run deploy` runs `npm run build && wrangler deploy`.
+- Project-local Wrangler is installed through devDependencies; local `npx wrangler --version` reports `4.86.0`.
+- User deployed to `https://browser-local-compute-runtime-poc.vana.workers.dev`, version `2251ccc2-40b2-4be6-87c0-834d60bbf789`.
+- Verified deployed `/health` returns `{ "ok": true, "role": "cloudflare routing-only relay" }`.
+- Verified deployed static app serves COOP/COEP headers.
+- Found deployed frontend still defaulted to `https://browser-local-compute-runtime-poc.vana.workers.dev:8787/`, which prevents production tunnel connection.
+- Fixed default relay URL logic: localhost uses port `8787`; deployed origins use same-origin HTTPS/WSS.
+- Re-ran `npm run build` and `npm run smoke:relay`; both pass after the Cloudflare scaffold and production relay URL fix.

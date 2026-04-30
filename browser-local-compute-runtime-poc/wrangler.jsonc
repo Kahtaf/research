@@ -1,0 +1,28 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "browser-local-compute-runtime-poc",
+  "main": "./cloudflare-worker/index.js",
+  "compatibility_date": "2026-04-30",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "BROWSER_RELAY",
+        "class_name": "BrowserRelay"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["BrowserRelay"]
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

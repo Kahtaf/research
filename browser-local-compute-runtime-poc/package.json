@@ -8,7 +8,9 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "relay": "node relay/server.mjs",
-    "smoke:relay": "node scripts/relay-smoke.mjs"
+    "smoke:relay": "node scripts/relay-smoke.mjs",
+    "deploy": "npm run build && wrangler deploy",
+    "deploy:cf": "npm run deploy"
   },
   "dependencies": {
     "@leaningtech/browserpod": "latest",
@@ -24,6 +26,7 @@
     "@types/node": "^25.0.0",
     "@types/ws": "^8.18.1",
     "typescript": "^5.9.3",
-    "vite": "^7.2.4"
+    "vite": "^7.2.4",
+    "wrangler": "^4.49.0"
   }
 }
