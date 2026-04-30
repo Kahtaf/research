@@ -24,12 +24,13 @@ Current Cloudflare deployment:
 
 ```text
 https://browser-local-compute-runtime-poc.vana.workers.dev
-Version ID: 2251ccc2-40b2-4be6-87c0-834d60bbf789
+Version ID: 36346451-974a-4a63-9d90-f90832d3378e
 ```
 
-Note: the deployment above was verified for `/health` and static COOP/COEP
-headers. A frontend default relay URL fix was added after that deployment, so
-redeploy before mobile tunnel testing.
+The deployment above was verified for `/health`, static COOP/COEP headers, and
+the Cloudflare Durable Object tunnel path. The hosted app now defaults to
+same-origin `wss://.../ws/:sessionId` and `https://.../portal/:sessionId/...`
+instead of the local development `:8787` relay.
 
 ## Compute Boundary
 
@@ -279,8 +280,9 @@ Cloudflare deployment validation on April 30, 2026:
 - Static app response includes:
   - `Cross-Origin-Opener-Policy: same-origin`
   - `Cross-Origin-Embedder-Policy: require-corp`
-- The deployed version initially pointed the default relay URL at port `8787`;
-  that has been fixed locally and requires redeploy.
+- The deployed app connects to the Cloudflare Durable Object tunnel on the same
+  origin and successfully returns `/api/process` responses computed by the
+  browser worker.
 
 Not completed:
 

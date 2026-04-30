@@ -32,3 +32,6 @@
 - Fixed default relay URL logic: localhost uses port `8787`; deployed origins use same-origin HTTPS/WSS.
 - Re-ran `npm run build` and `npm run smoke:relay`; both pass after the Cloudflare scaffold and production relay URL fix.
 - Clarified documentation boundary: application computation and IndexedDB state run in the browser tab; Cloudflare hosts static assets and provides the WebSocket/HTTP routing portal only.
+- Redeployed fixed Cloudflare build to `https://browser-local-compute-runtime-poc.vana.workers.dev`, version `36346451-974a-4a63-9d90-f90832d3378e`.
+- Verified live bundle uses same-origin Cloudflare relay URL instead of `:8787`.
+- Verified external `curl` to `/portal/<session>/api/process?input=hello` returns JSON computed by the browser worker through the Cloudflare Durable Object tunnel.
