@@ -75,3 +75,15 @@
 - Final compatibility pass added unauthenticated MCP CORS headers for `accept`, `content-type`, `mcp-protocol-version`, and `mcp-session-id`.
 - Re-ran `npm run build`, `npm run smoke:relay`, and `npm run smoke:mcp`; all pass.
 - Redeployed final Worker script to `https://browser-local-compute-runtime-poc.vana.workers.dev`, version `7b929ce0-c5dd-4856-b575-e461e623e20b`.
+- End-to-end deployed test from a Codex in-app browser tab:
+  - Opened the deployed app and waited for the Cloudflare tunnel to show `Connected`.
+  - Filled the textarea with non-sensitive E2E sample text and waited for IndexedDB save state `Saved`.
+  - Called the generated `/portal/<sessionId>/mcp` URL from an external shell process through Cloudflare.
+  - Verified `initialize` returned HTTP `200` with server `browser-local-text-mcp`.
+  - Verified `notifications/initialized` returned HTTP `202`.
+  - Verified `tools/list` returned `get_text`, `search_text`, and `get_text_stats`.
+  - Verified `get_text` returned the browser textarea text with `runtime: "browser-local worker"`.
+  - Verified `search_text` found `guitar-driven rock`.
+  - Verified `get_text_stats` returned `charCount: 207`, `wordCount: 31`, `storage: "IndexedDB"`, and incrementing `requestCount`.
+  - Reloaded the browser app and confirmed the textarea text, session URL, and request counter persisted.
+  - Verified an MCP request after reload returned `requestCount: 4`, proving reconnect plus IndexedDB persistence.
