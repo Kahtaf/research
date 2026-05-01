@@ -42,3 +42,34 @@ This is the same threat model as Send / Wormhole / Magic Wormhole: trust-the-ser
 
 If the current PoC is to be used for private file sharing, the relay code should also be tightened to *not forward* raw client headers — only the minimum subset needed to deliver the bytes.
 
+## Survey pass — verifying tools
+
+Confirmed via WebSearch (May 2026):
+
+- **FilePizza**: ~9.9k stars, BSD-3, sender browser tab must stay open, WebRTC P2P, optional password. Active.
+- **ToffeeShare**: P2P WebRTC, DTLS for transport encryption, no published max size, sender stays online — closing tab kills transfer. Closed source SaaS.
+- **timvisee/send**: actively maintained 2026 fork of Firefox Send. ffsend CLI v0.2.77 released Feb 2026. Server-stored encrypted blob, key in URL fragment. Sender does NOT need to stay online. Self-hostable.
+- **wormhole.app** (Socket Inc.): files <=5 GB stored encrypted on their servers for 24h, files >5 GB go P2P browser-to-browser. AES-128-GCM, key in URL fragment. Cloudflare CDN. Source library `wormhole-crypto` published on npm.
+
+Architecture buckets settled:
+
+- **A. Sender-online, browser, WebRTC**: FilePizza, ToffeeShare, WebWormhole, Reep.io, JustBeamIt, drop.lol, blymp.io, ShareDrop. Closest to our PoC's "sender-tab-is-the-server" property.
+- **B. Sender-online, native**: OnionShare (Tor), Magic Wormhole, croc.
+- **C. Server-stored, encrypted, key-in-URL**: timvisee/send, wormhole.app, Gokapi, 1time.io.
+- **D. LAN airdrop**: Snapdrop, PairDrop.
+
+### What's structurally novel about the PoC
+
+The closest peer concept is **OnionShare** (your computer hosts a server, recipient hits a URL, no third-party storage). OnionShare needs Tor on both sides. WebRTC tools (FilePizza/ToffeeShare) need both peers in a webapp at the same time — the recipient cannot just `curl` the URL.
+
+Our model: browser tab is an addressable HTTP origin on the public internet via outbound WebSocket tunnel to a Cloudflare relay. Recipient hits a plain URL — no WebRTC dance, no app to install, just GET. That is the gap: **OnionShare-without-Tor, recipient-app-free**. It is a niche but real.
+
+### Saturation conclusion
+
+Browser-based ephemeral E2E file transfer is well-saturated.
+- Server-stored + key-in-URL: use Wormhole.app or self-host timvisee/send.
+- Sender-online WebRTC P2P: use FilePizza or ToffeeShare.
+- The empty quadrant: tab-as-tunneled-HTTP-origin so recipient uses NO app at all, just a URL hit by curl/browser. Plausible niche, useful for delivering to people who can't run JS (CLI tools, scripts, embedded clients).
+
+## Final report
+See README.md.
