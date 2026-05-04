@@ -128,3 +128,9 @@
 - Ran deployed blind-relay smoke with `WRANGLER_BASE_URL=https://browser-local-compute-runtime-poc.vana.workers.dev npm run smoke:wrangler-blind`; it passed and confirmed the live Worker forwarded only encrypted envelope data.
 - Verified deployed HTML includes browser public key and local encryption proxy UI.
 - Verified deployed `/health` still reports `{ "ok": true, "role": "cloudflare routing-only relay" }`.
+- Tested the deployed environment with `wrangler tail browser-local-compute-runtime-poc --format json` attached.
+  - Ran `WRANGLER_BASE_URL=https://browser-local-compute-runtime-poc.vana.workers.dev npm run smoke:wrangler-blind`.
+  - Smoke passed with session `blind-smoke-1777908736964` and secret marker `cloudflare-must-not-see-c45df3cb-f05e-42b5-afae-bd45b9835d55`.
+  - Wrangler tail showed live script version `140d4420-b70f-4d9f-b497-ed26431c7e56`.
+  - Tail events showed `GET /ws/blind-smoke-1777908736964` and `POST /portal/blind-smoke-1777908736964/mcp` with `content-length: 500`, `content-type: application/json`, and response `200`.
+  - Tail did not include the plaintext marker, `tools/call`, or `get_text_stats`; the smoke harness confirmed those strings were absent from the Worker-forwarded body and visible only after mock browser-side decryption.
