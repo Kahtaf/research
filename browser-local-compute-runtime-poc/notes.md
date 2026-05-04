@@ -92,3 +92,23 @@
   - Added a copy button for the curl command.
   - Ran `npm run build`, `npm run smoke:relay`, and `npm run smoke:mcp`; all pass.
   - Redeployed to `https://browser-local-compute-runtime-poc.vana.workers.dev`, version `7ec78151-6d30-4810-87c7-5009a02ce758`.
+- Implemented honest-but-curious blind relay encryption for the browser-local MCP demo.
+  - Browser tab generates a fresh local P-256 ECDH keypair using WebCrypto.
+  - Browser private key is sent only to the browser Worker and is not displayed.
+  - UI displays the browser public key token and fingerprint.
+  - `POST /mcp` now requires encrypted request envelopes containing client ECDH public key, AES-GCM IV, and ciphertext.
+  - The browser Worker decrypts the MCP JSON locally, runs the existing MCP handler, encrypts the JSON-RPC response back to the client public key, and returns ciphertext through the relay.
+  - Plaintext `POST /mcp` now returns `encrypted_envelope_required`.
+  - Added `scripts/encrypted-mcp-request.mjs` for one-shot encrypted requests that decrypt the response locally.
+  - Added `scripts/encrypted-mcp-proxy.mjs` so standard MCP clients can talk plaintext MCP to `http://localhost:3333/mcp`; the proxy encrypts/decrypts the Cloudflare/browser leg.
+  - UI now shows a local encryption proxy command and a Codex config pointing to the local proxy instead of the public relay URL.
+- Local encrypted validation:
+  - `npm run build` passes.
+  - `npm run smoke:relay` passes.
+  - `npm run smoke:mcp` passes.
+  - Loaded `http://localhost:5173/` in the Codex in-app browser with local relay on `:8787`.
+  - Verified the app showed connected tunnel, browser public key, fingerprint, encrypted curl command, local proxy command, and local Codex config.
+  - Ran `node scripts/encrypted-mcp-request.mjs <mcp-url> <browser-public-key>` and decrypted a `get_text_stats` JSON-RPC response locally.
+  - Confirmed direct plaintext `curl` to `/mcp` returns `encrypted_envelope_required`.
+  - Ran `npm run encrypted:proxy -- --url <mcp-url> --browser-public-key <key> --port 3333` and verified plaintext local MCP request to `http://localhost:3333/mcp` returned stats while the relay leg carried ciphertext.
+  - Attempted `npm run deploy`, but Wrangler is logged into `support@bitspice.net` / BitSpice and Cloudflare returned API auth error 10000 for the existing Worker account. Deployment needs the correct Cloudflare account login.

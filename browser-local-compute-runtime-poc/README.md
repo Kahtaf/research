@@ -6,14 +6,14 @@ IndexedDB, opens an outbound WebSocket to a routing-only relay, and exposes a
 public Streamable HTTP MCP URL while the tab stays active.
 
 This version does not use BrowserPod and does not use bearer-token auth. The
-random `sessionId` in the URL is the only access barrier for this temporary
-demo.
+browser tab generates a local P-256 ECDH keypair and accepts only encrypted MCP
+request envelopes at `/mcp`, so the relay sees ciphertext rather than MCP JSON.
 
 ## Deployed App
 
 ```text
 https://browser-local-compute-runtime-poc.vana.workers.dev
-Current Version ID: 7ec78151-6d30-4810-87c7-5009a02ce758
+Last successful deployed Version ID: 7ec78151-6d30-4810-87c7-5009a02ce758
 ```
 
 Open the deployed URL on desktop or mobile. The app displays an MCP URL shaped
@@ -23,15 +23,18 @@ like:
 https://browser-local-compute-runtime-poc.vana.workers.dev/portal/<sessionId>/mcp
 ```
 
-Anyone with that URL can query the browser-local text while the tab is open. Do
-not paste sensitive text into this unauthenticated demo.
+The current local implementation also displays a browser public key and
+fingerprint. External clients need both the MCP URL and browser public key to
+construct encrypted request envelopes. Do not paste sensitive text into this
+temporary demo; it is encrypted from the relay, but it is not authenticated.
 
 ## Architecture
 
 Runs locally in the browser:
 
 - Minimal web UI and browser `Worker` runtime.
-- MCP JSON-RPC request handling at `/mcp`.
+- Browser-local ECDH private key generation and MCP JSON-RPC request handling
+  behind encrypted envelopes at `/mcp`.
 - `zod` validation for MCP tool arguments.
 - Text persistence in IndexedDB.
 - Tool execution and response construction.
@@ -45,8 +48,31 @@ Runs on Cloudflare:
 - Rate limiting, body-size limiting, and request timeout.
 
 Cloudflare does not read IndexedDB and does not perform the MCP text processing.
-It only forwards request envelopes to the connected browser tab and returns the
-browser's response.
+In the blind-relay version, it only forwards encrypted request/response
+envelopes to and from the connected browser tab.
+
+## Blind Relay Encryption
+
+The browser tab generates a fresh P-256 ECDH keypair on page load. The private
+key stays in the browser Worker. The UI displays:
+
+- MCP URL: `/portal/<sessionId>/mcp`.
+- Browser public key token.
+- Browser public key fingerprint.
+- A copyable encrypted curl request.
+- A local encryption proxy command for normal MCP clients.
+
+Plaintext `POST /mcp` requests are rejected with:
+
+```json
+{
+  "error": "encrypted_envelope_required"
+}
+```
+
+Cloudflare can still observe metadata such as IP addresses, session IDs, timing,
+and ciphertext sizes. It should not see MCP method names, tool arguments,
+textarea content, or MCP response data.
 
 ## MCP Tools
 
@@ -55,6 +81,9 @@ The browser-local MCP endpoint is:
 ```text
 POST /portal/<sessionId>/mcp
 ```
+
+`POST` bodies must be encrypted envelopes. The decrypted payload is the normal
+MCP JSON-RPC message.
 
 Supported JSON-RPC methods:
 
@@ -132,24 +161,33 @@ External callers use:
 https://browser-local-compute-runtime-poc.vana.workers.dev/portal/<sessionId>/mcp
 ```
 
-The app also shows a copyable `curl` command that calls `get_text_stats`
-against the active MCP URL. Run it from another terminal to verify the public
-Cloudflare route reaches the browser tab and the browser Worker reads local
-IndexedDB state.
+The app also shows a copyable `curl` command that sends an encrypted
+`get_text_stats` envelope against the active MCP URL. The curl response is also
+encrypted; use `npm run encrypted:mcp` or the local proxy below when you need to
+decrypt and inspect the JSON-RPC response.
 
 ## Codex MCP Config
 
-Copy the config shown in the app:
+Standard MCP clients do not speak this encrypted envelope format directly. Run
+the local encryption proxy shown in the app, then point Codex at the local proxy:
 
 ```toml
 [mcp_servers.browser_text]
-url = "https://browser-local-compute-runtime-poc.vana.workers.dev/portal/<sessionId>/mcp"
+url = "http://localhost:3333/mcp"
 startup_timeout_sec = 20
 tool_timeout_sec = 60
 ```
 
-Then ask Codex to read, search, or summarize the browser text. The browser tab
-must remain foregrounded and connected.
+The proxy receives plaintext MCP from Codex locally, encrypts it to the browser
+public key, sends ciphertext through Cloudflare, decrypts the browser response,
+and returns plaintext MCP to Codex. The browser tab must remain foregrounded and
+connected.
+
+Manual encrypted request:
+
+```bash
+npm run encrypted:mcp -- "<mcp-url>" "<browser-public-key-token>"
+```
 
 ## Smoke Tests
 
@@ -189,7 +227,12 @@ the local WebSocket relay. `smoke:mcp` verifies the MCP JSON-RPC wire shape for
 
 - This refactor intentionally removes bearer-token auth for a temporary demo.
 - The random session URL is unguessable, but anyone who has it can query the
-  text while the tab is open.
+  text while the tab is open if they also have the browser public key or proxy
+  command.
+- Cloudflare sees encrypted envelopes only for `POST /mcp`, not MCP JSON.
+- This is honest-but-curious relay protection only. A malicious static host
+  could still serve modified JavaScript; production needs bundle integrity or a
+  separately trusted app distribution path.
 - Do not paste private or sensitive data.
 - The relay still rate-limits requests and rejects bodies over 1 MiB.
 - The browser worker exposes only MCP text tools, not arbitrary code execution.
@@ -213,9 +256,12 @@ the local WebSocket relay. `smoke:mcp` verifies the MCP JSON-RPC wire shape for
 - `src/main.ts`: UI orchestration, IndexedDB loading/saving, and tunnel startup.
 - `src/runtime-worker.ts`: browser-local Worker runtime boundary.
 - `src/runtime-handler.ts`: MCP handler and tool implementations.
+- `src/crypto-envelope.ts`: browser-compatible ECDH/AES-GCM envelope helpers.
 - `src/storage.ts`: IndexedDB text and request counter storage.
 - `src/tunnel-client.ts`: browser outbound WebSocket client.
 - `relay/server.mjs`: local routing-only relay.
 - `cloudflare-worker/index.js`: Cloudflare Worker and Durable Object relay.
 - `scripts/relay-smoke.mjs`: unauthenticated relay smoke test.
 - `scripts/mcp-smoke.mjs`: MCP JSON-RPC smoke test.
+- `scripts/encrypted-mcp-request.mjs`: one-shot encrypted MCP verifier.
+- `scripts/encrypted-mcp-proxy.mjs`: local MCP encryption proxy for clients.

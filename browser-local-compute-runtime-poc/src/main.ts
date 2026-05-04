@@ -1,6 +1,13 @@
 import { nanoid } from "nanoid";
 
 import "./styles.css";
+import {
+  encodeJsonToken,
+  encryptForRecipient,
+  exportPublicJwk,
+  generateBrowserKeyPair,
+  publicKeyFingerprint,
+} from "./crypto-envelope";
 import { readRequestCount, readText, writeText } from "./storage";
 import { publicMcpUrl, startTunnelClient } from "./tunnel-client";
 
@@ -29,6 +36,13 @@ type Session = {
   sessionId: string;
 };
 
+type EncryptionIdentity = {
+  keyPair: CryptoKeyPair;
+  publicJwk: JsonWebKey;
+  publicKeyToken: string;
+  fingerprint: string;
+};
+
 function element<T extends HTMLElement>(id: string) {
   const node = document.getElementById(id);
   if (!node) {
@@ -46,9 +60,14 @@ const resetSampleButton = element<HTMLButtonElement>("reset-sample");
 const copyUrlButton = element<HTMLButtonElement>("copy-url");
 const copyConfigButton = element<HTMLButtonElement>("copy-config");
 const copyCurlButton = element<HTMLButtonElement>("copy-curl");
+const copyPublicKeyButton = element<HTMLButtonElement>("copy-public-key");
+const copyProxyButton = element<HTMLButtonElement>("copy-proxy");
 const mcpUrlAnchor = element<HTMLAnchorElement>("mcp-url");
 const codexConfig = element<HTMLPreElement>("codex-config");
 const curlCommand = element<HTMLPreElement>("curl-command");
+const proxyCommand = element<HTMLPreElement>("proxy-command");
+const browserPublicKey = element<HTMLPreElement>("browser-public-key");
+const publicKeyFingerprintElement = element<HTMLElement>("public-key-fingerprint");
 const activityLog = element<HTMLPreElement>("activity-log");
 
 let tunnel: { close: () => void } | undefined;
@@ -101,18 +120,51 @@ function log(line: string) {
   activityLog.scrollTop = activityLog.scrollHeight;
 }
 
-function setMcpUrl(url: string) {
+async function createEncryptionIdentity(): Promise<EncryptionIdentity> {
+  const keyPair = await generateBrowserKeyPair();
+  const publicJwk = await exportPublicJwk(keyPair.publicKey);
+  return {
+    keyPair,
+    publicJwk,
+    publicKeyToken: encodeJsonToken(publicJwk),
+    fingerprint: await publicKeyFingerprint(publicJwk),
+  };
+}
+
+async function setMcpDetails(url: string, identity: EncryptionIdentity) {
   activeMcpUrl = url;
   mcpUrlAnchor.href = url;
   mcpUrlAnchor.textContent = url;
+  publicKeyFingerprintElement.textContent = identity.fingerprint;
+  browserPublicKey.textContent = identity.publicKeyToken;
   codexConfig.textContent = `[mcp_servers.browser_text]
-url = "${url}"
+url = "http://localhost:3333/mcp"
 startup_timeout_sec = 20
-tool_timeout_sec = 60`;
+tool_timeout_sec = 60
+
+# Run the local encryption proxy below before connecting Codex.
+# Browser public key fingerprint: ${identity.fingerprint}
+# Cloudflare upstream: ${url}`;
+  proxyCommand.textContent = `npm run encrypted:proxy -- \\
+  --url '${url}' \\
+  --browser-public-key '${identity.publicKeyToken}' \\
+  --port 3333`;
+  const verifyEnvelope = await encryptForRecipient(
+    JSON.stringify({
+      jsonrpc: "2.0",
+      id: "verify-1",
+      method: "tools/call",
+      params: {
+        name: "get_text_stats",
+        arguments: {},
+      },
+    }),
+    identity.publicJwk,
+  );
   curlCommand.textContent = `curl -sS '${url}' \\
   -H 'content-type: application/json' \\
   -H 'mcp-protocol-version: 2025-06-18' \\
-  --data '{"jsonrpc":"2.0","id":"verify-1","method":"tools/call","params":{"name":"get_text_stats","arguments":{}}}'`;
+  --data '${JSON.stringify(verifyEnvelope)}'`;
 }
 
 async function copyText(text: string, label: string) {
@@ -120,7 +172,7 @@ async function copyText(text: string, label: string) {
   log(`${label} copied`);
 }
 
-function startWorkerRuntime(session: Session) {
+function startWorkerRuntime(session: Session, identity: EncryptionIdentity) {
   const worker = new Worker(new URL("./runtime-worker.ts", import.meta.url), {
     type: "module",
   });
@@ -128,6 +180,7 @@ function startWorkerRuntime(session: Session) {
   worker.postMessage({
     type: "init",
     sessionId: session.sessionId,
+    encryptionPrivateKey: identity.keyPair.privateKey,
   });
 
   return worker;
@@ -170,12 +223,14 @@ async function startTunnelMode() {
   tunnel?.close();
   const session = getSession();
   const relayHttpUrl = getDefaultRelayUrl();
-  const worker = startWorkerRuntime(session);
+  const identity = await createEncryptionIdentity();
+  const worker = startWorkerRuntime(session, identity);
   const url = publicMcpUrl(relayHttpUrl, session.sessionId);
 
-  setMcpUrl(url);
+  await setMcpDetails(url, identity);
   setStatus("Connecting");
   log(`session ${session.sessionId}`);
+  log(`browser public key ${identity.fingerprint}`);
 
   tunnel = startTunnelClient({
     relayHttpUrl,
@@ -209,6 +264,16 @@ copyUrlButton.addEventListener("click", () => {
 copyConfigButton.addEventListener("click", () => {
   if (codexConfig.textContent) {
     void copyText(codexConfig.textContent, "Codex config");
+  }
+});
+copyPublicKeyButton.addEventListener("click", () => {
+  if (browserPublicKey.textContent) {
+    void copyText(browserPublicKey.textContent, "browser public key");
+  }
+});
+copyProxyButton.addEventListener("click", () => {
+  if (proxyCommand.textContent) {
+    void copyText(proxyCommand.textContent, "proxy command");
   }
 });
 copyCurlButton.addEventListener("click", () => {

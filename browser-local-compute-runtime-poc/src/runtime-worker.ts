@@ -2,6 +2,7 @@ import { handleRuntimeRequest } from "./runtime-handler";
 import type { RuntimeMessage, RuntimeReply } from "./types";
 
 let sessionId = "";
+let encryptionPrivateKey: CryptoKey | undefined;
 
 function reply(message: RuntimeReply) {
   self.postMessage(message);
@@ -13,10 +14,11 @@ self.onmessage = async (event: MessageEvent<RuntimeMessage>) => {
   try {
     if (message.type === "init") {
       sessionId = message.sessionId;
+      encryptionPrivateKey = message.encryptionPrivateKey;
       return;
     }
 
-    if (!sessionId) {
+    if (!sessionId || !encryptionPrivateKey) {
       reply({
         type: "runtime-error",
         requestId: message.request.requestId,
@@ -27,6 +29,7 @@ self.onmessage = async (event: MessageEvent<RuntimeMessage>) => {
 
     const response = await handleRuntimeRequest(message.request, {
       sessionId,
+      encryptionPrivateKey,
     });
 
     reply({

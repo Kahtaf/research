@@ -195,6 +195,16 @@ a {
   overflow-wrap: anywhere;
 }
 
+.key-fingerprint {
+  padding: 14px 14px 0;
+  color: var(--muted);
+}
+
+code {
+  color: var(--accent);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+
 pre {
   margin: 0;
   white-space: pre-wrap;
@@ -204,6 +214,8 @@ pre {
 
 #codex-config,
 #curl-command,
+#proxy-command,
+#browser-public-key,
 #activity-log {
   margin: 14px;
   padding: 12px;

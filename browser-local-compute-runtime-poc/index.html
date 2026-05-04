@@ -56,10 +56,23 @@
           >Waiting for tunnel</a
         >
         <div class="section-heading compact">
+          <h2>Browser public key</h2>
+          <button id="copy-public-key" type="button">Copy key</button>
+        </div>
+        <p class="key-fingerprint">
+          Fingerprint <code id="public-key-fingerprint">Generating</code>
+        </p>
+        <pre id="browser-public-key"></pre>
+        <div class="section-heading compact">
           <h2>Codex config</h2>
           <button id="copy-config" type="button">Copy config</button>
         </div>
         <pre id="codex-config"></pre>
+        <div class="section-heading compact">
+          <h2>Local encryption proxy</h2>
+          <button id="copy-proxy" type="button">Copy proxy</button>
+        </div>
+        <pre id="proxy-command"></pre>
         <div class="section-heading compact">
           <h2>Verify with curl</h2>
           <button id="copy-curl" type="button">Copy curl</button>
