@@ -28,6 +28,9 @@ export function publicMcpUrl(relayHttpUrl: string, sessionId: string) {
 export function startTunnelClient(options: TunnelClientOptions) {
   let socket: WebSocket | undefined;
   let heartbeat: number | undefined;
+  let reconnectTimer: number | undefined;
+  let reconnectAttempt = 0;
+  let stopped = false;
   const pending = new Map<string, (reply: RuntimeReply) => void>();
 
   options.worker.onmessage = (event: MessageEvent<RuntimeReply>) => {
@@ -83,12 +86,76 @@ export function startTunnelClient(options: TunnelClientOptions) {
     options.onCount();
   };
 
+  const clearHeartbeat = () => {
+    if (heartbeat) {
+      window.clearInterval(heartbeat);
+      heartbeat = undefined;
+    }
+  };
+
+  const clearReconnect = () => {
+    if (reconnectTimer) {
+      window.clearTimeout(reconnectTimer);
+      reconnectTimer = undefined;
+    }
+  };
+
+  const shouldConnect = () =>
+    !stopped && document.visibilityState === "visible";
+
+  const scheduleReconnect = () => {
+    if (!shouldConnect() || reconnectTimer) {
+      return;
+    }
+
+    const delay = Math.min(1000 * 2 ** reconnectAttempt, 15_000);
+    reconnectAttempt += 1;
+    options.onStatus("Reconnecting");
+    options.onLog(`reconnect scheduled in ${delay}ms`);
+    reconnectTimer = window.setTimeout(() => {
+      reconnectTimer = undefined;
+      connect();
+    }, delay);
+  };
+
+  const disconnectForHiddenTab = () => {
+    clearReconnect();
+    clearHeartbeat();
+
+    if (
+      socket?.readyState === WebSocket.OPEN ||
+      socket?.readyState === WebSocket.CONNECTING
+    ) {
+      socket.close(1000, "tab hidden");
+    }
+
+    socket = undefined;
+    options.onStatus("Paused");
+    options.onLog("tab hidden; tunnel paused");
+  };
+
   const connect = () => {
+    if (!shouldConnect()) {
+      disconnectForHiddenTab();
+      return;
+    }
+
+    if (
+      socket?.readyState === WebSocket.OPEN ||
+      socket?.readyState === WebSocket.CONNECTING
+    ) {
+      return;
+    }
+
+    clearReconnect();
+    options.onStatus(reconnectAttempt > 0 ? "Reconnecting" : "Connecting");
     socket = new WebSocket(websocketUrl(options.relayHttpUrl, options.sessionId));
 
     socket.onopen = () => {
+      reconnectAttempt = 0;
       options.onStatus("Connected");
       options.onLog("tunnel connected");
+      clearHeartbeat();
       heartbeat = window.setInterval(() => {
         if (socket?.readyState === WebSocket.OPEN) {
           socket.send(JSON.stringify({ type: "ping" }));
@@ -106,27 +173,53 @@ export function startTunnelClient(options: TunnelClientOptions) {
     };
 
     socket.onclose = () => {
-      if (heartbeat) {
-        window.clearInterval(heartbeat);
+      clearHeartbeat();
+      socket = undefined;
+
+      if (stopped) {
+        return;
       }
+
+      if (document.visibilityState !== "visible") {
+        options.onStatus("Paused");
+        options.onLog("tunnel paused while tab is hidden");
+        return;
+      }
+
       options.onStatus("Disconnected");
       options.onLog("tunnel disconnected");
+      scheduleReconnect();
     };
 
     socket.onerror = () => {
       options.onStatus("Connection error");
       options.onLog("tunnel websocket error");
+      scheduleReconnect();
     };
   };
 
+  const handleVisibilityChange = () => {
+    if (document.visibilityState === "visible") {
+      options.onLog("tab visible; tunnel connecting");
+      reconnectAttempt = 0;
+      connect();
+      return;
+    }
+
+    disconnectForHiddenTab();
+  };
+
+  document.addEventListener("visibilitychange", handleVisibilityChange);
   connect();
 
   return {
     close() {
-      if (heartbeat) {
-        window.clearInterval(heartbeat);
-      }
+      stopped = true;
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      clearReconnect();
+      clearHeartbeat();
       socket?.close();
+      socket = undefined;
     },
   };
 }

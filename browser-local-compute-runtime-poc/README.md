@@ -51,6 +51,11 @@ Cloudflare does not read IndexedDB and does not perform the MCP text processing.
 In the blind-relay version, it only forwards encrypted request/response
 envelopes to and from the connected browser tab.
 
+The browser WebSocket connection is visibility-aware. When the tab becomes
+hidden, the client closes the tunnel and marks the runtime paused. When the tab
+becomes visible again, it reconnects automatically and keeps retrying with
+bounded backoff while visible.
+
 ## Blind Relay Encryption
 
 The browser tab generates a fresh P-256 ECDH keypair on page load. The private
@@ -201,6 +206,21 @@ npm run smoke:mcp
 the local WebSocket relay. `smoke:mcp` verifies the MCP JSON-RPC wire shape for
 `initialize`, `tools/list`, `get_text`, `search_text`, and `get_text_stats`.
 
+Wrangler blind relay check:
+
+```bash
+npm run build
+npx wrangler dev --local --port 8788
+WRANGLER_BASE_URL=http://localhost:8788 npm run smoke:wrangler-blind
+```
+
+The smoke test connects a mock browser WebSocket to the local Wrangler Worker,
+sends an encrypted MCP request containing a secret marker, verifies the body
+forwarded by the Worker does not contain the marker, MCP method, or tool name,
+then decrypts the request only in the mock browser and returns an encrypted
+response. Wrangler logs should show only route/status metadata such as
+`POST /portal/<sessionId>/mcp 200 OK`.
+
 ## Demo Script
 
 1. Open the deployed app on a mobile browser:
@@ -242,6 +262,9 @@ the local WebSocket relay. `smoke:mcp` verifies the MCP JSON-RPC wire shape for
 - Availability is foreground-tab only in practice. Mobile browsers may pause
   timers, Workers, WebSockets, and IndexedDB work when the user locks the phone,
   switches apps, or leaves the tab in the background.
+- This app closes the WebSocket when the tab is hidden and reconnects when it
+  becomes visible again. Mobile OS background suspension can still prevent
+  immediate reconnect until the browser is foregrounded.
 - iOS Safari is especially aggressive about suspending background tabs.
 - Browser storage is local but not permanent. IndexedDB can be evicted under
   storage pressure or private-browsing constraints.
@@ -263,5 +286,7 @@ the local WebSocket relay. `smoke:mcp` verifies the MCP JSON-RPC wire shape for
 - `cloudflare-worker/index.js`: Cloudflare Worker and Durable Object relay.
 - `scripts/relay-smoke.mjs`: unauthenticated relay smoke test.
 - `scripts/mcp-smoke.mjs`: MCP JSON-RPC smoke test.
+- `scripts/wrangler-blind-smoke.mjs`: Wrangler local Worker blind-relay smoke
+  test.
 - `scripts/encrypted-mcp-request.mjs`: one-shot encrypted MCP verifier.
 - `scripts/encrypted-mcp-proxy.mjs`: local MCP encryption proxy for clients.

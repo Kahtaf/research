@@ -10,6 +10,7 @@
     "relay": "node relay/server.mjs",
     "smoke:relay": "node scripts/relay-smoke.mjs",
     "smoke:mcp": "node scripts/mcp-smoke.mjs",
+    "smoke:wrangler-blind": "node scripts/wrangler-blind-smoke.mjs",
     "encrypted:mcp": "node scripts/encrypted-mcp-request.mjs",
     "encrypted:proxy": "node scripts/encrypted-mcp-proxy.mjs",
     "deploy": "npm run build && wrangler deploy",

@@ -112,3 +112,15 @@
   - Confirmed direct plaintext `curl` to `/mcp` returns `encrypted_envelope_required`.
   - Ran `npm run encrypted:proxy -- --url <mcp-url> --browser-public-key <key> --port 3333` and verified plaintext local MCP request to `http://localhost:3333/mcp` returned stats while the relay leg carried ciphertext.
   - Attempted `npm run deploy`, but Wrangler is logged into `support@bitspice.net` / BitSpice and Cloudflare returned API auth error 10000 for the existing Worker account. Deployment needs the correct Cloudflare account login.
+- Added visibility-aware tunnel lifecycle.
+  - Browser WebSocket closes when `document.visibilityState` changes away from `visible`.
+  - UI status becomes `Paused` while hidden.
+  - When the tab becomes visible again, the tunnel reconnects and retries with bounded backoff if the socket closes/errors while visible.
+  - Local relay logs showed disconnect/reconnect events while switching away from and back to the app tab.
+- Added `scripts/wrangler-blind-smoke.mjs`.
+  - Runs against `npx wrangler dev --local --port 8788`.
+  - Connects a mock browser WebSocket to the actual Cloudflare Worker/Durable Object code.
+  - Sends an encrypted MCP request containing a secret marker.
+  - Asserts the body forwarded by the Worker does not contain the marker, `tools/call`, or `get_text_stats`.
+  - Decrypts the request only in the mock browser and returns an encrypted response, then decrypts the response locally.
+  - `npm run smoke:wrangler-blind` passed with Wrangler logs showing only `GET /ws/... 101` and `POST /portal/.../mcp 200 OK`.
