@@ -124,3 +124,7 @@
   - Asserts the body forwarded by the Worker does not contain the marker, `tools/call`, or `get_text_stats`.
   - Decrypts the request only in the mock browser and returns an encrypted response, then decrypts the response locally.
   - `npm run smoke:wrangler-blind` passed with Wrangler logs showing only `GET /ws/... 101` and `POST /portal/.../mcp 200 OK`.
+- After switching Wrangler login to `kahtaf@vana.com`, deployed the encrypted blind-relay build to `https://browser-local-compute-runtime-poc.vana.workers.dev`, version `140d4420-b70f-4d9f-b497-ed26431c7e56`.
+- Ran deployed blind-relay smoke with `WRANGLER_BASE_URL=https://browser-local-compute-runtime-poc.vana.workers.dev npm run smoke:wrangler-blind`; it passed and confirmed the live Worker forwarded only encrypted envelope data.
+- Verified deployed HTML includes browser public key and local encryption proxy UI.
+- Verified deployed `/health` still reports `{ "ok": true, "role": "cloudflare routing-only relay" }`.

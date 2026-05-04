@@ -13,7 +13,7 @@ request envelopes at `/mcp`, so the relay sees ciphertext rather than MCP JSON.
 
 ```text
 https://browser-local-compute-runtime-poc.vana.workers.dev
-Last successful deployed Version ID: 7ec78151-6d30-4810-87c7-5009a02ce758
+Current Version ID: 140d4420-b70f-4d9f-b497-ed26431c7e56
 ```
 
 Open the deployed URL on desktop or mobile. The app displays an MCP URL shaped
