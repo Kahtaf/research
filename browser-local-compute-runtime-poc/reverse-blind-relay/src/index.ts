@@ -2,15 +2,22 @@ import http from "node:http";
 import https from "node:https";
 import fs from "node:fs";
 import net from "node:net";
+import { randomUUID } from "node:crypto";
 import { URL } from "node:url";
 
 import { WebSocketServer, type RawData, type WebSocket } from "ws";
 
+import {
+  getHttpChallengeResponse,
+  isAcmeIssuerConfigured,
+  issueCertificate,
+} from "./acme-issuer.js";
 import { decodeDataFrame, encodeDataFrame } from "./frame.js";
 import { parseSniFromClientHello, sessionIdFromSni } from "./sni.js";
 import type { BrowserSession, ControlMessage } from "./types.js";
 
 const HTTP_PORT = Number(process.env.PORT ?? 8080);
+const ACME_HTTP_PORT = Number(process.env.ACME_HTTP_PORT ?? 0);
 const CONTROL_TLS_PORT = Number(process.env.CONTROL_TLS_PORT ?? 0);
 const CONTROL_TLS_CERT_FILE = process.env.CONTROL_TLS_CERT_FILE ?? "";
 const CONTROL_TLS_KEY_FILE = process.env.CONTROL_TLS_KEY_FILE ?? "";
@@ -18,6 +25,8 @@ const TCP_PORT = Number(process.env.TCP_PORT ?? 0);
 const MAX_CLIENT_HELLO_BYTES = Number(process.env.MAX_CLIENT_HELLO_BYTES ?? 16_384);
 const CLIENT_HELLO_TIMEOUT_MS = Number(process.env.CLIENT_HELLO_TIMEOUT_MS ?? 5_000);
 const SESSION_HOST_SUFFIX = process.env.SESSION_HOST_SUFFIX ?? "";
+const PUBLIC_CERT_HOST_SUFFIX = process.env.PUBLIC_CERT_HOST_SUFFIX ?? SESSION_HOST_SUFFIX;
+const MAX_ISSUE_BODY_BYTES = Number(process.env.MAX_ISSUE_BODY_BYTES ?? 16_384);
 
 const sessions = new Map<string, BrowserSession>();
 let nextStreamId = 1;
@@ -32,6 +41,21 @@ function sendJson(
   payload: Record<string, unknown>,
 ): void {
   res.writeHead(status, {
+    "content-type": "application/json; charset=utf-8",
+    "cache-control": "no-store",
+  });
+  res.end(JSON.stringify(payload, null, 2));
+}
+
+function sendCorsJson(
+  res: http.ServerResponse,
+  status: number,
+  payload: Record<string, unknown>,
+): void {
+  res.writeHead(status, {
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "POST,OPTIONS",
+    "access-control-allow-headers": "content-type",
     "content-type": "application/json; charset=utf-8",
     "cache-control": "no-store",
   });
@@ -76,6 +100,17 @@ function sessionStats(): Array<Record<string, unknown>> {
 }
 
 const requestHandler: http.RequestListener = (req, res) => {
+  void handleRequest(req, res).catch((error: unknown) => {
+    log("request_error", { error: error instanceof Error ? error.message : String(error) });
+    if (!res.headersSent) {
+      sendJson(res, 500, { error: "internal_error" });
+    } else {
+      res.destroy();
+    }
+  });
+};
+
+async function handleRequest(req: http.IncomingMessage, res: http.ServerResponse): Promise<void> {
   const url = new URL(req.url ?? "/", `http://${req.headers.host}`);
 
   if (url.pathname === "/health") {
@@ -85,9 +120,26 @@ const requestHandler: http.RequestListener = (req, res) => {
       sessions: sessions.size,
       tcpIngressEnabled: TCP_PORT > 0,
       controlTlsEnabled: CONTROL_TLS_PORT > 0,
+      acmeIssuerEnabled: isAcmeIssuerConfigured(),
       cloudRunNote:
         "Cloud Run can host HTTP/WebSocket control, but true normal-client blind MCP needs raw TCP ingress outside Cloud Run.",
     });
+    return;
+  }
+
+  const challenge = url.pathname.match(/^\/\.well-known\/acme-challenge\/([^/]+)$/);
+  if (challenge) {
+    const keyAuthorization = getHttpChallengeResponse(challenge[1]);
+    if (!keyAuthorization) {
+      sendJson(res, 404, { error: "challenge_not_found" });
+      return;
+    }
+
+    res.writeHead(200, {
+      "content-type": "text/plain; charset=utf-8",
+      "cache-control": "no-store",
+    });
+    res.end(keyAuthorization);
     return;
   }
 
@@ -96,11 +148,16 @@ const requestHandler: http.RequestListener = (req, res) => {
     return;
   }
 
+  if (url.pathname === "/issue-cert") {
+    await handleIssueCert(req, res);
+    return;
+  }
+
   sendJson(res, 404, {
     error: "not_found",
     browserWebSocket: "/browser/:sessionId",
   });
-};
+}
 
 const httpServer = http.createServer(requestHandler);
 
@@ -120,6 +177,7 @@ browserWss.on("connection", (socket: WebSocket, req: http.IncomingMessage, conte
     socket,
     streams: new Map(),
     connectedAt: Date.now(),
+    issueToken: randomUUID(),
   };
   sessions.set(sessionId, session);
 
@@ -143,8 +201,67 @@ browserWss.on("connection", (socket: WebSocket, req: http.IncomingMessage, conte
   sendControl(session, {
     type: "session.ready",
     sessionId,
+    issueToken: session.issueToken,
   });
 });
+
+async function handleIssueCert(
+  req: http.IncomingMessage,
+  res: http.ServerResponse,
+): Promise<void> {
+  if (req.method === "OPTIONS") {
+    sendCorsJson(res, 204, {});
+    return;
+  }
+
+  if (req.method !== "POST") {
+    sendCorsJson(res, 405, { error: "method_not_allowed", allowed: ["POST"] });
+    return;
+  }
+
+  if (!isAcmeIssuerConfigured()) {
+    sendCorsJson(res, 503, {
+      error: "acme_issuer_not_configured",
+      requiredEnv: [
+        "ACME_DIRECTORY_URL",
+        "ACME_EMAIL",
+        "CLOUDFLARE_API_TOKEN",
+        "CLOUDFLARE_ZONE_ID",
+      ],
+    });
+    return;
+  }
+
+  const body = await readJsonBody(req, MAX_ISSUE_BODY_BYTES);
+  const sessionId = typeof body.sessionId === "string" ? body.sessionId : "";
+  const csrPem = typeof body.csrPem === "string" ? body.csrPem : "";
+  const issueToken = typeof body.issueToken === "string" ? body.issueToken : "";
+  const session = sessions.get(sessionId);
+
+  if (!session) {
+    sendCorsJson(res, 409, { error: "browser_session_required" });
+    return;
+  }
+
+  try {
+    const certPem = await issueCertificate({
+      sessionId,
+      csrPem,
+      issueToken,
+      expectedIssueToken: session.issueToken,
+      hostSuffix: PUBLIC_CERT_HOST_SUFFIX,
+    });
+    sendCorsJson(res, 200, {
+      certPem,
+      hostname: `${sessionId}.${PUBLIC_CERT_HOST_SUFFIX.replace(/^\./, "")}`,
+    });
+    log("acme_cert_issued", { sessionId });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    log("acme_issue_failed", { sessionId, error: message });
+    sendCorsJson(res, 400, { error: "acme_issue_failed", detail: message });
+  }
+}
 
 clientWss.on("connection", (clientSocket: WebSocket, req: http.IncomingMessage, context: { sessionId: string }) => {
   const session = sessions.get(context.sessionId);
@@ -213,6 +330,15 @@ httpServer.listen(HTTP_PORT, () => {
     customClientWebSocket: "/connect/:sessionId",
   });
 });
+
+if (ACME_HTTP_PORT > 0 && ACME_HTTP_PORT !== HTTP_PORT) {
+  http.createServer(requestHandler).listen(ACME_HTTP_PORT, () => {
+    log("acme_http_listening", {
+      port: ACME_HTTP_PORT,
+      challengePath: "/.well-known/acme-challenge/:token",
+    });
+  });
+}
 
 if (CONTROL_TLS_PORT > 0) {
   if (!CONTROL_TLS_CERT_FILE || !CONTROL_TLS_KEY_FILE) {
@@ -359,6 +485,35 @@ function allocateStreamId(): number {
     nextStreamId = 1;
   }
   return streamId;
+}
+
+function readJsonBody(
+  req: http.IncomingMessage,
+  maxBytes: number,
+): Promise<Record<string, unknown>> {
+  return new Promise((resolve, reject) => {
+    const chunks: Buffer[] = [];
+    let totalBytes = 0;
+
+    req.on("data", (chunk: Buffer | string) => {
+      const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+      totalBytes += buffer.byteLength;
+      if (totalBytes > maxBytes) {
+        reject(new Error("request_body_too_large"));
+        req.destroy();
+        return;
+      }
+      chunks.push(buffer);
+    });
+    req.on("end", () => {
+      try {
+        resolve(JSON.parse(Buffer.concat(chunks).toString("utf8")) as Record<string, unknown>);
+      } catch {
+        reject(new Error("invalid_json"));
+      }
+    });
+    req.on("error", reject);
+  });
 }
 
 function readClientHello(socket: net.Socket): Promise<Buffer> {

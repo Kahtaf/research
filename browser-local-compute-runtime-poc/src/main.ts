@@ -66,6 +66,7 @@ let activeMcpUrl = "";
 let activeApiUrl = "";
 let activeApiCurl = "";
 let activeMcpCurl = "";
+let activeSessionId = "";
 
 function getSession(): Session {
   const existing = localStorage.getItem(SESSION_KEY);
@@ -146,6 +147,7 @@ async function refreshRequestCount() {
 }
 
 async function setReverseRelayDetails(session: Session) {
+  activeSessionId = session.sessionId;
   const mcpUrl = reverseRelayMcpUrl(session.sessionId);
   const apiUrl = reverseRelayApiUrl(session.sessionId);
   activeMcpUrl = mcpUrl;
@@ -154,12 +156,16 @@ async function setReverseRelayDetails(session: Session) {
   apiUrlAnchor.textContent = apiUrl;
   mcpUrlAnchor.href = mcpUrl;
   mcpUrlAnchor.textContent = mcpUrl;
-  activeApiCurl = reverseRelayApiCurlCommand(session.sessionId);
-  activeMcpCurl = reverseRelayMcpCurlCommand(session.sessionId);
-  apiCurlCommand.textContent = activeApiCurl;
-  mcpCurlCommand.textContent = activeMcpCurl;
+  updateCurlCommands(false);
   log(`API URL ${apiUrl}`);
   log(`MCP URL ${mcpUrl}`);
+}
+
+function updateCurlCommands(trustedTls: boolean) {
+  activeApiCurl = reverseRelayApiCurlCommand(activeSessionId, trustedTls);
+  activeMcpCurl = reverseRelayMcpCurlCommand(activeSessionId, trustedTls);
+  apiCurlCommand.textContent = activeApiCurl;
+  mcpCurlCommand.textContent = activeMcpCurl;
 }
 
 async function startReverseRelayMode() {
@@ -185,6 +191,10 @@ async function startReverseRelayMode() {
     },
     onCount() {
       void refreshRequestCount();
+    },
+    onTlsIdentity(identity) {
+      updateCurlCommands(identity.trusted);
+      log(identity.trusted ? "trusted TLS certificate ready" : "self-signed TLS certificate ready");
     },
   });
 }

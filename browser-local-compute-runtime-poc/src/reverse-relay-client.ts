@@ -7,6 +7,7 @@ const DATA_FRAME_TYPE = 1;
 const HEADER_BYTES = 5;
 const DEFAULT_CONTROL_URL = "wss://control.34.16.49.200.sslip.io:8443";
 const DEFAULT_PUBLIC_SUFFIX = "34.16.49.200.sslip.io";
+const TLS_IDENTITY_CACHE_KEY = "browser-local-tls-identity-v1";
 
 type ReverseRelayOptions = {
   sessionId: string;
@@ -15,11 +16,15 @@ type ReverseRelayOptions = {
   onStatus: (status: string) => void;
   onResponse: (body: string) => void;
   onCount: () => void;
+  onTlsIdentity: (identity: TlsIdentity) => void;
 };
 
 type TlsIdentity = {
   certPem: string;
   keyPem: string;
+  hostname: string;
+  source: "acme" | "self-signed" | "cached-acme";
+  trusted: boolean;
 };
 
 type StreamState = {
@@ -50,23 +55,30 @@ export function reverseRelayApiUrl(sessionId: string) {
   return `https://${sessionId}.${reverseRelayPublicSuffix()}/api/process?input=hello`;
 }
 
-export function reverseRelayApiCurlCommand(sessionId: string) {
+export function reverseRelayApiCurlCommand(sessionId: string, trustedTls = false) {
   const host = `${sessionId}.${reverseRelayPublicSuffix()}`;
-  return `curl -k -sS https://${host}/api/process?input=hello`;
+  return `curl ${trustedTls ? "" : "-k "} -sS https://${host}/api/process?input=hello`.replace(
+    "  ",
+    " ",
+  );
 }
 
-export function reverseRelayMcpCurlCommand(sessionId: string) {
+export function reverseRelayMcpCurlCommand(sessionId: string, trustedTls = false) {
   const host = `${sessionId}.${reverseRelayPublicSuffix()}`;
-  return `curl -k -sS https://${host}/mcp \\\n  -H 'content-type: application/json' \\\n  -H 'mcp-protocol-version: 2025-06-18' \\\n  --data '{\"jsonrpc\":\"2.0\",\"id\":\"stats-1\",\"method\":\"tools/call\",\"params\":{\"name\":\"get_text_stats\",\"arguments\":{}}}'`;
+  return `curl ${trustedTls ? "" : "-k "} -sS https://${host}/mcp \\\n  -H 'content-type: application/json' \\\n  -H 'mcp-protocol-version: 2025-06-18' \\\n  --data '{\"jsonrpc\":\"2.0\",\"id\":\"stats-1\",\"method\":\"tools/call\",\"params\":{\"name\":\"get_text_stats\",\"arguments\":{}}}'`.replace(
+    "  ",
+    " ",
+  );
 }
 
 export async function startReverseRelayClient(options: ReverseRelayOptions) {
-  const identity = await createTlsIdentity(options.sessionId);
   const controlUrl = reverseRelayControlUrl();
   const browserUrl = `${controlUrl}/browser/${options.sessionId}`;
   const streams = new Map<number, StreamState>();
   const pending = new Map<string, (reply: RuntimeReply) => void>();
 
+  let identity: TlsIdentity | undefined;
+  let identityPromise: Promise<TlsIdentity> | undefined;
   let socket: WebSocket | undefined;
   let heartbeat: number | undefined;
   let reconnectTimer: number | undefined;
@@ -114,7 +126,7 @@ export async function startReverseRelayClient(options: ReverseRelayOptions) {
     sendText({ type: "stream.close", streamId, reason });
   };
 
-  const createTlsStream = (streamId: number): StreamState => {
+  const createTlsStream = (streamId: number, tlsIdentity: TlsIdentity): StreamState => {
     const stream: StreamState = {
       streamId,
       plaintext: "",
@@ -122,8 +134,8 @@ export async function startReverseRelayClient(options: ReverseRelayOptions) {
         server: true,
         caStore: [],
         sessionCache: {},
-        getCertificate: () => identity.certPem,
-        getPrivateKey: () => identity.keyPem,
+        getCertificate: () => tlsIdentity.certPem,
+        getPrivateKey: () => tlsIdentity.keyPem,
         verifyClient: false,
         connected() {
           options.onLog(`tls stream ${streamId} connected`);
@@ -150,10 +162,33 @@ export async function startReverseRelayClient(options: ReverseRelayOptions) {
     return stream;
   };
 
-  const handleControl = (message: { type: string; streamId?: number }) => {
+  const openStreamAfterIdentity = async (streamId: number) => {
+    const tlsIdentity = identity ?? (await identityPromise);
+    if (!tlsIdentity) {
+      options.onLog(`stream ${streamId} rejected before TLS identity was ready`);
+      closeStream(streamId, "tls_identity_unavailable");
+      return;
+    }
+    const stream = createTlsStream(streamId, tlsIdentity);
+    streams.set(streamId, stream);
+    options.onLog(`stream ${streamId} opened`);
+  };
+
+  const handleControl = async (message: { type: string; streamId?: number; issueToken?: string }) => {
     if (message.type === "session.ready") {
+      options.onStatus("Requesting TLS cert");
+      identityPromise = createTlsIdentity(
+        options.sessionId,
+        controlUrl,
+        message.issueToken ?? "",
+        options.onLog,
+      );
+      identity = await identityPromise;
+      options.onTlsIdentity(identity);
       options.onStatus("Connected");
-      options.onLog("reverse relay connected");
+      options.onLog(
+        `reverse relay connected with ${identity.source} certificate for ${identity.hostname}`,
+      );
       return;
     }
 
@@ -162,9 +197,12 @@ export async function startReverseRelayClient(options: ReverseRelayOptions) {
     }
 
     if (message.type === "stream.open" && typeof message.streamId === "number") {
-      const stream = createTlsStream(message.streamId);
-      streams.set(message.streamId, stream);
-      options.onLog(`stream ${message.streamId} opened`);
+      void openStreamAfterIdentity(message.streamId).catch((error) => {
+        options.onLog(error instanceof Error ? error.message : String(error));
+        if (typeof message.streamId === "number") {
+          closeStream(message.streamId, "tls_identity_error");
+        }
+      });
       return;
     }
 
@@ -252,7 +290,12 @@ export async function startReverseRelayClient(options: ReverseRelayOptions) {
 
     socket.onmessage = (event) => {
       if (typeof event.data === "string") {
-        handleControl(JSON.parse(event.data) as { type: string; streamId?: number });
+        void handleControl(
+          JSON.parse(event.data) as { type: string; streamId?: number; issueToken?: string },
+        ).catch((error) => {
+          options.onStatus("TLS cert error");
+          options.onLog(error instanceof Error ? error.message : String(error));
+        });
         return;
       }
       handleData(event.data as ArrayBuffer);
@@ -448,7 +491,18 @@ function httpResponse(status: number, headers: Record<string, string>, body: str
   return head + bytesToBinary(bodyBytes);
 }
 
-async function createTlsIdentity(sessionId: string): Promise<TlsIdentity> {
+async function createTlsIdentity(
+  sessionId: string,
+  controlUrl: string,
+  issueToken: string,
+  onLog: (line: string) => void,
+): Promise<TlsIdentity> {
+  const hostname = `${sessionId}.${reverseRelayPublicSuffix()}`;
+  const cached = readCachedTlsIdentity(hostname);
+  if (cached) {
+    return cached;
+  }
+
   const keys = await new Promise<forge.pki.rsa.KeyPair>((resolve, reject) => {
     forge.pki.rsa.generateKeyPair({ bits: 2048, workers: -1 }, (error, keyPair) => {
       if (error || !keyPair) {
@@ -459,6 +513,21 @@ async function createTlsIdentity(sessionId: string): Promise<TlsIdentity> {
     });
   });
 
+  const keyPem = forge.pki.privateKeyToPem(keys.privateKey);
+  const csrPem = createCsrPem(hostname, keys);
+  const issued = await requestAcmeCertificate(
+    certIssuerUrl(controlUrl),
+    sessionId,
+    csrPem,
+    keyPem,
+    issueToken,
+    hostname,
+    onLog,
+  );
+  if (issued) {
+    return issued;
+  }
+
   const cert = forge.pki.createCertificate();
   cert.publicKey = keys.publicKey;
   cert.serialNumber = Array.from(crypto.getRandomValues(new Uint8Array(12)), (byte) =>
@@ -466,7 +535,7 @@ async function createTlsIdentity(sessionId: string): Promise<TlsIdentity> {
   ).join("");
   cert.validity.notBefore = new Date(Date.now() - 60_000);
   cert.validity.notAfter = new Date(Date.now() + 24 * 60 * 60 * 1000);
-  const attrs = [{ name: "commonName", value: `${sessionId}.${reverseRelayPublicSuffix()}` }];
+  const attrs = [{ name: "commonName", value: hostname }];
   cert.setSubject(attrs);
   cert.setIssuer(attrs);
   cert.setExtensions([
@@ -475,15 +544,151 @@ async function createTlsIdentity(sessionId: string): Promise<TlsIdentity> {
     { name: "extKeyUsage", serverAuth: true },
     {
       name: "subjectAltName",
-      altNames: [{ type: 2, value: `${sessionId}.${reverseRelayPublicSuffix()}` }],
+      altNames: [{ type: 2, value: hostname }],
     },
   ]);
   cert.sign(keys.privateKey, forge.md.sha256.create());
 
   return {
     certPem: forge.pki.certificateToPem(cert),
-    keyPem: forge.pki.privateKeyToPem(keys.privateKey),
+    keyPem,
+    hostname,
+    source: "self-signed",
+    trusted: false,
   };
+}
+
+function createCsrPem(hostname: string, keys: forge.pki.rsa.KeyPair) {
+  const csr = forge.pki.createCertificationRequest();
+  csr.publicKey = keys.publicKey;
+  csr.setSubject([{ name: "commonName", value: hostname }]);
+  csr.setAttributes([
+    {
+      name: "extensionRequest",
+      extensions: [
+        {
+          name: "subjectAltName",
+          altNames: [{ type: 2, value: hostname }],
+        },
+      ],
+    },
+  ]);
+  csr.sign(keys.privateKey, forge.md.sha256.create());
+  return forge.pki.certificationRequestToPem(csr);
+}
+
+async function requestAcmeCertificate(
+  issuerUrl: string,
+  sessionId: string,
+  csrPem: string,
+  keyPem: string,
+  issueToken: string,
+  hostname: string,
+  onLog: (line: string) => void,
+): Promise<TlsIdentity | undefined> {
+  if (!issueToken) {
+    onLog("ACME issuer token unavailable; using self-signed certificate");
+    return undefined;
+  }
+
+  try {
+    const response = await fetch(issuerUrl, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ sessionId, csrPem, issueToken }),
+    });
+
+    if (!response.ok) {
+      const detail = await response.text();
+      onLog(`ACME issuer unavailable (${response.status}); using self-signed certificate`);
+      onLog(detail.slice(0, 240));
+      return undefined;
+    }
+
+    const payload = (await response.json()) as { certPem?: string };
+    if (!payload.certPem) {
+      onLog("ACME issuer returned no certificate; using self-signed certificate");
+      return undefined;
+    }
+
+    const identity: TlsIdentity = {
+      certPem: payload.certPem,
+      keyPem,
+      hostname,
+      source: "acme",
+      trusted: true,
+    };
+    cacheTlsIdentity(identity);
+    return identity;
+  } catch (error) {
+    onLog(error instanceof Error ? error.message : String(error));
+    onLog("ACME certificate request failed; using self-signed certificate");
+    return undefined;
+  }
+}
+
+function certIssuerUrl(controlUrl: string) {
+  const configured = import.meta.env.VITE_CERT_ISSUER_URL as string | undefined;
+  if (configured) {
+    return configured.replace(/\/$/, "");
+  }
+
+  const url = new URL(controlUrl);
+  url.protocol = url.protocol === "wss:" ? "https:" : "http:";
+  url.pathname = "/issue-cert";
+  url.search = "";
+  url.hash = "";
+  return url.toString();
+}
+
+function readCachedTlsIdentity(hostname: string): TlsIdentity | undefined {
+  try {
+    const raw = localStorage.getItem(`${TLS_IDENTITY_CACHE_KEY}:${hostname}`);
+    if (!raw) {
+      return undefined;
+    }
+
+    const identity = JSON.parse(raw) as TlsIdentity;
+    if (
+      identity.hostname !== hostname ||
+      !identity.certPem ||
+      !identity.keyPem ||
+      identity.source !== "acme"
+    ) {
+      return undefined;
+    }
+
+    const notAfter = firstCertificateNotAfter(identity.certPem);
+    if (notAfter.getTime() - Date.now() < 24 * 60 * 60 * 1000) {
+      return undefined;
+    }
+
+    return {
+      ...identity,
+      source: "cached-acme",
+      trusted: true,
+    };
+  } catch {
+    return undefined;
+  }
+}
+
+function cacheTlsIdentity(identity: TlsIdentity) {
+  if (identity.source !== "acme") {
+    return;
+  }
+  localStorage.setItem(
+    `${TLS_IDENTITY_CACHE_KEY}:${identity.hostname}`,
+    JSON.stringify(identity),
+  );
+}
+
+function firstCertificateNotAfter(certPem: string) {
+  const match = certPem.match(/-----BEGIN CERTIFICATE-----[\s\S]+?-----END CERTIFICATE-----/);
+  if (!match) {
+    return new Date(0);
+  }
+  return forge.pki.certificateFromPem(match[0]).validity.notAfter;
 }
 
 async function sha256Hex(input: string) {

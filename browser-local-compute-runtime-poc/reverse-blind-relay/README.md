@@ -19,6 +19,10 @@ Embrowse-style byte relay where the public relay does not parse HTTP or MCP.
   browser-local text.
 - Optional raw TCP ingress can accept TLS ClientHello, route by SNI, and forward
   the encrypted TLS stream to the browser.
+- Optional ACME issuer accepts browser-generated CSRs at `/issue-cert` and
+  returns a public certificate chain without seeing the browser private key.
+  The current `sslip.io` PoC uses HTTP-01 on the VM. A production domain can use
+  DNS-01 with Cloudflare DNS.
 
 ## Recommended Target: VM Or TCP Load Balancer
 
@@ -91,6 +95,15 @@ TCP_PORT=443
 HTTP_PORT=8080
 CONTROL_TLS_PORT=8443
 SESSION_HOST_SUFFIX=
+PUBLIC_CERT_HOST_SUFFIX=
+ACME_DIRECTORY_URL=
+ACME_EMAIL=
+ACME_TERMS_AGREED=false
+ACME_ACCOUNT_KEY_FILE=/opt/browser-local-reverse-blind-relay/acme-account-key.pem
+ACME_CHALLENGE_MODE=http-01
+ACME_HTTP_PORT=80
+CLOUDFLARE_ZONE_ID=
+CLOUDFLARE_API_TOKEN=
 ```
 
 The hosted HTTPS browser app must use the secure browser-control WebSocket:
@@ -101,7 +114,74 @@ wss://control.34.16.49.200.sslip.io:8443/browser/<sessionId>
 
 TLS terminates at the relay only for this browser-control WebSocket. MCP client
 traffic still uses raw TCP passthrough on `443`, where TLS terminates in the
-browser runtime once that piece exists.
+browser runtime.
+
+## ACME Certificate Issuer
+
+The relay exposes:
+
+```text
+POST /issue-cert
+```
+
+The browser registers over `/browser/:sessionId`, receives an issuer token, then
+sends:
+
+```json
+{
+  "sessionId": "abc123",
+  "issueToken": "<session-ready-token>",
+  "csrPem": "-----BEGIN CERTIFICATE REQUEST-----..."
+}
+```
+
+The relay validates that the browser session is connected, the token matches,
+and the CSR contains only:
+
+```text
+abc123.<PUBLIC_CERT_HOST_SUFFIX>
+```
+
+Current `sslip.io` PoC:
+
+```bash
+SESSION_HOST_SUFFIX=34.16.49.200.sslip.io
+PUBLIC_CERT_HOST_SUFFIX=34.16.49.200.sslip.io
+ACME_CHALLENGE_MODE=http-01
+ACME_HTTP_PORT=80
+ACME_DIRECTORY_URL=https://acme-v02.api.letsencrypt.org/directory
+ACME_EMAIL=you@example.com
+ACME_TERMS_AGREED=true
+```
+
+Production-style DNS setup:
+
+```text
+*.mcp.example.com -> 34.16.49.200
+```
+
+Required issuer env:
+
+```bash
+SESSION_HOST_SUFFIX=.mcp.example.com
+PUBLIC_CERT_HOST_SUFFIX=.mcp.example.com
+ACME_CHALLENGE_MODE=dns-01
+ACME_DIRECTORY_URL=https://acme-v02.api.letsencrypt.org/directory
+ACME_EMAIL=you@example.com
+ACME_TERMS_AGREED=true
+CLOUDFLARE_ZONE_ID=<zone-id>
+CLOUDFLARE_API_TOKEN=<token with DNS edit permission>
+```
+
+For testing against Let's Encrypt staging, use:
+
+```bash
+ACME_DIRECTORY_URL=https://acme-staging-v02.api.letsencrypt.org/directory
+```
+
+Staging certificates are not browser-trusted. Production ACME certificates are
+needed for Codex, Claude Code, and other MCP clients to connect without
+disabling TLS verification.
 
 ## Cloud Run Boundary
 
@@ -210,14 +290,14 @@ gcloud run deploy browser-local-reverse-blind-relay \
   --min-instances 1
 ```
 
-## Next Browser-Side Work
+## Current Browser Integration
 
-The current browser app still expects HTTP request metadata from the old
-Cloudflare relay. To use this relay for normal MCP:
+The browser app now uses this relay directly:
 
-1. Add a browser WebSocket client for `/browser/:sessionId`.
-2. Add a browser-local TLS server implementation in WASM or a VM-like runtime.
-3. Parse HTTP inside the browser after TLS decrypts.
-4. Dispatch `/mcp` to the existing MCP text handler.
-5. Add a certificate flow where the browser owns the private key and gets a
-   CA-trusted certificate for `<session>.mcp.example.com`.
+1. The tab registers a session with `/browser/:sessionId`.
+2. The tab generates the TLS private key locally and requests a certificate with
+   a browser-generated CSR.
+3. Public HTTPS clients connect to `<sessionId>.<PUBLIC_CERT_HOST_SUFFIX>`.
+4. The relay peeks only at TLS SNI, then forwards opaque TCP bytes to the tab.
+5. TLS, HTTP parsing, `/api/process`, and `/mcp` all terminate inside the
+   browser runtime.

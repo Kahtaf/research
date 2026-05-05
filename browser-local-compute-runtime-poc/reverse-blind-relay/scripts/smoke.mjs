@@ -32,6 +32,18 @@ try {
   const [openMessage] = await once(browser, "message");
   const ready = JSON.parse(openMessage.toString());
   assert(ready.type === "session.ready", "browser did not receive session.ready");
+  assert(typeof ready.issueToken === "string", "browser did not receive issue token");
+
+  const issueResponse = await fetch(`${base}/issue-cert`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      sessionId,
+      issueToken: ready.issueToken,
+      csrPem: "not-a-real-csr",
+    }),
+  });
+  assert(issueResponse.status === 503, "unconfigured ACME issuer should return 503");
 
   const client = new WebSocket(`ws://127.0.0.1:${port}/connect/${sessionId}`);
   await once(client, "open");
