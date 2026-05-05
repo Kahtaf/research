@@ -73,12 +73,17 @@ export function reverseRelayApiCurlCommand(sessionId: string, trustedTls = false
   );
 }
 
-export function reverseRelayMcpCurlCommand(sessionId: string, trustedTls = false) {
-  const host = `${sessionId}.${reverseRelayPublicSuffix()}`;
-  return `curl ${trustedTls ? "" : "-k "} -sS https://${host}/mcp \\\n  -H 'content-type: application/json' \\\n  -H 'mcp-protocol-version: 2025-06-18' \\\n  --data '{\"jsonrpc\":\"2.0\",\"id\":\"stats-1\",\"method\":\"tools/call\",\"params\":{\"name\":\"get_text_stats\",\"arguments\":{}}}'`.replace(
-    "  ",
-    " ",
-  );
+export function reverseRelayClaudeMcpCommand(sessionId: string) {
+  const mcpUrl = reverseRelayMcpUrl(sessionId);
+  const config = {
+    mcpServers: {
+      "browser-local-demo": {
+        type: "http",
+        url: mcpUrl,
+      },
+    },
+  };
+  return `claude --mcp-config <(echo '${JSON.stringify(config)}')`;
 }
 
 export async function startReverseRelayClient(options: ReverseRelayOptions) {

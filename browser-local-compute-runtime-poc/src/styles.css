@@ -301,7 +301,7 @@ pre {
 }
 
 #api-curl-command,
-#mcp-curl-command {
+#claude-mcp-command {
   padding: 10px;
   border: 1px solid var(--line);
   background: var(--surface-muted);

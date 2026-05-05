@@ -188,9 +188,7 @@ curl -sS "https://<sessionId>.34.16.49.200.sslip.io/mcp" \
 Claude Code:
 
 ```bash
-claude --strict-mcp-config --mcp-config .claude/.mcp.json \
-  --permission-mode bypassPermissions \
-  -p 'Use the browser-local-poc MCP server to call get_text_stats.'
+claude --mcp-config <(echo '{"mcpServers":{"browser-local-demo":{"type":"http","url":"https://<sessionId>.34.16.49.200.sslip.io/mcp"}}}')
 ```
 
 ## Trusted TLS

@@ -5,7 +5,7 @@ import { readRequestCount, readText, writeText } from "./storage";
 import {
   reverseRelayApiCurlCommand,
   reverseRelayApiUrl,
-  reverseRelayMcpCurlCommand,
+  reverseRelayClaudeMcpCommand,
   reverseRelayMcpUrl,
   startReverseRelayClient,
 } from "./reverse-relay-client";
@@ -53,11 +53,11 @@ const resetSampleButton = element<HTMLButtonElement>("reset-sample");
 const copyApiUrlButton = element<HTMLButtonElement>("copy-api-url");
 const copyMcpUrlButton = element<HTMLButtonElement>("copy-mcp-url");
 const copyApiCurlButton = element<HTMLButtonElement>("copy-api-curl");
-const copyMcpCurlButton = element<HTMLButtonElement>("copy-mcp-curl");
+const copyClaudeMcpButton = element<HTMLButtonElement>("copy-claude-mcp");
 const apiUrlAnchor = element<HTMLAnchorElement>("api-url");
 const mcpUrlAnchor = element<HTMLAnchorElement>("mcp-url");
 const apiCurlCommand = element<HTMLPreElement>("api-curl-command");
-const mcpCurlCommand = element<HTMLPreElement>("mcp-curl-command");
+const claudeMcpCommand = element<HTMLPreElement>("claude-mcp-command");
 const activityLog = element<HTMLPreElement>("activity-log");
 
 let tunnel: { close: () => void } | undefined;
@@ -65,7 +65,7 @@ let saveTimer: number | undefined;
 let activeMcpUrl = "";
 let activeApiUrl = "";
 let activeApiCurl = "";
-let activeMcpCurl = "";
+let activeClaudeMcpCommand = "";
 let activeSessionId = "";
 
 function getSession(): Session {
@@ -163,9 +163,9 @@ async function setReverseRelayDetails(session: Session) {
 
 function updateCurlCommands(trustedTls: boolean) {
   activeApiCurl = reverseRelayApiCurlCommand(activeSessionId, trustedTls);
-  activeMcpCurl = reverseRelayMcpCurlCommand(activeSessionId, trustedTls);
+  activeClaudeMcpCommand = reverseRelayClaudeMcpCommand(activeSessionId);
   apiCurlCommand.textContent = activeApiCurl;
-  mcpCurlCommand.textContent = activeMcpCurl;
+  claudeMcpCommand.textContent = activeClaudeMcpCommand;
 }
 
 async function startReverseRelayMode() {
@@ -219,9 +219,9 @@ copyApiCurlButton.addEventListener("click", () => {
     void copyText(activeApiCurl, "API curl");
   }
 });
-copyMcpCurlButton.addEventListener("click", () => {
-  if (activeMcpCurl) {
-    void copyText(activeMcpCurl, "MCP curl");
+copyClaudeMcpButton.addEventListener("click", () => {
+  if (activeClaudeMcpCommand) {
+    void copyText(activeClaudeMcpCommand, "Claude MCP setup");
   }
 });
 
