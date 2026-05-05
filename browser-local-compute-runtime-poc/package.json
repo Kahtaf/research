@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "tsc --noEmit && vite build",
+    "build:tls-wasm": "wasm-pack build browser-tls-rustls --target web --out-dir pkg --release",
+    "build": "npm run build:tls-wasm && tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "reverse-relay:build": "npm --prefix reverse-blind-relay run build",
     "reverse-relay:dev": "npm --prefix reverse-blind-relay run dev",

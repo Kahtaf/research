@@ -1,0 +1,16 @@
+[package]
+name = "browser-tls-rustls"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+js-sys = "0.3"
+rustls = { version = "0.23", default-features = false, features = ["std", "tls12"] }
+rustls-rustcrypto = { version = "0.0.2-alpha", default-features = false, features = ["alloc", "tls12", "zeroize"] }
+rustls-pki-types = { version = "1.14", features = ["web"] }
+rustls-pemfile = "2"
+wasm-bindgen = "0.2"
+getrandom = { version = "0.2", features = ["js"] }

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "browser-local-poc": {
+      "type": "http",
+      "url": "https://uq32uggkc6f9h4sqtm22f6ld.34.16.49.200.sslip.io/mcp"
+    }
+  }
+}

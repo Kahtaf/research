@@ -1,143 +1,123 @@
-# Browser-Local Compute Runtime PoC Notes
+# Browser-Local MCP Server PoC Notes
 
-## 2026-04-30
+## Objective
 
-- Created investigation folder `browser-local-compute-runtime-poc`.
-- Goal: prove a mobile browser tab can host an ephemeral API endpoint where request handling and computation run locally in the browser, with a relay used only for routing.
-- BrowserPod appears feasible as the preferred path: docs show `@leaningtech/browserpod`, Vite COOP/COEP headers, inner npm project copy/install, and `pod.onPortal(({ url, port }) => ...)`.
-- BrowserPod requires a BrowserPod API key, so local verification without credentials needs a fallback path.
-- BrowserPod docs state filesystem persistence is backed by browser IndexedDB, and Portals are routing URLs to services listening inside the browser pod.
-- Fallback design: Vite mobile web app starts a dedicated Worker as the browser-local runtime, connects outbound to a relay with WebSocket, and handles `/api/process` inside the Worker using bundled npm packages plus IndexedDB state.
-- Implemented Vite host app, browser Worker runtime, custom WebSocket relay, BrowserPod inner Node/Express API server, and a relay smoke test.
-- `npm run build` passes.
-- `npm run smoke:relay` passes; it proves the relay forwards HTTPS-style request envelopes to a connected WebSocket client and returns that client's response without local app computation.
-- Desktop browser validation via local Vite + local relay:
-  - Opened `http://localhost:5173/`.
-  - App connected to `http://localhost:8787/`.
-  - Called `curl -H "Authorization: Bearer <token>" "http://localhost:8787/portal/<session>/api/process?input=hello"`.
-  - Response came from `runtime: "browser-local worker"` and included `packageUsed: "zod + lodash-es + nanoid"` plus `storage: "IndexedDB"`.
-  - Reloaded the page and called again with `input=hello-again`; response returned `requestCount: 2`, proving IndexedDB persistence across reload in the same browser origin.
-- BrowserPod path was not live-tested because no BrowserPod API key is available in this environment.
-- Android Chrome and iOS Safari were not available in this environment; README documents expected mobile constraints and test steps.
-- Added Cloudflare Worker static-assets deployment scaffold:
-  - `wrangler.jsonc` deploys the Vite `dist` assets and a Worker script.
-  - `cloudflare-worker/index.js` implements the WebSocket relay as a Durable Object keyed by session ID.
-  - `public/_headers` keeps COOP/COEP headers for BrowserPod compatibility.
-  - `npm run deploy` runs `npm run build && wrangler deploy`.
-- Project-local Wrangler is installed through devDependencies; local `npx wrangler --version` reports `4.86.0`.
-- User deployed to `https://browser-local-compute-runtime-poc.vana.workers.dev`, version `2251ccc2-40b2-4be6-87c0-834d60bbf789`.
-- Verified deployed `/health` returns `{ "ok": true, "role": "cloudflare routing-only relay" }`.
-- Verified deployed static app serves COOP/COEP headers.
-- Found deployed frontend still defaulted to `https://browser-local-compute-runtime-poc.vana.workers.dev:8787/`, which prevents production tunnel connection.
-- Fixed default relay URL logic: localhost uses port `8787`; deployed origins use same-origin HTTPS/WSS.
-- Re-ran `npm run build` and `npm run smoke:relay`; both pass after the Cloudflare scaffold and production relay URL fix.
-- Clarified documentation boundary: application computation and IndexedDB state run in the browser tab; Cloudflare hosts static assets and provides the WebSocket/HTTP routing portal only.
-- Redeployed fixed Cloudflare build to `https://browser-local-compute-runtime-poc.vana.workers.dev`, version `36346451-974a-4a63-9d90-f90832d3378e`.
-- Verified live bundle uses same-origin Cloudflare relay URL instead of `:8787`.
-- Verified external `curl` to `/portal/<session>/api/process?input=hello` returns JSON computed by the browser worker through the Cloudflare Durable Object tunnel.
-- Researched browser-in-browser automation options:
-  - Puppeteer has an official browser-compatible client bundle, but it only controls a separate browser through a WebSocket/CDP endpoint; it does not launch or download a browser locally in the page.
-  - Playwright/CDP similarly expects an existing local, extension, cloud, or remote-debugging browser endpoint, not a nested browser engine in a mobile tab.
-  - BrowserPod currently documents Node.js support and Portals; its roadmap mentions future Linux-class workloads via CheerpX, but not current full Chromium/Firefox support.
-  - WebContainers run Node/WebAssembly workloads, not native browser engines; docs note mobile memory constraints and no native addons.
-  - CheerpX/WebVM can run Linux/x86 workloads client-side, but full Chromium/Firefox with CDP inside a mobile browser tab looks experimental/heavy rather than product-ready.
-  - DOM emulators such as jsdom/happy-dom are useful for static DOM-like automation, but they are not full rendering browsers and do not provide Playwright/CDP-level fidelity.
-- Inspected `vana-com/personal-server-ts` in a temporary checkout under `/tmp`.
-  - README says Node >=20 and default root files under `~/personal-server`: `data/`, `config.json`, `index.db`, `key.json`, `logs/`.
-  - Hard blockers for the current browser-worker runtime: `@hono/node-server`, `better-sqlite3`, Node `fs/path/os/net/crypto` APIs, process/env/argv/signals, local TCP listening, and `child_process` tunnel management.
-  - Tunnel subsystem downloads/extracts native `frpc`, writes config, chmods files, and spawns a native process; this cannot run in a browser tab.
-  - Portable with adapters: Hono route graph, Web3Signed/grant logic, gateway fetch client, zod schemas/scopes, viem signing/verification, OpenPGP encryption, and sync state machine shape.
-  - Browser port would need IndexedDB/OPFS storage adapters, SQLite replacement such as sql.js/wa-sqlite or IndexedDB indexes, Cloudflare/browser relay instead of frpc, browser-safe crypto shims, explicit secret handling, and lifecycle/resume semantics.
-- Refactored the PoC into an unauthenticated browser-local MCP text server.
-  - Removed BrowserPod code, `public/browserpod-project`, and `@leaningtech/browserpod`.
-  - Removed bearer-token generation, WebSocket token query params, and Authorization checks from the browser app, local relay, and Cloudflare Durable Object relay.
-  - Kept the random `sessionId` as the only temporary access barrier.
-  - Added a minimal responsive UI with textarea, sample text, IndexedDB auto-save, MCP URL, Codex config snippet, copy buttons, status, request count, and activity log.
-  - Added the warning: "Anyone with this URL can query the text while this tab is open."
-- Implemented Streamable HTTP-style MCP handling at `/mcp` inside the browser Worker.
-  - `initialize` returns server info and `tools` capability.
-  - notifications without an `id` return HTTP `202`.
-  - `tools/list` exposes `get_text`, `search_text`, and `get_text_stats`.
-  - `tools/call` reads IndexedDB text and executes the selected tool locally in the browser runtime.
-  - `get_text` supports `offset` and `maxChars` with default `20000`, hard max `100000`, plus `truncated`, `nextOffset`, and `totalChars`.
-  - `search_text` returns literal case-insensitive snippets.
-  - `get_text_stats` returns `charCount`, `byteEstimate`, `lineCount`, and `wordCount`.
-- Added `npm run smoke:mcp` and updated `npm run smoke:relay` for unauthenticated `/portal/:sessionId/mcp`.
-- Ran `npm install` to remove BrowserPod/lodash packages from the lockfile.
-- Validation after MCP refactor:
-  - `npm run build` passes.
-  - `npm run smoke:relay` passes.
-  - `npm run smoke:mcp` passes.
-  - `npm run deploy` succeeds.
-  - Redeployed to `https://browser-local-compute-runtime-poc.vana.workers.dev`, version `b11891d6-9252-4e13-acbb-5a7bcffac252`.
-  - Verified deployed `/health` and static app load.
-- No Android or iOS simulator devices were available in this environment for live mobile validation.
-- Final compatibility pass added unauthenticated MCP CORS headers for `accept`, `content-type`, `mcp-protocol-version`, and `mcp-session-id`.
-- Re-ran `npm run build`, `npm run smoke:relay`, and `npm run smoke:mcp`; all pass.
-- Redeployed final Worker script to `https://browser-local-compute-runtime-poc.vana.workers.dev`, version `7b929ce0-c5dd-4856-b575-e461e623e20b`.
-- End-to-end deployed test from a Codex in-app browser tab:
-  - Opened the deployed app and waited for the Cloudflare tunnel to show `Connected`.
-  - Filled the textarea with non-sensitive E2E sample text and waited for IndexedDB save state `Saved`.
-  - Called the generated `/portal/<sessionId>/mcp` URL from an external shell process through Cloudflare.
-  - Verified `initialize` returned HTTP `200` with server `browser-local-text-mcp`.
-  - Verified `notifications/initialized` returned HTTP `202`.
-  - Verified `tools/list` returned `get_text`, `search_text`, and `get_text_stats`.
-  - Verified `get_text` returned the browser textarea text with `runtime: "browser-local worker"`.
-  - Verified `search_text` found `guitar-driven rock`.
-  - Verified `get_text_stats` returned `charCount: 207`, `wordCount: 31`, `storage: "IndexedDB"`, and incrementing `requestCount`.
-  - Reloaded the browser app and confirmed the textarea text, session URL, and request counter persisted.
-  - Verified an MCP request after reload returned `requestCount: 4`, proving reconnect plus IndexedDB persistence.
-- Added a displayed `curl` verification command to the MCP connection panel.
-  - The command posts a `tools/call` request for `get_text_stats` to the generated `/portal/<sessionId>/mcp` URL.
-  - Added a copy button for the curl command.
-  - Ran `npm run build`, `npm run smoke:relay`, and `npm run smoke:mcp`; all pass.
-  - Redeployed to `https://browser-local-compute-runtime-poc.vana.workers.dev`, version `7ec78151-6d30-4810-87c7-5009a02ce758`.
-- Implemented honest-but-curious blind relay encryption for the browser-local MCP demo.
-  - Browser tab generates a fresh local P-256 ECDH keypair using WebCrypto.
-  - Browser private key is sent only to the browser Worker and is not displayed.
-  - UI displays the browser public key token and fingerprint.
-  - `POST /mcp` now requires encrypted request envelopes containing client ECDH public key, AES-GCM IV, and ciphertext.
-  - The browser Worker decrypts the MCP JSON locally, runs the existing MCP handler, encrypts the JSON-RPC response back to the client public key, and returns ciphertext through the relay.
-  - Plaintext `POST /mcp` now returns `encrypted_envelope_required`.
-  - Added `scripts/encrypted-mcp-request.mjs` for one-shot encrypted requests that decrypt the response locally.
-  - Added `scripts/encrypted-mcp-proxy.mjs` so standard MCP clients can talk plaintext MCP to `http://localhost:3333/mcp`; the proxy encrypts/decrypts the Cloudflare/browser leg.
-  - UI now shows a local encryption proxy command and a Codex config pointing to the local proxy instead of the public relay URL.
-- Local encrypted validation:
-  - `npm run build` passes.
-  - `npm run smoke:relay` passes.
-  - `npm run smoke:mcp` passes.
-  - Loaded `http://localhost:5173/` in the Codex in-app browser with local relay on `:8787`.
-  - Verified the app showed connected tunnel, browser public key, fingerprint, encrypted curl command, local proxy command, and local Codex config.
-  - Ran `node scripts/encrypted-mcp-request.mjs <mcp-url> <browser-public-key>` and decrypted a `get_text_stats` JSON-RPC response locally.
-  - Confirmed direct plaintext `curl` to `/mcp` returns `encrypted_envelope_required`.
-  - Ran `npm run encrypted:proxy -- --url <mcp-url> --browser-public-key <key> --port 3333` and verified plaintext local MCP request to `http://localhost:3333/mcp` returned stats while the relay leg carried ciphertext.
-  - Attempted `npm run deploy`, but Wrangler is logged into `support@bitspice.net` / BitSpice and Cloudflare returned API auth error 10000 for the existing Worker account. Deployment needs the correct Cloudflare account login.
-- Added visibility-aware tunnel lifecycle.
-  - Browser WebSocket closes when `document.visibilityState` changes away from `visible`.
-  - UI status becomes `Paused` while hidden.
-  - When the tab becomes visible again, the tunnel reconnects and retries with bounded backoff if the socket closes/errors while visible.
-  - Local relay logs showed disconnect/reconnect events while switching away from and back to the app tab.
-- Added `scripts/wrangler-blind-smoke.mjs`.
-  - Runs against `npx wrangler dev --local --port 8788`.
-  - Connects a mock browser WebSocket to the actual Cloudflare Worker/Durable Object code.
-  - Sends an encrypted MCP request containing a secret marker.
-  - Asserts the body forwarded by the Worker does not contain the marker, `tools/call`, or `get_text_stats`.
-  - Decrypts the request only in the mock browser and returns an encrypted response, then decrypts the response locally.
-  - `npm run smoke:wrangler-blind` passed with Wrangler logs showing only `GET /ws/... 101` and `POST /portal/.../mcp 200 OK`.
-- After switching Wrangler login to `kahtaf@vana.com`, deployed the encrypted blind-relay build to `https://browser-local-compute-runtime-poc.vana.workers.dev`, version `140d4420-b70f-4d9f-b497-ed26431c7e56`.
-- Ran deployed blind-relay smoke with `WRANGLER_BASE_URL=https://browser-local-compute-runtime-poc.vana.workers.dev npm run smoke:wrangler-blind`; it passed and confirmed the live Worker forwarded only encrypted envelope data.
-- Verified deployed HTML includes browser public key and local encryption proxy UI.
-- Verified deployed `/health` still reports `{ "ok": true, "role": "cloudflare routing-only relay" }`.
-- Tested the deployed environment with `wrangler tail browser-local-compute-runtime-poc --format json` attached.
-  - Ran `WRANGLER_BASE_URL=https://browser-local-compute-runtime-poc.vana.workers.dev npm run smoke:wrangler-blind`.
-  - Smoke passed with session `blind-smoke-1777908736964` and secret marker `cloudflare-must-not-see-c45df3cb-f05e-42b5-afae-bd45b9835d55`.
-  - Wrangler tail showed live script version `140d4420-b70f-4d9f-b497-ed26431c7e56`.
-  - Tail events showed `GET /ws/blind-smoke-1777908736964` and `POST /portal/blind-smoke-1777908736964/mcp` with `content-length: 500`, `content-type: application/json`, and response `200`.
-  - Tail did not include the plaintext marker, `tools/call`, or `get_text_stats`; the smoke harness confirmed those strings were absent from the Worker-forwarded body and visible only after mock browser-side decryption.
-- Ran `npx fallow --summary` and `npx fallow dead-code`; removed the old Cloudflare Durable Object tunnel, encrypted-envelope helpers, local relay scripts, and root `ws` dependency so the PoC folder now keeps only the static app, browser runtime, and reverse blind relay path.
-- Refined the minimal UI after the trim: changed the title to "Browser-based API Server", removed the Codex config panel, split API/MCP URL and curl copy actions into individual icon buttons, moved Activity above How it works, and replaced the architecture diagram with a more detailed API/MCP-client diagram.
-- Added an ACME certificate issuer path to the reverse blind relay. The browser now generates the TLS private key and CSR locally, asks `/issue-cert` for a certificate chain, caches successful ACME certs locally, and falls back to self-signed TLS when the issuer is not configured. The issuer supports HTTP-01 for the current `sslip.io` PoC and DNS-01 with Cloudflare for production domains.
-- Deployed ACME-enabled relay to the GCP VM using HTTP-01 on port 80 and production Let's Encrypt for `*.34.16.49.200.sslip.io`-style session hosts. Deployed the static app as version `2a8eebbd-ad8a-442c-bcee-fefb49a8d4e8`.
-- Ran headless Chrome E2E against the deployed app. Browser session `nvpb3dkoppqkyet2e99a7hlv` received a trusted ACME cert in about 11 seconds, then normal `curl` without `-k` succeeded for both `/api/process?input=hello` and `/mcp`.
-- Ran Fallow cleanup checks after the ACME work. Dead-code analysis is clean; remaining Fallow health output is complexity warnings in live TLS/relay/parser paths, not unused files.
-- Cleaned stale docs that still described browser TLS/MCP integration as future work. README verification commands now use the current trusted `34.16.49.200.sslip.io` PoC suffix.
+Prove that a mobile browser tab can host an ephemeral public API and MCP server
+without moving application compute or stored user text to a backend.
+
+Success criteria:
+
+- Public requests reach an active browser tab.
+- The browser handles API and MCP logic locally.
+- Browser-local storage persists textarea content and request counts.
+- The relay forwards traffic without seeing HTTP paths, MCP method names, tool
+  arguments, text content, or response bodies.
+- Standard MCP clients can connect without disabling TLS verification.
+
+## Current Design
+
+The hosted Cloudflare app boots a browser runtime and registers a session with a
+GCP VM relay over WSS. Public clients connect to:
+
+```text
+https://<sessionId>.34.16.49.200.sslip.io
+```
+
+The relay accepts raw TCP on port `443`, peeks at TLS SNI to find the browser
+session, and forwards opaque TLS bytes over the browser control WebSocket. TLS
+terminates inside the browser tab using Rustls compiled to WebAssembly.
+
+The browser runtime exposes:
+
+- `GET /api/process?input=hello`
+- `POST /mcp`
+
+MCP tools:
+
+- `get_text`
+- `search_text`
+- `get_text_stats`
+
+State is stored in IndexedDB.
+
+## Key Decisions
+
+- BrowserPod was not used in the final PoC because the fallback WebSocket relay
+  and browser Worker path was enough to prove the end-to-end behavior.
+- Cloudflare is now only the static app host. API/MCP traffic goes through the
+  blind VM relay.
+- The relay uses SNI routing instead of terminating HTTPS. This keeps HTTP and
+  MCP payloads opaque to the relay.
+- The browser generates and stores the TLS private key locally. The relay sees a
+  CSR, not the private key.
+- Rustls WASM terminates TLS in the browser so stricter clients such as Claude
+  Code can validate the certificate chain normally.
+- The current demo is unauthenticated. The random session URL is the only access
+  barrier.
+
+## Validation
+
+Latest deployed static app:
+
+```text
+https://browser-local-compute-runtime-poc.vana.workers.dev
+version: 8193bebc-04f6-4949-976d-3360046611dc
+```
+
+Verified locally:
+
+- `npm run build`
+- `npm run reverse-relay:build`
+- `npx fallow dead-code`
+
+Fallow result:
+
+- No dead files.
+- No dead exports.
+- Health score: `93 A`.
+- Remaining warnings are complexity in live TLS, relay, parser, and MCP
+  dispatcher paths.
+
+Verified against the deployed browser tab:
+
+- API request returned JSON with `runtime: "browser-local TLS server"`,
+  `storage: "IndexedDB"`, and `relay: "blind TCP passthrough"`.
+- MCP `tools/list` returned `get_text`, `search_text`, and `get_text_stats`.
+- Claude Code connected through `.claude/.mcp.json` and called
+  `get_text_stats`, receiving IndexedDB-backed browser-local stats.
+
+Current live session used for Claude verification:
+
+```text
+https://uq32uggkc6f9h4sqtm22f6ld.34.16.49.200.sslip.io/mcp
+```
+
+This URL changes when the browser session changes.
+
+## Open Risks
+
+- Mobile browser backgrounding can pause the server.
+- IndexedDB storage can be evicted by the browser.
+- No authentication exists in this demo.
+- Per-session ACME certificates will not scale cleanly under public CA rate
+  limits.
+- Static app integrity is unresolved. A malicious static host could alter the
+  browser runtime.
+- The relay is payload-blind, not metadata-blind.
+
+## Useful Commands
+
+```bash
+npm run build
+npm run reverse-relay:build
+npx fallow dead-code
+npm run deploy
+```
+
+Claude verification:
+
+```bash
+claude --strict-mcp-config --mcp-config .claude/.mcp.json \
+  --permission-mode bypassPermissions \
+  -p 'Use the browser-local-poc MCP server to call get_text_stats.'
+```

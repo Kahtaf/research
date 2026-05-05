@@ -9,7 +9,16 @@ const MAX_SEARCH_RESULTS = 20;
 
 type RuntimeConfig = {
   sessionId: string;
+  mcpSessionId: string;
 };
+
+type JsonRpcId = string | number | null;
+type ToolCallParams = {
+  name?: string;
+  arguments?: Record<string, unknown>;
+};
+
+const MCP_SESSION_HEADER = "Mcp-Session-Id";
 
 const getTextArgsSchema = z.object({
   offset: z.number().int().min(0).default(0),
@@ -101,6 +110,12 @@ function json(status: number, payload: unknown, extraHeaders = {}) {
   };
 }
 
+function mcpSessionHeaders(config: RuntimeConfig) {
+  return {
+    [MCP_SESSION_HEADER]: config.mcpSessionId,
+  };
+}
+
 function decodeBody(body: string) {
   if (!body) {
     return "";
@@ -125,7 +140,7 @@ function textContent(payload: unknown) {
   };
 }
 
-function jsonRpcResult(id: string | number | null, result: unknown) {
+function jsonRpcResult(id: JsonRpcId, result: unknown) {
   return {
     jsonrpc: "2.0",
     id,
@@ -134,7 +149,7 @@ function jsonRpcResult(id: string | number | null, result: unknown) {
 }
 
 function jsonRpcError(
-  id: string | number | null,
+  id: JsonRpcId,
   code: number,
   message: string,
   data?: unknown,
@@ -147,6 +162,14 @@ function jsonRpcError(
       message,
       ...(data === undefined ? {} : { data }),
     },
+  };
+}
+
+function runtimeMetadata(config: RuntimeConfig, requestCount: number) {
+  return {
+    requestCount,
+    sessionId: config.sessionId,
+    runtime: "browser-local worker",
   };
 }
 
@@ -197,6 +220,74 @@ function getTextStats(text: string) {
   };
 }
 
+function initializeResult(id: JsonRpcId) {
+  return jsonRpcResult(id, {
+    protocolVersion: "2025-06-18",
+    capabilities: {
+      tools: {},
+    },
+    serverInfo: {
+      name: "browser-local-text-mcp",
+      version: "0.1.0",
+    },
+    instructions:
+      "Use tools to read text stored in the user's active browser tab. The server is available only while that tab is open and connected.",
+  });
+}
+
+async function handleToolCall(id: JsonRpcId, params: ToolCallParams | undefined, config: RuntimeConfig) {
+  const requestCount = await incrementRequestCount();
+  const name = params?.name;
+  const args = params?.arguments ?? {};
+  const text = (await readText()) ?? "";
+
+  if (name === "get_text") {
+    const parsed = getTextArgsSchema.safeParse(args);
+    if (!parsed.success) {
+      return jsonRpcError(id, -32602, "Invalid get_text arguments", parsed.error.issues);
+    }
+    return jsonRpcResult(
+      id,
+      textContent({
+        ...getTextSlice(text, parsed.data.offset, parsed.data.maxChars),
+        ...runtimeMetadata(config, requestCount),
+      }),
+    );
+  }
+
+  if (name === "search_text") {
+    const parsed = searchTextArgsSchema.safeParse(args);
+    if (!parsed.success) {
+      return jsonRpcError(id, -32602, "Invalid search_text arguments", parsed.error.issues);
+    }
+    return jsonRpcResult(
+      id,
+      textContent({
+        ...searchText(
+          text,
+          parsed.data.query,
+          parsed.data.maxResults,
+          parsed.data.contextChars,
+        ),
+        ...runtimeMetadata(config, requestCount),
+      }),
+    );
+  }
+
+  if (name === "get_text_stats") {
+    return jsonRpcResult(
+      id,
+      textContent({
+        ...getTextStats(text),
+        ...runtimeMetadata(config, requestCount),
+        storage: "IndexedDB",
+      }),
+    );
+  }
+
+  return jsonRpcError(id, -32602, `Unknown tool: ${String(name)}`);
+}
+
 async function handleMcpMessage(message: Record<string, unknown>, config: RuntimeConfig) {
   const id = (message.id as string | number | null | undefined) ?? null;
   const method = message.method;
@@ -206,18 +297,7 @@ async function handleMcpMessage(message: Record<string, unknown>, config: Runtim
   }
 
   if (method === "initialize") {
-    return jsonRpcResult(id, {
-      protocolVersion: "2025-06-18",
-      capabilities: {
-        tools: {},
-      },
-      serverInfo: {
-        name: "browser-local-text-mcp",
-        version: "0.1.0",
-      },
-      instructions:
-        "Use tools to read text stored in the user's active browser tab. The server is available only while that tab is open and connected.",
-    });
+    return initializeResult(id);
   }
 
   if (method === "tools/list") {
@@ -225,65 +305,7 @@ async function handleMcpMessage(message: Record<string, unknown>, config: Runtim
   }
 
   if (method === "tools/call") {
-    const requestCount = await incrementRequestCount();
-    const params = message.params as
-      | { name?: string; arguments?: Record<string, unknown> }
-      | undefined;
-    const name = params?.name;
-    const args = params?.arguments ?? {};
-    const text = (await readText()) ?? "";
-
-    if (name === "get_text") {
-      const parsed = getTextArgsSchema.safeParse(args);
-      if (!parsed.success) {
-        return jsonRpcError(id, -32602, "Invalid get_text arguments", parsed.error.issues);
-      }
-      return jsonRpcResult(
-        id,
-        textContent({
-          ...getTextSlice(text, parsed.data.offset, parsed.data.maxChars),
-          requestCount,
-          sessionId: config.sessionId,
-          runtime: "browser-local worker",
-        }),
-      );
-    }
-
-    if (name === "search_text") {
-      const parsed = searchTextArgsSchema.safeParse(args);
-      if (!parsed.success) {
-        return jsonRpcError(id, -32602, "Invalid search_text arguments", parsed.error.issues);
-      }
-      return jsonRpcResult(
-        id,
-        textContent({
-          ...searchText(
-            text,
-            parsed.data.query,
-            parsed.data.maxResults,
-            parsed.data.contextChars,
-          ),
-          requestCount,
-          sessionId: config.sessionId,
-          runtime: "browser-local worker",
-        }),
-      );
-    }
-
-    if (name === "get_text_stats") {
-      return jsonRpcResult(
-        id,
-        textContent({
-          ...getTextStats(text),
-          requestCount,
-          sessionId: config.sessionId,
-          runtime: "browser-local worker",
-          storage: "IndexedDB",
-        }),
-      );
-    }
-
-    return jsonRpcError(id, -32602, `Unknown tool: ${String(name)}`);
+    return handleToolCall(id, message.params as ToolCallParams | undefined, config);
   }
 
   return jsonRpcError(id, -32601, `Method not found: ${method}`);
@@ -301,11 +323,11 @@ export async function handleRuntimeRequest(
   }
 
   if (request.method === "GET") {
-    return json(200, {
-      name: "browser-local-text-mcp",
-      encryption: "tls-in-browser",
-      runtime: "browser-local worker",
-    });
+    return json(
+      405,
+      { error: "method_not_allowed", allowed: ["POST"] },
+      { allow: "POST" },
+    );
   }
 
   if (request.method !== "POST") {
@@ -331,11 +353,12 @@ export async function handleRuntimeRequest(
       status: 202,
       headers: {
         "cache-control": "no-store",
+        ...mcpSessionHeaders(config),
       },
       body: "",
     };
   }
 
   const responsePayload = await handleMcpMessage(message, config);
-  return json(200, responsePayload);
+  return json(200, responsePayload, mcpSessionHeaders(config));
 }

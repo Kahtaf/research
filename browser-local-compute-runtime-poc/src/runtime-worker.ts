@@ -2,6 +2,7 @@ import { handleRuntimeRequest } from "./runtime-handler";
 import type { RuntimeMessage, RuntimeReply } from "./types";
 
 let sessionId = "";
+let mcpSessionId = "";
 
 function reply(message: RuntimeReply) {
   self.postMessage(message);
@@ -13,6 +14,7 @@ self.onmessage = async (event: MessageEvent<RuntimeMessage>) => {
   try {
     if (message.type === "init") {
       sessionId = message.sessionId;
+      mcpSessionId = crypto.randomUUID();
       return;
     }
 
@@ -27,6 +29,7 @@ self.onmessage = async (event: MessageEvent<RuntimeMessage>) => {
 
     const response = await handleRuntimeRequest(message.request, {
       sessionId,
+      mcpSessionId,
     });
 
     reply({

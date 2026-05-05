@@ -1,4 +1,6 @@
 import forge from "node-forge";
+import initRustls, { TlsServer as RustlsServer } from "../browser-tls-rustls/pkg/browser_tls_rustls";
+import rustlsWasmUrl from "../browser-tls-rustls/pkg/browser_tls_rustls_bg.wasm?url";
 
 import { incrementRequestCount, readText } from "./storage";
 import type { RelayRequest, RuntimeReply } from "./types";
@@ -29,9 +31,17 @@ type TlsIdentity = {
 
 type StreamState = {
   streamId: number;
-  tls: forge.tls.Connection;
+  tls: RustlsServer;
   plaintext: string;
 };
+
+type TlsStep = {
+  plaintext: Uint8Array;
+  tls: Uint8Array;
+  handshaking: boolean;
+};
+
+let rustlsInitPromise: Promise<unknown> | undefined;
 
 function reverseRelayControlUrl() {
   const configured = import.meta.env.VITE_REVERSE_RELAY_CONTROL_URL as
@@ -75,6 +85,7 @@ export async function startReverseRelayClient(options: ReverseRelayOptions) {
   const controlUrl = reverseRelayControlUrl();
   const browserUrl = `${controlUrl}/browser/${options.sessionId}`;
   const streams = new Map<number, StreamState>();
+  const pendingStreamData = new Map<number, Uint8Array[]>();
   const pending = new Map<string, (reply: RuntimeReply) => void>();
 
   let identity: TlsIdentity | undefined;
@@ -108,12 +119,11 @@ export async function startReverseRelayClient(options: ReverseRelayOptions) {
     }
   };
 
-  const sendData = (streamId: number, payload: string) => {
+  const sendData = (streamId: number, payloadBytes: Uint8Array) => {
     if (socket?.readyState !== WebSocket.OPEN) {
       return;
     }
 
-    const payloadBytes = binaryToBytes(payload);
     const frame = new Uint8Array(HEADER_BYTES + payloadBytes.length);
     frame[0] = DATA_FRAME_TYPE;
     writeUint32(frame, 1, streamId);
@@ -122,43 +132,34 @@ export async function startReverseRelayClient(options: ReverseRelayOptions) {
   };
 
   const closeStream = (streamId: number, reason: string) => {
+    const stream = streams.get(streamId);
+    stream?.tls.free();
     streams.delete(streamId);
+    pendingStreamData.delete(streamId);
     sendText({ type: "stream.close", streamId, reason });
   };
 
-  const createTlsStream = (streamId: number, tlsIdentity: TlsIdentity): StreamState => {
+  const handleTlsStep = (stream: StreamState, step: TlsStep) => {
+    if (step.tls.length > 0) {
+      sendData(stream.streamId, step.tls);
+    }
+    if (step.plaintext.length > 0) {
+      stream.plaintext += new TextDecoder().decode(step.plaintext);
+      void drainHttpRequests(stream).catch((error) => {
+        options.onLog(error instanceof Error ? error.message : String(error));
+        closeStream(stream.streamId, "handler_error");
+      });
+    }
+  };
+
+  const createTlsStream = async (streamId: number, tlsIdentity: TlsIdentity): Promise<StreamState> => {
+    await ensureRustls();
     const stream: StreamState = {
       streamId,
       plaintext: "",
-      tls: forge.tls.createConnection({
-        server: true,
-        caStore: [],
-        sessionCache: {},
-        getCertificate: () => tlsIdentity.certPem,
-        getPrivateKey: () => tlsIdentity.keyPem,
-        verifyClient: false,
-        connected() {
-          options.onLog(`tls stream ${streamId} connected`);
-        },
-        tlsDataReady(conn) {
-          sendData(streamId, conn.tlsData.getBytes());
-        },
-        dataReady(conn) {
-          stream.plaintext += conn.data.getBytes();
-          void drainHttpRequests(stream).catch((error) => {
-            options.onLog(error instanceof Error ? error.message : String(error));
-            closeStream(streamId, "handler_error");
-          });
-        },
-        closed() {
-          closeStream(streamId, "tls_closed");
-        },
-        error(_conn, error) {
-          options.onLog(`tls stream ${streamId} error: ${error.message}`);
-          closeStream(streamId, "tls_error");
-        },
-      }),
+      tls: new RustlsServer(tlsIdentity.certPem, tlsIdentity.keyPem),
     };
+    options.onLog(`rustls stream ${streamId} ready`);
     return stream;
   };
 
@@ -169,9 +170,14 @@ export async function startReverseRelayClient(options: ReverseRelayOptions) {
       closeStream(streamId, "tls_identity_unavailable");
       return;
     }
-    const stream = createTlsStream(streamId, tlsIdentity);
+    const stream = await createTlsStream(streamId, tlsIdentity);
     streams.set(streamId, stream);
     options.onLog(`stream ${streamId} opened`);
+    const buffered = pendingStreamData.get(streamId) ?? [];
+    pendingStreamData.delete(streamId);
+    for (const payload of buffered) {
+      processTlsPayload(stream, payload);
+    }
   };
 
   const handleControl = async (message: { type: string; streamId?: number; issueToken?: string }) => {
@@ -219,12 +225,27 @@ export async function startReverseRelayClient(options: ReverseRelayOptions) {
     }
 
     const streamId = readUint32(frame, 1);
+    const payload = frame.slice(HEADER_BYTES);
     const stream = streams.get(streamId);
     if (!stream) {
+      const buffered = pendingStreamData.get(streamId) ?? [];
+      buffered.push(payload);
+      pendingStreamData.set(streamId, buffered);
       return;
     }
 
-    stream.tls.process(bytesToBinary(frame.slice(HEADER_BYTES)));
+    processTlsPayload(stream, payload);
+  };
+
+  const processTlsPayload = (stream: StreamState, payload: Uint8Array) => {
+    try {
+      handleTlsStep(stream, normalizeTlsStep(stream.tls.process_tls(payload)));
+    } catch (error) {
+      options.onLog(
+        `rustls stream ${stream.streamId} error: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      closeStream(stream.streamId, "tls_error");
+    }
   };
 
   const shouldConnect = () =>
@@ -304,6 +325,7 @@ export async function startReverseRelayClient(options: ReverseRelayOptions) {
     socket.onclose = () => {
       clearHeartbeat();
       streams.clear();
+      pendingStreamData.clear();
       socket = undefined;
       if (stopped) {
         return;
@@ -398,8 +420,12 @@ export async function startReverseRelayClient(options: ReverseRelayOptions) {
       stream.plaintext = stream.plaintext.slice(parsed.consumedBytes);
       options.onLog(`${parsed.request.method} ${parsed.request.url.pathname}`);
       const response = await handleHttpRequest(parsed.request);
-      stream.tls.prepare(response);
-      stream.tls.close();
+      const step = normalizeTlsStep(stream.tls.write_plaintext(binaryToBytes(response), true));
+      if (step.tls.length > 0) {
+        sendData(stream.streamId, step.tls);
+      }
+      closeStream(stream.streamId, "http_response_sent");
+      return;
     }
   };
 
@@ -473,8 +499,17 @@ function httpJson(status: number, payload: unknown) {
   return httpResponse(status, { "content-type": "application/json; charset=utf-8" }, JSON.stringify(payload, null, 2));
 }
 
+const HTTP_STATUS_TEXT: Record<number, string> = {
+  200: "OK",
+  202: "Accepted",
+  400: "Bad Request",
+  404: "Not Found",
+  405: "Method Not Allowed",
+  500: "Internal Server Error",
+};
+
 function httpResponse(status: number, headers: Record<string, string>, body: string) {
-  const statusText = status === 200 ? "OK" : status === 202 ? "Accepted" : "Error";
+  const statusText = HTTP_STATUS_TEXT[status] ?? "Error";
   const responseHeaders = {
     "cache-control": "no-store",
     connection: "close",
@@ -489,6 +524,20 @@ function httpResponse(status: number, headers: Record<string, string>, body: str
     "",
   ].join("\r\n");
   return head + bytesToBinary(bodyBytes);
+}
+
+function ensureRustls() {
+  rustlsInitPromise ??= initRustls(rustlsWasmUrl);
+  return rustlsInitPromise;
+}
+
+function normalizeTlsStep(value: unknown): TlsStep {
+  const step = value as Partial<TlsStep>;
+  return {
+    plaintext: step.plaintext instanceof Uint8Array ? step.plaintext : new Uint8Array(),
+    tls: step.tls instanceof Uint8Array ? step.tls : new Uint8Array(),
+    handshaking: Boolean(step.handshaking),
+  };
 }
 
 async function createTlsIdentity(

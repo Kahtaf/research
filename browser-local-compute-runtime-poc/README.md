@@ -1,11 +1,11 @@
-# Browser-Local MCP Text Server PoC
+# Browser-Local MCP Server PoC
 
-Minimal proof of concept for an API and MCP server that runs in an active
-browser tab. Cloudflare hosts the static app. A GCP VM relay forwards opaque TCP
-streams by SNI. TLS terminates in the browser tab, and the browser handles HTTP,
-MCP tools, computation, and IndexedDB storage.
+A proof of concept for an API and MCP server that runs inside an active browser
+tab. The public relay forwards opaque TLS bytes by SNI. TLS, HTTP parsing, MCP
+tool execution, npm-package computation, and IndexedDB storage all happen in the
+browser.
 
-Deployed app:
+Live app:
 
 ```text
 https://browser-local-compute-runtime-poc.vana.workers.dev
@@ -21,49 +21,59 @@ https://github.com/Kahtaf/research/tree/main/browser-local-compute-runtime-poc
 
 Browser tab:
 
-- Minimal UI.
-- Browser Worker runtime.
-- Browser-local TLS server implemented with `node-forge`.
-- Browser-generated private key and CSR for optional ACME certificate issuance.
-- API route: `GET /api/process?input=hello`.
-- Streamable HTTP MCP route: `POST /mcp`.
-- MCP tools over IndexedDB-backed text.
+- Static UI hosted by Cloudflare Workers assets.
+- Browser Worker runtime for MCP request handling.
+- Browser-local TLS server backed by Rustls compiled to WebAssembly.
+- Browser-local private key, CSR generation, certificate cache, and IndexedDB
+  text/request-count storage.
+- API endpoint: `GET /api/process?input=hello`.
+- Streamable HTTP MCP endpoint: `POST /mcp`.
 
-GCP VM relay:
+Blind relay VM:
 
-- Browser control WSS:
+- Browser control WebSocket:
   `wss://control.34.16.49.200.sslip.io:8443/browser/<sessionId>`.
 - Public TCP ingress on `34.16.49.200:443`.
-- SNI routing from the public session hostname to the connected tab.
-- Optional ACME issuer at `/issue-cert`.
+- SNI-based routing from `<sessionId>.34.16.49.200.sslip.io` to the connected
+  browser tab.
+- ACME issuer endpoint for browser-generated CSRs.
 - Opaque byte forwarding only.
 
 Cloudflare:
 
-- Static web app hosting.
-- No API/MCP relay logic in the current path.
+- Hosts the static browser app.
+- Does not relay API or MCP traffic in the current architecture.
 
 ## Architecture
 
 ```text
-Hosted app
-  │ boots
-  ▼
-Browser tab ── WSS control ──► Blind relay VM
-  ▲                              │
-  │ TLS, HTTP, MCP, IndexedDB     │ SNI only
-  └──────── opaque TCP/TLS ◄──────┘
-                 ▲
-                 │ HTTPS
-           API or MCP client
+API client / MCP client
+        │
+        │ HTTPS to https://<session>.34.16.49.200.sslip.io
+        ▼
+┌──────────────────────────────┐
+│ Blind relay VM               │
+│ - accepts TCP on :443        │
+│ - peeks TLS SNI only         │
+│ - forwards opaque TLS bytes  │
+└──────────────┬───────────────┘
+               │ framed stream bytes over WSS control channel
+               ▼
+┌──────────────────────────────┐
+│ Active browser tab           │
+│ - terminates TLS with Rustls │
+│ - parses HTTP                │
+│ - handles /api/process       │
+│ - handles /mcp tools         │
+│ - reads/writes IndexedDB     │
+└──────────────────────────────┘
 ```
 
-The relay can see source IPs, SNI/session ids, timing, and byte counts. It
+The relay can observe source IPs, SNI/session ids, timing, and byte counts. It
 should not see HTTP paths, MCP methods, tool arguments, textarea content, or
-response bodies. If ACME is not configured, the browser falls back to a
-self-signed certificate and test clients need `curl -k`.
+response bodies.
 
-## MCP Tools
+## MCP Interface
 
 Endpoint:
 
@@ -71,7 +81,7 @@ Endpoint:
 https://<sessionId>.34.16.49.200.sslip.io/mcp
 ```
 
-Methods:
+Supported JSON-RPC methods:
 
 - `initialize`
 - `notifications/initialized`
@@ -80,91 +90,54 @@ Methods:
 
 Tools:
 
-- `get_text`: read text by `offset` and `maxChars`.
-- `search_text`: return snippets for a literal query.
+- `get_text`: read browser-stored text by `offset` and `maxChars`.
+- `search_text`: return literal case-insensitive snippets.
 - `get_text_stats`: return character, byte, line, and word counts.
 
-`get_text` defaults to `20000` chars and has a hard maximum of `100000` chars.
+`get_text` defaults to `20000` chars and has a hard max of `100000` chars.
+
+Claude Code config for the current live session:
+
+```text
+.claude/.mcp.json
+```
+
+Replace the URL in that file after opening a new browser session.
 
 ## Local Development
 
-Install and build:
+Install dependencies:
 
 ```bash
 npm install
+```
+
+Build the browser app:
+
+```bash
 npm run build
 ```
 
-Start the browser app:
+The build compiles the Rustls WASM module, runs TypeScript, and builds the Vite
+app.
+
+Run the browser app locally:
 
 ```bash
 npm run dev
 ```
 
-Start the relay locally:
+Run the relay locally:
 
 ```bash
 npm run reverse-relay:dev
 ```
 
-Relay smoke test:
+Build the relay:
 
 ```bash
-npm run reverse-relay:smoke
+npm run reverse-relay:build
 ```
-
-## Trusted TLS With ACME
-
-For this PoC, the relay can issue trusted certs for the current `sslip.io`
-session hostnames with HTTP-01:
-
-```bash
-SESSION_HOST_SUFFIX=34.16.49.200.sslip.io \
-PUBLIC_CERT_HOST_SUFFIX=34.16.49.200.sslip.io \
-ACME_CHALLENGE_MODE=http-01 \
-ACME_HTTP_PORT=80 \
-ACME_DIRECTORY_URL=https://acme-v02.api.letsencrypt.org/directory \
-ACME_EMAIL=you@example.com \
-ACME_TERMS_AGREED=true \
-npm run reverse-relay:deploy:gcp-vm
-```
-
-For a production domain, use a DNS-controlled suffix and DNS-01:
-
-```text
-*.mcp.example.com -> 34.16.49.200
-```
-
-Configure and deploy the relay with:
-
-```bash
-SESSION_HOST_SUFFIX=.mcp.example.com \
-PUBLIC_CERT_HOST_SUFFIX=.mcp.example.com \
-ACME_CHALLENGE_MODE=dns-01 \
-ACME_DIRECTORY_URL=https://acme-v02.api.letsencrypt.org/directory \
-ACME_EMAIL=you@example.com \
-ACME_TERMS_AGREED=true \
-CLOUDFLARE_ZONE_ID=<zone-id> \
-CLOUDFLARE_API_TOKEN=<dns-edit-token> \
-npm run reverse-relay:deploy:gcp-vm
-```
-
-Configure and deploy the static app with matching host settings:
-
-```bash
-VITE_REVERSE_RELAY_PUBLIC_SUFFIX=mcp.example.com npm run deploy
-```
-
-Flow:
-
-1. Browser generates a private key and CSR for `<sessionId>.mcp.example.com`.
-2. Browser sends only the CSR to the relay issuer.
-3. Relay completes ACME HTTP-01 on port 80 or DNS-01 using Cloudflare DNS.
-4. Relay returns the signed certificate chain.
-5. Browser serves TLS with the browser-local private key.
-
-The private key stays in browser storage. The browser caches successful ACME
-certificates locally and reuses them until near expiry.
 
 ## Deploy
 
@@ -180,56 +153,87 @@ Relay VM:
 npm run reverse-relay:deploy:gcp-vm
 ```
 
-The deploy script runs `npm run build && wrangler deploy`.
+Current deployed static app version:
 
-## Manual Verification
+```text
+8193bebc-04f6-4949-976d-3360046611dc
+```
 
-Open the deployed app, wait for `Connected`, then copy the displayed session
-URLs.
+## Verification
 
-API with trusted ACME cert:
+Open the deployed app, wait for `Connected`, then use the displayed session URL.
+
+API:
 
 ```bash
 curl -sS "https://<sessionId>.34.16.49.200.sslip.io/api/process?input=hello"
 ```
 
-MCP with trusted ACME cert:
+MCP `tools/list`:
 
 ```bash
 curl -sS "https://<sessionId>.34.16.49.200.sslip.io/mcp" \
   -H 'content-type: application/json' \
-  -H 'mcp-protocol-version: 2025-06-18' \
+  --data '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}'
+```
+
+MCP `get_text_stats`:
+
+```bash
+curl -sS "https://<sessionId>.34.16.49.200.sslip.io/mcp" \
+  -H 'content-type: application/json' \
   --data '{"jsonrpc":"2.0","id":"stats-1","method":"tools/call","params":{"name":"get_text_stats","arguments":{}}}'
 ```
 
-Codex MCP config:
+Claude Code:
 
-```toml
-[mcp_servers.browser_text]
-url = "https://<sessionId>.34.16.49.200.sslip.io/mcp"
-startup_timeout_sec = 20
-tool_timeout_sec = 60
+```bash
+claude --strict-mcp-config --mcp-config .claude/.mcp.json \
+  --permission-mode bypassPermissions \
+  -p 'Use the browser-local-poc MCP server to call get_text_stats.'
 ```
+
+## Trusted TLS
+
+The browser creates the TLS private key locally and sends only a CSR to the
+relay issuer. The relay completes ACME issuance and returns the certificate
+chain. The private key stays in browser storage.
+
+Current PoC suffix:
+
+```text
+34.16.49.200.sslip.io
+```
+
+Production-style suffix:
+
+```text
+*.mcp.example.com -> 34.16.49.200
+```
+
+For production domains, use DNS-01 with a narrowly scoped DNS token. For this
+`sslip.io` PoC, HTTP-01 works because the hostname resolves directly to the VM.
 
 ## Limitations
 
-- The server is available only while the browser tab is open and connected.
-- Mobile browsers may pause tabs, Workers, WebSockets, and IndexedDB access in
-  the background.
-- IndexedDB can be evicted by the browser under storage pressure.
-- ACME HTTP-01 works for this `sslip.io` PoC because the hostname resolves to
-  the relay VM. DNS-01 needs a DNS-controlled suffix and a DNS API token.
-- The issuer can create certificates for connected browser sessions, so keep
-  DNS API permissions narrow and demo-only until auth/rate limits are hardened.
-- A malicious static host could serve modified JavaScript. Production needs a
-  stronger app integrity story.
-- There is no auth in this demo. Anyone with the session URL can query the tab.
+- The server exists only while the browser tab is open and connected.
+- Mobile browsers can pause tabs, Workers, WebSockets, timers, and IndexedDB
+  while backgrounded.
+- IndexedDB data can be evicted under storage pressure.
+- The demo has no auth. Anyone with the session URL can query the tab.
+- A malicious static host could serve modified JavaScript. A real system needs
+  an app integrity story.
+- The relay is blind to HTTP/MCP payloads, but it still sees SNI/session ids,
+  connection metadata, timing, and byte counts.
+- ACME rate limits make per-session certificates a PoC strategy, not a final
+  production scaling model.
 
-## Files
+## File Map
 
 - `src/main.ts`: UI, session creation, IndexedDB save/load, relay startup.
-- `src/reverse-relay-client.ts`: browser TLS server, HTTP parser, relay client.
-- `src/runtime-worker.ts`: Worker boundary for MCP handling.
+- `src/reverse-relay-client.ts`: browser TLS/HTTP server and relay client.
+- `src/runtime-worker.ts`: browser Worker boundary.
 - `src/runtime-handler.ts`: MCP methods and tools.
 - `src/storage.ts`: IndexedDB helpers.
+- `browser-tls-rustls/`: Rustls WebAssembly wrapper.
 - `reverse-blind-relay/`: VM relay and deployment scripts.
