@@ -188,7 +188,7 @@ curl -sS "https://<sessionId>.34.16.49.200.sslip.io/mcp" \
 Claude Code:
 
 ```bash
-claude --mcp-config <(echo '{"mcpServers":{"browser-local-demo":{"type":"http","url":"https://<sessionId>.34.16.49.200.sslip.io/mcp"}}}')
+claude --mcp-config <(echo '{"mcpServers":{"browser-local-demo":{"type":"http","url":"https://<sessionId>.34.16.49.200.sslip.io/mcp"}}}') --permission-mode bypassPermissions "tell me my music preference using the browser-local-demo mcp"
 ```
 
 ## Trusted TLS

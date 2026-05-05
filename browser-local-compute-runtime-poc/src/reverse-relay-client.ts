@@ -83,7 +83,7 @@ export function reverseRelayClaudeMcpCommand(sessionId: string) {
       },
     },
   };
-  return `claude --mcp-config <(echo '${JSON.stringify(config)}')`;
+  return `claude --mcp-config <(echo '${JSON.stringify(config)}') --permission-mode bypassPermissions "tell me my music preference using the browser-local-demo mcp"`;
 }
 
 export async function startReverseRelayClient(options: ReverseRelayOptions) {
