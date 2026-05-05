@@ -125,15 +125,14 @@ Running full-featured coding agents like Gemini CLI and Claude Code directly wit
 
 ### [browser-local-compute-runtime-poc](https://github.com/Kahtaf/research/tree/main/browser-local-compute-runtime-poc) (2026-04-30)
 
-This proof-of-concept demonstrates an ephemeral API server architecture where request handling and computation occur entirely within a mobile browser tab. By establishing an outbound WebSocket tunnel to a routing layer on Cloudflare, the system bypasses traditional browser networking limitations to serve public HTTP requests locally. The implementation leverages standard npm packages like Zod and Lodash for data processing while persisting application state across sessions via IndexedDB. Developers can choose between a specialized BrowserPod environment for running Node.js servers or a lightweight Web Worker fallback for broad compatibility.
+Architects a method for running Model Context Protocol (MCP) servers directly within a browser tab by leveraging end-to-end encrypted tunnels. By utilizing a blind TCP relay on a GCP VM and terminating TLS inside a browser worker, the system exposes IndexedDB-backed text tools as standard API endpoints without revealing data to the relay. This proof of concept demonstrates how local browser environments can serve as private, high-performance compute runtimes for LLM tool-calling.
 
-*   Successfully routes public HTTP requests to local browser compute using a Cloudflare Durable Object relay.
-*   Maintains state persistence across page refreshes by utilizing browser-native IndexedDB storage.
-*   Supports dual execution paths: a full Node/Express environment and a portable Web Worker-based runtime.
+*   End-to-end encryption ensures the intermediary relay only sees opaque byte streams and SNI headers, keeping MCP methods and tool arguments private.
+*   The implementation uses Web Workers and node-forge to manage a self-signed TLS server and HTTP parser entirely in the frontend.
+*   Standardized tools allow remote clients to perform text searches, retrieve character statistics, and read specific document offsets from local storage.
 
-**Key Tools:**
-*   [BrowserPod](https://browserpod.io)
-*   [Cloudflare Workers](https://workers.cloudflare.com)
+[Deployed PoC App](https://browser-local-compute-runtime-poc.vana.workers.dev)
+[GitHub Source Code](https://github.com/Kahtaf/research/tree/main/browser-local-compute-runtime-poc)
 
 ### [web-proxies](https://github.com/Kahtaf/research/tree/main/web-proxies) (2026-03-25)
 
