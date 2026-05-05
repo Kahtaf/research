@@ -134,3 +134,4 @@
   - Wrangler tail showed live script version `140d4420-b70f-4d9f-b497-ed26431c7e56`.
   - Tail events showed `GET /ws/blind-smoke-1777908736964` and `POST /portal/blind-smoke-1777908736964/mcp` with `content-length: 500`, `content-type: application/json`, and response `200`.
   - Tail did not include the plaintext marker, `tools/call`, or `get_text_stats`; the smoke harness confirmed those strings were absent from the Worker-forwarded body and visible only after mock browser-side decryption.
+- Ran `npx fallow --summary` and `npx fallow dead-code`; removed the old Cloudflare Durable Object tunnel, encrypted-envelope helpers, local relay scripts, and root `ws` dependency so the PoC folder now keeps only the static app, browser runtime, and reverse blind relay path.

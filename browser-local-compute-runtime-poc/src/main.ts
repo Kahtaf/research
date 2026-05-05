@@ -1,18 +1,17 @@
-import { nanoid } from "nanoid";
+import { customAlphabet } from "nanoid";
 
 import "./styles.css";
-import {
-  encodeJsonToken,
-  encryptForRecipient,
-  exportPublicJwk,
-  generateBrowserKeyPair,
-  publicKeyFingerprint,
-} from "./crypto-envelope";
 import { readRequestCount, readText, writeText } from "./storage";
-import { publicMcpUrl, startTunnelClient } from "./tunnel-client";
+import {
+  reverseRelayApiUrl,
+  reverseRelayCurlCommand,
+  reverseRelayMcpUrl,
+  startReverseRelayClient,
+} from "./reverse-relay-client";
 
 const SESSION_KEY = "browser-local-mcp-session";
 const SAVE_DELAY_MS = 350;
+const makeSessionId = customAlphabet("abcdefghijklmnopqrstuvwxyz0123456789", 24);
 
 const SAMPLE_TEXT = `Spotify export sample
 
@@ -36,13 +35,6 @@ type Session = {
   sessionId: string;
 };
 
-type EncryptionIdentity = {
-  keyPair: CryptoKeyPair;
-  publicJwk: JsonWebKey;
-  publicKeyToken: string;
-  fingerprint: string;
-};
-
 function element<T extends HTMLElement>(id: string) {
   const node = document.getElementById(id);
   if (!node) {
@@ -60,50 +52,28 @@ const resetSampleButton = element<HTMLButtonElement>("reset-sample");
 const copyUrlButton = element<HTMLButtonElement>("copy-url");
 const copyConfigButton = element<HTMLButtonElement>("copy-config");
 const copyCurlButton = element<HTMLButtonElement>("copy-curl");
-const copyPublicKeyButton = element<HTMLButtonElement>("copy-public-key");
-const copyProxyButton = element<HTMLButtonElement>("copy-proxy");
+const apiUrlAnchor = element<HTMLAnchorElement>("api-url");
 const mcpUrlAnchor = element<HTMLAnchorElement>("mcp-url");
 const codexConfig = element<HTMLPreElement>("codex-config");
 const curlCommand = element<HTMLPreElement>("curl-command");
-const proxyCommand = element<HTMLPreElement>("proxy-command");
-const browserPublicKey = element<HTMLPreElement>("browser-public-key");
-const publicKeyFingerprintElement = element<HTMLElement>("public-key-fingerprint");
 const activityLog = element<HTMLPreElement>("activity-log");
 
 let tunnel: { close: () => void } | undefined;
 let saveTimer: number | undefined;
 let activeMcpUrl = "";
-
-function getDefaultRelayUrl() {
-  const envRelay = import.meta.env.VITE_RELAY_HTTP_URL as string | undefined;
-  if (envRelay) {
-    return envRelay;
-  }
-
-  const url = new URL(window.location.href);
-  const isLocalDevHost =
-    url.hostname === "localhost" ||
-    url.hostname === "127.0.0.1" ||
-    url.hostname === "[::1]";
-
-  if (isLocalDevHost) {
-    url.port = "8787";
-  }
-
-  url.pathname = "/";
-  url.search = "";
-  url.hash = "";
-  return url.toString();
-}
+let activeApiUrl = "";
 
 function getSession(): Session {
   const existing = localStorage.getItem(SESSION_KEY);
   if (existing) {
-    return JSON.parse(existing) as Session;
+    const parsed = JSON.parse(existing) as Session;
+    if (/^[a-z0-9]{12,63}$/.test(parsed.sessionId)) {
+      return parsed;
+    }
   }
 
   const session = {
-    sessionId: nanoid(24),
+    sessionId: makeSessionId(),
   };
   localStorage.setItem(SESSION_KEY, JSON.stringify(session));
   return session;
@@ -120,59 +90,12 @@ function log(line: string) {
   activityLog.scrollTop = activityLog.scrollHeight;
 }
 
-async function createEncryptionIdentity(): Promise<EncryptionIdentity> {
-  const keyPair = await generateBrowserKeyPair();
-  const publicJwk = await exportPublicJwk(keyPair.publicKey);
-  return {
-    keyPair,
-    publicJwk,
-    publicKeyToken: encodeJsonToken(publicJwk),
-    fingerprint: await publicKeyFingerprint(publicJwk),
-  };
-}
-
-async function setMcpDetails(url: string, identity: EncryptionIdentity) {
-  activeMcpUrl = url;
-  mcpUrlAnchor.href = url;
-  mcpUrlAnchor.textContent = url;
-  publicKeyFingerprintElement.textContent = identity.fingerprint;
-  browserPublicKey.textContent = identity.publicKeyToken;
-  codexConfig.textContent = `[mcp_servers.browser_text]
-url = "http://localhost:3333/mcp"
-startup_timeout_sec = 20
-tool_timeout_sec = 60
-
-# Run the local encryption proxy below before connecting Codex.
-# Browser public key fingerprint: ${identity.fingerprint}
-# Cloudflare upstream: ${url}`;
-  proxyCommand.textContent = `npm run encrypted:proxy -- \\
-  --url '${url}' \\
-  --browser-public-key '${identity.publicKeyToken}' \\
-  --port 3333`;
-  const verifyEnvelope = await encryptForRecipient(
-    JSON.stringify({
-      jsonrpc: "2.0",
-      id: "verify-1",
-      method: "tools/call",
-      params: {
-        name: "get_text_stats",
-        arguments: {},
-      },
-    }),
-    identity.publicJwk,
-  );
-  curlCommand.textContent = `curl -sS '${url}' \\
-  -H 'content-type: application/json' \\
-  -H 'mcp-protocol-version: 2025-06-18' \\
-  --data '${JSON.stringify(verifyEnvelope)}'`;
-}
-
 async function copyText(text: string, label: string) {
   await navigator.clipboard.writeText(text);
   log(`${label} copied`);
 }
 
-function startWorkerRuntime(session: Session, identity: EncryptionIdentity) {
+function startPlainWorkerRuntime(session: Session) {
   const worker = new Worker(new URL("./runtime-worker.ts", import.meta.url), {
     type: "module",
   });
@@ -180,7 +103,6 @@ function startWorkerRuntime(session: Session, identity: EncryptionIdentity) {
   worker.postMessage({
     type: "init",
     sessionId: session.sessionId,
-    encryptionPrivateKey: identity.keyPair.privateKey,
   });
 
   return worker;
@@ -219,21 +141,37 @@ async function refreshRequestCount() {
   requestCount.textContent = String(await readRequestCount());
 }
 
-async function startTunnelMode() {
+async function setReverseRelayDetails(session: Session) {
+  const mcpUrl = reverseRelayMcpUrl(session.sessionId);
+  const apiUrl = reverseRelayApiUrl(session.sessionId);
+  activeMcpUrl = mcpUrl;
+  activeApiUrl = apiUrl;
+  apiUrlAnchor.href = apiUrl;
+  apiUrlAnchor.textContent = apiUrl;
+  mcpUrlAnchor.href = mcpUrl;
+  mcpUrlAnchor.textContent = mcpUrl;
+  codexConfig.textContent = `[mcp_servers.browser_text]
+url = "${mcpUrl}"
+startup_timeout_sec = 20
+tool_timeout_sec = 60
+
+# PoC: browser-generated self-signed TLS certificate.
+# Use a client that can trust/skip verification for this session.`;
+  curlCommand.textContent = reverseRelayCurlCommand(session.sessionId);
+  log(`API URL ${apiUrl}`);
+  log(`MCP URL ${mcpUrl}`);
+}
+
+async function startReverseRelayMode() {
   tunnel?.close();
   const session = getSession();
-  const relayHttpUrl = getDefaultRelayUrl();
-  const identity = await createEncryptionIdentity();
-  const worker = startWorkerRuntime(session, identity);
-  const url = publicMcpUrl(relayHttpUrl, session.sessionId);
+  const worker = startPlainWorkerRuntime(session);
 
-  await setMcpDetails(url, identity);
-  setStatus("Connecting");
+  await setReverseRelayDetails(session);
+  setStatus("Generating TLS key");
   log(`session ${session.sessionId}`);
-  log(`browser public key ${identity.fingerprint}`);
 
-  tunnel = startTunnelClient({
-    relayHttpUrl,
+  tunnel = await startReverseRelayClient({
     sessionId: session.sessionId,
     worker,
     onLog: log,
@@ -257,23 +195,13 @@ resetSampleButton.addEventListener("click", () => {
   void saveSourceText(SAMPLE_TEXT);
 });
 copyUrlButton.addEventListener("click", () => {
-  if (activeMcpUrl) {
-    void copyText(activeMcpUrl, "MCP URL");
+  if (activeApiUrl && activeMcpUrl) {
+    void copyText(`${activeApiUrl}\n${activeMcpUrl}`, "URLs");
   }
 });
 copyConfigButton.addEventListener("click", () => {
   if (codexConfig.textContent) {
     void copyText(codexConfig.textContent, "Codex config");
-  }
-});
-copyPublicKeyButton.addEventListener("click", () => {
-  if (browserPublicKey.textContent) {
-    void copyText(browserPublicKey.textContent, "browser public key");
-  }
-});
-copyProxyButton.addEventListener("click", () => {
-  if (proxyCommand.textContent) {
-    void copyText(proxyCommand.textContent, "proxy command");
   }
 });
 copyCurlButton.addEventListener("click", () => {
@@ -290,7 +218,7 @@ window.addEventListener("error", (event) => {
 void (async () => {
   await loadText();
   await refreshRequestCount();
-  await startTunnelMode();
+  await startReverseRelayMode();
 })().catch((error) => {
   setStatus("Tunnel failed", "error");
   log(error instanceof Error ? error.message : String(error));

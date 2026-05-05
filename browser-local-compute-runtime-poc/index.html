@@ -11,73 +11,103 @@
   </head>
   <body>
     <main id="app">
-      <section class="topbar" aria-labelledby="title">
+      <header class="topbar" aria-labelledby="title">
         <div>
-          <p class="eyebrow">Browser-local MCP server</p>
-          <h1 id="title">Text shared from this tab</h1>
+          <p class="eyebrow">Browser-local server PoC</p>
+          <h1 id="title">API and MCP from this tab</h1>
+          <p class="subhead">
+            Paste text, keep this browser open, query it through the blind relay.
+          </p>
         </div>
-        <div class="status-strip" aria-live="polite">
-          <div>
+        <div class="top-actions">
+          <a
+            class="github-link"
+            href="https://github.com/Kahtaf/research/tree/main/browser-local-compute-runtime-poc"
+            target="_blank"
+            rel="noreferrer"
+            >GitHub</a
+          >
+          <div class="status-pill" aria-live="polite">
             <span class="status-dot" id="status-dot"></span>
             <span id="status-text">Preparing runtime</span>
           </div>
-          <dl class="stats">
-            <div>
-              <dt>Requests</dt>
-              <dd id="request-count">0</dd>
+        </div>
+      </header>
+
+      <div class="meta-row" aria-label="Runtime state">
+        <span>Requests <strong id="request-count">0</strong></span>
+        <span>Saved <strong id="save-state">Loading</strong></span>
+        <span>Anyone with the session URL can query this tab.</span>
+      </div>
+
+      <div class="layout">
+        <section class="editor-shell" aria-label="Text data">
+          <div class="section-heading">
+            <h2>Local text</h2>
+            <button id="reset-sample" type="button">Reset sample</button>
+          </div>
+          <textarea id="source-text" spellcheck="true"></textarea>
+        </section>
+
+        <aside class="side-stack" aria-label="Connection details">
+          <section class="panel">
+            <div class="section-heading">
+              <h2>Public endpoints</h2>
+              <button id="copy-url" type="button">Copy</button>
             </div>
-            <div>
-              <dt>Saved</dt>
-              <dd id="save-state">Loading</dd>
+            <div class="endpoint-list">
+              <div>
+                <span>API</span>
+                <a id="api-url" href="#" target="_blank" rel="noreferrer"
+                  >Waiting for relay</a
+                >
+              </div>
+              <div>
+                <span>MCP</span>
+                <a id="mcp-url" href="#" target="_blank" rel="noreferrer"
+                  >Waiting for relay</a
+                >
+              </div>
             </div>
-          </dl>
-        </div>
-      </section>
+          </section>
 
-      <section class="notice" role="note">
-        Anyone with this URL can query the text while this tab is open. Do not
-        paste sensitive data into this temporary demo.
-      </section>
+          <section class="panel">
+            <div class="section-heading">
+              <h2>Verify</h2>
+              <button id="copy-curl" type="button">Copy curl</button>
+            </div>
+            <pre id="curl-command"></pre>
+          </section>
 
-      <section class="editor-shell" aria-label="Text data">
-        <div class="section-heading">
-          <h2>Local text</h2>
-          <button id="reset-sample" type="button">Reset sample</button>
-        </div>
-        <textarea id="source-text" spellcheck="true"></textarea>
-      </section>
+          <section class="panel">
+            <div class="section-heading">
+              <h2>Codex</h2>
+              <button id="copy-config" type="button">Copy config</button>
+            </div>
+            <pre id="codex-config"></pre>
+          </section>
+        </aside>
+      </div>
 
-      <section class="mcp-shell" aria-label="MCP connection details">
-        <div class="section-heading">
-          <h2>MCP endpoint</h2>
-          <button id="copy-url" type="button">Copy URL</button>
+      <section class="how-it-works" aria-labelledby="how-title">
+        <div>
+          <h2 id="how-title">How it works</h2>
+          <p>
+            Cloudflare hosts only the static app. The GCP relay routes opaque
+            TCP streams by SNI. TLS, HTTP, API logic, MCP tools, and IndexedDB
+            access all run in the active browser tab.
+          </p>
         </div>
-        <a id="mcp-url" href="#" target="_blank" rel="noreferrer"
-          >Waiting for tunnel</a
-        >
-        <div class="section-heading compact">
-          <h2>Browser public key</h2>
-          <button id="copy-public-key" type="button">Copy key</button>
-        </div>
-        <p class="key-fingerprint">
-          Fingerprint <code id="public-key-fingerprint">Generating</code>
-        </p>
-        <pre id="browser-public-key"></pre>
-        <div class="section-heading compact">
-          <h2>Codex config</h2>
-          <button id="copy-config" type="button">Copy config</button>
-        </div>
-        <pre id="codex-config"></pre>
-        <div class="section-heading compact">
-          <h2>Local encryption proxy</h2>
-          <button id="copy-proxy" type="button">Copy proxy</button>
-        </div>
-        <pre id="proxy-command"></pre>
-        <div class="section-heading compact">
-          <h2>Verify with curl</h2>
-          <button id="copy-curl" type="button">Copy curl</button>
-        </div>
-        <pre id="curl-command"></pre>
+        <pre class="diagram" aria-label="Architecture diagram">Hosted app
+  │ boots
+  ▼
+Browser tab ── WSS control ──► Blind relay VM
+  ▲                              │
+  │ TLS, HTTP, MCP, IndexedDB     │ SNI only
+  └──────── opaque TCP/TLS ◄──────┘
+                 ▲
+                 │ HTTPS
+           API or MCP client</pre>
       </section>
 
       <section class="activity-shell" aria-label="Activity">

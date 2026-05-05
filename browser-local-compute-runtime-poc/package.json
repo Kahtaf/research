@@ -7,23 +7,21 @@
     "dev": "vite --host 0.0.0.0",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "relay": "node relay/server.mjs",
-    "smoke:relay": "node scripts/relay-smoke.mjs",
-    "smoke:mcp": "node scripts/mcp-smoke.mjs",
-    "smoke:wrangler-blind": "node scripts/wrangler-blind-smoke.mjs",
-    "encrypted:mcp": "node scripts/encrypted-mcp-request.mjs",
-    "encrypted:proxy": "node scripts/encrypted-mcp-proxy.mjs",
+    "reverse-relay:build": "npm --prefix reverse-blind-relay run build",
+    "reverse-relay:dev": "npm --prefix reverse-blind-relay run dev",
+    "reverse-relay:smoke": "npm --prefix reverse-blind-relay run build && npm --prefix reverse-blind-relay run smoke",
+    "reverse-relay:deploy:gcp-vm": "bash reverse-blind-relay/scripts/deploy-gcp-vm.sh",
     "deploy": "npm run build && wrangler deploy",
     "deploy:cf": "npm run deploy"
   },
   "dependencies": {
     "nanoid": "^5.1.6",
-    "ws": "^8.18.3",
+    "node-forge": "^1.4.0",
     "zod": "^4.1.13"
   },
   "devDependencies": {
     "@types/node": "^25.0.0",
-    "@types/ws": "^8.18.1",
+    "@types/node-forge": "^1.3.14",
     "typescript": "^5.9.3",
     "vite": "^7.2.4",
     "wrangler": "^4.49.0"

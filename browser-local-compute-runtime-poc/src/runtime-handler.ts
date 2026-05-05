@@ -1,10 +1,5 @@
 import { z } from "zod";
 
-import {
-  decryptFromClient,
-  encryptToClient,
-  type EncryptedEnvelope,
-} from "./crypto-envelope";
 import { incrementRequestCount, readText } from "./storage";
 import type { RelayRequest } from "./types";
 
@@ -14,23 +9,7 @@ const MAX_SEARCH_RESULTS = 20;
 
 type RuntimeConfig = {
   sessionId: string;
-  encryptionPrivateKey: CryptoKey;
 };
-
-const encryptedEnvelopeSchema = z.object({
-  version: z.literal(1),
-  encoding: z.literal("json"),
-  clientPublicKey: z.object({
-    crv: z.literal("P-256"),
-    ext: z.boolean().optional(),
-    key_ops: z.array(z.string()).optional(),
-    kty: z.literal("EC"),
-    x: z.string().min(1),
-    y: z.string().min(1),
-  }),
-  iv: z.string().min(1),
-  ciphertext: z.string().min(1),
-});
 
 const getTextArgsSchema = z.object({
   offset: z.number().int().min(0).default(0),
@@ -324,7 +303,7 @@ export async function handleRuntimeRequest(
   if (request.method === "GET") {
     return json(200, {
       name: "browser-local-text-mcp",
-      encryption: "required",
+      encryption: "tls-in-browser",
       runtime: "browser-local worker",
     });
   }
@@ -337,19 +316,13 @@ export async function handleRuntimeRequest(
     );
   }
 
-  let envelope: EncryptedEnvelope;
   let message: Record<string, unknown>;
   try {
-    const parsed = encryptedEnvelopeSchema.parse(JSON.parse(decodeBody(request.body)));
-    envelope = parsed as EncryptedEnvelope;
-    message = JSON.parse(
-      await decryptFromClient(envelope, config.encryptionPrivateKey),
-    ) as Record<string, unknown>;
-  } catch (error) {
-    console.warn(error);
+    message = JSON.parse(decodeBody(request.body)) as Record<string, unknown>;
+  } catch {
     return json(400, {
-      error: "encrypted_envelope_required",
-      detail: "POST /mcp accepts only encrypted request envelopes.",
+      error: "invalid_json",
+      detail: "POST /mcp expects JSON-RPC after browser-local TLS decrypts the request.",
     });
   }
 
@@ -364,15 +337,5 @@ export async function handleRuntimeRequest(
   }
 
   const responsePayload = await handleMcpMessage(message, config);
-  const encryptedResponse = await encryptToClient(
-    JSON.stringify(responsePayload),
-    envelope.clientPublicKey,
-    config.encryptionPrivateKey,
-  );
-
-  return json(
-    200,
-    encryptedResponse,
-    { "x-browser-local-encrypted": "1" },
-  );
+  return json(200, responsePayload);
 }

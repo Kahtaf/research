@@ -19,7 +19,6 @@ export type RelayResponse = {
 export type RuntimeInitMessage = {
   type: "init";
   sessionId: string;
-  encryptionPrivateKey: CryptoKey;
 };
 
 export type RuntimeRequestMessage = {
