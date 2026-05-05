@@ -50,9 +50,14 @@ export function reverseRelayApiUrl(sessionId: string) {
   return `https://${sessionId}.${reverseRelayPublicSuffix()}/api/process?input=hello`;
 }
 
-export function reverseRelayCurlCommand(sessionId: string) {
+export function reverseRelayApiCurlCommand(sessionId: string) {
   const host = `${sessionId}.${reverseRelayPublicSuffix()}`;
-  return `curl -k -sS https://${host}/api/process?input=hello\n\ncurl -k -sS https://${host}/mcp \\\n  -H 'content-type: application/json' \\\n  -H 'mcp-protocol-version: 2025-06-18' \\\n  --data '{\"jsonrpc\":\"2.0\",\"id\":\"stats-1\",\"method\":\"tools/call\",\"params\":{\"name\":\"get_text_stats\",\"arguments\":{}}}'`;
+  return `curl -k -sS https://${host}/api/process?input=hello`;
+}
+
+export function reverseRelayMcpCurlCommand(sessionId: string) {
+  const host = `${sessionId}.${reverseRelayPublicSuffix()}`;
+  return `curl -k -sS https://${host}/mcp \\\n  -H 'content-type: application/json' \\\n  -H 'mcp-protocol-version: 2025-06-18' \\\n  --data '{\"jsonrpc\":\"2.0\",\"id\":\"stats-1\",\"method\":\"tools/call\",\"params\":{\"name\":\"get_text_stats\",\"arguments\":{}}}'`;
 }
 
 export async function startReverseRelayClient(options: ReverseRelayOptions) {

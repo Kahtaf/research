@@ -40,6 +40,16 @@ button {
   cursor: pointer;
 }
 
+button svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 button:hover {
   border-color: var(--accent);
   color: var(--accent-hover);
@@ -67,6 +77,15 @@ textarea:focus-visible {
   border-bottom: 1px solid var(--line);
 }
 
+.topbar > div:first-child,
+.layout > *,
+.editor-shell,
+.panel,
+.how-it-works,
+.activity-shell {
+  min-width: 0;
+}
+
 .eyebrow,
 h1,
 h2,
@@ -84,7 +103,7 @@ p {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.1rem;
   line-height: 1.1;
   font-weight: 720;
   letter-spacing: 0;
@@ -194,6 +213,7 @@ h2 {
 textarea {
   display: block;
   width: 100%;
+  min-width: 0;
   min-height: 540px;
   resize: vertical;
   border: 0;
@@ -212,8 +232,8 @@ textarea {
 
 .endpoint-list > div {
   display: grid;
-  grid-template-columns: 44px minmax(0, 1fr);
-  align-items: baseline;
+  grid-template-columns: 44px minmax(0, 1fr) 32px;
+  align-items: center;
   gap: 10px;
 }
 
@@ -229,6 +249,15 @@ a {
   overflow-wrap: anywhere;
 }
 
+.icon-button {
+  width: 32px;
+  min-height: 32px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  color: var(--muted);
+}
+
 pre {
   margin: 0;
   white-space: pre-wrap;
@@ -236,12 +265,44 @@ pre {
   line-height: 1.45;
 }
 
-#codex-config,
-#curl-command,
 #activity-log,
 .diagram {
   margin: 12px;
   padding: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface-muted);
+  color: oklch(0.28 0.014 135);
+  overflow: auto;
+}
+
+.command-block {
+  padding: 12px;
+}
+
+.command-block + .command-block {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+
+.command-heading {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.command-heading span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#api-curl-command,
+#mcp-curl-command {
+  padding: 10px;
   border: 1px solid var(--line);
   background: var(--surface-muted);
   color: oklch(0.28 0.014 135);
@@ -270,6 +331,9 @@ pre {
 
 .diagram {
   margin: 0;
+  font-size: 0.86rem;
+  white-space: pre;
+  overflow-wrap: normal;
 }
 
 .activity-shell {
@@ -308,6 +372,11 @@ pre {
 
   .status-pill {
     flex: 1;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    line-height: 1.12;
   }
 
   textarea {

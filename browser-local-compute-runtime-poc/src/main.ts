@@ -3,8 +3,9 @@ import { customAlphabet } from "nanoid";
 import "./styles.css";
 import { readRequestCount, readText, writeText } from "./storage";
 import {
+  reverseRelayApiCurlCommand,
   reverseRelayApiUrl,
-  reverseRelayCurlCommand,
+  reverseRelayMcpCurlCommand,
   reverseRelayMcpUrl,
   startReverseRelayClient,
 } from "./reverse-relay-client";
@@ -49,19 +50,22 @@ const requestCount = element<HTMLElement>("request-count");
 const saveState = element<HTMLElement>("save-state");
 const sourceText = element<HTMLTextAreaElement>("source-text");
 const resetSampleButton = element<HTMLButtonElement>("reset-sample");
-const copyUrlButton = element<HTMLButtonElement>("copy-url");
-const copyConfigButton = element<HTMLButtonElement>("copy-config");
-const copyCurlButton = element<HTMLButtonElement>("copy-curl");
+const copyApiUrlButton = element<HTMLButtonElement>("copy-api-url");
+const copyMcpUrlButton = element<HTMLButtonElement>("copy-mcp-url");
+const copyApiCurlButton = element<HTMLButtonElement>("copy-api-curl");
+const copyMcpCurlButton = element<HTMLButtonElement>("copy-mcp-curl");
 const apiUrlAnchor = element<HTMLAnchorElement>("api-url");
 const mcpUrlAnchor = element<HTMLAnchorElement>("mcp-url");
-const codexConfig = element<HTMLPreElement>("codex-config");
-const curlCommand = element<HTMLPreElement>("curl-command");
+const apiCurlCommand = element<HTMLPreElement>("api-curl-command");
+const mcpCurlCommand = element<HTMLPreElement>("mcp-curl-command");
 const activityLog = element<HTMLPreElement>("activity-log");
 
 let tunnel: { close: () => void } | undefined;
 let saveTimer: number | undefined;
 let activeMcpUrl = "";
 let activeApiUrl = "";
+let activeApiCurl = "";
+let activeMcpCurl = "";
 
 function getSession(): Session {
   const existing = localStorage.getItem(SESSION_KEY);
@@ -150,14 +154,10 @@ async function setReverseRelayDetails(session: Session) {
   apiUrlAnchor.textContent = apiUrl;
   mcpUrlAnchor.href = mcpUrl;
   mcpUrlAnchor.textContent = mcpUrl;
-  codexConfig.textContent = `[mcp_servers.browser_text]
-url = "${mcpUrl}"
-startup_timeout_sec = 20
-tool_timeout_sec = 60
-
-# PoC: browser-generated self-signed TLS certificate.
-# Use a client that can trust/skip verification for this session.`;
-  curlCommand.textContent = reverseRelayCurlCommand(session.sessionId);
+  activeApiCurl = reverseRelayApiCurlCommand(session.sessionId);
+  activeMcpCurl = reverseRelayMcpCurlCommand(session.sessionId);
+  apiCurlCommand.textContent = activeApiCurl;
+  mcpCurlCommand.textContent = activeMcpCurl;
   log(`API URL ${apiUrl}`);
   log(`MCP URL ${mcpUrl}`);
 }
@@ -194,19 +194,24 @@ resetSampleButton.addEventListener("click", () => {
   sourceText.value = SAMPLE_TEXT;
   void saveSourceText(SAMPLE_TEXT);
 });
-copyUrlButton.addEventListener("click", () => {
-  if (activeApiUrl && activeMcpUrl) {
-    void copyText(`${activeApiUrl}\n${activeMcpUrl}`, "URLs");
+copyApiUrlButton.addEventListener("click", () => {
+  if (activeApiUrl) {
+    void copyText(activeApiUrl, "API URL");
   }
 });
-copyConfigButton.addEventListener("click", () => {
-  if (codexConfig.textContent) {
-    void copyText(codexConfig.textContent, "Codex config");
+copyMcpUrlButton.addEventListener("click", () => {
+  if (activeMcpUrl) {
+    void copyText(activeMcpUrl, "MCP URL");
   }
 });
-copyCurlButton.addEventListener("click", () => {
-  if (curlCommand.textContent) {
-    void copyText(curlCommand.textContent, "curl command");
+copyApiCurlButton.addEventListener("click", () => {
+  if (activeApiCurl) {
+    void copyText(activeApiCurl, "API curl");
+  }
+});
+copyMcpCurlButton.addEventListener("click", () => {
+  if (activeMcpCurl) {
+    void copyText(activeMcpCurl, "MCP curl");
   }
 });
 
