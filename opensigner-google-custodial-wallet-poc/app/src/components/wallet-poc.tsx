@@ -33,10 +33,12 @@ type MeResponse =
     };
 
 type OpenSignerRemote = {
+  configure(request: Record<string, unknown>): Promise<Record<string, unknown>>;
   create(request: Record<string, unknown>): Promise<Record<string, unknown>>;
   recover(request: Record<string, unknown>): Promise<Record<string, unknown>>;
   sign(request: Record<string, unknown>): Promise<Record<string, unknown>>;
   export(request: Record<string, unknown>): Promise<unknown>;
+  logout(request: Record<string, unknown>): Promise<Record<string, unknown>>;
 };
 
 type Status = "idle" | "loading" | "ready" | "error";
@@ -121,6 +123,16 @@ function describeExportResult(result: unknown): Record<string, unknown> {
       ? (result as { data: unknown[] }).data.length
       : undefined,
   };
+}
+
+function exportNeedsRecovery(result: unknown): boolean {
+  if (!result || typeof result !== "object") return false;
+  const fields = result as Record<string, unknown>;
+  return (
+    fields.success === false &&
+    asString(fields.action) === "export" &&
+    asString(fields.error) === "not-configured-error"
+  );
 }
 
 function safeDebugValue(value: unknown, depth = 0): unknown {
@@ -311,7 +323,7 @@ export function WalletPoc() {
         recovery: {
           auth: "custom",
           token: me.openSignerToken,
-          authProvider: "authservice",
+          authProvider: "custom",
           tokenType: "jwt",
           encryptionSession,
         },
@@ -356,10 +368,16 @@ export function WalletPoc() {
   }, [authenticated, baseIframeRequest, config, connectIframe]);
 
   const recoverWallet = useCallback(
-    async (iframe: RemoteProxy<OpenSignerRemote>) => {
+    async (iframe: RemoteProxy<OpenSignerRemote>, forceFlush = false) => {
       if (!wallet?.opensignerAccountUuid) return;
+      if (forceFlush) {
+        await iframe.logout({ uuid: crypto.randomUUID() }).catch(() => undefined);
+      }
       const base = await baseIframeRequest();
-      const recoverResult = await iframe.recover({
+      const recoverResult = forceFlush ? await iframe.configure({
+        ...base,
+        chainId: config?.chainId,
+      }) : await iframe.recover({
         ...base,
         account: wallet.opensignerAccountUuid,
         passkey: null,
@@ -368,9 +386,9 @@ export function WalletPoc() {
       if (recoverResult.success === false) {
         throw new Error(asString(recoverResult.error) || "OpenSigner recovery failed.");
       }
-      await delay(750);
+      await delay(forceFlush ? 2000 : 750);
     },
-    [baseIframeRequest, wallet],
+    [baseIframeRequest, config, wallet],
   );
 
   const signMessage = useCallback(async () => {
@@ -380,7 +398,7 @@ export function WalletPoc() {
     setSignature("");
 
     const iframe = await connectIframe(false);
-    await recoverWallet(iframe);
+    await recoverWallet(iframe, true);
 
     const result = await iframe.sign({
       uuid: crypto.randomUUID(),
@@ -430,7 +448,8 @@ export function WalletPoc() {
     setMessage("Exporting private key in the OpenSigner iframe...");
     setPrivateKeyExport("");
 
-    const iframe = await connectIframe(true);
+    const iframe = await connectIframe(false);
+    await recoverWallet(iframe, true);
     const exportRequest = () => iframe.export({
       uuid: crypto.randomUUID(),
       requestConfiguration: {
@@ -445,6 +464,10 @@ export function WalletPoc() {
     try {
       result = await exportRequest();
     } catch {
+      await recoverWallet(iframe);
+      result = await exportRequest();
+    }
+    if (exportNeedsRecovery(result)) {
       await recoverWallet(iframe);
       result = await exportRequest();
     }
@@ -510,8 +533,16 @@ export function WalletPoc() {
           </h1>
         </header>
 
-        <div className="border-2 border-black bg-[#fffdf6] p-5 shadow-[6px_6px_0_#181818]">
+        <div className="flex flex-col gap-4 border-2 border-black bg-[#fffdf6] p-5 shadow-[6px_6px_0_#181818] sm:flex-row sm:items-center sm:justify-between">
           <strong>This POC uses a custodial wallet managed by the application.</strong>
+          <a
+            href="https://github.com/kahtaf/research/tree/main/opensigner-google-custodial-wallet-poc"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex h-10 shrink-0 items-center justify-center border-2 border-black bg-black px-4 text-sm font-semibold text-white hover:bg-stone-800"
+          >
+            GitHub
+          </a>
         </div>
 
         {!authenticated ? (

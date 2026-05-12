@@ -13,6 +13,8 @@ const forwardedHeaders = [
   "x-auth-provider",
   "x-token-type",
   "x-cookie-field",
+  "x-encryption-part",
+  "x-encryption-session",
   "x-api-key",
   "x-openfort-flow-name",
   "x-openfort-user-id",

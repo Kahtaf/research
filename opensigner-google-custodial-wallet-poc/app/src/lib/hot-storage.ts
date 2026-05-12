@@ -157,6 +157,9 @@ export async function recoverDevice(input: {
 
   return {
     id: device.id,
+    device: device.id,
+    deviceId: device.id,
+    deviceID: device.id,
     account: account.id,
     signerAddress: account.address,
     signer: `sig_${account.signer_id}`,
@@ -232,6 +235,49 @@ export async function registerDevice(input: {
   return recoverDevice(input);
 }
 
+export async function registerDeviceByAddress(input: {
+  userUuid: string;
+  provider: string;
+  chainId: number;
+  address: string;
+  share: string;
+  signerUuid?: string;
+}) {
+  const account = await one<AccountRow>(
+    `SELECT * FROM hot_accounts
+     WHERE opensigner_user_uuid = ? AND auth_provider = ? AND address = ?
+     LIMIT 1`,
+    [input.userUuid, input.provider, input.address],
+  );
+
+  if (!account) {
+    return createDevice(input);
+  }
+
+  await exec(
+    `UPDATE hot_devices
+     SET encrypted_share = ?, updated_at = CURRENT_TIMESTAMP
+     WHERE signer_id = ? AND is_primary = true`,
+    [encryptShare(input.share), account.signer_id],
+  );
+
+  return {
+    share: input.share,
+    address: account.address,
+    chainId: account.chain_id,
+    chainType: "EVM",
+    device: (await recoverDevice({
+      userUuid: input.userUuid,
+      provider: input.provider,
+      accountId: account.id,
+    }))?.id,
+    account: account.id,
+    ownerAddress: account.address,
+    accountType: "Externally Owned Account",
+    signer: `sig_${account.signer_id}`,
+  };
+}
+
 export async function initDevice(input: {
   userUuid: string;
   provider: string;
@@ -246,7 +292,7 @@ export async function initDevice(input: {
 
   if (!account) {
     return {
-      nextAction: "register",
+      nextAction: "REGISTER",
       player: input.userUuid,
       embedded: { chainId: input.chainId || DEFAULT_CHAIN_ID },
     };
@@ -259,11 +305,14 @@ export async function initDevice(input: {
   });
 
   return {
-    nextAction: "recover",
+    nextAction: "RECOVER",
     player: input.userUuid,
     embedded: {
       chainId: account.chain_id,
       address: account.address,
+      device: recovered?.id,
+      deviceId: recovered?.id,
+      deviceID: recovered?.id,
       share: recovered?.share,
     },
   };

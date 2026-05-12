@@ -139,3 +139,28 @@ Latest deployed app revision verified:
 ```text
 opensigner-poc-app-00004-tx9
 ```
+
+## 2026-05-12 Deployed Signing Recovery Debug
+
+The deployed app reproduced `NoSecretFoundError: No secret found for the given auth options` during signing after Google login. Cloud Run and Cloud SQL checks showed that the hot share and Shield recovery share existed for the wallet. Shield logged a failed share read because the app proxy did not forward the encryption headers required by Shield.
+
+Fixes applied:
+
+- Forward `X-Encryption-Part` and `X-Encryption-Session` through the app Shield proxy.
+- Include `device`, `deviceId`, and `deviceID` aliases in Hot Storage recovery responses for iframe compatibility.
+- Use Shield custom authentication provider value `custom` for the iframe recovery request.
+- Reuse the configured iframe for private-key export and run recovery before export.
+- Force the iframe to flush local OpenSigner state before recovery for signing/export after refresh.
+- Use the iframe `configure` path plus a real `/v1/devices/register` implementation for refreshed-page recovery.
+- Add the `/v2/accounts/signer` lookup required by the iframe configure path.
+- Add the GitHub button beside the custodial wallet notice.
+
+Validation:
+
+- `npm run lint` passed.
+- `npm run build` passed.
+- Deployed app revision `opensigner-poc-app-00013-rfm` is ready and serving traffic.
+- Headed browser flow on Cloud Run created wallet `0x98Fdf902a608b01e3A095e7dCF21C136B41fC5c3`.
+- Message signing returned a signature and wrote verified audit rows.
+- Private-key export returned a verified key preview. Clipboard copy was blocked in the automated browser context, but the app kept the exported key available behind the "Copy Exported Key" button.
+- Refresh-specific retest created wallet `0xf074093f3a3c48A808e43B5Ea1f81880C89fb35e`; refreshing the page and then exporting/copying the private key succeeded.
