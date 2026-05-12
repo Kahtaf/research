@@ -191,3 +191,15 @@ Validation:
 - Created fresh wallet `0x213e5727caa538F509C031Bc72c6182fa988701b`.
 - Signed `Hello from OpenSigner POC`; UI showed `Verified` and Cloud Run logged `POST /api/signing-audits 200`.
 - Exported/copied the private key; UI showed `Private key copied to clipboard and verified against wallet address`, and Cloud Run logged `POST /v1/devices/exported 201`.
+
+## 2026-05-12 Reset Button for Previously Corrupted Accounts
+
+The `kahtaf@gmail.com` wallet `0xdB861044c7F612889d50be8D91c823Bb90a5D2F5` also predates the Hot Storage device-registration fix. Cloud Run logs show that address was active on revision `opensigner-poc-app-00013-rfm`, before the primary-share overwrite bug was fixed. The `all shares must have the same byte length` configure error is consistent with a primary hot share and Shield recovery share from different split generations.
+
+Added a visible `Reset Wallet` button that calls the session-scoped reset endpoint, logs out the iframe, reloads it, and refreshes wallet state so the current Google account can create a fresh wallet.
+
+Validation:
+
+- `npm run lint` passed.
+- `npm run build` passed.
+- Deployed app revision `opensigner-poc-app-00016-m9g` with the reset button, serving 100% traffic.

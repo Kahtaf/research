@@ -506,6 +506,32 @@ export function WalletPoc() {
     wallet,
   ]);
 
+  const resetWallet = useCallback(async () => {
+    if (!authenticated) return;
+    if (!window.confirm("Reset this POC wallet?")) return;
+
+    setMessage("Resetting POC wallet...");
+    setSignature("");
+    setVerification("");
+    setPrivateKeyExport("");
+    setExportedPrivateKey("");
+    setRawResult("");
+
+    await remoteRef.current?.logout({ uuid: crypto.randomUUID() }).catch(() => undefined);
+    remoteRef.current = null;
+    const iframe = iframeRef.current;
+    if (iframe && config?.iframeUrl) {
+      const iframeUrl = new URL(config.iframeUrl);
+      iframeUrl.searchParams.set("reload", String(Date.now()));
+      iframe.src = iframeUrl.toString();
+    }
+
+    const response = await fetch("/api/wallets/reset", { method: "POST" });
+    if (!response.ok) throw new Error("Could not reset wallet.");
+    await refresh();
+    setMessage("Wallet reset. Create a new wallet.");
+  }, [authenticated, config, refresh]);
+
   async function run(action: () => Promise<void>) {
     setStatus("loading");
     try {
@@ -619,6 +645,13 @@ export function WalletPoc() {
                   className="h-11 border-2 border-black bg-white px-4 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {exportedPrivateKey ? "Copy Exported Key" : "Export / Copy Private Key"}
+                </button>
+                <button
+                  disabled={status === "loading" || !wallet}
+                  onClick={() => run(resetWallet)}
+                  className="h-11 border-2 border-black bg-white px-4 text-sm font-semibold text-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  Reset Wallet
                 </button>
               </div>
             </section>
