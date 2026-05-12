@@ -225,14 +225,26 @@ export async function registerDevice(input: {
   );
   if (!account) return null;
 
+  const deviceId = randomUUID();
   await exec(
-    `UPDATE hot_devices
-     SET encrypted_share = ?, updated_at = CURRENT_TIMESTAMP
-     WHERE signer_id = ? AND is_primary = true`,
-    [encryptShare(input.share), account.signer_id],
+    `INSERT INTO hot_devices
+      (id, encrypted_share, is_primary, signer_id, created_at, updated_at)
+     VALUES (?, ?, false, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`,
+    [deviceId, encryptShare(input.share), account.signer_id],
   );
 
-  return recoverDevice(input);
+  return {
+    share: input.share,
+    address: account.address,
+    chainId: account.chain_id,
+    chainType: "EVM",
+    deviceId,
+    device: deviceId,
+    account: account.id,
+    ownerAddress: account.address,
+    accountType: "Externally Owned Account",
+    signer: `sig_${account.signer_id}`,
+  };
 }
 
 export async function registerDeviceByAddress(input: {
@@ -254,11 +266,12 @@ export async function registerDeviceByAddress(input: {
     return createDevice(input);
   }
 
+  const deviceId = randomUUID();
   await exec(
-    `UPDATE hot_devices
-     SET encrypted_share = ?, updated_at = CURRENT_TIMESTAMP
-     WHERE signer_id = ? AND is_primary = true`,
-    [encryptShare(input.share), account.signer_id],
+    `INSERT INTO hot_devices
+      (id, encrypted_share, is_primary, signer_id, created_at, updated_at)
+     VALUES (?, ?, false, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`,
+    [deviceId, encryptShare(input.share), account.signer_id],
   );
 
   return {
@@ -266,11 +279,8 @@ export async function registerDeviceByAddress(input: {
     address: account.address,
     chainId: account.chain_id,
     chainType: "EVM",
-    device: (await recoverDevice({
-      userUuid: input.userUuid,
-      provider: input.provider,
-      accountId: account.id,
-    }))?.id,
+    deviceId,
+    device: deviceId,
     account: account.id,
     ownerAddress: account.address,
     accountType: "Externally Owned Account",

@@ -164,3 +164,16 @@ Validation:
 - Message signing returned a signature and wrote verified audit rows.
 - Private-key export returned a verified key preview. Clipboard copy was blocked in the automated browser context, but the app kept the exported key available behind the "Copy Exported Key" button.
 - Refresh-specific retest created wallet `0xf074093f3a3c48A808e43B5Ea1f81880C89fb35e`; refreshing the page and then exporting/copying the private key succeeded.
+
+## 2026-05-12 Private-Key Export Format Failure
+
+A deployed export attempt failed inside the OpenSigner iframe with `invalid arrayify value` before the iframe called `/v1/devices/exported`. Cloud Run request logs showed the flow completed `/v1/devices/init`, Shield recovery, `/v1/devices/register`, and `/v1/devices/{deviceId}`, then failed during iframe private-key verification.
+
+Root cause: the POC Hot Storage implementation was overwriting the primary hot-share row during recovery registration. OpenSigner's Hot Storage sample registers a new non-primary device for existing accounts and leaves the primary share stable for future recovery. The POC now matches that contract for both `/v1/devices/register` and `/v2/devices/register`.
+
+Validation before deploy:
+
+- `npm run lint` passed.
+- `npm run build` passed.
+- Deployed app revision `opensigner-poc-app-00014-zqd` with the Hot Storage device-registration fix.
+- The live service is serving 100% traffic from `opensigner-poc-app-00014-zqd`.
