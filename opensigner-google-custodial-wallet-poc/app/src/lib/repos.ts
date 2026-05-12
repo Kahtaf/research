@@ -2,7 +2,7 @@ import type { RowDataPacket } from "mysql2";
 import { randomUUID } from "node:crypto";
 
 import { CUSTODY_MODEL, RECOVERY_METHOD } from "./constants";
-import { exec, one } from "./db";
+import { exec, one, rows } from "./db";
 
 export type UserRow = RowDataPacket & {
   id: string;
@@ -20,6 +20,8 @@ export type WalletRow = RowDataPacket & {
   custody_model: string;
   recovery_method: string;
 };
+
+type SignerRow = RowDataPacket & { signer_id: string };
 
 export async function findOrCreateUser(
   googleSub: string,
@@ -93,6 +95,28 @@ export async function upsertWallet(input: {
   const wallet = await currentWallet(input.internalUserId);
   if (!wallet) throw new Error("wallet upsert failed");
   return wallet;
+}
+
+export async function resetWalletForUser(input: {
+  internalUserId: string;
+  opensignerUserUuid: string;
+}): Promise<void> {
+  const signers = await rows<SignerRow>(
+    "SELECT signer_id FROM hot_accounts WHERE opensigner_user_uuid = ?",
+    [input.opensignerUserUuid],
+  );
+  const signerIds = signers.map((row) => row.signer_id);
+
+  if (signerIds.length > 0) {
+    const placeholders = signerIds.map(() => "?").join(",");
+    await exec(`DELETE FROM hot_devices WHERE signer_id IN (${placeholders})`, signerIds);
+    await exec("DELETE FROM hot_accounts WHERE opensigner_user_uuid = ?", [
+      input.opensignerUserUuid,
+    ]);
+    await exec(`DELETE FROM hot_signers WHERE id IN (${placeholders})`, signerIds);
+  }
+
+  await exec("DELETE FROM wallets WHERE internal_user_id = ?", [input.internalUserId]);
 }
 
 export async function insertSigningAudit(input: {

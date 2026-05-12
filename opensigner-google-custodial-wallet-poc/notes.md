@@ -177,3 +177,17 @@ Validation before deploy:
 - `npm run build` passed.
 - Deployed app revision `opensigner-poc-app-00014-zqd` with the Hot Storage device-registration fix.
 - The live service is serving 100% traffic from `opensigner-poc-app-00014-zqd`.
+
+## 2026-05-12 Corrupted Wallet Reset Verification
+
+The previously created deployed wallet was unrecoverable because the earlier Hot Storage bug had already overwritten its primary hot share. The app now includes a session-scoped `/api/wallets/reset` route to clear the logged-in user's POC wallet metadata and Hot Storage rows so a fresh wallet can be created under the fixed storage behavior.
+
+Validation:
+
+- `npm run lint` passed.
+- `npm run build` passed.
+- Deployed app revision `opensigner-poc-app-00015-vmj` with the reset route.
+- Called `/api/wallets/reset` from the authenticated browser session and received `200 {"reset":true}`.
+- Created fresh wallet `0x213e5727caa538F509C031Bc72c6182fa988701b`.
+- Signed `Hello from OpenSigner POC`; UI showed `Verified` and Cloud Run logged `POST /api/signing-audits 200`.
+- Exported/copied the private key; UI showed `Private key copied to clipboard and verified against wallet address`, and Cloud Run logged `POST /v1/devices/exported 201`.
