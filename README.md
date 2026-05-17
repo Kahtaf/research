@@ -113,7 +113,16 @@ for dirname, commit_date in subdirs_with_dates:
     print()  # Add blank line between entries
 
 ]]]-->
-## 21 research projects
+## 22 research projects
+
+### [browser-local-rag-trials-postmortem](https://github.com/Kahtaf/research/tree/main/browser-local-rag-trials-postmortem) (2026-05-17)
+
+Experiments with browser-local RAG demonstrate that private-data reasoning is effective only when structured as an evidence-engine problem rather than an open-ended model task. Success hinges on using a schema-aware substrate like [Kuzu](https://kuzudb.com/) to provide typed graph relationships that narrow the small model's focus to verifiable, cited facts. Future development should prioritize deterministic retrieval gates and source-tree navigation over freeform planning by underpowered local models.
+
+*   Lexical retrieval proved to be a highly efficient baseline, achieving 100% recall on controlled facts with minimal memory overhead.
+*   Small local LLMs (0.8B–3B) fail at query planning and memory writing but function well as bounded formatters for compact evidence packets.
+*   Hybrid retrieval—combining BM25, schema-aware filtering, and relationship contracts—is necessary to prevent the context pollution common in vector-only RAG.
+*   The project recommends moving toward structured scaffolding like [LocalMode](https://github.com/the-cryptic-company/localmode) to manage browser-local model state and orchestration.
 
 ### [opensigner-google-custodial-wallet-poc](https://github.com/Kahtaf/research/tree/main/opensigner-google-custodial-wallet-poc) (2026-05-12)
 
