@@ -60,3 +60,11 @@ Fair-use craft-analysis of modern classics (short quotes only): Owl Babies, The 
 10. Concrete over abstract: hands, headlights, a switch — never "love"/"hope" said outright.
 11. Reciprocity as climax: the child gives the comfort back (Kissing Hand; Zaki gives his light).
 12. End on the barest, smallest words ("You're home.").
+
+## Book 2
+- Researched NICU/sibling book landscape + metaphor-comfort genre (see book2-research.md).
+- Key gap: the sibling's inner life AT HOME while baby is elsewhere — under-served; ideal for a metaphor.
+- Avoid clichés: tiny-fighter/miracle framing, equipment tour, guaranteed-homecoming.
+- Freshest sibling-active vehicles: kite, nest/egg, tended seed, knitted blanket. (Lighthouse/stars overlap Book 1's light motif.)
+- Brainstormed 4 concepts; AskUserQuestion selector glitched; per user "continue," developed the recommended one: THE KITE.
+- Draft: the-string-book2-draft.md. First-person (Zaki), daytime/sky palette (counterpart to Book 1's night). Refrain "I've got the string" -> "I've got you." Wind = the machines/hard days reframed as what holds her up. Continuity: her star, the red car, shared nightlight, Grandma's cardigan.
