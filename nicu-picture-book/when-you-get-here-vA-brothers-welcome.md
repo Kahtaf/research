@@ -1,23 +1,23 @@
 # When You Get Here — VERSION A (revised)
-### "A Big Brother's Welcome" · ages 2–5
+### "An Older Sibling's Welcome" · ages 2–5
 *A standalone metaphor-light anticipation book. NICU lives entirely in the subtext, so it also works for any family expecting a baby.*
 
-**POV:** The older brother, speaking to the baby who isn't home yet.
+**POV:** The older sibling (can be shown as a big brother or a big sister — the narration never states the narrator's gender), speaking to the baby who isn't home yet. The baby's gender is left open ("the baby" / "you" / "little one"), so the book fits any family. To personalize, swap in "sister"/"brother" and "she"/"he".
 **Register:** Joyful, warm, specific. Anticipation as love.
 **Word count:** ~285
 **Refrain / title phrase:** *"When you get here"* — opens most spreads (anaphora); the book flips from future to present tense at the homecoming ("You're here").
-**Style rules honored:** generic "big brother" (no age stated); no em dashes anywhere; the family cat (a *he*, a bird-chaser) in place of a dog; opening = "Soon" variant.
+**Style rules honored:** age-generic, gender-open narrator and baby; no em dashes anywhere; the family cat (a *he*, a bird-chaser) in place of a dog; opening = "Soon" variant.
 **Packaging note (not a text edit):** the book promises a homecoming and delivers it — joyful for expecting families, but a dedication / jacket line should quietly signal this is a book for families *awaiting* a homecoming, so a grieving parent isn't ambushed.
 
 ---
 
 **SPREAD 1** — *The big brother at a window, a world of things behind him.*
-> My sister is coming.
+> A baby is coming.
 > Not today, and not tomorrow, but soon.
-> She's getting bigger and stronger every day,
+> The baby's getting bigger and stronger every day,
 > somewhere warm and far away,
 > getting ready to come home to me.
-> And when you get here,
+> And when you get here, little one,
 > I'll show you everything.
 
 **SPREAD 2** — *Rain on the window; his hand pressed to the glass.*
@@ -57,7 +57,7 @@
 > But you're taking a long time.
 > Every morning I ask, "Today?"
 > And every morning, "Not yet.
-> Soon. She's getting stronger."
+> Soon. Getting stronger every day."
 > Waiting is the hardest thing I know.
 
 **SPREAD 8** — *The small worry, and Mama's answer.*
@@ -77,7 +77,7 @@
 
 **SPREAD 10** — *"She's coming home." He runs for the window.*
 > And then, one day,
-> "She's coming home."
+> "The baby's coming home."
 > I run to the window.
 > I've been ready for so long.
 
