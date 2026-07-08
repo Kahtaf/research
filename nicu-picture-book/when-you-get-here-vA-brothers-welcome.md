@@ -1,22 +1,28 @@
-# When You Get Here — VERSION A
+# When You Get Here — VERSION A (revised)
 ### "A Big Brother's Welcome" · ages 2–5
 *A standalone metaphor-light anticipation book. NICU lives entirely in the subtext, so it also works for any family expecting a baby.*
 
 **POV:** The older brother, speaking to the baby who isn't home yet.
 **Register:** Joyful, warm, specific. Anticipation as love.
-**Word count:** ~290
+**Word count:** ~285
 **Refrain / title phrase:** *"When you get here"* — opens most spreads (anaphora); the book flips from future to present tense at the homecoming ("You're here").
-**Why it works for NICU families without saying "NICU":** the baby "isn't here yet," is "getting bigger somewhere warm, far from our house," and the wait is long and aching — every NICU family reads their whole story into it, while expecting families read plain sweet anticipation.
+**Style rules honored:** generic "big brother" (no age stated); no em dashes anywhere (commas / periods / one question mark instead); the family cat (a bird-chaser) in place of a dog.
 
 ---
 
 **SPREAD 1** — *The big brother at a window, a world of things behind him.*
-> I have a sister.
-> She isn't here yet.
-> She's still getting bigger,
-> somewhere warm, far from our house.
-> But when you get here—
+> My baby sister isn't here yet.
+> She's somewhere warm and far away,
+> getting bigger and stronger every day.
+> I can't wait for her to come home.
+> When you get here,
 > wait till you see.
+
+*Alternate openings on file (swap in freely):*
+- *Direct address:* "Hello, little sister. / We haven't met yet. / You're still getting bigger, / somewhere warm, far from home. / But I'm your big brother, / and when you get here, wait till you see."
+- *Starts inside the pattern:* "When you get here, / I'll have so much to show you. / You're not here yet. / You're still getting bigger and strong, / somewhere warm and far away. / But soon. And when you get here, wait till you see."
+- *Quiet & wondering:* "Somewhere far away, / in a warm and quiet place, / my little sister is growing. / I think about her all the time. / I can't wait for when you get here. / Wait till you see."
+- *"Soon" (drops 'wait till you see'):* "My sister is coming. / Not today, and not tomorrow, but soon. / She's getting bigger and stronger every day, / somewhere warm and far from home. / And when you get here, / I'll show you everything."
 
 **SPREAD 2** — *Rain on the window; his hand pressed to the glass.*
 > When you get here,
@@ -25,11 +31,12 @@
 > how it makes the whole world shine.
 > I'll catch some in my hands for you.
 
-**SPREAD 3** — *The big brown dog; puddles; muddy boots.*
+**SPREAD 3** — *The family cat in the windowsill, birds beyond the glass.*
 > When you get here,
-> I'll show you the big brown dog next door,
-> and the puddles you can stomp in,
-> and the mud that squishes up between your toes.
+> I'll show you our cat.
+> She sits in the window all day
+> and chases the birds outside.
+> (She never, ever catches them.)
 
 **SPREAD 4** — *A dandelion, seeds everywhere.*
 > When you get here,
@@ -50,22 +57,22 @@
 > I already picked one out for you.
 > That one. That's yours.
 
-**SPREAD 7** — *The gentle wait. The brother at the calendar / at Grandma's, chin on hands.*
+**SPREAD 7** — *The wait. The brother chin-on-hands at the window.*
 > But you're taking a long time.
 > Every morning I ask, "Today?"
-> And every morning: "Not yet.
+> And every morning, "Not yet.
 > Soon. She's getting stronger."
-> Waiting is hard when you're three.
+> Waiting is hard.
 
 **SPREAD 8** — *The small worry, and Mama's answer.*
-> What if you get here
-> and the puddles have all dried up?
+> But what if you get here
+> and the rain has stopped?
 > What if you miss it?
 > "There's always more rain," says Mama.
-> "And the best thing was never the puddles.
+> "And the best thing was never the rain.
 > The best thing is you. And me. And us."
 
-**SPREAD 9** — *He gets everything ready — the red car, the star drawn and taped up.*
+**SPREAD 9** — *He gets everything ready: the red car, a drawn star taped up.*
 > So I wait.
 > I keep the red car ready.
 > I keep your star ready.
@@ -73,7 +80,7 @@
 > for when you get here.
 
 **SPREAD 10** — *"She's coming home." He runs for the window.*
-> And then—one day—
+> And then, one day,
 > "She's coming home."
 > I run to the window.
 > I've been ready for so long.
@@ -85,15 +92,15 @@
 > And you wrap your whole hand
 > around one of my fingers.
 
-**SPREAD 12 — FINAL** — *He carries the world to her — window, cars, the star.*
+**SPREAD 12 — FINAL** — *He carries the world to her: window, cars, the star.*
 > Come on. Let me show you.
-> The rain. The dog. The puddles. The moon.
-> And that star—
-> that one's still yours.
+> The rain. The cat. The dandelions. The moon.
+> And that star up there?
+> That one's still yours.
 > I said, wait till you see.
 > But you're the best thing I ever waited for.
 > You're here.
 > You're finally here.
 
 ---
-*Craft: anaphora frame ("When you get here…") for predictability a toddler can chant; one soft worry beat (Spread 8) so it isn't all one note; concrete child-scale wonders (puddles, the red car); tense-flip future→present at the reunion; ends on the barest words ("You're finally here"). NICU is carried entirely by "far from our house," "getting stronger," and the ache of the wait.*
+*Craft: anaphora frame ("When you get here…") for predictability a toddler can chant; one soft worry beat (Spread 8) so it isn't all one note; concrete child-scale wonders (rain, the cat, the red car); tense-flip future→present at the reunion; ends on the barest words ("You're finally here"). NICU is carried entirely by "somewhere warm and far away," "getting stronger," and the ache of the wait.*
