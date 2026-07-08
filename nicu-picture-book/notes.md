@@ -68,3 +68,10 @@ Fair-use craft-analysis of modern classics (short quotes only): Owl Babies, The 
 - Freshest sibling-active vehicles: kite, nest/egg, tended seed, knitted blanket. (Lighthouse/stars overlap Book 1's light motif.)
 - Brainstormed 4 concepts; AskUserQuestion selector glitched; per user "continue," developed the recommended one: THE KITE.
 - Draft: the-string-book2-draft.md. First-person (Zaki), daytime/sky palette (counterpart to Book 1's night). Refrain "I've got the string" -> "I've got you." Wind = the machines/hard days reframed as what holds her up. Continuity: her star, the red car, shared nightlight, Grandma's cardigan.
+
+## Reframe: two STANDALONE versions to choose between (not a series)
+- Clarified: the metaphor book is NOT a companion to "The Smallest Light." Dropped all Book-1 continuity.
+- User wants 2 versions of ONE book to pick from. Both anchored on refrain/title "When you get here."
+- Version A ("A Big Brother's Welcome"): joyful anticipation, NICU in subtext only, works for any expecting family. Sibling POV. File: when-you-get-here-vA-brothers-welcome.md
+- Version B ("The Parents' Hope"): anticipation braided with the parents' worry/anxiousness, released at homecoming; NICU-real; parent-to-baby voice. File: when-you-get-here-vB-parents-hope.md
+- Both: "when you get here" shifts weight across the book; future->present tense flip at homecoming; names the hard feeling then resolves; ends on barest words.
