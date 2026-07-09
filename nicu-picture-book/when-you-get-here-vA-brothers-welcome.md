@@ -1,5 +1,6 @@
-# When You Get Here — VERSION A (revised)
+# When You Get Here — VERSION A
 ### "A Big Brother's Welcome" · ages 2–5
+> **STATUS: SCRIPT LOCKED (final).** Text is frozen as of this version. Art direction lives in `when-you-get-here-art-direction.md`. Do not alter the verse without an explicit unlock.
 *A standalone metaphor-light anticipation book. NICU lives entirely in the subtext, so it also works for any family expecting a baby.*
 
 **POV:** The older brother, speaking to the baby sister who isn't home yet.
