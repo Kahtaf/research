@@ -203,8 +203,26 @@ AI image models forget characters between images. To keep the same boy, cat, and
 
 ---
 
-## 6. COVER (bonus)
-> [STYLE TOKEN] Portrait book-cover composition. [BOY token] on tiptoe at the big multi-pane window in warm golden light, one hand on the glass, looking up and out with hopeful anticipation; the two cats ([CATS token]) on the sill; the matte-red toy car on the sill; a single warm-gold star faintly visible in the daytime sky outside. Cozy, inviting, warm. Leave the top third open and uncluttered for the title *When You Get Here*. [GLOBAL NEGATIVES]
+## 6. COVER & BACK COVER
+
+### 6a. FRONT COVER
+**Job:** stop the browsing eye AND telegraph the premise in one glance: *a big brother, bursting with love, waiting for a baby who isn't home yet.* The waiting-at-the-window pose alone reads as "waiting," not "waiting for a BABY" — so the cover adds a **dream vignette of the swaddled baby** in the sky, which makes the subject unmistakable from across a room.
+**Format:** portrait 4:5 (typical hardcover trim ~10×12.5in). Title zone = the top quarter; keep it clear and calm.
+**Palette strategy:** the most saturated, warm image in the whole package — golden light, one big star, the red car pop — so it glows on a shelf next to muted competition.
+
+> [STYLE TOKEN] Portrait book-cover composition, 4:5. Warm golden late-afternoon light. [BOY token] stands on tiptoe on the wide wooden sill of the big multi-pane window, seen slightly from behind and to the side so his glowing, joyful profile is visible, one hand pressed to the glass and the other hugging the **matte-red toy car** to his chest. Outside the window, painted in the warm clouds like a soft daydream, a gentle dream-vignette: a **tiny swaddled baby in a cream knit blanket with a small red star**, drifting in the golden sky the boy is gazing at, with one large warm-gold star shining just above it. The two cats ([CATS token]) sit on the sill beside him, tails curled, also looking up at the dream-baby. Cozy warm living room hinted at the bottom edge. The composition pulls every gaze-line (boy, both cats) up toward the baby-and-star daydream, leading the viewer's eye to the same spot. Palette: rich glowing golds and creams, soft sky-blue, the red car and red star as vivid accents — the warmest, most saturated image of the book. Joyful, yearning, irresistible warmth. Leave the top quarter of the sky calm, open, and uncluttered for the title. No text. [GLOBAL NEGATIVES]
+
+*Type notes (added in layout, not generated):* title *When You Get Here* set large in the top quarter in a warm friendly hand-lettered or rounded-serif face, cream or deep indigo depending on sky value; author name small beneath. The big gold star can sit adjacent to the title as its "dot."
+
+**Alternate cover (if the dream-vignette renders poorly):** same scene, but instead of the dream-baby, the boy holds up his **yellow crayon star drawing** to the window glass while golden light pours in, cats looking up at it — premise then reads through the title + drawing combination. Simpler, lower render-risk, slightly less instant.
+
+### 6b. BACK COVER
+**Job:** a quiet exhale after the glowing front — mostly white space, one small joke for the bookstore browser, room for the blurb and barcode.
+**Format:** portrait 4:5 to match. Art occupies only the lower third; everything above stays clean for the blurb.
+
+> [STYLE TOKEN] Portrait back-cover composition, 4:5, on a clean warm-white / soft-cream background with generous empty space. In the lower third only, one small minimal vignette: the two cats ([CATS token]) sitting side by side with their backs mostly to the viewer, heads tilted up together, watching three little brown-and-blue songbirds flutter just out of reach above them. No background scenery at all — just the cats, the birds, and soft ground-shadow beneath them, floating on the white page like a spot illustration. Simple, light, charming. Palette: the ginger-and-white and grey-and-white cats and tiny bird accents as the only color on the warm-white field. Leave the entire upper two-thirds empty for text, and keep the lower-right corner clear for a barcode. No text. [GLOBAL NEGATIVES]
+
+*Layout notes:* blurb (2–3 short lines, e.g. the book's own "Not today, and not tomorrow, but soon.") centered in the upper half; barcode lower-right; the cats' upward gaze should point loosely toward the blurb text so even the back cover leads the eye to the words. The birds echo Spread 3's joke — "(They never, ever catch them.)" — a wink for anyone who's read it.
 
 ---
 
