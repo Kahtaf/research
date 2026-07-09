@@ -233,6 +233,111 @@ and wide distribution.
 - **Distribution edge for Canada**: IngramSpark's wholesale relationship gives direct access to
   **Chapters/Indigo**, Canada's dominant bookstore chain — a channel KDP cannot reach on its own.
 
+## 12. Account & tax prerequisites for a Canadian KDP publisher
+
+- **Tax interview**: select Canada as country of residence, provide your SIN (or Business Number
+  if incorporated), and complete **W-8BEN** (individual) or **W-8BEN-E** (business) to claim the
+  Canada-US tax treaty rate (Article XII, royalties) — this brings US withholding to **0%**
+  instead of the 30% default for authors who skip the interview. W-8BEN is valid ~3 years, then
+  needs renewal.
+- **Getting paid**: KDP pays **direct deposit (EFT) straight to a Canadian bank account** (1-5
+  business days), with **no minimum balance** required. Wire transfer needs a $100 CAD minimum;
+  checks aren't offered in Canada. A US bank account or Payoneer is **not needed** — that was a
+  historical workaround, no longer necessary. Royalties pay monthly, ~60 days after the sales
+  month closes.
+- **Business Number / GST-HST**: not required to start — you can operate as an unregistered sole
+  proprietor using your SIN. CRA only requires GST/HST registration (which auto-issues a Business
+  Number) once total revenue from taxable supplies exceeds **$30,000 CAD across 4 consecutive
+  calendar quarters** — unlikely for a single first picture book. Voluntary registration below
+  that threshold locks you in for at least a year.
+- **ISBN — the free-ISBN catch, restated in tax/account terms**: KDP will auto-assign a free ISBN
+  if you don't supply one, but it lists Amazon/"Independently Published" as publisher of record.
+  KDP's own Expanded Distribution rules technically allow a free KDP ISBN to be enrolled, but that
+  specific ISBN can't later be reused on another POD platform, and it's the same publisher-of-
+  record issue flagged in §2 — reinforcing that a free LAC (Canadian) ISBN is the better default.
+
+## 13. Paperback specs via KDP print
+
+- **Trim sizes**: no dedicated "picture book" preset, but the most common choices are **8.5 x
+  8.5in** (square, most popular for picture books), **8 x 10in** (portrait), and **10 x 8in**
+  (landscape). Custom sizes allowed between 4-8.5in width and 6-11.69in height.
+- **Paper/ink tiers**: Standard color uses 50-61lb (74-90gsm) inkjet paper but has a **72-page
+  minimum** — too high for a 24-32 page book. **Premium color** uses heavier 60-71lb (88-105gsm)
+  toner-printed paper with a **24-page minimum** — this is the tier a 12-spread book needs.
+- **Page count**: paperback overall minimum is 24 pages, must be a multiple of 4.
+- **Bleed**: 0.125in (3.2mm) on all sides for full-bleed illustrations.
+- **Interior PDF**: images at ≥300 DPI (cap around 600 DPI to manage file size), fonts embedded,
+  ≥7pt text, margins scale with page count (0.375in minimum for 24-150 page books).
+- **Cover file**: one continuous wraparound PDF, 0.125in bleed. Spine width = page count ×
+  0.002252in (white paper) / × 0.0025in (cream) / × 0.002347in (color paper). For a 24-page
+  premium-color book that's only ~0.056in of spine — essentially no room for readable spine text.
+- **Print quality reputation**: mixed for full color specifically on KDP (see also §9 for a
+  cross-vendor comparison). KDP itself shows an on-screen warning before ordering proofs that
+  dense color art can print "grainy." Community complaints cite muddy/dark reproduction — often
+  actually a CMYK-conversion issue in the author's own file — and occasional wavy pages. Premium
+  color plus a properly converted CMYK PDF avoids most of this.
+
+## 14. Hardcover via KDP: specs and limitations
+
+KDP hardcover launched around 2021 and is now standard (not beta-flagged). But it has real
+limitations for a short picture book:
+
+- **Trim sizes**: 5.5x8.5, 6x9, 6.14x9.21, 7x10, and 8.25x11in — **no square 8.5x8.5 option**,
+  unlike paperback.
+- **Paper**: black ink on cream/white; **premium color on white only** (no "standard color"
+  hardcover tier exists at all). As noted in §9b, KDP hardcover is case-laminate only — no jacket
+  option exists on the platform at any trim.
+- **Critical limitation**: hardcover's minimum page count is **75 pages**, for both black ink and
+  premium color. A 24-32 page picture book falls well short — you'd need to pad the book (bonus
+  back matter, activity pages, etc.) just to qualify for hardcover at all, which is impractical
+  for a genuinely 12-spread story.
+- **Cost**: $5.65 USD fixed + $0.065 USD/page for premium color. At the 75-page floor that's
+  **~$10.53 USD** in print cost alone, before any royalty is calculated (see §15).
+
+## 15. Pricing & royalty math for a KDP paperback/hardcover
+
+Royalty = (list price × rate) − print cost. **Since June 10, 2025**, the 60% rate only applies to
+list prices **≥ $9.99 USD / $13.99 CAD** (equivalents in other currencies too); below that, the
+rate drops to **50%**. This applies to both paperback and hardcover (not ebook).
+
+Paperback premium color costs: **US** $1.00 fixed + ~$0.065-0.080/page (large trim, which 8.5x8.5
+and 8x10 both are, since they exceed 6.12in width / 9in height); **Canada** $1.26 CAD fixed +
+~$0.085 CAD/page. Worked examples (approximate — confirm exact figures with KDP's live calculator
+for your final specs):
+
+| Format | Pages | Print cost (approx) | $12.99 | $16.99 | $19.99 |
+|---|---|---|---|---|---|
+| Paperback, premium color, large trim (US) | 24 | ~$2.75 | ~$5.05 | ~$7.45 | ~$9.25 |
+| Paperback, premium color, large trim (US) | 32 | ~$3.30 | ~$4.49 | ~$6.89 | ~$8.69 |
+| Paperback, premium color (Amazon.ca, CAD prices) | 24 | ~$3.50 CAD | ~$3.00 CAD* | ~$6.69 CAD | ~$8.50 CAD |
+
+*At $12.99 CAD you're below the $13.99 CAD threshold, so this falls into the 50% royalty tier —
+a real trap for Canadian-marketplace pricing just under $14.
+
+**Hardcover**, padded to the 75-page minimum, premium color, large trim: print cost ≈ $11.00 USD,
+so the minimum viable list price is roughly **$18.33** just to clear cost. At $19.99, royalty is
+only ~$1.00; at $24.99, ~$3.99. $12.99/$16.99 aren't viable hardcover prices at this cost
+structure — consistent with the ~$9.90-$11.10 IngramSpark hardcover costs quoted in §7, i.e.
+hardcover is expensive everywhere for a book this short.
+
+**Bottom line**: paperback at $12.99-$19.99 nets a healthy ~$4.50-$9.25 royalty per copy on KDP
+for this short book. Hardcover, once padded to the page floor, needs $19.99+ pricing just to earn
+a thin margin — paperback is the more natural and profitable KDP format for a genuinely 24-32
+page picture book.
+
+## 16. EPUB/Kindle ebook economics (complements §6)
+
+Ebook royalty tiers are unaffected by the June 2025 print-royalty change — still 35% vs. **70%**.
+The 70% tier requires a $2.99-$9.99 list price, an eligible territory (Canada included), and
+either KDP Select enrollment or price-matching elsewhere. The delivery fee at 70% is **$0.15/MB**
+of Amazon's *compressed* file size — image-heavy fixed-layout picture books commonly land 8-15MB
+post-compression, clawing back **$1.20-$2.25 per sale** in delivery fees alone. Combined with the
+tooling limitations in §6 (Kindle Create/KPF being Amazon-only), the practical read is: ebook is
+a worthwhile low-effort secondary channel once the print files exist (and it unlocks Kindle
+Unlimited page-read income under KDP Select), but picture-book ebook volumes are typically much
+smaller than print — most buyers want a physical read-aloud/gift object, not a screen experience
+for a 2-5 year old. Treat it as a bonus channel, not a primary revenue plan.
+
 ## Key sources
 
 - Library and Archives Canada — [ISBN program](https://www.canada.ca/en/library-archives/services/publishers/isbn.html), [Legal Deposit overview](https://www.canada.ca/en/library-archives/services/publishers/legal-deposit/about.html), [Physical publications deposit](https://www.canada.ca/en/library-archives/services/publishers/legal-deposit/physical-publications.html)
