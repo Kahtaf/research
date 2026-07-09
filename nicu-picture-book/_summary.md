@@ -1,0 +1,5 @@
+Supporting families through the uncertainty of neonatal intensive care, these picture book manuscripts translate complex medical separations into gentle, age-appropriate narratives for siblings aged two to five. The primary title, *When You Get Here*, utilizes a "metaphor-light" approach that emphasizes the promise of a future homecoming while remaining accessible to any family expecting a new baby. The project includes a production-ready art-direction bible designed to maintain character and stylistic consistency across AI image generation workflows. By grounding the scripts in a reference-corpus study of classic children’s literature, the work ensures emotional resonance through rhythmic prose and carefully paced narrative arcs.
+
+*   Subtext-driven storytelling allows NICU-specific themes to function as universal sibling-welcome narratives.
+*   Production documentation features character bibles and lighting arcs optimized for [Nano Banana](https://nanobanana.com/) and [OpenAI](https://openai.com/dall-e-3/) image generation.
+*   Manuscripts emphasize a shift from future to present tense to mirror the emotional arc of a baby finally arriving home.
