@@ -7,7 +7,7 @@
 **Register:** Joyful, warm, specific. Anticipation as love.
 **Word count:** ~285
 **Refrain / title phrase:** *"When you get here"* — opens most spreads (anaphora); the book flips from future to present tense at the homecoming ("You're here").
-**Style rules honored:** generic "big brother" (no age stated); no em dashes anywhere; the family cat (a *he*, a bird-chaser) in place of a dog; opening = "Soon" variant.
+**Style rules honored:** generic "big brother" (no age stated); no em dashes anywhere; the family's two cats (both male, bird-chasers) in place of a dog; opening = "Soon" variant.
 **Packaging note (not a text edit):** the book promises a homecoming and delivers it — joyful for expecting families, but a dedication / jacket line should quietly signal this is a book for families *awaiting* a homecoming, so a grieving parent isn't ambushed.
 
 ---
@@ -28,12 +28,12 @@
 > how it makes the whole world shine.
 > I'll catch some in my hands for you.
 
-**SPREAD 3** — *The family cat in the windowsill, birds beyond the glass.*
+**SPREAD 3** — *The family's two cats in the window, birds beyond the glass.*
 > When you get here,
-> I'll show you our cat.
-> He sits in the window all day
-> and chases the birds outside.
-> (He never, ever catches them.)
+> I'll show you our cats.
+> They sit in the window all day
+> and chase the birds outside.
+> (They never, ever catch them.)
 
 **SPREAD 4** — *A dandelion, seeds everywhere.*
 > When you get here,
@@ -91,7 +91,7 @@
 
 **SPREAD 12 — FINAL** — *He carries the world to her: window, cars, the star.*
 > Come on. Let me show you.
-> The rain. The cat. The dandelions. The moon.
+> The rain. The cats. The dandelions. The moon.
 > And that star up there?
 > That one's still yours.
 > But you're the best thing I ever waited for.
@@ -99,4 +99,4 @@
 > You're finally here.
 
 ---
-*Craft: anaphora frame ("When you get here…") for predictability a toddler can chant; one soft worry beat (Spread 8) so it isn't all one note; concrete child-scale wonders (rain, the cat, the red car); tense-flip future→present at the reunion; ends on the barest words ("You're finally here"). NICU is carried entirely by "somewhere warm and far away," "getting stronger," and the ache of the wait. The Spread 1 reframe ("getting ready to come home to me") casts "stronger" as readiness for reunion, not recovery from illness.*
+*Craft: anaphora frame ("When you get here…") for predictability a toddler can chant; one soft worry beat (Spread 8) so it isn't all one note; concrete child-scale wonders (rain, the cats, the red car); tense-flip future→present at the reunion; ends on the barest words ("You're finally here"). NICU is carried entirely by "somewhere warm and far away," "getting stronger," and the ache of the wait. The Spread 1 reframe ("getting ready to come home to me") casts "stronger" as readiness for reunion, not recovery from illness.*
