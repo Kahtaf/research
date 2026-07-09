@@ -25,7 +25,9 @@ AI image models forget characters between images. To keep the same boy, cat, and
 
 > **STYLE TOKEN (copy verbatim):** *"Warm, tender contemporary children's picture-book illustration; hand-painted gouache-and-colored-pencil texture with soft visible grain; softly rounded, gently stylized characters with large expressive eyes, round cheeks, and warm friendly faces; cozy hopeful storybook mood; gentle diffused lighting with soft shadows; harmonious warm palette; painterly and soft-edged. NOT 3D-rendered, NOT photorealistic, NOT anime or manga, no hard vector outlines, no glossy CGI."*
 
-> **GLOBAL NEGATIVES (append to every prompt):** *"Avoid: any text, letters, numbers, or watermark; photorealism; 3D render; anime; scary or clinical medical equipment (no wires, tubes, monitors, IV poles); distorted or extra fingers; malformed faces; more than one cat; harsh or frightening shadows."*
+> **GLOBAL NEGATIVES (append to every prompt):** *"Avoid: any text, letters, numbers, or watermark; photorealism; 3D render; anime; distorted or extra fingers; malformed faces; more than one cat; harsh or frightening shadows. Keep the setting a purely warm, domestic home with no clinical or medical elements. Format: landscape 3:2, and keep the text-safe area clear."*
+>
+> *(Note: the medical negatives are phrased positively on purpose — naming equipment like "wires/monitors" in a negative can cause token models to summon it, and these are all cozy home scenes anyway.)*
 
 **Overall palette (hold across the whole book):** warm creams and soft honey-gold as the base; dusty teal / sage green and soft sky-blue as secondaries; **the matte-red toy car is the single most saturated accent in the book** (use it sparingly so it always draws the eye); the ginger cat is a warm orange secondary accent; dandelion-yellow and star-gold as highlights. Night spreads shift to deep indigo/navy with a warm amber interior glow. Skin tones stay warm throughout.
 
@@ -53,14 +55,14 @@ AI image models forget characters between images. To keep the same boy, cat, and
 
 - **THE HOME:** a cozy, sunlit craftsman-style house — warm honey-wood floors, cream and soft-sage walls, a woven rug, houseplants, framed family photos, lots of soft cushions. Lived-in and warm, never cluttered or messy.
 - **THE BIG WINDOW (the book's visual anchor):** a large multi-pane (grid) window in the living room with a **wide wooden sill** the cat sits on, flanked by **cream linen curtains**, a small potted plant on one corner of the sill. Recurs in S1, S2, S3, S6, S7, S10, S12 — draw it the same each time.
-- **THE BOY'S BEDROOM:** a low wooden bed with soft teal bedding and a star-patterned quilt, a small round rug, a shelf of toys. (S6, S9.)
-- **THE NURSERY:** a wooden crib with sage bedding, a hanging mobile of felt stars and clouds, a soft cream rug, a little armchair. A warm amber nightlight. (S9, S11, S12.)
+- **THE BOY'S BEDROOM:** a low wooden bed with soft teal bedding and a star-patterned quilt, a small round rug, a shelf of toys. (S6.)
+- **THE NURSERY:** a wooden crib with sage bedding, a hanging mobile of felt stars and clouds, a soft cream rug, a little armchair. A warm amber nightlight. (S9, S12.) *(S11, the first meeting, happens in the home entryway/living room, not the nursery.)*
 - **THE YARD:** a small sunny backyard with green grass and a scatter of dandelions, a wooden fence, one leafy tree. (S4.)
 
 **RECURRING PROPS (continuity — introduce, then pay off):**
 - **The matte-red toy car:** a small, rounded, classic matte-red toy car (wood/tin look, no branding). Introduced on the windowsill in S1; featured S5; "kept ready" on a shelf S9; on the nursery shelf S12.
 - **The bright star:** one especially large, warm-golden twinkling star in the night sky (S6, S12).
-- **The crayon star drawing:** a child's yellow crayon drawing of a five-point star on paper, taped to the wall/window; the boy makes/keeps it in S9, and it stays taped up in S11 and S12.
+- **The crayon star drawing:** a child's yellow crayon drawing of a five-point star on paper, taped to the nursery wall; the boy makes and tapes it up in S9, and it stays on the wall in S12. (Not visible in S11, which is set in the entryway/living room.)
 - **The swaddle blanket:** cream knit with the small red star (the baby, S11–S12).
 - **The birds:** two or three little brown-and-blue songbirds outside the window (S3), can cameo elsewhere outside.
 
@@ -102,10 +104,10 @@ AI image models forget characters between images. To keep the same boy, cat, and
 
 ### SPREAD 2 — "I'll show you the rain"
 **Locked text:** *When you get here, / I'll show you the rain. / How it taps on the window, / how it makes the whole world shine. / I'll catch some in my hands for you.*
-**Camera:** close-medium on the boy at the glass, from slightly outside looking in OR over his shoulder looking out.
+**Camera:** from just outside the house, looking in at the boy through the rain-streaked window.
 **Emotion:** quiet delight and wonder.
 
-> [STYLE TOKEN] Landscape composition. Cozy interior on a rainy day, cool silvery daylight. [BOY token] stands at the large multi-pane living-room window, both palms and nose nearly touching the glass, looking out at the rain with a soft delighted smile and round curious eyes; his breath lightly fogs the glass. Raindrops streak and bead down the window; blurred green garden and grey sky beyond. Warm interior glow behind him contrasts the cool rain. [CAT token] sits on the windowsill watching a single sliding raindrop, paw half-raised. A potted plant on the sill. Palette: cool silver-blues on the glass, warm cream-and-honey interior, red toy car just visible on a shelf behind. Peaceful, snug mood. Leave calm space along the top for text. [GLOBAL NEGATIVES]
+> [STYLE TOKEN] Landscape composition. View from just outside the house, looking in through a large rain-streaked multi-pane window on a rainy day, cool silvery daylight. Inside, [BOY token] presses close to the glass with his hands cupped against the pane, as if trying to catch the raindrops sliding down the other side; his nose is almost to the glass and his face is bright with soft delight and round curious eyes, his breath lightly fogging a small patch. Raindrops streak and bead down the glass between the viewer and the boy; behind him the warm honey-and-cream interior glows cozily against the cool grey rain. [CAT token] sits on the windowsill inside, watching a single sliding raindrop with one paw raised. A small potted plant on the sill. Palette: cool silver-blues on the wet glass, warm cream-and-honey interior. Peaceful, snug, wistful mood. Leave calm space along the top for text. [GLOBAL NEGATIVES]
 
 ---
 
@@ -177,7 +179,7 @@ AI image models forget characters between images. To keep the same boy, cat, and
 **Camera:** dynamic — boy mid-run toward the window, motion and light bursting in.
 **Emotion:** explosive joy, anticipation breaking open.
 
-> [STYLE TOKEN] Landscape composition, warm bright late-afternoon golden light flooding in. [BOY token] runs full-tilt across the living room toward the big multi-pane window, arms flung back, mouth open in a huge joyful shout, eyes bright and wide, hair bouncing — full of motion and excitement. Through the window, warm golden light pours in and a car is just pulling into the driveway outside. A cushion tumbles, the woven rug ruffles under his feet to show speed. [CAT token] startles awake, ears up. Palette: bright warm golds and creams, hopeful and luminous, red toy car on the sill catching light. Exuberant, joyful, breathless mood. Leave calm space in a corner for text. [GLOBAL NEGATIVES]
+> [STYLE TOKEN] Landscape composition, warm bright late-afternoon golden light flooding in. [BOY token] runs full-tilt across the living room toward the big multi-pane window, arms flung back, mouth open in a huge joyful shout, eyes bright and wide, hair bouncing — full of motion and excitement. Through the window, warm golden light pours in and a car is just pulling into the driveway outside. A cushion tumbles, the woven rug ruffles under his feet to show speed. [CAT token] startles awake, ears up. Palette: bright warm golds and creams, hopeful and luminous. Exuberant, joyful, breathless mood. Leave calm space in a corner for text. [GLOBAL NEGATIVES]
 
 ---
 
@@ -186,7 +188,7 @@ AI image models forget characters between images. To keep the same boy, cat, and
 **Camera:** intimate close-up on the baby's tiny hand around the boy's finger, faces near.
 **Emotion:** the emotional peak — awe, tenderness, holy quiet.
 
-> [STYLE TOKEN] Landscape composition, the warmest glowing golden-hour light in the book. Intimate close scene: [MAMA token] kneels holding [BABY token] swaddled in the cream knit blanket with the small red star, [PAPA token] leaning in close beside them with a tearful proud smile. [BOY token] leans over the baby with an expression of pure hushed awe — wide shining eyes, softly parted lips, eyebrows raised — whispering. The focal point: the **baby's tiny hand wrapped around the boy's one outstretched finger**, rendered clearly and tenderly in the center of the frame. Soft-focus cozy home entryway/living room around them, warm light haloing the family. [CAT token] winds around their ankles. Palette: glowing warm golds, cream, soft skin tones, the red star on the blanket a tiny focal accent. Overwhelming tenderness, love, wonder. Leave calm warm space above for text. [GLOBAL NEGATIVES]
+> [STYLE TOKEN] Landscape composition, the warmest glowing golden-hour light in the book. An intimate close-up centered on the meeting of hands: the **baby's tiny hand, with exactly five little fingers, gently curling around the boy's one outstretched finger**, both hands rendered clearly and tenderly with correct, natural anatomy, held at the center of the frame. Just above and behind, in soft focus, [BOY token] leans in with an expression of pure hushed awe (wide shining eyes, softly parted lips, raised eyebrows), whispering. Beyond him, blurred into a warm golden halo, is the gentle suggestion of [MAMA token] cradling [BABY token] swaddled in the cream knit blanket with the small red star, and [PAPA token]'s tearful proud smile just behind. The whole family and cozy home entryway melt into soft focus so the two joined hands stay the sharp focal point. Palette: glowing warm golds, cream, soft skin tones, the small red star on the blanket a tiny accent. Overwhelming tenderness, love, and wonder. Leave calm warm space above for text. [GLOBAL NEGATIVES]
 
 ---
 
@@ -209,7 +211,7 @@ AI image models forget characters between images. To keep the same boy, cat, and
 - [ ] Cat: ginger tabby, white chest/paws, green eyes — present and singular.
 - [ ] Same big multi-pane window with wide wooden sill + cream curtains in all window spreads.
 - [ ] Red toy car present where required (S1, S5, S9, S12) and matte red.
-- [ ] The bright star matches (S6, S12); the crayon star drawing appears S9→S11→S12.
+- [ ] The bright star matches (S6, S12); the crayon star drawing appears S9→S12 (nursery; not in S11).
 - [ ] Baby's blanket = cream knit with one small red star (S11, S12).
 - [ ] Mama in sage-green cardigan; Papa in rust plaid.
 - [ ] Lighting matches the time-of-day arc (Section 4).
