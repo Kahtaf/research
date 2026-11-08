@@ -1,0 +1,242 @@
+{
+  "attempt_files": {
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/FAILED.json": {
+      "bytes": 130,
+      "sha256": "006710f6c6fb8e8755ae0bd62932a15178093b6df76618820191a85196371486"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/Connectivity/bpf/loader/NetBpfLoad.cpp": {
+      "bytes": 74464,
+      "sha256": "49548c50cea266cbbbedee318374179d202cb59cd2e22e612276047890c129a3"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/Connectivity/bpf/netd/BpfHandler.cpp": {
+      "bytes": 29948,
+      "sha256": "ed2538a9eed9a59b76d2dec2ac62070dea2d98020cafacd940edbc146851b617"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/Connectivity/bpf/progs/netd.c": {
+      "bytes": 64606,
+      "sha256": "7dc4fa02952c0268737dc9aad20a0571b55df255f878506a4db91c1d962713b6"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/arch/arm64/boot/dts/mediatek/asus-p00a.dts": {
+      "bytes": 29663,
+      "sha256": "d5b630b1a943788a3b5b1a341c9cd56e3d551c0462333f480066d693e1e9b14c"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/arch/arm64/configs/asus_p00a_defconfig": {
+      "bytes": 10954,
+      "sha256": "364ee3bbda2f7c8a2bf16508fff9da1a070de012ceecfb13209086240aaedde2"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/drivers/misc/mediatek/connectivity/Kconfig": {
+      "bytes": 8887,
+      "sha256": "63db717d7182bf58737c34bfc0b1cc0b4e272bc4bdaa91e22945e78eaeb94bb9"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/drivers/misc/mediatek/connectivity/Makefile": {
+      "bytes": 1787,
+      "sha256": "e305bb620c6c67ebf70d07cdb5343bc7f057f933c11d84b667f73c784111da64"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c": {
+      "bytes": 4592,
+      "sha256": "6e71de85b4f0a3c1a23d49394b46d572b95d9fec229a49abbefb99dae67fdf28"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_status.inc": {
+      "bytes": 976,
+      "sha256": "f9e0f304718e712476252fe6f5060738e29ec2d62afcc25ba115a662aebc603d"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c": {
+      "bytes": 5882,
+      "sha256": "7fc8fbafb07951381ea3c27fc24ca5f02254248f3bb158e2728093925d2609af"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/drivers/misc/mediatek/power/mt8163/asus_p00a/control.h": {
+      "bytes": 7604,
+      "sha256": "544008ef4529af170d254abcb115747dac87a206115e41e7f2c2deb7c1a5bbba"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc": {
+      "bytes": 3915,
+      "sha256": "f789330638f9be56127029f30a8ed30eba427ca0000cdebb59b74385df42991a"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/drivers/misc/mediatek/power/mt8163/asus_p00a/policy.h": {
+      "bytes": 2823,
+      "sha256": "140424b0e487a45437f907084d3477128bea8cc25c847890fbd389396ba41520"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/drivers/misc/mediatek/sensors-1.0/accelerometer/Kconfig": {
+      "bytes": 915,
+      "sha256": "e7efd9f4fccd41b9b8d58af79eb91261fc441a497ec6ee12a65a0d395475c7d7"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/drivers/misc/mediatek/sensors-1.0/accelerometer/Makefile": {
+      "bytes": 403,
+      "sha256": "12fe27ee68eb7a64cc56abe7120d932e155c05dae3c1c6d9cfa70a68ea1dfcc1"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/drivers/misc/mediatek/sensors-1.0/accelerometer/accel.c": {
+      "bytes": 22378,
+      "sha256": "b18183d44bd25d9e8aeb07d300f6b745b6a113073ffda00c04d01f11eab50c3d"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/drivers/misc/mediatek/sensors-1.0/hwmon/sensor_attributes/sensor_attr.c": {
+      "bytes": 3747,
+      "sha256": "e1adb590e4130e8a7ba7ebaca4d9be07435f2e116b6fc8df2c2e620d6d4ff18d"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/drivers/power/supply/mediatek/battery/asus_p00a_soc.inc": {
+      "bytes": 9076,
+      "sha256": "a93ce6b4ad877f9d99ac70078a66025ea8eca0fdd57c8dcbc78a79b92cd24a9f"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/drivers/power/supply/mediatek/battery/battery_common.c": {
+      "bytes": 148418,
+      "sha256": "6d453ed6bdb56bb1b6e40482c7ab6196f01b2af32d9322f68e56e09eee3bd7f1"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/include/linux/cgroup-defs.h": {
+      "bytes": 21116,
+      "sha256": "633242d25cc0f96ea85836701491f0c6c336959ad1fbef135d0acf8cfb8aa86c"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/include/linux/power/asus_p00a_battery.h": {
+      "bytes": 901,
+      "sha256": "79316291d073c5bf653802a0ef80d781f1c270636b17a6c5751afe6637c57cb7"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/include/uapi/linux/bpf.h": {
+      "bytes": 19446,
+      "sha256": "0acaebd9f2d05a8854ac4ef2315b2058f3f64dc61bd89fd918ca80b89aeddd05"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/kernel/bpf/Makefile": {
+      "bytes": 326,
+      "sha256": "1bb0955b7a4e228af836149441ee2257d80533423b365e6bab007897c7055c98"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/kernel/bpf/syscall.c": {
+      "bytes": 28370,
+      "sha256": "4633a05b44be09da4394c42ec4b13ba7173e5a3ffc693ca523b28e4b1bd4d09d"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/kernel/cgroup.c": {
+      "bytes": 186283,
+      "sha256": "cec00ed21374e7e44d88974fe3593da64ebc990a25afae082ece4df3815867d1"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/kernel/cpuset.c": {
+      "bytes": 79350,
+      "sha256": "9d7ca32d63e04fd6aadd0d2afcf42baf6001ee7d020f19c79cfafb2707ff3015"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/kernel/net/core/filter.c": {
+      "bytes": 82340,
+      "sha256": "e2cf9265a249356213bfd0780ce4fbacde814505407875095de9b01bfb40971a"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/logs/full-build-r5.exit-code": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/logs/full-build-r5.finished": {
+      "bytes": 26,
+      "sha256": "28fe7f126dce2c10f71e6c2ac6b46de3db0d1e211b25be55599fd750084aaf49"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/logs/full-build-r5.log": {
+      "bytes": 22563352,
+      "sha256": "4f317efdc2a8583190ca275084ccf976632573fe32a5c57e274d04d10e7570b2"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/logs/full-build-r5.pid": {
+      "bytes": 6,
+      "sha256": "bc5bd66933c91178b8690af15f4d344b0e7a7814b6b35f28f1ca34ccd8f085de"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/logs/full-build-r5.started": {
+      "bytes": 26,
+      "sha256": "4e3bc24f179c505824a545f73b3f9215fc55146f1db6e3b0be39a922d8fa5cee"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/logs/full-build-r5.vars": {
+      "bytes": 20863,
+      "sha256": "a78bfa9a87c674f2794e97c185303163ade7235f185e85ec3785dfea6a602855"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/platform_bpf/loader/bpfloader.rs": {
+      "bytes": 29355,
+      "sha256": "1548dffa03b5091bbb9b7cfcce92495ee2167f417e90b431117cf31ea77b4bd2"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/product/BoardConfig.mk": {
+      "bytes": 3243,
+      "sha256": "3b0c50fa36d60a16b51efbe7b953523a6f2309573b7ff58c645103b22b9e4d8f"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/product/device.mk": {
+      "bytes": 3416,
+      "sha256": "679cbabca032d0d6925e09fc4e2b4e749f058bfa7b9f0b6b15c4981cb66b43c1"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/product/prebuilt/Image.gz-dtb": {
+      "bytes": 7230152,
+      "sha256": "0d530f1f59bb0a87a18f4ced4fb241845e916baa16676675e6af80e2bd0f5acf"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/product/rootdir/ueventd.rc": {
+      "bytes": 1106,
+      "sha256": "94782630f7f82fd1c6a6a1804dd6c6cfd92b560d72b8a128337ac63d5a5068b7"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/vold/model/PublicVolume.cpp": {
+      "bytes": 16929,
+      "sha256": "0e17fccedefabb20e2d8650252af8c765af68378a1d853e0fbaa6a8bd1ea67fd"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/before/wificond.rc": {
+      "bytes": 139,
+      "sha256": "c7b8e3a39ada519dd847c295dfaaf8e7f956bfbc07c5bab6929ae3e1052e7831"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/build-consumed": {
+      "bytes": 8,
+      "sha256": "df4d263e7f81dc151cfa9c43fdcdc2f89318c7f04b5b25cac024723d6781b1a6"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/integration.json": {
+      "bytes": 13154,
+      "sha256": "f57c2f9bc0ba4d1b1b5b1965e7f51a2179d098d7c1449b4c862ca1ca585e1339"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/launch.json": {
+      "bytes": 78,
+      "sha256": "9d56f7b5bfeda4fd3a9d5dbd9f528c05d046adef7d047b136a80adc78d0c0c29"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/postimages.json": {
+      "bytes": 47006,
+      "sha256": "78d35be52706f950050f2d98b71128e0c1bfacf988bd884d09c0d8b4531a99a3"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/preservation.json": {
+      "bytes": 39160,
+      "sha256": "8dcc6e73db6087bd41057f666fd57e0c97aaa8a40f7dce3a2615d3de4a1d9d45"
+    },
+    "/srv/android/asus-reviewed-build-kit/r3/attempt/started.json": {
+      "bytes": 1177,
+      "sha256": "4270c3a6cdef08bbf9da6ec5e295c7ac64349c82aa7a03347a18d0d368a04758"
+    }
+  },
+  "logs": {
+    "/srv/android/asus-device-product/logs/full-build-r5.exit-code": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "/srv/android/asus-device-product/logs/full-build-r5.finished": {
+      "bytes": 26,
+      "sha256": "28fe7f126dce2c10f71e6c2ac6b46de3db0d1e211b25be55599fd750084aaf49"
+    },
+    "/srv/android/asus-device-product/logs/full-build-r5.log": {
+      "bytes": 22563352,
+      "sha256": "4f317efdc2a8583190ca275084ccf976632573fe32a5c57e274d04d10e7570b2"
+    },
+    "/srv/android/asus-device-product/logs/full-build-r5.pid": {
+      "bytes": 6,
+      "sha256": "bc5bd66933c91178b8690af15f4d344b0e7a7814b6b35f28f1ca34ccd8f085de"
+    },
+    "/srv/android/asus-device-product/logs/full-build-r5.started": {
+      "bytes": 26,
+      "sha256": "4e3bc24f179c505824a545f73b3f9215fc55146f1db6e3b0be39a922d8fa5cee"
+    },
+    "/srv/android/asus-device-product/logs/full-build-r5.vars": {
+      "bytes": 20863,
+      "sha256": "a78bfa9a87c674f2794e97c185303163ade7235f185e85ec3785dfea6a602855"
+    },
+    "/srv/android/asus-device-product/logs/full-build-r6.exit-code": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "/srv/android/asus-device-product/logs/full-build-r6.finished": {
+      "bytes": 33,
+      "sha256": "250ea6e99cd09ae67e2f21cb4911ace3dd43e776886c7911e46247d31341fe39"
+    },
+    "/srv/android/asus-device-product/logs/full-build-r6.log": {
+      "bytes": 11971,
+      "sha256": "ee061d878227210f7c2330bb36ca13f76a9daa37e354a178d733327695cfd4e0"
+    },
+    "/srv/android/asus-device-product/logs/full-build-r6.pid": {
+      "bytes": 8,
+      "sha256": "30dd753436cc0419078018048f3a902862b822491700960f75d7e5b274586056"
+    },
+    "/srv/android/asus-device-product/logs/full-build-r6.started": {
+      "bytes": 33,
+      "sha256": "774362f5c4c88aa12ee99ba3eb43d3049408504a08a557956f4ee06c9dad26e0"
+    },
+    "/srv/android/asus-device-product/logs/full-build-r6.vars": {
+      "bytes": 21226,
+      "sha256": "f0db3ffb4fc00bd46f506e7b2f09f24f2447e5e0dd90e54576c294cc1a7d13ef"
+    }
+  }
+}

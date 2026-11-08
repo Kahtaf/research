@@ -1,0 +1,122 @@
+{
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/source/install.diff": {
+    "bytes": 4455,
+    "sha256": "bebe98e444d50517164b07885abe8d3e80c56489b0e48ded7ae1936a73cedee3",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/source/legacy_adb.py": {
+    "bytes": 1511,
+    "sha256": "6d00836d7e0cc28834f858b0fd6ab5515ffe7b3ecd37a6da6ba1f66b43597731",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/source/init.diff": {
+    "bytes": 11195,
+    "sha256": "ddf87d7803c09037b417fdeb37b3d6b43396ffc74019494dcaf7209f08785241",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/source/format-only.diff": {
+    "bytes": 1431,
+    "sha256": "c2fc2a3eb712e7a8cbb59e2bef8b58f31aed15eafc51cfde470837d33b26acda",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/source/bootformat.py": {
+    "bytes": 3936,
+    "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/source/init.c": {
+    "bytes": 10602,
+    "sha256": "d6cf66e19d1f2638941b0f14b0a3428db74b6867bf1761c3491d14188db8e4ad",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/source/adb": {
+    "bytes": 164,
+    "sha256": "820fd0d66e75ee98701798e385f04e48a026ec7abd22ec6a67e9760ed0829e82",
+    "mode": "0o755"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/source/install.py": {
+    "bytes": 10077,
+    "sha256": "08c0063c292ae72d5bc00644370a010e7d4c789dfe878b3992a586cfdf509bc8",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/source/fdt.py": {
+    "bytes": 3024,
+    "sha256": "1bd710a08eae5677689a52042a621f39dcd57e49197749cf2833eead1fc0dcae",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/scripts/package.py": {
+    "bytes": 8983,
+    "sha256": "988e2aecb79104a4d6633c9ecf9a7d3d7a4925c39cb8f90814bf4d3a18a5f4d1",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/scripts/compile_once.py": {
+    "bytes": 3030,
+    "sha256": "d4b169e478256c033d01b49e3999ef99b36eb32bef8b2a75374d5ac4ed67a5b5",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/scripts/compile_vm_once.py": {
+    "bytes": 4286,
+    "sha256": "b2596ab9082360f7bcbc699e55f36bdeb66a8791d69b35314e9cc3210f032aa0",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/scripts/finalize.py": {
+    "bytes": 14966,
+    "sha256": "9a0c693d261bd678976611273be6a3f54298b28e3a16555673def6f95fae4f13",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/scripts/plan_only.py": {
+    "bytes": 3593,
+    "sha256": "90e71c11fb610a3c878dff2d743d868a5f9500be7bbc265f7b1314c4f0e4f6f1",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/scripts/check_source_scope.py": {
+    "bytes": 4548,
+    "sha256": "52e61d8494fb92ac80c4bbe59488511d0cd5061dd06f4057d607d9f7ef476a2e",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/artifacts/init": {
+    "bytes": 598000,
+    "sha256": "6ea7aa4736a74f8e391adfb07a4cc934fb9dbe57ca1cfa1cf61d16cb160de401",
+    "mode": "0o755"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/artifacts/candidate.p10.raw": {
+    "bytes": 16740352,
+    "sha256": "88f79cc02d71bfe0708d6be77d66d06d3107befcee3d5d0225ecc8134942f617",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/artifacts/Image.gz-dtb": {
+    "bytes": 7713482,
+    "sha256": "97b7e1199d607f852bf52ff7766e8aa079fee92986cd3d473b765a45adbf45fb",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/artifacts/resolved.config": {
+    "bytes": 126443,
+    "sha256": "708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/artifacts/candidate.img": {
+    "bytes": 7974912,
+    "sha256": "13033865fe5c88952efe2d5e429246a76a08689be604fb89a4776afa990c4ab8",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/artifacts/ramdisk.wrapped": {
+    "bytes": 256885,
+    "sha256": "19e767f7a5ac089fe075037836ee625e1bfdb98369ebc4bfe9bfe08f5a41edb7",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/artifacts/initramfs.cpio.gz": {
+    "bytes": 256373,
+    "sha256": "811135232de70c79a25a246e32528b8dac6366687f54208d706cacd6dfead9a1",
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-runnable-timer-format-fix/artifacts/runtime.dtb": {
+    "bytes": 63737,
+    "sha256": "90a4fb96b62bdf93ae285f6a61cc8c4401af895a6d3920eac905d6db945d9355",
+    "mode": "0o644"
+  },
+  "2026-11-06-asus-product-input-build-kit/scripts/remote.py": {
+    "bytes": 545,
+    "sha256": "c22884576a780cbb1ddf5e1b02f0b6e9d6eb5c25f8d9bc82fb077543f05cf4ab",
+    "mode": "0o644"
+  }
+}

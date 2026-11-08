@@ -1,0 +1,2829 @@
+{
+  "fixture": "Actual AArch64 dispatch instructions; externals/constructors stubbed",
+  "native_vendor_execution": false,
+  "passed": 68,
+  "tests": [
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "static",
+      "scenario": "missing",
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "static",
+      "scenario": "common_only",
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_COMMON",
+          "second_arg": 1048608,
+          "status": 0
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "static",
+      "scenario": "sensor_present",
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 1048608,
+          "status": 0
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "static",
+      "scenario": "sensor_errors",
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 1048608,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_COMMON",
+          "second_arg": 1048608,
+          "status": -5
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "missing",
+      "template": 1,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "missing",
+      "template": 2,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "missing",
+      "template": 3,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "missing",
+      "template": 4,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "missing",
+      "template": 5,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "missing",
+      "template": 6,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_present",
+      "template": 1,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 1,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_present",
+      "template": 2,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 2,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_present",
+      "template": 3,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 3,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_present",
+      "template": 4,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 4,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_present",
+      "template": 5,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 5,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_present",
+      "template": 6,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 6,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "common_present",
+      "template": 1,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 1,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "common_present",
+      "template": 2,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 2,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "common_present",
+      "template": 3,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 3,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "common_present",
+      "template": 4,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 4,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "common_present",
+      "template": 5,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 5,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "common_present",
+      "template": 6,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 6,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_missing",
+      "template": 1,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 1,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_missing",
+      "template": 2,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 2,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_missing",
+      "template": 3,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 3,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_missing",
+      "template": 4,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 4,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_missing",
+      "template": 5,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 5,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_missing",
+      "template": 6,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 6,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_error",
+      "template": 1,
+      "return": -5,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 1,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 1,
+          "status": -5
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_error",
+      "template": 2,
+      "return": -5,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 2,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 2,
+          "status": -5
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_error",
+      "template": 3,
+      "return": -5,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 3,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 3,
+          "status": -5
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_error",
+      "template": 4,
+      "return": -5,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 4,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 4,
+          "status": -5
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_error",
+      "template": 5,
+      "return": -5,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 5,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 5,
+          "status": -5
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_error",
+      "template": 6,
+      "return": -5,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "second_arg": 6,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 6,
+          "status": -5
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "static",
+      "scenario": "missing",
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "static",
+      "scenario": "common_only",
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_COMMON",
+          "second_arg": 1048608,
+          "status": 0
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "static",
+      "scenario": "sensor_present",
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 1048608,
+          "status": 0
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "static",
+      "scenario": "sensor_errors",
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 1048608,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_COMMON",
+          "second_arg": 1048608,
+          "status": -5
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_COMMON"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "missing",
+      "template": 1,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "missing",
+      "template": 2,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "missing",
+      "template": 3,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "missing",
+      "template": 4,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "missing",
+      "template": 5,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "missing",
+      "template": 6,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_present",
+      "template": 1,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 1,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_present",
+      "template": 2,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 2,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_present",
+      "template": 3,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 3,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_present",
+      "template": 4,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 4,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_present",
+      "template": 5,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 5,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_present",
+      "template": 6,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 6,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "common_present",
+      "template": 1,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 1,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "common_present",
+      "template": 2,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 2,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "common_present",
+      "template": 3,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 3,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "common_present",
+      "template": 4,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 4,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "common_present",
+      "template": 5,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 5,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "common_present",
+      "template": 6,
+      "return": 0,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 6,
+          "status": 0
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_missing",
+      "template": 1,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 1,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_missing",
+      "template": 2,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 2,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_missing",
+      "template": 3,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 3,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_missing",
+      "template": 4,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 4,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_missing",
+      "template": 5,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 5,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_missing",
+      "template": 6,
+      "return": -2,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 6,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_error",
+      "template": 1,
+      "return": -5,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 1,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 1,
+          "status": -5
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_error",
+      "template": 2,
+      "return": -5,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 2,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 2,
+          "status": -5
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_error",
+      "template": 3,
+      "return": -5,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 3,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 3,
+          "status": -5
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_error",
+      "template": 4,
+      "return": -5,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 4,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 4,
+          "status": -5
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_error",
+      "template": 5,
+      "return": -5,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 5,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 5,
+          "status": -5
+        }
+      ]
+    },
+    {
+      "sensor": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "path": "request",
+      "scenario": "sensor_error_common_error",
+      "template": 6,
+      "return": -5,
+      "events": [
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "second_arg": 6,
+          "status": -22
+        },
+        {
+          "event": "dlsym",
+          "handle": "0x0",
+          "symbol": "constructCustRequestMetadata_COMMON"
+        },
+        {
+          "event": "constructor_stub",
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "second_arg": 6,
+          "status": -5
+        }
+      ]
+    }
+  ]
+}

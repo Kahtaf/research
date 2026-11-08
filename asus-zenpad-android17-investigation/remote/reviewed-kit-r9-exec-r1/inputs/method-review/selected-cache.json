@@ -1,0 +1,252 @@
+{
+  "read_started_ns": 1794012578723518543,
+  "selected_paths": [
+    "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader",
+    "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader",
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/PublicVolume.o",
+    "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold",
+    "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/vold",
+    "out/target/product/p00a/system/bin/bpfloader",
+    "out/target/product/p00a/system/bin/vold",
+    "system/bpf/loader/bpfloader.rs",
+    "system/vold/model/PublicVolume.cpp",
+    "prebuilts/clang/host/linux-x86/clang-r584948b/bin/clang++",
+    "prebuilts/rust-toolchain/linux-x86/1.93.1/bin/rustc"
+  ],
+  "fs_state_entries": [
+    {
+      "name": "/srv/android/lineage24/system/bpf/loader/bpfloader.rs",
+      "mtime_ns": 1794003963331220262,
+      "digest": {
+        "hash": "babbccf603e600a2b77f5c71cbf6b1b978f72c176fd33bfab610ff2ba8956250",
+        "size_bytes": 29735
+      },
+      "cmd_hash_hex": "",
+      "edge_hash_hex": "",
+      "action": null,
+      "updated_time_ns": 1794003963331220262,
+      "local": 0,
+      "target": ""
+    },
+    {
+      "name": "/srv/android/lineage24/system/vold/model/PublicVolume.cpp",
+      "mtime_ns": 1794003963337499212,
+      "digest": {
+        "hash": "c5147ca901fb1c4678b34c6727e63eb325e1ad21de2cdcbcb19b8cf9af1d49c9",
+        "size_bytes": 16950
+      },
+      "cmd_hash_hex": "",
+      "edge_hash_hex": "",
+      "action": null,
+      "updated_time_ns": 1794003963337499212,
+      "local": 0,
+      "target": ""
+    },
+    {
+      "name": "/srv/android/lineage24/prebuilts/rust-toolchain/linux-x86/1.93.1/bin/rustc",
+      "mtime_ns": 1793905137750193563,
+      "digest": {
+        "hash": "ae9a00cb9f8af573e88027ee8c598842b5df68c029948e954cde7fae89db7b7d",
+        "size_bytes": 4200576
+      },
+      "cmd_hash_hex": "",
+      "edge_hash_hex": "",
+      "action": null,
+      "updated_time_ns": 1793905137750193563,
+      "local": 0,
+      "target": ""
+    },
+    {
+      "name": "/srv/android/lineage24/out/target/product/p00a/system/bin/bpfloader",
+      "mtime_ns": 1794007898929071108,
+      "digest": {
+        "hash": "b6a9888e623a44cea98ead533c304225d6ef2e63237ee1769857087cfb1f2737",
+        "size_bytes": 83008
+      },
+      "cmd_hash_hex": "27773d77493904c7927da9ab257e9751645b29d1ea7ecd10193e4ecbbb1df4a4",
+      "edge_hash_hex": "18082c1687c4d99a6d18b52d16e9959a760079d4336a31d5dbbfbeb079af912b",
+      "action": null,
+      "updated_time_ns": 1794007898929071108,
+      "local": 1,
+      "target": ""
+    },
+    {
+      "name": "/srv/android/lineage24/out/target/product/p00a/system/bin/vold",
+      "mtime_ns": 1794007911204266814,
+      "digest": {
+        "hash": "74b1e39da028cb71505681ba648bc1f51b640d6cd47f018d5a26c202aca662b7",
+        "size_bytes": 1049704
+      },
+      "cmd_hash_hex": "900c67baa693c6bc75a949af2394ed01bd91ac2961058d6a2ab9a209a7332d71",
+      "edge_hash_hex": "03f14129dd0791000722f3159d8bda077978bc180e4eeac48265754800f2dac9",
+      "action": null,
+      "updated_time_ns": 1794007911204266814,
+      "local": 1,
+      "target": ""
+    },
+    {
+      "name": "/srv/android/lineage24/prebuilts/clang/host/linux-x86/clang-r584948b/bin/clang++",
+      "mtime_ns": 1793905475678888491,
+      "digest": {
+        "hash": "15261046b6ea9504da0ae57b9d65ebc869ab1942aecb1af2819762b9b5251957",
+        "size_bytes": 3805269
+      },
+      "cmd_hash_hex": "",
+      "edge_hash_hex": "",
+      "action": null,
+      "updated_time_ns": 1793905475678888491,
+      "local": 0,
+      "target": ""
+    },
+    {
+      "name": "/srv/android/lineage24/out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/vold",
+      "mtime_ns": 1794007911188901593,
+      "digest": {
+        "hash": "74b1e39da028cb71505681ba648bc1f51b640d6cd47f018d5a26c202aca662b7",
+        "size_bytes": 1049704
+      },
+      "cmd_hash_hex": "9f864e412a371c5ae015920f6cd39eac2abf79556ce1479585387b1fb7d61d43",
+      "edge_hash_hex": "d6e08fb13207850c4efb7926fb980839c5b7463c238d6db860086e612a8ed961",
+      "action": null,
+      "updated_time_ns": 1794007911188901593,
+      "local": 1,
+      "target": ""
+    },
+    {
+      "name": "/srv/android/lineage24/out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader",
+      "mtime_ns": 1794007897601688334,
+      "digest": {
+        "hash": "b6a9888e623a44cea98ead533c304225d6ef2e63237ee1769857087cfb1f2737",
+        "size_bytes": 83008
+      },
+      "cmd_hash_hex": "7193b0cd29f9a72acacadebb7ee4866ded2872cb290309f7875ca5581ae68da5",
+      "edge_hash_hex": "b402da97ae57d0d5ac43d9ae3a0f5fb744bbc865179cafccaf86cb856ddf8baa",
+      "action": null,
+      "updated_time_ns": 1794007897601688334,
+      "local": 1,
+      "target": ""
+    },
+    {
+      "name": "/srv/android/lineage24/out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold",
+      "mtime_ns": 1794007910913411538,
+      "digest": {
+        "hash": "18daecc22adf923e2ac1c9a4401357238c314704360b89df301e00bf5e8baee2",
+        "size_bytes": 5143552
+      },
+      "cmd_hash_hex": "473cc53a9cb5053b9d557484d7d80b52455bd5a487f7313220725c0952f30e38",
+      "edge_hash_hex": "100f3212e565707b65135faa537a77b7faf8bac6cf1c8ee231e4d90a023bca6f",
+      "action": null,
+      "updated_time_ns": 1794007910965088996,
+      "local": 1,
+      "target": ""
+    },
+    {
+      "name": "/srv/android/lineage24/out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader",
+      "mtime_ns": 1794007852063802321,
+      "digest": {
+        "hash": "1d4c5429a7edadf848e8ff1128a73054411ea67a23422927a9bb215e0eb0c880",
+        "size_bytes": 298552
+      },
+      "cmd_hash_hex": "9e54e72854dcf61a4b87081d1bd1c1e4fd84bd41850a65b9d267383e82a8d0bd",
+      "edge_hash_hex": "58c0fb7692305021e3415ad0999e20cea282c354659ecf96894b15fec7b8da92",
+      "action": null,
+      "updated_time_ns": 1794007852063802321,
+      "local": 1,
+      "target": ""
+    },
+    {
+      "name": "/srv/android/lineage24/out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/PublicVolume.o",
+      "mtime_ns": 1794007844976817385,
+      "digest": {
+        "hash": "88ef0d802e89e3c90946beb171dab0e79faa4713d291f58648c0e4a4b31253ba",
+        "size_bytes": 314088
+      },
+      "cmd_hash_hex": "3bb6a30e4d40c69b1a75616ffb0430e80646dd90a350e876a22a40700cbc284c",
+      "edge_hash_hex": "a2b5b18409332f6be5a011d427e87aab123a78745a92568cabf8aae764e459ac",
+      "action": null,
+      "updated_time_ns": 1794007844976817385,
+      "local": 1,
+      "target": ""
+    }
+  ],
+  "selected_files": {
+    "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader": {
+      "bytes": 298552,
+      "mtime_ns": 1794007852063802321,
+      "sha256": "1d4c5429a7edadf848e8ff1128a73054411ea67a23422927a9bb215e0eb0c880",
+      "symlink": false
+    },
+    "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader": {
+      "bytes": 83008,
+      "mtime_ns": 1794007897601688334,
+      "sha256": "b6a9888e623a44cea98ead533c304225d6ef2e63237ee1769857087cfb1f2737",
+      "symlink": false
+    },
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/PublicVolume.o": {
+      "bytes": 314088,
+      "mtime_ns": 1794007844976817385,
+      "sha256": "88ef0d802e89e3c90946beb171dab0e79faa4713d291f58648c0e4a4b31253ba",
+      "symlink": false
+    },
+    "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold": {
+      "bytes": 5143552,
+      "mtime_ns": 1794007910913411538,
+      "sha256": "18daecc22adf923e2ac1c9a4401357238c314704360b89df301e00bf5e8baee2",
+      "symlink": false
+    },
+    "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/vold": {
+      "bytes": 1049704,
+      "mtime_ns": 1794007911188901593,
+      "sha256": "74b1e39da028cb71505681ba648bc1f51b640d6cd47f018d5a26c202aca662b7",
+      "symlink": false
+    },
+    "out/target/product/p00a/system/bin/bpfloader": {
+      "bytes": 83008,
+      "mtime_ns": 1794007898929071108,
+      "sha256": "b6a9888e623a44cea98ead533c304225d6ef2e63237ee1769857087cfb1f2737",
+      "symlink": false
+    },
+    "out/target/product/p00a/system/bin/vold": {
+      "bytes": 1049704,
+      "mtime_ns": 1794007911204266814,
+      "sha256": "74b1e39da028cb71505681ba648bc1f51b640d6cd47f018d5a26c202aca662b7",
+      "symlink": false
+    },
+    "system/bpf/loader/bpfloader.rs": {
+      "bytes": 29735,
+      "mtime_ns": 1794003963331220262,
+      "sha256": "babbccf603e600a2b77f5c71cbf6b1b978f72c176fd33bfab610ff2ba8956250",
+      "symlink": false
+    },
+    "system/vold/model/PublicVolume.cpp": {
+      "bytes": 16950,
+      "mtime_ns": 1794003963337499212,
+      "sha256": "c5147ca901fb1c4678b34c6727e63eb325e1ad21de2cdcbcb19b8cf9af1d49c9",
+      "symlink": false
+    },
+    "prebuilts/clang/host/linux-x86/clang-r584948b/bin/clang++": {
+      "bytes": 3805269,
+      "mtime_ns": 1793905475678888491,
+      "sha256": "15261046b6ea9504da0ae57b9d65ebc869ab1942aecb1af2819762b9b5251957",
+      "symlink": false
+    },
+    "prebuilts/rust-toolchain/linux-x86/1.93.1/bin/rustc": {
+      "bytes": 4200576,
+      "mtime_ns": 1793905137750193563,
+      "sha256": "ae9a00cb9f8af573e88027ee8c598842b5df68c029948e954cde7fae89db7b7d",
+      "symlink": false
+    }
+  },
+  "current_ninja_rows": [],
+  "state_before": {
+    "bytes": 56549473,
+    "mtime_ns": 1794008905091891985
+  },
+  "state_scanned_entries": 684658,
+  "state_uncompressed_payload_bytes": 197545648,
+  "state_after": {
+    "bytes": 56549473,
+    "mtime_ns": 1794008905091891985
+  },
+  "read_finished_ns": 1794012584380587559
+}

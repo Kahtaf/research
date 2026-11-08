@@ -1,0 +1,79 @@
+[
+  {
+    "source": "2026-11-06-asus-pending-recovery-request/source/uncrypt",
+    "file": "source/oem/uncrypt",
+    "bytes": 68752,
+    "sha256": "3f7e8c8ed7272540315eaef0af405a57ac701db121dd5c842a8b04be721b2671",
+    "provenance": "exact live public software; matches prior OEM system extraction"
+  },
+  {
+    "source": "2026-11-06-asus-pending-recovery-request/source/uncrypt.rc",
+    "file": "source/oem/uncrypt.rc",
+    "bytes": 390,
+    "sha256": "63b33e2a2271d0c598bca842d0e6b03564004ed1e0e2995e8dd8ed5616455e82",
+    "provenance": "exact live public software"
+  },
+  {
+    "source": "2026-11-06-asus-stock-userdata-recovery/inputs/boot__fstab.mt8163",
+    "file": "source/oem/fstab.mt8163",
+    "bytes": 2187,
+    "sha256": "9f22f786ac2fdbaa10d0d40a7f2a962a3c7008cd22c8c54d4c4454232a6bf46c",
+    "provenance": "prior boot public extraction; boot image hash 7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316; live verification remains parent gate"
+  },
+  {
+    "source": "2026-11-06-asus-stock-userdata-recovery/inputs/system__build.prop",
+    "file": "source/oem/build.prop",
+    "bytes": 7360,
+    "sha256": "d367020ccb80a0c417ef5ce442ba954ee172f9f9257a2bbf2383e42114563cb3",
+    "provenance": "prior exact OEM public system extraction"
+  },
+  {
+    "source": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/net/unix/af_unix.c",
+    "file": "source/oem/reference-kernel-af_unix.c",
+    "bytes": 65847,
+    "sha256": "bf7c956f1a2081d4635995c220d582077c2a261779aa8db53cbb2a5c94c0a73d",
+    "provenance": "ASUS Kernel_V4_7_0.zip, SHA d8b9d77a7e8b5151c2b68c96e784842a25b167cf8a7044188e7044a5fdbcd41c; 3.18.22 source OLDER than stock 3.18.35; ABI/peer semantics reference only, NOT exact running kernel proof"
+  },
+  {
+    "source": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/include/uapi/asm-generic/stat.h",
+    "file": "source/oem/reference-kernel-stat.h",
+    "bytes": 2570,
+    "sha256": "74e2cb8db164bb66642ec84ca2eedfdb2420fb53dd6b626d25bdb920a3f92498",
+    "provenance": "same older ASUS 3.18.22 public source; Linux AArch64 ABI reference"
+  },
+  {
+    "source": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/include/uapi/asm-generic/fcntl.h",
+    "file": "source/oem/reference-kernel-fcntl.h",
+    "bytes": 5360,
+    "sha256": "88767b5bc4df006b460f000ffaadafa9cf042e04564b2845bab4af97501045a0",
+    "provenance": "same older ASUS 3.18.22 public source; Linux AArch64 ABI reference"
+  },
+  {
+    "source": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/include/uapi/asm-generic/unistd.h",
+    "file": "source/oem/reference-kernel-unistd.h",
+    "bytes": 29300,
+    "sha256": "2f44a0c379d3d969b04dc6ff0b6d9745c4c63808f91e80b495efc87d3a9639b6",
+    "provenance": "same older ASUS 3.18.22 public source; Linux AArch64 ABI reference"
+  },
+  {
+    "source": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/include/uapi/asm-generic/socket.h",
+    "file": "source/oem/reference-kernel-socket.h",
+    "bytes": 1826,
+    "sha256": "817501db0187f76f386a69d337b4abf1f127c573173f0bf53ce391da66b81990",
+    "provenance": "same older ASUS 3.18.22 public source; Linux AArch64 ABI reference"
+  },
+  {
+    "source": "2026-11-06-asus-pending-recovery-request/evidence/parent-findings.json",
+    "file": "evidence/parent-parent-findings.json",
+    "bytes": 1217,
+    "sha256": "dba66a31e68f62000641dd42eb949b3caba071c43eb2eac68431f7d4ec153a36",
+    "provenance": "parent aggregate receipt only; private paths named but never followed"
+  },
+  {
+    "source": "2026-11-06-asus-pending-recovery-request/evidence/before-capture-ac7cd9c04571db33.json",
+    "file": "evidence/parent-before-capture-ac7cd9c04571db33.json",
+    "bytes": 673,
+    "sha256": "06d81ec8e00934f86677faf1e65a0167b00e79d2045221020831276ed30789d9",
+    "provenance": "parent aggregate receipt only; private paths named but never followed"
+  }
+]

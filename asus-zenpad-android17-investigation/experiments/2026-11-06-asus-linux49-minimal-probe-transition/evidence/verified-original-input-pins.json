@@ -1,0 +1,362 @@
+{
+  "2026-11-05-asus-root-hardware-validation/sources/mtk-su-mirror-b": {
+    "bytes": 65144,
+    "sha256": "328632e853ff6427af9f35cb83a91d9e960f35d01188ee66d46ae9c7ce7c7827"
+  },
+  "2026-11-06-asus-bmc156-full-kernel/artifacts/Image.gz-dtb": {
+    "bytes": 7716897,
+    "sha256": "e9cde06e85e752aec0433ea37fa926c31b4f7a72cd55453762ec6870e5bb5bf1"
+  },
+  "2026-11-06-asus-bmc156-full-kernel/artifacts/resolved.config": {
+    "bytes": 126472,
+    "sha256": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/DELIVERY_PINS.json": {
+    "bytes": 5196,
+    "sha256": "556b7d3a2720e7957d595bead5060f19900191fab44d6e829bdba5932d8de7aa"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/HANDOFF.md": {
+    "bytes": 10513,
+    "sha256": "cfa89bbc811898da397223e8b68afb97f216259c11051dd004a83693a68b6134"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/README.md": {
+    "bytes": 667,
+    "sha256": "deb3a582aae017a9f026e8b6a9c84250cdbd460c68c3dcb4a0ae763a31ffa50b"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/artifacts/candidate.img": {
+    "bytes": 8005632,
+    "sha256": "5be0ed4cb9cb24a27853620a1a7870db63f5ba0eed75f587adf5c0850f5278a4"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/artifacts/report-fixture.fat": {
+    "bytes": 65536,
+    "sha256": "58d286b924e4b142325e2d3174e4b598a42d82742a5667f6e0c620d975e062ae"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/evidence/build-log.json": {
+    "bytes": 12286,
+    "sha256": "5ad36a37ea9d4a07147e9fa20a9986d673e128819aed2985229dba27e36b0d61"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/evidence/build-summary.stdout": {
+    "bytes": 6021,
+    "sha256": "94a65cfb3dfcb07cc2571deca2162c0e04f5779eb31f28ad33c0ee069cd4a4ac"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/evidence/external-input-preservation.json": {
+    "bytes": 1110,
+    "sha256": "f9f35e5dee363c77771ee4ebe83aabe87a86636281f9f77ba48b6cd52755ed8e"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/evidence/independent-validation.json": {
+    "bytes": 2862,
+    "sha256": "2104d6ca5626b10aa48ff25b0eaf6ebfcecbee6610940fa8e7a9665a0336065b"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/evidence/local-reproduction.json": {
+    "bytes": 639,
+    "sha256": "32093e07086694cfcf826cc14f73f15d6a561961d2ccea70a0c9bd537129e4a5"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/evidence/local-validation.stdout": {
+    "bytes": 2862,
+    "sha256": "2104d6ca5626b10aa48ff25b0eaf6ebfcecbee6610940fa8e7a9665a0336065b"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/evidence/manifest.json": {
+    "bytes": 5993,
+    "sha256": "b4710d5f6facbb04129108e4080ddb0522e6892114a334b74e3d3841d249164e"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/evidence/packaging-contract.json": {
+    "bytes": 2975,
+    "sha256": "4272790f8092d0a866ee9304e81fbbef381142be921497c010270a92dcb42f5e"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/evidence/remote-last.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/evidence/remote-last.stdout": {
+    "bytes": 6020,
+    "sha256": "a05b6fa59152e849dfd55073c99aeb751438f5786c6be79624a550d2897f732d"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/evidence/resources.json": {
+    "bytes": 360,
+    "sha256": "9e9ef11dea2a7ffa1e92ca29a797cfcc34f20c8b2ffc1ff4b491631b0120926e"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/evidence/retained-reference-pins.json": {
+    "bytes": 2194,
+    "sha256": "a5f1ed6df4ab8526248a2913fd2170e0dff9f69c34683b7395c4591eb7ae79a0"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/evidence/source-contract.json": {
+    "bytes": 11151,
+    "sha256": "8e79241724788f3731250153ed9be15348743fd0f6c3cf23cf35e97d82e9d655"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/evidence/toolchain-pins.json": {
+    "bytes": 4827,
+    "sha256": "8c8fef805d306b0630f7ddd094465d289a8882eb6e0dc2e7dbc4f140a8daf261"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/inputs/compile.h": {
+    "bytes": 329,
+    "sha256": "31f9e7dc8baa5fa8921ea2d8e624a5c1bfd49b83735bf5ba4f3bbc346ebf4f20"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/inputs/configfs.c": {
+    "bytes": 47277,
+    "sha256": "b1652ce0af567c11c838fb27db01789cbc9749e645c1812f20b942a217e80adb"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/inputs/copied-input-pins.json": {
+    "bytes": 958,
+    "sha256": "0533fc453a77416aa6b74caffa826f1c86622a4e679fef019f06a1b375b969ce"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/inputs/f_mass_storage.c": {
+    "bytes": 97322,
+    "sha256": "e2ffe1cc0ce370f728bc4d36b70e654a4bbd4d30c2828621b99b4d138831dd0e"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/inputs/original-header": {
+    "bytes": 2048,
+    "sha256": "1039630ed532baba1d1c5b378ce8dfa9e69bbc49d22e7df053212cb3227ca307"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/inputs/original-kernel-wrapper": {
+    "bytes": 512,
+    "sha256": "95551a5693e175ffcde981848ea2f98183d141355cfb2febe6d35f6a1bc34552"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/inputs/original-wrapper": {
+    "bytes": 512,
+    "sha256": "198cf15568943c142a73220b9e182840402c1aeca2719a7f2ffe096ad9244939"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/inputs/storage_common.c": {
+    "bytes": 13340,
+    "sha256": "2ec40f8a20ca10f14bd0c5d17adc8e17ee11f6707d353d98bdb6ef263e352512"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/inputs/utsrelease.h": {
+    "bytes": 73,
+    "sha256": "d60cbc6c658fd4a940da9269479b2be18f2d07caef569e3db8410a274d56d4fa"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/scripts/build.py": {
+    "bytes": 6129,
+    "sha256": "1c1099c3d46e86364274cbe3edbb8b8c8b03458a3c6c9935bcb37a0dd39e132c"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/scripts/local_driver.py": {
+    "bytes": 2413,
+    "sha256": "4fd907bbbc2d379104bc030b52c8e67500eb8e20127f44e8fda58d3b4fcb3e7f"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/scripts/source_contract.py": {
+    "bytes": 1871,
+    "sha256": "7a7c153e440e7c751b69bbf88056b7d6d9cc1a683cd72b170c69f1878c12bdd7"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/scripts/verify.py": {
+    "bytes": 7195,
+    "sha256": "365259c560f941406174d4fd0cb2c7f30a4448ae4bedfca2cd3361d465d49f38"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/source/boot_memory.py": {
+    "bytes": 5266,
+    "sha256": "4efe28cf150856c86b7b851464b40ad9dd05fa0daaab6502694fa1083cf37575"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/source/bootformat.py": {
+    "bytes": 3936,
+    "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/source/fdt.py": {
+    "bytes": 3024,
+    "sha256": "1bd710a08eae5677689a52042a621f39dcd57e49197749cf2833eead1fc0dcae"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/source/init.c": {
+    "bytes": 7924,
+    "sha256": "72dcc6f22db07362585e19e10d2c2d3994df925205d1a56ace93c94e0fecc0ec"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/source/lk_contract.py": {
+    "bytes": 6686,
+    "sha256": "34331d6eef8254e2b17b8464dc73997bd582826f6008bf2efd8a5561879b32d7"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/source/package_probe.py": {
+    "bytes": 2522,
+    "sha256": "8fbfc13f3e79021ef4060085a515e718ed74f020bbe5fff3c5e05c40e241cf03"
+  },
+  "2026-11-06-asus-linux49-minimal-ram-probe/source/test_init.c": {
+    "bytes": 8205,
+    "sha256": "1bebd32022596447a31d905bf9cd2b4fda32b43fb787cf49617fd944e5daf00e"
+  },
+  "2026-11-06-asus-linux49-r3-transport/source/observer.py": {
+    "bytes": 20010,
+    "sha256": "01ce966e7fc269e69d7468d824646cb1b123c20c01708e5b5aebc3e2bb849dd8"
+  },
+  "2026-11-06-asus-linux49-r3-transport/source/probe_transport.py": {
+    "bytes": 20826,
+    "sha256": "0cfedd7176860fefc16f04927429b98448ae9e92bbdf086371e54c9ef6b10ef1"
+  },
+  "2026-11-06-asus-linux49-r3-transport/source/recovery_control.py": {
+    "bytes": 27009,
+    "sha256": "3e896a0e844f4cca4014d7df57386d75389e7f18c601b41ede28e4f3f5ba6767"
+  },
+  "2026-11-06-asus-minimal-probe-transition/profile.json": {
+    "bytes": 3001,
+    "sha256": "39d0193dfe48acc0d2909120ceea4a9634994408cde5e652be94baeee3fec9e5"
+  },
+  "2026-11-06-asus-minimal-probe-transition/scripts/reviewer_regressions.py": {
+    "bytes": 9847,
+    "sha256": "d65f968741feeda1e7233244123d69ce6676f5b8e16435be454281432bb247f5"
+  },
+  "2026-11-06-asus-minimal-probe-transition/source/adapter.py": {
+    "bytes": 40480,
+    "sha256": "5011910f746f0b96a14a2c6233850b162e0689e5a655a4e4aee7b5b876dee1b7"
+  },
+  "2026-11-06-asus-minimal-probe-transition/source/engine.py": {
+    "bytes": 27112,
+    "sha256": "630c4aaadbb418dc0af1f5a00628b3ec16117bb165707b4d18794c124464a681"
+  },
+  "2026-11-06-asus-minimal-probe-transition/source/preserved.json": {
+    "bytes": 5427,
+    "sha256": "2035ec23f0797769d949011a6296cb006d0d5ddbd129383a8907f6de6e90b607"
+  },
+  "2026-11-06-asus-minimal-probe-transition/source/root_dispatch.py": {
+    "bytes": 2618,
+    "sha256": "38c8030193f32084b6549bf81f6e1d2f9428fb516a6853295eb1adb4208407bc"
+  },
+  "2026-11-06-asus-minimal-probe-transition/tests/engine_fake.py": {
+    "bytes": 6919,
+    "sha256": "3543a9c38c46e07a4e6ee5fc8dfc19343d07157f0c14b869f8962b4bb6ce065e"
+  },
+  "2026-11-06-asus-minimal-probe-transition/tests/run_tests.py": {
+    "bytes": 2111,
+    "sha256": "806a61ac28363a1e89efa3c41f522a34096910fe4b5312552503bc611b6c33a2"
+  },
+  "2026-11-06-asus-minimal-probe-transition/tests/test_adapter.py": {
+    "bytes": 36589,
+    "sha256": "76f8b7951ae3fbd8ac9918d2c78c429f348e9db5e79574e6c7667f64bc16bd9a"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/HANDOFF.md": {
+    "bytes": 11136,
+    "sha256": "f2226dc31a08e9d7177d42bc3cba0ba3c15657916342b3c5bee3bdb5b9cf3c86"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/evidence/manifest.json": {
+    "bytes": 2618,
+    "sha256": "99e9d68d3b22acafab98a07e143181d8a3671a5ed759c18ec39f1152d8578dc6"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/inputs/android.c": {
+    "bytes": 75133,
+    "sha256": "d5a81c3672d0d771dfb76fef6af54702e3c81cf3609f114249df42c5b12eac35"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/inputs/f_mass_storage.c": {
+    "bytes": 88614,
+    "sha256": "9cc823c881d95c8b38bbfbb9ee2438a218c3dd7e24b42c6dae50e33eaf96dff1"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/inputs/original-header": {
+    "bytes": 2048,
+    "sha256": "1039630ed532baba1d1c5b378ce8dfa9e69bbc49d22e7df053212cb3227ca307"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/inputs/original-wrapper": {
+    "bytes": 512,
+    "sha256": "198cf15568943c142a73220b9e182840402c1aeca2719a7f2ffe096ad9244939"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/inputs/reference.defconfig": {
+    "bytes": 13606,
+    "sha256": "d78fb9f2c6e0e926c1c3b3e31cdc609ce03242446dba685db98c8a4ab25e74a3"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/inputs/selected-source-pins.json": {
+    "bytes": 1834,
+    "sha256": "dedbb696fa14afd563cb4d958d67111837a29376793dc19ab4c9837991a717df"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/inputs/stock-capability.json": {
+    "bytes": 404,
+    "sha256": "8f26766c05826d28181547ee4211b4068256e205ef3910b943ba0b3b22031b54"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/inputs/stock-input-pins.json": {
+    "bytes": 645,
+    "sha256": "b6b6b5fb59a116841cc697c0fbc4692f80654e5c95a2df9d1219fe48969b5e07"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/inputs/storage_common.c": {
+    "bytes": 21500,
+    "sha256": "3fac9fec8be7961ccd958850336c82a8218d4da8202d7ece89b61f22933f6846"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/scripts/build.py": {
+    "bytes": 5533,
+    "sha256": "07a1fb99f998c26c3f3e058c64a42b7e2c758180ca6e58721bf3e3a50698a6ae"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/scripts/kernel_api.py": {
+    "bytes": 4859,
+    "sha256": "a6169c558c1407119009a000ee741a9bc765e31160c6ea06003cfb4858341b64"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/scripts/local_driver.py": {
+    "bytes": 2089,
+    "sha256": "bbd44eede3d755972dc68546e33a1c9c11202ee4e5df6ae1d85e5de21de4ebfe"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/scripts/verify.py": {
+    "bytes": 5212,
+    "sha256": "a68e2b19587ba6ecc8eadf758a56090ba1c9655c14d1cca79f90a3f44e7121cd"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/source/bootformat.py": {
+    "bytes": 3936,
+    "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/source/init.c": {
+    "bytes": 6735,
+    "sha256": "fa59fb09cb5b1d7201f84d9094ad2488647e2fde80f33b50a133c42724c092e0"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/source/test_init.c": {
+    "bytes": 6783,
+    "sha256": "c77fe3dafff97464b90c9a5b2a073766c68d7c8a6d3a3906e8815bc592c778a1"
+  },
+  "2026-11-06-asus-recovery-control-wifi/source/recovery_control.py": {
+    "bytes": 27010,
+    "sha256": "34ed0079e7f9ca3b4edcab5d108fe29d330a653781c4ec5d67b8ca421daac0ab"
+  },
+  "2026-11-06-asus-rescue-pin-monotonic-fix/profile.json": {
+    "bytes": 2671,
+    "sha256": "661d93cbc012d839429bb1b87431fb83b5f646833ee59d307e0e60461b7cda6f"
+  },
+  "2026-11-06-asus-rescue-pin-monotonic-fix/scripts/reviewer_regressions.py": {
+    "bytes": 9847,
+    "sha256": "d65f968741feeda1e7233244123d69ce6676f5b8e16435be454281432bb247f5"
+  },
+  "2026-11-06-asus-rescue-pin-monotonic-fix/source/adapter.py": {
+    "bytes": 39816,
+    "sha256": "81555d5b4374e4faca65e98f2212003bada3afba37ee906dd3b72a9fcfe23c01"
+  },
+  "2026-11-06-asus-rescue-pin-monotonic-fix/source/engine.py": {
+    "bytes": 27112,
+    "sha256": "630c4aaadbb418dc0af1f5a00628b3ec16117bb165707b4d18794c124464a681"
+  },
+  "2026-11-06-asus-rescue-pin-monotonic-fix/source/preserved.json": {
+    "bytes": 1816,
+    "sha256": "80475bab124d355255ce10d4224ffc89ac20b61ddc440d88303f5fa47638ba8c"
+  },
+  "2026-11-06-asus-rescue-pin-monotonic-fix/source/root_dispatch.py": {
+    "bytes": 2618,
+    "sha256": "38c8030193f32084b6549bf81f6e1d2f9428fb516a6853295eb1adb4208407bc"
+  },
+  "2026-11-06-asus-rescue-pin-monotonic-fix/tests/engine_fake.py": {
+    "bytes": 6919,
+    "sha256": "3543a9c38c46e07a4e6ee5fc8dfc19343d07157f0c14b869f8962b4bb6ce065e"
+  },
+  "2026-11-06-asus-rescue-pin-monotonic-fix/tests/run_tests.py": {
+    "bytes": 2111,
+    "sha256": "806a61ac28363a1e89efa3c41f522a34096910fe4b5312552503bc611b6c33a2"
+  },
+  "2026-11-06-asus-rescue-pin-monotonic-fix/tests/test_adapter.py": {
+    "bytes": 32502,
+    "sha256": "1cbac1b6a075afc8ce75267815ef54b797339a3e7fd518ec26a1a0ae94d0b519"
+  },
+  "2026-11-06-asus-stock-helper-dispatch-fix/source/service/root_dispatch.py": {
+    "bytes": 2816,
+    "sha256": "771ff66017eac906e807b8be2b722a5b3f47d3df0cb6323488ef9902464c685a"
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/HANDOFF.md": {
+    "bytes": 3916,
+    "sha256": "ddb1ead2056c2371331d1610f4841626d5d4e6429e307a113fc11c5a33b2e828"
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/artifacts/candidate/session-contract.UNAPPROVED.json": {
+    "bytes": 1620,
+    "sha256": "12e11dc82a7b6a49542f13f5f752beaec438a3080080668b85f129f19b3aa18c"
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-independent-review/HANDOFF.md": {
+    "bytes": 4769,
+    "sha256": "138b212d5baf8aeaf61e31ce08f32c79ae45d6ff551ddd382b63c164c746f682"
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-independent-review/REPORT.md": {
+    "bytes": 21391,
+    "sha256": "77badd7695514700f15bf9b881bc948d54b0ec2888004027458e50ec2ecede0b"
+  },
+  "2026-11-06-asus-stock-rescue-deployment-plan/README.md": {
+    "bytes": 854,
+    "sha256": "8445f79542fc90d0952b50c81ba6fac3eb17646f00029f1ce99038ff3d0d8ac8"
+  },
+  "2026-11-06-asus-stock-rescue-deployment-plan/evidence/transport-gap.json": {
+    "bytes": 1417,
+    "sha256": "1cbabb8c6ea3052da5f233dc4c18a59d79116a9e480d66127ae036d932daf149"
+  },
+  "2026-11-06-asus-wifi-device-access/scripts/root_shell_wifi.py": {
+    "bytes": 3453,
+    "sha256": "684bbe346488dfd0e7dfce741b7547021f019d3749235e6208eb1c9766395f34"
+  }
+}

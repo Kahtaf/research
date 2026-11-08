@@ -1,0 +1,24 @@
+{
+  "status": "PASS_ACTUAL_VM_VIRTUAL_BASE_AND_PRINTK_CALLER_BEFORE_EDIT",
+  "base": "/srv/android/asus-arm64-delay-loop-observation-20261108-f3da846c",
+  "config_sha256": "708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1",
+  "compiled_image_sha256": "99daf8064b9818be1e822f41c83d626b79abd11daaf3742ddfdc10159d8e74e1",
+  "source_hashes": {
+    "kernel/printk/printk.c": "4af88ab6aea16ea01f55a235c13a633d099b4566ddea4f4b7c5c9497fafdff4d",
+    "init/main.c": "6780e3143dc45bc1b63df0dd1e96033028008553303e0e382cb1737747d4ac8a",
+    "include/linux/asus_retained_trace.h": "3ea8d22e66069543ab4073b7e9b2907fec85ff0a5fcdba0015ec9acb4d4c9a3e",
+    "arch/arm64/lib/delay.c": "964b155f79a2d764a8f22955098b9573221b3a325fec2b71d81d03f7e35dcff4",
+    "arch/arm64/kernel/asus_retained_trace.c": "45627f898c09748318497ac5e4e3c8fb85e1aff539409034a120061137fef264",
+    "arch/arm64/kernel/asus_entry_tag.h": "ce826ab519da3d1ba5fcff83aa4254e80ae1cd9b77af1c0d24707be60e23ea8f"
+  },
+  "compiler": "aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "release": "#define UTS_RELEASE \"4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty\"\n",
+  "caller_contract": {
+    "callback": "log_store(log_text(msg), msg->text_len), after memcpy and complete record publication; no console-prefix chunks",
+    "devkmsg": "strips <6>; printk_emit %s; complete helper write includes terminal newline",
+    "format": "vscnprintf into 992-byte textbuf; helper snprintf/write strictly <768 bytes including <6>/newline, so no format truncation",
+    "line": "newline removed and LOG_NEWLINE set; no LOG_CONT for helper; direct log_store after pending continuation flush",
+    "ring": "CONFIG_LOG_BUF_SHIFT=17; max helper record far below buffer/4 so no ring-size truncation"
+  },
+  "old_six_protocols_admitted": false
+}

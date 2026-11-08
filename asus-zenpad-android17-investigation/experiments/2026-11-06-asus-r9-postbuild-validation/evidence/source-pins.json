@@ -1,0 +1,9 @@
+{
+  "original_sealed_validator_sha256": "efbbc988d3cf59ff98707d5723967a5cfc9fa6fc131055797fabed12b099ea9e",
+  "corrected_validator_sha256": "526aae8dbf2af756689718ca37fe3bfd64ddace845ab3a3b90af6479198430f6",
+  "changes": [
+    "actual system/lib/liblog.so ARM32 provider",
+    "new exclusive postbuild validation output directory"
+  ],
+  "scope": "host validation only; no native rebuild or original evidence rewrite"
+}

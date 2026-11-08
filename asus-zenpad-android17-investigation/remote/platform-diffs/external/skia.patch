@@ -1,0 +1,12 @@
+diff --git a/Android.bp b/Android.bp
+index ff23e96..f39608b 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -1157,6 +1157,7 @@ gensrcs {
+ 
+ cc_library_static {
+     name: "libskia_skcms",
++    vendor_available: true,
+     host_supported: true,
+     sdk_version: "current",
+     srcs: [

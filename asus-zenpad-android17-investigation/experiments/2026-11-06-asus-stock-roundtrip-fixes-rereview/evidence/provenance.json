@@ -1,0 +1,24 @@
+{
+  "parent_files_unchanged": true,
+  "parent_file_count": 34,
+  "copied_tests_sha256": {
+    "test_shell_guards.py": "a66ec3ed864617298f5098db84cdc36d439354542c7846b408e757db60594b9c",
+    "test_firmware.py": "ce78cc1156a5068f67ed8df1989660550122cdba409851ddd94373c7daacd740",
+    "test_faults.py": "d9315a04ddd83bfa32a787fb5f2c49c818d6ced38e5899e4d951b77f217c10bd",
+    "test_regressions.py": "b18169fca6dbd002dcfdb26a7fcdf2a2b73455ebb372172fe8035b0047e7cc34"
+  },
+  "expected_parent_source_pins": {
+    "source/service/controller.py": "e10c94de09279ec8a37b7344e3944124a9210e85e89c55b12b34eb0a7024c11e",
+    "source/service/fixed.py": "66a59a241418c189a06243b17348a4c2cae433651517ac7c4b90d5ead4e34481",
+    "source/service/observer.py": "db39847cbf81eaff77636fb5cde46e413d667dc64c24e30e689d292be38c7443",
+    "source/service/transport.py": "d3c9fdcf5c378866e689b47905a73c95e2b234e119e1c47705519a7deb1be8fc",
+    "tests/service/test_faults.py": "d9315a04ddd83bfa32a787fb5f2c49c818d6ced38e5899e4d951b77f217c10bd",
+    "tests/service/test_firmware.py": "ce78cc1156a5068f67ed8df1989660550122cdba409851ddd94373c7daacd740",
+    "tests/service/test_regressions.py": "b18169fca6dbd002dcfdb26a7fcdf2a2b73455ebb372172fe8035b0047e7cc34",
+    "tests/service/test_shell_guards.py": "a66ec3ed864617298f5098db84cdc36d439354542c7846b408e757db60594b9c"
+  },
+  "frozen_engine_matches": true,
+  "template_matches": true,
+  "all_live_flags_false": true,
+  "device_contacted": false
+}

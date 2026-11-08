@@ -1,0 +1,78 @@
+[
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/AGENTS.md",
+    "sha256": "835cd5650b62a9ec65fc09281d5f5133374107e1793fd659b1a1a27991685acb"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-supervised-recovery-session/evidence/ram-restorer-delivery-checks.json",
+    "sha256": "089cde96892bee635cf8bf926ef6d0a9e0a084ec483610b61325528d94d6b70e"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-stock-userdata-recovery/evidence/parent-contract-acceptance.json",
+    "sha256": "a81df89811ba8e15cc00a5b192d8df4f74b4b390baa1c5bc78f6f2d6df28eae3"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-android17-target-rescue/README.md",
+    "sha256": "7fc49b0da8db6e602b2ac66d908210523cc7b74a598328100b6e1c458b762471"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-android17-target-rescue/REPORT.md",
+    "sha256": "a13066355c19b736d3231803f5e7df861b30bf21f101f4388624101cf376b61d"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-rescue-block-context-fix/README.md",
+    "sha256": "43a16e4a898bf18203f3c636becb65d7f06cce91fbb0c95310e64e0819442387"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-rescue-independent-review/README.md",
+    "sha256": "7ca06f5bd674b338d28019f87347154178072941d3a640df288bcdec5a96eece"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-rescue-independent-review/REPORT.md",
+    "sha256": "3de4a67ef04b489f794b86ba8552b7ede7bd76a40af15b7d8a39ad95375c9704"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-rescue-independent-review/HANDOFF.json",
+    "sha256": "9622ed25af2676df3337ee0a1e4f0f2a969adf63f834ce3a85dfa9959216895c"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-stock-userdata-recovery/README.md",
+    "sha256": "6cf2d95c3ab0cecc56bc39089ba1ddbc884aac2a384a7ee88415357007d42e14"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-stock-userdata-recovery/REPORT.md",
+    "sha256": "0fb762afed44e510202df73c2e249aad0a6cc288db5fcfb7a61ede9fb3446be3"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-stock-userdata-recovery/HANDOFF.json",
+    "sha256": "435bf7cf751519463cbba7edd80495ebc077db3534dd7bc011ed2df3d9c46060"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-rescue-remote-source/README.md",
+    "sha256": "37405da56b662a859046c66873a484320df0b3516392a4ad426403d2e21a4a1d"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-rescue-remote-source/REPORT.md",
+    "sha256": "d5d8b1214e58884445c3d5e0dcb134ca7fde71f7754f9f4c0fe13792387dddfe"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-rescue-remote-source/HANDOFF.json",
+    "sha256": "01aec9117d8d6ce4f0dbbe81a2976df8ff6d99772582327212bf978d73ed9b68"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-stock-rescue-commissioning-artifact/README.md",
+    "sha256": "8fe12bcff68f679af4063bb5f3a4b915b06cde1fbe99847b221df9da6da443c6"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-android17-target-rescue/source/proxy.c",
+    "sha256": "3dacecfd307ef567146c55c988ae20296a7cfe987c16cc160677208a38af1d27"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-android17-target-rescue/source/common.h",
+    "sha256": "90fe60e79b3cc3932dab7e824bc803bb18ba086ea079beca8298c34ccf2a53c3"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-android17-target-rescue/source/rescue.c",
+    "sha256": "b34bb2ac4429a635fa3c82f3327976dc052703a7b860b57c37a2df26c94e18c7"
+  }
+]

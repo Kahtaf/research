@@ -1,0 +1,14 @@
+{
+  "source_root": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18",
+  "sha256": {
+    "arch/arm64/boot/dts/asus8163_tb_380_m-Z380M.dts": "90cbeb776795fcff85a148f74d5b741aeb0463f52e9b1fd14006f1360a194bbf",
+    "drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/mt_battery_meter.h": "9c52e7d264d95d1dba85df5c65744221ae8b92fa93485e8b8d9a74aad1f0c5df",
+    "drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/mt_battery_meter_table.h": "3434b444429c495a22ea8cf23cf4c8790dbeb61a5aff3d8855df04ca553d1ebe",
+    "drivers/power/mediatek/battery_others/upi_ug31xx/upi_ug31xx.c": "aa64a26f67f31da45ef2d5929fd1b3daa2720c105cbf2b3a395b6a5ec54e8cd0",
+    "drivers/power/mediatek/battery_others/upi_ug31xx/upi_ug31xx.h": "63dd35fff8d8c00857daf0dc25362ecd46fe74a4dd36489c9ebf7dbdbca2fe80",
+    "drivers/power/mediatek/battery_others/upi_ug31xx/Makefile": "240e699688828216b1f9e3d17fb931f7b77e7b32a972b94e874e77d3cd5fdd7d",
+    "drivers/power/mediatek/battery_others/upi_ug31xx/SRC/Reg.c": "2117746705e69dd623696f6e2c2913393cbd63e847843bf7e09d02fbe7b09f4d",
+    "drivers/power/mediatek/battery_others/upi_ug31xx/SRC/GaugeMain.c": "8c8953cab5646db8479753219db19c7cdd506cf47a526fc97de89e1588102127",
+    "drivers/power/mediatek/battery_others/upi_ug31xx/INC/Define.h": "81f4fc957ba18f67a1b477c181ca9ddf9de030b59fedaaf339bdc3b6733fdf91"
+  }
+}

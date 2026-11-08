@@ -1,0 +1,86 @@
+{
+  "at": "2026-11-06T15:46:32.015379+00:00",
+  "review": "implementation-agent self-review; no delegated review or runtime execution",
+  "source_code_sha256": {
+    "policy.py": "21c016335b40605ce7f7c2c5c741dcf976fe9b2cf5f6286595b7042fa15cad5c",
+    "remote_worker.py": "59f1477ff7af66c6040a8f785afd3803b53b6b96510a0133d977253915e0abfc",
+    "stock_system_backup.py": "e4e03e632d93a37c36aa46aa52649ba75e06e1a23c5afb0014dbf4a53f1ddaf6"
+  },
+  "test_source_sha256": "47aa2571618320b4bb0b874e987c6cd30b45360e34dbe86a42401bc18c517c1a",
+  "inputs": [
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/AGENTS.md",
+      "bytes": 1008,
+      "sha256": "835cd5650b62a9ec65fc09281d5f5133374107e1793fd659b1a1a27991685acb"
+    },
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-android17-orchestration/README.md",
+      "bytes": 18744,
+      "sha256": "7bf383f3ad0694c4f67616a454552ab29d89656876beafd29ab477160fa359f4"
+    },
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-android17-orchestration/evidence/data-storage-audit-20261106.json",
+      "bytes": 873,
+      "sha256": "0916a96e16492c3e6962dd9e643ee0f710ef7f48f5b0933c5b5810a9fd0f160c"
+    },
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-recovery-control-transport/source/recovery_control.py",
+      "bytes": 26621,
+      "sha256": "6858ab24dfb2c7c362f017087cf3df52841db5f6d79ee24bccabfaab0b05c24f"
+    },
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-recovery-control-transport/tests/test_recovery_control.py",
+      "bytes": 25006,
+      "sha256": "ae468a08d1bd09ffd3636d915fef54798fa364c1c8de9dba43cf90686d83666b"
+    },
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-root-hardware-validation/scripts/root_shell.py",
+      "bytes": 1832,
+      "sha256": "951b3b7f8c099550554a9689b0be5995981def7060735109c66761be611ad8ec"
+    },
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-root-hardware-validation/scripts/backup_encryption_areas.py",
+      "bytes": 3791,
+      "sha256": "782c827f54bf78529a768fb2a8d06e6f6e98f86a474577cfac81618b1cb19031"
+    },
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-root-hardware-validation/sources/mtk-su-mirror-b",
+      "bytes": 65144,
+      "sha256": "328632e853ff6427af9f35cb83a91d9e960f35d01188ee66d46ae9c7ce7c7827"
+    },
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/evidence/live-partition-layout.json",
+      "bytes": 5327,
+      "sha256": "7a85518d59bdc187c1a3ba376bb14d6a33656dc218d08343b56faaf2c8a13870"
+    },
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin",
+      "bytes": 16740352,
+      "sha256": "7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316"
+    },
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin",
+      "bytes": 16740352,
+      "sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20"
+    },
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/verify/boot.bin",
+      "bytes": 16740352,
+      "sha256": "7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316"
+    },
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/verify/recovery.bin",
+      "bytes": 16740352,
+      "sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20"
+    }
+  ],
+  "offline_test_evidence_sha256": "03272f4782da3c83039e24abb090dcd8f01634161cba7523b069e435f859e4d2",
+  "device_contacted": false,
+  "ssh_contacted": false,
+  "vm_contacted": false,
+  "cloud_contacted": false,
+  "private_key_read": false,
+  "immutable_helper_unchanged": true,
+  "root_binary_pin_matches": true,
+  "mutations_scope": "new spike only; tests created and removed local fixture files; no external operations"
+}

@@ -1,0 +1,45 @@
+--- ram-primitive-probe/source/init.c
++++ ram-before-alarm-probe/source/init.c
+@@ -13,8 +13,8 @@
+ #include <time.h>
+ #include <unistd.h>
+ 
+-#define RUN_ID "b388b428-514d-49ee-949f-6b79317699bd"
+-#define TAG "ASUS49-PRIMITIVE run=" RUN_ID
++#define RUN_ID "5fa3e2cd-430d-4bbb-8b37-1adff9bb9439"
++#define TAG "ASUS49-PREALARM run=" RUN_ID
+ #define NODE "/primitive-kmsg"
+ #define MAX_LOGS 768
+ static int sink=-1;
+@@ -91,17 +91,10 @@
+  begin("sigemptyset","-");int rc=sigemptyset(&sa.sa_mask);end("sigemptyset","-",rc,rc<0?errno:0);
+  if(rc)finish();
+  begin("sigaction","SIGALRM");rc=sigaction(SIGALRM,&sa,NULL);end("sigaction","SIGALRM",rc,rc<0?errno:0);if(rc)finish();
+- begin("alarm.nominal10s.timer-dependent","-");unsigned left=alarm(10);end("alarm.nominal10s.timer-dependent","-",left,0);
+  struct utsname u;begin("uname","-");rc=uname(&u);end("uname","-",rc,rc<0?errno:0);
+  if(!rc){event("actual","uname.sysname","-",0,0,u.sysname);event("actual","uname.release","-",0,0,u.release);event("actual","uname.version","-",0,0,u.version);event("actual","uname.machine","-",0,0,u.machine);}
+  const char *targets[]={"/proc","/sys"},*types[]={"proc","sysfs"};
+  for(unsigned i=0;i<2;i++){begin("mount",targets[i]);rc=mount(types[i],targets[i],types[i],MS_NOSUID|MS_NODEV|MS_NOEXEC,NULL);end("mount",targets[i],rc,rc<0?errno:0);if(rc)finish();}
+- struct timespec before,after,request={0,100000000};int b=clock_sample("before-sleep",&before);
+- begin("clock_nanosleep.relative100ms","CLOCK_MONOTONIC");errno=0;rc=clock_nanosleep(CLOCK_MONOTONIC,0,&request,NULL);int captured_errno=errno;
+- char result[96];snprintf(result,sizeof(result),"error_number=%d libc_errno=%d no-retry=1",rc,captured_errno);
+- event("end","clock_nanosleep.relative100ms","CLOCK_MONOTONIC",rc,rc,result);
+- int a=clock_sample("after-sleep",&after);
+- if(!b&&!a){long long delta=((long long)after.tv_sec-before.tv_sec)*1000000000LL+after.tv_nsec-before.tv_nsec;char value[96];snprintf(value,sizeof(value),"delta_ns=%lld clock_frequency_not_calibrated=1",delta);event("actual","sleep.delta","-",rc,rc,value);}
+  names("/sys/class/mmc_host");names("/sys/class/block");
+  const char *nodes[]={"mmcblk0","mmcblk0p1","mmcblk1","mmcblk1p1"};
+  const char *attrs[]={"dev","size","removable","device/type"};char path[128];
+@@ -109,6 +102,13 @@
+   snprintf(path,sizeof(path),"/sys/class/block/%s",nodes[i]);struct stat st;begin("stat.node",path);rc=stat(path,&st);end("stat.node",path,rc,rc<0?errno:0);
+   if(!rc)for(unsigned j=0;j<4;j++){snprintf(path,sizeof(path),"/sys/class/block/%s/%s",nodes[i],attrs[j]);metadata(path);}
+  }
++ struct timespec before,after,request={0,100000000};int b=clock_sample("before-sleep",&before);
++ begin("alarm.nominal10s.timer-dependent","-");unsigned left=alarm(10);end("alarm.nominal10s.timer-dependent","-",left,0);
++ begin("clock_nanosleep.relative100ms","CLOCK_MONOTONIC");errno=0;rc=clock_nanosleep(CLOCK_MONOTONIC,0,&request,NULL);int captured_errno=errno;
++ char result[96];snprintf(result,sizeof(result),"error_number=%d libc_errno=%d no-retry=1",rc,captured_errno);
++ event("end","clock_nanosleep.relative100ms","CLOCK_MONOTONIC",rc,rc,result);
++ int a=clock_sample("after-sleep",&after);
++ if(!b&&!a){long long delta=((long long)after.tv_sec-before.tv_sec)*1000000000LL+after.tv_nsec-before.tv_nsec;char value[96];snprintf(value,sizeof(value),"delta_ns=%lld clock_frequency_not_calibrated=1",delta);event("actual","sleep.delta","-",rc,rc,value);}
+  event("complete","observation","-",0,0,"sleep-and-enumeration-returned");
+  event("actual","sink.write.error","-",sink_error,sink_error,"zero-if-all-records-written");finish();return 0;
+ }

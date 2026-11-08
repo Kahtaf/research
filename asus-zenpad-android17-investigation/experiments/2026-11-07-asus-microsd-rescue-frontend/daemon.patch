@@ -1,0 +1,101 @@
+--- a/source/rescue.c
++++ b/source/rescue.c
+@@ -1,4 +1,5 @@
+ #include "common.h"
++#include "sd_mount.h"
+ #ifdef RESCUE_TEST
+ const char *test_root="";
+ #endif
+@@ -17,6 +18,7 @@
+ static unsigned char io_buf[CHUNK] __attribute__((aligned(4096)));
+ static unsigned char wire[CHUNK] __attribute__((aligned(4096)));
+ static unsigned char recovery_pin[32];
++static unsigned char run_id[32];
+ static int frozen=1,uncertain_image=-1;
+ #ifdef RESCUE_TEST
+ static const char*fault;
+@@ -32,7 +34,7 @@
+ static int flush(int fd){return injected("flush")?-1:fsync(fd);}
+ static int fd_hash(int fd,uint64_t size,unsigned char*out){SHA s;sha_init(&s);for(uint64_t off=0;off<size;){size_t n=size-off>CHUNK?CHUNK:(size_t)(size-off);if(readat(fd,io_buf,n,off))return -1;sha_add(&s,io_buf,n);off+=n;}sha_end(&s,out);return 0;}
+ static int empty_dir(const char*n){char p[512];path(p,sizeof(p),n);DIR*d=opendir(p);if(!d)return 0;int ok=1;struct dirent*e;errno=0;while((e=readdir(d)))if(strcmp(e->d_name,".")&&strcmp(e->d_name,".."))ok=0;if(errno)ok=0;closedir(d);return ok;}
+-static int mounts_clear(void){char p[512],line[8192];path(p,sizeof(p),"/proc/self/mountinfo");FILE*f=fopen(p,"re");if(!f)return 0;int ok=1;while(fgets(line,sizeof(line),f)){unsigned a,b,maj,min;if(!strchr(line,'\n')||sscanf(line,"%u %u %u:%u",&a,&b,&maj,&min)!=4){ok=0;break;}if(maj==179){ok=0;break;}}if(ferror(f))ok=0;fclose(f);return ok;}
++static int mounts_clear(void){return sd_mounts_safe(0);}
+ static int sysnum(int part,const char*field,uint64_t want){char p[128],t[128],*end;snprintf(p,sizeof(p),"/sys/dev/block/179:%d/%s",part,field);if(read_text(p,t,sizeof(t))<1)return 0;errno=0;unsigned long long x=strtoull(t,&end,10);return !errno&&!*end&&x==want;}
+ static int validate_fd(int fd,const Geometry*g){
+ struct stat s,l,a;char n[128],p[512],alias[512],resolved[4096],expected[512],text[64];
+@@ -103,7 +105,7 @@
+ if(verify_image(m->role-1))return -1;
+ return m->role==3&&image_count==5?verify_image(4):0;
+ }
+-static int send_status(int c){char msg[512],id[65];for(int i=0;i<32;i++)snprintf(id+i*2,3,"%02x",manifest_id[i]);int n=snprintf(msg,sizeof(msg),"state=%s armed=%u writer=idle uncertain_image=%d enforcing=%d protocol=1 max_chunk=%u no_reboot=1 peer_uid=2000 peer_sec=u:r:shell:s0 daemon_pid=%d manifest=%s\n",frozen?"FROZEN":"IDLE",image_count,uncertain_image,enforcing(),CHUNK,getpid(),id);return frame_out(c,0x81,msg,n);}
++static int send_status(int c){char msg[768],id[65],run[65];for(int i=0;i<32;i++)snprintf(run+i*2,3,"%02x",run_id[i]);for(int i=0;i<32;i++)snprintf(id+i*2,3,"%02x",manifest_id[i]);int n=snprintf(msg,sizeof(msg),"state=%s armed=%u writer=idle uncertain_image=%d enforcing=%d protocol=1 max_chunk=%u no_reboot=1 peer_uid=2000 peer_sec=u:r:shell:s0 daemon_pid=%d manifest=%s run=%s\n",frozen?"FROZEN":"IDLE",image_count,uncertain_image,enforcing(),CHUNK,getpid(),id,run);return frame_out(c,0x81,msg,n);}
+ static int error_reply(int c,const char*s){(void)frame_out(c,0xff,s,strlen(s));return -1;}
+ #ifdef P10_HANDOFF
+ #include "handoff.h"
+@@ -157,7 +159,7 @@
+ done:if(fd>=0)close(fd);if((state==WRITING||state==VERIFIED)&&rc!=0)frozen=1;return rc;
+ }
+ static int serve(void){
+-if(getuid()!=0)return 81; if(!context_is("u:r:os_rescue:s0"))return 82; if(!enforcing())return 83; if(load_manifest())return 84;
++if(getuid()!=0)return 81; if(!context_is("u:r:os_rescue:s0"))return 82; if(!enforcing())return 83; if(load_manifest()||new_token(run_id))return 84;
+ /* An exclusive abstract Unix bind is the lifetime writer lock. It also works
+    on kernels without CONFIG_FILE_LOCKING, and cannot outlive its process. */
+ int lock=socket(AF_UNIX,SOCK_STREAM|SOCK_CLOEXEC,0);
+--- /dev/null
++++ b/source/sd_mount.h
+@@ -0,0 +1,55 @@
++#ifndef RESCUE_SD_MOUNT_H
++#define RESCUE_SD_MOUNT_H
++/* Fixed source only. Sysfs symlinks are kernel-owned; user/card paths never are. */
++static int sd_number(const char *name,uint64_t *v){
++ char t[64],*end;if(read_text(name,t,sizeof(t))<1||t[0]<'0'||t[0]>'9')return 0;
++ errno=0;*v=strtoull(t,&end,10);return !errno&&!*end;
++}
++static int sd_identified(void){
++ char t[64],p[512],a[4096],b[4096],part[4096],internal[4096];uint64_t start,size,disk;
++ if(read_text("/sys/class/block/mmcblk1/removable",t,sizeof(t))!=1||strcmp(t,"1")||
++    read_text("/sys/class/block/mmcblk1/device/type",t,sizeof(t))!=2||strcmp(t,"SD")||
++    read_text("/sys/class/block/mmcblk1/dev",t,sizeof(t))!=6||strcmp(t,"179:32")||
++    read_text("/sys/class/block/mmcblk1p1/dev",t,sizeof(t))!=6||strcmp(t,"179:33")||
++    read_text("/sys/class/block/mmcblk1p1/partition",t,sizeof(t))!=1||strcmp(t,"1"))return 0;
++ path(p,sizeof(p),"/sys/class/block/mmcblk1");if(!realpath(p,a))return 0;
++ path(p,sizeof(p),"/sys/dev/block/179:32");if(!realpath(p,b)||strcmp(a,b))return 0;
++ path(p,sizeof(p),"/sys/class/block/mmcblk0");if(!realpath(p,internal)||!strcmp(a,internal))return 0;
++ path(p,sizeof(p),"/sys/class/block/mmcblk1p1");if(!realpath(p,part))return 0;
++ path(p,sizeof(p),"/sys/dev/block/179:33");if(!realpath(p,b)||strcmp(part,b))return 0;
++ char *slash=strrchr(part,'/');if(!slash||strcmp(slash+1,"mmcblk1p1"))return 0;*slash=0;
++ if(strcmp(part,a))return 0;
++ path(p,sizeof(p),"/sys/class/block/mmcblk1/device");if(!realpath(p,a))return 0;
++ path(p,sizeof(p),"/sys/class/block/mmcblk0/device");if(!realpath(p,b)||!strcmp(a,b))return 0;
++ return sd_number("/sys/class/block/mmcblk1p1/start",&start)&&start>0&&
++        sd_number("/sys/class/block/mmcblk1p1/size",&size)&&size>0&&
++        sd_number("/sys/class/block/mmcblk1/size",&disk)&&start<disk&&size<=disk-start;
++}
++static int sd_option(const char *list,const char *option){
++ size_t n=strlen(option);for(const char *p=list;*p;){const char *e=strchr(p,',');if(!e)e=p+strlen(p);
++ if((size_t)(e-p)==n&&!memcmp(p,option,n))return 1;p=*e?e+1:e;}return 0;
++}
++static int sd_mount_line(const char *line,unsigned maj,unsigned minor){
++ if(maj!=179||minor!=33||!sd_identified())return 0;
++ char copy[8192],*v[128],*save;size_t count=0;
++ if(strlen(line)>=sizeof(copy))return 0;strcpy(copy,line);
++ for(char *p=strtok_r(copy," \n",&save);p;p=strtok_r(NULL," \n",&save)){
++  if(count==128)return 0;v[count++]=p;
++ }
++ if(count<10||strcmp(v[3],"/")||strcmp(v[4],"/mnt/rescue-sd"))return 0;
++ size_t sep=6;while(sep<count&&strcmp(v[sep],"-"))sep++;
++ if(sep+4!=count||strcmp(v[sep+1],"vfat")||strcmp(v[sep+2],"/dev/block/mmcblk1p1"))return 0;
++ return sd_option(v[5],"rw")&&sd_option(v[5],"nodev")&&sd_option(v[5],"nosuid")&&sd_option(v[5],"noexec")&&sd_option(v[sep+3],"rw");
++}
++static int sd_mounts_safe(int require_sd){
++ char p[512],line[8192];path(p,sizeof(p),"/proc/self/mountinfo");FILE *f=fopen(p,"re");if(!f)return 0;
++ int ok=1,seen=0;while(fgets(line,sizeof(line),f)){
++  unsigned a,b,maj,minor;if(!strchr(line,'\n')||sscanf(line,"%u %u %u:%u",&a,&b,&maj,&minor)!=4){ok=0;break;}
++  /* A shadow mount at the fixed mountpoint is never an alternate source. */
++  char root[512],mount[512];if(sscanf(line,"%*u %*u %*u:%*u %511s %511s",root,mount)!=2){ok=0;break;}
++  if(maj==179){if(!sd_mount_line(line,maj,minor)||++seen>1){ok=0;break;}}
++  else if(!strcmp(mount,"/mnt/rescue-sd")){ok=0;break;}
++ }
++ if(ferror(f))ok=0;fclose(f);return ok&&(!require_sd||seen==1);
++}
++#endif

@@ -1,0 +1,58 @@
+[
+  {
+    "path": "arch/arm64/boot/dts/mediatek/asus-p00a.dts",
+    "pre_sha256": "bb39c36199b6cb92b453c59116d85bc3e6769663792d0ddf7f18e7509d81f572",
+    "post_sha256": "61660c82984338fe681d6a4d6afc35cac1a4bc6a54f2ad1f602c6322d8c9ee07",
+    "pre_bytes": 29636,
+    "post_bytes": 29426,
+    "destination_must_be_absent": false
+  },
+  {
+    "path": "arch/arm64/configs/asus_p00a_defconfig",
+    "pre_sha256": "423c68c8870d56b843f447dc45c4b63f908143ca8a85c462481a1a161c9a9588",
+    "post_sha256": "da68ffb7ca7b1a84a43fa26d612869154afdd365fc82c7066fb8f0eb683ea9f1",
+    "pre_bytes": 11026,
+    "post_bytes": 11075,
+    "destination_must_be_absent": false
+  },
+  {
+    "path": "resolved.config",
+    "pre_sha256": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2",
+    "post_sha256": "26c59e0afa3f6438fafea4b5379b898c9b1fcaf05adf1d7e14db93b2e976bd13",
+    "pre_bytes": 126472,
+    "post_bytes": 126521,
+    "destination_must_be_absent": false
+  },
+  {
+    "path": "sound/soc/mediatek/Kconfig",
+    "pre_sha256": "3be1ee72b1f74fb03bb39d53889b50d5ecba48ae32970316a6801d7e40c6f1dc",
+    "post_sha256": "7b2a904e9535307536eddd5fb4661f060b3f60920fd3fe31bb941680a99d7bac",
+    "pre_bytes": 6473,
+    "post_bytes": 6877,
+    "destination_must_be_absent": false
+  },
+  {
+    "path": "sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c",
+    "pre_sha256": "d2381b84a3dfbf8258723d365ec35e17f5ad75b97b9595e883fdf596bc68a7f5",
+    "post_sha256": "4628dd7d0525e39bd296152f579ac16afe726e039f2021eb41cb0acf7e78930c",
+    "pre_bytes": 10255,
+    "post_bytes": 10448,
+    "destination_must_be_absent": false
+  },
+  {
+    "path": "sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "pre_sha256": "a6cbff61167f1c3690b2554f4aa59fe365d8bbeb3a7e3ae12999d4266ab3e3b2",
+    "post_sha256": "4753b516aeb4a6c43ec510580bbba1563a9bc1443765331fa8c89b47c7206675",
+    "pre_bytes": 117756,
+    "post_bytes": 119402,
+    "destination_must_be_absent": false
+  },
+  {
+    "path": "sound/soc/mediatek/mt_soc_audio_8163/p00a_stock_gate.h",
+    "pre_sha256": null,
+    "post_sha256": "6405ec0f74808c22f638569b86a9522603c3ae668fa2ce51e511347b7f85d868",
+    "pre_bytes": null,
+    "post_bytes": 4730,
+    "destination_must_be_absent": true
+  }
+]

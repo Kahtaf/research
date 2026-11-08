@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-07T18:53:34.887519+00:00",
+  "status": "EARLY_WATCHDOG_TRIAL_RETURNED_NO_USB_REPORT",
+  "candidate_sha256": "c83a4465dd209d7c2979b7b156e9d5bd8f350d81f121fa29e51579871e3a2cb4",
+  "kernel_sha256": "a49b87313d35d803e3ffaa2be2c60a3c678ccbc46efd5831651d2bd44ae4ee03",
+  "full_p10_sha256": "81bc90ed8f8c25a291c8ffca205de94a0188b5cbab37379b3f667ad1ac42ba2d",
+  "install_run": "feb1f83f-1099-4cc2-9398-2cd4250ff3f7",
+  "full_readback_cleanup_verified": true,
+  "recovery_requests": 1,
+  "dispatch": "ACKNOWLEDGED",
+  "new_stock_boot_id": "3525090a-4d53-4ec6-b704-7ba459bdc610",
+  "current_kernel_release": "3.18.35",
+  "usb_descriptor_positive": false,
+  "host_usb_inventory_errors": [],
+  "automatic_stock_return": true,
+  "power_fallback_used": false,
+  "cached_lastpc": [
+    "[LAST PC] CORE_0 PC = 0xffffff8008692a34( + 0x0), FP = 0xffffffc073357e90, SP = 0xffffffc073357e90",
+    "[LAST PC] CORE_1 PC = 0xffffff80084bd348( + 0x0), FP = 0xffffffc0032e3ee0, SP = 0xffffffc0032e3ee0",
+    "[LAST PC] CORE_2 PC = 0x0( + 0x0), FP = 0x0, SP = 0x0",
+    "[LAST PC] CORE_3 PC = 0x0( + 0x0), FP = 0x0, SP = 0x0"
+  ],
+  "entry_to_new_stock_kernel_seconds": [
+    32.73386199999999,
+    32.77917599999998
+  ],
+  "watchdog_causality_proven": false,
+  "enforcing_restored": true,
+  "BOOT_SYSTEM_DATA_writes": false
+}

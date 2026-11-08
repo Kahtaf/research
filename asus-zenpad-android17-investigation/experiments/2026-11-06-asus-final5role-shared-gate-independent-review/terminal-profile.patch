@@ -1,0 +1,44 @@
+--- /dev/null
++++ b/source/terminal_profile.h
+@@ -0,0 +1,9 @@
++#ifndef TERMINAL_PROFILE_H
++#define TERMINAL_PROFILE_H
++/* Generated only from the admitted actual five-role manifest, before the
++ * daemon/core build. No default, runtime override, or two-role fallback. */
++#include "terminal_manifest_binding.h"
++static int terminal_profile_matches(void){
++ return image_count==5&&!memcmp(manifest_id,terminal_manifest_sha,32);
++}
++#endif
+--- a/source/handoff.h
++++ b/source/handoff.h
+@@ -1,7 +1,8 @@
+ /* Included only by the extension daemon. Existing opcodes are unchanged. */
++#include "terminal_profile.h"
+ static int rescue_lock_fd=-1,rescue_listener_fd=-1;
+ static int p10_handoff(int c){
+- if(image_count!=2||uncertain_image!=-1||identity()||verify_image(0)||verify_image(1))return -1;
++ if(!terminal_profile_matches()||uncertain_image!=-1||identity()||verify_image(0)||verify_image(1))return -1;
+  int fds[3]={c,rescue_lock_fd,rescue_listener_fd},copy[3]={-1,-1,-1};
+  for(int i=0;i<3;i++){copy[i]=fcntl(fds[i],F_DUPFD_CLOEXEC,10);if(copy[i]<0)goto fail;}
+  for(int i=0;i<3;i++)if(dup2(copy[i],3+i)<0)_exit(74);
+--- a/source/p10_restore.c
++++ b/source/p10_restore.c
+@@ -4,7 +4,7 @@
+ #include "restore_core.h"
+ #include "sha1.h"
+ #include "prior_container.h"
+-#include "stock_binding.h"
++#include "terminal_profile.h"
+ struct target { int fd,writable; unsigned char *self;size_t self_n; };
+ static int ram_only(void){
+  char p[512],line[1024];path(p,sizeof(p),"/proc/swaps");FILE*f=fopen(p,"re");if(!f)return -1;
+@@ -82,7 +82,7 @@
+ }
+ static int main_restore(void){
+  if(getuid()||geteuid()||!context_is("u:r:p10_restore:s0")||!enforcing()||!peer_ok(3)||inherited_lock())return 77;
+- if(ram_only()||load_manifest()||image_count!=2||memcmp(manifest_id,stock_manifest_sha,32))return 84;
++ if(ram_only()||load_manifest()||!terminal_profile_matches())return 84;
+  struct target t={.fd=-1};if(load_self(&t)||identity()||verify_image(0)||verify_image(1))return 85;
+  t.fd=open_part(10,0);if(t.fd<0)return 86;
+  size_t size=align_to(P10_BYTES,4096);

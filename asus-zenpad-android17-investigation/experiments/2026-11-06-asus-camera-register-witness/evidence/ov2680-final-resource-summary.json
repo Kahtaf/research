@@ -1,0 +1,32 @@
+{
+  "compile": {
+    "memory_budget_bytes": 1073741824,
+    "peak_rss_bytes": 66289664,
+    "hard_address_space_limit": false,
+    "memory_enforcement": "post-run observed RSS gate on Darwin; no hard RSS cap claimed",
+    "cpu_seconds": 30,
+    "serial": true,
+    "frontend_threads": 1,
+    "linker_threads": 1
+  },
+  "link": {
+    "memory_budget_bytes": 1073741824,
+    "peak_rss_bytes": 18448384,
+    "hard_address_space_limit": false,
+    "memory_enforcement": "post-run observed RSS gate on Darwin; no hard RSS cap claimed",
+    "cpu_seconds": 30,
+    "serial": true,
+    "frontend_threads": 1,
+    "linker_threads": 1
+  },
+  "run": {
+    "memory_budget_bytes": 1073741824,
+    "peak_rss_bytes": 11894784,
+    "hard_address_space_limit": false,
+    "memory_enforcement": "post-run observed RSS gate on Darwin; no hard RSS cap claimed",
+    "cpu_seconds": 30,
+    "serial": true,
+    "frontend_threads": 1,
+    "linker_threads": 1
+  }
+}

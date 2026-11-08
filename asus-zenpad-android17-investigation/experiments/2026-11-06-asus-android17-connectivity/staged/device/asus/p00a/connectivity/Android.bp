@@ -1,0 +1,46 @@
+package {
+    default_applicable_licenses: ["p00a_connectivity_license"],
+}
+license {
+    name: "p00a_connectivity_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+        "SPDX-license-identifier-BSD-3-Clause",
+    ],
+    license_text: ["LICENSE"],
+}
+cc_binary {
+    name: "p00a-connectivity-check",
+    vendor: true,
+    srcs: ["src/connectivity_check.c"],
+    cflags: ["-Wall", "-Wextra", "-Werror"],
+}
+cc_library_static {
+    name: "lib_driver_cmd_p00a",
+    vendor: true,
+    srcs: ["src/driver_cmd_p00a.c"],
+    cflags: ["-Wall", "-Wextra", "-Werror", "-DANDROID", "-DANDROID_P2P"],
+    include_dirs: [
+        "external/wpa_supplicant_8/src",
+        "external/wpa_supplicant_8/src/utils",
+        "external/wpa_supplicant_8/src/drivers",
+    ],
+    shared_libs: ["liblog"],
+}
+// Builds the CURRENT bridge as ELF32 to match the captured vendor transport.
+// Does not install/load stock bluetooth.default.so or solve libnvram's ABI.
+cc_binary {
+    name: "android.hardware.bluetooth@1.1-service.p00a",
+    defaults: ["hidl_defaults"],
+    compile_multilib: "32",
+    relative_install_path: "hw",
+    vendor: true,
+    srcs: ["bluetooth/service.cpp", "bluetooth/bluetooth_hci.cc"],
+    shared_libs: [
+        "liblog", "libcutils", "libdl", "libbase", "libutils", "libhardware",
+        "libhidlbase", "android.hardware.bluetooth@1.0-impl",
+        "android.hardware.bluetooth@1.1",
+    ],
+    static_libs: ["android.hardware.bluetooth-hci"],
+}

@@ -1,0 +1,22 @@
+{
+  "repo": "bkerler/mtkclient",
+  "pin": "118a000a83ea31c4f427fe5225abfe964546e05e",
+  "files": [
+    {
+      "path": "mtkclient/Library/mtk_preloader.py",
+      "sha256": "a0e07938abc49ac1ef547071c6a152c003047cb2b24b6c268284a2c9bba39d68"
+    },
+    {
+      "path": "mtkclient/Library/Port.py",
+      "sha256": "f1febf33a0e6a9eb57392804166ea975384ce0ad3925ca2e9561462f786a3720"
+    },
+    {
+      "path": "mtkclient/Library/Connection/seriallib.py",
+      "sha256": "d94d908d4e6dc46988cde6b39f092723c973101c027f4d0fc51a3be0fbb34f7f"
+    },
+    {
+      "path": "mtkclient/Library/Connection/usblib.py",
+      "sha256": "468248f81c368b83955410703278106fbcfb2ffd13f9a1f969d3f6f65cbcdf32"
+    }
+  ]
+}

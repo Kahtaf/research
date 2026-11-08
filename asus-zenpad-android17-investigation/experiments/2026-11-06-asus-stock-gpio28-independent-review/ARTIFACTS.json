@@ -1,0 +1,1074 @@
+{
+  "files": {
+    "inputs.tar.gz": {
+      "bytes": 371065,
+      "sha256": "3ab3f1be883bb5c3f4955244a5707f1aa210ed06e76479e965695e7b286b1da5"
+    },
+    "README.md": {
+      "bytes": 1464,
+      "sha256": "e04ea0536986974e344c2a356363351b6e2a079e1fb82570761ba4dde7df93c4"
+    },
+    "evidence/dtb-check-final.log": {
+      "bytes": 11266,
+      "sha256": "1bddb86b1fbb0e068bfa5d14cbe825d15ec43b2b2c019d9e6988049880d23ab8"
+    },
+    "evidence/gate-output.disassembly.txt": {
+      "bytes": 4450,
+      "sha256": "e4804fca763bb34033762e6c45283ca074c3ee8ee75ae818a6a3223d0b5d459b"
+    },
+    "evidence/adversarial-extraction.json": {
+      "bytes": 314,
+      "sha256": "2cc120e0c2e31ff2a8a1dd7fd9e1a2af05b84042e3361a6380752b7987591acc"
+    },
+    "evidence/routing-repro-extraction.json": {
+      "bytes": 507,
+      "sha256": "77c15a3eec19aa32ba2836395856ae591bb5552d5542218b9b152d0f47407cd2"
+    },
+    "evidence/fetch-final.json": {
+      "bytes": 170,
+      "sha256": "37bc2a24de368aada4723318cdc4155555f1ecfbc55c96ea671feb18a7cf829a"
+    },
+    "evidence/bind-exact-routing.json": {
+      "bytes": 1277,
+      "sha256": "6090b7045517293499ad4e202d060784c5825736b90cd0c94d90c08f1e57babb"
+    },
+    "evidence/initialize-remote.json": {
+      "bytes": 560,
+      "sha256": "26e578e3b65dc5ec8b3ddfe5e4023bbd89f6b3911e87f968b259022e2f467892"
+    },
+    "evidence/artifact-verification.json": {
+      "bytes": 1348,
+      "sha256": "32f58e7b78111866ddfd4f18fee51a72c6d2daacb2d6afa4f00fb06e921fbda1"
+    },
+    "evidence/finalize-attempt-1.json": {
+      "bytes": 5176,
+      "sha256": "0f530b3d0f4f0d3fe738eb9d362d6b471a1b85e5bb614116cf9cb40aeccebf02"
+    },
+    "evidence/fetch.json": {
+      "bytes": 170,
+      "sha256": "12113aa8dbeb84544781f70a215a6915c99ed5cd489bef5cec7b9308d78d8633"
+    },
+    "evidence/resume-config-replay.json": {
+      "bytes": 1753,
+      "sha256": "18bed76d6dd012d79614b4ef492a1e74ae713fb692501e0c7671f2157754c104"
+    },
+    "evidence/dtb-raw-delta.json": {
+      "bytes": 11158,
+      "sha256": "d121f014222abec07d1618554a5686925ff757ac79c72409990b28a694b110ec"
+    },
+    "evidence/mtk-boundary-extraction.json": {
+      "bytes": 799,
+      "sha256": "45d5ea016ac110cb0dd13a66ca94b9f4109997d019e2272496d08892a4c877bb"
+    },
+    "evidence/build-attempt-1.json": {
+      "bytes": 388,
+      "sha256": "5e47bbbe73aab239397a5d45eff54aac65a119a9af845f6885db32459d82037d"
+    },
+    "evidence/review-summary.json": {
+      "bytes": 1395,
+      "sha256": "ab8487a5b6954481a41b6c8684d0b24e77b76fe2a6f59afe059798d89731c262"
+    },
+    "evidence/static-verification.json": {
+      "bytes": 864,
+      "sha256": "fea03c2e69206fb007b6483684bff575b76ff51d3b51c63ec0d32cae9890b320"
+    },
+    "evidence/lifetime-repros.json": {
+      "bytes": 379,
+      "sha256": "93684edeabe651bfd179c64ad4237aca6d1618f03993bf79de8d91eed07476df"
+    },
+    "evidence/actual-routing-repro.json": {
+      "bytes": 332,
+      "sha256": "17af8eedd5ba0e91faeb754bc2c119eb13466d72444e5b471a3f6e59f0716eab"
+    },
+    "evidence/close-remote.json": {
+      "bytes": 1079,
+      "sha256": "d6c872cdcf38d941201f2834125c504eecd8c30df80e7ffe172d4da7d4c0cbc9"
+    },
+    "evidence/dtb-verification.json": {
+      "bytes": 2488,
+      "sha256": "69d792e5cd84742564beab2c0ac6b99a71e98556b4c178c8f4647e3dc0fafa86"
+    },
+    "evidence/local-input-pins.json": {
+      "bytes": 7949,
+      "sha256": "599ccf90e20cb466c963b77cd996ba1fd290ee1ebb4ce496be812c1d78c7047d"
+    },
+    "evidence/dtb-check.log": {
+      "bytes": 11266,
+      "sha256": "78bf6ab2b611ac22df746e00f6b54e575adef0f17f4779bd43fc12573b3bf987"
+    },
+    "scripts/fetch.py": {
+      "bytes": 2373,
+      "sha256": "4a6033f5ac5ba052692cb7d56d2073e75ecd71c86180182d249a7e6c4536fda4"
+    },
+    "scripts/setup_local.py": {
+      "bytes": 1568,
+      "sha256": "7ae43395c34b5ba484852d1320a9ec0757e908ae7770c2e800285a72f78d2043"
+    },
+    "scripts/static_verify.py": {
+      "bytes": 3700,
+      "sha256": "3ef63b54a8d357995b91cd4b3d8339247f868a5bab934a031e678551b820848c"
+    },
+    "scripts/make_routing_repro.py": {
+      "bytes": 1643,
+      "sha256": "0a30489eef615b96d1b038028613f94923a746ee118f9d55f0ea0a965e411478"
+    },
+    "scripts/bind_exact_routing.py": {
+      "bytes": 1458,
+      "sha256": "7d6f4b435d2bbfb08c55a18c77a9339068d334826c3d5246af0bb5c1ff219872"
+    },
+    "scripts/resume_config_replay.py": {
+      "bytes": 2920,
+      "sha256": "f21253211e9b6813c48ff5e86ebc8778061e9317232b86a717c2b1be40bd02a9"
+    },
+    "scripts/lifetime_remote.template.py": {
+      "bytes": 2367,
+      "sha256": "98acfeaa8ad00d0de80a08d9fd660da3e85d14b189765d6f8d99b7cdf6990057"
+    },
+    "scripts/make_adversarial.py": {
+      "bytes": 4061,
+      "sha256": "7d2e14918feda34f1fd388971906917994550403f32acbcff0f6ab249cd0f1cc"
+    },
+    "scripts/lifetime_remote.py": {
+      "bytes": 43934,
+      "sha256": "e577f7afeaa06d1dcf9ca8bb288b8b483eeced72d9fbdfef5bf9418c67a42cca"
+    },
+    "scripts/routing_repro_remote.py": {
+      "bytes": 23911,
+      "sha256": "7ff774843a69195be7de28564a6d7c1aa6ec51e11686c8c6f2748a163292341f"
+    },
+    "scripts/check_dtb.py": {
+      "bytes": 4982,
+      "sha256": "a77865f2235996c95a3147b00f9055ba9a73bebee6472713281ff4d3b5165a06"
+    },
+    "scripts/verify_artifacts.py": {
+      "bytes": 3149,
+      "sha256": "e380aab26d5ecf9c293db6f5007e69af9e973cb28fa7f5b5ecc104a19f88ff19"
+    },
+    "scripts/finalize_remote.py": {
+      "bytes": 31430,
+      "sha256": "bdaf6fab1c888404fddc8972672be5bb27254b81b08129387626c45fabe576d2"
+    },
+    "scripts/make_lifetime_repros.py": {
+      "bytes": 1206,
+      "sha256": "37fc84259ad3c6cf06c81a7d8019d010c3f3c7548753784d8f2233e45e1c61ee"
+    },
+    "scripts/close_remote.py": {
+      "bytes": 2942,
+      "sha256": "95a8711b8c33bf6f3f664337f0bb8722ca5e4713ad136396cd803e04504c7bac"
+    },
+    "scripts/fetch_final.py": {
+      "bytes": 2155,
+      "sha256": "d978207251f5c162e21a5bbf761bd18c40b2e4dc32fccec1e71e43be8825f58f"
+    },
+    "scripts/initialize_remote.template.py": {
+      "bytes": 4386,
+      "sha256": "94b6d7fe237d8a6076f3e1d275911cd0c5c39dcc518553d34ff502bf58f6ef13"
+    },
+    "scripts/finalize_remote.template.py": {
+      "bytes": 5684,
+      "sha256": "fb713d684d5ba5668970372ac3ae61ce7dab16a10e688a1879056a727a5a5dba"
+    },
+    "scripts/build_remote.py": {
+      "bytes": 28052,
+      "sha256": "fbb94d89642d6dccfc1f66c5d0470353db706a99a1103d143ee15cab3ee80a75"
+    },
+    "scripts/build_remote.template.py": {
+      "bytes": 3737,
+      "sha256": "a83a0bc8b0b3ea8acc89046e1040e0fe14f600956060245b91e3abaa60e0d3db"
+    },
+    "scripts/remote_run.py": {
+      "bytes": 849,
+      "sha256": "4dbf17fe5abe93df9b41c5f97b89c48ac208ef069dbb10c4214a5754b90e2a72"
+    },
+    "scripts/make_mtk_boundary.py": {
+      "bytes": 3865,
+      "sha256": "7643779f2622baf91afd1903b381115d1bc97f88090e2f9a7566e2e95a834620"
+    },
+    "scripts/initialize_remote.py": {
+      "bytes": 499137,
+      "sha256": "78ada608e501045982cab9e6d590b17f9f3985ee04fbfc44bf55e047002db8e1"
+    },
+    "report/HANDOFF.md": {
+      "bytes": 14518,
+      "sha256": "c40dc67e12e2af4ae87648358e3d34073baa174656744f6d491aa092a3a63a1e"
+    },
+    "remote/EXPORT-MANIFEST.json": {
+      "bytes": 23044,
+      "sha256": "29a1a54f32215bf8f91a52cdf514272bb2b3533bfb8476712c94fc28d2d72b11"
+    },
+    "remote/artifacts/.asus-p00a.dtb.dts.tmp": {
+      "bytes": 85756,
+      "sha256": "40283abddc7192aa64ca3c3dab1257ecf33543ceec475dfd933a7b399d807846"
+    },
+    "remote/artifacts/.asus-p00a.dtb.d.dtc.tmp": {
+      "bytes": 207,
+      "sha256": "6d7a622fd5f808d96d867233d914edd36fe192b807c090151b514ce4aa14df38"
+    },
+    "remote/artifacts/asus-p00a.dts.d": {
+      "bytes": 1173,
+      "sha256": "042a6aaa416ce496b71eff227fa3d4576506cef875599ca2b1e6638abe7581c8"
+    },
+    "remote/artifacts/asus-p00a.preprocessed.dts": {
+      "bytes": 85616,
+      "sha256": "05b5fa3dc27d79e84ffa19c91f4a8e4994373df69115d24e8e45241b6998eaa3"
+    },
+    "remote/artifacts/.asus-p00a.dtb.d.pre.tmp": {
+      "bytes": 1313,
+      "sha256": "b0caf61fd38d8c6a8a5be1bc0ff325c8d64474c943d03ce42cefe9ab9e54224f"
+    },
+    "remote/artifacts/.asus-p00a.dtb.cmd": {
+      "bytes": 2858,
+      "sha256": "28c13223d3d243438247f303661a3a5814e8d45b42f03ca0c004bc3d2f900b30"
+    },
+    "remote/artifacts/asus-p00a.decompiled.dts": {
+      "bytes": 78579,
+      "sha256": "a92574aeb72df8dc1e151e407e583c5c16cca7ca881d69185a0311e11ebab58e"
+    },
+    "remote/evidence/dtb-source-preprocess.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "remote/evidence/lifetime-null-run.log": {
+      "bytes": 278,
+      "sha256": "416a24e01aaeaa65bcba1d62cf31eb15f0abd73767bcecb7d5c3501bbfeb9a8d"
+    },
+    "remote/evidence/AudDrv_Gpio-nm.json": {
+      "bytes": 350,
+      "sha256": "ec9ef88710826db44a03d4edf93d0c472f537e211d089b0e3200a056600e31fe"
+    },
+    "remote/evidence/arm64-codec.log": {
+      "bytes": 43547,
+      "sha256": "c69200003584c8dbbcfb7f80979d78e40bd6fdf33463e67b08f5bb0dd593e5a4"
+    },
+    "remote/evidence/routing-PM-source-binding.json": {
+      "bytes": 266,
+      "sha256": "440204943259e56633716043f1e2c544f32c394a6db2196e508a44413fbe4c5e"
+    },
+    "remote/evidence/lifetime-routing-pm-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "remote/evidence/AudDrv_Afe-objdump.json": {
+      "bytes": 364,
+      "sha256": "61f5af427e1ee3c8403ae4471a03e4ec56fccfde71f338c33f243c8457f5008e"
+    },
+    "remote/evidence/arm64-gpio.json": {
+      "bytes": 735,
+      "sha256": "0987ca57f1764d70e5aa9718787afd04be7733a7cf509e11b39992fdc9fa7105"
+    },
+    "remote/evidence/mt_soc_codec_63xx-nm.json": {
+      "bytes": 357,
+      "sha256": "324909aa30e54b30826d235218808805b62af00da0ccda987b6a9e0283a409b8"
+    },
+    "remote/evidence/board-dtb.json": {
+      "bytes": 707,
+      "sha256": "1c1a51ccfb94576bcb7d00647517a8b1181f682e7c6cda7e7b46fe31be5707ab"
+    },
+    "remote/evidence/lifetime-routing-pm-compile.json": {
+      "bytes": 665,
+      "sha256": "ca61f78f9e376f451716e02c2af4652df0b3f80c72ccdb3b6ba0a8b187fb18b7"
+    },
+    "remote/evidence/board-dtb.log": {
+      "bytes": 3841,
+      "sha256": "223105a52885c679086582c0903448012d0e76b28e678d445b35c9d9867f5f27"
+    },
+    "remote/evidence/resolved-config-check.json": {
+      "bytes": 530,
+      "sha256": "7e990b78289d31a9abce5691988d109313187f2a79e7e6d2bfcc338ef23750c9"
+    },
+    "remote/evidence/review-disposition.json": {
+      "bytes": 830,
+      "sha256": "f0f8531e2845c96e47e400dd4de26dbbbd3cc6bd646185e9ce777cd4e6148d1b"
+    },
+    "remote/evidence/lifetime-routing-pm-run.json": {
+      "bytes": 313,
+      "sha256": "6011b5208485f3c184843337671e8d11aa33d3354d130f1d33eab0d9947578a2"
+    },
+    "remote/evidence/AudDrv_Gpio-nm.log": {
+      "bytes": 1446,
+      "sha256": "22aa768c150de25b5e25d048de2f03f462e08893b6996654493d081771865fff"
+    },
+    "remote/evidence/arm64-afe.log": {
+      "bytes": 13114,
+      "sha256": "02b21c8b461462d5eb6b5f1cb1cc63aa0b0d2d8501b27474f799b7bb7e1a5664"
+    },
+    "remote/evidence/AudDrv_Gpio-readelf.json": {
+      "bytes": 365,
+      "sha256": "b2a122bc199bf3adc57a05d2f71128783d759b4e0df69f6a71d923d4bf6e7cbd"
+    },
+    "remote/evidence/AudDrv_Afe-nm.log": {
+      "bytes": 9445,
+      "sha256": "6579d76f64a0f8177bf12458ca0f870ad3078b6f36d11cad1cb47ce8ef02f6dc"
+    },
+    "remote/evidence/original-host-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "remote/evidence/AudDrv_Afe-readelf.json": {
+      "bytes": 365,
+      "sha256": "160cbcb9ad8049385f65dbeb668a22ac53a930305ea28b427a4521a4681fb8aa"
+    },
+    "remote/evidence/lifetime-stale-suspend-run.json": {
+      "bytes": 316,
+      "sha256": "82c18a6282c3858e495c839f8e8c72a156a965a64d4b3ab31e25289142f16331"
+    },
+    "remote/evidence/lifetime-null-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "remote/evidence/candidate-source-manifest.json": {
+      "bytes": 6712757,
+      "sha256": "f5d40354aba05d7c1c636231faae2f31b214dc6dc27b921012b477af93b29ee7"
+    },
+    "remote/evidence/mt8163-platform-data.txt": {
+      "bytes": 1165,
+      "sha256": "d187e2b89c4e7c365626e129b2baa2fc66a7c19e32bd3f8a7247e0ae7ccab917"
+    },
+    "remote/evidence/dtb-decompile.json": {
+      "bytes": 536,
+      "sha256": "02e76e507c365d2b2aad70e88d87885cd2092ee01428af9f47e32a65307da1f1"
+    },
+    "remote/evidence/dtb-decompile.log": {
+      "bytes": 6917,
+      "sha256": "52e7fbde361b6d924708ce9f24f4320f58cc15e741608bd1b65f1fc8c74a57e5"
+    },
+    "remote/evidence/original-host-run.log": {
+      "bytes": 83,
+      "sha256": "0d34758ef53519ab82adabc1f8ace6600254eaf740f866c200dcdbd3c6a68a26"
+    },
+    "remote/evidence/arm64-afe.json": {
+      "bytes": 734,
+      "sha256": "37943942f0169f02220e6625e5c85a95f6b0c1600e4f601e5ac989bb98e99760"
+    },
+    "remote/evidence/AudDrv_Gpio-objdump.json": {
+      "bytes": 366,
+      "sha256": "7257538f93a3a45e59580ed06abdf1222f6a8199969a5b1bbdbbb812776f35fa"
+    },
+    "remote/evidence/final-verification.json": {
+      "bytes": 4380,
+      "sha256": "0b5f9c87c7be65e522ca07c91f77d3394bc63449fb6a11350ec2bce209257a21"
+    },
+    "remote/evidence/olddefconfig.json": {
+      "bytes": 696,
+      "sha256": "fa2fba1a25ef4bccee5897453ec459c09d5238c670e8e9c785f3cbe0370062f8"
+    },
+    "remote/evidence/lifetime-null-compile.json": {
+      "bytes": 652,
+      "sha256": "a7f9caf3c65e6d7fc7a41b6cc91a86aa6e1506f9b804e3f588b690b44c16661c"
+    },
+    "remote/evidence/mt_soc_codec_63xx-readelf.log": {
+      "bytes": 932,
+      "sha256": "99d1092068c7f2027580c2339e5c0e7204f70fb3e9e7592b9d7d8b8af144d4b1"
+    },
+    "remote/evidence/adversarial-host-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "remote/evidence/AudDrv_Afe-nm.json": {
+      "bytes": 350,
+      "sha256": "a8b1893cfa282c28478ba0b97fb1de6f9072a3fb6cdf073cfa340ac000693b84"
+    },
+    "remote/evidence/arm64-gpio.log": {
+      "bytes": 13121,
+      "sha256": "7b7d57728d72dd77875a6efc6bc22883f46df2ec7b5e28908c98221066a62703"
+    },
+    "remote/evidence/mtk-boundary-run.json": {
+      "bytes": 290,
+      "sha256": "028ec63bdb496cbdf3b6e92e87c1b40e4deffd816c0bc12d59da510d824dddc2"
+    },
+    "remote/evidence/mt_soc_codec_63xx-objdump.json": {
+      "bytes": 372,
+      "sha256": "f7c344de4422ad41b639d3e3d80253b3b8ba2bd43b751c06e5018742d66a9be7"
+    },
+    "remote/evidence/mtk-boundary-compile.json": {
+      "bytes": 633,
+      "sha256": "1f1f4d89b49b8dcc0302933e595e5ba2e42b44d5ecfd4aa9d6a744d4daef5898"
+    },
+    "remote/evidence/lifetime-routing-pm-run.log": {
+      "bytes": 297,
+      "sha256": "85e9a4c2197dfd0b38d9feaad0141d261a9c4069e4d2b857049f691239b22382"
+    },
+    "remote/evidence/mt_soc_codec_63xx-nm.log": {
+      "bytes": 17511,
+      "sha256": "8033b49fd8bae3ad214db7fb7f8548f59f454452176fa6a78d5b8d6eec2a9a26"
+    },
+    "remote/evidence/apply-resolved-config-correct-path.log": {
+      "bytes": 22,
+      "sha256": "6b9ab56fada58496b995d9ea40056b02a6d6518b9ae8f4a8534b1e6e1edf1ca6"
+    },
+    "remote/evidence/routing-PM-caller.txt": {
+      "bytes": 2194,
+      "sha256": "d126535daa2af1ea24589d51f22ef07cc7b321e66eb567d3857530dd41f2793c"
+    },
+    "remote/evidence/AudDrv_Gpio-readelf.log": {
+      "bytes": 931,
+      "sha256": "4b84729c2a7ec6c36c0952be9c8ab24b29061b84897614254962dbaf23e64726"
+    },
+    "remote/evidence/original-host-run.json": {
+      "bytes": 445,
+      "sha256": "b9b8f11682c81490b0dcac0743ee3ae23fbab035506bb3c5e4b8ecbb310466ca"
+    },
+    "remote/evidence/mtk-boundary-run.log": {
+      "bytes": 247,
+      "sha256": "36f6bc473a3767f735a2d28b9c580ff7425fa654ddeaec8371491f33aee9acc2"
+    },
+    "remote/evidence/adversarial-host-run.json": {
+      "bytes": 448,
+      "sha256": "0f244ad0737f26104b274a04220da7883a66114ae165436cd274f9ff08084a78"
+    },
+    "remote/evidence/apply-resolved-config.patch.log": {
+      "bytes": 266,
+      "sha256": "4433e9ec70907d6b7c26381c5817026f704970d76ec5fabc5a8e0a368115002e"
+    },
+    "remote/evidence/AudDrv_Afe-readelf.log": {
+      "bytes": 931,
+      "sha256": "cf4898f6f61e6db757ba5ba0df498bef04a02ee52f5778a7c89909a54361d565"
+    },
+    "remote/evidence/mt_soc_codec_63xx-readelf.json": {
+      "bytes": 371,
+      "sha256": "5b6cd501e8b6c2b7c8d3743a1e3f3994cc108d917c07218269e469572fca778c"
+    },
+    "remote/evidence/adversarial-host-compile.json": {
+      "bytes": 808,
+      "sha256": "4cad74335a786ffd7fbb689253e680f665548154efc74c154a638d525a378e09"
+    },
+    "remote/evidence/lifetime-stale-suspend-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "remote/evidence/initialization.json": {
+      "bytes": 1434,
+      "sha256": "3f3e08104e4ee291768b9d8a41b43f800421a2a560f46e3b483ad287e6ed3d65"
+    },
+    "remote/evidence/baseline-source-manifest.json": {
+      "bytes": 6712631,
+      "sha256": "c636d9abad7de61e242268372a3b6e3e0cc0ff23f1926274db21f17a6dd81124"
+    },
+    "remote/evidence/lifetime-null-run.json": {
+      "bytes": 307,
+      "sha256": "2a09b0dc8bdd2d98f45b3594dcdcdd6eacc751d648a4af2237425fbfed7837c8"
+    },
+    "remote/evidence/dtb-source-preprocess.json": {
+      "bytes": 809,
+      "sha256": "8e89666fe5f493a07771b0818df40dd1a3d9bb47b13d0cdd341eced6113a95a1"
+    },
+    "remote/evidence/apply-kernel-source.patch.log": {
+      "bytes": 356,
+      "sha256": "b6884491de70f57934b39cd6fa354f697780c39d981b93f30835266d7381c1e0"
+    },
+    "remote/evidence/mt_soc_codec_63xx-objdump.log": {
+      "bytes": 358992,
+      "sha256": "4221f0d5f97d40f35554dfca46c895c2e135dda4f4e9132a6dace6711e62590a"
+    },
+    "remote/evidence/lifetime-stale-suspend-compile.json": {
+      "bytes": 671,
+      "sha256": "a1bfeda7dbee23ee70cce1f6c0a0fbe1e5e0e9f4e0a54b11afe12558fc26d1a9"
+    },
+    "remote/evidence/olddefconfig.log": {
+      "bytes": 2550,
+      "sha256": "875181e768b2b1c1f62ce37ee5ad9d2b8f4392f09388bf4a456b4dff31d55f53"
+    },
+    "remote/evidence/original-host-compile.json": {
+      "bytes": 801,
+      "sha256": "3d2acd4aeb1e656d53b4158e158f18c6f75355184f0ffd8e0c26a7ee9bdf679f"
+    },
+    "remote/evidence/adversarial-host-run.log": {
+      "bytes": 198,
+      "sha256": "eaf43076415aa105c16d027ab8563af17d4541b616b97e81dfdba9483e4b0cd2"
+    },
+    "remote/evidence/arm64-codec.json": {
+      "bytes": 740,
+      "sha256": "165929a7c41348e23ecdb95ce656829819f7b16010f74ee7a189017db9e44953"
+    },
+    "remote/evidence/routing-PM-caller-actual-repro.txt": {
+      "bytes": 2194,
+      "sha256": "d126535daa2af1ea24589d51f22ef07cc7b321e66eb567d3857530dd41f2793c"
+    },
+    "remote/evidence/mtk-boundary-compile.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "remote/evidence/AudDrv_Afe-objdump.log": {
+      "bytes": 184414,
+      "sha256": "9418736c3bc8411424eefa51a498fb30f740a67dfc5e5dafdde93b6e3de3ffe6"
+    },
+    "remote/evidence/routing-PM-source-binding-actual-repro.json": {
+      "bytes": 266,
+      "sha256": "440204943259e56633716043f1e2c544f32c394a6db2196e508a44413fbe4c5e"
+    },
+    "remote/evidence/AudDrv_Gpio-objdump.log": {
+      "bytes": 32954,
+      "sha256": "cfdc1648fec5d3371daa13026943487c5a1d2aa94ce61239ba19ee0f1f029e81"
+    },
+    "remote/evidence/lifetime-stale-suspend-run.log": {
+      "bytes": 200,
+      "sha256": "09d8b6d748724c78a1ea3fc83f57eea684f34a4aa86c707d812c3cccf3a9a3bf"
+    },
+    "remote/artifacts/host-tools/dtc": {
+      "bytes": 118968,
+      "sha256": "17b1b27846396b6d94f44ad1fc133568bf553aedacd5dff6f07977dae8769c98"
+    },
+    "remote/artifacts/kbuild-inputs/.config": {
+      "bytes": 126521,
+      "sha256": "26c59e0afa3f6438fafea4b5379b898c9b1fcaf05adf1d7e14db93b2e976bd13"
+    },
+    "remote/artifacts/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.o": {
+      "bytes": 147408,
+      "sha256": "4559441b14d13c99b6570424fed2b031e56395182d98d65217e069e9594cf6f1"
+    },
+    "remote/artifacts/sound/soc/mediatek/mt_soc_audio_8163/.mt_soc_codec_63xx.o.cmd": {
+      "bytes": 71499,
+      "sha256": "3249a48f673496ba6fe6396248b1075949171e07ef59283a14e18b7873aaccb2"
+    },
+    "remote/artifacts/sound/soc/mediatek/mt_soc_audio_8163/.AudDrv_Gpio.o.cmd": {
+      "bytes": 62283,
+      "sha256": "c11563427ab9e1b6729ac8795a96bb644f11f794363be5af28809676f578234e"
+    },
+    "remote/artifacts/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.o": {
+      "bytes": 15416,
+      "sha256": "78dd70c14340bb081c0050959490263793ae3e3e674fb344a37bb7aad30e95eb"
+    },
+    "remote/artifacts/sound/soc/mediatek/mt_soc_audio_8163/.AudDrv_Afe.o.cmd": {
+      "bytes": 56978,
+      "sha256": "cabd1ecbfbb0f7b0811a5f011325ac08f8d0f00a66a9e90309b205456f844fb3"
+    },
+    "remote/artifacts/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Afe.o": {
+      "bytes": 92168,
+      "sha256": "0444ffaa3145fdb5a02cfa1d26b75452525f6830f9bc8a539755534b160dab24"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/ioctl.h": {
+      "bytes": 31,
+      "sha256": "9c6ca9e365296a6b66747cbebdcf76972b8cce7aab91e55bf4ab1f3581df9c2a"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/dma-contiguous.h": {
+      "bytes": 40,
+      "sha256": "0d96461abd23bbf2da522822948455413a345f9ef8ac7a7f81c6126584b3c964"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/dma.h": {
+      "bytes": 29,
+      "sha256": "071a3b9a9d55ed9fa0ee15f0e58bcf066bd1584fc862082a3c477148cdde0d64"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/unaligned.h": {
+      "bytes": 35,
+      "sha256": "75db7a41a4e37456429a2fa77aa9523255b4af9a66f5639b89eab8c09c75e79e"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/msgbuf.h": {
+      "bytes": 32,
+      "sha256": "832154fea591ff628377c8622f8d87a4b673afe06c3d8737d3c1692dcb1e9091"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/clkdev.h": {
+      "bytes": 32,
+      "sha256": "4bd7a45837da7de379b87242efe562ce06bf9d8ab8f636c205bb5ef384c8f759"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/mm-arch-hooks.h": {
+      "bytes": 39,
+      "sha256": "782ce66804d000472b3c601978fa9bd98dcf3b2750d608c684dc52dd1aa0eb7e"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/local64.h": {
+      "bytes": 33,
+      "sha256": "60fcbd6c2f3f7207d61791f97406e59efeb90d071c82492f56a386ee54ab8c5e"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/segment.h": {
+      "bytes": 33,
+      "sha256": "4af01bec99ae5a7c73e1d67d33e7e56b18e90417952813c4f40528649e296d7e"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/sizes.h": {
+      "bytes": 31,
+      "sha256": "ee12284b09ea576767f2d83e5d24c4c146d1c7c432cf40f11f7f2f562c504889"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/shmbuf.h": {
+      "bytes": 32,
+      "sha256": "c1f17a01e81ed720ebd0c5c18afb0d43c4c1b1928b4583595c4ca35df07645a7"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/termbits.h": {
+      "bytes": 34,
+      "sha256": "cba6faa5749f84248b3e73894fb6731dc558af01f8f5a626d8f44ba6fad46977"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/types.h": {
+      "bytes": 31,
+      "sha256": "b6bdcd528bce555b2ecb58e8a1624e3e13e09312c31318023c4e86b957e2b01f"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/preempt.h": {
+      "bytes": 33,
+      "sha256": "6100b67666a4d14507fd43f105a251be7d713303af0581a5bd3b0d787c0a2aa9"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/bugs.h": {
+      "bytes": 30,
+      "sha256": "676d957b86a8fd361fead416c26a3a1388134a825e44a06dc5c645c198f2111c"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/switch_to.h": {
+      "bytes": 35,
+      "sha256": "190c8ee1e77a18d061c00eb36c164ef0f4e2df1de6cc80181dce9446f950807a"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/vga.h": {
+      "bytes": 29,
+      "sha256": "bacc52c22478d12fc815d315215e426d255b29d15e26e5f722535ad8ad714d43"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/mman.h": {
+      "bytes": 30,
+      "sha256": "b3190d3e10f0b603a6a873690438ef191f74245bc7109aa9a0c7525d2cf3b015"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/rwsem.h": {
+      "bytes": 31,
+      "sha256": "f153e02b69d0685c93cb02075c99d77c6f9aa57e9bd6e2810f40f33b4cbbeec7"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/swab.h": {
+      "bytes": 30,
+      "sha256": "a01cbf770530810d20b703375d8c6321d438eaddd88f3515f5dd3fb062ff9c72"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/serial.h": {
+      "bytes": 32,
+      "sha256": "f067f37ff479b7ac377ecf62081ad12e684a64fdf4bab16de9cdc1e46f90352c"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/emergency-restart.h": {
+      "bytes": 43,
+      "sha256": "5642952058f28bed9a4d77ad962165c563ff729160442e64ee0f1ff3fb60fc4f"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/sockios.h": {
+      "bytes": 33,
+      "sha256": "ac496b3bcc37452f0caa104b2205a8a19dde0196a7791988b3b74e23c2174c1e"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/early_ioremap.h": {
+      "bytes": 39,
+      "sha256": "b1a54c24a12ce2c0f283661121974436cdb09ae91822497458072f5f97447c5d"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/kdebug.h": {
+      "bytes": 32,
+      "sha256": "c1478466e40ef29d7d9ba8396fb15f73f9223e69e40e445500251852121bc76d"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/msi.h": {
+      "bytes": 29,
+      "sha256": "1bb3801c1b6cf9d36bef650e297aff61dc1cbbb9789d0e667fea057a262e39e8"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/ipcbuf.h": {
+      "bytes": 32,
+      "sha256": "7d7b26fc15cfa914dc6e03d976570242ea37377491f3619ab287e6169025df66"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/sembuf.h": {
+      "bytes": 32,
+      "sha256": "1b9471b621e0c1a31cafca4a94dfa01cf27aaba40391ffd744be455aa37de5b3"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/user.h": {
+      "bytes": 30,
+      "sha256": "7fcdaa6505d18e1aa9ba4e973a461c726b7e640f471f0649bb0b25fc8a3233f1"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/simd.h": {
+      "bytes": 30,
+      "sha256": "70753fce99f09c1f15c8865014811dbbad3a05b367e22ae7059b236cdcb8dc36"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/kvm_para.h": {
+      "bytes": 34,
+      "sha256": "e2bc44e87ae07d97aa6a00572733f32973fa22a08f2ce0c9ecdb85255c1afe57"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/resource.h": {
+      "bytes": 34,
+      "sha256": "6d9c7f1ca98f275aafe3c5533d274aec702ea6029f8036bdb577b0c53e08f7d9"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/trace_clock.h": {
+      "bytes": 37,
+      "sha256": "70c29b678515c2c164b72a070538d1569a09354f7c3aacf9a7184806a9532281"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/cputime.h": {
+      "bytes": 33,
+      "sha256": "559065e7d242370b1d49e2fa70386b16a1b6e748a3816c46b125a43a5c282d2a"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/errno.h": {
+      "bytes": 31,
+      "sha256": "4ee384515a4325315992e61dd957f0fa91f3858fe7c079de59f56edded51de86"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/termios.h": {
+      "bytes": 33,
+      "sha256": "0c0899ba44a3545c5e137ead0f121480c1d6d3851c8d481f1d6822e39a4cc60d"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/poll.h": {
+      "bytes": 30,
+      "sha256": "0b6ca981303acc042195061225039c080c900169b231ab343c7e9ec6530864ea"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/delay.h": {
+      "bytes": 31,
+      "sha256": "f8a7cb3b75cb59a556641b64880c62c8308099f640c29cc11149051ccbc1205d"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/mutex.h": {
+      "bytes": 31,
+      "sha256": "ea59ab38b1b09bff954db3f066f4b9e98035f83e8abc7b3e82e6ee079aace318"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/kmap_types.h": {
+      "bytes": 36,
+      "sha256": "e1d4ba498f8f300367b27771ca958f8b2b772dabb24511660546b655e2a047bd"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/irq_regs.h": {
+      "bytes": 34,
+      "sha256": "436a9c327f7568c64cbdb7f7083365fe5ca2bb2ce3dd0d718bef9483efdf6ae5"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/local.h": {
+      "bytes": 31,
+      "sha256": "31f22d5b78e1510bc885571c49556f4d9a7ca49ead96deb0dd22c04ca903d99d"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/mcs_spinlock.h": {
+      "bytes": 38,
+      "sha256": "dd864107295503e102ea339e0fd4496204c697bdd5c1b1a35864dfefe504a990"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/socket.h": {
+      "bytes": 32,
+      "sha256": "48e0940e8a6e8861eaaaf90853a685fa803c4e039166060a3c921c8d79001e3c"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/div64.h": {
+      "bytes": 31,
+      "sha256": "97ccc134b0429468cde24a9c8afa1349b4b4381e872338fe8b7c74bbd5f7de12"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/ioctls.h": {
+      "bytes": 32,
+      "sha256": "857d11a8415a18e7a6ccf23640cf9bddf245a5f90c43b3014d08d3ae19faf952"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/xor.h": {
+      "bytes": 29,
+      "sha256": "b240fc442ea8f8628e6c804507cae3fa462a95b4240c742f6a96f0e1039e2550"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/asm/hw_irq.h": {
+      "bytes": 32,
+      "sha256": "20913592e6680e3c927121c6de5674ff59071bcf5b8caa7740fda9425689e2ee"
+    },
+    "remote/artifacts/kbuild-inputs/arch/arm64/include/generated/uapi/asm/kvm_para.h": {
+      "bytes": 34,
+      "sha256": "e2bc44e87ae07d97aa6a00572733f32973fa22a08f2ce0c9ecdb85255c1afe57"
+    },
+    "remote/artifacts/kbuild-inputs/include/generated/autoconf.h": {
+      "bytes": 44596,
+      "sha256": "30bd80cab0d24c2f8ada463fa483fa2c9ca695d4373d30a03dd050c862760cb4"
+    },
+    "remote/artifacts/kbuild-inputs/include/generated/vdso-offsets.h": {
+      "bytes": 36,
+      "sha256": "7a9caf95acdb1c8db63a2a6a9094b42a90295c0dfa4863626292b431708ac4aa"
+    },
+    "remote/artifacts/kbuild-inputs/include/generated/autoksyms.h": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "remote/artifacts/kbuild-inputs/include/generated/utsrelease.h": {
+      "bytes": 73,
+      "sha256": "d60cbc6c658fd4a940da9269479b2be18f2d07caef569e3db8410a274d56d4fa"
+    },
+    "remote/artifacts/kbuild-inputs/include/generated/timeconst.h": {
+      "bytes": 1106,
+      "sha256": "0db01d74b846e39dca3612d96dee8b8f6addfaeb738cc4f5574086828487c2b9"
+    },
+    "remote/artifacts/kbuild-inputs/include/generated/bounds.h": {
+      "bytes": 317,
+      "sha256": "160aa44b2207bedd8517de9d56411dd7fd1fd2c6bf9bd2088e080b6a63457fa8"
+    },
+    "remote/artifacts/kbuild-inputs/include/generated/asm-offsets.h": {
+      "bytes": 5971,
+      "sha256": "cff1a229917d70e20cd1863d2a0ed7f5647c03912b50046886c38595eda4f083"
+    },
+    "remote/artifacts/kbuild-inputs/include/config/auto.conf": {
+      "bytes": 33774,
+      "sha256": "b71f052b751d070230c0890e2ef48bffe3ab57064b0ca87b7d1773f08a512702"
+    },
+    "remote/artifacts/kbuild-inputs/include/generated/uapi/linux/version.h": {
+      "bytes": 97,
+      "sha256": "2967b8ff0dfca4179d01099574ff0973e8539d0316c8c2daa9c750962ff10b12"
+    },
+    "remote/artifacts/arch/arm64/boot/dts/mediatek/.asus-p00a.dtb.cmd": {
+      "bytes": 2858,
+      "sha256": "28c13223d3d243438247f303661a3a5814e8d45b42f03ca0c004bc3d2f900b30"
+    },
+    "remote/artifacts/arch/arm64/boot/dts/mediatek/asus-p00a.dtb": {
+      "bytes": 63383,
+      "sha256": "4cb0785f471410db0d56c2cb29b60e52011d0c3cbe18ccc66f9c9621c9379aec"
+    },
+    "inputs/candidate/resolved.config": {
+      "bytes": 126521,
+      "sha256": "26c59e0afa3f6438fafea4b5379b898c9b1fcaf05adf1d7e14db93b2e976bd13"
+    },
+    "inputs/evidence/HAL-unchanged.json": {
+      "bytes": 196,
+      "sha256": "c92dc17db79e889bc1c1ba37d2b8ae52ea4a14dd5ea5a1d6b41ec14d795b357e"
+    },
+    "inputs/evidence/internal-functions-unchanged.json": {
+      "bytes": 1183,
+      "sha256": "f78915294300b0f8ce9a99c362d9d262d1d73c24bbfbfc95c24eb614c5977df8"
+    },
+    "inputs/evidence/api-line-receipts.json": {
+      "bytes": 2703,
+      "sha256": "89d36de6dc11184c35dc8dd620fb9885afe3b26856bdc897a750de4e188be9c8"
+    },
+    "inputs/evidence/input-pins.json": {
+      "bytes": 19222,
+      "sha256": "630c887703e2ca3642c9978822ad75a9c4f2093f636fba2c44456938344d50cd"
+    },
+    "inputs/evidence/pre-post-pins.json": {
+      "bytes": 2230,
+      "sha256": "f0c80e258c1518ad73dbdc834f53ee4677c3313aa9816d69ff77f7039288cb01"
+    },
+    "inputs/patches/resolved-config.patch": {
+      "bytes": 335,
+      "sha256": "5615ca925e5b86d2d13ec314619d5684f8e24b59768de1504d68374eacf47fcc"
+    },
+    "inputs/patches/README.md": {
+      "bytes": 953,
+      "sha256": "21fa1c5c720fb61315f872d6e13fecc4b4171f11f982f2ef4466ccfa8d3e3467"
+    },
+    "inputs/patches/kernel-source.patch": {
+      "bytes": 14275,
+      "sha256": "4bd4a937f234acaf7b22883c53d087e9d38776e75daf55ec5c2d2fc32b382192"
+    },
+    "inputs/preimage/resolved.config": {
+      "bytes": 126472,
+      "sha256": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2"
+    },
+    "inputs/tests/lifetime-stale-suspend.c": {
+      "bytes": 15640,
+      "sha256": "e47efd1f3d109cd550137b227f77f8d3184138ce1a251cd0b043ea68fe4bf4b0"
+    },
+    "inputs/tests/mtk-boundary.c": {
+      "bytes": 19314,
+      "sha256": "53fdbc3a26a616c5f1ac3296eb754d4fc7467b0238c233216e4cef47bd9e6139"
+    },
+    "inputs/tests/adversarial.c": {
+      "bytes": 18243,
+      "sha256": "f72ffa10edb2a5efe59b69be96c27ef3d3709627a76d79b6871c592630bd17d2"
+    },
+    "inputs/tests/contract.c": {
+      "bytes": 15150,
+      "sha256": "fcb15b8e4e6ddec938050219df7c5ddd1a22206f18e6cfc249b24284329a86b8"
+    },
+    "inputs/tests/lifetime-routing-pm.c": {
+      "bytes": 16161,
+      "sha256": "3f644cd921c58d97a524f65335cf5caedba33b1818107c49272ca0fc02eb3aa8"
+    },
+    "inputs/tests/lifetime-null.c": {
+      "bytes": 15501,
+      "sha256": "b05e9b4fc06f41998b256b0d3ebbc844e7a23091ce68b3305292b59ebb030934"
+    },
+    "inputs/report/HANDOFF.md": {
+      "bytes": 17809,
+      "sha256": "c4a1e5ef9e2936e8022abff7b014d755e42a4d52191d121f33eb5377d048288d"
+    },
+    "inputs/inputs/api/mt_soc_analog_type.h": {
+      "bytes": 5983,
+      "sha256": "27fa5dba131d7cb5e91fe3f072b5b4842a7dc04cfcc4cfa2581d84f2074f403d"
+    },
+    "inputs/inputs/api/sound/soc/soc-core.c": {
+      "bytes": 101776,
+      "sha256": "918395572ef95cc5c5e1a81ca6208540365e7b3e491a4e82bcad66cf324dd328"
+    },
+    "inputs/inputs/api/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_speaker_63xx.c": {
+      "bytes": 3723,
+      "sha256": "4781a0c95bbd1f6cd547164b32264ee61745b800bb4cde9cbe2d2b74705613ab"
+    },
+    "inputs/inputs/api/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_afe_control.c": {
+      "bytes": 124956,
+      "sha256": "ae453e0b83761d69584454f29f73fdf25aae133497e00c36e5a25f4ff2081a24"
+    },
+    "inputs/inputs/api/arch/arm64/boot/dts/mediatek/mt8163.dtsi": {
+      "bytes": 51729,
+      "sha256": "a605903380bac77de2d077e002d215e20422f4a9bf6441c9d782fef3e0c2382a"
+    },
+    "inputs/inputs/api/arch/arm64/boot/dts/mediatek/mt8163-pinfunc.h": {
+      "bytes": 44066,
+      "sha256": "01138f6a53285f69c16091f9a52cfda74b83692d29dee8d8ffb66e33a880d386"
+    },
+    "inputs/inputs/api/include/asm-generic/gpio.h": {
+      "bytes": 4519,
+      "sha256": "7dae23b5096b2dededcc419f7ae1d9c54e55e7f74bc1e5a14d53472d3f0f0ebb"
+    },
+    "inputs/inputs/api/include/linux/of_gpio.h": {
+      "bytes": 4435,
+      "sha256": "90b4d32790bc638dd8f90579919de9f1dde665e9095ba3368d611565d08e5fb9"
+    },
+    "inputs/inputs/api/include/linux/device.h": {
+      "bytes": 49072,
+      "sha256": "0a28a651066643a67fbf4a9cdea35c3dc3cba0e81949ce1220cb1c43d55a6b5b"
+    },
+    "inputs/inputs/api/include/linux/platform_device.h": {
+      "bytes": 12730,
+      "sha256": "6c1ded422b6c7fcd9b59d04d872a57176f2a35509b74f219681710e7c619b600"
+    },
+    "inputs/inputs/api/include/linux/of.h": {
+      "bytes": 38889,
+      "sha256": "c2d5abf988043aafb9aad7d1ba5ba6bb3d8739333b202527027fe5c38081abc0"
+    },
+    "inputs/inputs/api/include/linux/gpio.h": {
+      "bytes": 5278,
+      "sha256": "fc71722577cf2fcb54c881f9d167d55c824f75034eb70ce159bf9f25bc5a1c40"
+    },
+    "inputs/inputs/api/include/linux/mutex.h": {
+      "bytes": 5680,
+      "sha256": "7045c45c077baa4c145d9085426e18235b50a1c19928d73759820e6f8de4aa92"
+    },
+    "inputs/inputs/api/include/sound/soc.h": {
+      "bytes": 58450,
+      "sha256": "b3271dc9430d2362329ccec0f78000c14e3224b1848dca61817b4b1d51ec9add"
+    },
+    "inputs/inputs/api/include/linux/gpio/driver.h": {
+      "bytes": 13000,
+      "sha256": "e16d7089f281e5cec96088ad89ecf6f7b6b9a2ef80482ec8e1fb8cf6558f1d06"
+    },
+    "inputs/inputs/api/include/linux/gpio/consumer.h": {
+      "bytes": 12342,
+      "sha256": "c354a5db81ad57d2dcc699b5f9a689020ffb6c1988a284a0372c5f6e6e9a05a7"
+    },
+    "inputs/inputs/api/drivers/pinctrl/core.c": {
+      "bytes": 49570,
+      "sha256": "022057a6897ba26d0713e095c5f78f8e82ba4141a886000596359166a0428d9f"
+    },
+    "inputs/inputs/api/drivers/pinctrl/pinmux.c": {
+      "bytes": 17904,
+      "sha256": "c4c9fa342cf6e9100d10fe7ed110e545aef7fa190d1eccf861c9c0a468f920e0"
+    },
+    "inputs/inputs/api/drivers/gpio/gpiolib.c": {
+      "bytes": 98804,
+      "sha256": "1d3680d21d6afc6e70a0132e526340c76bdef762a85a18a08d6ef06b98369915"
+    },
+    "inputs/inputs/api/drivers/gpio/gpiolib-of.c": {
+      "bytes": 13421,
+      "sha256": "d53f71904cb7093ce462a38637f2eb161d2783b895e4d2ec1fe7f41a3d837c84"
+    },
+    "inputs/inputs/api/drivers/gpio/devres.c": {
+      "bytes": 10720,
+      "sha256": "3469a6fe3d743a67f3921bfef69ba24c818bcca14de7e82367f9f70e5905426d"
+    },
+    "inputs/inputs/api/drivers/gpio/gpiolib-legacy.c": {
+      "bytes": 2457,
+      "sha256": "9a7ec987b8935049ca9c8ff6389faa117533ffa651605642585ed4948a07753e"
+    },
+    "inputs/inputs/api/drivers/base/dd.c": {
+      "bytes": 23724,
+      "sha256": "2b8746d9d12db781555a7e3a771fa17fbbb92ee1dc36595c4bb6b4a5796726e6"
+    },
+    "inputs/inputs/api/drivers/base/devres.c": {
+      "bytes": 24935,
+      "sha256": "6789bf0002e3dfb95f067817f921a414a727df0f725da5905c9b7778ad027a00"
+    },
+    "inputs/inputs/api/drivers/pinctrl/mediatek/pinctrl-mtk-common.c": {
+      "bytes": 70594,
+      "sha256": "5f89c2ac60807673a0a165bf26b6019c1a21274b875053257ff6f39b472f4189"
+    },
+    "inputs/inputs/api/drivers/pinctrl/mediatek/pinctrl-mtk-mt8163.h": {
+      "bytes": 34796,
+      "sha256": "e5243af25684742c2a0b16044a04104ebd2b2fb9ebf89bf394b5fc4102beca1b"
+    },
+    "inputs/inputs/dt-source/arch/arm64/boot/dts/mediatek/mt8163-sched-energy.dtsi": {
+      "bytes": 1004,
+      "sha256": "81619dc30f4f9cae287f082ea68f8dbc67f000d0867ed8d5c2c4de0a30bb89f0"
+    },
+    "inputs/inputs/dt-source/arch/arm64/boot/dts/mediatek/mt8163.dtsi": {
+      "bytes": 51729,
+      "sha256": "a605903380bac77de2d077e002d215e20422f4a9bf6441c9d782fef3e0c2382a"
+    },
+    "inputs/inputs/dt-source/arch/arm64/boot/dts/mediatek/mt8163-pinfunc.h": {
+      "bytes": 44066,
+      "sha256": "01138f6a53285f69c16091f9a52cfda74b83692d29dee8d8ffb66e33a880d386"
+    },
+    "inputs/inputs/dt-source/arch/arm64/boot/dts/mediatek/asus8163_tb_380_m_bat_setting.dtsi": {
+      "bytes": 15092,
+      "sha256": "8ed8a02f230aaa6250e3c168604dff0df76c81d5dd3000c593d63bcc8d14fc26"
+    },
+    "inputs/inputs/dt-source/include/dt-bindings/power/mt8163-power.h": {
+      "bytes": 901,
+      "sha256": "2e0c1dfbff8f21f98dab67368b2b32b080e46fb9221be5d230a8d8823a89b724"
+    },
+    "inputs/inputs/dt-source/include/dt-bindings/pinctrl/mt65xx.h": {
+      "bytes": 1210,
+      "sha256": "4762c50d0509720c452ae08bbd23dd16146018d516825bf06f4cf2c5c0c42322"
+    },
+    "inputs/inputs/dt-source/include/dt-bindings/interrupt-controller/arm-gic.h": {
+      "bytes": 490,
+      "sha256": "eb746b91b1c8a357c0b3aa449795ba290b2ee5364bbae6e13dea4e00de7eac73"
+    },
+    "inputs/inputs/dt-source/include/dt-bindings/interrupt-controller/irq.h": {
+      "bytes": 565,
+      "sha256": "dd596b1a607b3ef68a85a0741fdf3c63e9a9266e6f8fbd61a739e0f155aa5baa"
+    },
+    "inputs/inputs/dt-source/include/dt-bindings/soc/mt8163-md32.h": {
+      "bytes": 905,
+      "sha256": "f8f9a975584448d4122d51ff47c79fa28b54101a131f7d1d7a47f6745b2a0a1c"
+    },
+    "inputs/inputs/dt-source/include/dt-bindings/reset-controller/mt8163-resets.h": {
+      "bytes": 1280,
+      "sha256": "2333f7502e40e0ce16563b24239cd5e774c7b196aecb75c7271f0fef77558392"
+    },
+    "inputs/inputs/dt-source/include/dt-bindings/clock/mt8163-clk.h": {
+      "bytes": 8874,
+      "sha256": "88ca0d673703830da8728634ca03d8695d16bfe6e5cc0ea0bf988e8a37dca64b"
+    },
+    "inputs/tests/generated/actual-gpio-flags.inc": {
+      "bytes": 586,
+      "sha256": "6711f086876f62fc09db6f34364593fa1671d30fea29576c56d6f6f116db3289"
+    },
+    "inputs/tests/generated/codec-no-kernel-includes.c": {
+      "bytes": 123338,
+      "sha256": "daf86b3cf75722b374954025bbc667f999eda526316e5af5fccce9dfd180f2e5"
+    },
+    "inputs/tests/generated/actual-codec-bodies.inc": {
+      "bytes": 8542,
+      "sha256": "4754ff2f3cee2280e7de2d091ac6e4265cf3142834a96571f412d67276d4e2dd"
+    },
+    "inputs/tests/generated/actual-gpio24-backend.inc": {
+      "bytes": 862,
+      "sha256": "04e825fba6021b4f6da492b784a3c8e33222ca54b4ec425ae1695b2cf2c3feed"
+    },
+    "inputs/tests/generated/actual-api-prototypes.inc": {
+      "bytes": 618,
+      "sha256": "713d58831165a800ed1b2fb48cb51f059a572a0c518d445c4550d628a1f66217"
+    },
+    "inputs/tests/generated/actual-api-bodies.inc": {
+      "bytes": 2309,
+      "sha256": "652ace258f9ec5660733ac054236cc8ad0f7dc2c6b438b1b34e42234f10f44c5"
+    },
+    "inputs/tests/generated/profile-guard.c": {
+      "bytes": 4606,
+      "sha256": "f819b312dd9a8f3554353b71e1fa450c0361be315fc1544385b4641b2b89f653"
+    },
+    "inputs/tests/generated/actual-gate.inc": {
+      "bytes": 4606,
+      "sha256": "f819b312dd9a8f3554353b71e1fa450c0361be315fc1544385b4641b2b89f653"
+    },
+    "inputs/preimage/sound/soc/mediatek/Kconfig": {
+      "bytes": 6473,
+      "sha256": "3be1ee72b1f74fb03bb39d53889b50d5ecba48ae32970316a6801d7e40c6f1dc"
+    },
+    "inputs/preimage/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c": {
+      "bytes": 117756,
+      "sha256": "a6cbff61167f1c3690b2554f4aa59fe365d8bbeb3a7e3ae12999d4266ab3e3b2"
+    },
+    "inputs/preimage/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c": {
+      "bytes": 10255,
+      "sha256": "d2381b84a3dfbf8258723d365ec35e17f5ad75b97b9595e883fdf596bc68a7f5"
+    },
+    "inputs/preimage/arch/arm64/configs/asus_p00a_defconfig": {
+      "bytes": 11026,
+      "sha256": "423c68c8870d56b843f447dc45c4b63f908143ca8a85c462481a1a161c9a9588"
+    },
+    "inputs/preimage/arch/arm64/boot/dts/mediatek/asus-p00a.dts": {
+      "bytes": 29636,
+      "sha256": "bb39c36199b6cb92b453c59116d85bc3e6769663792d0ddf7f18e7509d81f572"
+    },
+    "inputs/candidate/sound/soc/mediatek/Kconfig": {
+      "bytes": 6877,
+      "sha256": "7b2a904e9535307536eddd5fb4661f060b3f60920fd3fe31bb941680a99d7bac"
+    },
+    "inputs/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c": {
+      "bytes": 119402,
+      "sha256": "4753b516aeb4a6c43ec510580bbba1563a9bc1443765331fa8c89b47c7206675"
+    },
+    "inputs/candidate/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c": {
+      "bytes": 10448,
+      "sha256": "4628dd7d0525e39bd296152f579ac16afe726e039f2021eb41cb0acf7e78930c"
+    },
+    "inputs/candidate/sound/soc/mediatek/mt_soc_audio_8163/p00a_stock_gate.h": {
+      "bytes": 4730,
+      "sha256": "6405ec0f74808c22f638569b86a9522603c3ae668fa2ce51e511347b7f85d868"
+    },
+    "inputs/candidate/arch/arm64/configs/asus_p00a_defconfig": {
+      "bytes": 11075,
+      "sha256": "da68ffb7ca7b1a84a43fa26d612869154afdd365fc82c7066fb8f0eb683ea9f1"
+    },
+    "inputs/candidate/arch/arm64/boot/dts/mediatek/asus-p00a.dts": {
+      "bytes": 29426,
+      "sha256": "61660c82984338fe681d6a4d6afc35cac1a4bc6a54f2ad1f602c6322d8c9ee07"
+    }
+  },
+  "bytes": 18325201,
+  "utc": "2026-11-07T01:06:00.716866+00:00"
+}

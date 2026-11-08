@@ -1,0 +1,386 @@
+[
+  {
+    "line": 12,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 18,
+    "original": "tbnz x4, #0, .Laet_done"
+  },
+  {
+    "line": 19,
+    "original": "tbnz x4, #2, .Laet_done"
+  },
+  {
+    "line": 22,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 25,
+    "original": "b.lo .Laet_done"
+  },
+  {
+    "line": 29,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 35,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 39,
+    "original": "b.lo .Laet_done"
+  },
+  {
+    "line": 42,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 46,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 50,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 54,
+    "original": "b.lo .Laet_done"
+  },
+  {
+    "line": 56,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 63,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 70,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 78,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 87,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 94,
+    "original": "b.lo .Laet_done"
+  },
+  {
+    "line": 97,
+    "original": "b.ls .Laet_done"
+  },
+  {
+    "line": 100,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 109,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 117,
+    "original": "b.lo .Laet_done"
+  },
+  {
+    "line": 119,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 121,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 123,
+    "original": "b.lo .Laet_done"
+  },
+  {
+    "line": 126,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 132,
+    "original": "b.lo .Laet_done"
+  },
+  {
+    "line": 133,
+    "original": "cbz x7, .Laet_done"
+  },
+  {
+    "line": 136,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 140,
+    "original": "b.lo .Laet_done"
+  },
+  {
+    "line": 148,
+    "original": "b.lo .Laet_done"
+  },
+  {
+    "line": 150,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 154,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 158,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 163,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 173,
+    "original": "b.cs .Laet_done"
+  },
+  {
+    "line": 175,
+    "original": "b.eq .Laet_done       // nonzero-address, zero-size entry is ambiguous"
+  },
+  {
+    "line": 181,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 234,
+    "original": "tbnz x10, #\\bit, .Laet_done"
+  },
+  {
+    "line": 238,
+    "original": "tbnz x11, #\\bit, .Laet_done"
+  },
+  {
+    "line": 245,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 250,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 262,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 263,
+    "original": "cbnz x8, .Laet_done"
+  },
+  {
+    "line": 265,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 269,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 273,
+    "original": "b.hs .Laet_done"
+  },
+  {
+    "line": 282,
+    "original": "b.hs .Laet_done"
+  },
+  {
+    "line": 285,
+    "original": "b.eq .Laet_done"
+  },
+  {
+    "line": 292,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 295,
+    "original": "cbnz x15, .Laet_done"
+  },
+  {
+    "line": 299,
+    "original": "cbz x15, .Laet_done"
+  },
+  {
+    "line": 318,
+    "original": "b.ls .Laet_done"
+  },
+  {
+    "line": 328,
+    "original": "b.eq .Laet_done        // no nested memory interpretation"
+  },
+  {
+    "line": 332,
+    "original": "b.ne .Laet_done        // no nested reservation ambiguity"
+  },
+  {
+    "line": 372,
+    "original": "cbz w15, .Laet_done"
+  },
+  {
+    "line": 382,
+    "original": "cbz x8, .Laet_done"
+  },
+  {
+    "line": 394,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 396,
+    "original": "tbz x11, #6, .Laet_done"
+  },
+  {
+    "line": 416,
+    "original": "cbz x8, .Laet_done"
+  },
+  {
+    "line": 421,
+    "original": "b.ne .Laet_done        // properties must precede child nodes"
+  },
+  {
+    "line": 424,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 434,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 437,
+    "original": "b.hs .Laet_done"
+  },
+  {
+    "line": 442,
+    "original": "b.hs .Laet_done"
+  },
+  {
+    "line": 447,
+    "original": "cbz x15, .Laet_done"
+  },
+  {
+    "line": 463,
+    "original": "b.eq .Laet_done        // do not borrow a NUL from alignment padding"
+  },
+  {
+    "line": 468,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 471,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 479,
+    "original": "b.eq .Laet_done"
+  },
+  {
+    "line": 503,
+    "original": "b.hs .Laet_done"
+  },
+  {
+    "line": 507,
+    "original": "b.hs .Laet_done"
+  },
+  {
+    "line": 512,
+    "original": "cbz x15, .Laet_done"
+  },
+  {
+    "line": 523,
+    "original": "tbz x10, #16, .Laet_done"
+  },
+  {
+    "line": 551,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 566,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 569,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 581,
+    "original": "cbz x13, .Laet_done"
+  },
+  {
+    "line": 583,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 590,
+    "original": "b.cs .Laet_done"
+  },
+  {
+    "line": 598,
+    "original": "tbnz x11, #7, .Laet_done"
+  },
+  {
+    "line": 601,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 604,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 660,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 666,
+    "original": "b.lo .Laet_done"
+  },
+  {
+    "line": 672,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 676,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 682,
+    "original": "b.lo .Laet_done"
+  },
+  {
+    "line": 684,
+    "original": "b.lo .Laet_done"
+  },
+  {
+    "line": 690,
+    "original": "b.ne .Laet_done"
+  },
+  {
+    "line": 693,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 699,
+    "original": "b.lo .Laet_done"
+  },
+  {
+    "line": 701,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 703,
+    "original": "b.hi .Laet_done"
+  },
+  {
+    "line": 706,
+    "original": "b.hs .Laet_done"
+  },
+  {
+    "line": 710,
+    "original": "b.lo .Laet_done"
+  }
+]

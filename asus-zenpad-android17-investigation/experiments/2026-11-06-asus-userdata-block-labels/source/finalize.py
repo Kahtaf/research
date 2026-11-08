@@ -1,0 +1,22 @@
+import os,resource,pathlib,subprocess,json,hashlib,base64
+os.sched_setaffinity(0,{min(os.sched_getaffinity(0))});resource.setrlimit(resource.RLIMIT_AS,(1024**3,1024**3));resource.setrlimit(resource.RLIMIT_CPU,(60,60));resource.setrlimit(resource.RLIMIT_FSIZE,(16*1024**2,16*1024**2))
+P=pathlib.Path;A=P('/srv/android/lineage24');R=P('/srv/android/asus-userdata-block-labels-20261106');Q=P('/srv/android/asus-sdk37-host-metadata-resolvers-20261106/inputs-r4');e={}
+(R/'policy_query_final.c').write_bytes(base64.b64decode('I2luY2x1ZGUgPHNlcG9sL3BvbGljeWRiL3NlcnZpY2VzLmg+CiNpbmNsdWRlIDxzdGRpby5oPgojaW5jbHVkZSA8c3RkbGliLmg+CiNpbmNsdWRlIDxzdHJpbmcuaD4KaW50IG1haW4oaW50IGFyZ2MsY2hhciAqKmFyZ3YpewogaWYoYXJnYyE9MilyZXR1cm4gMjsKIEZJTEUgKmY9Zm9wZW4oYXJndlsxXSwicmIiKTtpZighZilyZXR1cm4gMTtmc2VlayhmLDAsU0VFS19FTkQpO2xvbmcgbGVuPWZ0ZWxsKGYpO3Jld2luZChmKTtpZihsZW48PTB8fGxlbj4xNioxMDI0KjEwMjQpcmV0dXJuIDE7dm9pZCAqZGF0YT1tYWxsb2MoKHNpemVfdClsZW4pO2lmKGZyZWFkKGRhdGEsMSwoc2l6ZV90KWxlbixmKSE9KHNpemVfdClsZW4pcmV0dXJuIDE7ZmNsb3NlKGYpO2lmKHNlcG9sX2xvYWRfcG9saWN5KGRhdGEsKHNpemVfdClsZW4pKXJldHVybiAxOwogc2Vwb2xfc2VjdXJpdHlfaWRfdCBzcmMsdGd0O3NlcG9sX3NlY3VyaXR5X2NsYXNzX3QgY2xzOwogY29uc3QgY2hhciAqc291cmNlPSJ1OnI6ZnNjazpzMCI7aWYoc2Vwb2xfY29udGV4dF90b19zaWQoc291cmNlLHN0cmxlbihzb3VyY2UpKzEsJnNyYykpcmV0dXJuIDE7aWYoc2Vwb2xfc3RyaW5nX3RvX3NlY3VyaXR5X2NsYXNzKCJibGtfZmlsZSIsJmNscykpcmV0dXJuIDE7CiBjb25zdCBjaGFyICp0eXBlc1tdPXsidXNlcmRhdGFfYmxvY2tfZGV2aWNlIiwiYmxvY2tfZGV2aWNlIiwiYm9vdF9ibG9ja19kZXZpY2UiLCJ2ZF9kZXZpY2UifTtjb25zdCBjaGFyICpwZXJtc1tdPXsib3BlbiIsInJlYWQiLCJ3cml0ZSIsImdldGF0dHIiLCJpb2N0bCJ9OwogZm9yKGludCBpPTA7aTw0O2krKyl7Y2hhciBjdHhbMTI4XTtzbnByaW50ZihjdHgsc2l6ZW9mKGN0eCksInU6b2JqZWN0X3I6JXM6czAiLHR5cGVzW2ldKTtpZihzZXBvbF9jb250ZXh0X3RvX3NpZChjdHgsc3RybGVuKGN0eCkrMSwmdGd0KSlyZXR1cm4gMTtmb3IoaW50IGo9MDtqPDU7aisrKXtzZXBvbF9hY2Nlc3NfdmVjdG9yX3QgcmVxdWVzdGVkO3N0cnVjdCBzZXBvbF9hdl9kZWNpc2lvbiBhdmQ7aWYoc2Vwb2xfc3RyaW5nX3RvX2F2X3Blcm0oY2xzLHBlcm1zW2pdLCZyZXF1ZXN0ZWQpKXJldHVybiAxO2lmKHNlcG9sX2NvbXB1dGVfYXYoc3JjLHRndCxjbHMscmVxdWVzdGVkLCZhdmQpKXJldHVybiAxO3ByaW50ZigiZnNja1x0JXNcdGJsa19maWxlXHQlc1x0JXNcbiIsdHlwZXNbaV0scGVybXNbal0sKGF2ZC5hbGxvd2VkJnJlcXVlc3RlZCk9PXJlcXVlc3RlZD8iYWxsb3ciOiJkZW55Iik7fX0KIGZyZWUoZGF0YSk7cmV0dXJuIGZlcnJvcihzdGRvdXQpPzE6MDsKfQo='))
+
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def run(args):
+ p=subprocess.run([str(a)for a in args],cwd=R,capture_output=True,text=True,timeout=30);v=dict(argv=[str(a)for a in args],exit=p.returncode,stdout=p.stdout,stderr=p.stderr);assert p.returncode==0,v;return v
+lib=A/'out/soong/.intermediates/external/selinux/libsepol/libsepol/linux_glibc_x86_64_static/libsepol.a'
+e['compile']=run(['gcc','-O2','-Wall','-Wextra','-Werror','-I'+str(A/'external/selinux/libsepol/include'),R/'policy_query_final.c',lib,'-o',R/'policy_query_final'])
+e['policy_query']=run([R/'policy_query_final',R/'current/precompiled_sepolicy'])
+e['runtime_closure']=run([Q/'lib64/ld-linux-x86-64.so.2','--inhibit-cache','--library-path',Q/'lib64','--list',R/'block_lookup'])
+fixture=R/'fixture-only-vendor_file_contexts';fixture.write_text((R/'proposed/vendor_file_contexts').read_text()+'\n# FIXTURE ONLY: dedicated fresh virtual DATA, no production claim.\n/dev/block/vda    u:object_r:userdata_block_device:s0\n')
+e['fixture_checkfc']=run([A/'out/host/linux-x86/bin/checkfc','-e',R/'current/precompiled_sepolicy',fixture])
+e['fixture_lookup']=run([R/'block_lookup',R/'current/plat_file_contexts',R/'current/system_ext_file_contexts',R/'current/product_file_contexts',fixture,R/'current/odm_file_contexts'])
+# Record input-sidecar identities without creating alternatives.
+e['sidecars']=[{'path':str(p)+s,'exists':P(str(p)+s).exists()}for p in (A/'out/target/product/p00a').glob('**/etc/selinux/*file_contexts')for s in ['.bin','.subs','.subs_dist','.local','.homedirs']]
+e['final_pins']=[dict(path=str(p),sha256=sha(p),bytes=p.stat().st_size)for p in [R/'policy_query_final.c',R/'policy_query_final',lib]]
+e['unchanged_sources']=[{'path':str(A/n),'before':sha(R/'inputs'/n),'after':sha(A/n)}for n in ['device/asus/p00a/sepolicy/vendor/file_contexts','system/sepolicy/private/fsck.te','device/asus/p00a/rootdir/ueventd.rc']]
+assert all(x['before']==x['after']for x in e['unchanged_sources'])
+e['owned_bytes']=sum(p.stat().st_size for p in R.rglob('*')if p.is_file());assert e['owned_bytes']<64*1024**2
+(R/'final-evidence.json').write_text(json.dumps(e,indent=2));print(json.dumps(e,indent=2))

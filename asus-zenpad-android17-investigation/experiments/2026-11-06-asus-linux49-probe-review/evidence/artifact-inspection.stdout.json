@@ -1,0 +1,66 @@
+{
+  "status": "STATIC_PACKAGING_PASS_ONLY",
+  "candidate_sha256": "48bb6efa1620cb380037e53b53cfa560e38cd23b95211c8634616ce94fd6ce48",
+  "candidate_bytes": 8880128,
+  "padded_sha256": "25812e7dde39ec37e3f4c9438341cc29f2b2e7dce61e4b88d0886cd9dd075b16",
+  "compiled_sha256": "d4094bcff6c763af7f1c01ccd3d612a988f96de13f78b492b808cc76c0ac929f",
+  "geometry": {
+    "kernel_size_including_wrapper": 7696802,
+    "ramdisk_size_including_wrapper": 1178032,
+    "ramdisk_file_offset": 7700480,
+    "unpadded_bytes": 8880128
+  },
+  "kernel_stream": {
+    "compressed_bytes": 7632565,
+    "raw_bytes": 17275392,
+    "crc32": "0xdb26b2f6"
+  },
+  "ramdisk_stream": {
+    "compressed_bytes": 1177520,
+    "raw_bytes": 3011584,
+    "crc32": "0x41be75ab"
+  },
+  "initrd_range": [
+    "0x44000200",
+    "0x4411f9b0"
+  ],
+  "image_header": {
+    "text_offset": "0x80000",
+    "image_size": 18767872,
+    "flags": "0xa",
+    "kernel_memory_end": "0x41266000"
+  },
+  "dt_changed_properties": [
+    [
+      "/chosen",
+      "bootargs"
+    ],
+    [
+      "/chosen",
+      "linux,initrd-end"
+    ],
+    [
+      "/chosen",
+      "linux,initrd-start"
+    ]
+  ],
+  "dt_reservations": [],
+  "cmdline": "androidboot.selinux=enforcing bootopt=64S3,32N2,64N2 build_version=3 initrd=0x44000200,0x11f7b0",
+  "chosen_bootargs": "console=ttyMT0,921600n1 root=/dev/ram initrd=0x44000200,0x11f7b0",
+  "stock_preserved": [
+    "init",
+    "sbin/adbd",
+    "file_contexts.bin",
+    "property_contexts",
+    "seapp_contexts",
+    "service_contexts"
+  ],
+  "changes_vs_repaired_control": [
+    "config",
+    "init.rc",
+    "sbin/recovery",
+    "sepolicy",
+    "system/bin/sh"
+  ],
+  "physical_boot_proven": false
+}

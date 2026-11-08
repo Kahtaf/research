@@ -1,0 +1,15 @@
+{
+  "asus": {
+    "url": "https://dlcdnets.asus.com/pub/ASUS/EeePAD/Zenpad/Z380M/Kernel_V4_7_0.zip",
+    "archive_sha256": "d8b9d77a7e8b5151c2b68c96e784842a25b167cf8a7044188e7044a5fdbcd41c",
+    "member": "V380M_V4.7.0.tar.gz",
+    "retrieval": "reused previously extracted GPL source; no whole archive or kernel fetched",
+    "license": "GPL-2.0; COPYlNG and file notices preserved"
+  },
+  "kernel4.9": {
+    "revision": "717bb3c9e13ce573cfdd2dda856debd27a0fa17f",
+    "path": "/srv/android/asus-android17/kernel-bpf-fd",
+    "retrieval": "read-only SSH tar of selected platform, adapter, headers; no writes/builds"
+  },
+  "openmttools": "See openmttools-provenance.json; MIT; bounded five-file primary-author source fetch"
+}

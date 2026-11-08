@@ -1,0 +1,192 @@
+{
+  "artifacts": {
+    ".config": {
+      "bytes": 126472,
+      "sha256": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2"
+    },
+    "System.map": {
+      "bytes": 4393421,
+      "sha256": "638fbd8ee2e285a3005f473f3beb003dfcd2e4d19788bd50acccc769418713a0"
+    },
+    "arch/arm64/boot/Image": {
+      "bytes": 17345024,
+      "sha256": "43ee0529e371575bfaddb9de392b77a2279cb44bc60649fcd8d9a88b6e613b09"
+    },
+    "arch/arm64/boot/Image.gz": {
+      "bytes": 7653276,
+      "sha256": "6e445d5000ad1d8dba7dd947945f2db417c45800a6036b995340b9ffc3b57b6d"
+    },
+    "arch/arm64/boot/Image.gz-dtb": {
+      "bytes": 7716897,
+      "sha256": "e9cde06e85e752aec0433ea37fa926c31b4f7a72cd55453762ec6870e5bb5bf1"
+    },
+    "arch/arm64/boot/dts/mediatek/asus-p00a.dtb": {
+      "bytes": 63621,
+      "sha256": "a099d0538b270e23ec0d034b507eef9248252a3c459a11aa70edb6520bfd2b77"
+    },
+    "include/generated/compile.h": {
+      "bytes": 329,
+      "sha256": "31f9e7dc8baa5fa8921ea2d8e624a5c1bfd49b83735bf5ba4f3bbc346ebf4f20"
+    },
+    "include/generated/utsrelease.h": {
+      "bytes": 73,
+      "sha256": "d60cbc6c658fd4a940da9269479b2be18f2d07caef569e3db8410a274d56d4fa"
+    },
+    "vmlinux": {
+      "bytes": 23250432,
+      "sha256": "552f8bd3a09222ba06b4d0bed764f6788691c3e2514b86fed38c61651c619046"
+    }
+  },
+  "charging_opt_in_absent": true,
+  "checks": [
+    "full_compile_exit_zero",
+    "Image_equals_decompressed_payload",
+    "DT_byte_identical_to_physical_r5",
+    "DT_equals_build_output",
+    "charging_opt_in_absent",
+    "ARM64_Image_magic",
+    "header_text_offset_flags_preserved",
+    "header_reserved_fields_preserved",
+    "Image_fits_allocated_header_size",
+    "embedded_config_matches_resolved",
+    "only_four_config_changes",
+    "exact_expected_resolved_config",
+    "282_runtime_sources",
+    "58_runtime_options",
+    "16_network_options",
+    "290_firstboot_source_files",
+    "134_firstboot_options",
+    "complete_owned_source_manifest_unchanged",
+    "all_original_r5_source_files_unchanged",
+    "original_r5_config_unchanged",
+    "original_r5_Image_unchanged",
+    "frozen_r2_kit_seal_preserved",
+    "kernel_release_preserved",
+    "no_static_payload_reservation_overlap",
+    "DT_fits_parent_allocation",
+    "static_payloads_within_RAM_bank",
+    "linked_symbol_bmc156_probe",
+    "linked_symbol_bmc156_get_data",
+    "linked_symbol_bmc156_driver",
+    "linked_symbol_bmc156_batch",
+    "linked_symbol_bmc156_set_cali",
+    "linked_symbol_acc_register_control_path",
+    "linked_symbol_sensor_event_read",
+    "linked_symbol_bpf_prog_load",
+    "18_r5_runtime_radio_charging_network_symbols",
+    "vmlinux_no_undefined_symbols",
+    "ARM64_vmlinux_ELF"
+  ],
+  "checks_passed": 37,
+  "config_delta": {
+    "CONFIG_BMC156_ACC": {
+      "after": "y",
+      "before": "n"
+    },
+    "CONFIG_CUSTOM_KERNEL_ACCELEROMETER": {
+      "after": "y",
+      "before": "n"
+    },
+    "CONFIG_MTK_BMA253": {
+      "after": "n",
+      "before": "y"
+    },
+    "CONFIG_MTK_MC3416": {
+      "after": "n",
+      "before": "y"
+    }
+  },
+  "dt_byte_identical": true,
+  "full_kernel_compiled": true,
+  "header": {
+    "file_bytes": 17345024,
+    "flags": 10,
+    "image_size": 18841600,
+    "text_offset": 524288
+  },
+  "layout": {
+    "dynamic_reservations": [
+      {
+        "alignment": [
+          0,
+          2097152
+        ],
+        "size": [
+          0,
+          2097152
+        ],
+        "source": "/reserved-memory/consys-reserve-memory"
+      }
+    ],
+    "payloads": [
+      {
+        "end": 1093107712,
+        "source": "ARM64 allocated Image",
+        "start": 1074266112
+      },
+      {
+        "end": 1145044992,
+        "source": "unchanged maximum parent ramdisk placement",
+        "start": 1140850688
+      },
+      {
+        "end": 1309671424,
+        "source": "unchanged parent DTB placement",
+        "start": 1308622848
+      }
+    ],
+    "reservations": [
+      {
+        "end": 1124270080,
+        "source": "/reserved-memory/atf-reserved-memory",
+        "start": 1124073472
+      },
+      {
+        "end": 1145569280,
+        "source": "/reserved-memory/ram_console-reserved-memory",
+        "start": 1145044992
+      },
+      {
+        "end": 1146617856,
+        "source": "/reserved-memory/minirdump-reserved-memory",
+        "start": 1146552320
+      },
+      {
+        "end": 3175088128,
+        "source": "/reserved-memory/secure-carveout",
+        "start": 3007315968
+      }
+    ],
+    "runtime_placement_verified": false,
+    "static_overlaps": false,
+    "static_ram_bank": {
+      "end": 3177185280,
+      "start": 1073741824
+    }
+  },
+  "original_source_files": 62224,
+  "physical_r5_header": {
+    "file_bytes": 17340928,
+    "flags": 10,
+    "image_size": 18837504,
+    "text_offset": 524288
+  },
+  "physical_tested": false,
+  "product_integrated": false,
+  "source_delta_files": 9,
+  "source_files": 62228,
+  "source_manifests": {
+    "post": {
+      "canonical_json_sha256": "c636d9abad7de61e242268372a3b6e3e0cc0ff23f1926274db21f17a6dd81124",
+      "local_reconstruction": "r5 complete manifest overlaid with patches/pre-post-hashes.json after values",
+      "remote_file": "/srv/android/asus-bmc156-full-kernel-r1/evidence/post-source-manifest.json.gz"
+    },
+    "r5": {
+      "canonical_json_sha256": "561adcedb030efd47cf7dc38c991f52dc52974ca227fa30267e16a3ba23ec70e",
+      "compressed_sha256": "93b4a51a45af00095283dc428d4ace6c5b8027b27cfc4f829f05d7453f572c04",
+      "file": "evidence/r5-source-manifest.json.gz"
+    }
+  },
+  "status": "COMPLETE_KERNEL_COMPILE_STATIC_PROOF",
+  "utc": "2026-11-06T21:22:01.030879+00:00"
+}

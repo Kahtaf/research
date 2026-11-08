@@ -1,0 +1,228 @@
+{
+  "Image.gz-dtb-combined-r1": {
+    "status": "NONBOOTABLE_SYNTHETIC_FIXTURE",
+    "aosp_boot_sha256": "fe7faf0f9321a1e3ba95b6f20d3df63e55ae8893a499eb6a2c3c8680e19170db",
+    "input_kernel_sha256": "d4094bcff6c763af7f1c01ccd3d612a988f96de13f78b492b808cc76c0ac929f",
+    "image_sha256": "dc1b4baa669d709c53e6678989adefcb91405b543d15282954e67c9b1cbe2add",
+    "image_bytes": 8257536,
+    "partition_bytes": 16740352,
+    "padded_partition_sha256": "344a908bbd503c8161e2bada84032b991af22982a193745492f6c05d784731a0",
+    "header_cmdline": "bootopt=64S3,32N2,64N2 build_version=3 androidboot.boot_devices=soc/11230000.mmc enforcing=1",
+    "header_cmdline_bytes": 92,
+    "input_header_cmdline": "bootopt=64S3,32N2,64N2 build_version=3 androidboot.hardware=mt8163 androidboot.fstab_suffix=mt8163 androidboot.boot_devices=soc/11230000.mmc",
+    "ramdisk_start": "0x44000000",
+    "ramdisk_end": "0x44087910",
+    "ramdisk_bytes": 555280,
+    "compressed_image_sha256": "acd66b0e487c9b3cf6170b471847e5b6b83478ca50a00ce6c7cbcae8401951e5",
+    "ramdisk_compressed_sha256": "95203220926a8fda7cbed82054988e8591e2dcd15bd2f97b0ce50f51ed4f17ba",
+    "compressed_kernel_unchanged": true,
+    "ramdisk_compressed_unchanged": true,
+    "lk_gzip_semantic_model": {
+      "method": "host raw zlib substitute, not LK execution",
+      "selected_dt_offset": 7632565,
+      "copied_dt_tail_bytes": 64388,
+      "supplied_gzip_bytes": 7632562,
+      "unused_trailer_bytes": 5,
+      "output_bytes": 17275392,
+      "output_sha256": "d790f2e638babcb7c6ecdbac109c186a31cbccac8ae67354bb74a00abb2a4beb",
+      "capacity": 29360128
+    },
+    "dtb_sha256": "6b0f75fcee6958ca5a24af121206e579b3744d01808b051a49662863bc1232a5",
+    "compiled_config_sha256": "05c67ae1302fa436f9183fc64567d3899bae7bbc27ac424257ccfe9c2e4a24df",
+    "memory_layout": {
+      "text_offset": 524288,
+      "image_size": 18767872,
+      "image_file_bytes": 17275392,
+      "image_flags": 10,
+      "payloads": [
+        {
+          "source": "ARM64 allocated Image",
+          "start": 1074266112,
+          "end": 1093033984
+        },
+        {
+          "source": "LK relocated compressed ramdisk (wrapper stripped)",
+          "start": 1140850688,
+          "end": 1141405968
+        },
+        {
+          "source": "DTB",
+          "start": 1308622848,
+          "end": 1309671424
+        }
+      ],
+      "reservations": [
+        {
+          "source": "/reserved-memory/atf-reserved-memory",
+          "start": 1124073472,
+          "end": 1124270080
+        },
+        {
+          "source": "/reserved-memory/ram_console-reserved-memory",
+          "start": 1145044992,
+          "end": 1145569280
+        },
+        {
+          "source": "/reserved-memory/minirdump-reserved-memory",
+          "start": 1146552320,
+          "end": 1146617856
+        },
+        {
+          "source": "/reserved-memory/secure-carveout",
+          "start": 3007315968,
+          "end": 3175088128
+        }
+      ],
+      "dynamic_reservations": [
+        {
+          "source": "/reserved-memory/consys-reserve-memory",
+          "size": 2097152,
+          "alignment": 2097152,
+          "placement": "kernel memblock allocation after Image/initrd reservation",
+          "runtime_address_verified": false
+        }
+      ],
+      "overlaps": false,
+      "static_ram_banks": [
+        {
+          "start": 1073741824,
+          "end": 3177185280
+        }
+      ],
+      "runtime_ram_and_framebuffer_verified": false
+    },
+    "dt_allowed_changes": [
+      "chosen/bootargs",
+      "chosen/linux,initrd-start",
+      "chosen/linux,initrd-end"
+    ],
+    "ramdisk": {
+      "cpio_entries": 3,
+      "fstab_sha256": "04179d23e76be8755f6452319e05cc89f2438b51fcc539cb76695c9c65c57e75",
+      "synthetic_nonbootable": true
+    },
+    "wrapper_provenance": {
+      "stock_boot_sha256": "a175ed39c9e9642756dd28f1d006b39937d17f290da6af69dda6d4b52d6f910d",
+      "kernel_wrapper_sha256": "95551a5693e175ffcde981848ea2f98183d141355cfb2febe6d35f6a1bc34552",
+      "ramdisk_wrapper_sha256": "07eccc6a7fb7a07a2989f2aabbefadea011dded4dd16934ec03f552c488d3fd0",
+      "no_private_device_data": true
+    },
+    "hardware_boot_validated": false,
+    "asus_signature_valid": false,
+    "flashable_claim": false,
+    "runtime_lk_properties_and_secure_monitor_verified": false
+  },
+  "Image.gz-dtb-combined-product-r3": {
+    "status": "NONBOOTABLE_SYNTHETIC_FIXTURE",
+    "aosp_boot_sha256": "2c355f19c37c32397cd84b64c55bf89f33cd35954ab01fdbbf57c665478ee822",
+    "input_kernel_sha256": "84007607154fd2b7d5f69dff63a1474589d2b6ddd0086511ff1cca4f34ebd59f",
+    "image_sha256": "26b1de1f8d5405fd2e58f6a0457fd5415db4f7037cc8d91b314b47055754e3e7",
+    "image_bytes": 8257536,
+    "partition_bytes": 16740352,
+    "padded_partition_sha256": "d845dc28ed7a6f19b41f2a733a02d6b71c00f0a6df695dff62c5fefe3f84b76f",
+    "header_cmdline": "bootopt=64S3,32N2,64N2 build_version=3 androidboot.boot_devices=soc/11230000.mmc enforcing=1",
+    "header_cmdline_bytes": 92,
+    "input_header_cmdline": "bootopt=64S3,32N2,64N2 build_version=3 androidboot.hardware=mt8163 androidboot.fstab_suffix=mt8163 androidboot.boot_devices=soc/11230000.mmc",
+    "ramdisk_start": "0x44000000",
+    "ramdisk_end": "0x44087910",
+    "ramdisk_bytes": 555280,
+    "compressed_image_sha256": "0f1c40655c0beeabb62655ddb28e5ee4d40face20d766171c9e6bbb54cbd5548",
+    "ramdisk_compressed_sha256": "95203220926a8fda7cbed82054988e8591e2dcd15bd2f97b0ce50f51ed4f17ba",
+    "compressed_kernel_unchanged": true,
+    "ramdisk_compressed_unchanged": true,
+    "lk_gzip_semantic_model": {
+      "method": "host raw zlib substitute, not LK execution",
+      "selected_dt_offset": 7632416,
+      "copied_dt_tail_bytes": 64388,
+      "supplied_gzip_bytes": 7632413,
+      "unused_trailer_bytes": 5,
+      "output_bytes": 17275392,
+      "output_sha256": "10b55773ad4ab53f3d1859151daecdf2105b732e3b225df6816be37f9be4949c",
+      "capacity": 29360128
+    },
+    "dtb_sha256": "6b0f75fcee6958ca5a24af121206e579b3744d01808b051a49662863bc1232a5",
+    "compiled_config_sha256": "05c67ae1302fa436f9183fc64567d3899bae7bbc27ac424257ccfe9c2e4a24df",
+    "memory_layout": {
+      "text_offset": 524288,
+      "image_size": 18771968,
+      "image_file_bytes": 17275392,
+      "image_flags": 10,
+      "payloads": [
+        {
+          "source": "ARM64 allocated Image",
+          "start": 1074266112,
+          "end": 1093038080
+        },
+        {
+          "source": "LK relocated compressed ramdisk (wrapper stripped)",
+          "start": 1140850688,
+          "end": 1141405968
+        },
+        {
+          "source": "DTB",
+          "start": 1308622848,
+          "end": 1309671424
+        }
+      ],
+      "reservations": [
+        {
+          "source": "/reserved-memory/atf-reserved-memory",
+          "start": 1124073472,
+          "end": 1124270080
+        },
+        {
+          "source": "/reserved-memory/ram_console-reserved-memory",
+          "start": 1145044992,
+          "end": 1145569280
+        },
+        {
+          "source": "/reserved-memory/minirdump-reserved-memory",
+          "start": 1146552320,
+          "end": 1146617856
+        },
+        {
+          "source": "/reserved-memory/secure-carveout",
+          "start": 3007315968,
+          "end": 3175088128
+        }
+      ],
+      "dynamic_reservations": [
+        {
+          "source": "/reserved-memory/consys-reserve-memory",
+          "size": 2097152,
+          "alignment": 2097152,
+          "placement": "kernel memblock allocation after Image/initrd reservation",
+          "runtime_address_verified": false
+        }
+      ],
+      "overlaps": false,
+      "static_ram_banks": [
+        {
+          "start": 1073741824,
+          "end": 3177185280
+        }
+      ],
+      "runtime_ram_and_framebuffer_verified": false
+    },
+    "dt_allowed_changes": [
+      "chosen/bootargs",
+      "chosen/linux,initrd-start",
+      "chosen/linux,initrd-end"
+    ],
+    "ramdisk": {
+      "cpio_entries": 3,
+      "fstab_sha256": "04179d23e76be8755f6452319e05cc89f2438b51fcc539cb76695c9c65c57e75",
+      "synthetic_nonbootable": true
+    },
+    "wrapper_provenance": {
+      "stock_boot_sha256": "a175ed39c9e9642756dd28f1d006b39937d17f290da6af69dda6d4b52d6f910d",
+      "kernel_wrapper_sha256": "95551a5693e175ffcde981848ea2f98183d141355cfb2febe6d35f6a1bc34552",
+      "ramdisk_wrapper_sha256": "07eccc6a7fb7a07a2989f2aabbefadea011dded4dd16934ec03f552c488d3fd0",
+      "no_private_device_data": true
+    },
+    "hardware_boot_validated": false,
+    "asus_signature_valid": false,
+    "flashable_claim": false,
+    "runtime_lk_properties_and_secure_monitor_verified": false
+  }
+}

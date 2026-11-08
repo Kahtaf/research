@@ -1,0 +1,105 @@
+{
+  "artifacts_sha256": {
+    "README.md": "bd9aa9bffa04f2939dc3cd905497fdde72f200e100ec389193ee4a1e96817893",
+    "REPORT.md": "09f7151d76aba1986b3c4f869e01bddb4274e4743e68681fdd44ea152f56e776",
+    "evidence/adapter.diff": "9395d7887de3eb514704a05b0ee2c171742aae0d730c25a248d84bb43b2a62f8",
+    "evidence/input-baseline.json": "bee2e1e4d996002c9f7e3b677a6052388e1f68b14fbd6b160c10d64a5765585c",
+    "evidence/inputs/3fe0a4bfb5add44b4debd1e60a2b566eddf5fa2c3df0ffbc34805aa3c403c7e6.json": "3fe0a4bfb5add44b4debd1e60a2b566eddf5fa2c3df0ffbc34805aa3c403c7e6",
+    "evidence/inputs/78c42fa595f2e152ef48f1bfdd7883f723aa63b2f15ad73097ea9ca82dd46251.json": "78c42fa595f2e152ef48f1bfdd7883f723aa63b2f15ad73097ea9ca82dd46251",
+    "evidence/inputs/d5e6ff761c570dc8759bef87c8bf799e57d15924d83885c1eb4c2af3f2116eba.json": "d5e6ff761c570dc8759bef87c8bf799e57d15924d83885c1eb4c2af3f2116eba",
+    "evidence/offline-tests.json": "44f4ca720674e0e6326154102510998cb292bae754d2036aa354f46ab1211088",
+    "evidence/offline-tests.txt": "5a9b26a4c455507cc228522d821a4853171cf9266d3835d7a362c89f5557ed05",
+    "evidence/plan-only.json": "619deec75e62eed2282307366c1b37b6b8b0bb1e40bf59a07b1f1f4602fa7da7",
+    "evidence/prepared-input.json": "102e628877cbe86b9cd93e05a1bbaa1294eee53aec6112321ea2150eb10f2467",
+    "scripts/review_artifacts.py": "d2802c45280e48d97137878a013e96283296f23bdf0f83f62686ab0398aeb8e7",
+    "scripts/root_shell_batched.py": "9dd219d06fcfb761ba5b7134c458215e3d93eb3cf0f13a64a199a2c2f4c7f39e",
+    "source/continuation.py": "e013ae8a337eafa4dd3dadb58b48dec442d8c10e70b7e3824bd7e97445641ba0",
+    "source/health.py": "9507add41af548d0264ec37f89158a8957fe90acb8d6cd9e9a3c3afd9b63bd47",
+    "source/policy.py": "4f4c93b7bfaf2d4f0a7f5c90cd9f3c266d538bc05275d1e827f6e33e8e0d6c0d",
+    "source/remote_worker.py": "07e5664350a7400863daff393e22b92a895659b54736341b1ea83fff94b483d0",
+    "source/stock_system_backup.py": "c726cba5fca7c9f930ff6479d79df67ca0faac837c32889abe079f940f04eed8",
+    "tests/continuation_cases.py": "9106daaa363cc6eb1599d4668e9941b6b31bbb60bf0ecd3fd4872d18705e4bbd",
+    "tests/test_backup.py": "f8b0148aed91d7f6b947a4d6cac85426755b1f6010834cb838bb5f40c06f3d99"
+  },
+  "capture_dependencies_sha256": {
+    "2026-11-05-asus-latest-android-feasibility/evidence/live-partition-layout.json": "7a85518d59bdc187c1a3ba376bb14d6a33656dc218d08343b56faaf2c8a13870",
+    "2026-11-05-asus-root-hardware-validation/scripts/root_shell.py": "951b3b7f8c099550554a9689b0be5995981def7060735109c66761be611ad8ec",
+    "2026-11-05-asus-root-hardware-validation/sources/mtk-su-mirror-b": "328632e853ff6427af9f35cb83a91d9e960f35d01188ee66d46ae9c7ce7c7827",
+    "2026-11-06-asus-stock-system-backup-continuation/scripts/root_shell_batched.py": "9dd219d06fcfb761ba5b7134c458215e3d93eb3cf0f13a64a199a2c2f4c7f39e"
+  },
+  "claims": "No live backup or restore result; no fresh contiguous aggregate source-pass hash",
+  "cloud_contacted": false,
+  "current_helper_sha256": "9dd219d06fcfb761ba5b7134c458215e3d93eb3cf0f13a64a199a2c2f4c7f39e",
+  "current_source_code_sha256": {
+    "continuation.py": "e013ae8a337eafa4dd3dadb58b48dec442d8c10e70b7e3824bd7e97445641ba0",
+    "health.py": "9507add41af548d0264ec37f89158a8957fe90acb8d6cd9e9a3c3afd9b63bd47",
+    "policy.py": "4f4c93b7bfaf2d4f0a7f5c90cd9f3c266d538bc05275d1e827f6e33e8e0d6c0d",
+    "remote_worker.py": "07e5664350a7400863daff393e22b92a895659b54736341b1ea83fff94b483d0",
+    "stock_system_backup.py": "c726cba5fca7c9f930ff6479d79df67ca0faac837c32889abe079f940f04eed8"
+  },
+  "device_contacted": false,
+  "excluded": "No failed-run payload, private stage, calibration, userdata or private key was read",
+  "oem_audit_metadata_sha256": {
+    "2026-11-06-asus-stock-firmware-restore-source/evidence/audit.json": "ff86fdfb3e6fe28c5849e62393e86088e7792af5c9550adc25ec153175fc2e07"
+  },
+  "original_input_recheck": {
+    "2026-11-05-asus-root-hardware-validation/sources/mtk-su-mirror-b": {
+      "actual": "328632e853ff6427af9f35cb83a91d9e960f35d01188ee66d46ae9c7ce7c7827",
+      "expected": "328632e853ff6427af9f35cb83a91d9e960f35d01188ee66d46ae9c7ce7c7827"
+    },
+    "2026-11-06-asus-stock-system-stream-backup/evidence/parent-review-shell-v2.json": {
+      "actual": "fd3cbe0005540fac152fb0928d8a54471f0c87e4798c3d1d18aa436836ece13c",
+      "expected": "fd3cbe0005540fac152fb0928d8a54471f0c87e4798c3d1d18aa436836ece13c"
+    },
+    "2026-11-06-asus-stock-system-stream-backup/source/policy.py": {
+      "actual": "21c016335b40605ce7f7c2c5c741dcf976fe9b2cf5f6286595b7042fa15cad5c",
+      "expected": "21c016335b40605ce7f7c2c5c741dcf976fe9b2cf5f6286595b7042fa15cad5c"
+    },
+    "2026-11-06-asus-stock-system-stream-backup/source/remote_worker.py": {
+      "actual": "59f1477ff7af66c6040a8f785afd3803b53b6b96510a0133d977253915e0abfc",
+      "expected": "59f1477ff7af66c6040a8f785afd3803b53b6b96510a0133d977253915e0abfc"
+    },
+    "2026-11-06-asus-stock-system-stream-backup/source/stock_system_backup.py": {
+      "actual": "cc0ce26e7d310251d6cb7f4202fefca3658e16c5c63277e8830904b1fe0a97d3",
+      "expected": "cc0ce26e7d310251d6cb7f4202fefca3658e16c5c63277e8830904b1fe0a97d3"
+    },
+    "2026-11-06-asus-stock-system-wifi-backup/README.md": {
+      "actual": "e0ad46564fedea7589f4258c5d6a2aaf8bdb837baf38b38337ac0c63acc08c74",
+      "expected": "e0ad46564fedea7589f4258c5d6a2aaf8bdb837baf38b38337ac0c63acc08c74"
+    },
+    "2026-11-06-asus-stock-system-wifi-backup/REPORT.md": {
+      "actual": "a98562dad8a40fabfda9128d9d9de33006cb319b3d3bfbf96a3583be26bbdbed",
+      "expected": "a98562dad8a40fabfda9128d9d9de33006cb319b3d3bfbf96a3583be26bbdbed"
+    },
+    "2026-11-06-asus-stock-system-wifi-backup/source/policy.py": {
+      "actual": "dbc7a2a9fe41317d03f7bfa9bf8cbaf4036bf5ebf56ad6d351161b9aff4c0020",
+      "expected": "dbc7a2a9fe41317d03f7bfa9bf8cbaf4036bf5ebf56ad6d351161b9aff4c0020"
+    },
+    "2026-11-06-asus-stock-system-wifi-backup/source/remote_worker.py": {
+      "actual": "59f1477ff7af66c6040a8f785afd3803b53b6b96510a0133d977253915e0abfc",
+      "expected": "59f1477ff7af66c6040a8f785afd3803b53b6b96510a0133d977253915e0abfc"
+    },
+    "2026-11-06-asus-stock-system-wifi-backup/source/stock_system_backup.py": {
+      "actual": "861af0a0cbeef87e2ed0be63fb0a844453b5cd826e129f32eeff068b7af00870",
+      "expected": "861af0a0cbeef87e2ed0be63fb0a844453b5cd826e129f32eeff068b7af00870"
+    },
+    "2026-11-06-asus-stock-system-wifi-backup/tests/test_backup.py": {
+      "actual": "071b86051d4c49470369054c7cb8083b4e269996e193534fe9997923ca5d892a",
+      "expected": "071b86051d4c49470369054c7cb8083b4e269996e193534fe9997923ca5d892a"
+    },
+    "2026-11-06-asus-wifi-device-access/scripts/root_shell_wifi.py": {
+      "actual": "684bbe346488dfd0e7dfce741b7547021f019d3749235e6208eb1c9766395f34",
+      "expected": "684bbe346488dfd0e7dfce741b7547021f019d3749235e6208eb1c9766395f34"
+    }
+  },
+  "original_inputs_unchanged": true,
+  "prefix_chunks": 77,
+  "root_binary_sha256": "328632e853ff6427af9f35cb83a91d9e960f35d01188ee66d46ae9c7ce7c7827",
+  "selected_input_sha256": "78c42fa595f2e152ef48f1bfdd7883f723aa63b2f15ad73097ea9ca82dd46251",
+  "selected_journal_files": 8659,
+  "ssh_contacted": false,
+  "status": "offline implementation verified; parent review/execution outstanding",
+  "tests_passed": 72,
+  "transport_executed": false,
+  "vm_contacted": false
+}

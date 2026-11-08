@@ -1,0 +1,8 @@
+{
+  "base_image_sha256": "154853e37436d17c44d873e177f25efd605ecda4e69e8d2148dd840b60bee6c7",
+  "stock_manifest_sha256": "605cdec038dafe3dddabfe92b8bd6cd189734f740230dfc362d02a43421e4e47",
+  "payload_sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20",
+  "payload_bytes": 16740352,
+  "copies_equal": true,
+  "private_inputs": false
+}

@@ -1,0 +1,61 @@
+{
+  "recorded": "2026-11-06T16:34:21.984686+00:00",
+  "status": "implementation complete; offline checks passed; parent runtime review/execution pending",
+  "sha256": {
+    "source/policy.py": "dbc7a2a9fe41317d03f7bfa9bf8cbaf4036bf5ebf56ad6d351161b9aff4c0020",
+    "source/stock_system_backup.py": "861af0a0cbeef87e2ed0be63fb0a844453b5cd826e129f32eeff068b7af00870",
+    "source/remote_worker.py": "59f1477ff7af66c6040a8f785afd3803b53b6b96510a0133d977253915e0abfc",
+    "tests/test_backup.py": "071b86051d4c49470369054c7cb8083b4e269996e193534fe9997923ca5d892a",
+    "README.md": "e0ad46564fedea7589f4258c5d6a2aaf8bdb837baf38b38337ac0c63acc08c74",
+    "REPORT.md": "a98562dad8a40fabfda9128d9d9de33006cb319b3d3bfbf96a3583be26bbdbed",
+    "evidence/offline-tests.json": "cae3bbd73c06c4a56467a8c15cdb0a417e336c3c0d0e2a9478acf49038904cf1",
+    "evidence/offline-tests.txt": "15627aa61a0360df92bbea246a5101266fdcc9b53b3face543699f0ff5e61591",
+    "evidence/plan-only.json": "cd9348d5f0885cac0b9428ff1239cf728b3fbc3a9cf6bc916f8104359dd95e61",
+    "evidence/adapter.diff": "96c77f12a6714bd5eb6c96da44fea44cb1374774bc4fd8bad91926fa62904b4a"
+  },
+  "original_inputs_unchanged": {
+    "2026-11-06-asus-stock-system-stream-backup/source/policy.py": true,
+    "2026-11-06-asus-stock-system-stream-backup/source/remote_worker.py": true,
+    "2026-11-06-asus-stock-system-stream-backup/source/stock_system_backup.py": true,
+    "2026-11-06-asus-stock-system-stream-backup/tests/test_backup.py": true,
+    "2026-11-06-asus-stock-system-stream-backup/README.md": true,
+    "2026-11-06-asus-stock-system-stream-backup/REPORT.md": true,
+    "2026-11-06-asus-stock-system-stream-backup/evidence/parent-review-shell-v2.json": true,
+    "2026-11-06-asus-stock-system-stream-backup/evidence/parent-review-android7-paths.json": true,
+    "2026-11-06-asus-wifi-device-access/scripts/root_shell_wifi.py": true,
+    "2026-11-06-asus-wifi-device-access/README.md": true,
+    "2026-11-06-asus-wifi-device-access/evidence/runtime-validation.json": true,
+    "2026-11-05-asus-root-hardware-validation/scripts/root_shell.py": true
+  },
+  "remote_worker_byte_identical": true,
+  "tests_passed": 47,
+  "device_contacted": false,
+  "root_helper_executed": false,
+  "ssh_contacted": false,
+  "vm_contacted": false,
+  "cloud_contacted": false,
+  "private_keys_read": false,
+  "backup_produced": false,
+  "historical_payload_directories_copied": false,
+  "transport": {
+    "kind": "adb-tcp",
+    "endpoint": "IP_REDACTED:5555",
+    "secure_adb": "1"
+  },
+  "target": {
+    "serial": "DEVICE_SERIAL_REDACTED",
+    "product": "P00A_2",
+    "sdk": "24",
+    "fingerprint": "asus/WW_P00A/P00A_2:7.0/NRD90M/WW_P00A-V5.3.20-20180809:user/release-keys",
+    "block": "/dev/block/mmcblk0p25",
+    "by_name": "/dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/system",
+    "bytes": 3753902080,
+    "sectors": 7331840,
+    "start_sector": 1072424,
+    "logical_sector_bytes": 512,
+    "major_minor": "179:25",
+    "partition": 25
+  },
+  "helper_sha256": "684bbe346488dfd0e7dfce741b7547021f019d3749235e6208eb1c9766395f34",
+  "root_binary_sha256": "328632e853ff6427af9f35cb83a91d9e960f35d01188ee66d46ae9c7ce7c7827"
+}

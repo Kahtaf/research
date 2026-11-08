@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "counts": {
+    "review_inputs": 932,
+    "compiled-input-pins": 211,
+    "test-input-pins": 6,
+    "native-product-pins": 6,
+    "run-20261106-193356/compiled-input-pins": 211,
+    "run-20261106-193356/test-input-pins": 6,
+    "run-20261106-193356/native-product-pins": 6,
+    "run-20261106-193614/compiled-input-pins": 212,
+    "run-20261106-193614/test-input-pins": 6,
+    "run-20261106-193614/native-product-pins": 5
+  },
+  "source_prepost": 13,
+  "changed": [
+    "handoff.h",
+    "p10_restore.c",
+    "terminal_profile.h"
+  ],
+  "proposal_pin": {
+    "bytes": 2049,
+    "sha256": "1784ffb48df5063336c122ff9c8049a962c07522ce28c09482dd39f96e2b93e5"
+  },
+  "baseline_equals_frozen": true,
+  "original_public_inventory_equal": true,
+  "production_binding_absent": true,
+  "shared_compiled_headers": {
+    "full": {
+      "header": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-shared-terminal-gate/NONDEPLOYABLE/run-20261106-192903/bindings/full/terminal_manifest_binding.h",
+      "pin": {
+        "bytes": 262,
+        "sha256": "e6270072dfdea27c9732d881202a2097bb70a3561ef25682358e1f75e081ab77"
+      }
+    },
+    "small": {
+      "header": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-shared-terminal-gate/NONDEPLOYABLE/run-20261106-192903/bindings/small/terminal_manifest_binding.h",
+      "pin": {
+        "bytes": 262,
+        "sha256": "6028198110571b8cd514fe1d1c053e1e8187cc7700fe73b9e422163334d907f2"
+      }
+    }
+  },
+  "implementation_and_existing_evidence_unchanged": true
+}

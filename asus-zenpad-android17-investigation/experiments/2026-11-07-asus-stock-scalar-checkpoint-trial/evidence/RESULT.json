@@ -1,0 +1,19 @@
+{
+  "utc": "2026-11-07T22:29:23.860924+00:00",
+  "outcome": "CALIBRATION_NONMATCH",
+  "expected_saved_step": 167,
+  "observed_saved_step": 0,
+  "new_stock_boot_id": "4776f9ba-2fcb-41e4-a0fb-5e4ef37dbe5c",
+  "normal_android_return_verified": true,
+  "USB_RAM_report_verified": true,
+  "readonly_RAM_report": true,
+  "reset_route_observed": true,
+  "removed_log_present_before": true,
+  "removed_log_present_after": false,
+  "setter_guard_and_before_reset_value": "NOT_OBSERVED",
+  "not_proof_of_linux49_nonexecution": true,
+  "normal_OS_partitions_untouched": true,
+  "VM_started": false,
+  "no_repeat_physical_trial_in_this_run": true,
+  "next_question": "Read/log current step immediately after setter before reset to distinguish no-store from lost-value."
+}

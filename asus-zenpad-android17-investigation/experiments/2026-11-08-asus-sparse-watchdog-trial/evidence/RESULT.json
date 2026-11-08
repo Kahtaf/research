@@ -1,0 +1,96 @@
+{
+  "status": "PHYSICAL_WATCHDOG_FACTS_OBSERVED_LIVENESS_UNRESOLVED",
+  "candidate_p10_sha256": "86213b3aabb8a003ff19157ba5b1dbb29377e0cb14cd70f896fdeccbb944792b",
+  "candidate_uuid": "e0b1a1ba-ebd1-4454-a3fb-e8b05eedf5d9",
+  "normal_android_return_proven": true,
+  "one_recovery_dispatch": true,
+  "dispatch": "ACKNOWLEDGED",
+  "console_bytes": 2915,
+  "console_sha256": "e60dedbca2bb7951c1e27418de8ed98f2eeb131cba9ca06b65213a35d94d5642",
+  "watchdog": {
+    "status": "RECORDS_OBSERVED",
+    "probe_entry": "RECORDED",
+    "early_errors": [],
+    "stop": [
+      {
+        "status": "RECORDED_STOP_BEFORE_AFTER",
+        "mode_before": "0x000000dd",
+        "mode_after": "0x000000dc",
+        "en_before": true,
+        "en_after": false,
+        "actual_probe_route": true,
+        "caller_symbol": "mtk_wdt_probe+0x100",
+        "caller_route": "mtk_wdt_probe"
+      }
+    ],
+    "request_snapshot": [
+      {
+        "status": "RECORDED_REQUEST_SNAPSHOT_AND_PROBE_RETURN",
+        "probe_rc": 0,
+        "req_mode": "0x00340003",
+        "req_irq_en": "0x00380000",
+        "register_offsets": {
+          "req_mode": "0x30",
+          "req_irq_en": "0x34"
+        }
+      }
+    ],
+    "restart": [],
+    "source_contract": "source-pins.json + compiled entry/mode identity; no runtime hardware acceptance claim",
+    "limit": "Absence never proves not called. EN is one readback instant. Caller is an immediate entry route, not original requester or preloader producer. Sink may drop, tear, or perturb records.",
+    "probe_callers": [
+      {
+        "caller_symbol": "platform_drv_probe+0x54",
+        "caller_route": "platform_drv_probe"
+      }
+    ],
+    "record_states": {
+      "probe": "RECORDED",
+      "errors": "RECORD_ABSENT",
+      "stop": "RECORDED_STOP_BEFORE_AFTER",
+      "request_snapshot": "RECORDED_REQUEST_SNAPSHOT",
+      "restart": "RECORD_ABSENT"
+    }
+  },
+  "liveness": {
+    "status": "UNKNOWN_STOP",
+    "physical_admission": "parent must independently verify full p10 and fresh stock boot",
+    "old_six_protocols": "deliberately absent; never admitted",
+    "loop": null,
+    "irqs": {
+      "before": {
+        "counts": {
+          "2:GIC-0:29:Level": [
+            0
+          ],
+          "3:GIC-0:30:Level": [
+            178
+          ]
+        },
+        "snapshot_complete": true
+      },
+      "after": {
+        "counts": {},
+        "snapshot_complete": false
+      },
+      "growth": false
+    },
+    "alarm_marker": false,
+    "limit": "Positive supports load/timing sensitivity, not exclusive cause or Android17 readiness. Missing final does not exonerate instrumentation.",
+    "begin_and_initial_begin": true,
+    "detail": "Initial direct clock syscall returned successfully; final clock, loop completion, alarm marker and after-IRQ snapshot were not observed.",
+    "parent_initial_clock_confirmed": true,
+    "parent_initial_clock_value": "0.642029537"
+  },
+  "initial_clock_lines": [
+    "ASUS49-SYSCLOCK run=f0c3c82c-d639-4d8a-90f2-155fd4224ceb phase=observe stage=begin op=clock_gettime path=loop.initial rc=0 errno=0 value=-",
+    "ASUS49-SYSCLOCK run=f0c3c82c-d639-4d8a-90f2-155fd4224ceb phase=observe stage=end op=clock_gettime path=loop.initial rc=0 errno=0 value=0.642029537"
+  ],
+  "limits": [
+    "MODE EN1 to EN0 is one observed readback, not proof of continued disabled state or reset source.",
+    "Missing restart marker cannot prove handler never ran.",
+    "No loop/alarm/after-IRQ completion: liveness remains unresolved.",
+    "Preloader decimal32 is not established raw RGU status.",
+    "No Android17 or full-flash acceptance."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "phase": "patch",
+  "started_utc": "2026-11-07T03:06:18.102674+00:00",
+  "launcher_pid": 1788861,
+  "wall_limit_seconds": 45,
+  "cpu_affinity": [
+    0
+  ],
+  "qemu_sha256": "b511b60cc31479b71dfdd589e6c981ae37b20ef0e75adc5a57bb0d6737e9b30c",
+  "raw_before": {
+    "path": "/srv/android/asus-r9-postbuild-validation-r2/validation/system-partition.raw",
+    "dev": 2049,
+    "inode": 27263347,
+    "bytes": 3753902080,
+    "mtime_ns": 1794019280920581777,
+    "ctime_ns": 1794019538990926800,
+    "mode": "0o444"
+  },
+  "returncode": 0,
+  "timeout": false,
+  "finished_utc": "2026-11-07T03:06:19.298201+00:00",
+  "raw_after": {
+    "path": "/srv/android/asus-r9-postbuild-validation-r2/validation/system-partition.raw",
+    "dev": 2049,
+    "inode": 27263347,
+    "bytes": 3753902080,
+    "mtime_ns": 1794019280920581777,
+    "ctime_ns": 1794019538990926800,
+    "mode": "0o444"
+  },
+  "raw_identity_unchanged": true,
+  "owned_allocated_bytes": 18649088,
+  "owned_logical_bytes": 18782375
+}

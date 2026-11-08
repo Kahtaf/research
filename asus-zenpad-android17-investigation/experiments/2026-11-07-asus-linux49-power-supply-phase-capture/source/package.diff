@@ -1,0 +1,53 @@
+--- work-dispatch-capture/scripts/package.py
++++ power-supply-phase-capture/scripts/package.py
+@@ -2,7 +2,7 @@
+ from pathlib import Path
+ import ast,difflib,json,shutil,stat,struct,sys
+ sys.dont_write_bytecode=True
+-R=Path(__file__).resolve().parents[1];W=R.parent;B=W/'2026-11-07-asus-linux49-active-work-capture'
++R=Path(__file__).resolve().parents[1];W=R.parent;B=W/'2026-11-07-asus-linux49-work-dispatch-capture'
+ def boundary(event,args):
+  if event=='open':
+   p=str(args[0]);assert not any(x in p for x in ['/private/','/device-backup/','root_shell_wifi.py','mtk-su-mirror-b','/dev/']),p
+@@ -18,16 +18,16 @@
+  n=next(n for n in ast.parse(s).body if getattr(n,'name',None)==name)
+  return ''.join(s.splitlines(True)[n.lineno-1:n.end_lineno])
+ with (R/'evidence/package-attempt.json').open('x') as out:json.dump(dict(one_genuine_candidate=True,private=False,device=False),out)
+-old=(B/'artifacts/candidate.img').read_bytes();assert b.sha(old)=='3b75e5258c3613678458d6299fcfe23b15fb8f74ce9beb6dfd1f0ecc44d79f34'
+-current='49e6519e4c4447b8c0b334e9991e8b011a6943cbcf79550648a33a5074bcfd4b'
++old=(B/'artifacts/candidate.img').read_bytes();assert b.sha(old)=='404ec624191bb44a8cf126195addcb18e6835dd1431e025db461a1accca1286f'
++current='7418c5d3a43c0b458311d880ec87f0d6b781794998d688153f31c3383f7c3752'
+ assert b.sha(old+bytes(b.PARTITION_SIZE-len(old)))==current
+ h,k,ram,tail=b.parse_image(old);assert not tail
+-oldraw,runtime=b.ungzip(k[512:]);assert b.sha(oldraw)=='77c55be57e6f0f03db60d754bd48921e9be2e434cab184697bc889dbdb0446dc'
++oldraw,runtime=b.ungzip(k[512:]);assert b.sha(oldraw)=='68224b50ad7c9a87641c4762a292447954d32f68a8c970fa739f897c663e9a2b'
+ baseblob=(B/'artifacts/Image.gz-dtb').read_bytes();baseraw,basedt0=b.ungzip(baseblob);assert baseraw==oldraw;assert k[512:-len(runtime)]==baseblob[:-len(basedt0)]
+ compiled=(R/'artifacts/Image.gz-dtb').read_bytes();config=(R/'artifacts/resolved.config').read_bytes()
+ assert b.sha(config)=='708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1'
+ raw,dt=b.ungzip(compiled);stream=compiled[:-len(dt)]
+-basecompiled=(B/'artifacts/Image.gz-dtb').read_bytes();assert b.sha(basecompiled)=='a3ce18e1e0d1f38307a2a63e783af3cb2b633c26a706366e6714b24ae36302b4'
++basecompiled=(B/'artifacts/Image.gz-dtb').read_bytes();assert b.sha(basecompiled)=='2d64022664c5ff61296446a41a55186f24247fe9287f03a0ca398a6c26e2e3ab'
+ _,basedt=b.ungzip(basecompiled);assert dt==basedt
+ fh,nodes,tokens=fdt.parse(runtime);_,cn,_=fdt.parse(dt)
+ assert {p:v for p,v in cn.items() if p!='/chosen'}=={p:v for p,v in nodes.items() if p!='/chosen'}
+@@ -61,17 +61,17 @@
+ prior=(B/'source/install.py').read_text();s=prior
+ pre=next(l for l in s.splitlines() if l.startswith('INSTALL_PREIMAGES='));assert current not in pre
+ profile=next(l for l in s.splitlines() if "profile='" in l)
+-changes={"IMAGE_SHA='3b75e5258c3613678458d6299fcfe23b15fb8f74ce9beb6dfd1f0ecc44d79f34'":f"IMAGE_SHA='{b.sha(image)}'",f"FULL_SHA='{current}'":f"FULL_SHA='{b.sha(full)}'",'len(image)==7979008':f'len(image)=={len(image)}',profile:profile.replace('exact-linux49-active-work-8e5c5d4d-r1','exact-linux49-work-dispatch-b4702f9a-r1'),pre:pre[:-1]+f",'{current}')"}
++changes={"IMAGE_SHA='404ec624191bb44a8cf126195addcb18e6835dd1431e025db461a1accca1286f'":f"IMAGE_SHA='{b.sha(image)}'",f"FULL_SHA='{current}'":f"FULL_SHA='{b.sha(full)}'",'len(image)==7981056':f'len(image)=={len(image)}',profile:profile.replace('exact-linux49-work-dispatch-b4702f9a-r1','exact-linux49-power-supply-phase-431dfb9c-r1'),pre:pre[:-1]+f",'{current}')"}
+ for a,z in changes.items():assert s.count(a)==1;s=s.replace(a,z)
+ restored=s
+ for a,z in reversed(list(changes.items())):assert restored.count(z)==1;restored=restored.replace(z,a)
+ assert restored==prior
+ for n in ['execute','Transport','Guard']:assert block(prior,n)==block(s,n)
+-(R/'source/install.py').write_text(s);(R/'source/install.diff').write_text(''.join(difflib.unified_diff(prior.splitlines(True),s.splitlines(True),fromfile='active-work-capture/source/install.py',tofile='work-dispatch-capture/source/install.py')))
++(R/'source/install.py').write_text(s);(R/'source/install.diff').write_text(''.join(difflib.unified_diff(prior.splitlines(True),s.splitlines(True),fromfile='work-dispatch-capture/source/install.py',tofile='power-supply-phase-capture/source/install.py')))
+ helpers={}
+ for n in ['bootformat.py','fdt.py','adb','legacy_adb.py']:
+  d=(R/'source'/n).read_bytes();assert d==(B/'source'/n).read_bytes();helpers[n]=dict(**rec(d),mode=oct(stat.S_IMODE((R/'source'/n).stat().st_mode)))
+ assert helpers['adb']['mode']=='0o755'
+-result=dict(status='ONE_DIAGNOSTIC_WORK_DISPATCH_CANDIDATE_NO_PHYSICAL_GO',run_uuid=identity['run_uuid'],candidate=rec(image),full_p10=rec(full),base_candidate=rec(old),admitted_current_full_p10=current,current_pin_supplied_not_freshly_observed=True,compiled_Image_gz_dtb=rec(compiled),compressed_Image=rec(stream),raw_Image=rec(raw),config=rec(config),compiled_DTB=rec(dt),runtime_DTB=rec(runtime),ramdisk=rec(ram),init=rec(init),helper_uuid='f0c3c82c-d639-4d8a-90f2-155fd4224ceb',bootargs=args.decode(),initrd=dict(start='0x44000000',end='0x4403e9d8',payload_bytes=256472,wrapper_bytes=512,unchanged_entry_guard_end='0x4403f007'),preservation=dict(config_byte_identical=True,entire_wrapped_ramdisk_byte_identical=True,runtime_DT_byte_identical=True,compiled_DT_byte_identical=True,hardware_reservations_addresses_bounds_and_short_bootargs_unchanged=True,execute_Transport_Guard_byte_identical=True,adapters=helpers),installer=dict(**rec(s.encode()),changes=['actual image hash','full p10 hash','actual image size','profile','append current full p10']),Android_header_changed_offsets=diff(h,ah),kernel_wrapper_changed_offsets=diff(k[:512],newk[:512]),layout=layout,limits=['Source/ELF/host/PLAN checks do not establish physical capture or cause','Capture overhead can perturb timing; entry without exit is a captured boundary only','Dropped/torn/early-unavailable capture is UNKNOWN','No device/private payload or raw target log access'])
++result=dict(status='ONE_DIAGNOSTIC_POWER_PHASE_CANDIDATE_NO_PHYSICAL_GO',run_uuid=identity['run_uuid'],candidate=rec(image),full_p10=rec(full),base_candidate=rec(old),admitted_current_full_p10=current,current_pin_supplied_not_freshly_observed=True,compiled_Image_gz_dtb=rec(compiled),compressed_Image=rec(stream),raw_Image=rec(raw),config=rec(config),compiled_DTB=rec(dt),runtime_DTB=rec(runtime),ramdisk=rec(ram),init=rec(init),helper_uuid='f0c3c82c-d639-4d8a-90f2-155fd4224ceb',bootargs=args.decode(),initrd=dict(start='0x44000000',end='0x4403e9d8',payload_bytes=256472,wrapper_bytes=512,unchanged_entry_guard_end='0x4403f007'),preservation=dict(config_byte_identical=True,entire_wrapped_ramdisk_byte_identical=True,runtime_DT_byte_identical=True,compiled_DT_byte_identical=True,hardware_reservations_addresses_bounds_and_short_bootargs_unchanged=True,execute_Transport_Guard_byte_identical=True,adapters=helpers),installer=dict(**rec(s.encode()),changes=['actual image hash','full p10 hash','actual image size','profile','append current full p10']),Android_header_changed_offsets=diff(h,ah),kernel_wrapper_changed_offsets=diff(k[:512],newk[:512]),layout=layout,limits=['Source/ELF/host/PLAN checks do not establish physical capture or cause','Capture overhead can perturb timing; entry without exit is a captured boundary only','Dropped/torn/early-unavailable capture is UNKNOWN','No device/private payload or raw target log access'])
+ (R/'evidence/packaging-receipt.json').write_text(json.dumps(result,indent=2)+'\n')
+ print(json.dumps({k:result[k] for k in ['status','run_uuid','candidate','full_p10','raw_Image','compiled_Image_gz_dtb']},indent=2))

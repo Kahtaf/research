@@ -1,0 +1,63 @@
+# Deliberately self-contained. No imports or filesystem-fstab processing.
+on early-init
+    write /sys/fs/selinux/enforce 1
+    start deadline
+    start ueventd
+
+on init
+    export ANDROID_ROOT /system
+    export ANDROID_DATA /data
+    export PATH /sbin:/system/bin
+    mount tmpfs tmpfs /tmp nosuid nodev noexec mode=0755,size=1048576
+    restorecon /adb_keys /system/bin/sh
+    write /proc/sys/kernel/panic 15
+    write /proc/sys/kernel/panic_on_oops 1
+
+    mkdir /config 0755 root root
+    mount configfs none /config nosuid nodev noexec
+    mkdir /config/usb_gadget/g1 0700 root root
+    write /config/usb_gadget/g1/idVendor 0x18d1
+    write /config/usb_gadget/g1/idProduct 0x4ee7
+    write /config/usb_gadget/g1/bcdUSB 0x0200
+    write /config/usb_gadget/g1/bcdDevice 0x0100
+    mkdir /config/usb_gadget/g1/strings/0x409 0700 root root
+    write /config/usb_gadget/g1/strings/0x409/serialnumber P00A49PROBE
+    write /config/usb_gadget/g1/strings/0x409/manufacturer ASUS
+    write /config/usb_gadget/g1/strings/0x409/product P00A_RAM_49_probe
+    mkdir /config/usb_gadget/g1/configs/b.1 0700 root root
+    write /config/usb_gadget/g1/configs/b.1/bmAttributes 0xc0
+    write /config/usb_gadget/g1/configs/b.1/MaxPower 2
+    mkdir /config/usb_gadget/g1/configs/b.1/strings/0x409 0700 root root
+    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration adb
+    mkdir /config/usb_gadget/g1/functions/ffs.adb 0700 root root
+    mkdir /dev/usb-ffs 0770 shell shell
+    mkdir /dev/usb-ffs/adb 0770 shell shell
+    mount functionfs adb /dev/usb-ffs/adb noatime uid=2000,gid=2000,rmode=0770,fmode=0660
+    start adbd
+    start diagnostic
+
+on property:sys.usb.ffs.ready=1
+    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f1
+    write /config/usb_gadget/g1/UDC musb-hdrc
+
+service deadline /sbin/recovery --deadline
+    seclabel u:r:recovery:s0
+    user root
+    group root
+    disabled
+
+service ueventd /sbin/ueventd
+    seclabel u:r:ueventd:s0
+    disabled
+
+service diagnostic /sbin/recovery --collect
+    seclabel u:r:recovery:s0
+    user root
+    group root
+    disabled
+    oneshot
+
+service adbd /sbin/recovery --adbd
+    seclabel u:r:adbd:s0
+    socket adbd stream 0660 system system
+    disabled

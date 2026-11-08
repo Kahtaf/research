@@ -1,0 +1,1247 @@
+diff --git a/arch/arm64/configs/asus_p00a_defconfig b/arch/arm64/configs/asus_p00a_defconfig
+--- a/arch/arm64/configs/asus_p00a_defconfig
++++ b/arch/arm64/configs/asus_p00a_defconfig
+@@ -106,7 +106,7 @@
+ CONFIG_LCM_WIDTH="800"
+ CONFIG_LCM_SEND_CMD_IN_VIDEO=y
+ CONFIG_MTK_SENSOR_SUPPORT=y
+-CONFIG_MTK_BMA253=y
++# CONFIG_MTK_BMA253 is not set
+ CONFIG_MTK_MC3416=y
+ CONFIG_MTK_HWMON=y
+ CONFIG_MTK_SENSORS_1_0=y
+@@ -383,7 +383,8 @@
+ CONFIG_TOUCHSCREEN_GOODIX=y
+ # CONFIG_MTK_IMGSENSOR is not set
+ CONFIG_CUSTOM_KERNEL_IMGSENSOR=""
+-# CONFIG_CUSTOM_KERNEL_ACCELEROMETER is not set
++CONFIG_CUSTOM_KERNEL_ACCELEROMETER=y
++CONFIG_BMC156_ACC=y
+ # CONFIG_CUSTOM_KERNEL_ALSPS is not set
+ # CONFIG_CUSTOM_KERNEL_GYROSCOPE is not set
+ # CONFIG_MTK_BQ24296_SUPPORT is not set
+@@ -415,3 +416,5 @@
+ CONFIG_NET_ACT_BPF=y
+ 
+ CONFIG_ASUS_P00A_MAIN_BATTERY_SOC=y
++
++# CONFIG_MTK_MC3416 is not set
+diff --git a/drivers/misc/mediatek/sensors-1.0/accelerometer/Kconfig b/drivers/misc/mediatek/sensors-1.0/accelerometer/Kconfig
+--- a/drivers/misc/mediatek/sensors-1.0/accelerometer/Kconfig
++++ b/drivers/misc/mediatek/sensors-1.0/accelerometer/Kconfig
+@@ -20,3 +20,5 @@
+ source "drivers/misc/mediatek/sensors-1.0/accelerometer/bmi160-i2c/Kconfig"
+ source "drivers/misc/mediatek/sensors-1.0/accelerometer/mc3416/Kconfig"
+ source "drivers/misc/mediatek/sensors-1.0/accelerometer/bma253/Kconfig"
++
++source "drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/Kconfig"
+diff --git a/drivers/misc/mediatek/sensors-1.0/accelerometer/Makefile b/drivers/misc/mediatek/sensors-1.0/accelerometer/Makefile
+--- a/drivers/misc/mediatek/sensors-1.0/accelerometer/Makefile
++++ b/drivers/misc/mediatek/sensors-1.0/accelerometer/Makefile
+@@ -8,3 +8,5 @@
+ obj-$(CONFIG_MTK_BMI160_I2C)   += bmi160-i2c/
+ obj-$(CONFIG_MTK_MC3416)   += mc3416/
+ obj-$(CONFIG_MTK_BMA253)   += bma253/
++
++obj-$(CONFIG_BMC156_ACC) += bmc156_acc/
+diff --git a/drivers/misc/mediatek/sensors-1.0/accelerometer/accel.c b/drivers/misc/mediatek/sensors-1.0/accelerometer/accel.c
+--- a/drivers/misc/mediatek/sensors-1.0/accelerometer/accel.c
++++ b/drivers/misc/mediatek/sensors-1.0/accelerometer/accel.c
+@@ -18,6 +18,8 @@
+ #include <linux/vmalloc.h>
+ 
+ struct acc_context *acc_context_obj /* = NULL*/;
++
++static DEFINE_MUTEX(acc_sample_mutex);
+ 
+ static struct acc_init_info *gsensor_init_list[MAX_CHOOSE_G_NUM] = {0};
+ 
+@@ -83,70 +85,22 @@
+ #endif
+ static void acc_work_func(struct work_struct *work)
+ {
+-	struct acc_context *cxt = NULL;
+-	int x, y, z, status;
+-	int64_t pre_ns, cur_ns;
+-	int64_t delay_ms;
+-	int err;
+-
+-	cxt = acc_context_obj;
+-	delay_ms = atomic_read(&cxt->delay);
+-
+-	if (cxt->acc_data.get_data == NULL) {
+-		pr_err("acc driver not register data path\n");
+-		return;
+-	}
+-
+-	cur_ns = getCurNS();
+-
+-	err = cxt->acc_data.get_data(&x, &y, &z, &status);
+-
+-	if (err) {
+-		pr_err("get acc data fails!!\n");
+-		goto acc_loop;
+-	} else {
+-		if (0 == x && 0 == y && 0 == z)
+-			goto acc_loop;
+-
+-		cxt->drv_data.x = x;
+-		cxt->drv_data.y = y;
+-		cxt->drv_data.z = z;
+-		cxt->drv_data.status = status;
+-		pre_ns = cxt->drv_data.timestamp;
+-		cxt->drv_data.timestamp = cur_ns;
+-	}
+-
+-	if (true == cxt->is_first_data_after_enable) {
+-		pre_ns = cur_ns;
+-		cxt->is_first_data_after_enable = false;
+-		/* filter -1 value */
+-		if (cxt->drv_data.x == ACC_INVALID_VALUE ||
+-		    cxt->drv_data.y == ACC_INVALID_VALUE ||
+-		    cxt->drv_data.z == ACC_INVALID_VALUE) {
+-			pr_debug(" read invalid data\n");
+-			goto acc_loop;
+-		}
+-	}
+-	/* report data to input device */
+-	/* printk("new acc work run....\n"); */
+-	/* pr_debug("acc data[%d,%d,%d]\n" ,cxt->drv_data.acc_data.values[0],*/
+-	/* cxt->drv_data.acc_data.values[1],cxt->drv_data.acc_data.values[2]);*/
+-
+-	while ((cur_ns - pre_ns) >= delay_ms * 1800000LL) {
+-		struct acc_data tmp_data = cxt->drv_data;
+-
+-		pre_ns += delay_ms * 1000000LL;
+-		tmp_data.timestamp = pre_ns;
+-		acc_data_report(&tmp_data);
+-	}
+-
+-	acc_data_report(&cxt->drv_data);
+-
+-acc_loop:
+-	if (true == cxt->is_polling_run)
+-		startTimer(&cxt->hrTimer, atomic_read(&cxt->delay), false);
+-	else
+-	        pr_err("skip mod_timer: %d\n", cxt->is_polling_run);
++ struct acc_context *cxt = acc_context_obj;
++ int x, y, z, status, err;
++ if (!cxt->acc_data.get_data) return;
++ mutex_lock(&acc_sample_mutex);
++ err = cxt->acc_data.get_data(&x, &y, &z, &status);
++ if (!err) {
++  cxt->drv_data.x = x; cxt->drv_data.y = y; cxt->drv_data.z = z;
++  cxt->drv_data.status = status;
++  cxt->drv_data.timestamp = getCurNS();
++  /* No synthesized backfill, zero-vector suppression or -1 sentinel filtering. */
++  err = acc_data_report(&cxt->drv_data);
++ }
++ if (err) pr_err_ratelimited("accelerometer read/report failed: %d\n", err);
++ mutex_unlock(&acc_sample_mutex);
++ if (cxt->is_polling_run)
++  startTimer(&cxt->hrTimer, atomic_read(&cxt->delay), false);
+ }
+ 
+ enum hrtimer_restart acc_poll(struct hrtimer *timer)
+@@ -205,13 +159,12 @@
+ 	struct acc_context *cxt = acc_context_obj;
+ 	int err;
+ 	if (atomic_read(&cxt->acc_pause)) {
+-		cxt->is_acc_need_restore_polling = !!cxt->enable;
+-		pr_err("already in pause, just save enable state: %d\n",
++		pr_err("paused: reject requested enable state: %d\n",
+ 			cxt->is_acc_need_restore_polling);
+-		return -1;
++		return -EBUSY;
+ 	}
+ 	/* power on -> power off */
+-	if (cxt->power == 1 && cxt->enable == 0) {
++	if (cxt->enable == 0) {
+ 		pr_debug("ACC disable\n");
+ 		/* stop polling firstly, if needed */
+ 		if (cxt->is_active_data == false &&
+@@ -234,13 +187,12 @@
+ 			err = cxt->acc_ctl.enable_nodata(0);
+ 			if (err) {
+ 				pr_err("acc turn off power err:%d\n", err);
+-				return -1;
++				return err;
+ 			}
+ 			pr_debug("acc turn off power done\n");
+ 		}
+ 
+ 		cxt->power = 0;
+-		cxt->delay_ns = -1;
+ 		pr_debug("ACC disable done\n");
+ 		return 0;
+ 	}
+@@ -252,7 +204,7 @@
+ 			err = cxt->acc_ctl.enable_nodata(1);
+ 			if (err) {
+ 				pr_err("acc turn on power err = %d\n", err);
+-				return -1;
++				return err;
+ 			}
+ 			pr_debug("acc turn on power done\n");
+ 		}
+@@ -270,7 +222,7 @@
+ 			err = cxt->acc_ctl.batch(0, cxt->delay_ns, 0);
+ 		if (err) {
+ 			pr_err("acc set batch(ODR) err %d\n", err);
+-			return -1;
++			return err;
+ 		}
+ 		pr_debug("acc set ODR, fifo latency done\n");
+ 		/* start polling, if needed */
+@@ -343,18 +295,21 @@
+ {
+ 	struct acc_context *cxt = acc_context_obj;
+ 	int err = 0;
++	int old_enable;
++	bool old_active;
+ 
+ 	pr_debug("acc_store_active buf=%s\n", buf);
+ 	mutex_lock(&acc_context_obj->acc_op_mutex);
+-	if (!strncmp(buf, "1", 1)) {
++	old_enable = cxt->enable; old_active = cxt->is_active_data;
++	if (sysfs_streq(buf, "1")) {
+ 		cxt->enable = 1;
+ 		cxt->is_active_data = true;
+-	} else if (!strncmp(buf, "0", 1)) {
++	} else if (sysfs_streq(buf, "0")) {
+ 		cxt->enable = 0;
+ 		cxt->is_active_data = false;
+ 	} else {
+ 		pr_err(" acc_store_active error !!\n");
+-		err = -1;
++		err = -EINVAL;
+ 		goto err_out;
+ 	}
+ #ifdef CONFIG_NANOHUB
+@@ -378,6 +333,7 @@
+ #endif
+ 
+ err_out:
++	if (err) { cxt->enable = old_enable; cxt->is_active_data = old_active; }
+ 	mutex_unlock(&acc_context_obj->acc_op_mutex);
+ 	if (err)
+ 		return err;
+@@ -405,38 +361,22 @@
+ }
+ 
+ static ssize_t acc_store_batch(struct device *dev,
+-			       struct device_attribute *attr, const char *buf,
+-			       size_t count)
+-{
+-	struct acc_context *cxt = acc_context_obj;
+-	int handle = 0, flag = 0, err = 0;
+-
+-	pr_debug(" acc_store_batch %s\n", buf);
+-	err = sscanf(buf, "%d,%d,%lld,%lld", &handle, &flag, &cxt->delay_ns,
+-		     &cxt->latency_ns);
+-	if (err != 4) {
+-		pr_err("acc_store_batch param error: err = %d\n", err);
+-		return -1;
+-	}
+-
+-	mutex_lock(&acc_context_obj->acc_op_mutex);
+-
+-#ifdef CONFIG_NANOHUB
+-	if (cxt->acc_ctl.is_support_batch)
+-		err = cxt->acc_ctl.batch(0, cxt->delay_ns, cxt->latency_ns);
+-	else
+-		err = cxt->acc_ctl.batch(0, cxt->delay_ns, 0);
+-	if (err)
+-		pr_err("acc set batch(ODR) err %d\n", err);
+-#else
+-	err = acc_enable_and_batch();
+-#endif
+-
+-	mutex_unlock(&acc_context_obj->acc_op_mutex);
+-	if (err)
+-		return err;
+-	else
+-		return count;
++ struct device_attribute *attr, const char *buf, size_t count)
++{
++ struct acc_context *cxt = acc_context_obj;
++ int handle, flag, err;
++ long long delay, latency, old_delay, old_latency;
++ char tail;
++ if (sscanf(buf, "%d,%d,%lld,%lld %c", &handle, &flag, &delay, &latency, &tail) != 4 ||
++     handle != 0 || flag != 0 || latency != 0 || delay < 10000000 || delay > 200000000)
++  return -EINVAL;
++ mutex_lock(&cxt->acc_op_mutex);
++ old_delay = cxt->delay_ns; old_latency = cxt->latency_ns;
++ cxt->delay_ns = delay; cxt->latency_ns = latency;
++ err = acc_enable_and_batch();
++ if (err) { cxt->delay_ns = old_delay; cxt->latency_ns = old_latency; }
++ mutex_unlock(&cxt->acc_op_mutex);
++ return err ? err : count;
+ }
+ static ssize_t acc_show_batch(struct device *dev, struct device_attribute *attr,
+ 			      char *buf)
+@@ -444,31 +384,22 @@
+ 	return snprintf(buf, PAGE_SIZE, "%d\n", 0);
+ }
+ static ssize_t acc_store_flush(struct device *dev,
+-			       struct device_attribute *attr, const char *buf,
+-			       size_t count)
+-{
+-	struct acc_context *cxt = NULL;
+-	int handle = 0, err = 0;
+-
+-	err = kstrtoint(buf, 10, &handle);
+-	if (err != 0)
+-		pr_err("acc_store_flush param error: err = %d\n", err);
+-
+-	pr_debug("acc_store_flush param: handle %d\n", handle);
+-
+-	mutex_lock(&acc_context_obj->acc_op_mutex);
+-	cxt = acc_context_obj;
+-	if (cxt->acc_ctl.flush != NULL)
+-		err = cxt->acc_ctl.flush();
+-	else
+-		pr_err("DON'T SUPPORT ACC COMMON VERSION FLUSH\n");
+-	if (err < 0)
+-		pr_err("acc enable flush err %d\n", err);
+-	mutex_unlock(&acc_context_obj->acc_op_mutex);
+-	if (err)
+-		return err;
+-	else
+-		return count;
++ struct device_attribute *attr, const char *buf, size_t count)
++{
++ struct acc_context *cxt = acc_context_obj;
++ int handle, err;
++ if (kstrtoint(buf, 10, &handle) || handle != 0) return -EINVAL;
++ mutex_lock(&cxt->acc_op_mutex);
++ if (!cxt->is_active_data) err = -EINVAL;
++ else if (!cxt->acc_ctl.flush) err = -EOPNOTSUPP;
++ else {
++  /* Serialize marker with the complete sample-read/report transaction. */
++  mutex_lock(&acc_sample_mutex);
++  err = cxt->acc_ctl.flush();
++  mutex_unlock(&acc_sample_mutex);
++ }
++ mutex_unlock(&cxt->acc_op_mutex);
++ return err ? err : count;
+ }
+ 
+ static ssize_t acc_show_flush(struct device *dev, struct device_attribute *attr,
+@@ -483,29 +414,16 @@
+ 	return snprintf(buf, PAGE_SIZE, "%d\n", 0);
+ }
+ 
+-static ssize_t acc_store_cali(struct device *dev, struct device_attribute *attr,
+-			      const char *buf, size_t count)
+-{
+-	struct acc_context *cxt = NULL;
+-	int err = 0;
+-	uint8_t *cali_buf = NULL;
+-
+-	cali_buf = vzalloc(count);
+-	if (cali_buf == NULL)
+-		return -EFAULT;
+-	memcpy(cali_buf, buf, count);
+-
+-	mutex_lock(&acc_context_obj->acc_op_mutex);
+-	cxt = acc_context_obj;
+-	if (cxt->acc_ctl.set_cali != NULL)
+-		err = cxt->acc_ctl.set_cali(cali_buf, count);
+-	else
+-		pr_err("DON'T SUPPORT ACC COMMONVERSION FLUSH\n");
+-	if (err < 0)
+-		pr_err("acc set cali err %d\n", err);
+-	mutex_unlock(&acc_context_obj->acc_op_mutex);
+-	vfree(cali_buf);
+-	return count;
++static ssize_t acc_store_cali(struct device *dev,
++ struct device_attribute *attr, const char *buf, size_t count)
++{
++ struct acc_context *cxt = acc_context_obj;
++ int err;
++ if (count != 12) return -EINVAL;
++ mutex_lock(&cxt->acc_op_mutex);
++ err = cxt->acc_ctl.set_cali ? cxt->acc_ctl.set_cali((uint8_t *)buf, count) : -EOPNOTSUPP;
++ mutex_unlock(&cxt->acc_op_mutex);
++ return err ? err : count;
+ }
+ 
+ static int gsensor_remove(struct platform_device *pdev)
+@@ -706,7 +624,8 @@
+ 				 &acc_attribute_group);
+ 	if (err < 0) {
+ 		pr_err("unable to create acc attribute file\n");
+-		return -3;
++		sensor_attr_deregister(&acc_context_obj->mdev);
++		return err;
+ 	}
+ 
+ 	kobject_uevent(&acc_context_obj->mdev.this_device->kobj, KOBJ_ADD);
+@@ -856,7 +775,9 @@
+ 	return 0;
+ 
+ real_driver_init_fail:
++	destroy_workqueue(acc_context_obj->accel_workqueue);
+ 	kfree(acc_context_obj);
++	acc_context_obj = NULL;
+ 
+ exit_alloc_data_failed:
+ 
+diff --git a/drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/Kconfig b/drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/Kconfig
+new file mode 100644
+--- /dev/null
++++ b/drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/Kconfig
+@@ -0,0 +1,4 @@
++config BMC156_ACC
++	bool "ASUS P00A OEM BMC156 accelerometer"
++	depends on CUSTOM_KERNEL_ACCELEROMETER && MTK_SENSORS_1_0 && !CUSTOM_KERNEL_SENSORHUB
++	default n
+diff --git a/drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/Makefile b/drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/Makefile
+new file mode 100644
+--- /dev/null
++++ b/drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/Makefile
+@@ -0,0 +1,3 @@
++ccflags-y += -I$(srctree)/drivers/misc/mediatek/sensors-1.0/accelerometer/inc
++ccflags-y += -I$(srctree)/drivers/misc/mediatek/sensors-1.0/hwmon/include
++obj-y += bmc156_acc.o
+diff --git a/drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/bmc156_acc.c b/drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/bmc156_acc.c
+new file mode 100644
+--- /dev/null
++++ b/drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/bmc156_acc.c
+@@ -0,0 +1,636 @@
++/* BMA255 motion sensor driver
++ *
++ *
++ * This software program is licensed subject to the GNU General Public License
++ * (GPL).Version 2,June 1991, available at http://www.fsf.org/copyleft/gpl.html
++
++ * (C) Copyright 2011 Bosch Sensortec GmbH
++ * All Rights Reserved
++ *
++ * VERSION: V1.3
++ * HISTORY: V1.0 --- Driver creation
++ *          V1.1 --- Add share I2C address function
++ *          V1.2 --- Fix the bug that sometimes sensor is stuck after system resume.
++ *          V1.3 --- Add FIFO interfaces.
++ */
++
++/* Accelerometer-only P00A adaptation of this exact OEM driver.
++ * Sensorhub, diagnostic FIFO, factory writes and legacy misc ABI are omitted.
++ */
++#include <linux/i2c.h>
++#include <linux/slab.h>
++#include <linux/delay.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/pm.h>
++#include <asm/unaligned.h>
++#include <accel.h>
++#include <cust_acc.h>
++#include <hwmsen_helper.h>
++#include "bmc156_acc.h"
++
++#define BMA255_AXIS_X 0
++#define BMA255_AXIS_Y 1
++#define BMA255_AXIS_Z 2
++#define BMA255_AXES_NUM 3
++#define BMA255_DATA_LEN 6
++#define BMA255_MODE_NORMAL 0
++#define BMA255_MODE_SUSPEND 2
++#define GSE_ERR(fmt, ...) pr_err("bmc156_acc: " fmt, ##__VA_ARGS__)
++#define GSE_LOG(fmt, ...) pr_debug("bmc156_acc: " fmt, ##__VA_ARGS__)
++#define BMA255_ACC_X_LSB__POS           4
++#define BMA255_ACC_X_LSB__LEN           4
++#define BMA255_ACC_X_LSB__MSK           0xF0
++/* #define BMA255_ACC_X_LSB__REG           BMA255_X_AXIS_LSB_REG */
++
++#define BMA255_ACC_X_MSB__POS           0
++#define BMA255_ACC_X_MSB__LEN           8
++#define BMA255_ACC_X_MSB__MSK           0xFF
++/* #define BMA255_ACC_X_MSB__REG           BMA255_X_AXIS_MSB_REG */
++
++#define BMA255_ACC_Y_LSB__POS           4
++#define BMA255_ACC_Y_LSB__LEN           4
++#define BMA255_ACC_Y_LSB__MSK           0xF0
++/* #define BMA255_ACC_Y_LSB__REG           BMA255_Y_AXIS_LSB_REG */
++
++#define BMA255_ACC_Y_MSB__POS           0
++#define BMA255_ACC_Y_MSB__LEN           8
++#define BMA255_ACC_Y_MSB__MSK           0xFF
++/* #define BMA255_ACC_Y_MSB__REG           BMA255_Y_AXIS_MSB_REG */
++
++#define BMA255_ACC_Z_LSB__POS           4
++#define BMA255_ACC_Z_LSB__LEN           4
++#define BMA255_ACC_Z_LSB__MSK           0xF0
++/* #define BMA255_ACC_Z_LSB__REG           BMA255_Z_AXIS_LSB_REG */
++
++#define BMA255_ACC_Z_MSB__POS           0
++#define BMA255_ACC_Z_MSB__LEN           8
++#define BMA255_ACC_Z_MSB__MSK           0xFF
++/* #define BMA255_ACC_Z_MSB__REG           BMA255_Z_AXIS_MSB_REG */
++
++#define BMA255_EN_LOW_POWER__POS          6
++#define BMA255_EN_LOW_POWER__LEN          1
++#define BMA255_EN_LOW_POWER__MSK          0x40
++#define BMA255_EN_LOW_POWER__REG          BMA255_REG_POWER_CTL
++
++#define BMA255_EN_SUSPEND__POS            7
++#define BMA255_EN_SUSPEND__LEN            1
++#define BMA255_EN_SUSPEND__MSK            0x80
++#define BMA255_EN_SUSPEND__REG            BMA255_REG_POWER_CTL
++
++#define BMA255_RANGE_SEL__POS             0
++#define BMA255_RANGE_SEL__LEN             4
++#define BMA255_RANGE_SEL__MSK             0x0F
++#ifdef BMA255_RANGE_SEL__REG
++#undef BMA255_RANGE_SEL__REG
++#define BMA255_RANGE_SEL__REG             BMA255_REG_DATA_FORMAT
++#endif
++
++#define BMA255_BANDWIDTH__POS             0
++#define BMA255_BANDWIDTH__LEN             5
++#define BMA255_BANDWIDTH__MSK             0x1F
++#ifdef BMA255_BANDWIDTH__REG
++#undef BMA255_BANDWIDTH__REG
++#define BMA255_BANDWIDTH__REG             BMA255_REG_BW_RATE
++#endif
++
++/* fifo mode*/
++#define BMA255_FIFO_MODE__POS                 6
++#define BMA255_FIFO_MODE__LEN                 2
++#define BMA255_FIFO_MODE__MSK                 0xC0
++#define BMA255_FIFO_MODE__REG                 BMA255_FIFO_MODE_REG
++
++#define BMA255_FIFO_FRAME_COUNTER_S__POS             0
++#define BMA255_FIFO_FRAME_COUNTER_S__LEN             7
++#define BMA255_FIFO_FRAME_COUNTER_S__MSK             0x7F
++#define BMA255_FIFO_FRAME_COUNTER_S__REG             BMA255_STATUS_FIFO_REG
++
++#define BMA255_GET_BITSLICE(regvar, bitname)\
++	((regvar & bitname##__MSK) >> bitname##__POS)
++
++#define BMA255_SET_BITSLICE(regvar, bitname, val)\
++	((regvar & ~bitname##__MSK) | ((val<<bitname##__POS)&bitname##__MSK))
++
++
++struct data_resolution { int sensitivity; };
++static struct data_resolution bma255_data_resolution[] = {{512}};
++struct bma255_i2c_data {
++ struct i2c_client *client;
++ struct acc_hw hw;
++ struct hwmsen_convert cvt;
++ struct data_resolution *reso;
++ struct mutex lock;
++ s16 cali_sw[3];
++ bool calibrated;
++ bool suspended;
++ bool requested;
++ u8 bandwidth;
++};
++static struct bma255_i2c_data *obj_i2c_data;
++static bool sensor_power = true;
++static bool sensor_power_valid;
++static DEFINE_MUTEX(i2c_lock);
++static DEFINE_MUTEX(operation_lock);
++static int bma255_init_flag = -ENODEV;
++static int bma_i2c_read_block(struct i2c_client *client,
++			u8 addr, u8 *data, u8 len)
++{
++	u8 beg = addr;
++	struct i2c_msg msgs[2] = {
++		{
++			.addr = client->addr,	.flags = 0,
++			.len = 1,		.buf = &beg
++		},
++		{
++			.addr = client->addr,	.flags = I2C_M_RD,
++			.len = len,		.buf = data,
++		}
++	};
++	int err;
++
++	if (!client)
++		return -EINVAL;
++/*
++	else if (len > C_I2C_FIFO_SIZE) {
++		GSE_ERR(" length %d exceeds %d\n", len, C_I2C_FIFO_SIZE);
++		return -EINVAL;
++	}
++*/
++
++	mutex_lock(&i2c_lock);
++	err = i2c_transfer(client->adapter, msgs, sizeof(msgs)/sizeof(msgs[0]));
++	mutex_unlock(&i2c_lock);
++	if (err != 2) {
++		GSE_ERR("i2c_transfer error: (%d %p %d) %d\n",
++			addr, data, len, err);
++		err = -EIO;
++	} else {
++		err = 0;/*no error*/
++	}
++
++	return err;
++}
++static int bma_i2c_write_block(struct i2c_client *client, u8 addr,
++			u8 *data, u8 len)
++{
++	/*
++	*because address also occupies one byte,
++	*the maximum length for write is 7 bytes
++	*/
++	int err, idx = 0, num = 0;
++	char buf[32];
++
++	if (!client || len > 31)
++		return -EINVAL;
++/*
++	else if (len > C_I2C_FIFO_SIZE) {
++		GSE_ERR(" length %d exceeds %d\n", len, C_I2C_FIFO_SIZE);
++		return -EINVAL;
++	}
++*/
++
++	buf[num++] = addr;
++	for (idx = 0; idx < len; idx++)
++		buf[num++] = data[idx];
++
++	mutex_lock(&i2c_lock);
++	err = i2c_master_send(client, buf, num);
++	mutex_unlock(&i2c_lock);
++	if (err != num) {
++		GSE_ERR("send command error!!\n");
++		return -EFAULT;
++	}
++	err = 0;/*no error*/
++	return err;
++}
++static int BMA255_SetDataResolution(struct bma255_i2c_data *obj)
++{
++ obj->reso = &bma255_data_resolution[0];
++ return 0;
++}
++static int BMA255_ReadData(struct i2c_client *client, s16 data[BMA255_AXES_NUM])
++{
++	u8 addr = BMA255_REG_DATAXLOW;
++	u8 buf[BMA255_DATA_LEN] = {0};
++	int err = 0;
++
++	if (NULL == client)
++		return -EINVAL;
++
++	err = bma_i2c_read_block(client, addr, buf, BMA255_DATA_LEN);
++	if (err) {
++		GSE_ERR("error: %d\n", err);
++	}  else {
++		/* Convert sensor raw data to 16-bit integer */
++		data[BMA255_AXIS_X] = BMA255_GET_BITSLICE(buf[0], BMA255_ACC_X_LSB)
++			|(BMA255_GET_BITSLICE(buf[1],
++						BMA255_ACC_X_MSB)<<BMA255_ACC_X_LSB__LEN);
++		data[BMA255_AXIS_X] = data[BMA255_AXIS_X] << (sizeof(short)*8-(BMA255_ACC_X_LSB__LEN
++					+ BMA255_ACC_X_MSB__LEN));
++		data[BMA255_AXIS_X] = data[BMA255_AXIS_X] >> (sizeof(short)*8-(BMA255_ACC_X_LSB__LEN
++					+ BMA255_ACC_X_MSB__LEN));
++		data[BMA255_AXIS_Y] = BMA255_GET_BITSLICE(buf[2], BMA255_ACC_Y_LSB)
++			| (BMA255_GET_BITSLICE(buf[3],
++						BMA255_ACC_Y_MSB)<<BMA255_ACC_Y_LSB__LEN);
++		data[BMA255_AXIS_Y] = data[BMA255_AXIS_Y] << (sizeof(short)*8-(BMA255_ACC_Y_LSB__LEN
++					+ BMA255_ACC_Y_MSB__LEN));
++		data[BMA255_AXIS_Y] = data[BMA255_AXIS_Y] >> (sizeof(short)*8-(BMA255_ACC_Y_LSB__LEN
++					+ BMA255_ACC_Y_MSB__LEN));
++		data[BMA255_AXIS_Z] = BMA255_GET_BITSLICE(buf[4], BMA255_ACC_Z_LSB)
++			| (BMA255_GET_BITSLICE(buf[5],
++						BMA255_ACC_Z_MSB)<<BMA255_ACC_Z_LSB__LEN);
++		data[BMA255_AXIS_Z] = data[BMA255_AXIS_Z] << (sizeof(short)*8-(BMA255_ACC_Z_LSB__LEN
++					+ BMA255_ACC_Z_MSB__LEN));
++		data[BMA255_AXIS_Z] = data[BMA255_AXIS_Z] >> (sizeof(short)*8-(BMA255_ACC_Z_LSB__LEN
++					+ BMA255_ACC_Z_MSB__LEN));
++
++
++	}
++	return err;
++}
++static int BMA255_CheckDeviceID(struct i2c_client *client)
++{
++	u8 databuf[2];
++	int res = 0;
++
++	memset(databuf, 0, sizeof(u8)*2);
++
++	res = bma_i2c_read_block(client, BMA255_REG_DEVID, databuf, 0x01);
++	if (res < 0)
++		goto exit_BMA255_CheckDeviceID;
++
++	if (databuf[0] != BMA255_FIXED_DEVID) {
++		GSE_ERR("BMA255_CheckDeviceID %d failt!\n ", databuf[0]);
++		return BMA255_ERR_IDENTIFICATION;
++	}
++	GSE_LOG("BMA255_CheckDeviceID %d pass!\n ", databuf[0]);
++
++exit_BMA255_CheckDeviceID:
++	if (res < 0)
++		return BMA255_ERR_I2C;
++
++	return BMA255_SUCCESS;
++}
++static int BMA255_SetPowerMode(struct i2c_client *client, bool enable)
++{
++	u8 databuf[2] = {0};
++	int res = 0;
++	/*u8 addr = BMA255_REG_POWER_CTL;*/
++	struct bma255_i2c_data *obj = i2c_get_clientdata(client);
++	u8 actual_power_mode = 0;
++
++	if (sensor_power_valid && enable == sensor_power) {
++		GSE_LOG("Sensor power status is newest!\n");
++		return BMA255_SUCCESS;
++	}
++
++	mutex_lock(&obj->lock);
++	if (enable == true)
++		actual_power_mode = BMA255_MODE_NORMAL;
++	else
++		actual_power_mode = BMA255_MODE_SUSPEND;
++
++	res = bma_i2c_read_block(client,
++			BMA255_MODE_CTRL_REG, &databuf[0], 1);
++	if (!res)
++		res = bma_i2c_read_block(client,
++			BMA255_LOW_POWER_CTRL_REG, &databuf[1], 1);
++	if (res) {
++		mutex_unlock(&obj->lock);
++		return res;
++	}
++
++	switch (actual_power_mode) {
++	case BMA255_MODE_NORMAL:
++		databuf[0] = BMA255_SET_BITSLICE(databuf[0],
++			BMA255_MODE_CTRL, 0);
++		databuf[1] = BMA255_SET_BITSLICE(databuf[1],
++			BMA255_LOW_POWER_MODE, 0);
++		res += bma_i2c_write_block(client,
++			BMA255_MODE_CTRL_REG, &databuf[0], 1);
++		mdelay(1);
++		res += bma_i2c_write_block(client,
++			BMA255_LOW_POWER_CTRL_REG, &databuf[1], 1);
++		mdelay(1);
++	break;
++	case BMA255_MODE_SUSPEND:
++		databuf[0] = BMA255_SET_BITSLICE(databuf[0],
++			BMA255_MODE_CTRL, 4);
++		databuf[1] = BMA255_SET_BITSLICE(databuf[1],
++			BMA255_LOW_POWER_MODE, 0);
++		res += bma_i2c_write_block(client,
++			BMA255_LOW_POWER_CTRL_REG, &databuf[1], 1);
++		mdelay(1);
++		res += bma_i2c_write_block(client,
++			BMA255_MODE_CTRL_REG, &databuf[0], 1);
++		mdelay(1);
++	break;
++	}
++
++	if (res < 0) {
++		sensor_power_valid = false;
++		GSE_ERR("set power mode failed, res = %d\n", res);
++		mutex_unlock(&obj->lock);
++		return BMA255_ERR_I2C;
++	}
++	sensor_power = enable;
++	sensor_power_valid = true;
++	mutex_unlock(&obj->lock);
++
++	return BMA255_SUCCESS;
++}
++static int BMA255_SetDataFormat(struct i2c_client *client, u8 dataformat)
++{
++	struct bma255_i2c_data *obj = i2c_get_clientdata(client);
++	u8 databuf[2] = {0};
++	int res = 0;
++
++	mutex_lock(&obj->lock);
++	res = bma_i2c_read_block(client,
++		BMA255_RANGE_SEL_REG, &databuf[0], 1);
++	if (res) {
++		mutex_unlock(&obj->lock);
++		return res;
++	}
++	databuf[0] = BMA255_SET_BITSLICE(databuf[0],
++		BMA255_RANGE_SEL, dataformat);
++	res += bma_i2c_write_block(client,
++		BMA255_RANGE_SEL_REG, &databuf[0], 1);
++	mdelay(1);
++
++	if (res < 0) {
++		GSE_ERR("set data format failed, res = %d\n", res);
++		mutex_unlock(&obj->lock);
++		return BMA255_ERR_I2C;
++	}
++	mutex_unlock(&obj->lock);
++
++	return BMA255_SetDataResolution(obj);
++}
++static int BMA255_SetBWRate(struct i2c_client *client, u8 bwrate)
++{
++	u8 databuf[2] = {0};
++	int res = 0;
++	struct bma255_i2c_data *obj = i2c_get_clientdata(client);
++
++	mutex_lock(&obj->lock);
++	res = bma_i2c_read_block(client,
++		BMA255_BANDWIDTH__REG, &databuf[0], 1);
++	if (res) {
++		mutex_unlock(&obj->lock);
++		return res;
++	}
++	databuf[0] = BMA255_SET_BITSLICE(databuf[0],
++		BMA255_BANDWIDTH, bwrate);
++	res += bma_i2c_write_block(client,
++		BMA255_BANDWIDTH__REG, &databuf[0], 1);
++	mdelay(1);
++
++	if (res < 0) {
++		GSE_ERR("set bandwidth failed, res = %d\n", res);
++		mutex_unlock(&obj->lock);
++		return BMA255_ERR_I2C;
++	}
++	mutex_unlock(&obj->lock);
++
++	return BMA255_SUCCESS;
++}
++static int BMA255_SetIntEnable(struct i2c_client *client, u8 intenable)
++{
++	int res = 0;
++	struct bma255_i2c_data *obj = i2c_get_clientdata(client);
++
++	mutex_lock(&obj->lock);
++	res = bma_i2c_write_block(client, BMA255_INT_REG_1, &intenable, 0x01);
++	mdelay(1);
++	if (res != BMA255_SUCCESS) {
++		mutex_unlock(&obj->lock);
++		return res;
++	}
++
++	res = bma_i2c_write_block(client, BMA255_INT_REG_2, &intenable, 0x01);
++	mdelay(1);
++	if (res != BMA255_SUCCESS) {
++		mutex_unlock(&obj->lock);
++		return res;
++	}
++	mutex_unlock(&obj->lock);
++	GSE_LOG("BMA255 disable interrupt ...\n");
++
++	/*for disable interrupt function*/
++
++	return BMA255_SUCCESS;
++}
++
++static int bmc156_init_client(struct bma255_i2c_data *obj)
++{
++ int err;
++ err = BMA255_CheckDeviceID(obj->client);
++ if (err) return err;
++ err = BMA255_SetBWRate(obj->client, obj->bandwidth);
++ if (err) return err;
++ err = BMA255_SetDataFormat(obj->client, BMA255_RANGE_4G);
++ if (err) return err;
++ err = BMA255_SetIntEnable(obj->client, 0);
++ if (err) return err;
++ /* Force a real suspend transition at probe; no board LDO is controllable. */
++ sensor_power_valid = false;
++ err = BMA255_SetPowerMode(obj->client, obj->requested);
++ mdelay(20);
++ return err;
++}
++
++static int bmc156_enable(int en)
++{
++ int err;
++ struct bma255_i2c_data *obj = obj_i2c_data;
++ if (!obj || (en != 0 && en != 1)) return -EINVAL;
++ mutex_lock(&operation_lock);
++ if (obj->suspended) err = -EBUSY;
++ else {
++  err = BMA255_SetPowerMode(obj->client, en);
++  if (!err) obj->requested = en;
++ }
++ mutex_unlock(&operation_lock);
++ return err;
++}
++
++static int bmc156_batch(int flag, int64_t ns, int64_t latency)
++{
++ struct bma255_i2c_data *obj = obj_i2c_data;
++ int err;
++ u8 bw;
++ if (!obj || flag || latency || ns < 10000000 || ns > 200000000) return -EINVAL;
++ bw = ns <= 10000000 ? BMA255_BW_100HZ : BMA255_BW_50HZ;
++ mutex_lock(&operation_lock);
++ if (obj->suspended) err = -EBUSY;
++ else {
++  err = BMA255_SetBWRate(obj->client, bw);
++  if (!err) obj->bandwidth = bw;
++ }
++ mutex_unlock(&operation_lock);
++ return err;
++}
++
++static int bmc156_get_data(int *x, int *y, int *z, int *status)
++{
++ struct bma255_i2c_data *obj = obj_i2c_data;
++ s16 raw[3];
++ int board[3], i, err;
++ if (!obj) return -ENODEV;
++ mutex_lock(&operation_lock);
++ if (!sensor_power_valid) { err = -EIO; goto out; }
++ if (obj->suspended || !sensor_power) { err = -EAGAIN; goto out; }
++ err = BMA255_ReadData(obj->client, raw);
++ if (err) goto out;
++ /* Same OEM calibration-before-map and integer scale order. */
++ for (i = 0; i < 3; ++i)
++  board[obj->cvt.map[i]] = obj->cvt.sign[i] * (raw[i] + obj->cali_sw[i])
++                          * GRAVITY_EARTH_1000 / obj->reso->sensitivity;
++ *x = board[0]; *y = board[1]; *z = board[2];
++ *status = obj->calibrated ? SENSOR_STATUS_ACCURACY_MEDIUM : SENSOR_STATUS_UNRELIABLE;
++out:
++ mutex_unlock(&operation_lock);
++ return err;
++}
++
++/* Absolute board-coordinate raw counts; never add twice on HAL reopen. */
++static int bmc156_set_cali(uint8_t *data, uint8_t count)
++{
++ struct bma255_i2c_data *obj = obj_i2c_data;
++ s32 cal[3];
++ int i;
++ if (!obj || count != 12) return -EINVAL;
++ for (i = 0; i < 3; ++i) {
++  cal[i] = (s32)get_unaligned_le32(data + 4*i);
++  /* Exact acceptance bound in OEM bma_do_cali. */
++  if (cal[i] < -250 || cal[i] > 250) return -ERANGE;
++ }
++ mutex_lock(&operation_lock);
++ if (!sensor_power_valid) {
++  mutex_unlock(&operation_lock); return -EIO;
++ }
++ if (sensor_power || obj->suspended) {
++  mutex_unlock(&operation_lock); return -EBUSY;
++ }
++ for (i = 0; i < 3; ++i)
++  obj->cali_sw[i] = obj->cvt.sign[i] * cal[obj->cvt.map[i]];
++ obj->calibrated = true;
++ mutex_unlock(&operation_lock);
++ return 0;
++}
++
++static int bmc156_flush(void)
++{
++ int err = acc_flush_report();
++ return err == -1 ? -ENOSPC : err;
++}
++static int bmc156_local_init(void);
++static int bmc156_local_remove(void);
++static struct acc_init_info bmc156_init_info = {
++ .name = "bmc156_acc", .init = bmc156_local_init, .uninit = bmc156_local_remove,
++};
++
++static int bmc156_probe(struct i2c_client *client, const struct i2c_device_id *id)
++{
++ struct bma255_i2c_data *obj;
++ struct device_node *cust;
++ struct acc_control_path ctl = {0};
++ struct acc_data_path data = {0};
++ int err;
++ if (obj_i2c_data) return -EBUSY;
++ if (client->adapter->nr != 2 || client->addr != 0x11) return -ENODEV;
++ obj = devm_kzalloc(&client->dev, sizeof(*obj), GFP_KERNEL);
++ if (!obj) return -ENOMEM;
++ cust = of_find_compatible_node(NULL, NULL, "mediatek,bmc156_acc");
++ if (!cust) return -ENODEV;
++ err = get_accel_dts_func(cust, &obj->hw);
++ of_node_put(cust);
++ if (err) return err;
++ if (obj->hw.direction != 4 || obj->hw.power_id != -1 ||
++     obj->hw.i2c_num != 2 || obj->hw.i2c_addr[0] != 0x11 ||
++     obj->hw.power_vol || obj->hw.firlen || obj->hw.is_batch_supported) return -EINVAL;
++ err = hwmsen_get_convert(obj->hw.direction, &obj->cvt);
++ if (err) return err;
++ obj->client = client;
++ obj->bandwidth = BMA255_BW_100HZ;
++ mutex_init(&obj->lock);
++ i2c_set_clientdata(client, obj);
++ err = bmc156_init_client(obj);
++ if (err) return err;
++ obj_i2c_data = obj;
++ data.get_data = bmc156_get_data;
++ data.vender_div = 1000;
++ err = acc_register_data_path(&data);
++ if (err) goto fail;
++ ctl.enable_nodata = bmc156_enable;
++ ctl.batch = bmc156_batch;
++ ctl.flush = bmc156_flush;
++ ctl.set_cali = bmc156_set_cali;
++ ctl.is_report_input_direct = false;
++ ctl.is_support_batch = false;
++ ctl.is_use_common_factory = false;
++ err = acc_register_control_path(&ctl);
++ if (err) goto fail;
++ bma255_init_flag = 0;
++ return 0;
++fail:
++ obj_i2c_data = NULL;
++ return err;
++}
++
++static int bmc156_suspend(struct device *dev)
++{
++ struct bma255_i2c_data *obj = i2c_get_clientdata(to_i2c_client(dev));
++ int err;
++ acc_driver_pause_polling(1);
++ mutex_lock(&operation_lock);
++ err = BMA255_SetPowerMode(obj->client, false);
++ if (!err) obj->suspended = true;
++ mutex_unlock(&operation_lock);
++ if (err) acc_driver_pause_polling(0);
++ return err;
++}
++static int bmc156_resume(struct device *dev)
++{
++ struct bma255_i2c_data *obj = i2c_get_clientdata(to_i2c_client(dev));
++ int err;
++ mutex_lock(&operation_lock);
++ err = bmc156_init_client(obj);
++ if (!err) obj->suspended = false;
++ mutex_unlock(&operation_lock);
++ if (!err) acc_driver_pause_polling(0);
++ return err;
++}
++static SIMPLE_DEV_PM_OPS(bmc156_pm, bmc156_suspend, bmc156_resume);
++static const struct of_device_id bmc156_of_match[] = {
++ {.compatible = "mediatek,gsensor"}, {},
++};
++static const struct i2c_device_id bmc156_ids[] = {{"bmc156_acc", 0}, {}};
++static struct i2c_driver bmc156_driver = {
++ .driver = {.name = "bmc156_acc", .of_match_table = bmc156_of_match, .pm = &bmc156_pm, .suppress_bind_attrs = true},
++ .probe = bmc156_probe, .id_table = bmc156_ids,
++};
++static int bmc156_local_init(void)
++{
++ int err = i2c_add_driver(&bmc156_driver);
++ if (err) return err;
++ if (bma255_init_flag) { i2c_del_driver(&bmc156_driver); return bma255_init_flag; }
++ return 0;
++}
++static int bmc156_local_remove(void)
++{
++ /* Built-in only: the core has no safe unregister-data-path operation. */
++ return -EOPNOTSUPP;
++}
++static int __init bmc156_init(void)
++{
++ BUILD_BUG_ON(sizeof(struct sensor_event) != 36);
++ BUILD_BUG_ON(offsetof(struct sensor_event, word) != 12);
++ BUILD_BUG_ON(offsetof(struct sensor_event, flush_action) != 9);
++ BUILD_BUG_ON(DATA_ACTION != 0 || FLUSH_ACTION != 1);
++ return acc_driver_add(&bmc156_init_info);
++}
++module_init(bmc156_init);
++MODULE_LICENSE("GPL v2");
++MODULE_DESCRIPTION("ASUS P00A OEM BMC156 accelerometer, sensor_event ABI");
+diff --git a/drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/bmc156_acc.h b/drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/bmc156_acc.h
+new file mode 100644
+--- /dev/null
++++ b/drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/bmc156_acc.h
+@@ -0,0 +1,137 @@
++/* BMA255 motion sensor driver
++ *
++ *
++ * This software program is licensed subject to the GNU General Public License
++ * (GPL).Version 2,June 1991, available at http://www.fsf.org/copyleft/gpl.html
++
++ * (C) Copyright 2011 Bosch Sensortec GmbH
++ * All Rights Reserved
++ */
++
++#ifndef BMA255_H
++#define BMA255_H
++
++#include <linux/ioctl.h>
++
++/* 7-bit addr: 0x10 (SDO connected to GND); 0x11 (SDO connected to VDDIO) */
++#define BMA255_I2C_ADDR				0x10
++/* chip ID */
++#define BMA255_FIXED_DEVID			0xFA
++
++ /* BMA255 Register Map  (Please refer to BMA255 Specifications) */
++#define BMA255_REG_DEVID			0x00
++#define BMA255_REG_OFSX				0x16
++#define BMA255_REG_OFSX_HIGH		0x1A
++#define BMA255_REG_BW_RATE			0x10
++#define BMA255_BW_MASK				0x1f
++#define BMA255_BW_200HZ				0x0d
++#define BMA255_BW_100HZ				0x0c
++#define BMA255_BW_50HZ				0x0b
++#define BMA255_BW_25HZ				0x0a
++#define BMA255_REG_POWER_CTL		0x11
++#define BMA255_REG_DATA_FORMAT		0x0f
++#define BMA255_RANGE_MASK			0x0f
++#define BMA255_RANGE_2G				0x03
++#define BMA255_RANGE_4G				0x05
++#define BMA255_RANGE_8G				0x08
++#define BMA255_REG_DATAXLOW			0x02
++#define BMA255_REG_DATA_RESOLUTION	0x14
++#define BMA255_MEASURE_MODE			0x80
++#define BMA255_SELF_TEST         0x32
++#define BMA255_SELF_TEST_AXIS_X		0x01
++#define BMA255_SELF_TEST_AXIS_Y		0x02
++#define BMA255_SELF_TEST_AXIS_Z		0x03
++#define BMA255_SELF_TEST_POSITIVE	0x00
++#define BMA255_SELF_TEST_NEGATIVE	0x04
++#define BMA255_INT_REG_1          0x16
++#define BMA255_INT_REG_2          0x17
++
++#define BMA255_FIFO_MODE_REG                    0x3E
++#define BMA255_FIFO_DATA_OUTPUT_REG             0x3F
++#define BMA255_STATUS_FIFO_REG                  0x0E
++
++#define BMA255_SUCCESS					0
++#define BMA255_ERR_I2C					-1
++#define BMA255_ERR_STATUS				-3
++#define BMA255_ERR_SETUP_FAILURE		-4
++#define BMA255_ERR_GETGSENSORDATA		-5
++#define BMA255_ERR_IDENTIFICATION		-6
++
++#define BMA255_BUFSIZE					256
++
++/* power mode */
++#define BMA255_MODE_CTRL_REG			0x11
++
++#define BMA255_MODE_CTRL__POS			5
++#define BMA255_MODE_CTRL__LEN			3
++#define BMA255_MODE_CTRL__MSK			0xE0
++#define BMA255_MODE_CTRL__REG			BMA255_MODE_CTRL_REG
++
++#define BMA255_LOW_POWER_CTRL_REG		0x12
++
++#define BMA255_LOW_POWER_MODE__POS		6
++#define BMA255_LOW_POWER_MODE__LEN		1
++#define BMA255_LOW_POWER_MODE__MSK		0x40
++#define BMA255_LOW_POWER_MODE__REG		BMA255_LOW_POWER_CTRL_REG
++
++/* range */
++#define BMA255_RANGE_SEL_REG			0x0F
++
++#define BMA255_RANGE_SEL__POS			0
++#define BMA255_RANGE_SEL__LEN			4
++#define BMA255_RANGE_SEL__MSK			0x0F
++#define BMA255_RANGE_SEL__REG			BMA255_RANGE_SEL_REG
++
++/* bandwidth */
++#define BMA255_BW_7_81HZ			0x08
++#define BMA255_BW_15_63HZ			0x09
++#define BMA255_BW_31_25HZ			0x0A
++#define BMA255_BW_62_50HZ			0x0B
++#define BMA255_BW_125HZ				0x0C
++#define BMA255_BW_250HZ				0x0D
++#define BMA255_BW_500HZ				0x0E
++#define BMA255_BW_1000HZ			0x0F
++
++#define BMA255_BW_SEL_REG			0x10
++
++#define BMA255_BANDWIDTH__POS			0
++#define BMA255_BANDWIDTH__LEN			5
++#define BMA255_BANDWIDTH__MSK			0x1F
++#define BMA255_BANDWIDTH__REG			BMA255_BW_SEL_REG
++
++#ifdef CONFIG_CUSTOM_KERNEL_SENSORHUB
++
++#define BMA255_AXES_NUM        3
++/*----------------------------------------------------------------------------*/
++enum CUST_ACTION {
++	BMA255_CUST_ACTION_SET_CUST = 1,
++	BMA255_CUST_ACTION_SET_CALI,
++	BMA255_CUST_ACTION_RESET_CALI
++};
++/*----------------------------------------------------------------------------*/
++struct BMA255_CUST {
++	uint16_t action;
++};
++/*----------------------------------------------------------------------------*/
++struct BMA255_SET_CUST {
++	uint16_t action;
++	uint16_t part;
++	int32_t data[0];
++};
++/*----------------------------------------------------------------------------*/
++struct BMA255_SET_CALI {
++	uint16_t action;
++	int32_t data[BMA255_AXES_NUM];
++};
++/*----------------------------------------------------------------------------*/
++union BMA255_CUST_DATA {
++	uint32_t data[10];
++	struct BMA255_CUST cust;
++	struct BMA255_SET_CUST setCust;
++	struct BMA255_SET_CALI setCali;
++	struct BMA255_CUST resetCali;
++};
++/*----------------------------------------------------------------------------*/
++#endif				/* #ifdef CONFIG_CUSTOM_KERNEL_SENSORHUB */
++
++#endif
+\ No newline at end of file
+diff --git a/drivers/misc/mediatek/sensors-1.0/hwmon/sensor_attributes/sensor_attr.c b/drivers/misc/mediatek/sensors-1.0/hwmon/sensor_attributes/sensor_attr.c
+--- a/drivers/misc/mediatek/sensors-1.0/hwmon/sensor_attributes/sensor_attr.c
++++ b/drivers/misc/mediatek/sensors-1.0/hwmon/sensor_attributes/sensor_attr.c
+@@ -83,29 +83,29 @@
+ 
+ int sensor_attr_register(struct sensor_attr_t *misc)
+ {
+-	dev_t dev;
+-	int err = 0;
+-	struct sensor_attr_t *c;
+-
+-	mutex_lock(&sensor_attr_mtx);
+-	list_for_each_entry(c, &sensor_attr_list, list) {
+-		if (c->minor == misc->minor) {
+-			err = -EBUSY;
+-			goto out;
+-		}
+-	}
+-	dev = MKDEV(sensor_attr_major, misc->minor);
+-	misc->this_device = device_create(sensor_attr_class, misc->parent, dev,
+-					  misc, "%s", misc->name);
+-	if (IS_ERR(misc->this_device))
+-		goto out;
+-	list_add(&misc->list, &sensor_attr_list);
+-	mutex_unlock(&sensor_attr_mtx);
+-	err = sensor_event_register(misc->minor);
+-	return err;
++ dev_t dev;
++ int err = 0;
++ struct sensor_attr_t *c;
++ mutex_lock(&sensor_attr_mtx);
++ list_for_each_entry(c, &sensor_attr_list, list) {
++  if (c->minor == misc->minor) { err = -EBUSY; goto out; }
++ }
++ /* Queue must exist before publishing the device to userspace. */
++ err = sensor_event_register(misc->minor);
++ if (err) goto out;
++ dev = MKDEV(sensor_attr_major, misc->minor);
++ misc->this_device = device_create(sensor_attr_class, misc->parent, dev,
++                                  misc, "%s", misc->name);
++ if (IS_ERR(misc->this_device)) {
++  err = PTR_ERR(misc->this_device);
++  misc->this_device = NULL;
++  sensor_event_deregister(misc->minor);
++  goto out;
++ }
++ list_add(&misc->list, &sensor_attr_list);
+ out:
+-	mutex_unlock(&sensor_attr_mtx);
+-	return err;
++ mutex_unlock(&sensor_attr_mtx);
++ return err;
+ }
+ int sensor_attr_deregister(struct sensor_attr_t *misc)
+ {

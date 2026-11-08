@@ -1,0 +1,6 @@
+{
+  "original": "2026-11-06-asus-full-install-bounded-host-io/source/parent_remote.py",
+  "before_sha256": "20896740a02181fd78142038e12a9a4a64bdac42ccef9cc46036a917ea71deda",
+  "after_sha256": "b8c807e557dafffdea6e45acda6220e6bd81ca0f81c34b515f5ad3da98723ad9",
+  "scope": "strict boolean guard only; no whole-adapter acceptance"
+}

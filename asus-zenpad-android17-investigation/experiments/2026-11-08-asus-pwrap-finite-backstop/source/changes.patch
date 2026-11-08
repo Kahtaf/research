@@ -1,0 +1,191 @@
+--- a/drivers/soc/mediatek/mtk-pmic-wrap.c
++++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
+@@ -12,6 +12,9 @@
+  * GNU General Public License for more details.
+  */
+ #include <linux/clk.h>
++#include <linux/asus_retained_trace.h>
++#include <linux/preempt.h>
++#include "../../../arch/arm64/kernel/asus_entry_tag.h"
+ #include <linux/interrupt.h>
+ #include <linux/io.h>
+ #include <linux/kernel.h>
+@@ -673,13 +676,80 @@
+ 		(val & PWRAP_STATE_SYNC_IDLE0);
+ }
+ 
+-static int pwrap_timeout_ns(unsigned long long start_time_ns, unsigned long long timeout_time_ns)
++/*
++ * 2.5 GHz is the MT8163 clock driver's PLL ceiling; supported CPU OPPs
++ * reach 1.5 GHz plus <=10% turbo. Cortex-A53 issues at most two insns/cycle.
++ * Exact linked not-ready iteration: >=48 insns, counting sched_clock and
++ * the WACS2 read, assuming ZERO bus/counter/cache/barrier delay. Therefore
++ * <=ceil(10ms * 2.5GHz * 2 / 48) = 1041667 iterations per 10ms.
++ * 2^24 gives >16x headroom. This count is NOT elapsed time. Assumes this
++ * supported execution envelope, returning individual reads and acquired
++ * locks; see the pinned derivation and candidate ELF instruction proof.
++ */
++#define PWRAP_POLL_BUDGET 16777216U
++
++#ifdef CONFIG_MTK_PMIC_WRAP
++/* 0 empty, 1 first winner writing, 2 release-published, 3 drain claimed.
++ * No retained writer, clocks, MMIO, allocation or extra locks here.
++ */
++static struct {
++	unsigned long long start, last;
++	u32 iterations, wait_id, ready;
++	int result;
++} pwrap_backstop;
++static int pwrap_backstop_state;
++
++static void pwrap_backstop_record(unsigned long long start,
++		unsigned long long last, u32 iterations,
++		bool (*fp)(struct pmic_wrapper *), bool ready)
++{
++	if (cmpxchg(&pwrap_backstop_state, 0, 1) != 0)
++		return;
++	pwrap_backstop.start = start;
++	pwrap_backstop.last = last;
++	pwrap_backstop.iterations = iterations;
++	pwrap_backstop.wait_id = fp == pwrap_is_fsm_idle ? 1 :
++		(fp == pwrap_is_fsm_vldclr ? 2 : 0);
++	pwrap_backstop.ready = ready;
++	pwrap_backstop.result = ready ? 0 : -ETIMEDOUT;
++	smp_store_release(&pwrap_backstop_state, 2);
++}
++
++/* Called only after the battery property callback returns. Never publish
++ * under the ADC/regmap IRQ-save locks. Refusal leaves publication UNKNOWN.
++ */
++void noinline notrace asus_pwrap_backstop_publish(void)
++{
++	char line[224];
++	unsigned int n;
++
++	if (!in_task() || in_atomic() || irqs_disabled())
++		return;
++	if (smp_load_acquire(&pwrap_backstop_state) != 2 ||
++	    cmpxchg(&pwrap_backstop_state, 2, 3) != 2)
++		return;
++	n = scnprintf(line, sizeof(line), ASUS_PWRAP_PREFIX
++		"EXHAUST start=%llu last=%llu iterations=%u wait=%u ready=%u rc=%d",
++		pwrap_backstop.start, pwrap_backstop.last,
++		pwrap_backstop.iterations, pwrap_backstop.wait_id,
++		pwrap_backstop.ready, pwrap_backstop.result);
++	asus_retained_trace_write(line, n);
++}
++#else
++static inline void pwrap_backstop_record(unsigned long long start,
++		unsigned long long last, u32 iterations,
++		bool (*fp)(struct pmic_wrapper *), bool ready) { }
++#endif
++
++static int pwrap_timeout_ns(unsigned long long start_time_ns, unsigned long long timeout_time_ns,
++		unsigned long long *last_clock)
+ {
+ 	unsigned long long cur_time = 0;
+ 	unsigned long long elapse_time = 0;
+ 
+ 	/* get current tick */
+ 	cur_time = sched_clock();	/* ns */
++	*last_clock = cur_time;
+ 
+ 	/* avoid timer over flow exiting in FPGA env */
+ 	if (cur_time < start_time_ns) {
+@@ -699,16 +769,24 @@
+ static int pwrap_wait_for_state(struct pmic_wrapper *wrp,
+ 		bool (*fp)(struct pmic_wrapper *))
+ {
+-	unsigned long long start_time_ns = 0, timeout_ns = 0;
++	unsigned long long start_time_ns = 0, timeout_ns = 0, last_clock;
++	u32 remaining = PWRAP_POLL_BUDGET;
++	bool ready;
+ 
+ 	start_time_ns = sched_clock();
+ 	timeout_ns = 10000 * 1000;
+ 
+ 	do {
+-		if (pwrap_timeout_ns(start_time_ns, timeout_ns))
++		if (pwrap_timeout_ns(start_time_ns, timeout_ns, &last_clock))
+ 			return fp(wrp) ? 0 : -ETIMEDOUT;
+ 		if (fp(wrp))
+ 			return 0;
++		if (!--remaining) {
++			ready = fp(wrp);
++			pwrap_backstop_record(start_time_ns, last_clock,
++				PWRAP_POLL_BUDGET, fp, ready);
++			return ready ? 0 : -ETIMEDOUT;
++		}
+ 	} while (1);
+ }
+ 
+--- a/include/linux/asus_retained_trace.h
++++ b/include/linux/asus_retained_trace.h
+@@ -5,6 +5,12 @@
+ #include <linux/types.h>
+ #include <linux/string.h>
+ struct task_struct;
++/* Built-in pwrap diagnostic; caller must have returned from the ADC path. */
++#ifdef CONFIG_MTK_PMIC_WRAP
++void asus_pwrap_backstop_publish(void);
++#else
++static inline void asus_pwrap_backstop_publish(void) { }
++#endif
+ /* Cold watchdog facts only; no MMIO or timing in the recorder. */
+ enum asus_sparse_wdt_event {
+  ASUS_WDT_PROBE, ASUS_WDT_ALLOC_ERROR, ASUS_WDT_MAP_ERROR,
+--- a/arch/arm64/kernel/asus_retained_trace.c
++++ b/arch/arm64/kernel/asus_retained_trace.c
+@@ -1347,6 +1347,9 @@
+      SAME("06 time_init returned"))
+   return true;
+ #undef SAME
++ if (sparse_prefix(text, len, ASUS_PWRAP_PREFIX,
++                   sizeof(ASUS_PWRAP_PREFIX) - 1))
++  return true;
+  if (sparse_prefix(text, len, ASUS_DEVKMSG_PREFIX,
+                    sizeof(ASUS_DEVKMSG_PREFIX) - 1))
+   return true;
+--- a/arch/arm64/kernel/asus_entry_tag.h
++++ b/arch/arm64/kernel/asus_entry_tag.h
+@@ -1,11 +1,13 @@
+-#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=e7acab50-e05a-4684-8e5a-c352f025564b stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=e55f7efe0b074ca96c66526b2923b68c173d6b26c9c7ed007379af5b65762ecb cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
++#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=09abbded-4301-486b-8945-b8748248f2d2 stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=e55f7efe0b074ca96c66526b2923b68c173d6b26c9c7ed007379af5b65762ecb cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
+ #define ASUS_ENTRY_TAG_LEN 340
+ 
+-#define ASUS_CAPTURE_TAG "A49CAP1 uuid=e7acab50-e05a-4684-8e5a-c352f025564b rows=15 row=384 fields=17 header=192"
++#define ASUS_CAPTURE_TAG "A49CAP1 uuid=09abbded-4301-486b-8945-b8748248f2d2 rows=15 row=384 fields=17 header=192"
+ 
+ #define ASUS_SPARSE_PROFILE 1
+-#define ASUS_SPARSE_MODE "ASUS49-MODE run=e7acab50-e05a-4684-8e5a-c352f025564b profile=devkmsg-boundary-v1 format=1 pid1_write_budget=768 hot=disabled ordinary_printk=filtered delay=original-virtual"
++#define ASUS_SPARSE_MODE "ASUS49-MODE run=09abbded-4301-486b-8945-b8748248f2d2 profile=pwrap-finite-v1 format=1 poll_budget=16777216 pid1_write_budget=768 hot=disabled ordinary_printk=filtered delay=original-virtual"
+ 
+-#define ASUS_SPARSE_WDT_PREFIX "ASUS49-WDT run=e7acab50-e05a-4684-8e5a-c352f025564b "
++#define ASUS_SPARSE_WDT_PREFIX "ASUS49-WDT run=09abbded-4301-486b-8945-b8748248f2d2 "
+ 
+-#define ASUS_DEVKMSG_PREFIX "ASUS49-KMSG run=e7acab50-e05a-4684-8e5a-c352f025564b v=1 "
++#define ASUS_DEVKMSG_PREFIX "ASUS49-KMSG run=09abbded-4301-486b-8945-b8748248f2d2 v=1 "
++
++#define ASUS_PWRAP_PREFIX "ASUS49-PWRAP run=09abbded-4301-486b-8945-b8748248f2d2 v=1 "
+--- a/drivers/power/supply/mediatek/battery/battery_common.c
++++ b/drivers/power/supply/mediatek/battery/battery_common.c
+@@ -590,6 +590,7 @@
+ 
+ #ifdef CONFIG_ASUS_P00A_BATTERY_DIAGNOSTIC
+ #include <linux/power/asus_p00a_battery.h>
++#include <linux/asus_retained_trace.h>
+ #endif
+ 
+ static int battery_get_property(struct power_supply *psy,
+@@ -600,7 +601,10 @@
+ 		container_of(psy->desc, struct battery_data, psd);
+ 
+ #ifdef CONFIG_ASUS_P00A_BATTERY_DIAGNOSTIC
+-	return asus_p00a_battery_get_property(psp, val);
++	ret = asus_p00a_battery_get_property(psp, val);
++	/* The diagnostic callback has released ADC and regmap serialization. */
++	asus_pwrap_backstop_publish();
++	return ret;
+ #endif
+ 
+ 	switch (psp) {

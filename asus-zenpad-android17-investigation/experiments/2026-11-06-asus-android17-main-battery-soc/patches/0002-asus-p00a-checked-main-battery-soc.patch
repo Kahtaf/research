@@ -1,0 +1,1413 @@
+diff --git a/arch/arm64/configs/asus_p00a_defconfig b/arch/arm64/configs/asus_p00a_defconfig
+index bc67a17d54b3208e7bddd361c9f1464ec1803f37..67da51138687844964a0fc50658ab5bb38b599dc 100644
+--- a/arch/arm64/configs/asus_p00a_defconfig
++++ b/arch/arm64/configs/asus_p00a_defconfig
+@@ -203,10 +203,10 @@ CONFIG_PINCTRL_MTK_NO_UPSTREAM=y
+ # CONFIG_PINCTRL_MT8173 is not set
+ CONFIG_MTK_SMART_BATTERY=y
+ CONFIG_MTK_AUTO_POWER_ON_WITH_CHARGER=y
+-CONFIG_MTK_MULTI_BAT_PROFILE_SUPPORT=y
++# CONFIG_MTK_MULTI_BAT_PROFILE_SUPPORT is not set
+ CONFIG_SW_AICL_SUPPORT=y
+ CONFIG_MTK_KERNEL_POWER_OFF_CHARGING=y
+-CONFIG_MTK_BATTERY_LIFETIME_DATA_SUPPORT=y
++# CONFIG_MTK_BATTERY_LIFETIME_DATA_SUPPORT is not set
+ CONFIG_MTK_JEITA_STANDARD_SUPPORT=y
+ # CONFIG_HWMON is not set
+ CONFIG_THERMAL=y
+@@ -412,3 +412,5 @@ CONFIG_BPF_JIT=y
+ CONFIG_NET_CLS_BPF=y
+ CONFIG_NET_CLS_MATCHALL=y
+ CONFIG_NET_ACT_BPF=y
++
++CONFIG_ASUS_P00A_MAIN_BATTERY_SOC=y
+diff --git a/drivers/misc/mediatek/include/mt-plat/battery_meter_table.h b/drivers/misc/mediatek/include/mt-plat/battery_meter_table.h
+index 725549973540bfb846912253b96f90cb7d0cf7f0..ebca5f2bc5190cb583b431869cb1be9c1d6d9648 100644
+--- a/drivers/misc/mediatek/include/mt-plat/battery_meter_table.h
++++ b/drivers/misc/mediatek/include/mt-plat/battery_meter_table.h
+@@ -18,7 +18,11 @@
+ /* Battery profile and r_profile table should be all the size */
+ /* Battery profile and r_profile in DTS should be equal or smaller */
+ /* ============================================================*/
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++#define PROFILE_TABLE_SIZE    104
++#else
+ #define PROFILE_TABLE_SIZE    100
++#endif
+ 
+ /* ============================================================*/
+ /* typedef*/
+diff --git a/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c b/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c
+index 0a1066430cf0ed1bdb15168f4afda62ba9f712bc..9ed9adb814df8134642d8829bf46d8e74d84f719 100644
+--- a/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c
+@@ -1,5 +1,5 @@
+ /* SPDX-License-Identifier: GPL-2.0-only */
+-/* Main pad battery measurements, independent of the unvalidated SW estimator. */
++/* Main pad battery measurements, with checked SOC provided by the board OAM transaction. */
+ #include <linux/errno.h>
+ #include <linux/kernel.h>
+ #include <linux/power/asus_p00a_battery.h>
+@@ -34,7 +34,7 @@ static int p00a_battery_temperature(int mv, int *decic)
+ 	return -ERANGE;
+ }
+ 
+-int asus_p00a_battery_get_property(enum power_supply_property property,
++static int p00a_measurement_get_property(enum power_supply_property property,
+ 				 union power_supply_propval *val)
+ {
+ 	int present, mv, ret;
+@@ -44,6 +44,9 @@ int asus_p00a_battery_get_property(enum power_supply_property property,
+ 		val->intval = POWER_SUPPLY_TECHNOLOGY_LION;
+ 		return 0;
+ 	case POWER_SUPPLY_PROP_CAPACITY:
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++		return asus_p00a_soc_capacity(&val->intval);
++#endif
+ 	case POWER_SUPPLY_PROP_CURRENT_NOW:
+ 	case POWER_SUPPLY_PROP_CURRENT_AVG:
+ 	case POWER_SUPPLY_PROP_CHARGE_COUNTER:
+@@ -93,3 +96,66 @@ int asus_p00a_battery_get_property(enum power_supply_property property,
+ 		return -EINVAL;
+ 	}
+ }
++
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++int asus_p00a_battery_read_sample(struct asus_p00a_battery_sample *sample)
++{
++	struct asus_p00a_battery_sample next = { 0 };
++	int present, mv, ret;
++
++	ret = asus_p00a_pmic_present(&present);
++	if (ret || !present)
++		return ret ? ret : -ENODEV;
++	ret = asus_p00a_pmic_adc(6, 5, &next.voltage_mv);
++	if (ret)
++		return ret;
++	if (next.voltage_mv < 2000 || next.voltage_mv > 5000)
++		return -ERANGE;
++	ret = asus_p00a_pmic_adc(5, 5, &mv);
++	if (ret)
++		return ret;
++	ret = p00a_battery_temperature(mv, &next.temperature_decic);
++	if (ret)
++		return ret;
++	ret = asus_p00a_charger_status(&next.status);
++	if (ret)
++		return ret;
++	/* Charging is not supported by this product. Do not model an unexpected
++	 * enabled charger as a valid inhibited-charging observation.
++	 */
++	if (next.status != POWER_SUPPLY_STATUS_DISCHARGING &&
++	    next.status != POWER_SUPPLY_STATUS_NOT_CHARGING)
++		return -EPERM;
++	ret = asus_p00a_pmic_present(&present);
++	if (ret || !present)
++		return ret ? ret : -ENODEV;
++	*sample = next;
++	return 0;
++}
++#endif
++
++int asus_p00a_battery_get_property(enum power_supply_property property,
++				 union power_supply_propval *val)
++{
++	int ret = p00a_measurement_get_property(property, val);
++
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	switch (property) {
++	case POWER_SUPPLY_PROP_PRESENT:
++		if (!ret && !val->intval)
++			asus_p00a_soc_invalidate(-ENODEV);
++		/* fall through */
++	case POWER_SUPPLY_PROP_STATUS:
++	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
++	case POWER_SUPPLY_PROP_batt_vol:
++	case POWER_SUPPLY_PROP_TEMP:
++	case POWER_SUPPLY_PROP_batt_temp:
++		if (ret)
++			asus_p00a_soc_invalidate(ret);
++		break;
++	default:
++		break;
++	}
++#endif
++	return ret;
++}
+diff --git a/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc b/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc
+index 4f7299612ce4c8445c398bdff3a0444a0670aca0..4de050116f92302a3080aa3795ab6646fed78ec1 100644
+--- a/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc
+@@ -110,3 +110,30 @@ out:
+ 	__pm_relax(pmicAuxadc_irq_lock);
+ 	return ret;
+ }
++
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++int asus_p00a_pmic_enable_baton(void)
++{
++	int ret, present;
++
++	if (!READ_ONCE(pmicAuxadc_irq_lock) || !READ_ONCE(pwrap_regmap))
++		return -ENODATA;
++	__pm_stay_awake(pmicAuxadc_irq_lock);
++	mutex_lock(&pmic_adc_mutex);
++	ret = p00a_pmic_result(pmic_config_interface(CHR_CON7, 1,
++			PMIC_BATON_TDET_EN_MASK, PMIC_BATON_TDET_EN_SHIFT));
++	if (!ret)
++		ret = p00a_pmic_result(pmic_config_interface(CHR_CON7, 1,
++			PMIC_RG_BATON_EN_MASK, PMIC_RG_BATON_EN_SHIFT));
++	/* The existing battery check enables the same detector. Read back its
++	 * enables through the checked presence helper; never trust reset bits.
++	 */
++	if (!ret) {
++		usleep_range(1000, 2000);
++		ret = asus_p00a_pmic_present(&present);
++	}
++	mutex_unlock(&pmic_adc_mutex);
++	__pm_relax(pmicAuxadc_irq_lock);
++	return ret;
++}
++#endif
+diff --git a/drivers/misc/mediatek/thermal/mt8163/mtk_ts_battery.c b/drivers/misc/mediatek/thermal/mt8163/mtk_ts_battery.c
+index a7eb1048a0d89f9b3c6f28bf383b4dc0cf6e2070..f167b748d93b9cafe17b7dde0d24f42fdc920cd2 100644
+--- a/drivers/misc/mediatek/thermal/mt8163/mtk_ts_battery.c
++++ b/drivers/misc/mediatek/thermal/mt8163/mtk_ts_battery.c
+@@ -28,6 +28,7 @@
+ #include <linux/uidgid.h>
+ #include <linux/uaccess.h>
+ #include "mt-plat/battery_meter.h"
++#include <linux/power/asus_p00a_battery.h>
+ #include "mt-plat/mtk_thermal_monitor.h"
+ #include "mach/mt_thermal.h"
+ #include "inc/mtk_ts_cpu.h"
+@@ -162,9 +163,18 @@ int mtktsbattery_get_hw_temp(void)
+ 
+ static int mtktsbattery_get_temp(struct thermal_zone_device *thermal, int *t)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	union power_supply_propval value;
++	int ret = asus_p00a_battery_get_property(POWER_SUPPLY_PROP_TEMP, &value);
++
++	if (ret)
++		return ret;
++	*t = value.intval * 100;
++#else
+ 	*t = mtktsbattery_get_hw_temp();
+ 	if((int)*t >= polling_trip_temp_high)
+ 		*t = battery_meter_get_battery_temperature() * 1000;
++#endif
+ 
+ 	if (*t >= polling_trip_temp1)
+ 		thermal->polling_delay = interval * 1000;
+diff --git a/drivers/power/supply/mediatek/battery/Kconfig b/drivers/power/supply/mediatek/battery/Kconfig
+index 4bfe0c666be2b88ae90a995e9073c6c714d80f5d..42ec8102f5359ec3b403c6e8c4339e92686aed4d 100644
+--- a/drivers/power/supply/mediatek/battery/Kconfig
++++ b/drivers/power/supply/mediatek/battery/Kconfig
+@@ -309,8 +309,9 @@ config ASUS_P00A_BATTERY_DIAGNOSTIC
+ 	help
+ 	  Expose checked MT6323 battery voltage, temperature and presence plus
+ 	  BQ25896 charge state on the existing battery power supply. Capacity,
+-	  current and charge counters return ENODATA pending software gauge
+-	  reconciliation. This does not grant permission to charge.
++	  current and charge counters return ENODATA unless the checked SOC
++	  option below supplies initialized capacity. Current/counters remain
++	  unsupported. This does not grant permission to charge.
+ 
+ config ASUS_P00A_BQ25896
+ 	bool "ASUS P00A BQ25896 pad charging integration"
+@@ -318,3 +319,13 @@ config ASUS_P00A_BQ25896
+ 	depends on !MTK_BQ24296_SUPPORT && !MTK_BQ25601_SUPPORT
+ 	select REGMAP_I2C
+ 	default n
++
++config ASUS_P00A_MAIN_BATTERY_SOC
++	bool "ASUS P00A checked main-battery OAM SOC"
++	depends on ASUS_P00A_BATTERY_DIAGNOSTIC && OF
++	depends on !MTK_MULTI_BAT_PROFILE_SUPPORT
++	depends on !MTK_BATTERY_LIFETIME_DATA_SUPPORT
++	help
++	  Use the ASUS four-temperature, 104-pair pad battery model with
++	  checked ADC samples, bounded freshness and error-aware SOC.
++	  Charging remains inhibited; this does not opt in to charging.
+diff --git a/drivers/power/supply/mediatek/battery/asus_p00a_soc.inc b/drivers/power/supply/mediatek/battery/asus_p00a_soc.inc
+new file mode 100644
+index 0000000000000000000000000000000000000000..a951d7e78faf16b6df1df9018c8ee93e0ae4c973
+--- /dev/null
++++ b/drivers/power/supply/mediatek/battery/asus_p00a_soc.inc
+@@ -0,0 +1,309 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/* ASUS P00A OAM D2 transaction.
++ *
++ * D2 is selected by the original ASUS DT (oam_d5 = 0). Its independent
++ * recurrence is taken from ASUS 3.18 battery_meter.c:oam_init/oam_run and
++ * retained in this kernel's OAM: I2=(OCV2-VBAT)*10000/R2, CAR2+=I2*dt/3600,
++ * D2=D0+CAR2*10/Qmax, OCV2=V(D2), R2=R(OCV2). D1/D3/D5 do not feed D2.
++ * The existing fgauge_* lookups and four-temperature interpolation below
++ * are used unchanged apart from repeated-point/endpoint safety fixes.
++ *
++ * Only this transaction may advance the board model. No RTC/UI percentage,
++ * charger programmed current, cover gauge or assumed sleep current is input.
++ * The boot seed uses ASUS's measured-VBAT fallback, not an unqualified PMIC
++ * wakeup latch. This is an OAM estimate, not a measured coulomb counter.
++ */
++#if defined(CONFIG_MTK_MULTI_BAT_PROFILE_SUPPORT) || \
++    defined(CONFIG_MTK_BATTERY_LIFETIME_DATA_SUPPORT) || \
++    defined(CUST_CAPACITY_OCV2CV_TRANSFORM) || defined(CONFIG_POWER_EXT)
++#error "P00A SOC requires the single ASUS D2 model without unsupported transforms"
++#endif
++#ifndef SOC_BY_SW_FG
++#error "P00A SOC requires SOC_BY_SW_FG"
++#endif
++
++#define P00A_SAMPLE_MAX_MS 2000
++#define P00A_SOC_MAX_AGE_MS 30000
++
++struct p00a_oam_state {
++	bool initialized;
++	bool valid;
++	bool suspended;
++	int error;
++	int d0;
++	int ocv2;
++	int r2;
++	s64 car2;
++	s64 last_ms;
++	struct asus_p00a_battery_sample sample;
++};
++
++/* All fields, including model construction, are protected by FGADC_mutex. */
++static struct p00a_oam_state p00a_oam = { .error = -EAGAIN };
++
++static s64 p00a_now_ms(void)
++{
++	struct timespec now;
++
++	get_monotonic_boottime(&now);
++	return (s64)now.tv_sec * 1000 + now.tv_nsec / 1000000;
++}
++
++static void p00a_soc_fault_locked(int error)
++{
++	p00a_oam.valid = false;
++	p00a_oam.initialized = false;
++	p00a_oam.error = error < 0 ? error : -EIO;
++}
++
++void asus_p00a_soc_invalidate(int error)
++{
++	mutex_lock(&FGADC_mutex);
++	p00a_soc_fault_locked(error);
++	mutex_unlock(&FGADC_mutex);
++}
++
++void asus_p00a_soc_suspend(bool suspended)
++{
++	mutex_lock(&FGADC_mutex);
++	p00a_oam.suspended = suspended;
++	/* Never integrate an unobserved suspend interval or reuse its SOC. */
++	p00a_soc_fault_locked(suspended ? -EHOSTDOWN : -EAGAIN);
++	mutex_unlock(&FGADC_mutex);
++}
++
++static int p00a_validate_dt(const struct device_node *np)
++{
++	static const char * const profiles[] = {
++		"battery_profile_t0", "battery_profile_t1",
++		"battery_profile_t2", "battery_profile_t3",
++		"r_profile_t0", "r_profile_t1", "r_profile_t2", "r_profile_t3"
++	};
++	static const char * const qmax[] = {
++		"q_max_neg_10", "q_max_pos_0", "q_max_pos_25", "q_max_pos_50",
++		"q_max_neg_10_h_current", "q_max_pos_0_h_current",
++		"q_max_pos_25_h_current", "q_max_pos_50_h_current"
++	};
++	static const struct { const char *name; u32 value; } settings[] = {
++		{ "temperature_t0", 110 }, { "temperature_t1", 0 },
++		{ "temperature_t2", 25 }, { "temperature_t3", 50 },
++		{ "temperature_t", 255 }, { "oam_d5", 0 },
++		{ "vbat_channel_number", 6 }, { "vbattemp_channel_number", 5 },
++		{ "swchr_power_path", 1 }
++	};
++	u32 x, v, previous_x, previous_v, first_v;
++	char count_name[32];
++	int table, i;
++
++	BUILD_BUG_ON(PROFILE_TABLE_SIZE != 104);
++	for (i = 0; i < ARRAY_SIZE(settings); i++)
++		if (of_property_read_u32(np, settings[i].name, &x) ||
++		    x != settings[i].value)
++			return -EINVAL;
++	for (i = 0; i < ARRAY_SIZE(qmax); i++)
++		if (of_property_read_u32(np, qmax[i], &x) || !x || x > 10000)
++			return -EINVAL;
++	for (table = 0; table < ARRAY_SIZE(profiles); table++) {
++		snprintf(count_name, sizeof(count_name), "%s_num", profiles[table]);
++		if (of_property_read_u32(np, count_name, &x) || x != PROFILE_TABLE_SIZE)
++			return -EINVAL;
++		if (of_property_count_u32_elems(np, profiles[table]) !=
++		    PROFILE_TABLE_SIZE * 2)
++			return -EINVAL;
++		first_v = 0;
++		previous_x = 0;
++		previous_v = 5000;
++		for (i = 0; i < PROFILE_TABLE_SIZE; i++) {
++			if (of_property_read_u32_index(np, profiles[table], i * 2, &x) ||
++			    of_property_read_u32_index(np, profiles[table], i * 2 + 1, &v))
++				return -EINVAL;
++			if (v < 2000 || v > 5000 || v > previous_v)
++				return -EINVAL;
++			if (!i)
++				first_v = v;
++			if (i == PROFILE_TABLE_SIZE - 1 && v >= first_v)
++				return -EINVAL;
++			if (table < 4) {
++				if (x > 100 || x < previous_x || (!i && x) ||
++				    (i == PROFILE_TABLE_SIZE - 1 && x != 100))
++					return -EINVAL;
++			} else if (!x || x > 10000) {
++				return -EINVAL;
++			}
++			previous_x = x;
++			previous_v = v;
++		}
++	}
++	return 0;
++}
++
++static int p00a_capture(struct asus_p00a_battery_sample *sample, s64 *time_ms)
++{
++	s64 start = p00a_now_ms(), end;
++	int ret = asus_p00a_battery_read_sample(sample);
++
++	if (ret)
++		return ret;
++	end = p00a_now_ms();
++	if (end < start || end - start > P00A_SAMPLE_MAX_MS)
++		return -ESTALE;
++	*time_ms = end;
++	return 0;
++}
++
++static int p00a_construct_model(int decic)
++{
++	int temperature = decic / 10;
++
++	fgauge_construct_r_table_profile(temperature, r_profile_temperature);
++	fgauge_construct_battery_profile(temperature, battery_profile_temperature);
++	return fgauge_get_Q_max(temperature);
++}
++
++static int p00a_oam_seed(const struct asus_p00a_battery_sample *sample, s64 now)
++{
++	int qmax = p00a_construct_model(sample->temperature_decic);
++	int d0 = fgauge_read_d_by_v(sample->voltage_mv);
++	int ocv = fgauge_read_v_by_d(d0);
++	int resistance = fgauge_read_r_bat_by_v(sample->voltage_mv);
++
++	if (qmax <= 0 || d0 < 0 || d0 > 100 || ocv < 2000 || ocv > 5000 ||
++	    resistance <= 0)
++		return -ERANGE;
++	p00a_oam.d0 = d0;
++	p00a_oam.ocv2 = ocv;
++	p00a_oam.r2 = resistance;
++	p00a_oam.car2 = 0;
++	p00a_oam.last_ms = now;
++	p00a_oam.initialized = true;
++	p00a_oam.valid = false;
++	p00a_oam.error = -EAGAIN;
++	return 0;
++}
++
++static int p00a_oam_step(struct asus_p00a_battery_sample *sample, s64 now)
++{
++	s64 delta_ms = now - p00a_oam.last_ms;
++	s64 current, car, dod;
++	int delta, qmax, ocv, resistance;
++
++	if (!p00a_oam.initialized)
++		return -EAGAIN;
++	if (delta_ms < 0 || delta_ms > P00A_SOC_MAX_AGE_MS)
++		return -ESTALE;
++	delta = div_s64(delta_ms, 1000);
++	if (!delta)
++		return -EAGAIN;
++	qmax = p00a_construct_model(sample->temperature_decic);
++	if (qmax <= 0 || p00a_oam.r2 <= 0)
++		return -ERANGE;
++	/* Exact ASUS OAM D2 recurrence, widened before arithmetic. */
++	current = div_s64((s64)(p00a_oam.ocv2 - sample->voltage_mv) * 10000,
++			 p00a_oam.r2);
++	car = p00a_oam.car2 + div_s64(current * delta, 3600);
++	/* Bound the accumulator before multiplication even on multi-year uptime. */
++	if (car > INT_MAX || car < -INT_MAX)
++		return -ERANGE;
++	dod = p00a_oam.d0 + div_s64(car * 10, qmax);
++	dod = clamp_t(s64, dod, 0, 100);
++	ocv = fgauge_read_v_by_d(dod);
++	resistance = fgauge_read_r_bat_by_v(ocv);
++	if (ocv < 2000 || ocv > 5000 || resistance <= 0)
++		return -ERANGE;
++	/* Commit only after every model output passes validation. */
++	p00a_oam.car2 = car;
++	p00a_oam.ocv2 = ocv;
++	p00a_oam.r2 = resistance;
++	p00a_oam.last_ms = now;
++	sample->capacity = 100 - dod;
++	p00a_oam.sample = *sample;
++	p00a_oam.valid = true;
++	p00a_oam.error = 0;
++	return 0;
++}
++
++int asus_p00a_soc_update(void)
++{
++	struct asus_p00a_battery_sample sample;
++	unsigned int charging_enable = false;
++	s64 now;
++	int ret;
++
++	mutex_lock(&FGADC_mutex);
++	if (p00a_oam.suspended) {
++		ret = -EHOSTDOWN;
++		goto fault;
++	}
++	if (!p00a_model_ready || !battery_charging_control) {
++		ret = -EAGAIN;
++		goto fault;
++	}
++	ret = battery_charging_control(CHARGING_CMD_ENABLE, &charging_enable);
++	if (ret)
++		goto fault;
++	ret = asus_p00a_pmic_enable_baton();
++	if (ret)
++		goto fault;
++	/* Same charging-off settling interval used by ASUS oam_init(). */
++	msleep(50);
++	ret = p00a_capture(&sample, &now);
++	if (ret)
++		goto fault;
++	if (p00a_oam.initialized && (now < p00a_oam.last_ms ||
++	    now - p00a_oam.last_ms > P00A_SOC_MAX_AGE_MS))
++		p00a_soc_fault_locked(-ESTALE);
++	if (!p00a_oam.initialized) {
++		ret = p00a_oam_seed(&sample, now);
++		if (ret)
++			goto fault;
++		/* Initialization alone is not a SOC update. A second actual sample
++		 * and positive elapsed time are required before publication. PM
++		 * suspend takes this same lock, then invalidates before suspending.
++		 */
++		msleep(1100);
++		ret = p00a_capture(&sample, &now);
++		if (ret)
++			goto fault;
++	}
++	if (now >= p00a_oam.last_ms && now - p00a_oam.last_ms < 1000) {
++		/* A repeated caller must not advance or refresh the sample age. */
++		ret = p00a_oam.valid ? 0 : -EAGAIN;
++		goto out;
++	}
++	ret = p00a_oam_step(&sample, now);
++	if (ret)
++		goto fault;
++	goto out;
++fault:
++	p00a_soc_fault_locked(ret);
++out:
++	mutex_unlock(&FGADC_mutex);
++	return ret;
++}
++
++int asus_p00a_soc_read(struct asus_p00a_battery_sample *sample)
++{
++	s64 now;
++	int ret;
++
++	mutex_lock(&FGADC_mutex);
++	now = p00a_now_ms();
++	if (p00a_oam.valid && (now < p00a_oam.last_ms ||
++	    now - p00a_oam.last_ms > P00A_SOC_MAX_AGE_MS))
++		p00a_soc_fault_locked(-ESTALE);
++	ret = p00a_oam.valid ? 0 : p00a_oam.error;
++	if (!ret)
++		*sample = p00a_oam.sample;
++	mutex_unlock(&FGADC_mutex);
++	return ret;
++}
++
++int asus_p00a_soc_capacity(int *capacity)
++{
++	struct asus_p00a_battery_sample sample;
++	int ret = asus_p00a_soc_read(&sample);
++
++	if (!ret)
++		*capacity = sample.capacity;
++	return ret;
++}
+diff --git a/drivers/power/supply/mediatek/battery/battery_common.c b/drivers/power/supply/mediatek/battery/battery_common.c
+index 31fa24a76fb5096a8fda31c71a251688388b6983..617ece49a61221836dc14f63e2c78cd63af7f07d 100644
+--- a/drivers/power/supply/mediatek/battery/battery_common.c
++++ b/drivers/power/supply/mediatek/battery/battery_common.c
+@@ -214,8 +214,8 @@ static bool g_battery_soc_ready;
+ static bool fg_battery_shutdown;
+ static bool fg_bat_thread;
+ static bool fg_hv_thread;
+-static bool bat_7days_flag;
+-static bool bat_demo_flag;
++static bool __maybe_unused bat_7days_flag;
++static bool __maybe_unused bat_demo_flag;
+ 
+ /*
+  * FOR ADB CMD
+@@ -3035,7 +3035,7 @@ static unsigned int mt_battery_CheckBatteryConnect(void)
+ }
+ #endif
+ 
+-static void mt_battery_CheckBatteryStatus(void)
++static __maybe_unused void mt_battery_CheckBatteryStatus(void)
+ {
+ 	pr_debug("[mt_battery_CheckBatteryStatus] cmd_discharging=(%d)\n",
+ 		    cmd_discharging);
+@@ -3283,7 +3283,7 @@ static void mt_battery_thermal_check(void)
+ 	}
+ }
+ 
+-static void mt_battery_update_status(void)
++static __maybe_unused void mt_battery_update_status(void)
+ {
+ #if defined(CONFIG_POWER_EXT)
+ 	pr_notice("[BATTERY] CONFIG_POWER_EXT, no update Android.\n");
+@@ -3440,7 +3440,7 @@ static void mt_battery_charger_detect_check(void)
+ 	}
+ }
+ 
+-static void mt_kpoc_power_off_check(void)
++static __maybe_unused void mt_kpoc_power_off_check(void)
+ {
+ #ifdef CONFIG_MTK_KERNEL_POWER_OFF_CHARGING
+ 	pr_debug(
+@@ -3460,7 +3460,7 @@ static void mt_kpoc_power_off_check(void)
+ #endif
+ }
+ 
+-static void mt_otg_check(void)
++static __maybe_unused void mt_otg_check(void)
+ {
+ 	int vbus_stat, otg_en = 0;
+ 
+@@ -3593,6 +3593,7 @@ void do_chrdet_int_task(void)
+ 			g_charging_full_reset_bat_meter = true;
+ 		}
+ 
++#ifndef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
+ 		if (g_battery_soc_ready == false) {
+ 			if (BMT_status.nPercent_ZCV == 0)
+ 				battery_meter_initial();
+@@ -3600,6 +3601,8 @@ void do_chrdet_int_task(void)
+ 			BMT_status.SOC = battery_meter_get_battery_percentage();
+ 		}
+ 
++#endif
++
+ 		if (BMT_status.bat_vol > 0) {
+ 			/* Put time-consuming job in
+ 			 * kthread instead of INT context
+@@ -3617,6 +3620,43 @@ void do_chrdet_int_task(void)
+ 
+ void BAT_thread(void)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	struct asus_p00a_battery_sample sample;
++	unsigned int charging_enable = false;
++	int ret;
++
++	if (is_usb_rdy())
++		mt_battery_charger_detect_check();
++	ret = asus_p00a_soc_update();
++	if (!ret)
++		ret = asus_p00a_soc_read(&sample);
++	if (!ret) {
++		BMT_status.bat_vol = sample.voltage_mv;
++		BMT_status.temperature = sample.temperature_decic / 10;
++		BMT_status.bat_exist = true;
++		BMT_status.SOC = sample.capacity;
++		BMT_status.UI_SOC = sample.capacity;
++		g_battery_soc_ready = true;
++		mt_battery_thermal_check();
++	} else {
++		/* These internal fields must not look like fresh charge inputs. */
++		BMT_status.bat_vol = 0;
++		BMT_status.temperature = -127;
++		BMT_status.SOC = -1;
++		BMT_status.UI_SOC = -1;
++		g_battery_soc_ready = false;
++		pr_warn_ratelimited("P00A battery sample unavailable: %d\n", ret);
++	}
++	/* Successful transactions already checked charging inhibition. On every
++	 * failure, request it again; the independent BQ guard also runs at 5s.
++	 */
++	if (ret)
++		battery_charging_control(CHARGING_CMD_ENABLE, &charging_enable);
++	usb_update(&usb_main);
++	ac_update(&ac_main);
++	power_supply_changed(battery_main.psy);
++#else
++
+ 	static bool battery_meter_initilized;
+ 	struct timespec now_time;
+ 	unsigned long total_time_plug_in;
+@@ -3675,6 +3715,8 @@ void BAT_thread(void)
+ 
+ 	mt_battery_update_status();
+ 	mt_kpoc_power_off_check();
++
++#endif
+ }
+ 
+ /* /////////////////
+@@ -3686,6 +3728,7 @@ int bat_thread_kthread(void *x)
+ {
+ 	ktime_t ktime = ktime_set(3, 0);	/* 10s, 10* 1000 ms */
+ 
++#ifndef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
+ 	if (is_usb_rdy() == false) {
+ 		pr_notice("wait for usb ready, block\n");
+ 		wait_event(bat_thread_wq, (is_usb_rdy() == true));
+@@ -3694,6 +3737,8 @@ int bat_thread_kthread(void *x)
+ 		pr_notice("usb ready, PASS\n");
+ 	}
+ 
++#endif
++
+ 	/* Run on a process content */
+ 	while (!fg_battery_shutdown) {
+ 		mutex_lock(&bat_mutex);
+@@ -3976,6 +4021,21 @@ static const struct file_operations adc_cali_fops = {
+ 
+ void check_battery_exist(void)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	unsigned int charging_enable = false;
++	int present, ret;
++
++	ret = asus_p00a_pmic_enable_baton();
++	if (!ret)
++		ret = asus_p00a_pmic_present(&present);
++	if (ret || !present) {
++		asus_p00a_soc_invalidate(ret ? ret : -ENODEV);
++		battery_charging_control(CHARGING_CMD_ENABLE, &charging_enable);
++		if (!ret)
++			battery_charging_control(CHARGING_CMD_SET_POWER_OFF, NULL);
++	}
++#else
++
+ #if defined(CONFIG_DIS_CHECK_BATTERY) || defined(CONFIG_POWER_EXT)
+ 	pr_notice("[BATTERY] Disable check battery exist.\n");
+ #else
+@@ -4013,6 +4073,8 @@ void check_battery_exist(void)
+ 		}
+ 	}
+ #endif
++
++#endif
+ }
+ 
+ int charger_hv_detect_sw_thread_handler(void *unused)
+diff --git a/drivers/power/supply/mediatek/battery/battery_meter.c b/drivers/power/supply/mediatek/battery/battery_meter.c
+index 32aac62154d03e82c4381cf7d66f2be4ff1c8234..49f357c604069eec71d7a7ce40aa0548e39a03fa 100644
+--- a/drivers/power/supply/mediatek/battery/battery_meter.c
++++ b/drivers/power/supply/mediatek/battery/battery_meter.c
+@@ -31,6 +31,8 @@
+ #include <linux/rtc.h>
+ #include <linux/time.h>
+ #include <linux/slab.h>
++#include <linux/math64.h>
++#include <linux/power/asus_p00a_battery.h>
+ #ifdef CONFIG_OF
+ #include <linux/of.h>
+ #include <linux/of_irq.h>
+@@ -60,7 +62,13 @@
+ /* ============================================================ // */
+ /* define */
+ /* ============================================================ // */
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++#define PROFILE_SIZE 4
++static bool p00a_model_ready;
++static int p00a_validate_dt(const struct device_node *np);
++#else
+ #define PROFILE_SIZE 5
++#endif
+ #define DEFAULT_SLP_CURRENT 4
+ 
+ static DEFINE_MUTEX(FGADC_mutex);
+@@ -206,7 +214,7 @@ struct timespec last_oam_run_time;
+ static int g_wifi_on;
+ static int g_slp_current;
+ static int g_slp_time_min = 20;
+-static bool g_skip_reset_sleep_time;
++static bool __maybe_unused g_skip_reset_sleep_time;
+ 
+ 
+ /* aging mechanism */
+@@ -395,19 +403,19 @@ static void __batt_meter_parse_node(const struct device_node *np,
+ static void __batt_meter_parse_table(const struct device_node *np,
+ 	const char *node_srting, struct battery_profile_struct *profile_p)
+ {
+-	int addr, val, idx, saddles;
++	u32 addr, val;
++	int idx, saddles;
+ 
+ 	/* the number of battery table is the same as the number of r table*/
+ 	saddles = fgauge_get_saddles();
+ 	idx = 0;
+ 	pr_notice("batt_meter_parse_table: %s, %d\n", node_srting, saddles);
+ 
+-	while (!of_property_read_u32_index(np, node_srting, idx, &addr)) {
++	while (idx < saddles * 2 &&
++	       !of_property_read_u32_index(np, node_srting, idx, &addr)) {
+ 		idx++;
+-		if (!of_property_read_u32_index(np, node_srting, idx, &val)) {
+-			pr_debug("batt_temperature_table: addr: %d, val: %d\n",
+-				    addr, val);
+-		}
++		if (of_property_read_u32_index(np, node_srting, idx, &val))
++			return;
+ 
+ 		profile_p->percentage = addr;
+ 		profile_p->voltage = val;
+@@ -800,6 +808,13 @@ int __batt_meter_init_cust_data_from_dt(void)
+ 		return -ENODEV;
+ 	}
+ 
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	if (p00a_validate_dt(np)) {
++		of_node_put(np);
++		return -EINVAL;
++	}
++#endif
++
+ 	__batt_meter_parse_node(np, "vbat_channel_number",
+ 		&batt_meter_cust_data.vbat_channel_number);
+ 
+@@ -922,11 +937,14 @@ int __batt_meter_init_cust_data_from_dt(void)
+ 	__batt_meter_parse_table(np, "battery_profile_t1",
+ 		fgauge_get_profile(batt_meter_cust_data.temperature_t1));
+ 
++#ifndef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
+ 	__batt_meter_parse_node(np, "battery_profile_t1_5_num", &num);
+ 
+ 	__batt_meter_parse_table(np, "battery_profile_t1_5",
+ 		fgauge_get_profile(batt_meter_cust_data.temperature_t1_5));
+ 
++#endif
++
+ 	__batt_meter_parse_node(np, "battery_profile_t2_num", &num);
+ 
+ 	__batt_meter_parse_table(np, "battery_profile_t2",
+@@ -949,12 +967,15 @@ int __batt_meter_init_cust_data_from_dt(void)
+ 		(BATTERY_PROFILE_STRUCT *)fgauge_get_profile_r_table(
+ 		batt_meter_cust_data.temperature_t1));
+ 
++#ifndef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
+ 	__batt_meter_parse_node(np, "r_profile_t1_5_num", &num);
+ 
+ 	__batt_meter_parse_table(np, "r_profile_t1_5",
+ 		(BATTERY_PROFILE_STRUCT *)fgauge_get_profile_r_table(
+ 		batt_meter_cust_data.temperature_t1_5));
+ 
++#endif
++
+ 	__batt_meter_parse_node(np, "r_profile_t2_num",	&num);
+ 
+ 	__batt_meter_parse_table(np, "r_profile_t2",
+@@ -996,8 +1017,11 @@ int __batt_meter_init_cust_data_from_dt(void)
+ 
+ 	__batt_meter_parse_node(np, "q_max_neg_10_h_current",
+ 		&batt_meter_cust_data.q_max_neg_10_h_current);
+-	} else
++	}
++#ifdef CONFIG_MTK_MULTI_BAT_PROFILE_SUPPORT
++	else
+ 		__batt_meter_parse_multi_battery_data(np, g_fg_battery_id);
++#endif
+ 
+ 	__batt_meter_parse_node(np, "r_bat_sense",
+ 		&batt_meter_cust_data.r_bat_sense);
+@@ -1132,6 +1156,21 @@ int __batt_meter_init_cust_data_from_dt(void)
+ 
+ int batt_meter_init_cust_data(void)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	int ret = 0;
++
++	mutex_lock(&FGADC_mutex);
++	if (!init_done) {
++		ret = __batt_meter_init_cust_data_from_dt();
++		if (!ret) {
++			init_done = 1;
++			p00a_model_ready = true;
++		}
++	}
++	mutex_unlock(&FGADC_mutex);
++	return ret;
++#else
++
+ 	if (init_done == 1)
+ 		return 0;
+ 	init_done = 1;
+@@ -1144,6 +1183,8 @@ int batt_meter_init_cust_data(void)
+ 	_g_bat_sleep_total_time = batt_meter_cust_data.normal_wakeup_period;
+ 
+ 	return 0;
++
++#endif
+ }
+ 
+ 
+@@ -1189,6 +1230,16 @@ int BattThermistorConverTemp(int Res)
+ 	return TBatt_Value;
+ }
+ 
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++#define P00A_LOW_T2 batt_meter_cust_data.temperature_t1
++#define P00A_LOW_QMAX batt_meter_cust_data.q_max_pos_0
++#define P00A_LOW_QMAX_HIGH batt_meter_cust_data.q_max_pos_0_h_current
++#else
++#define P00A_LOW_T2 batt_meter_cust_data.temperature_t1_5
++#define P00A_LOW_QMAX batt_meter_cust_data.q_max_pos_10
++#define P00A_LOW_QMAX_HIGH batt_meter_cust_data.q_max_pos_10_h_current
++#endif
++
+ signed int fgauge_get_Q_max(signed short temperature)
+ {
+ 	signed int ret_Q_max;
+@@ -1204,6 +1255,8 @@ signed int fgauge_get_Q_max(signed short temperature)
+ 		if (temperature < low_temperature)
+ 			temperature = low_temperature;
+ 
++
++#ifndef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
+ 	} else if (temperature <= batt_meter_cust_data.temperature_t1_5) {
+ 		low_temperature = batt_meter_cust_data.temperature_t1;
+ 		low_Q_max = batt_meter_cust_data.q_max_pos_0;
+@@ -1213,9 +1266,11 @@ signed int fgauge_get_Q_max(signed short temperature)
+ 		if (temperature < low_temperature)
+ 			temperature = low_temperature;
+ 
++
++#endif
+ 	} else if (temperature <= batt_meter_cust_data.temperature_t2) {
+-		low_temperature = batt_meter_cust_data.temperature_t1_5;
+-		low_Q_max = batt_meter_cust_data.q_max_pos_10;
++		low_temperature = P00A_LOW_T2;
++		low_Q_max = P00A_LOW_QMAX;
+ 		high_temperature = batt_meter_cust_data.temperature_t2;
+ 		high_Q_max = batt_meter_cust_data.q_max_pos_25;
+ 
+@@ -1258,6 +1313,8 @@ signed int fgauge_get_Q_max_high_current(signed short temperature)
+ 		if (temperature < low_temperature)
+ 			temperature = low_temperature;
+ 
++
++#ifndef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
+ 	} else if (temperature <= batt_meter_cust_data.temperature_t1_5) {
+ 		low_temperature = batt_meter_cust_data.temperature_t1;
+ 		low_Q_max = batt_meter_cust_data.q_max_pos_0_h_current;
+@@ -1267,9 +1324,11 @@ signed int fgauge_get_Q_max_high_current(signed short temperature)
+ 		if (temperature < low_temperature)
+ 			temperature = low_temperature;
+ 
++
++#endif
+ 	} else if (temperature <= batt_meter_cust_data.temperature_t2) {
+-		low_temperature = batt_meter_cust_data.temperature_t1_5;
+-		low_Q_max = batt_meter_cust_data.q_max_pos_10_h_current;
++		low_temperature = P00A_LOW_T2;
++		low_Q_max = P00A_LOW_QMAX_HIGH;
+ 		high_temperature = batt_meter_cust_data.temperature_t2;
+ 		high_Q_max = batt_meter_cust_data.q_max_pos_25_h_current;
+ 
+@@ -1494,13 +1553,15 @@ signed int fgauge_read_capacity_by_v(signed int voltage)
+ 
+ 	saddles = fgauge_get_saddles();
+ 
+-	if (voltage > (profile_p + 0)->voltage)
++	if (voltage >= (profile_p + 0)->voltage)
+ 		return 100;	/* battery capacity, not dod */
+ 
+ 	if (voltage < (profile_p + saddles - 1)->voltage)
+ 		return 0; /* battery capacity, not dod */
+ 
+ 	for (i = 0; i < saddles - 1; i++) {
++		if (profile_p[i].voltage == profile_p[i + 1].voltage)
++			continue;
+ 		if ((voltage <= (profile_p + i)->voltage) &&
+ 		    (voltage >= (profile_p + i + 1)->voltage)) {
+ 			ret_percent = (profile_p + i)->percentage +
+@@ -1532,14 +1593,16 @@ signed int fgauge_read_v_by_capacity(int bat_capacity)
+ 
+ 	saddles = fgauge_get_saddles();
+ 
+-	if (bat_capacity < (profile_p + 0)->percentage)
+-		return 3700;
++	if (bat_capacity <= (profile_p + 0)->percentage)
++		return profile_p[0].voltage;
+ 
+ 	if (bat_capacity > (profile_p + saddles - 1)->percentage)
+-		return 3700;
++		return profile_p[saddles - 1].voltage;
+ 
+ 
+ 	for (i = 0; i < saddles - 1; i++) {
++		if (profile_p[i].percentage == profile_p[i + 1].percentage)
++			continue;
+ 		if ((bat_capacity >= (profile_p + i)->percentage) &&
+ 		    (bat_capacity <= (profile_p + i + 1)->percentage)) {
+ 			ret_volt = (profile_p + i)->voltage -
+@@ -1571,13 +1634,15 @@ signed int fgauge_read_d_by_v(signed int volt_bat)
+ 
+ 	saddles = fgauge_get_saddles();
+ 
+-	if (volt_bat > (profile_p + 0)->voltage)
++	if (volt_bat >= (profile_p + 0)->voltage)
+ 		return 0;
+ 
+ 	if (volt_bat < (profile_p + saddles - 1)->voltage)
+ 		return 100;
+ 
+ 	for (i = 0; i < saddles - 1; i++) {
++		if (profile_p[i].voltage == profile_p[i + 1].voltage)
++			continue;
+ 		if ((volt_bat <= (profile_p + i)->voltage) &&
+ 		    (volt_bat >= (profile_p + i + 1)->voltage)) {
+ 			ret_d = (profile_p + i)->percentage +
+@@ -1608,13 +1673,15 @@ signed int fgauge_read_v_by_d(int d_val)
+ 
+ 	saddles = fgauge_get_saddles();
+ 
+-	if (d_val < (profile_p + 0)->percentage)
+-		return 3700;
++	if (d_val <= (profile_p + 0)->percentage)
++		return profile_p[0].voltage;
+ 
+ 	if (d_val > (profile_p + saddles - 1)->percentage)
+-		return 3700;
++		return profile_p[saddles - 1].voltage;
+ 
+ 	for (i = 0; i < saddles - 1; i++) {
++		if (profile_p[i].percentage == profile_p[i + 1].percentage)
++			continue;
+ 		if ((d_val >= (profile_p + i)->percentage) &&
+ 		    (d_val <= (profile_p + i + 1)->percentage)) {
+ 			ret_volt = (profile_p + i)->voltage -
+@@ -1646,13 +1713,15 @@ signed int fgauge_read_r_bat_by_v(signed int voltage)
+ 
+ 	saddles = fgauge_get_saddles_r_table();
+ 
+-	if (voltage > (profile_p + 0)->voltage)
++	if (voltage >= (profile_p + 0)->voltage)
+ 		return (profile_p + 0)->resistance;
+ 
+ 	if (voltage < (profile_p + saddles - 1)->voltage)
+ 		return (profile_p + saddles - 1)->resistance;
+ 
+ 	for (i = 0; i < saddles - 1; i++) {
++		if (profile_p[i].voltage == profile_p[i + 1].voltage)
++			continue;
+ 		if ((voltage <= (profile_p + i)->voltage) &&
+ 		    (voltage >= (profile_p + i + 1)->voltage)) {
+ 			ret_r = (profile_p + i)->resistance +
+@@ -1670,6 +1739,11 @@ signed int fgauge_read_r_bat_by_v(signed int voltage)
+ 
+ void fgauge_construct_battery_profile_init(void)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	/* The checked board transaction owns model construction. */
++	return;
++#else
++
+ 	struct battery_profile_struct *temp_profile_p;
+ 	struct battery_profile_struct *profile_p[PROFILE_SIZE];
+ 	int i, j, saddles, profile_index;
+@@ -1734,6 +1808,8 @@ void fgauge_construct_battery_profile_init(void)
+ 		}
+ 	}
+ 	kfree(temp_profile_p);
++
++#endif
+ }
+ 
+ void fgauge_construct_battery_profile(signed int temperature,
+@@ -1755,6 +1831,8 @@ void fgauge_construct_battery_profile(signed int temperature,
+ 		if (temperature < low_temperature)
+ 			temperature = low_temperature;
+ 
++
++#ifndef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
+ 	} else if (temperature <= batt_meter_cust_data.temperature_t1_5) {
+ 		low_profile_p = fgauge_get_profile(
+ 			batt_meter_cust_data.temperature_t1);
+@@ -1766,12 +1844,14 @@ void fgauge_construct_battery_profile(signed int temperature,
+ 		if (temperature < low_temperature)
+ 			temperature = low_temperature;
+ 
++
++#endif
+ 	} else if (temperature <= batt_meter_cust_data.temperature_t2) {
+ 		low_profile_p = fgauge_get_profile(
+-			batt_meter_cust_data.temperature_t1_5);
++			P00A_LOW_T2);
+ 		high_profile_p = fgauge_get_profile(
+ 			batt_meter_cust_data.temperature_t2);
+-		low_temperature = batt_meter_cust_data.temperature_t1_5;
++		low_temperature = P00A_LOW_T2;
+ 		high_temperature = batt_meter_cust_data.temperature_t2;
+ 
+ 		if (temperature < low_temperature)
+@@ -1842,6 +1922,8 @@ void fgauge_construct_r_table_profile(
+ 		if (temperature < low_temperature)
+ 			temperature = low_temperature;
+ 
++
++#ifndef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
+ 	} else if (temperature <= batt_meter_cust_data.temperature_t1_5) {
+ 		low_profile_p = fgauge_get_profile_r_table(
+ 			batt_meter_cust_data.temperature_t1);
+@@ -1853,12 +1935,14 @@ void fgauge_construct_r_table_profile(
+ 		if (temperature < low_temperature)
+ 			temperature = low_temperature;
+ 
++
++#endif
+ 	} else if (temperature <= batt_meter_cust_data.temperature_t2) {
+ 		low_profile_p = fgauge_get_profile_r_table(
+-			batt_meter_cust_data.temperature_t1_5);
++			P00A_LOW_T2);
+ 		high_profile_p = fgauge_get_profile_r_table(
+ 			batt_meter_cust_data.temperature_t2);
+-		low_temperature = batt_meter_cust_data.temperature_t1_5;
++		low_temperature = P00A_LOW_T2;
+ 		high_temperature = batt_meter_cust_data.temperature_t2;
+ 
+ 		if (temperature < low_temperature)
+@@ -2306,6 +2390,11 @@ void update_qmax_by_temp(void)
+ 
+ void fgauge_construct_table_by_temp(void)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	/* The checked board transaction owns model construction. */
++	return;
++#else
++
+ #if defined(CONFIG_POWER_EXT)
+ #else
+ 	unsigned int i;
+@@ -2351,6 +2440,8 @@ void fgauge_construct_table_by_temp(void)
+ 
+ 	tempIndex = (tempIndex + 1) % CONSTRUCT_BUFFER_SIZE;
+ 
++#endif
++
+ #endif
+ }
+ 
+@@ -2472,6 +2563,11 @@ signed int fgauge_get_Q_max_high_current_by_current(
+ 
+ void fg_qmax_update_for_aging(void)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	/* The checked board transaction owns model construction. */
++	return;
++#else
++
+ #if defined(CONFIG_POWER_EXT)
+ #else
+ 	bool hw_charging_done = bat_is_charging_full();
+@@ -2513,6 +2609,8 @@ void fg_qmax_update_for_aging(void)
+ 		pr_debug("[fg_qmax_update_for_aging] hw_charging_done=%d\r\n",
+ 			hw_charging_done);
+ #endif
++
++#endif
+ }
+ 
+ void dod_init(void)
+@@ -2636,11 +2734,19 @@ signed int mtk_imp_tracking(signed int ori_voltage,
+ 	return ret_compensate_value;
+ }
+ 
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++#include "asus_p00a_soc.inc"
++#endif
++
+ void oam_init(void)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	asus_p00a_soc_update();
++#else
++
+ 	int ret;
+ 	signed int vbat_capacity;
+-	unsigned int charging_enable;
++	unsigned int charging_enable = false;
+ 
+ 	/*stop charging for vbat measurement */
+ 	battery_charging_control(
+@@ -2721,11 +2827,17 @@ void oam_init(void)
+ 		gFG_voltage,
+ 		(100 - fgauge_read_capacity_by_v(gFG_voltage)),
+ 		g_rtc_fg_soc, gFG_DOD0, oam_v_ocv_init, force_get_tbat(false));
++
++#endif
+ }
+ 
+ 
+ void oam_run(void)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	asus_p00a_soc_update();
++#else
++
+ 	int vol_bat;
+ 	/* int vol_bat_hw_ocv=0; */
+ 	/* int d_hw_ocv=0; */
+@@ -2938,10 +3050,17 @@ void oam_run(void)
+ 	g_fg_dbg_percentage = bat_get_ui_percentage();
+ 	g_fg_dbg_percentage_fg = 100 - oam_d_2;
+ 	g_fg_dbg_percentage_voltmode = 100 - oam_d_5;
++
++#endif
+ }
+ 
+ void table_init(void)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	/* The checked board transaction owns model construction. */
++	return;
++#else
++
+ 	struct battery_profile_struct *profile_p;
+ 	struct r_profile_struct *profile_p_r_table;
+ 
+@@ -2966,6 +3085,8 @@ void table_init(void)
+ 	}
+ 
+ 	fgauge_construct_battery_profile(temperature, profile_p);
++
++#endif
+ }
+ 
+ signed int auxadc_algo_run(void)
+@@ -3272,6 +3393,12 @@ void battery_meter_set_reset_soc(bool bUSE_UI_SOC)
+ 
+ signed int battery_meter_get_battery_soc(void)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	int soc, ret = asus_p00a_soc_capacity(&soc);
++
++	return ret ? ret : soc;
++#else
++
+ #if defined(SOC_BY_HW_FG)
+ 	return gFG_capacity_by_c;
+ #endif
+@@ -3284,6 +3411,8 @@ signed int battery_meter_get_battery_soc(void)
+ #endif
+ 
+ 	return 50;
++
++#endif
+ }
+ 
+ /* Here we compensate D1 by a factor from Qmax with loading. */
+@@ -3345,6 +3474,12 @@ signed int battery_meter_set_columb_interrupt(unsigned int val)
+ 
+ signed int battery_meter_get_battery_percentage(void)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	int soc, ret = asus_p00a_soc_capacity(&soc);
++
++	return ret ? ret : soc;
++#else
++
+ #if !defined(CONFIG_POWER_EXT)
+ 	if (bat_is_charger_exist() == false)
+ 		fg_qmax_update_for_aging_flag = 1;
+@@ -3370,11 +3505,17 @@ signed int battery_meter_get_battery_percentage(void)
+ #endif
+ 	/* define CONFIG_POWER_EXT */
+ 	return 50;
++
++#endif
+ }
+ 
+ 
+ signed int battery_meter_initial(void)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	return asus_p00a_soc_update();
++#else
++
+ #if !defined(CONFIG_POWER_EXT)
+ 	static bool meter_initilized;
+ 
+@@ -3399,19 +3540,33 @@ signed int battery_meter_initial(void)
+ #endif
+ 
+ 	return 0;
++
++#endif
+ }
+ 
+ void reset_parameter_car(void)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	/* Unsupported UI-SOC mutation; state belongs to the board transaction. */
++	return;
++#else
++
+ #if defined(SOC_BY_SW_FG)
+ 	oam_car_1 = 0;
+ 	oam_car_2 = 0;
+ 	gFG_columb = 0;
+ #endif
++
++#endif
+ }
+ 
+ void reset_parameter_dod_change(void)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	/* Unsupported UI-SOC mutation; state belongs to the board transaction. */
++	return;
++#else
++
+ #if defined(SOC_BY_SW_FG)
+ 	pr_debug("[FGADC] Update oam_d0(%d) by %d \r\n", oam_d0, oam_d_5);
+ 	oam_d0 = oam_d_5;
+@@ -3421,10 +3576,17 @@ void reset_parameter_dod_change(void)
+ 	oam_d_3 = oam_d_5;
+ 	oam_d_4 = oam_d_5;
+ #endif
++
++#endif
+ }
+ 
+ void reset_parameter_dod_full(unsigned int ui_percentage)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	/* Unsupported UI-SOC mutation; state belongs to the board transaction. */
++	return;
++#else
++
+ #if defined(SOC_BY_SW_FG)
+ 	pr_debug("[battery_meter_reset]1 oam_d0=%d,oam_d_5=%d,ui=%d\n", oam_d0,
+ 		 oam_d_5, ui_percentage);
+@@ -3439,10 +3601,17 @@ void reset_parameter_dod_full(unsigned int ui_percentage)
+ 	pr_debug("[battery_meter_reset]2 oam_d0=%d,oam_d_5=%d,ui=%d\n", oam_d0,
+ 		 oam_d_5, ui_percentage);
+ #endif
++
++#endif
+ }
+ 
+ signed int battery_meter_reset(void)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	/* UI tracking cannot overwrite a measured model state. */
++	return -EOPNOTSUPP;
++#else
++
+ #if !defined(CONFIG_POWER_EXT)
+ 	unsigned int ui_percentage = bat_get_ui_percentage();
+ 
+@@ -3458,10 +3627,13 @@ signed int battery_meter_reset(void)
+ 	reset_parameter_dod_full(ui_percentage);
+ #endif
+ 	return 0;
++
++#endif
+ }
+ 
+ signed int battery_meter_get_data(struct battery_meter_data *data)
+ {
++#if defined(CONFIG_MTK_BATTERY_LIFETIME_DATA_SUPPORT)
+ 	if (!data)
+ 		return -1;
+ 
+@@ -3472,6 +3644,9 @@ signed int battery_meter_get_data(struct battery_meter_data *data)
+ 	data->columb_sum = gFG_columb_sum;
+ 
+ 	return 0;
++#else
++	return -EOPNOTSUPP;
++#endif
+ }
+ 
+ signed int battery_meter_sync(signed int bat_i_sense_offset)
+@@ -4163,6 +4338,11 @@ static void battery_meter_shutdown(struct platform_device *dev)
+ static int battery_meter_suspend(
+ 	struct platform_device *dev, pm_message_t state)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	asus_p00a_soc_suspend(true);
++	return 0;
++#else
++
+ 	/* -- hibernation path */
+ 	if (state.event == PM_EVENT_FREEZE) {
+ 		pr_warn("[%s] %p:%p\n", __func__,
+@@ -4194,10 +4374,19 @@ static int battery_meter_suspend(
+ 	pr_debug("[battery_meter_suspend]\n");
+ 
+ 	return 0;
++
++#endif
+ }
+ 
+ static int battery_meter_resume(struct platform_device *dev)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	asus_p00a_soc_suspend(false);
++	bat_spm_timeout = true;
++	wake_up_bat();
++	return 0;
++#else
++
+ #if defined(CONFIG_POWER_EXT)
+ 
+ #elif defined(SOC_BY_SW_FG) || defined(SOC_BY_HW_FG)
+@@ -4290,6 +4479,8 @@ static int battery_meter_resume(struct platform_device *dev)
+ 
+ 	pr_debug("[battery_meter_resume]\n");
+ 	return 0;
++
++#endif
+ }
+ 
+ /* ----------------------------------------------------- */
+diff --git a/include/linux/power/asus_p00a_battery.h b/include/linux/power/asus_p00a_battery.h
+index fceff57b69c8207a8296d89661b3f3a28ff174db..81d6a0ca934f7e8a3e71abfbfb66dcac3c00589f 100644
+--- a/include/linux/power/asus_p00a_battery.h
++++ b/include/linux/power/asus_p00a_battery.h
+@@ -8,4 +8,19 @@ int asus_p00a_pmic_present(int *present);
+ int asus_p00a_charger_status(int *status);
+ int asus_p00a_battery_get_property(enum power_supply_property property,
+ 				 union power_supply_propval *val);
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++struct asus_p00a_battery_sample {
++	int voltage_mv;
++	int temperature_decic;
++	int status;
++	int capacity;
++};
++int asus_p00a_pmic_enable_baton(void);
++int asus_p00a_battery_read_sample(struct asus_p00a_battery_sample *sample);
++int asus_p00a_soc_update(void);
++int asus_p00a_soc_capacity(int *capacity);
++int asus_p00a_soc_read(struct asus_p00a_battery_sample *sample);
++void asus_p00a_soc_invalidate(int error);
++void asus_p00a_soc_suspend(bool suspended);
++#endif
+ #endif

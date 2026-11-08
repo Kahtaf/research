@@ -1,0 +1,1421 @@
+diff --git a/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c b/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c
+index 9ed9adb814df8134642d8829bf46d8e74d84f719..b6a4c7cb1497b7560260c191a92499e0ee6bb8a8 100644
+--- a/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c
+@@ -120,12 +120,11 @@ int asus_p00a_battery_read_sample(struct asus_p00a_battery_sample *sample)
+ 	ret = asus_p00a_charger_status(&next.status);
+ 	if (ret)
+ 		return ret;
+-	/* Charging is not supported by this product. Do not model an unexpected
+-	 * enabled charger as a valid inhibited-charging observation.
+-	 */
+ 	if (next.status != POWER_SUPPLY_STATUS_DISCHARGING &&
+-	    next.status != POWER_SUPPLY_STATUS_NOT_CHARGING)
+-		return -EPERM;
++	    next.status != POWER_SUPPLY_STATUS_NOT_CHARGING &&
++	    next.status != POWER_SUPPLY_STATUS_CHARGING &&
++	    next.status != POWER_SUPPLY_STATUS_FULL)
++		return -ENODATA;
+ 	ret = asus_p00a_pmic_present(&present);
+ 	if (ret || !present)
+ 		return ret ? ret : -ENODEV;
+diff --git a/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_status.inc b/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_status.inc
+index 27c84979ff0d4f4b283ce745c8c2facdf9be5dd4..03a08e70e40d89261b62d44ad05b5b1e0591ec24 100644
+--- a/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_status.inc
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_status.inc
+@@ -40,6 +40,15 @@ int asus_p00a_charger_status(int *status)
+ 		}
+ 	}
+ out:
++	if (ret && !p00a->limits.suspended) {
++		int stop_ret;
++
++		p00a->sample_valid = false;
++		p00a->guard_error = ret;
++		stop_ret = p00a_disable(p00a);
++		if (stop_ret)
++			ret = stop_ret;
++	}
+ 	mutex_unlock(&p00a->lock);
+ out_global:
+ 	mutex_unlock(&p00a_global_lock);
+diff --git a/drivers/misc/mediatek/power/mt8163/asus_p00a/bc12.inc b/drivers/misc/mediatek/power/mt8163/asus_p00a/bc12.inc
+new file mode 100644
+index 0000000000000000000000000000000000000000..9849457bbe969a6f986dde7bf0de54433cd0945f
+--- /dev/null
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/bc12.inc
+@@ -0,0 +1,108 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/* MT8163 BC1.2 sequence from pmic_chr_type_det.c, with checked PMIC
++ * transactions. Called with the pad charger lock held; no SOC/BQ callback.
++ * USB PHY init/release retain the platform MMIO ABI (no status return).
++ */
++#include <mt-plat/charging.h>
++extern void Charger_Detect_Init(void);
++extern void Charger_Detect_Release(void);
++static DEFINE_MUTEX(p00a_bc12_lock);
++
++static int p00a_bc12_write(unsigned int reg, unsigned int mask,
++			   unsigned int value)
++{
++	unsigned int actual;
++	int ret;
++
++	pmic_lock();
++	ret = p00a_pmic_result(pmic_config_interface(reg, value, mask, 0));
++	if (!ret)
++		ret = p00a_pmic_result(pmic_read_interface(reg, &actual, mask, 0));
++	if (!ret && actual != value)
++		ret = -EIO;
++	pmic_unlock();
++	return ret;
++}
++
++static int p00a_bc12_read(unsigned int *result)
++{
++	int ret;
++
++	msleep(80);
++	pmic_lock();
++	ret = p00a_pmic_result(pmic_read_interface(CHR_CON18, result,
++		PMIC_RGS_BC11_CMP_OUT_MASK, PMIC_RGS_BC11_CMP_OUT_SHIFT));
++	pmic_unlock();
++	return ret;
++}
++
++int asus_p00a_bc12_type(unsigned int *type)
++{
++	unsigned int cmp, next = CHARGER_UNKNOWN;
++	int ret, cleanup, cleanup2;
++
++	if (!READ_ONCE(pwrap_regmap))
++		return -ENODATA;
++	mutex_lock(&p00a_bc12_lock);
++	Charger_Detect_Init();
++	/* CHR_CON18: BB_CTRL, RST, VSRC. CHR_CON19: VREF, CMP, IPD,
++	 * IPU, BIAS. Preserve unrelated fields, including comparator output.
++	 */
++	ret = p00a_bc12_write(CHR_CON19, 0x1ff, 0x100);
++	if (ret)
++		goto out;
++	ret = p00a_bc12_write(CHR_CON18, 0x0f, 3);
++	if (ret)
++		goto out;
++	msleep(50);
++	/* DCD: IPU=2, IPD=1, VREF=1, CMP=2. */
++	ret = p00a_bc12_write(CHR_CON19, 0xff, 0x99);
++	if (ret)
++		goto out;
++	ret = p00a_bc12_read(&cmp);
++	if (ret)
++		goto out;
++	ret = p00a_bc12_write(CHR_CON19, 0xff, 0);
++	if (ret)
++		goto out;
++	if (cmp) {
++		next = NONSTANDARD_CHARGER;
++		goto out;
++	}
++	/* A2: VSRC=2, IPD=1, CMP=1. */
++	ret = p00a_bc12_write(CHR_CON18, 0x0c, 8);
++	if (ret)
++		goto out;
++	ret = p00a_bc12_write(CHR_CON19, 0xff, 0x14);
++	if (ret)
++		goto out;
++	ret = p00a_bc12_read(&cmp);
++	if (ret)
++		goto out;
++	ret = p00a_bc12_write(CHR_CON18, 0x0c, 0);
++	if (ret)
++		goto out;
++	ret = p00a_bc12_write(CHR_CON19, 0xff, 0);
++	if (ret)
++		goto out;
++	if (!cmp) {
++		next = STANDARD_HOST;
++		goto out;
++	}
++	/* B2: IPU=2, VREF=1, CMP=1 (actual source uses 1, not comment's 2). */
++	ret = p00a_bc12_write(CHR_CON19, 0xff, 0x85);
++	if (ret)
++		goto out;
++	ret = p00a_bc12_read(&cmp);
++	if (!ret)
++		next = cmp ? STANDARD_CHARGER : CHARGING_HOST;
++out:
++	cleanup = p00a_bc12_write(CHR_CON18, 0x0c, 0);
++	cleanup2 = p00a_bc12_write(CHR_CON19, 0x1ff, 0);
++	Charger_Detect_Release();
++	mutex_unlock(&p00a_bc12_lock);
++	if (ret || cleanup || cleanup2)
++		return ret ? ret : (cleanup ? cleanup : cleanup2);
++	*type = next;
++	return 0;
++}
+diff --git a/drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c b/drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c
+index 2ede8b54ab393ba97783f04f838c44e223f09279..1b2412b21c5fcbee4650f12765c5b588bf074e1b 100644
+--- a/drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c
+@@ -9,6 +9,9 @@
+ #include <linux/reboot.h>
+ #include <linux/regmap.h>
+ #include <linux/workqueue.h>
++#include <linux/timekeeping.h>
++#include <linux/pm_wakeup.h>
++#include <linux/power/asus_p00a_battery.h>
+ #include <mt-plat/battery_common.h>
+ #include <mt-plat/battery_meter.h>
+ #include <mt-plat/mtk_boot.h>
+@@ -39,6 +42,28 @@ struct p00a_power {
+ 	int programmed_cv;
+ 	bool initialized;
+ 	bool needs_programming;
++	bool sample_valid;
++	bool stopped;
++	bool awake;
++	bool source_seen;
++	bool source_classified;
++	bool adc_valid;
++	bool adc_current_valid;
++	unsigned int adc_charge_ma;
++	s64 adc_ms;
++	unsigned int source_bits;
++	unsigned int fault_latched;
++	unsigned int fault_previous;
++	unsigned int fault_current;
++	int fault_error;
++	int disable_error;
++	int guard_error;
++	s64 sample_ms;
++	s64 fault_ms;
++	u64 generation;
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	struct asus_p00a_battery_sample sample;
++#endif
+ };
+ 
+ bool chargin_hw_init_done;
+@@ -52,7 +77,16 @@ static const struct regmap_config p00a_regmap = {
+ 	.cache_type = REGCACHE_NONE,
+ };
+ 
++static s64 p00a_clock_ms(void)
++{
++	struct timespec now;
++
++	get_monotonic_boottime(&now);
++	return (s64)now.tv_sec * 1000 + now.tv_nsec / 1000000;
++}
++
+ #include "control.h"
++#include "charge_snapshot.inc"
+ #ifdef CONFIG_ASUS_P00A_BATTERY_DIAGNOSTIC
+ #include "battery_status.inc"
+ #endif
+@@ -73,6 +107,15 @@ int chr_control_interface(int cmd, void *data)
+ 	return ret;
+ }
+ 
++static unsigned long p00a_next_poll(struct p00a_power *p)
++{
++	s64 remaining = p->sample_ms + 30000 - p00a_clock_ms();
++
++	if (p->sample_valid && remaining > 0 && remaining < 5000)
++		return max_t(unsigned long, 1, msecs_to_jiffies(remaining));
++	return 5 * HZ;
++}
++
+ static void p00a_monitor(struct work_struct *work)
+ {
+ 	struct p00a_power *p = container_of(to_delayed_work(work),
+@@ -83,8 +126,8 @@ static void p00a_monitor(struct work_struct *work)
+ 	ret = p00a_apply(p);
+ 	if (ret && ret != -EAGAIN)
+ 		dev_warn_ratelimited(p->dev, "charging guard: %d\n", ret);
+-	if (!p->limits.suspended)
+-		schedule_delayed_work(&p->monitor, 5 * HZ);
++	if (!p->limits.suspended && !p->stopped)
++		schedule_delayed_work(&p->monitor, p00a_next_poll(p));
+ 	mutex_unlock(&p->lock);
+ }
+ 
+@@ -118,6 +161,7 @@ static int p00a_probe(struct i2c_client *client, const struct i2c_device_id *id)
+ 	p->dev = &client->dev;
+ 	mutex_init(&p->lock);
+ 	INIT_DELAYED_WORK(&p->monitor, p00a_monitor);
++	p->fault_error = -ENODATA;
+ 	p->limits.input_cap_ma = 100;
+ 	p->limits.charging_permitted = of_property_read_bool(client->dev.of_node,
+ 		"asus,allow-battery-charging");
+@@ -127,7 +171,7 @@ static int p00a_probe(struct i2c_client *client, const struct i2c_device_id *id)
+ 	ret = regmap_read(p->map, REG_ID, &value);
+ 	if (ret)
+ 		return ret;
+-	if (((value >> 3) & 7) != 0 || !(value & BIT(2)))
++	if ((value & 0xbf) != 0x06)
+ 		return -ENODEV;
+ 	ret = p00a_disable(p);
+ 	if (ret)
+@@ -141,9 +185,19 @@ static int p00a_probe(struct i2c_client *client, const struct i2c_device_id *id)
+ 	if (ret)
+ 		return ret;
+ 	i2c_set_clientdata(client, p);
++	ret = device_init_wakeup(p->dev, true);
++	if (ret)
++		return ret;
++	ret = device_create_file(p->dev, &dev_attr_charge_guard);
++	if (ret) {
++		device_init_wakeup(p->dev, false);
++		return ret;
++	}
+ 	mutex_lock(&p00a_global_lock);
+ 	if (p00a) {
+ 		mutex_unlock(&p00a_global_lock);
++		device_remove_file(p->dev, &dev_attr_charge_guard);
++		device_init_wakeup(p->dev, false);
+ 		return -EBUSY;
+ 	}
+ 	p00a = p;
+@@ -159,26 +213,36 @@ static int p00a_remove(struct i2c_client *client)
+ {
+ 	struct p00a_power *p = i2c_get_clientdata(client);
+ 
++	int ret;
++
++	device_remove_file(p->dev, &dev_attr_charge_guard);
+ 	mutex_lock(&p00a_global_lock);
+ 	WRITE_ONCE(chargin_hw_init_done, false);
+ 	p00a = NULL;
+ 	mutex_unlock(&p00a_global_lock);
+ 	mutex_lock(&p->lock);
+-	p->limits.suspended = true;
++	p->stopped = true;
++	ret = p00a_quiesce(p);
+ 	mutex_unlock(&p->lock);
+ 	cancel_delayed_work_sync(&p->monitor);
+-	return p00a_disable(p);
++	device_init_wakeup(p->dev, false);
++	if (ret)
++		dev_err(p->dev, "remove charge disable unverified: %d\n", ret);
++	return ret;
+ }
+ 
+ static void p00a_shutdown(struct i2c_client *client)
+ {
+ 	struct p00a_power *p = i2c_get_clientdata(client);
++	int ret;
+ 
+ 	mutex_lock(&p->lock);
+-	p->limits.suspended = true;
+-	p00a_disable(p);
++	p->stopped = true;
++	ret = p00a_quiesce(p);
+ 	mutex_unlock(&p->lock);
+ 	cancel_delayed_work_sync(&p->monitor);
++	if (ret)
++		dev_err(p->dev, "shutdown charge disable unverified: %d\n", ret);
+ }
+ 
+ static int p00a_suspend(struct device *dev)
+@@ -187,8 +251,7 @@ static int p00a_suspend(struct device *dev)
+ 	int ret;
+ 
+ 	mutex_lock(&p->lock);
+-	p->limits.suspended = true;
+-	ret = p00a_disable(p);
++	ret = p00a_quiesce(p);
+ 	mutex_unlock(&p->lock);
+ 	cancel_delayed_work_sync(&p->monitor);
+ 	if (ret) {
+@@ -203,12 +266,13 @@ static int p00a_suspend(struct device *dev)
+ static int p00a_resume(struct device *dev)
+ {
+ 	struct p00a_power *p = dev_get_drvdata(dev);
++	int ret;
+ 
+ 	mutex_lock(&p->lock);
+-	p->limits.suspended = false;
++	ret = p00a_restart(p);
+ 	mutex_unlock(&p->lock);
+ 	schedule_delayed_work(&p->monitor, 0);
+-	return 0;
++	return ret;
+ }
+ 
+ static const struct dev_pm_ops p00a_pm = {
+diff --git a/drivers/misc/mediatek/power/mt8163/asus_p00a/charge_snapshot.inc b/drivers/misc/mediatek/power/mt8163/asus_p00a/charge_snapshot.inc
+new file mode 100644
+index 0000000000000000000000000000000000000000..f8e0db524d5ed322c65e8e4267dc102c41e78e69
+--- /dev/null
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/charge_snapshot.inc
+@@ -0,0 +1,149 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/* Charger owns the published copy. No entry here takes FGADC_mutex or calls
++ * the SOC/measurement getters. All hardware operations retain p->lock.
++ */
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++int asus_p00a_charge_publish(const struct asus_p00a_battery_sample *sample,
++			   s64 sampled_ms, int error)
++{
++	int ret;
++
++	mutex_lock(&p00a_global_lock);
++	if (!p00a) {
++		ret = -ENODEV;
++		goto out;
++	}
++	mutex_lock(&p00a->lock);
++	ret = p00a_publish_locked(p00a, sample, sampled_ms, error);
++	mutex_unlock(&p00a->lock);
++out:
++	mutex_unlock(&p00a_global_lock);
++	return ret;
++}
++
++int asus_p00a_charge_source_changed(void)
++{
++	int ret;
++
++	/* Called by the threaded PMIC CHRDET callback, outside pmic_lock.
++	 * Even a rapid unplug/replug with identical REG0B invalidates its cap.
++	 */
++	mutex_lock(&p00a_global_lock);
++	if (!p00a) {
++		ret = -ENODEV;
++		goto out;
++	}
++	mutex_lock(&p00a->lock);
++	p00a->generation++;
++	p00a->sample_valid = false;
++	p00a->limits.sensors_valid = false;
++	p00a->limits.enable_requested = false;
++	p00a->limits.input_cap_ma = 100;
++	p00a->source_seen = false;
++	p00a->source_classified = false;
++	p00a->needs_programming = true;
++	if (p00a->limits.suspended || p00a->stopped)
++		ret = -EHOSTDOWN;
++	else {
++		ret = p00a_disable(p00a);
++		if (!ret)
++			ret = p00a_write_checked(p00a, REG_INPUT, 0x7f, BIT(6));
++	}
++	mutex_unlock(&p00a->lock);
++out:
++	mutex_unlock(&p00a_global_lock);
++	return ret;
++}
++
++int asus_p00a_charge_request(bool usb_ready)
++{
++	unsigned int type;
++	int ret;
++
++	mutex_lock(&p00a_global_lock);
++	if (!p00a) {
++		ret = -ENODEV;
++		goto out;
++	}
++	mutex_lock(&p00a->lock);
++	if (!p00a->source_classified && usb_ready) {
++		ret = p00a_command(p00a, CHARGING_CMD_GET_CHARGER_TYPE, &type);
++		if (ret) {
++			mutex_unlock(&p00a->lock);
++			goto out;
++		}
++	}
++	/* A conservative fixed request, not calibration or a new board model.
++	 * Source-specific ceilings still use the reviewed policy. Unknown=100mA.
++	 * Activation requires the separately reviewed DT permission.
++	 */
++	p00a->limits.cv_uv = 4208000;
++	p00a->limits.ichg_10ua = 51200;
++	p00a->limits.input_10ua = p00a->limits.input_cap_ma * 100;
++	p00a->limits.enable_requested = true;
++	p00a->needs_programming = true;
++	ret = p00a_apply(p00a);
++	mutex_unlock(&p00a->lock);
++out:
++	mutex_unlock(&p00a_global_lock);
++	return ret;
++}
++#endif
++
++/* No REG0C read here: only the guard consumes that latch. Values labelled
++ * limit are programmed limits, never measured battery/net charging current.
++ * Raw TS/ADC telemetry has no independent freshness claim.
++ */
++static ssize_t charge_guard_show(struct device *dev,
++				struct device_attribute *attr, char *buf)
++{
++	struct p00a_power *p = dev_get_drvdata(dev);
++	unsigned int r[REG_ID + 1] = { 0 };
++	int i, ret = 0;
++	s64 now;
++
++	mutex_lock(&p->lock);
++	if (p->limits.suspended || p->stopped) {
++		ret = -EHOSTDOWN;
++		goto out;
++	}
++	for (i = 0; i <= REG_ID; i++) {
++		if (i == REG_FAULT)
++			continue;
++		ret = regmap_read(p->map, i, &r[i]);
++		if (ret) {
++			p->sample_valid = false;
++			p->guard_error = ret;
++			p00a_disable(p);
++			goto out;
++		}
++	}
++	now = p00a_clock_ms();
++	ret = scnprintf(buf, PAGE_SIZE,
++		"enabled=%u pg=%u charge_state=%u cv_limit_uv=%u ichg_limit_ma=%u input_limit_ma=%u\n"
++		"sample_valid=%u sample_age_ms=%lld generation=%llu guard_error=%d disable_error=%d suspended=%u\n"
++		"fault_previous=0x%02x fault_current=0x%02x fault_latched=0x%02x fault_error=%d fault_age_ms=%lld\n"
++		"adc_valid=%u adc_age_ms=%lld charger_branch_current_valid=%u charger_branch_current_ma=%u\n"
++		"input=0x%02x adc=0x%02x control=0x%02x timer=0x%02x compensation=0x%02x ts_raw=%u thermal=%u dpm=0x%02x id=0x%02x\n",
++		!!(r[REG_CONTROL] & CHG_ENABLE), !!(r[REG_STATUS] & BIT(2)),
++		(r[REG_STATUS] >> 3) & 3, 3840000 + (r[REG_CV] >> 2) * 16000,
++		(r[REG_ICHG] & 0x7f) * 64, 100 + (r[REG_INPUT] & 0x3f) * 50,
++		p->sample_valid && now >= p->sample_ms && now - p->sample_ms < 30000,
++		(long long)(now - p->sample_ms), (unsigned long long)p->generation,
++		p->guard_error, p->disable_error, p->limits.suspended,
++		p->fault_previous, p->fault_current, p->fault_latched, p->fault_error,
++		(long long)(now - p->fault_ms),
++		p->adc_valid && now >= p->adc_ms && now - p->adc_ms < 10000,
++		(long long)(now - p->adc_ms),
++		p->adc_current_valid && p->adc_valid && now >= p->adc_ms &&
++		now - p->adc_ms < 10000 && !!(r[REG_CONTROL] & CHG_ENABLE) &&
++		!!(r[REG_STATUS] & BIT(2)) && ((r[REG_STATUS] >> 3) & 3) != 0 &&
++		((r[REG_STATUS] >> 3) & 3) != 3,
++		p->adc_charge_ma, r[REG_INPUT], r[REG_ADC],
++		r[REG_CONTROL], r[REG_TIMER], r[0x08], r[REG_TS] & 0x7f,
++		!!(r[0x0e] & BIT(7)), r[0x13], r[REG_ID]);
++out:
++	mutex_unlock(&p->lock);
++	return ret;
++}
++static DEVICE_ATTR_RO(charge_guard);
+diff --git a/drivers/misc/mediatek/power/mt8163/asus_p00a/control.h b/drivers/misc/mediatek/power/mt8163/asus_p00a/control.h
+index fb71747a4e3441ab0936c41fd07fdbc676a30196..77e459392605cd90b251a84a7065f7b7ca6300f2 100644
+--- a/drivers/misc/mediatek/power/mt8163/asus_p00a/control.h
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/control.h
+@@ -2,53 +2,388 @@
+ #ifndef ASUS_P00A_POWER_CONTROL_H
+ #define ASUS_P00A_POWER_CONTROL_H
+ 
++static int p00a_verify(struct p00a_power *p, unsigned int reg,
++		       unsigned int mask, unsigned int expected)
++{
++	unsigned int value;
++	int ret = regmap_read(p->map, reg, &value);
++
++	return ret ? ret : ((value & mask) == expected ? 0 : -EIO);
++}
++
++static int p00a_write_checked(struct p00a_power *p, unsigned int reg,
++			      unsigned int mask, unsigned int value)
++{
++	int ret = regmap_update_bits(p->map, reg, mask, value);
++
++	return ret ? ret : p00a_verify(p, reg, mask, value);
++}
++
++static void p00a_awake(struct p00a_power *p, bool awake)
++{
++	if (p->awake == awake)
++		return;
++	p->awake = awake;
++	if (awake)
++		pm_stay_awake(p->dev);
++	else
++		pm_relax(p->dev);
++}
++
+ static int p00a_disable(struct p00a_power *p)
+ {
+-	return regmap_update_bits(p->map, REG_CONTROL, CHG_ENABLE, 0);
++	int ret, read_ret;
++
++	ret = regmap_update_bits(p->map, REG_CONTROL, CHG_ENABLE | OTG_ENABLE, 0);
++	/* Read even after a failed write; retain the transport error. A zero
++	 * readback cannot turn a failed operation into a successful ack.
++	 */
++	read_ret = p00a_verify(p, REG_CONTROL, CHG_ENABLE | OTG_ENABLE, 0);
++	p->disable_error = ret ? ret : read_ret;
++	if (p->disable_error) {
++		/* Best effort input isolation; do not claim this proves charge off. */
++		p00a_write_checked(p, REG_INPUT, BIT(7), BIT(7));
++		p00a_awake(p, true);
++	} else {
++		p00a_awake(p, false);
++	}
++	return p->disable_error;
+ }
+ 
+-static int p00a_sample(struct p00a_power *p)
++static int p00a_snapshot_check(struct p00a_power *p)
+ {
+-	unsigned int previous, fault_now, ts, status;
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	s64 now = p00a_clock_ms();
++
++	if (!p->sample_valid)
++		return -ENODATA;
++	if (now < p->sample_ms || now - p->sample_ms >= 30000) {
++		p->sample_valid = false;
++		return -ESTALE;
++	}
++	p->limits.temp_decic = p->sample.temperature_decic;
++	p->limits.battery_present = true; /* checked at both ends of SOC batch */
++	if (p->sample.voltage_mv < 2500 || p->sample.voltage_mv > 4500)
++		return -ERANGE;
++	return 0;
++#else
++	return -ENODATA;
++#endif
++}
++
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++static int p00a_publish_locked(struct p00a_power *p,
++		const struct asus_p00a_battery_sample *sample, s64 ms, int error)
++{
++	s64 now = p00a_clock_ms();
+ 	int ret;
+ 
++	p->generation++;
++	p->sample_valid = false;
+ 	p->limits.sensors_valid = false;
+-	ret = regmap_read(p->map, REG_STATUS, &status);
++	if (p->limits.suspended || p->stopped) {
++		p->limits.thermal_latched = true;
++		return -EHOSTDOWN;
++	}
++	if (!sample || error || ms > now || now - ms >= 30000) {
++		p->guard_error = error ? error : -EAGAIN;
++		p->limits.thermal_latched = true;
++		ret = p00a_disable(p);
++		return ret ? ret : p->guard_error;
++	}
++	p->sample = *sample;
++	p->sample_ms = ms;
++	p->sample_valid = true;
++	p->limits.temp_decic = sample->temperature_decic;
++	/* A new unsafe temperature/voltage must stop an existing session at
++	 * publication, not wait for the next monitor or worker request.
++	 */
++	if (sample->voltage_mv < 2500 || sample->voltage_mv > 4500 ||
++	    sample->temperature_decic <= 0 || sample->temperature_decic >= 500) {
++		p->limits.thermal_latched = true;
++		p->guard_error = -ERANGE;
++		return p00a_disable(p);
++	}
++	if (p->programmed_cv > p00a_effective_cv(&p->limits)) {
++		p->needs_programming = true;
++		return p00a_disable(p);
++	}
++	return 0;
++}
++#endif
++
++static int p00a_quiesce(struct p00a_power *p)
++{
++	p->limits.suspended = true;
++	p->adc_valid = false;
++	p->adc_current_valid = false;
++	p->limits.enable_requested = false;
++	p->sample_valid = false;
++	p->needs_programming = true;
++	return p00a_disable(p);
++}
++
++static int p00a_restart(struct p00a_power *p)
++{
++	int ret = p00a_disable(p);
++
++	p->sample_valid = false;
++	p->limits.enable_requested = false;
++	p->limits.input_cap_ma = 100;
++	p->source_seen = false;
++	p->source_classified = false;
++	p->needs_programming = true;
++	p->limits.suspended = false;
++	return ret;
++}
++
++/* Sole REG0C reader. Save first read before attempting second; a second-read
++ * failure must not erase an already consumed safety/watchdog event.
++ */
++static int p00a_fault_sample(struct p00a_power *p)
++{
++	unsigned int first, current;
++	int ret = regmap_read(p->map, REG_FAULT, &first);
++
++	p->fault_error = ret ? ret : -EAGAIN;
+ 	if (ret)
+ 		return ret;
+-	p->limits.charger_present = !!(status & BIT(2));
+-	if (!p->limits.charger_present) {
++	p->fault_previous = first;
++	p->fault_latched |= first & 0xf8;
++	ret = regmap_read(p->map, REG_FAULT, &current);
++	p->fault_error = ret;
++	if (ret)
++		return ret;
++	p->fault_current = current;
++	p->fault_latched |= current & 0xf8;
++	p->fault_ms = p00a_clock_ms();
++	p->limits.fault = p->fault_latched | (current & 7);
++	return 0;
++}
++
++static int p00a_source(struct p00a_power *p, unsigned int *status)
++{
++	unsigned int bits;
++	int ret = regmap_read(p->map, REG_STATUS, status);
++
++	if (ret)
++		return ret;
++	bits = *status & 0xe4;
++	p->limits.charger_present = !!(bits & BIT(2));
++	if (!p->source_seen || bits != p->source_bits) {
++		p->sample_valid = false;
+ 		p->limits.input_cap_ma = 100;
+-		p->limits.enable_requested = false;
+ 		p->needs_programming = true;
++		p->source_seen = true;
++		p->source_classified = false;
++		p->source_bits = bits;
++		ret = p00a_disable(p);
++		if (ret)
++			return ret;
++		/* Enforce unknown-source ceiling even with charging inhibited. */
++		ret = p00a_write_checked(p, REG_INPUT, 0x7f, BIT(6));
++		if (ret)
++			return ret;
+ 	}
+-	ret = regmap_read(p->map, REG_FAULT, &previous);
++	if (!p->limits.charger_present) {
++		p->limits.enable_requested = false;
++		/* Explicit unplug is the only automatic latched-fault reset. */
++		p->fault_latched = 0;
++	}
++	return 0;
++}
++
++static int p00a_adc_sample(struct p00a_power *p)
++{
++	unsigned int value, before, control_before, after, control_after, current;
++	int i, ret;
++
++	p->adc_valid = false;
++	p->adc_current_valid = false;
++	ret = regmap_read(p->map, REG_CONTROL, &control_before);
++	if (ret)
++		return ret;
++	ret = regmap_read(p->map, REG_STATUS, &before);
++	if (ret)
++		return ret;
++
++	/* A completed one-shot gives TS an actual conversion boundary. Neither
++	 * a plausible cached ADC code nor CONV_RATE readback proves freshness.
++	 */
++	ret = p00a_write_checked(p, REG_ADC, 0x53, 0);
++	if (ret)
++		return ret;
++	ret = p00a_verify(p, REG_ADC, BIT(7), 0);
++	if (ret)
++		return ret;
++	ret = p00a_write_checked(p, REG_ADC, BIT(7), BIT(7));
++	if (ret)
++		return ret;
++	/* Require an observed busy -> done transition. If a very fast
++	 * conversion finishes before the first read, reject conservatively.
++	 */
++	for (i = 0; i < 48; i++) {
++		msleep(25);
++		ret = regmap_read(p->map, REG_ADC, &value);
++		if (ret)
++			return ret;
++		if (!(value & BIT(7)))
++			break;
++	}
++	if (i == 48)
++		return -ETIMEDOUT;
++	ret = regmap_read(p->map, REG_TS, &value);
++	if (ret)
++		return ret;
++	p->limits.ts_raw = value & 0x7f;
++	ret = regmap_read(p->map, 0x0e, &value);
++	if (ret)
++		return ret;
++	if (value & BIT(7))
++		return -EOVERFLOW;
++	ret = regmap_read(p->map, 0x12, &current);
++	if (ret)
++		return ret;
++	ret = regmap_read(p->map, REG_CONTROL, &control_after);
++	if (ret)
++		return ret;
++	ret = regmap_read(p->map, REG_STATUS, &after);
++	if (ret)
++		return ret;
++	p->adc_ms = p00a_clock_ms();
++	p->adc_valid = true;
++	p->adc_charge_ma = (current & 0x7f) * 50;
++	p->adc_current_valid = (control_before & control_after & CHG_ENABLE) &&
++		(before & BIT(2)) && (before & 0xfc) == (after & 0xfc) &&
++		(((before >> 3) & 3) == 1 || ((before >> 3) & 3) == 2);
++	return 0;
++}
++
++static int p00a_sample(struct p00a_power *p)
++{
++	unsigned int status;
++	int ret;
++
++	p->limits.sensors_valid = false;
++	ret = p00a_source(p, &status);
++	if (ret)
++		return ret;
++	ret = p00a_fault_sample(p);
++	if (ret)
++		return ret;
++	if (p00a_fault_blocks(p->limits.fault))
++		return -EIO;
++	if (!p->limits.charger_present)
++		return -ENODEV;
++	ret = p00a_snapshot_check(p);
++	if (ret)
++		return ret;
++	ret = p00a_adc_sample(p);
++	if (ret)
++		return ret;
++	/* Conversion can sleep; recheck age and source before enabling. */
++	ret = p00a_snapshot_check(p);
++	if (ret)
++		return ret;
++	ret = p00a_source(p, &status);
++	if (ret)
++		return ret;
++	ret = p00a_fault_sample(p);
++	if (ret)
++		return ret;
++	p->limits.sensors_valid = true;
++	return 0;
++}
++
++static int p00a_hw_init(struct p00a_power *p)
++{
++	int ret;
++
++	ret = p00a_disable(p);
+ 	if (ret)
+ 		return ret;
+-	ret = regmap_read(p->map, REG_FAULT, &fault_now);
++	ret = p00a_write_checked(p, REG_CONTROL, OTG_ENABLE | 0x0e, 0x0c);
+ 	if (ret)
+ 		return ret;
+-	ret = regmap_read(p->map, REG_TS, &ts);
++	/* Keep hardware NTC, termination and safety timer. Watchdog expiry
++	 * restores charge-on defaults, so it is NOT a fail-safe off timer.
++	 */
++	ret = p00a_write_checked(p, REG_TIMER, 0xb8, BIT(7) | BIT(3));
+ 	if (ret)
+ 		return ret;
+-	p->limits.fault = previous | fault_now;
+-	p->limits.ts_raw = ts & 0x7f;
+-	p->limits.temp_c = READ_ONCE(BMT_status.temperature);
+-	p->limits.battery_present = READ_ONCE(BMT_status.bat_exist);
+-	p->limits.sensors_valid = p->limits.temp_c >= -20 &&
+-		p->limits.temp_c <= 80 &&
+-		READ_ONCE(BMT_status.bat_vol) >= 2500 &&
+-		READ_ONCE(BMT_status.bat_vol) <= 4500 &&
+-		p->limits.ts_raw > 0 && p->limits.ts_raw < 127;
++	ret = p00a_write_checked(p, REG_TERM, 0xff, 0x22);
++	if (ret)
++		return ret;
++	ret = p00a_write_checked(p, REG_ADC, 0xd3, 0);
++	if (ret)
++		return ret;
++	ret = p00a_write_checked(p, 0x01, 0x1f, 7);
++	if (ret)
++		return ret;
++	/* Disable voltage-raising IR compensation; keep TREG bits unchanged. */
++	ret = p00a_write_checked(p, 0x08, 0xfc, 0);
++	if (ret)
++		return ret;
++	ret = p00a_write_checked(p, REG_INPUT, 0x7f, BIT(6));
++	if (!ret) {
++		p->initialized = true;
++		p->needs_programming = true;
++	}
++	return ret;
++}
++
++static int p00a_safety_verify(struct p00a_power *p)
++{
++	int ret;
++
++	ret = p00a_verify(p, REG_ID, 0xbf, 0x06);
++	if (!ret)
++		ret = p00a_verify(p, REG_CONTROL, OTG_ENABLE | 0x0e, 0x0c);
++	if (!ret)
++		ret = p00a_verify(p, REG_TIMER, 0xb8, 0x88);
++	if (!ret)
++		ret = p00a_verify(p, REG_TERM, 0xff, 0x22);
++	if (!ret)
++		ret = p00a_verify(p, 0x08, 0xfc, 0);
++	if (ret)
++		p->fault_latched |= BIT(7);
++	return ret;
++}
++
++static int p00a_limits_verify(struct p00a_power *p, int cv, int input)
++{
++	int ret;
++
++#define VERIFY(reg, mask, value) do { \
++	ret = p00a_verify(p, reg, mask, value); \
++	if (ret) return ret; \
++} while (0)
++	VERIFY(REG_CONTROL, OTG_ENABLE | 0x0e, 0x0c);
++	VERIFY(REG_CV, 0xfc, cv << 2);
++	VERIFY(REG_ICHG, 0xff, p00a_ichg_code(p->limits.ichg_10ua));
++	VERIFY(REG_INPUT, 0xff, BIT(6) | input);
++	VERIFY(REG_TERM, 0xff, 0x22);
++	VERIFY(REG_TIMER, 0xb8, 0x88);
++	VERIFY(REG_ADC, 0x53, 0);
++	VERIFY(0x08, 0xfc, 0);
++#undef VERIFY
+ 	return 0;
+ }
+ 
+ static int p00a_apply(struct p00a_power *p)
+ {
+ 	int cv, input, ret, stop_ret;
++	unsigned int status;
+ 
+-	if (!p->initialized)
+-		return -EAGAIN;
++	if (p->stopped || p->limits.suspended)
++		return -EHOSTDOWN; /* quiesce already attempted disable before bus PM */
++	if (!p->initialized) {
++		ret = -EAGAIN;
++		goto stop;
++	}
++	ret = p00a_safety_verify(p);
++	if (ret)
++		goto stop;
+ 	ret = p00a_sample(p);
+ 	if (ret)
+ 		goto stop;
+@@ -63,75 +398,74 @@ static int p00a_apply(struct p00a_power *p)
+ 	if (p->needs_programming) {
+ 		ret = p00a_disable(p);
+ 		if (ret)
+-			return ret;
+-		ret = regmap_update_bits(p->map, REG_CV, 0xfc, cv << 2);
++			goto stop;
++		ret = p00a_write_checked(p, REG_CV, 0xfc, cv << 2);
+ 		if (ret)
+ 			goto stop;
+-		ret = regmap_update_bits(p->map, REG_ICHG, 0x7f,
++		ret = p00a_write_checked(p, REG_ICHG, 0xff,
+ 			p00a_ichg_code(p->limits.ichg_10ua));
+ 		if (ret)
+ 			goto stop;
+-		ret = regmap_update_bits(p->map, REG_INPUT, 0xbf, input);
++		ret = p00a_write_checked(p, REG_INPUT, 0xff, BIT(6) | input);
+ 		if (ret)
+ 			goto stop;
+ 		p->programmed_cv = cv;
+ 		p->needs_programming = false;
+ 	}
+-	ret = regmap_update_bits(p->map, REG_CONTROL, CHG_ENABLE, CHG_ENABLE);
+-	if (!ret)
+-		return 0;
+-stop:
+-	p->needs_programming = true;
+-	stop_ret = p00a_disable(p);
+-	return stop_ret ? stop_ret : ret;
+-}
+-
+-static int p00a_hw_init(struct p00a_power *p)
+-{
+-	int ret;
+-
+-	if (p->initialized)
+-		return 0;
+-
+-	ret = p00a_disable(p);
+-	if (ret)
+-		return ret;
+-	ret = regmap_update_bits(p->map, REG_CONTROL, OTG_ENABLE | 0x0e, 0x0c);
++	ret = p00a_limits_verify(p, cv, input);
++	if (ret) {
++		/* Unexpected reset/config drift must not be silently repaired into
++		 * an enabled session. Unplug/reprobe and inspect the evidence.
++		 */
++		p->fault_latched |= BIT(7);
++		goto stop;
++	}
++	ret = p00a_snapshot_check(p);
+ 	if (ret)
+-		return ret;
+-	/* Keep the safety timer and hardware NTC protection; no watchdog reset to defaults. */
+-	ret = regmap_update_bits(p->map, REG_TIMER, 0xb8, BIT(7) | BIT(3));
++		goto stop;
++	/* Keep supervision running while the approved runtime session charges.
++	 * Suspend still disables; autonomous sleep charging is not validated.
++	 */
++	p00a_awake(p, true);
++	ret = p00a_write_checked(p, REG_CONTROL, CHG_ENABLE, CHG_ENABLE);
+ 	if (ret)
+-		return ret;
+-	ret = regmap_update_bits(p->map, REG_TERM, 0xff, 0x22);
++		goto stop;
++	ret = p00a_limits_verify(p, cv, input);
+ 	if (ret)
+-		return ret;
+-	ret = regmap_update_bits(p->map, REG_ADC, 0x53, BIT(6));
++		goto stop;
++	ret = p00a_source(p, &status);
+ 	if (ret)
+-		return ret;
+-	ret = regmap_update_bits(p->map, 0x01, 0x1f, 7);
++		goto stop;
++	ret = p00a_fault_sample(p);
+ 	if (ret)
+-		return ret;
+-	ret = regmap_update_bits(p->map, REG_INPUT, 0x7f, BIT(6));
+-	if (!ret) {
+-		p->initialized = true;
+-		p->needs_programming = true;
++		goto stop;
++	if (!p->limits.charger_present || p00a_fault_blocks(p->limits.fault)) {
++		ret = -EIO;
++		goto stop;
+ 	}
+-	return ret;
++	ret = p00a_snapshot_check(p);
++	if (ret)
++		goto stop;
++	p->guard_error = 0;
++	return 0;
++stop:
++	if (!p->limits.sensors_valid)
++		p->limits.thermal_latched = true;
++	p->needs_programming = true;
++	p->guard_error = ret;
++	stop_ret = p00a_disable(p);
++	return stop_ret ? stop_ret : ret;
+ }
+ 
+ static unsigned int p00a_input_cap(enum CHARGER_TYPE type)
+ {
+ 	switch (type) {
+ 	case STANDARD_HOST:
+-		return 500;
++		/* Enumeration-granted current is not available through this ABI. */
++		return 100;
+ 	case CHARGING_HOST:
+ 		return 1500;
+ 	case STANDARD_CHARGER:
+-	case NONSTANDARD_CHARGER:
+-	case APPLE_2_1A_CHARGER:
+-	case APPLE_1_0A_CHARGER:
+-	case APPLE_0_5A_CHARGER:
+ 		return 1000;
+ 	default:
+ 		return 100;
+@@ -141,8 +475,10 @@ static unsigned int p00a_input_cap(enum CHARGER_TYPE type)
+ static int p00a_command(struct p00a_power *p, int cmd, void *data)
+ {
+ 	unsigned int value, previous;
+-	int ret;
++	int ret, stop_ret;
+ 
++	if (p->stopped || p->limits.suspended)
++		return -EHOSTDOWN;
+ 	if (cmd < 0 || cmd >= CHARGING_CMD_NUMBER)
+ 		return -EOPNOTSUPP;
+ 	if (!data && cmd != CHARGING_CMD_INIT &&
+@@ -154,17 +490,17 @@ static int p00a_command(struct p00a_power *p, int cmd, void *data)
+ 
+ 	switch (cmd) {
+ 	case CHARGING_CMD_INIT:
+-		return p00a_hw_init(p);
++		return p->initialized ? p00a_apply(p) : p00a_hw_init(p);
+ 	case CHARGING_CMD_ENABLE:
+ 		p->limits.enable_requested = !!*(unsigned int *)data;
+-		return p00a_apply(p);
++		return p->limits.enable_requested ? p00a_apply(p) : p00a_disable(p);
+ 	case CHARGING_CMD_SET_CV_VOLTAGE:
+ 		value = *(unsigned int *)data;
+ 		ret = p00a_cv_code(value);
+ 		if (ret < 0) {
+ 			p->limits.cv_uv = 0;
+-			p00a_disable(p);
+-			return ret;
++			stop_ret = p00a_disable(p);
++			return stop_ret ? stop_ret : ret;
+ 		}
+ 		p->limits.cv_uv = value;
+ 		p->needs_programming = true;
+@@ -178,50 +514,83 @@ static int p00a_command(struct p00a_power *p, int cmd, void *data)
+ 		p->needs_programming = true;
+ 		ret = p00a_input_code(p->limits.input_10ua, p->limits.input_cap_ma);
+ 		if (ret < 0) {
+-			p00a_disable(p);
+-			regmap_update_bits(p->map, REG_INPUT, BIT(7), BIT(7));
+-			return ret;
++			int stop_ret = p00a_disable(p);
++			int hiz_ret = p00a_write_checked(p, REG_INPUT, BIT(7), BIT(7));
++
++			return stop_ret ? stop_ret : (hiz_ret ? hiz_ret : ret);
+ 		}
+ 		return p00a_apply(p);
+ 	case CHARGING_CMD_GET_CURRENT:
+ 		ret = regmap_read(p->map, REG_ICHG, &value);
+ 		if (ret)
+-			return ret;
+-		if ((value & 0x7f) > 47)
+-			return -EIO;
++			goto io_fault;
++		if ((value & 0x7f) > 47) {
++			ret = -EIO;
++			goto io_fault;
++		}
+ 		*(unsigned int *)data = (value & 0x7f) * 64;
+ 		return 0;
+ 	case CHARGING_CMD_GET_CHARGING_STATUS:
++		ret = regmap_read(p->map, REG_CONTROL, &previous);
++		if (ret)
++			goto io_fault;
+ 		ret = regmap_read(p->map, REG_STATUS, &value);
+ 		if (ret)
+-			return ret;
+-		*(unsigned int *)data = ((value >> 3) & 3) == 3;
++			goto io_fault;
++		*(unsigned int *)data = !!(previous & CHG_ENABLE) &&
++			!!(value & BIT(2)) && ((value >> 3) & 3) == 3;
+ 		return 0;
+ 	case CHARGING_CMD_RESET_WATCH_DOG_TIMER:
+ 		return p00a_apply(p);
+ 	case CHARGING_CMD_GET_CHARGER_TYPE:
+-		value = hw_charger_type_detection();
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	{
++		unsigned int before;
++
++		p->limits.input_cap_ma = 100;
++		p->source_classified = false;
++		ret = p00a_disable(p);
++		if (ret)
++			goto io_fault;
++		ret = p00a_write_checked(p, REG_INPUT, 0x7f, BIT(6));
++		if (ret)
++			goto io_fault;
++		ret = p00a_source(p, &before);
++		if (ret || !p->limits.charger_present)
++			return ret ? ret : -ENODEV;
++		ret = asus_p00a_bc12_type(&value);
++		if (ret)
++			goto io_fault;
++		ret = p00a_source(p, &previous);
++		if (ret)
++			goto io_fault;
++		if ((before & 0xe4) != (previous & 0xe4))
++			return -EAGAIN;
+ 		p->limits.input_cap_ma = p00a_input_cap(value);
++		p->source_classified = true;
+ 		p->needs_programming = true;
+ 		*(unsigned int *)data = value;
+ 		return 0;
++	}
++#else
++		return -EOPNOTSUPP;
++#endif
+ 	case CHARGING_CMD_SET_ERROR_STATE:
+ 		p->error_state = *(unsigned int *)data;
+ 		p->limits.error = !!p->error_state;
+ 		return p00a_apply(p);
+ 	case CHARGING_CMD_GET_FAULT_TYPE:
+-		ret = regmap_read(p->map, REG_FAULT, &previous);
+-		if (ret)
+-			return ret;
+-		ret = regmap_read(p->map, REG_FAULT, &value);
+-		if (ret)
+-			return ret;
+-		*(unsigned int *)data = ((previous | value) >> 4) & 3;
++		if (p->fault_error || !p->fault_ms ||
++		    p00a_clock_ms() < p->fault_ms ||
++		    p00a_clock_ms() - p->fault_ms > 10000)
++			return p->fault_error ? p->fault_error : -ENODATA;
++		*(unsigned int *)data = ((p->fault_previous | p->fault_current |
++			p->fault_latched) >> 4) & 3;
+ 		return 0;
+ 	case CHARGING_CMD_GET_VBUS_STAT:
+ 		ret = regmap_read(p->map, REG_STATUS, &value);
+ 		if (ret)
+-			return ret;
++			goto io_fault;
+ 		value = (value >> 5) & 7;
+ 		*(unsigned int *)data = value == 7 ? VBUS_STAT_OTG :
+ 			value == 1 ? VBUS_STAT_SDP : value == 2 ? VBUS_STAT_AC : VBUS_STAT_NONE;
+@@ -230,27 +599,39 @@ static int p00a_command(struct p00a_power *p, int cmd, void *data)
+ 		*(unsigned int *)data = 0;
+ 		return 0;
+ 	case CHARGING_CMD_SET_ITERM:
+-		value = *(unsigned int *)data;
+-		if (!value)
+-			return 0;
+-		ret = p00a_iterm_code(value);
+-		return ret < 0 ? ret : regmap_update_bits(p->map, REG_TERM, 0x0f, ret);
++		/* Fixed reviewed 192mA; no successful no-op for zero/other values. */
++		if (*(unsigned int *)data != 192)
++			return -EOPNOTSUPP;
++		return p00a_write_checked(p, REG_TERM, 0xff, 0x22);
+ 	case CHARGING_CMD_SET_HV_THRESHOLD:
+-		ret = p00a_hv_code(*(unsigned int *)data);
+-		if (ret < 0)
+-			return ret;
+-		upmu_set_rg_vcdt_hv_vth(ret);
+-		return 0;
+ 	case CHARGING_CMD_GET_HV_STATUS:
+-		*(bool *)data = upmu_get_rgs_vcdt_hv_det();
+-		return 0;
++		/* Legacy PMIC wrappers discard transport errors. */
++		return -EOPNOTSUPP;
+ 	case CHARGING_CMD_GET_BATTERY_STATUS:
+-		upmu_set_baton_tdet_en(1);
+-		upmu_set_rg_baton_en(1);
+-		*(bool *)data = upmu_get_rgs_baton_undet();
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	{
++		int present;
++
++		ret = asus_p00a_pmic_present(&present);
++		if (ret)
++			goto io_fault;
++		if (!present) {
++			p->sample_valid = false;
++			ret = p00a_disable(p);
++			if (ret)
++				return ret;
++		}
++		*(bool *)data = !present;
+ 		return 0;
++	}
++#else
++		return -EOPNOTSUPP;
++#endif
+ 	case CHARGING_CMD_GET_CHARGER_DET_STATUS:
+-		*(bool *)data = upmu_get_rgs_chrdet();
++		ret = p00a_source(p, &value);
++		if (ret)
++			goto io_fault;
++		*(bool *)data = !!(value & BIT(2));
+ 		return 0;
+ 	case CHARGING_CMD_GET_PLATFORM_BOOT_MODE:
+ 		*(unsigned int *)data = get_boot_mode();
+@@ -262,23 +643,29 @@ static int p00a_command(struct p00a_power *p, int cmd, void *data)
+ 		orderly_poweroff(true);
+ 		return 0;
+ 	case CHARGING_CMD_GET_POWER_SOURCE:
+-		*(bool *)data = false;
+-		return 0;
++		return -EOPNOTSUPP;
+ 	case CHARGING_CMD_DUMP_REGISTER:
+ 		for (value = 0; value <= REG_ID; value++) {
++			if (value == REG_FAULT)
++				continue;
+ 			ret = regmap_read(p->map, value, &previous);
+ 			if (ret)
+-				return ret;
++				goto io_fault;
+ 			dev_dbg(p->dev, "reg %02x: %02x\n", value, previous);
+ 		}
+ 		return 0;
+ 	case CHARGING_CMD_BOOST_ENABLE:
+ 		if (*(unsigned int *)data)
+ 			return -EOPNOTSUPP;
+-		return regmap_update_bits(p->map, REG_CONTROL, OTG_ENABLE, 0);
++		return p00a_write_checked(p, REG_CONTROL, OTG_ENABLE, 0);
+ 	default:
+ 		return -EOPNOTSUPP;
+ 	}
++io_fault:
++	p->sample_valid = false;
++	p->guard_error = ret;
++	stop_ret = p00a_disable(p);
++	return stop_ret ? stop_ret : ret;
+ }
+ 
+ 
+diff --git a/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc b/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc
+index 4de050116f92302a3080aa3795ab6646fed78ec1..ef9883cfc9db4480c862d711d10b44940d84136f 100644
+--- a/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc
+@@ -137,3 +137,7 @@ int asus_p00a_pmic_enable_baton(void)
+ 	return ret;
+ }
+ #endif
++
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++#include "bc12.inc"
++#endif
+diff --git a/drivers/misc/mediatek/power/mt8163/asus_p00a/policy.h b/drivers/misc/mediatek/power/mt8163/asus_p00a/policy.h
+index ce4dabe977205c386a0925accfa5b50e6bbd4dce..f8392b4b974ab9fa4019ed8caac0751158d4d7ff 100644
+--- a/drivers/misc/mediatek/power/mt8163/asus_p00a/policy.h
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/policy.h
+@@ -22,7 +22,7 @@ struct p00a_limits {
+ 	unsigned int input_cap_ma;
+ 	unsigned int ts_raw;
+ 	unsigned int fault;
+-	int temp_c;
++	int temp_decic;
+ 	bool battery_present;
+ 	bool charger_present;
+ 	bool sensors_valid;
+@@ -100,9 +100,9 @@ static inline bool p00a_fault_blocks(unsigned int fault)
+ 
+ static inline bool p00a_can_charge(struct p00a_limits *p)
+ {
+-	if (!p->sensors_valid || p->temp_c <= 0 || p->temp_c >= 50)
++	if (!p->sensors_valid || p->temp_decic <= 0 || p->temp_decic >= 500)
+ 		p->thermal_latched = true;
+-	else if (p->thermal_latched && p->temp_c > 6 && p->temp_c < 47)
++	else if (p->thermal_latched && p->temp_decic > 60 && p->temp_decic < 470)
+ 		p->thermal_latched = false;
+ 
+ 	return p->charging_permitted && p->enable_requested &&
+@@ -119,7 +119,7 @@ static inline int p00a_effective_cv(struct p00a_limits *p)
+ {
+ 	unsigned int uv = p->cv_uv;
+ 
+-	if ((p->temp_c >= 45 || p->ts_raw <= 51) && uv > P00A_CV_WARM_UV)
++	if ((p->temp_decic >= 450 || p->ts_raw <= 51) && uv > P00A_CV_WARM_UV)
+ 		uv = P00A_CV_WARM_UV;
+ 	return p00a_cv_code(uv);
+ }
+diff --git a/drivers/power/supply/mediatek/battery/asus_p00a_soc.inc b/drivers/power/supply/mediatek/battery/asus_p00a_soc.inc
+index a951d7e78faf16b6df1df9018c8ee93e0ae4c973..f6bdbfe381e01731bccd3d0b64d91ff0b4c73acd 100644
+--- a/drivers/power/supply/mediatek/battery/asus_p00a_soc.inc
++++ b/drivers/power/supply/mediatek/battery/asus_p00a_soc.inc
+@@ -54,6 +54,8 @@ static void p00a_soc_fault_locked(int error)
+ 	p00a_oam.valid = false;
+ 	p00a_oam.initialized = false;
+ 	p00a_oam.error = error < 0 ? error : -EIO;
++	/* FGADC -> charger global -> charger lock. There is no reverse edge. */
++	asus_p00a_charge_publish(NULL, 0, p00a_oam.error);
+ }
+ 
+ void asus_p00a_soc_invalidate(int error)
+@@ -238,20 +240,30 @@ int asus_p00a_soc_update(void)
+ 		ret = -EAGAIN;
+ 		goto fault;
+ 	}
+-	ret = battery_charging_control(CHARGING_CMD_ENABLE, &charging_enable);
+-	if (ret)
+-		goto fault;
++	if (p00a_oam.initialized && (p00a_now_ms() < p00a_oam.last_ms ||
++	    p00a_now_ms() - p00a_oam.last_ms > P00A_SOC_MAX_AGE_MS))
++		p00a_soc_fault_locked(-ESTALE);
++	/* Only seed with charging off. Regular D2 updates accept signed inferred
++	 * current while charging; they must not stop charging on every tick.
++	 */
++	if (!p00a_oam.initialized) {
++		ret = battery_charging_control(CHARGING_CMD_ENABLE, &charging_enable);
++		if (ret)
++			goto fault;
++		msleep(50);
++	}
+ 	ret = asus_p00a_pmic_enable_baton();
+ 	if (ret)
+ 		goto fault;
+-	/* Same charging-off settling interval used by ASUS oam_init(). */
+-	msleep(50);
++
+ 	ret = p00a_capture(&sample, &now);
+ 	if (ret)
+ 		goto fault;
+ 	if (p00a_oam.initialized && (now < p00a_oam.last_ms ||
+-	    now - p00a_oam.last_ms > P00A_SOC_MAX_AGE_MS))
+-		p00a_soc_fault_locked(-ESTALE);
++	    now - p00a_oam.last_ms > P00A_SOC_MAX_AGE_MS)) {
++		ret = -ESTALE;
++		goto fault;
++	}
+ 	if (!p00a_oam.initialized) {
+ 		ret = p00a_oam_seed(&sample, now);
+ 		if (ret)
+@@ -271,6 +283,9 @@ int asus_p00a_soc_update(void)
+ 		goto out;
+ 	}
+ 	ret = p00a_oam_step(&sample, now);
++	if (ret)
++		goto fault;
++	ret = asus_p00a_charge_publish(&p00a_oam.sample, p00a_oam.last_ms, 0);
+ 	if (ret)
+ 		goto fault;
+ 	goto out;
+diff --git a/drivers/power/supply/mediatek/battery/battery_common.c b/drivers/power/supply/mediatek/battery/battery_common.c
+index 617ece49a61221836dc14f63e2c78cd63af7f07d..100843977bf062e09c3c447833036726b3e93a55 100644
+--- a/drivers/power/supply/mediatek/battery/battery_common.c
++++ b/drivers/power/supply/mediatek/battery/battery_common.c
+@@ -3505,6 +3505,12 @@ extern void musb_rerun_dock_detection(void);
+ #endif
+ void do_chrdet_int_task(void)
+ {
++#ifdef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
++	int charge_ret = asus_p00a_charge_source_changed();
++
++	if (charge_ret && charge_ret != -ENODEV && charge_ret != -EHOSTDOWN)
++		pr_warn_ratelimited("P00A source transition disable failed: %d\n", charge_ret);
++#endif
+ 	if (g_bat_init_flag == true) {
+ 
+ #ifdef CONFIG_USB_AMAZON_DOCK
+@@ -3647,11 +3653,14 @@ void BAT_thread(void)
+ 		g_battery_soc_ready = false;
+ 		pr_warn_ratelimited("P00A battery sample unavailable: %d\n", ret);
+ 	}
+-	/* Successful transactions already checked charging inhibition. On every
+-	 * failure, request it again; the independent BQ guard also runs at 5s.
+-	 */
+ 	if (ret)
+ 		battery_charging_control(CHARGING_CMD_ENABLE, &charging_enable);
++	else {
++		/* Board runtime request, still gated by the absent DT permission. */
++		ret = asus_p00a_charge_request(is_usb_rdy());
++		if (ret && ret != -EAGAIN)
++			pr_warn_ratelimited("P00A charge request rejected: %d\n", ret);
++	}
+ 	usb_update(&usb_main);
+ 	ac_update(&ac_main);
+ 	power_supply_changed(battery_main.psy);
+diff --git a/include/linux/power/asus_p00a_battery.h b/include/linux/power/asus_p00a_battery.h
+index 81d6a0ca934f7e8a3e71abfbfb66dcac3c00589f..cd7652423422e51f48d6e81bc9f42dec5c5e8427 100644
+--- a/include/linux/power/asus_p00a_battery.h
++++ b/include/linux/power/asus_p00a_battery.h
+@@ -15,6 +15,15 @@ struct asus_p00a_battery_sample {
+ 	int status;
+ 	int capacity;
+ };
++/* Publication never acquires FGADC_mutex. Caller may hold it; charger lock is
++ * the serialization point for publications, invalidations and enable writes.
++ * NULL invalidates and synchronously attempts verified charge disable.
++ */
++int asus_p00a_charge_publish(const struct asus_p00a_battery_sample *sample,
++                           s64 sampled_ms, int error);
++int asus_p00a_charge_request(bool usb_ready);
++int asus_p00a_bc12_type(unsigned int *type);
++int asus_p00a_charge_source_changed(void);
+ int asus_p00a_pmic_enable_baton(void);
+ int asus_p00a_battery_read_sample(struct asus_p00a_battery_sample *sample);
+ int asus_p00a_soc_update(void);

@@ -1,0 +1,92 @@
+{
+  "2026-11-06-asus-linux49-probe-transport/source/recovery_control.py": {
+    "before_sha256": "f5f2070d4ed328b046a59e7d08b66af5ffb960a3a2b299e1a583e7c4ab757de4",
+    "after_sha256": "f5f2070d4ed328b046a59e7d08b66af5ffb960a3a2b299e1a583e7c4ab757de4",
+    "unchanged": true
+  },
+  "2026-11-06-asus-linux49-probe-transport/source/probe_transport.py": {
+    "before_sha256": "786b4478a7fdf6dc24d7fb003f84f3e3c41f9fa2aa7e7e68f844b1fc669c1eba",
+    "after_sha256": "786b4478a7fdf6dc24d7fb003f84f3e3c41f9fa2aa7e7e68f844b1fc669c1eba",
+    "unchanged": true
+  },
+  "2026-11-06-asus-linux49-probe-transport/tests/legacy_fakes.py": {
+    "before_sha256": "c4179772d38baab3fcda28458670efe1a1624275b0b90ac9699f3d173e250e32",
+    "after_sha256": "c4179772d38baab3fcda28458670efe1a1624275b0b90ac9699f3d173e250e32",
+    "unchanged": true
+  },
+  "2026-11-06-asus-linux49-probe-transport/tests/test_transport.py": {
+    "before_sha256": "e17c5cec6dccd25f0dfc37cb863989f5050d188248b7a75afbc5c5e0baea1eca",
+    "after_sha256": "e17c5cec6dccd25f0dfc37cb863989f5050d188248b7a75afbc5c5e0baea1eca",
+    "unchanged": true
+  },
+  "2026-11-06-asus-linux49-probe-transport/tests/observer_fixtures.py": {
+    "before_sha256": "e66269dd722ce1264542c0943c05b1629af62e6734c4b6674c90e80795f8fd01",
+    "after_sha256": "e66269dd722ce1264542c0943c05b1629af62e6734c4b6674c90e80795f8fd01",
+    "unchanged": true
+  },
+  "2026-11-06-asus-linux49-probe-transport/profile.json": {
+    "before_sha256": "33545e535bc5a3ce23edc09d7b36b5bd7a601c6cdb549c7f8d91da2ce4e558bd",
+    "after_sha256": "33545e535bc5a3ce23edc09d7b36b5bd7a601c6cdb549c7f8d91da2ce4e558bd",
+    "unchanged": true
+  },
+  "2026-11-06-asus-linux49-probe-transport/README.md": {
+    "before_sha256": "017cd543066304fb0c1ed0db85962777d6bca2154ff1c2dee8e185627f1a6310",
+    "after_sha256": "017cd543066304fb0c1ed0db85962777d6bca2154ff1c2dee8e185627f1a6310",
+    "unchanged": true
+  },
+  "2026-11-06-asus-linux49-probe-transport/COMMANDS.md": {
+    "before_sha256": "cfde4673e95d38ab73e1b1abb0744247d23e9994e7cf5fb27be01eeeb673d02d",
+    "after_sha256": "cfde4673e95d38ab73e1b1abb0744247d23e9994e7cf5fb27be01eeeb673d02d",
+    "unchanged": true
+  },
+  "2026-11-06-asus-linux49-probe-transport/REPORT.md": {
+    "before_sha256": "f15a64afd2f04e85f9cb3f694d4b85fb676bfb1b18217c0fd32ef277c3e81fa4",
+    "after_sha256": "f15a64afd2f04e85f9cb3f694d4b85fb676bfb1b18217c0fd32ef277c3e81fa4",
+    "unchanged": true
+  },
+  "2026-11-06-asus-linux49-probe-acceptance/source/observer.py": {
+    "before_sha256": "75b1d96686a484e0eb5cfd73ec62976c394de1895e14ea45c83ea745d15f07ec",
+    "after_sha256": "75b1d96686a484e0eb5cfd73ec62976c394de1895e14ea45c83ea745d15f07ec",
+    "unchanged": true
+  },
+  "2026-11-06-asus-linux49-probe-initrd-fix/source/build.py": {
+    "before_sha256": "4e54aaf22d75ebc6a2a8fe956e0bb60534c342d9ca94b2a216e78c4b4287207e",
+    "after_sha256": "4e54aaf22d75ebc6a2a8fe956e0bb60534c342d9ca94b2a216e78c4b4287207e",
+    "unchanged": true
+  },
+  "2026-11-06-asus-linux49-probe-initrd-fix/source/verify.py": {
+    "before_sha256": "fc7c625ad51d8c397387b37b376dbfac4e1598fa02621a0b279b6db7c478f804",
+    "after_sha256": "fc7c625ad51d8c397387b37b376dbfac4e1598fa02621a0b279b6db7c478f804",
+    "unchanged": true
+  },
+  "2026-11-06-asus-linux49-probe-initrd-fix/source/model_reference.py": {
+    "before_sha256": "73d6074c84110aa7328174fcc19561d4ddd368abd3f96414265374387d1c822c",
+    "after_sha256": "73d6074c84110aa7328174fcc19561d4ddd368abd3f96414265374387d1c822c",
+    "unchanged": true
+  },
+  "2026-11-06-asus-linux49-probe-initrd-fix/artifacts/probe-r3/manifest.json": {
+    "before_sha256": "ecd5ab0102308951f814e1e14c3639f9e2c0d14e2e5ca4a684b18fdc0a146b8e",
+    "after_sha256": "ecd5ab0102308951f814e1e14c3639f9e2c0d14e2e5ca4a684b18fdc0a146b8e",
+    "unchanged": true
+  },
+  "2026-11-06-asus-linux49-probe-initrd-fix/artifacts/probe-r3/UNTESTED-combined-linux49-ram-probe-r3.img": {
+    "before_sha256": "45551fec6af489bef6813131fb3854eddcfe95d3ca3fa640fea7a37dfd21b630",
+    "after_sha256": "45551fec6af489bef6813131fb3854eddcfe95d3ca3fa640fea7a37dfd21b630",
+    "unchanged": true
+  },
+  "2026-11-06-asus-android17-build-continuation/artifacts/probe-r2/UNTESTED-combined-linux49-ram-probe.img": {
+    "before_sha256": "48bb6efa1620cb380037e53b53cfa560e38cd23b95211c8634616ce94fd6ce48",
+    "after_sha256": "48bb6efa1620cb380037e53b53cfa560e38cd23b95211c8634616ce94fd6ce48",
+    "unchanged": true
+  },
+  "2026-11-06-asus-linux49-probe-transport/evidence/parent-replay-20261106T1840/failed-original-summary.json": {
+    "before_sha256": "44ac4220e2575a55cbfb68599864e245257400aa5348644897c7b67820f8ddec",
+    "after_sha256": "44ac4220e2575a55cbfb68599864e245257400aa5348644897c7b67820f8ddec",
+    "unchanged": true
+  },
+  "2026-11-06-asus-linux49-probe-transport/evidence/parent-replay-20261106T1840/replay.txt": {
+    "before_sha256": "fd445ec571689d25f1568c71f882305f4f9f39165b5762c44040c8a4e30ea617",
+    "after_sha256": "fd445ec571689d25f1568c71f882305f4f9f39165b5762c44040c8a4e30ea617",
+    "unchanged": true
+  }
+}

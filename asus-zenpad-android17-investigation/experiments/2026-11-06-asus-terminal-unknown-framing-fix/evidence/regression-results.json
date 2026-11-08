@@ -1,0 +1,1462 @@
+{
+  "tests": 45,
+  "failures": 0,
+  "errors": 0,
+  "failures_detail": [],
+  "wall_seconds": 9.499270375003107,
+  "parent_cpu_seconds": 1.153683,
+  "child_cpu_seconds": 3.694298,
+  "parent_maxrss": 149192704,
+  "child_maxrss": 43532288,
+  "children_created": 97,
+  "max_live_children": 6,
+  "all_children_reaped": true,
+  "unreaped_registry_count": 0,
+  "memory_limit_error": "ValueError('current limit exceeds maximum limit')",
+  "observations": [
+    {
+      "case": "review_bounded_journal_short_sink_writes_complete",
+      "target_ops": [],
+      "source_ops": [],
+      "parent_calls": [],
+      "session": null,
+      "children_created": 0,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: REGRESSION replaced owned evidence path after close",
+      "parent_journal": "OWNED REPLACEMENT; MUST STAY UNCHANGED",
+      "case": "review_closed_journal_replacement_is_never_appended",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "control",
+      "deadline_reached": true,
+      "case": "review_completed_control_source_can_idle_during_reconciliation",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": false,
+        "closed": false,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "source_preflight",
+      "deadline_reached": true,
+      "parent_error": null,
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-e57za36x/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"commit_receipt_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"intermediate\": true}\n{\"outcome\": \"SUCCESS\", \"commit_receipt\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"possible_partition_modification\": true}\n",
+      "case": "review_completed_preflight_can_idle_during_control",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "control",
+      "deadline_reached": true,
+      "case": "review_control_journal_expiry",
+      "target_ops": [
+        1
+      ],
+      "source_ops": [
+        1,
+        4,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": false
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "whole_image_hash",
+      "deadline_reached": true,
+      "case": "review_direct_source_cleanup_guard_expiry",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "case": "review_explicit_inverse_success_preserves_opcode_order",
+      "target_ops": [
+        1,
+        8,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": false,
+        "closed": false,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "transfer",
+      "deadline_reached": true,
+      "case": "review_guard_expiry_mid_chunk_no_more_target",
+      "target_ops": [
+        1,
+        2,
+        3
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "control-active",
+      "deadline_reached": true,
+      "case": "review_new_io_reactivates_completed_phase",
+      "target_ops": [
+        1
+      ],
+      "source_ops": [
+        1,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": false
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "ValueError: reviewed session contract hash required",
+      "parent_journal": "",
+      "case": "review_parent_bad_contract_pin_no_child",
+      "target_ops": [],
+      "source_ops": [],
+      "parent_calls": [],
+      "session": null,
+      "children_created": 0,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "ValueError: budget policy pin",
+      "parent_journal": "",
+      "case": "review_parent_bad_policy_pin_no_child",
+      "target_ops": [],
+      "source_ops": [],
+      "parent_calls": [],
+      "session": null,
+      "children_created": 0,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "ValueError: explicit hash-pinned ADB binary required",
+      "parent_journal": "",
+      "case": "review_parent_bad_transport_pin_no_child",
+      "target_ops": [],
+      "source_ops": [],
+      "parent_calls": [],
+      "session": null,
+      "children_created": 0,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "whole_image_hash",
+      "deadline_reached": true,
+      "parent_error": "DeadlineExpired: whole_image_hash: absolute phase budget expired",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-2ntdab9r/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"commit_receipt_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"intermediate\": true}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n",
+      "case": "review_parent_cleanup_guard_expiry",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "ValueError: parent-approved armed session contract required",
+      "parent_journal": "",
+      "case": "review_parent_contract_armed_type_refused",
+      "target_ops": [],
+      "source_ops": [],
+      "parent_calls": [],
+      "session": null,
+      "children_created": 0,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: REGRESSION journal context close",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-aazg47iy/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"commit_receipt_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"intermediate\": true}\n{\"outcome\": \"SUCCESS\", \"commit_receipt\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"possible_partition_modification\": true}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n",
+      "case": "review_parent_evidence_close_failure_poison_even_broken_sink",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "whole_image_hash",
+      "deadline_reached": true,
+      "parent_error": "DeadlineExpired: whole_image_hash: absolute phase budget expired",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-_1q9187d/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"commit_receipt_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"intermediate\": true}\n{\"outcome\": \"SUCCESS\", \"commit_receipt\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"possible_partition_modification\": true}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n",
+      "case": "review_parent_final_fsync_expiry",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: REGRESSION final parent fsync failed",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-535qyfud/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"commit_receipt_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"intermediate\": true}\n{\"outcome\": \"SUCCESS\", \"commit_receipt\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"possible_partition_modification\": true}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n",
+      "case": "review_parent_final_fsync_failure_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "ValueError: explicit positive finite budget required",
+      "parent_journal": "",
+      "case": "review_parent_invalid_budget_values_no_child",
+      "target_ops": [],
+      "source_ops": [],
+      "parent_calls": [],
+      "session": null,
+      "children_created": 0,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "whole_image_hash",
+      "deadline_reached": true,
+      "parent_error": "DeadlineExpired: whole_image_hash: absolute phase budget expired",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-teles8vt/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"commit_receipt_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"intermediate\": true}\n{\"outcome\": \"SUCCESS\", \"commit_receipt\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"possible_partition_modification\": true}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n",
+      "case": "review_parent_journal_close_expiry_records_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "DeadlineExpired: whole_image_hash: absolute message budget expired",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-4sql230e/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n",
+      "case": "review_parent_lost_commit_no_further_requests",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "ValueError: manifest pin",
+      "parent_journal": "",
+      "case": "review_parent_manifest_contract_binding_no_child",
+      "target_ops": [],
+      "source_ops": [],
+      "parent_calls": [],
+      "session": null,
+      "children_created": 0,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "DeadlineExpired: transfer: absolute message budget expired",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-ruxm3t02/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n",
+      "case": "review_parent_mid_source_stall_no_further_requests",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: REVIEW after partial target request",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-6ebsd2fx/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n",
+      "case": "review_parent_partial_transport_write_unknown",
+      "target_ops": [
+        1,
+        2,
+        3
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "source_preflight",
+      "deadline_reached": true,
+      "parent_error": "DeadlineExpired: source_preflight: absolute phase budget expired",
+      "parent_journal": "",
+      "case": "review_parent_preflight_receipt_expiry",
+      "target_ops": [],
+      "source_ops": [
+        1,
+        4
+      ],
+      "parent_calls": [],
+      "session": null,
+      "children_created": 1,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": null,
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-th9ity84/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"chunk_sha256\": \"dafdc2648feb18c731a8da15261c8c33b659721c421f92c2c33fa85b0727a045\", \"bytes\": 19, \"whole_backup_claim\": false}\n{\"outcome\": \"SUCCESS\", \"commit_receipt\": null, \"possible_partition_modification\": false}\n",
+      "case": "review_parent_readback_positive_one_budget",
+      "target_ops": [
+        6
+      ],
+      "source_ops": [],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "SUCCESS",
+        "possible_partition_modification": false
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "DeadlineExpired: control: absolute message budget expired",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-4n803cmo/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": false, \"automatic_retry\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": false, \"automatic_retry\": false}\n",
+      "case": "review_parent_readback_two_replies_share_message_budget",
+      "target_ops": [
+        6
+      ],
+      "source_ops": [],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": false
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "reconciliation",
+      "deadline_reached": true,
+      "parent_error": "DeadlineExpired: reconciliation: absolute phase budget expired",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-dmr86a1q/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": false, \"automatic_retry\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": false, \"automatic_retry\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": false, \"automatic_retry\": false}\n",
+      "case": "review_parent_reconciliation_fsync_expiry",
+      "target_ops": [
+        1,
+        2
+      ],
+      "source_ops": [
+        1,
+        4,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": false
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: REGRESSION stderr context close",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-m3p8d4xf/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"commit_receipt_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"intermediate\": true}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n",
+      "case": "review_parent_stderr_close_failure_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: REVIEW stderr flush failed",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-cx1ut08n/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"commit_receipt_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"intermediate\": true}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n",
+      "case": "review_parent_stderr_flush_failure_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": null,
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-vp0msixl/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"commit_receipt_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"intermediate\": true}\n{\"outcome\": \"SUCCESS\", \"commit_receipt\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"possible_partition_modification\": true}\n",
+      "case": "review_parent_stderr_short_write_completed",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: REVIEW target cleanup failed after actual reap",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-mj457ncg/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"commit_receipt_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"intermediate\": true}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n",
+      "case": "review_parent_target_cleanup_failure_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "case": "review_reap_wait_failure_keeps_registry_and_source_reference",
+      "target_ops": [],
+      "source_ops": [
+        1,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": false,
+        "closed": false,
+        "outcome": "UNOBSERVED",
+        "possible_partition_modification": false
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "whole_image_hash",
+      "deadline_reached": true,
+      "case": "review_receipt_fsync_expiry_direct_api",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "case": "review_receipt_fsync_failure_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "case": "review_receipt_short_write_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": false,
+        "closed": false,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "case": "review_receipt_write_failure_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "reconciliation",
+      "deadline_reached": true,
+      "error": "DeadlineExpired",
+      "case": "review_reconciliation_fsync_expiry",
+      "target_ops": [
+        1,
+        2
+      ],
+      "source_ops": [
+        1,
+        4,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": false
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "case": "review_same_source_and_target_reuse_refused",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "source-old",
+      "deadline_reached": true,
+      "error": "DeadlineExpired",
+      "case": "review_source_cannot_move_to_new_phase_after_unobserved_expiry",
+      "target_ops": [],
+      "source_ops": [
+        1,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": false,
+        "closed": false,
+        "outcome": "UNOBSERVED",
+        "possible_partition_modification": false
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "outcome_immediately_after_cleanup_error": "UNKNOWN",
+      "status_after_cleanup_error_exception": "PoisonedSession",
+      "case": "review_source_cleanup_failure_direct_api",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "source_process_reference_retained": true,
+      "source_child_still_live_before_supervisor_cleanup": true,
+      "case": "review_source_reap_failure_retains_ownership",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": null,
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-terminal-unknown-framing-fix/evidence/qa-owned-8fx0ofzz/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"commit_receipt_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"intermediate\": true}\n{\"outcome\": \"SUCCESS\", \"commit_receipt\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"possible_partition_modification\": true}\n",
+      "case": "review_source_receipt_short_write_completed_before_target",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "transfer",
+      "deadline_reached": true,
+      "case": "review_transfer_final_guard_expiry",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "ValueError: session contract field types",
+      "parent_journal": "",
+      "case": "review_wrong_boundary_schema_types_before_children",
+      "target_ops": [],
+      "source_ops": [],
+      "parent_calls": [],
+      "session": null,
+      "children_created": 0,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "case": "review_zero_none_invalid_receipt_write_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9,
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9,
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9,
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9,
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4,
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4,
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4,
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4,
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 10,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    }
+  ]
+}

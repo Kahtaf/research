@@ -1,0 +1,6 @@
+from pathlib import Path
+import os,json,shlex,subprocess as s,hashlib
+R=Path('/srv/android/asus-r9-linkerconfig-ownership-fix-20261106');A=Path('/srv/android/lineage24');S=R/'inputs/native-snapshot';os.environ['TMPDIR']=str(R/'tmp');os.sched_setaffinity(0,{min(os.sched_getaffinity(0))});exec((R/'source/ninja_leaf.py').read_text());g,_,_=parse((R/'inputs/leaf/main-prelude.ninja').read_text());mg,_,edges=parse((R/'inputs/leaf/linkerconfig_modules.ninja').read_text());cc=next(x for x in edges if x['variant']=='linux_glibc_x86_64_static' and x['rule']=='g.cc.cc' and x['inputs']==['system/linkerconfig/modules/environment.cc']);v={**g,**mg,**cc['vars']};dep=R/'tmp/environment-headers.d';cmd=[str(A/expand(v['ccCmd'],v))]+shlex.split(expand(v['cFlags'],v))+['-M','-MF',str(dep),'-MT','snapshot',cc['inputs'][0]];p=s.run(cmd,cwd=A,capture_output=True,text=True,timeout=30);assert p.returncode==0,p.stderr;pins={}
+for rel in shlex.split(dep.read_text().replace('\\\n',' ').split(':',1)[1]):
+ src=A/rel;b=src.read_bytes();dst=S/rel;dst.parent.mkdir(exist_ok=True,parents=True);dst.write_bytes(b);pins[rel]=hashlib.sha256(b).hexdigest()
+(R/'evidence/environment-header-pins.json').write_text(json.dumps(pins,indent=2));(R/'evidence/nonlegacy-first-compile-failure.json').write_bytes((R/'evidence/nonlegacy-test-commands.json').read_bytes());print(len(pins))

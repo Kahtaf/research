@@ -1,0 +1,8 @@
+# Standard ueventd core handles ordinary device creation. No vendor firmware rules.
+/dev/null 0666 root root
+/dev/zero 0666 root root
+/dev/full 0666 root root
+/dev/random 0666 root root
+/dev/urandom 0666 root root
+/dev/tty 0666 root root
+/dev/ptmx 0666 root root

@@ -1,0 +1,16 @@
+{
+  "source/asus_entry_text.S": "4cae92d770f65ce028666efc015e4c7a28a43cdd792a880501da1d09d637b90b",
+  "source/asus_entry_tag.h": "214e7514e51f4d107b54a665cbb35f3cd1c5be8c8e83c04c8ab8423497f565cd",
+  "source/asus_entry_expected.inc": "f204ab9d6c71ac9198b5c27256cd2826154c66fba5a85d1cc1b4e84d18406df2",
+  "source/expected-runtime.dtb": "94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0",
+  "source/entry-text.patch": "8718315c0a7124bee90b5ddad414294c64a8b085b287b626345d65069a9a0773",
+  "source/final/arch/arm64/kernel/head.S": "7d9b202bd8001d4c9ef2537733eef3989101f1dc132050ddb9c7e3cb460c3659",
+  "source/final/arch/arm64/kernel/asus_retained_trace.c": "570b1295adfe555f0c2f94742f2d0babeed3838aa1260efa52d067db1bd8e58f",
+  "source/baseline/arch/arm64/kernel/head.S": "f8cc22696326b68e69b4e858dffbe16940c257520a556cd374ba5abee70762c0",
+  "source/baseline/arch/arm64/kernel/setup.c": "fd3d3040998562d2605eee91086df22b66d8a3da796bafd957853d74acd905fb",
+  "evidence/identity.json": "c7e4abb5f1045cfe4fcc8700489f823a1700cf735052144157b794351bf0e684",
+  "evidence/linked-entry.json": "0d8a5d3b68f2830e07389a5cc53ab790f5c16d97df27507ce8fb25a634f91a8b",
+  "evidence/build-receipt.json": "1888a907ff77cbfd4c3342351efd90832bf9db832f65130c210ce704e617cf42",
+  "evidence/packaging-receipt.json": "1dc250341f622d172b0ccba66aa24a033a9be78bdadadc6e68205eeed0b90e81",
+  "evidence/parent-dt-guard-finding.json": "d72069f51f41a46e2eb25f1ee373fc5d3956b7705e6016d85b308749653e1d42"
+}

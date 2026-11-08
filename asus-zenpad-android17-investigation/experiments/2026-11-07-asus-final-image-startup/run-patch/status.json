@@ -1,0 +1,52 @@
+{
+  "started_utc": "2026-11-07T14:25:27.558459+00:00",
+  "wall_limit_seconds": 45,
+  "system_before": {
+    "path": "/srv/android/asus-radio-trigger-build-r4/system-partition.raw",
+    "dev": 2049,
+    "inode": 28131263,
+    "bytes": 3753902080,
+    "mtime_ns": 1794058262209728788,
+    "ctime_ns": 1794058592912890361,
+    "mode": "0o444"
+  },
+  "boot_before": {
+    "path": "/srv/android/asus-radio-trigger-build-r4/checks/r3/UNTESTED-combined-MTKBOOT.img",
+    "dev": 2049,
+    "inode": 28339982,
+    "bytes": 9242624,
+    "mtime_ns": 1794058592870514759,
+    "ctime_ns": 1794058592912890361,
+    "mode": "0o444"
+  },
+  "cpu_affinity": [
+    0
+  ],
+  "phase": "patch",
+  "rlimit_as_added": false,
+  "owned_qemu_pid": 3372572,
+  "returncode": 0,
+  "timeout": false,
+  "finished_utc": "2026-11-07T14:25:29.041482+00:00",
+  "elapsed_wall_seconds": 1.4829563419916667,
+  "system_after": {
+    "path": "/srv/android/asus-radio-trigger-build-r4/system-partition.raw",
+    "dev": 2049,
+    "inode": 28131263,
+    "bytes": 3753902080,
+    "mtime_ns": 1794058262209728788,
+    "ctime_ns": 1794058592912890361,
+    "mode": "0o444"
+  },
+  "boot_after": {
+    "path": "/srv/android/asus-radio-trigger-build-r4/checks/r3/UNTESTED-combined-MTKBOOT.img",
+    "dev": 2049,
+    "inode": 28339982,
+    "bytes": 9242624,
+    "mtime_ns": 1794058592870514759,
+    "ctime_ns": 1794058592912890361,
+    "mode": "0o444"
+  },
+  "base_identity_unchanged": true,
+  "boot_identity_unchanged": true
+}

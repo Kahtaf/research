@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: Apache-2.0
+cc_library_shared {
+    name: "sensors.mt8163",
+    vendor: true,
+    relative_install_path: "hw",
+    compile_multilib: "64",
+    srcs: ["sensors.c", "accel_protocol.c"],
+    header_libs: ["libhardware_headers"],
+    cflags: ["-Wall", "-Wextra", "-Werror"],
+    init_rc: ["init.p00a-accelerometer.rc"],
+}

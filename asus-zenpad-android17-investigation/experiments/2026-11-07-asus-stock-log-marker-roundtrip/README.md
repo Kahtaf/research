@@ -1,0 +1,3 @@
+# Stock console marker roundtrip
+
+Question: does one fresh stock /dev/kmsg marker survive one normal reboot and appear in saved /proc/last_kmsg? Status: parent experiment preparation. This is console-text calibration, NOT savedfiq scalar calibration or4.9executionproof. The preceding source check found no safe user-facingfiq setter and no stockdevmemimplementation. Existing stocklog interface is the smallest available writer. No kernel build, firmwareflash, RAMdevice interface creation, physicalmemorywrite or VMstart. Existingon-demandroothelperstaging+onechosenlogwrite+one normalreboot only. Outputs: evidence and ignoredprivateraw. Stopafteronetrial; neverrepeatunknownrebootdispatch.

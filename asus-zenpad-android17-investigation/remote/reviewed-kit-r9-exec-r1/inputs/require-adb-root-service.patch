@@ -1,0 +1,11 @@
+--- a/scripts/verify_full_images.py
++++ b/scripts/verify_full_images.py
+@@ -54,7 +54,7 @@
+     adb_security = [p.partition('=')[2] for p in properties if p.startswith('ro.adb.secure=')]
+     if not adb_security or any(value != '1' for value in adb_security):
+         raise ValueError('Effective product does not preserve authenticated ADB')
+-    required_packages = {'android.hardware.keymaster@4.0-service', 'keystore2',
++    required_packages = {'adb_root', 'android.hardware.keymaster@4.0-service', 'keystore2',
+                          'Phonesky', 'GoogleServicesFramework', 'com.google.android.gmssystem.prodvic', 'p00a-wmt', 'libbtcal', 'libbt-vendor-p00a', 'libbluetooth_mtk_p00a', 'android.hardware.bluetooth@1.1-service.p00a', 'wpa_supplicant', 'P00aWifiBringupOverlay'}
+     missing = required_packages - set(values.get('PRODUCT_PACKAGES', '').split())
+     if missing:

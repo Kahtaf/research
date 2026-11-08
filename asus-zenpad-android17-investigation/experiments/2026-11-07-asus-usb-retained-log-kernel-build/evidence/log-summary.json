@@ -1,0 +1,26 @@
+{
+  "full_log_remote": "/srv/android/asus-usb-retained-log-kernel-build-20261107/evidence/Image.gz-dtb.log",
+  "full_log_bytes": 151783,
+  "full_log_sha256": "2773734d9aad80cddacf7565d462ab554b1e71fa724619256c719027ce505f50",
+  "warning_count": 24,
+  "error_count": 0,
+  "tail": [
+    "aarch64-linux-gnu-ld: warning: .tmp_vmlinux1 has a LOAD segment with RWX permissions",
+    "  KSYM    .tmp_kallsyms1.o",
+    "aarch64-linux-gnu-ld: warning: -z norelro ignored",
+    "aarch64-linux-gnu-ld: warning: .tmp_vmlinux2 has a LOAD segment with RWX permissions",
+    "  KSYM    .tmp_kallsyms2.o",
+    "  LD      vmlinux",
+    "aarch64-linux-gnu-ld: warning: -z norelro ignored",
+    "aarch64-linux-gnu-ld: warning: vmlinux has a LOAD segment with RWX permissions",
+    "  SORTEX  vmlinux",
+    "  SYSMAP  System.map",
+    "  OBJCOPY arch/arm64/boot/Image",
+    "  DTC     arch/arm64/boot/dts/mediatek/asus-p00a.dtb",
+    "  GZIP    arch/arm64/boot/Image.gz",
+    "  CAT     arch/arm64/boot/Image.gz-dtb",
+    "make[1]: Leaving directory '/srv/android/asus-usb-retained-log-kernel-build-20261107/out'",
+    "make: Leaving directory '/srv/android/asus-usb-retained-log-kernel-build-20261107/kernel'"
+  ],
+  "compile_exit": 0
+}

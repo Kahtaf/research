@@ -1,0 +1,126 @@
+# Evolution X for Redmi 9A (dandelion)
+
+Build script, manifest and patches for **Evolution X 12.2 (Android 17)** on the Xiaomi
+Redmi 9A (`dandelion`, MediaTek Helio G25 / MT6762). This is a full device build, not a GSI.
+It is the Vanilla variant, without Google apps.
+
+> ⚠️ **Highly experimental.** Some things are still untested (calls), and
+> VoLTE is unlikely to work. Expect bugs, reboots and missing features. Don't use it as your daily phone.
+
+> **Disclaimer:** I am not responsible for: bricked devices, data loss, dead SD cards, dead
+> Xiaomi factory-line workers, cowboys, sleepless nights, marriage crises, general existential
+> dread, dead PMICs, dead RAM, dead ICs, dead CPUs, dead LCD panels, broken touchscreens, dead
+> batteries, fried USB ports, any Xiaomi mischief, dead cats, dogs, goldfish, nuclear wars, or
+> you getting fired because your phone crashed during the night due to the instability of the
+> port and your alarm didn't ring.
+
+This is an experimental port. Android 17 officially needs a 5.4+ kernel and a vendor from
+Android 12 or newer, but this build keeps the phone's **stock Android 10 vendor**
+(MIUI V12.0.9.0) and its **prebuilt 4.9 kernel**. Patches across the platform make
+that work (see below).
+
+Evolution X comes from [Evolution-X](https://github.com/Evolution-X) (branch `cnb`,
+LineageOS 24.0 / `android-17.0.0_r1`). The device and vendor trees come from
+[alg810](https://github.com/alg810) (branch `13`, forward-ported here), and VNDK v29 from
+AOSP `android-15.0.0_r31`.
+
+## Status
+
+| | |
+| --- | --- |
+| Boots to setup wizard (`sys.boot_completed=1`) | ✅ verified on a real Redmi 9A |
+| Display, GPU (PowerVR), touch | ✅ UI renders and setup is usable |
+| Sound (speaker, system sounds, media) | ✅ works (vendor audio HAL 5.0 via restored `libaudiohal@5.0`) |
+| Vibration | ✅ works (AIDL vibrator service over the LED-class vibrator) |
+| Wi-Fi | ✅ connects (wireless adb used over it during testing) |
+| SIM | ✅ both SIM slots detect and read their card |
+| Cellular network | ❔ the test phone finds no network (same on the previous ROM, likely hardware). VoLTE, needed for calls where 2G/3G are shut down, is not tested; the MTK IMS stack on Android 17 is unlikely to work yet |
+| Bluetooth | ✅ stack starts (no more crash loop); pairing not tested yet |
+| Camera | ✅ works |
+| Sensors | ✅ the physical ones work. ❌ The virtual ones (significant motion, step detector/counter, glance gesture, stationary/motion detect, wake-up step detector) don't report yet. The stock vendor declares step counter/detector support, so at least those should work |
+| Per-app data usage stats, tethering offload | ❌ need eBPF programs this kernel can't run |
+| MTK picture-quality HAL (`PQServiceHAL`) | ✅ runs (was crash-looping) |
+| Screen off / wake, brightness | ✅ works |
+| SELinux | ✅ enforcing (`user` build) |
+| USB / adb | ✅ adb works once USB debugging is enabled |
+
+A prebuilt zip (`user` build, SELinux enforcing) is on the
+[Releases](https://github.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/releases) page.
+It reports itself as **Redmi 9A**: Evolution X's Pixel fingerprint spoof is turned off.
+
+## What had to change (and why)
+
+Every patch has a header explaining it. In short:
+
+| Project | Fix |
+| --- | --- |
+| `bionic` | `arc4random` aborted on 4.9 (no `MADV_WIPEONFORK`), killing every process starting with `init`. It now falls back to pid-based fork detection. |
+| `system/sepolicy` | Restores the 29.0/30.0 vendor-policy mappings (Android 17 only ships 31.0+). |
+| `packages/modules/vndk` | Adds the `com.android.vndk.v29` APEX. |
+| `system/linkerconfig` | Empty defaults for VNDK/sanitizer variables. The bootstrap run aborted before the VNDK APEX was mounted. |
+| `packages/modules/Connectivity` | Opt-in legacy-kernel support: the BPF loader uses its ELF path, skips rejected objects and maps LRU/LPM to HASH. `netd` skips the 5.4+ gates. Ring-buffer (5.8+) users are skipped. |
+| `system/core` | `ueventd` imports the legacy `/vendor/ueventd.rc`, which gives `/dev/ion` and the PowerVR nodes their permissions. |
+| `frameworks/base` | `HintManagerService` no longer crashes without an AIDL PowerHAL. The Play Integrity spoof keeps the real device identity while GMS isn't installed (every app, e.g. Geekbench, saw "Pixel 10 Pro XL"). |
+| `frameworks/av` | Restores the `libaudiohal@5.0` client. Otherwise `audioserver` crashes and `system_server` hangs in `AudioService`. |
+| `build/make` | releasetools tolerates the missing vendor partition. |
+| `build/soong` | 20 GB soft heap limit for `soong_build` (30 GB RAM hosts). |
+| `vendor/gms` | Skips the 64-bit-only TurboAdapter on this 32-bit build. |
+| `packages/modules/Bluetooth` | Tolerates the MTK firmware rejecting `READ_DEFAULT_ERRONEOUS_DATA_REPORTING`. The stack crash-looped and kept resetting the shared Wi-Fi/BT chip. |
+| `device/xiaomi/dandelion` | The forward port itself: Evolution X flags, A-only, dynamic partition sizing, `legacy_gralloc` (gralloc 2.x vendor), USB controller and state, SELinux fixes, A17 API updates, AIDL backlight and vibrator services (Android 17 no longer uses the vendor's HIDL lights/vibrator HALs, so the screen stayed black after the first screen-off and nothing vibrated), a `/system/lib/vndk-sp-29` symlink (the Android 10 `libhidlbase` loads the shared-memory mapper from there; without it the PQ HAL crash-looped and the OMX codecs failed, so no sound), and Codec2 re-enabled ahead of the vendor's OMX software codecs. |
+
+`debug/` holds the logging aids used during bring-up: a boot logger, permissive SELinux,
+`printk.devkmsg` and an `init` panic hook. `build.sh` does **not** apply them. They
+need a `userdebug` build (`user` builds ignore the permissive flag).
+
+## Requirements
+
+- Linux x86_64 (tested on Ubuntu 26.04, 16 threads, 30 GB RAM + 32 GB swap)
+- ~300 GB free disk
+- Tools: `repo git git-lfs python3 ccache zip unzip bc bison flex rsync xxd lz4 zstd make gcc openssl m4`
+
+## Build
+
+```bash
+git clone https://github.com/qcom-toolbox/EVOLUTION-X-DANDELION-17
+cd EVOLUTION-X-DANDELION-17
+./build.sh -v user    # sync + apply patches + build (the released zip is a user build)
+```
+
+Options match [EVOLUTION-X-LANCELOT-17](https://github.com/qcom-toolbox/EVOLUTION-X-LANCELOT-17):
+`-d DIR`, `-j N`, `-v user|userdebug|eng`, `-s` (sync only), `-b` (build only),
+`-c` (installclean). `manifests/tested-revisions.xml` pins the exact source revisions
+this was verified with. Evolution X's `cnb` branch moves, so use it if the patches stop
+applying.
+
+## Flashing
+
+> ⚠️ Experimental. Back up **everything** first, including your NV partitions (`nvram`,
+> `nvdata`, `nvcfg`, `persist`, `proinfo`, `protect1/2`). Keep the backups private: they
+> contain your IMEI. MediaTek BROM + [mtkclient](https://github.com/bkerler/mtkclient)
+> is the way back if the phone stops reaching fastboot.
+
+This needs an unlocked bootloader and a **dandelion** TWRP. TWRP builds for other
+models (e.g. `blossom`) hang on this phone.
+
+1. In TWRP: flash the zip (sideload or `twrp install`).
+2. **Wipe → Format Data** (required coming from another ROM; wipes everything).
+3. Reboot. The first boot takes a few minutes.
+
+Notes:
+- On first boot the ROM **replaces the recovery partition** with its own recovery.
+  Re-flash TWRP from fastboot if you need it: `fastboot flash recovery twrp.img`.
+- adb is off by default: Settings → About phone → tap Build number 7 times, then
+  Developer options → USB debugging.
+- The release zip is signed with test-keys. Coming from an older build of this port you
+  can skip Format Data.
+
+## Credits
+
+Evolution X, LineageOS, AOSP, alg810 (dandelion trees), and everyone keeping the
+MT6762/MT6765 devices alive.
+
+## License
+
+The build script, manifests, patches and docs in this repo are licensed under the
+[Apache License 2.0](LICENSE). Evolution X, LineageOS, AOSP and the device trees keep their
+own licenses. The proprietary vendor blobs belong to Xiaomi/MediaTek and are not covered.

@@ -1,0 +1,26 @@
+[
+  {
+    "original": "2026-11-06-asus-locked-lk-recovery-route/source/collect_evidence.py",
+    "copy": "2026-11-06-asus-locked-lk-recovery-independent-review/source/collect_evidence.py",
+    "sha256": "838475aec26e7626dc8499d5b205c0489c41725e954c4a6efcfee9203f5a2576",
+    "identical": true
+  },
+  {
+    "original": "2026-11-06-asus-locked-lk-recovery-route/source/disassemble.py",
+    "copy": "2026-11-06-asus-locked-lk-recovery-independent-review/source/disassemble.py",
+    "sha256": "365327d7dca9f0a443d0c34ee242b66f00501e36ede4ffa2e86d020b968d7516",
+    "identical": true
+  },
+  {
+    "original": "2026-11-06-asus-locked-lk-recovery-route/source/discover.py",
+    "copy": "2026-11-06-asus-locked-lk-recovery-independent-review/source/discover.py",
+    "sha256": "c80b693f8cde98b3be81fcdf6aa4aea73c5c9b14c85cb98efef6fecb0e4fe7c4",
+    "identical": true
+  },
+  {
+    "original": "2026-11-06-asus-locked-lk-recovery-route/source/emulate.py",
+    "copy": "2026-11-06-asus-locked-lk-recovery-independent-review/source/emulate.py",
+    "sha256": "fb4738309a5ce1a0c844086886aa195f06e3bee234f1986bcc10b5c27d6957a3",
+    "identical": true
+  }
+]

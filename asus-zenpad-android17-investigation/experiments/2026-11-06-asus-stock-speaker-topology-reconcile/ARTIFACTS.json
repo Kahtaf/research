@@ -1,0 +1,720 @@
+{
+  "scope": "all spike files excluding this manifest",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2400,
+      "sha256": "4cfa07ccacdb522c21ce7a6267af0d67ce621f7d4449f098f5ee688e3b291f1a"
+    },
+    {
+      "path": "evidence/address-mapping-controls.json",
+      "bytes": 813,
+      "sha256": "a9fb359ba04677119d230da99d41e16b2cb55281f1a44380d7d3ddf3fec4346d"
+    },
+    {
+      "path": "evidence/aw8737s-source-and-board-references.txt",
+      "bytes": 4876,
+      "sha256": "7d5b218f82b93bc2b3a565931903edd775777ef9e5852274ad42b04063fcf3f1"
+    },
+    {
+      "path": "evidence/bmc-actual-bytes.elf",
+      "bytes": 19236000,
+      "sha256": "8186390389e9bd7fe47e112c53448bd4bd0676e1ead01f6745218f258bcf30ac"
+    },
+    {
+      "path": "evidence/bmc-codec-probe-disassembly.txt",
+      "bytes": 6286,
+      "sha256": "7d5ee187bf331f8cedd51ff15ee338a6697a363e1a78513124d34f5734a50c20"
+    },
+    {
+      "path": "evidence/bmc-disassembly.txt",
+      "bytes": 38268,
+      "sha256": "b30bd067a558be051b2698a1f6ea89e82e866c3bbfe235f5b9132453dedb13e1"
+    },
+    {
+      "path": "evidence/bmc-dt.json",
+      "bytes": 11337,
+      "sha256": "945471031756b0cf8f00f8f793bf0b5a342b8962a4ef7fb1706528c119f89322"
+    },
+    {
+      "path": "evidence/bmc-kallsyms.json",
+      "bytes": 612,
+      "sha256": "f653769f4d2e48b857b9a310b4087c56c1bf0514f1ee30147324c91b286da7ba"
+    },
+    {
+      "path": "evidence/bmc-selected-symbols.json",
+      "bytes": 471,
+      "sha256": "5879737e7020eea9757899a11c1612e9be44a0a2b64f759efacbc7bfacd5929e"
+    },
+    {
+      "path": "evidence/bmc-symbols.tsv",
+      "bytes": 1636360,
+      "sha256": "c89a4e9e753da8f54cb352eb5f4cefe2f7640d9d1585d90fda62166b73b5d6ec"
+    },
+    {
+      "path": "evidence/commands.jsonl",
+      "bytes": 74512,
+      "sha256": "967e39afbecca4b1eac2b3e40dfca5ca0d105ad3017449b51c40a9ae47decc6e"
+    },
+    {
+      "path": "evidence/config-accounting.json",
+      "bytes": 1411,
+      "sha256": "6a9a39b7daaa74bc1842e6b6dc0d1a86cf6d9bb259e7cd90defcce244963b340"
+    },
+    {
+      "path": "evidence/config-definitions-and-reverse-dependencies.txt",
+      "bytes": 274,
+      "sha256": "35c9d8c8777d2d3cc75dfa8bf913a1b9978b18d6f1529e9e9dc97961465c5ed9"
+    },
+    {
+      "path": "evidence/darwin-constraints.json",
+      "bytes": 1201,
+      "sha256": "3eb701ae31e4554f8ef2fb6a0287183b33dff577db230e093b76497b0a8e20ba"
+    },
+    {
+      "path": "evidence/final-verification.json",
+      "bytes": 1182,
+      "sha256": "a5435b4213bb7eb9d6d84a9d575a1446ab2263bd89bc7688d8d689b9121ab36c"
+    },
+    {
+      "path": "evidence/gpio-ownership.json",
+      "bytes": 2979,
+      "sha256": "ce8c8279c75117fbb6002f1087b806e06da971020cb8c47d7c2e5d459e3dae47"
+    },
+    {
+      "path": "evidence/host/combined-aw-off",
+      "bytes": 33632,
+      "sha256": "06a8e3a396de38ed93096c39a706ea839a2f459483523fe4492a4992139458a2"
+    },
+    {
+      "path": "evidence/host/combined-aw-off-compile.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/host/combined-aw-off-internal.c",
+      "bytes": 3288,
+      "sha256": "634f8b33bb5c2d7b2ebf69ea99be61c3af47077253a2cd5c143d09e76814da48"
+    },
+    {
+      "path": "evidence/host/combined-aw-off-internal.i",
+      "bytes": 1903,
+      "sha256": "78f8c5adc684fa27a7acf2b5619e528b8609d36596c5925bf2c54217f63381a1"
+    },
+    {
+      "path": "evidence/host/combined-aw-off-run.txt",
+      "bytes": 36,
+      "sha256": "0aeb52ce98ccce6a58565cd48a812ec3618b8dbb6cbe9eacb075c16e34ea750b"
+    },
+    {
+      "path": "evidence/host/combined-aw-off.c",
+      "bytes": 7457,
+      "sha256": "a37c1930d6c118ebf6d7cea9c342aae8a37341afb1e73445d8d3bd497534a609"
+    },
+    {
+      "path": "evidence/host/combined-aw-off.i",
+      "bytes": 43484,
+      "sha256": "ce4e2066ce4f296c9d14ea0bd77503bd18810ead78129bcc61d011da85f81241"
+    },
+    {
+      "path": "evidence/host/combined-aw-on",
+      "bytes": 33808,
+      "sha256": "266a1ebdc8b4a81dce859067d02d89acb105b809d15f19d80d020e391e7edfd2"
+    },
+    {
+      "path": "evidence/host/combined-aw-on-compile.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/host/combined-aw-on-internal.c",
+      "bytes": 3317,
+      "sha256": "9a99cb0afd0714600a4a222c2f1c447f5125aa2fd9ea5e7f73251a721f3df31b"
+    },
+    {
+      "path": "evidence/host/combined-aw-on-internal.i",
+      "bytes": 1902,
+      "sha256": "9bff4b1ef9c00627adfb1c5e25f5e6d81309961ed5640b0ece91f3f42c173079"
+    },
+    {
+      "path": "evidence/host/combined-aw-on-run.txt",
+      "bytes": 108,
+      "sha256": "364bd96d26cadbe2024a2aaaffb17037aef12f41d338216c46499e710e4d3d48"
+    },
+    {
+      "path": "evidence/host/combined-aw-on.c",
+      "bytes": 7486,
+      "sha256": "136504a69a277aa3812aa1325e1944f8d1455ec8d4a4ef23b17299cb8279736f"
+    },
+    {
+      "path": "evidence/host/combined-aw-on.i",
+      "bytes": 43982,
+      "sha256": "4192caceaf3e5c465d4cda5fdeb09461872f3ea4e4b95365a1d43a07b3f82300"
+    },
+    {
+      "path": "evidence/host/combined-external-verbatim.inc",
+      "bytes": 6295,
+      "sha256": "afddf1c5cad1f38e1de53579c49cf674c912fd0dc43e41a7c54db4a8b749c684"
+    },
+    {
+      "path": "evidence/host/combined-init-verbatim.inc",
+      "bytes": 1030,
+      "sha256": "51bfbd64065568e96ffa80ecefd2be5af41fdf0ac16f2be2e794b261131a4067"
+    },
+    {
+      "path": "evidence/host/init-aw-off",
+      "bytes": 33624,
+      "sha256": "b12f3b1b6875d0e6c224d42230fd04829cc3bf9ed635237d4ffb3c686d50173a"
+    },
+    {
+      "path": "evidence/host/init-aw-off-compile.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/host/init-aw-off-run.txt",
+      "bytes": 21,
+      "sha256": "947101c9757e24e202fdf8159ff852f108fe93e60f0ca6fad96cd218d1413cdf"
+    },
+    {
+      "path": "evidence/host/init-aw-off.c",
+      "bytes": 2357,
+      "sha256": "d1533488b8e3e2ffbf1fc3eb45befd1c8f868449fe41d372b1931dbaec81866c"
+    },
+    {
+      "path": "evidence/host/init-aw-on",
+      "bytes": 33800,
+      "sha256": "63aab64969f8727b56ea986d9c68965582543b4bc422db874723a10e5516d0c3"
+    },
+    {
+      "path": "evidence/host/init-aw-on-compile.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/host/init-aw-on-run.txt",
+      "bytes": 23,
+      "sha256": "9753373fe75ad97b1aea2f1b977b04a6c8ec9b5334baa3bddde9d4c33541f381"
+    },
+    {
+      "path": "evidence/host/init-aw-on.c",
+      "bytes": 2386,
+      "sha256": "b7ef4fff665408d05c7e48b940d28a3a37c49ddaeb5456e62e97a834024e44be"
+    },
+    {
+      "path": "evidence/host/oem-aw-off",
+      "bytes": 33688,
+      "sha256": "48695128c531d97fe9157776e743de357ce2bb3ff8d1e4afcae55c2d9b21d1c7"
+    },
+    {
+      "path": "evidence/host/oem-aw-off-compile.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evidence/host/oem-aw-off-internal.c",
+      "bytes": 3216,
+      "sha256": "12bafbbe1e437e90ec672500b7b7e71b56a558537c22110e2950b87137028b12"
+    },
+    {
+      "path": "evidence/host/oem-aw-off-internal.i",
+      "bytes": 1900,
+      "sha256": "0758f56b5a3c2b8c1fc4a5604d1baf884d75590c48fa09d54ce598bc008377ec"
+    },
+    {
+      "path": "evidence/host/oem-aw-off-run.txt",
+      "bytes": 58,
+      "sha256": "1ea4a98ff38b13022d3c9d689e9244cb833a16d801bc929a4141c739d7dbcf43"
+    },
+    {
+      "path": "evidence/host/oem-aw-off.c",
+      "bytes": 6537,
+      "sha256": "e2c1c05c72f8bbe23a003fafbeee00d7c1f9926db16d0b23553e1a3cfde594eb"
+    },
+    {
+      "path": "evidence/host/oem-aw-off.i",
+      "bytes": 43638,
+      "sha256": "5979c455b7305f2829e5f83589ddec444683b6a2c6b8231be8f07a74627925ad"
+    },
+    {
+      "path": "evidence/host/oem-external-verbatim.inc",
+      "bytes": 5358,
+      "sha256": "3b12d422d0f69552b930090f3b37f1c3afaa4157780b01917aae96e82a03dc3c"
+    },
+    {
+      "path": "evidence/host-checks.json",
+      "bytes": 1772,
+      "sha256": "b93a6492aa1caba3f546136128282c78ad9604f46215cb1518030150ec154136"
+    },
+    {
+      "path": "evidence/host-replay.txt",
+      "bytes": 1772,
+      "sha256": "b93a6492aa1caba3f546136128282c78ad9604f46215cb1518030150ec154136"
+    },
+    {
+      "path": "evidence/image-extraction.json",
+      "bytes": 421,
+      "sha256": "a77278e06ecca687aa1dbc592a14725c206d05209e74a07c2cbf0f516a39c561"
+    },
+    {
+      "path": "evidence/input-pins.json",
+      "bytes": 25334,
+      "sha256": "88ade42d56d7a17d51161e158e381e92400995956164982c88bd0a525f54ab34"
+    },
+    {
+      "path": "evidence/stock-boot-match.json",
+      "bytes": 505,
+      "sha256": "2592263307272fac1214ff3597bd8afa1e8c77ca73e0a0c2dd74dc96026f616a"
+    },
+    {
+      "path": "evidence/stock-public-actual-bytes.elf",
+      "bytes": 20194936,
+      "sha256": "371aea24a19bfd1ae3293871f9a5691a60ddffa904f57a3c00db25841dbc3736"
+    },
+    {
+      "path": "evidence/stock-public-codec-probe-disassembly.txt",
+      "bytes": 7392,
+      "sha256": "9cf66bc74af08bd5aef7e46f97713f7f638ce23f74c3d292e7f30abba463f79b"
+    },
+    {
+      "path": "evidence/stock-public-disassembly.txt",
+      "bytes": 33133,
+      "sha256": "359c42977ca4663320c65e41ae12ea1b8528bfd00454cad147528c6fc1ade055"
+    },
+    {
+      "path": "evidence/stock-public-dt.json",
+      "bytes": 11298,
+      "sha256": "31bce778ff2bc87ceb50ab51889e4f85cad929e87a212eb000992d0a8357e6e8"
+    },
+    {
+      "path": "evidence/stock-public-kallsyms.json",
+      "bytes": 539,
+      "sha256": "4575c88da5a41d77b0ce62fb2ecaf05dbcc5662d8ca6b5a6de910aeb6a18cb30"
+    },
+    {
+      "path": "evidence/stock-public-selected-symbols.json",
+      "bytes": 375,
+      "sha256": "8467bad69cacd4b0ae84ac5ed3b72d32c8c4872241715c9062c77513b2558b4b"
+    },
+    {
+      "path": "evidence/stock-public-symbols.tsv",
+      "bytes": 2808899,
+      "sha256": "94cd03bcb0bb7463ac79d5adabee60970a4cbbfbf5d6886b2901fff525771de0"
+    },
+    {
+      "path": "inputs/bmc/Image",
+      "bytes": 17345024,
+      "sha256": "43ee0529e371575bfaddb9de392b77a2279cb44bc60649fcd8d9a88b6e613b09"
+    },
+    {
+      "path": "inputs/bmc/Image.gz-dtb",
+      "bytes": 7716897,
+      "sha256": "e9cde06e85e752aec0433ea37fa926c31b4f7a72cd55453762ec6870e5bb5bf1"
+    },
+    {
+      "path": "inputs/bmc/asus-p00a.dtb",
+      "bytes": 63621,
+      "sha256": "a099d0538b270e23ec0d034b507eef9248252a3c459a11aa70edb6520bfd2b77"
+    },
+    {
+      "path": "inputs/bmc/asus_p00a_defconfig",
+      "bytes": 11026,
+      "sha256": "423c68c8870d56b843f447dc45c4b63f908143ca8a85c462481a1a161c9a9588"
+    },
+    {
+      "path": "inputs/bmc/resolved.config",
+      "bytes": 126472,
+      "sha256": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2"
+    },
+    {
+      "path": "inputs/combined/Kconfig",
+      "bytes": 252,
+      "sha256": "d0240517bffb43ef99c68c4be4f59d43e1cf439b7d8691e4e5b9c2e837755849"
+    },
+    {
+      "path": "inputs/combined/arch/arm64/boot/dts/mediatek/asus-p00a.dts",
+      "bytes": 29636,
+      "sha256": "bb39c36199b6cb92b453c59116d85bc3e6769663792d0ddf7f18e7509d81f572"
+    },
+    {
+      "path": "inputs/combined/arch/arm64/boot/dts/mediatek/mt8163-pinfunc.h",
+      "bytes": 44066,
+      "sha256": "01138f6a53285f69c16091f9a52cfda74b83692d29dee8d8ffb66e33a880d386"
+    },
+    {
+      "path": "inputs/combined/arch/arm64/boot/dts/mediatek/mt8163.dtsi",
+      "bytes": 51729,
+      "sha256": "a605903380bac77de2d077e002d215e20422f4a9bf6441c9d782fef3e0c2382a"
+    },
+    {
+      "path": "inputs/combined/include/sound/mt_soc_audio.h",
+      "bytes": 698,
+      "sha256": "a822a110072fa97b20e77eccc67b09c3bf3dd6d763a878951425cbd8a0b43122"
+    },
+    {
+      "path": "inputs/combined/sound/Kconfig",
+      "bytes": 3913,
+      "sha256": "fb7262032c8f8b5ca76c64ea6c5efe2fddba1c03ef6ade947109b87b25d48984"
+    },
+    {
+      "path": "inputs/combined/sound/soc/Kconfig",
+      "bytes": 2010,
+      "sha256": "5ca9ae032701b55ead992203864189969262b9153c313097cd6d55e2c0b14412"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/Kconfig",
+      "bytes": 6473,
+      "sha256": "3be1ee72b1f74fb03bb39d53889b50d5ecba48ae32970316a6801d7e40c6f1dc"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/Makefile",
+      "bytes": 2513,
+      "sha256": "67eee28bdecbd49cd8ba6205271ffec28bb4c11e553f777ba3c2e0bf33bc18f4"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Afe.c",
+      "bytes": 22286,
+      "sha256": "1f5904788ab5c0980df7b9cf037c3ef733a1f9e71280ca99bab0bddbeba6d5db"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Afe.h",
+      "bytes": 14813,
+      "sha256": "a5c0a12a15457a850093e4ec293b139b652e81434fcda078ea689f9482dbf51d"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Ana.c",
+      "bytes": 5567,
+      "sha256": "c26356e02995b0a9ab031364476026fb163a4f23df5a540111d33968971a8935"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Ana.h",
+      "bytes": 6733,
+      "sha256": "30f7ca4c237861eb0916a421f55a6d5a4a8d6b446992fdd3fd221ce42dd04097"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Clk.c",
+      "bytes": 33128,
+      "sha256": "3806028d53909786dd576c485a5a8e0ad1ecc69363d1abcb68fb25e86b88fc0f"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Clk.h",
+      "bytes": 2847,
+      "sha256": "0867d0c5d20cbd41066143f6a6806d994230c815a9c3c1ecca13c179ef001977"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Common.h",
+      "bytes": 2075,
+      "sha256": "7f5b991187a7a36d1cfcd43a680c97f9651d655de3d07239b77c223ba83d5396"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Common_func.h",
+      "bytes": 738,
+      "sha256": "163cc3e26d04c3b5b7b230032a0edd34c38ec8d127bcbfc7f9b1fafa7ad84e34"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Def.h",
+      "bytes": 13646,
+      "sha256": "5228ae65c6a15e5e1ed1eb3d4382092ac5d6e94b4776e03b47f8852a4dc06db4"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c",
+      "bytes": 10255,
+      "sha256": "d2381b84a3dfbf8258723d365ec35e17f5ad75b97b9595e883fdf596bc68a7f5"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.h",
+      "bytes": 2178,
+      "sha256": "7e3ebe555a2e7dbb43028110e74d04e4f2722b7f4cf7e3e9bf05a32f8371bb0f"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Kernel.h",
+      "bytes": 7478,
+      "sha256": "94cfaedc2f2e8aa4948998a05cc7bd452733b5a01e715c255c42dc1471c69387"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Type_Def.h",
+      "bytes": 792,
+      "sha256": "16d36cf9a8140d6839156d8425a1603ecbc4fd6ccd5edcb0c7ea55319f069aa0"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/Makefile",
+      "bytes": 3328,
+      "sha256": "68bd0ad29f04f37dfafbb2c59d5d95182e885df0d3f454fca19c92a54e476cef"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_afe_connection.c",
+      "bytes": 20240,
+      "sha256": "d1e2d59ef6143b841dfff14402d53f2f6d6590fab0bb3b272b1ae3f0dbb9591d"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_afe_connection.h",
+      "bytes": 986,
+      "sha256": "228e79e9fbce8857292b5809efc961518ca2d0e31b598f6665d7b37f2f46033b"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_afe_control.c",
+      "bytes": 124956,
+      "sha256": "ae453e0b83761d69584454f29f73fdf25aae133497e00c36e5a25f4ff2081a24"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_afe_control.h",
+      "bytes": 8107,
+      "sha256": "c64ba93dbd9618d4f126faf23912606c7e5721c0ec67506de04dd8972e92b156"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_analog_type.h",
+      "bytes": 5983,
+      "sha256": "27fa5dba131d7cb5e91fe3f072b5b4842a7dc04cfcc4cfa2581d84f2074f403d"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+      "bytes": 117756,
+      "sha256": "a6cbff61167f1c3690b2554f4aa59fe365d8bbeb3a7e3ae12999d4266ab3e3b2"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.h",
+      "bytes": 1343,
+      "sha256": "966aefe5669acd6ee1ac486c8b7bfecf82f659e908d6334da77c80fd971e5949"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_dummy.c",
+      "bytes": 17355,
+      "sha256": "15df88a0d23cef68761e6b3fb40e8514f0d151073386952e38c970f18e5306ff"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_speaker_63xx.c",
+      "bytes": 3723,
+      "sha256": "4781a0c95bbd1f6cd547164b32264ee61745b800bb4cde9cbe2d2b74705613ab"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_speaker_63xx.h",
+      "bytes": 803,
+      "sha256": "71b2f60954950de9986a435c40d944d205674fa1511fb5811d0ba2f2aadba34e"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_dai_routing.c",
+      "bytes": 4852,
+      "sha256": "d42464b545051dab2fef8891a500b281a315bdfb17470403818f04c971dc74f4"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_dai_stub.c",
+      "bytes": 15869,
+      "sha256": "a77ab7e3526489135dd23f043b9b37cc9855411e09ebbb06be7cdce1fc151d07"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_digital_type.h",
+      "bytes": 22996,
+      "sha256": "0775fb1daa6aff607439e54fbed1b4f3d4400ab0de5f6c82c92ed645c0bedebe"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_machine.c",
+      "bytes": 43473,
+      "sha256": "22f508445647f4031dadfb713ab5c4029fd28ec6cc408790883698f371cc347c"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_stream_type.h",
+      "bytes": 1763,
+      "sha256": "9b2864dc5678ef9322f040a3b4ccf0224764a351bdf2eb5a6d31f1ddd483bef0"
+    },
+    {
+      "path": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_tdm_capture.c",
+      "bytes": 22004,
+      "sha256": "990a679a845273b09e93b931c406dac11a1b03da64b98d9915993d851fe1cb88"
+    },
+    {
+      "path": "inputs/combined/sound/soc/soc-core.c",
+      "bytes": 101776,
+      "sha256": "918395572ef95cc5c5e1a81ca6208540365e7b3e491a4e82bcad66cf324dd328"
+    },
+    {
+      "path": "inputs/context/2026-11-06-asus-bmc156-full-kernel/evidence/r5-source-manifest.json.gz",
+      "bytes": 2855106,
+      "sha256": "93b4a51a45af00095283dc428d4ace6c5b8027b27cfc4f829f05d7453f572c04"
+    },
+    {
+      "path": "inputs/context/2026-11-06-asus-bmc156-full-kernel/report/HANDOFF.md",
+      "bytes": 2788,
+      "sha256": "6d08d956e9b71a18f9889fc035f5efba27ffc2c711db3b69fd9e7f98cfbd053e"
+    },
+    {
+      "path": "inputs/context/2026-11-06-asus-bmc156-full-kernel/report/SOURCE-PINS.json",
+      "bytes": 3940,
+      "sha256": "f6e8b9d198608e507e7a97ae528e5b29a95b54fc3aa03bfb2b3020ce2c9afd03"
+    },
+    {
+      "path": "inputs/context/2026-11-06-asus-minimal-audio-hal/evidence/source-pins.json",
+      "bytes": 32329,
+      "sha256": "27d004f56f0918ab1b0ba25995227df65790b47150bf10aa413b687033f280d3"
+    },
+    {
+      "path": "inputs/context/2026-11-06-asus-minimal-audio-hal/report/CALIBRATION.md",
+      "bytes": 3818,
+      "sha256": "682e2828866a56c298f9b4b9e53c46bbfc8d3c1d25fba858c96bef21ab7a477c"
+    },
+    {
+      "path": "inputs/context/2026-11-06-asus-minimal-audio-hal/report/HANDOFF.md",
+      "bytes": 8997,
+      "sha256": "e7e86bdad81523e069eb6fd467b4e97259492b7b99c01370e3aed1ce8a96e3b9"
+    },
+    {
+      "path": "inputs/context/2026-11-06-asus-minimal-audio-hal/report/ROUTE-LEDGER.md",
+      "bytes": 11871,
+      "sha256": "136335238a5baa3c68874039c39c5d6ec256e14a9d94e2de5fa04731e073b8fe"
+    },
+    {
+      "path": "inputs/observations/root-selected-mixer-queries.json",
+      "bytes": 1362,
+      "sha256": "c462a31c04d59f0b24b6b0242045dd39504656a3fd7b4f3974503dac77a34b9f"
+    },
+    {
+      "path": "inputs/observations/stock-idle-mixer-baseline.json",
+      "bytes": 1907,
+      "sha256": "4720d083034b7d9f7099841d361eeadefa4c7f86b181ecf2c0e3a6478a8e42b0"
+    },
+    {
+      "path": "inputs/observations/stock-selected-mixer-queries.json",
+      "bytes": 445,
+      "sha256": "364f857c97c8699e5d26398dbff9c3f37602f7ec8cb4a1d6487eb6e2539e16cc"
+    },
+    {
+      "path": "inputs/observations/stock-topology.json",
+      "bytes": 3381,
+      "sha256": "49294754a62ac35618337f2a11904af099cc8d186178ca9ce88c3e4089967b31"
+    },
+    {
+      "path": "inputs/oem/asus-original/kernel-3.18/arch/arm64/boot/dts/asus8163_tb_380_m-Z380M.dts",
+      "bytes": 28774,
+      "sha256": "90cbeb776795fcff85a148f74d5b741aeb0463f52e9b1fd14006f1360a194bbf"
+    },
+    {
+      "path": "inputs/oem/asus-original/kernel-3.18/arch/arm64/boot/dts/asus8163_tb_380_m.dts",
+      "bytes": 24307,
+      "sha256": "78f327d470385474dc159dc657ef58eb6c23487e7df528a2141c1db84a152414"
+    },
+    {
+      "path": "inputs/oem/asus-original/kernel-3.18/arch/arm64/configs/asus8163_tb_380_m_defconfig",
+      "bytes": 13606,
+      "sha256": "d78fb9f2c6e0e926c1c3b3e31cdc609ce03242446dba685db98c8a4ab25e74a3"
+    },
+    {
+      "path": "inputs/oem/asus-original/kernel-3.18/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_analog_type.h",
+      "bytes": 7242,
+      "sha256": "16bf1549aeb9ffbacdb9d7f23702c1ed18d8c2909852e8a1b93b40dd02421d8f"
+    },
+    {
+      "path": "inputs/oem/asus-original/kernel-3.18/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+      "bytes": 119307,
+      "sha256": "9bf0fa463833741695903b4cf151453ed56b93217ef4efe5011ddf5c24066260"
+    },
+    {
+      "path": "inputs/oem/asus-original/kernel-3.18/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_machine.c",
+      "bytes": 40870,
+      "sha256": "f6560cdcaa84c3b0b603e58fd5bc64342c512222b82e8fd39184c938491058b4"
+    },
+    {
+      "path": "inputs/public-receipts/READY.json",
+      "bytes": 1535,
+      "sha256": "08aa920a328fc5b468e76d9b59ed6ee1978648a7e3c84427767e3987d3747af3"
+    },
+    {
+      "path": "inputs/public-receipts/firmware-audit.json",
+      "bytes": 1622,
+      "sha256": "ff86fdfb3e6fe28c5849e62393e86088e7792af5c9550adc25ec153175fc2e07"
+    },
+    {
+      "path": "inputs/stock/AudioParamOptions.xml",
+      "bytes": 2401,
+      "sha256": "fef2413c3aeb56808fe9840d6a95ad7cd2b3a753e20537ed081eb85e6aabb2dc"
+    },
+    {
+      "path": "inputs/stock/audio_device.xml",
+      "bytes": 9568,
+      "sha256": "734480322851caacad72d602ef24d451294b79832db4b8ee08a07bbf9f26938a"
+    },
+    {
+      "path": "inputs/stock/audio_policy.conf",
+      "bytes": 5219,
+      "sha256": "170d911de4439a07c98ec1e501071888efe5b81f9fd153d0d28fbb862efcea3d"
+    },
+    {
+      "path": "inputs/stock/audio_policy_configuration.xml",
+      "bytes": 11557,
+      "sha256": "4524cd200ebd8e9d362cc6d8c0af25851ffba7cdb1437c38274c4c996551b191"
+    },
+    {
+      "path": "inputs/stock/resolved.config",
+      "bytes": 126441,
+      "sha256": "067090e03ad762344308cebd0a71274d9943e299ded6707051ebfdc075dd045f"
+    },
+    {
+      "path": "inputs/stock-public/Image",
+      "bytes": 16963568,
+      "sha256": "db90ee7fff379f35ac2b0aafb11a6abee7b2c283b57d352c40ae7c6d7c35eb2a"
+    },
+    {
+      "path": "inputs/stock-public/appended.dtb",
+      "bytes": 62482,
+      "sha256": "77e2d8fbeced5a827ede6c0b8589140e9211d8dc3ca77aaa31a1dd1787a9c455"
+    },
+    {
+      "path": "inputs/stock-public/boot.img",
+      "bytes": 10004736,
+      "sha256": "a175ed39c9e9642756dd28f1d006b39937d17f290da6af69dda6d4b52d6f910d"
+    },
+    {
+      "path": "proposal/NO-DELTA.md",
+      "bytes": 586,
+      "sha256": "add79266f185c2ac47d1d9df6e49d83de067ef0c80a0e8c2937186f424b2933d"
+    },
+    {
+      "path": "report/HANDOFF.md",
+      "bytes": 15634,
+      "sha256": "6b3d4d260faeafbc8499fe54b4964befa8b6f3be86aad6a4b87aaa358056b9a7"
+    },
+    {
+      "path": "report/speaker-paths.html",
+      "bytes": 1825,
+      "sha256": "7ed0227b62be187a987e4cc1b589c277d9c0e1e29adb44f154fc903ea26ba33f"
+    },
+    {
+      "path": "scripts/__pycache__/binary_evidence.cpython-313.pyc",
+      "bytes": 17878,
+      "sha256": "0684eb8164fa013c723d4e20165c61ba3775e963632961c8e3dffa917f2ed15e"
+    },
+    {
+      "path": "scripts/__pycache__/bounded.cpython-313.pyc",
+      "bytes": 3420,
+      "sha256": "360bec7e817ba613b7bca599f2940d26efac1a25a3c05bb1060e61c7df962e8b"
+    },
+    {
+      "path": "scripts/binary_evidence.py",
+      "bytes": 7090,
+      "sha256": "f58f3f2d3aca4cf2fb4b35527cc4208d74f0299bc5ba84b6e1488bd30088d0b4"
+    },
+    {
+      "path": "scripts/bounded.py",
+      "bytes": 1485,
+      "sha256": "f1d703d2724767cdc51180b308f794a4cb67e4d7c9cf8ba6a5939339ea79b43e"
+    },
+    {
+      "path": "scripts/collect.py",
+      "bytes": 3919,
+      "sha256": "5b7d734cc9ba5b75a98df2c1dd7d739049b8f3bbf4e49ad7c77cd6517a20046d"
+    },
+    {
+      "path": "scripts/final_verify.py",
+      "bytes": 2865,
+      "sha256": "003a5e49413d2793782c3270296bf0e1a8308719249b72dcae4e83ee736d7d9c"
+    },
+    {
+      "path": "scripts/host_checks.py",
+      "bytes": 5307,
+      "sha256": "0c683b4675fd942a9632870fe78c7aa113bbab54f2dd4d5adfa97e8a74b7fed3"
+    },
+    {
+      "path": "scripts/receipts.py",
+      "bytes": 7187,
+      "sha256": "3bc87841c46772b1bcd3abe2fb12fa17145dca2a5d9f87dea13b1b80ff372642"
+    }
+  ]
+}

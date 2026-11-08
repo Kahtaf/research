@@ -1,0 +1,15 @@
+{
+  "failed_primary_fetch": "android.googlesource.com HTTP 503; used AOSP mirror",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/aosp-mirror/platform_system_core/android-6.0.1_r81/init/devices.cpp",
+      "sha256": "b7d423e6c381bcebff645586c0b7c5c645b8863ec2db8276c244bd67b73ba2c9",
+      "bytes": 27057
+    },
+    {
+      "url": "https://raw.githubusercontent.com/aosp-mirror/platform_system_core/android-7.1.2_r39/init/devices.cpp",
+      "sha256": "fb809675946d28860971fb6b8b1eacf5899bf2c4d5d53d7b7225700a48bd2cf6",
+      "bytes": 27329
+    }
+  ]
+}

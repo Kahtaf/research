@@ -1,0 +1,46 @@
+{
+  "/srv/android/lineage24/.repo/manifest.xml": {
+    "sha256": "33d794c99c197c2eb0726ff2cc8c4bcd532e0f3fcd75eaea3fbd10bd53675d25",
+    "bytes": 500
+  },
+  "/srv/android/lineage24/.repo/manifests/default.xml": {
+    "sha256": "9774e8b6ea9dcfa0d128e0e1e89bf8356044796724fcbe4bca3a7f00f417a2ed",
+    "bytes": 124111
+  },
+  "/srv/android/lineage24/.repo/manifests/snippets/lineage.xml": {
+    "sha256": "074cb1a6eb3eaa5d3c8ee59464f383028245837679dffd5395a2a2e34fe0ff0c",
+    "bytes": 25441
+  },
+  "/srv/android/lineage24/.repo/projects/external/chromium-webview/prebuilt/arm64.git/HEAD": {
+    "sha256": "cae8dbefdad3d73f3221a47a0c196497f635a51f4e0fd5812009c893996a007a",
+    "bytes": 41
+  },
+  "/srv/android/lineage24/.repo/projects/external/chromium-webview/prebuilt/arm64.git/config": {
+    "sha256": "ee716b2f2f2a22a21f2cfd6aa12368b537146e0bb09943f8ffb51046cba60a4a",
+    "bytes": 478
+  },
+  "/srv/android/lineage24/external/chromium-webview/Android.bp": {
+    "sha256": "328aa0eb36b002d168039f3e062a805a9e25c584b32b6c27d88430932356bcca",
+    "bytes": 1721
+  },
+  "/srv/android/lineage24/device/asus/p00a/connectivity/src/driver_cmd_p00a.c": {
+    "sha256": "b43ef55923de00f5ce9f087640f5b8b962d86baa2b9d865fcb852e0ae21a16e1",
+    "bytes": 2168
+  },
+  "/srv/android/lineage24/device/asus/p00a/sepolicy/vendor/file_contexts": {
+    "sha256": "f7d5656f54655442056e607a620b3bcd37d8818f1f3b9116bbbb190212241f42",
+    "bytes": 556
+  },
+  "/srv/android/lineage24/device/asus/p00a/prebuilt/Image.gz-dtb": {
+    "sha256": "e9cde06e85e752aec0433ea37fa926c31b4f7a72cd55453762ec6870e5bb5bf1",
+    "bytes": 7716897
+  },
+  "/srv/android/asus-android17/kernel-bpf-fd/arch/arm64/configs/asus_p00a_combined_defconfig": {
+    "sha256": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2",
+    "bytes": 126472
+  },
+  "/srv/android/lineage24/out/.ninja_log": {
+    "sha256": "82127df50ca42fd88a6191adb62b1567faf16a96861a4ec6f2edb0efb0840896",
+    "bytes": 2496275
+  }
+}

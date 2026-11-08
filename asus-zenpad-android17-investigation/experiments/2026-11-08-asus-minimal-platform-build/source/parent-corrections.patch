@@ -1,0 +1,128 @@
+--- a/helper/ram_pid1.c
++++ b/helper/ram_pid1.c
+@@ -15,6 +15,7 @@
+ #include <sys/stat.h>
+ #include <sys/sysmacros.h>
+ #include <sys/time.h>
++#include <sys/syscall.h>
+ #include <sys/utsname.h>
+ #include <time.h>
+ #include <unistd.h>
+@@ -83,8 +84,11 @@
+ {
+     FILE *file = fopen("/proc/interrupts", "re");
+     char line[512], *colon, *end;
++    char controller[32], trigger[16], name[32], extra;
+     unsigned long long count;
+-    int matched = 0, error = 0;
++    unsigned hwirq, seen = 0, rows = 0;
++    uint64_t total = 0;
++    int error = 0;
+ 
+     if (!file)
+         return -1;
+@@ -94,25 +98,37 @@
+         goto out;
+     }
+     while (fgets(line, sizeof(line), file)) {
++        if (++rows > 256 || !strchr(line, '\n')) {
++            error = EOVERFLOW;
++            goto out;
++        }
+         if (!strstr(line, "arch_timer") && !strstr(line, "arch_mem_timer"))
+             continue;
+         colon = strchr(line, ':');
+-        if (!colon || matched) {
++        if (!colon) {
+             error = EPROTO;
+             goto out;
+         }
+         errno = 0;
+         count = strtoull(colon + 1, &end, 10);
+-        if (errno || end == colon + 1 || (*end != ' ' && *end != '\t')) {
++        if (errno || end == colon + 1 ||
++            sscanf(end, " %31s %u %15s %31s %c", controller, &hwirq,
++                   trigger, name, &extra) != 4 ||
++            strcmp(controller, "GIC-0") ||
++            (hwirq != 29 && hwirq != 30) ||
++            strcmp(trigger, "Level") ||
++            (strcmp(name, "arch_timer") && strcmp(name, "arch_mem_timer")) ||
++            (seen & (1U << (hwirq - 29))) ||
++            UINT64_MAX - total < (uint64_t)count) {
+             error = EPROTO;
+             goto out;
+         }
+-        *value = (uint64_t)count;
+-        matched = 1;
++        seen |= 1U << (hwirq - 29);
++        total += (uint64_t)count;
+     }
+     if (ferror(file))
+         error = EIO;
+-    else if (!matched)
++    else if (!seen)
+         error = ENOENT;
+ out:
+     if (fclose(file) && !error)
+@@ -121,6 +137,7 @@
+         errno = error;
+         return -1;
+     }
++    *value = total;
+     return 0;
+ }
+ 
+@@ -165,12 +182,12 @@
+     errno = 0;
+     require(policy == SCHED_OTHER && scheduling.sched_priority == 0 &&
+             nice_value == 0, "normal-priority");
+-    require(sysconf(_SC_NPROCESSORS_ONLN) == 1, "one-online-cpu");
+ 
+     if (mkdir("/proc", 0555) && errno != EEXIST)
+         finish(0, "mkdir-proc", errno);
+     require(mount("proc", "/proc", "proc", MS_NOSUID | MS_NODEV | MS_NOEXEC,
+                   NULL) == 0, "mount-proc");
++    require(sysconf(_SC_NPROCESSORS_ONLN) == 1, "one-online-cpu");
+     require(report("event=compute-begin iterations=2000000") == 0,
+             "compute-begin-write");
+     for (i = 0; i < 2000000U; i++) {
+@@ -194,7 +211,7 @@
+     sigdelset(&wait_mask, SIGALRM);
+     for (cycle = 1; cycle <= 5; cycle++) {
+         require(timer_irqs(&irq_before) == 0, "timer-irqs-before");
+-        require(clock_gettime(CLOCK_MONOTONIC, &before) == 0, "monotonic-before");
++        require(syscall(SYS_clock_gettime, CLOCK_MONOTONIC, &before) == 0, "monotonic-before");
+         require(report("event=timer-before cycle=%u irq=%" PRIu64
+                        " monotonic=%lld.%09ld requested_interval=1s",
+                        cycle, irq_before, (long long)before.tv_sec,
+@@ -206,7 +223,7 @@
+             if (sigsuspend(&wait_mask) != -1 || errno != EINTR)
+                 finish(0, "sigsuspend", errno ? errno : EPROTO);
+         }
+-        require(clock_gettime(CLOCK_MONOTONIC, &after) == 0, "monotonic-after");
++        require(syscall(SYS_clock_gettime, CLOCK_MONOTONIC, &after) == 0, "monotonic-after");
+         require(timer_irqs(&irq_after) == 0, "timer-irqs-after");
+         require(report("event=timer-return cycle=%u signal=SIGALRM irq=%" PRIu64
+                        " irq_before=%" PRIu64 " monotonic=%lld.%09ld",
+--- a/out/.config
++++ b/out/.config
+@@ -465,7 +465,7 @@
+ #
+ # Boot options
+ #
+-CONFIG_CMDLINE="androidboot.selinux=permissive bootopt=64S3,32N2,64N2 build_version=3 console=null maxcpus=1 nr_cpus=1"
++CONFIG_CMDLINE="bootopt=64S3,32N2,64N2 build_version=3 console=null maxcpus=1 nr_cpus=1 printk.devkmsg=on"
+ CONFIG_CMDLINE_FROM_BOOTLOADER=y
+ # CONFIG_CMDLINE_EXTEND is not set
+ # CONFIG_CMDLINE_FORCE is not set
+--- a/kernel/arch/arm64/boot/dts/mediatek/asus-p00a.dts
++++ b/kernel/arch/arm64/boot/dts/mediatek/asus-p00a.dts
+@@ -66,7 +66,7 @@
+ 
+ 	/* chosen */
+ 	chosen {
+-		bootargs = "androidboot.selinux=permissive bootopt=64S3,32N2,64N2 build_version=3 console=null maxcpus=1 nr_cpus=1";
++		bootargs = "bootopt=64S3,32N2,64N2 build_version=3 console=null maxcpus=1 nr_cpus=1 printk.devkmsg=on";
+ 	};
+ 
+ /* sensor standardization */

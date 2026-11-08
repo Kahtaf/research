@@ -1,0 +1,114 @@
+[
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/731631f300090436d7f5df80d50b6275c8c60a93/libc/kernel/uapi/asm-arm64/asm/fcntl.h?format=TEXT",
+    "commit": "731631f300090436d7f5df80d50b6275c8c60a93",
+    "path": "libc/kernel/uapi/asm-arm64/asm/fcntl.h",
+    "sha256": "033e0650290b368ffa97c2f72c1fa670b17462a29cda067bc8cc95423d1e117d",
+    "bytes": 362
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/731631f300090436d7f5df80d50b6275c8c60a93/libc/kernel/uapi/asm-arm64/asm/mman.h?format=TEXT",
+    "commit": "731631f300090436d7f5df80d50b6275c8c60a93",
+    "path": "libc/kernel/uapi/asm-arm64/asm/mman.h",
+    "sha256": "25db699ca36e550bf3be8d7154490499a73e05756003dfad58aa5ce189dfb351",
+    "bytes": 504
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/731631f300090436d7f5df80d50b6275c8c60a93/libc/kernel/uapi/asm-arm64/asm/ioctls.h?format=TEXT",
+    "commit": "731631f300090436d7f5df80d50b6275c8c60a93",
+    "path": "libc/kernel/uapi/asm-arm64/asm/ioctls.h",
+    "sha256": "9d7310d2c2470537319ed69a2eff48a4cd3de0cd75c3882bc98a16e695762d09",
+    "bytes": 205
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/731631f300090436d7f5df80d50b6275c8c60a93/libc/kernel/uapi/asm-arm64/asm/ioctl.h?format=TEXT",
+    "commit": "731631f300090436d7f5df80d50b6275c8c60a93",
+    "path": "libc/kernel/uapi/asm-arm64/asm/ioctl.h",
+    "sha256": "19848c8553370175edf52ae3bff7553f9b61fc4293f8745d762e0a8038e5f66f",
+    "bytes": 204
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/731631f300090436d7f5df80d50b6275c8c60a93/libc/kernel/uapi/asm-arm64/asm/socket.h?format=TEXT",
+    "commit": "731631f300090436d7f5df80d50b6275c8c60a93",
+    "path": "libc/kernel/uapi/asm-arm64/asm/socket.h",
+    "sha256": "074f626d0ec3077e6834f064ab0298c0c082045fdc215423b33cd4bb896cedef",
+    "bytes": 205
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/731631f300090436d7f5df80d50b6275c8c60a93/libc/kernel/uapi/asm-arm64/asm/sockios.h?format=TEXT",
+    "commit": "731631f300090436d7f5df80d50b6275c8c60a93",
+    "path": "libc/kernel/uapi/asm-arm64/asm/sockios.h",
+    "sha256": "cbed046ae4516e915b973ab035e2c9d3d5eed65a65baa74e60ce4cd5e2e3076d",
+    "bytes": 206
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/731631f300090436d7f5df80d50b6275c8c60a93/libc/kernel/uapi/asm-arm64/asm/sigcontext.h?format=TEXT",
+    "commit": "731631f300090436d7f5df80d50b6275c8c60a93",
+    "path": "libc/kernel/uapi/asm-arm64/asm/sigcontext.h",
+    "sha256": "54271bf8bb6cf91a3fa541af36776eeabb74e3ff16b6ea7953e1511849457b81",
+    "bytes": 3514
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/731631f300090436d7f5df80d50b6275c8c60a93/libc/kernel/uapi/asm-arm64/asm/signal.h?format=TEXT",
+    "commit": "731631f300090436d7f5df80d50b6275c8c60a93",
+    "path": "libc/kernel/uapi/asm-arm64/asm/signal.h",
+    "sha256": "5c75f992d45a8c6e548bc5e9e1ecc9f924235de47d9395df7756ed439c971172",
+    "bytes": 337
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/731631f300090436d7f5df80d50b6275c8c60a93/libc/kernel/uapi/asm-arm64/asm/stat.h?format=TEXT",
+    "commit": "731631f300090436d7f5df80d50b6275c8c60a93",
+    "path": "libc/kernel/uapi/asm-arm64/asm/stat.h",
+    "sha256": "fcb111940ca0637abc1d537eeffaf1ac06f2f2e158ea642ef7711784f9871f4b",
+    "bytes": 203
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/731631f300090436d7f5df80d50b6275c8c60a93/libc/kernel/uapi/asm-arm64/asm/posix_types.h?format=TEXT",
+    "commit": "731631f300090436d7f5df80d50b6275c8c60a93",
+    "path": "libc/kernel/uapi/asm-arm64/asm/posix_types.h",
+    "sha256": "54c9c13ed0a1894336d70abb439bcd182a19c04396a05e379f217f0ff5eb132f",
+    "bytes": 405
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/731631f300090436d7f5df80d50b6275c8c60a93/libc/kernel/uapi/asm-arm64/asm/sve_context.h?format=TEXT",
+    "commit": "731631f300090436d7f5df80d50b6275c8c60a93",
+    "path": "libc/kernel/uapi/asm-arm64/asm/sve_context.h",
+    "sha256": "d893ab5cdb06af3c7faf0bf7471a2a148911c0b6a4c6193920e42a63a65ca1fa",
+    "bytes": 1421
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/731631f300090436d7f5df80d50b6275c8c60a93/libc/kernel/uapi/asm-arm64/asm/siginfo.h?format=TEXT",
+    "commit": "731631f300090436d7f5df80d50b6275c8c60a93",
+    "path": "libc/kernel/uapi/asm-arm64/asm/siginfo.h",
+    "sha256": "7fc8a02d1f9ba5b8541b02af9e7b78e396164547cc51bf24e605932e45dcea79",
+    "bytes": 206
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/731631f300090436d7f5df80d50b6275c8c60a93/libc/kernel/uapi/asm-arm64/asm/errno.h?format=TEXT",
+    "commit": "731631f300090436d7f5df80d50b6275c8c60a93",
+    "path": "libc/kernel/uapi/asm-arm64/asm/errno.h",
+    "sha256": "2bb95d7130871db2746add8cf0a6866d826d4da80466624df345744e8ecbac24",
+    "bytes": 204
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/731631f300090436d7f5df80d50b6275c8c60a93/libc/kernel/uapi/asm-generic/signal.h?format=TEXT",
+    "commit": "731631f300090436d7f5df80d50b6275c8c60a93",
+    "path": "libc/kernel/uapi/asm-generic/signal.h",
+    "sha256": "a25959c16fa69fb7923465fd171971ac1eda32ec5243a7edf0b33ff9847f44d9",
+    "bytes": 1685
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/731631f300090436d7f5df80d50b6275c8c60a93/libc/kernel/uapi/asm-generic/signal-defs.h?format=TEXT",
+    "commit": "731631f300090436d7f5df80d50b6275c8c60a93",
+    "path": "libc/kernel/uapi/asm-generic/signal-defs.h",
+    "sha256": "7929b870ba2469aa328eecbbbdff092b8505bf92aa060edf25404a80b8a9ac5f",
+    "bytes": 1250
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/731631f300090436d7f5df80d50b6275c8c60a93/libc/kernel/uapi/asm-generic/siginfo.h?format=TEXT",
+    "commit": "731631f300090436d7f5df80d50b6275c8c60a93",
+    "path": "libc/kernel/uapi/asm-generic/siginfo.h",
+    "sha256": "f9b0742910405ca76f9f4193431e33b709b0d9d4a910fa130c05e636f7eaaa48",
+    "bytes": 5976
+  }
+]

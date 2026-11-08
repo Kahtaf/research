@@ -1,0 +1,372 @@
+--- a/include/linux/asus_retained_trace.h
++++ b/include/linux/asus_retained_trace.h
+@@ -8,9 +8,21 @@
+ void __init asus_retained_trace_early_init(void);
+ void __init asus_retained_trace_init(void);
+ void asus_retained_trace_write(const char *text, unsigned int len);
++u64 asus_capture_mono_enter(u32 seq, unsigned long caller);
++void asus_capture_mono_seq(u64 token, u32 seq, unsigned int stage);
++u64 asus_capture_counter_enter(unsigned long reader);
++u64 asus_capture_event_enter(unsigned long callback, unsigned long pc,
++                            unsigned int pc_valid, unsigned int access);
++void asus_capture_exit(u64 token, u64 value, u32 seq);
+ #else
+ static inline void asus_retained_trace_early_init(void) { }
+ static inline void asus_retained_trace_init(void) { }
++static inline u64 asus_capture_mono_enter(u32 seq, unsigned long caller) { return 0; }
++static inline void asus_capture_mono_seq(u64 token, u32 seq, unsigned int stage) { }
++static inline u64 asus_capture_counter_enter(unsigned long reader) { return 0; }
++static inline u64 asus_capture_event_enter(unsigned long callback, unsigned long pc,
++                                         unsigned int pc_valid, unsigned int access) { return 0; }
++static inline void asus_capture_exit(u64 token, u64 value, u32 seq) { }
+ static inline void asus_retained_trace_write(const char *text, unsigned int len) { }
+ #endif
+ static inline void asus_retained_trace_mark(const char *text)
+--- a/arch/arm64/kernel/asus_retained_trace.c
++++ b/arch/arm64/kernel/asus_retained_trace.c
+@@ -36,6 +36,253 @@
+ static bool early_committed __initdata;
+ static struct trace_header *trace;
+ static DEFINE_RAW_SPINLOCK(trace_lock);
++
++/* Fixed ASCII checkpoints inside the already admitted console. No clock reads. */
++#include <linux/interrupt.h>
++#include <linux/sched.h>
++#include <linux/smp.h>
++
++#define CAP_ROWS 15
++#define CAP_ROW_SIZE 384
++#define CAP_HEADER_SIZE 192
++#define CAP_SIZE (CAP_HEADER_SIZE + CAP_ROWS * CAP_ROW_SIZE)
++#define CAP_MONO 0
++#define CAP_COUNTER 1
++#define CAP_EVENT 2
++#define CAP_FIELDS 17
++#define CAP_FAULT_OFFSET (128 + 9)
++
++/* Field indices are the on-console ABI, not an independently appended log. */
++enum cap_field {
++ C_UPDATE, C_SLOT, C_KIND, C_ENTER, C_EXIT, C_ENTRIES, C_COMPLETE,
++ C_PARENT, C_SEQ_ENTER, C_SEQ_LAST, C_STAGE, C_RAW, C_FN, C_PC,
++ C_AUX, C_CPU_ENTER, C_CPU_EXIT
++};
++struct cap_state { u64 f[CAP_FIELDS]; u64 active; };
++static struct cap_state cap_rows[CAP_ROWS];
++static char *cap_area, *cap_storage;
++static u64 cap_serial;
++
++static void cap_hex(char *p, u64 v, unsigned int digits)
++{
++ static const char hex[] = "0123456789abcdef";
++ while (digits) { p[--digits] = hex[v & 15]; v >>= 4; }
++}
++
++/* The latch has its own cache line and only ever transitions 0 -> 1. A loss
++ * anywhere makes any apparent unfinished operation UNKNOWN. No lock recursion.
++ */
++static void cap_fault(void)
++{
++ char *area = READ_ONCE(cap_area);
++ if (area) {
++  WRITE_ONCE(area[CAP_FAULT_OFFSET], '1');
++  __clean_dcache_area_poc(area + 128, 64);
++ }
++}
++
++static void cap_publish(unsigned int row)
++{
++ struct cap_state *s = &cap_rows[row];
++ char line[CAP_ROW_SIZE], *dest = cap_storage + CAP_HEADER_SIZE + row * CAP_ROW_SIZE;
++ unsigned int i;
++ memset(line, ' ', sizeof(line));
++ memcpy(line, "!A49C ", 6);
++ cap_hex(line + 6, row, 2);
++ ++s->f[C_UPDATE];
++ for (i = 0; i < CAP_FIELDS; ++i)
++  cap_hex(line + 9 + i * 17, s->f[i], 16);
++ cap_hex(line + 352, s->f[C_UPDATE], 16);
++ line[CAP_ROW_SIZE - 1] = '\n';
++ /* Invalidate to PoC BEFORE modifying payload; publish valid only after the
++  * complete payload and matching update generations have reached PoC.
++  */
++ WRITE_ONCE(dest[0], '!');
++ __clean_dcache_area_poc(dest, 64);
++ memcpy(dest, line, sizeof(line));
++ __clean_dcache_area_poc(dest, sizeof(line));
++ WRITE_ONCE(dest[0], 'V');
++ __clean_dcache_area_poc(dest, 64);
++}
++
++static void __init cap_init(struct trace_header *h)
++{
++ unsigned long flags;
++ char *dest;
++ unsigned int row;
++ u32 pos;
++ BUILD_BUG_ON(CAP_SIZE > 8192);
++ BUILD_BUG_ON(CAP_SIZE % 64);
++ if (!raw_spin_trylock_irqsave(&trace_lock, flags))
++  return;
++ pos = ALIGN(h->log_size, 64);
++ if (pos > h->sz_console || CAP_SIZE > h->sz_console - pos)
++  goto out;
++ dest = (char *)h + h->off_console + pos;
++ /* Console-relative alignment need not be physical cache-line alignment.
++  * The admitted OEM console offset is required to be 64-byte aligned here.
++  */
++ if ((unsigned long)dest & 63)
++  goto out;
++ memset((char *)h + h->off_console + h->log_size, '\n', pos - h->log_size);
++ memset(dest, ' ', CAP_SIZE);
++ memcpy(dest, ASUS_CAPTURE_TAG, sizeof(ASUS_CAPTURE_TAG) - 1);
++ dest[127] = '\n';
++ memcpy(dest + 128, "A49FAULT 0", 10);
++ dest[191] = '\n';
++ /* Private during initialization: IRQs remain masked and no users exist. */
++ cap_storage = dest;
++ for (row = 0; row < CAP_ROWS; ++row) {
++  cap_rows[row].f[C_SLOT] = row / 3;
++  cap_rows[row].f[C_KIND] = row % 3;
++  cap_publish(row);
++ }
++ __clean_dcache_area_poc((char *)h + h->off_console + h->log_size,
++                         pos + CAP_SIZE - h->log_size);
++ WRITE_ONCE(h->log_size, pos + CAP_SIZE);
++ __clean_dcache_area_poc(h, sizeof(*h));
++ smp_store_release(&cap_area, dest);
++out:
++ raw_spin_unlock_irqrestore(&trace_lock, flags);
++}
++
++static bool cap_lock(unsigned long *flags)
++{
++ if (!smp_load_acquire(&cap_area))
++  return false;
++ if (in_nmi() || !raw_spin_trylock_irqsave(&trace_lock, *flags)) {
++  cap_fault();
++  return false;
++ }
++ return true;
++}
++
++static u64 cap_enter(unsigned int slot, unsigned int kind, u64 parent,
++                     u32 seq, u64 fn, u64 pc, u64 aux)
++{
++ struct cap_state *s = &cap_rows[slot * 3 + kind];
++ u64 token;
++ if (s->active || cap_serial == (U64_MAX >> 8)) {
++  cap_fault();
++  return 0;
++ }
++ token = (++cap_serial << 8) | (kind << 4) | slot;
++ s->active = token;
++ s->f[C_ENTER] = token;
++ ++s->f[C_ENTRIES];
++ s->f[C_PARENT] = parent;
++ s->f[C_SEQ_ENTER] = seq;
++ s->f[C_SEQ_LAST] = seq;
++ s->f[C_STAGE] = 1;
++ /* Keep C_RAW as last completed raw sample; C_ENTER != C_EXIT means it
++  * belongs to the previous completed counter operation, never this entry.
++  */
++ s->f[C_FN] = fn;
++ s->f[C_PC] = pc;
++ s->f[C_AUX] = aux;
++ s->f[C_CPU_ENTER] = raw_smp_processor_id();
++ cap_publish(slot * 3 + kind);
++ return token;
++}
++
++static struct cap_state *cap_match(u64 token, unsigned int *row)
++{
++ unsigned int slot = token & 15, kind = (token >> 4) & 15;
++ if (slot >= 5 || kind >= 3) { cap_fault(); return NULL; }
++ *row = slot * 3 + kind;
++ if (cap_rows[*row].active != token) { cap_fault(); return NULL; }
++ return &cap_rows[*row];
++}
++
++u64 asus_capture_mono_enter(u32 seq, unsigned long caller)
++{
++ unsigned long flags;
++ u64 token;
++ if (in_interrupt() || current->pid != 1 || !cap_lock(&flags))
++  return 0;
++ token = cap_enter(0, CAP_MONO, 0, seq, caller, 0, 0);
++ raw_spin_unlock_irqrestore(&trace_lock, flags);
++ return token;
++}
++
++void asus_capture_mono_seq(u64 token, u32 seq, unsigned int stage)
++{
++ unsigned long flags;
++ unsigned int row;
++ struct cap_state *s;
++ if (!token || !cap_lock(&flags))
++  return;
++ s = cap_match(token, &row);
++ if (s) { s->f[C_SEQ_LAST] = seq; s->f[C_STAGE] = stage; cap_publish(row); }
++ raw_spin_unlock_irqrestore(&trace_lock, flags);
++}
++
++void asus_capture_exit(u64 token, u64 value, u32 seq)
++{
++ unsigned long flags;
++ unsigned int row;
++ struct cap_state *s;
++ if (!token || !cap_lock(&flags))
++  return;
++ s = cap_match(token, &row);
++ if (s) {
++  s->f[C_EXIT] = token;
++  ++s->f[C_COMPLETE];
++  s->f[C_RAW] = value;
++  s->f[C_SEQ_LAST] = seq;
++  s->f[C_STAGE] = 4;
++  s->f[C_CPU_EXIT] = raw_smp_processor_id();
++  s->active = 0;
++  cap_publish(row);
++ }
++ raw_spin_unlock_irqrestore(&trace_lock, flags);
++}
++
++u64 asus_capture_counter_enter(unsigned long reader)
++{
++ unsigned long flags;
++ unsigned int slot;
++ u64 parent, token = 0;
++ if (!smp_load_acquire(&cap_area))
++  return 0;
++ if (in_irq()) {
++  slot = raw_smp_processor_id();
++  if (slot >= 4) { cap_fault(); return 0; }
++  ++slot;
++ } else if (!in_interrupt() && current->pid == 1) {
++  slot = 0;
++ } else {
++  return 0;
++ }
++ if (!READ_ONCE(cap_rows[slot * 3 + (slot ? CAP_EVENT : CAP_MONO)].active))
++  return 0;
++ if (!cap_lock(&flags))
++  return 0;
++ parent = cap_rows[slot * 3 + (slot ? CAP_EVENT : CAP_MONO)].active;
++ if (parent)
++  token = cap_enter(slot, CAP_COUNTER, parent, 0, reader, 0, 0);
++ raw_spin_unlock_irqrestore(&trace_lock, flags);
++ return token;
++}
++
++u64 asus_capture_event_enter(unsigned long callback, unsigned long pc,
++                            unsigned int pc_valid, unsigned int access)
++{
++ unsigned long flags;
++ unsigned int cpu;
++ u64 token;
++ if (!smp_load_acquire(&cap_area))
++  return 0;
++ cpu = raw_smp_processor_id();
++ if (!in_irq() || cpu >= 4) { cap_fault(); return 0; }
++ if (!cap_lock(&flags))
++  return 0;
++ token = cap_enter(cpu + 1, CAP_EVENT, 0, 0, callback, pc,
++                   ((u64)pc_valid << 32) | access);
++ raw_spin_unlock_irqrestore(&trace_lock, flags);
++ return token;
++}
++
+ 
+ static bool __init trace_overlaps(u64 base, u64 size)
+ {
+@@ -243,6 +490,7 @@
+ 		WRITE_ONCE(trace, NULL);
+ 	} else {
+ 		asus_retained_trace_mark("ASUS-e9-retained-v2 01 paging_init returned; trace ready");
++		cap_init(h);
+ 	}
+ unmap:
+ 	if (early)
+--- a/arch/arm64/kernel/asus_entry_tag.h
++++ b/arch/arm64/kernel/asus_entry_tag.h
+@@ -1,2 +1,4 @@
+-#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=23cdb057-295c-4b42-9ade-a4324162ad02 stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=a49b87313d35d803e3ffaa2be2c60a3c678ccbc46efd5831651d2bd44ae4ee03 cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
++#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=fef31ed4-f62b-4f2a-8cc8-8f5a6c96dbdb stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=97b7e1199d607f852bf52ff7766e8aa079fee92986cd3d473b765a45adbf45fb cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
+ #define ASUS_ENTRY_TAG_LEN 340
++
++#define ASUS_CAPTURE_TAG "A49CAP1 uuid=fef31ed4-f62b-4f2a-8cc8-8f5a6c96dbdb rows=15 row=384 fields=17 header=192"
+--- a/kernel/time/timekeeping.c
++++ b/kernel/time/timekeeping.c
+@@ -1,3 +1,4 @@
++#include <linux/asus_retained_trace.h>
+ /*
+  *  linux/kernel/time/timekeeping.c
+  *
+@@ -867,20 +868,27 @@
+ 	struct timespec64 tomono;
+ 	s64 nsec;
+ 	unsigned int seq;
++	u64 capture_token;
+ 
+ 	WARN_ON(timekeeping_suspended);
++	capture_token = asus_capture_mono_enter(READ_ONCE(tk_core.seq.sequence),
++			(unsigned long)__builtin_return_address(0));
+ 
+ 	do {
++		asus_capture_mono_seq(capture_token, READ_ONCE(tk_core.seq.sequence), 1);
+ 		seq = read_seqcount_begin(&tk_core.seq);
++		asus_capture_mono_seq(capture_token, seq, 2);
+ 		ts->tv_sec = tk->xtime_sec;
+ 		nsec = timekeeping_get_ns(&tk->tkr_mono);
+ 		tomono = tk->wall_to_monotonic;
+ 
++		asus_capture_mono_seq(capture_token, READ_ONCE(tk_core.seq.sequence), 3);
+ 	} while (read_seqcount_retry(&tk_core.seq, seq));
+ 
+ 	ts->tv_sec += tomono.tv_sec;
+ 	ts->tv_nsec = 0;
+ 	timespec64_add_ns(ts, nsec + tomono.tv_nsec);
++	asus_capture_exit(capture_token, 0, READ_ONCE(tk_core.seq.sequence));
+ }
+ EXPORT_SYMBOL_GPL(ktime_get_ts64);
+ 
+--- a/drivers/clocksource/arm_arch_timer.c
++++ b/drivers/clocksource/arm_arch_timer.c
+@@ -12,6 +12,9 @@
+ #define pr_fmt(fmt)	"arm_arch_timer: " fmt
+ 
+ #include <linux/init.h>
++#include <linux/asus_retained_trace.h>
++#include <asm/irq_regs.h>
++#include <asm/ptrace.h>
+ #include <linux/kernel.h>
+ #include <linux/device.h>
+ #include <linux/smp.h>
+@@ -321,7 +324,14 @@
+ 	if (ctrl & ARCH_TIMER_CTRL_IT_STAT) {
+ 		ctrl |= ARCH_TIMER_CTRL_IT_MASK;
+ 		arch_timer_reg_write(access, ARCH_TIMER_REG_CTRL, ctrl, evt);
+-		evt->event_handler(evt);
++		{
++			void (*handler)(struct clock_event_device *) = evt->event_handler;
++			struct pt_regs *regs = get_irq_regs();
++			u64 capture_token = asus_capture_event_enter((unsigned long)handler,
++				regs ? instruction_pointer(regs) : 0, !!regs, access);
++			handler(evt);
++			asus_capture_exit(capture_token, 0, 0);
++		}
+ 		return IRQ_HANDLED;
+ 	}
+ 
+@@ -696,7 +706,11 @@
+ 
+ static cycle_t arch_counter_read(struct clocksource *cs)
+ {
+-	return arch_timer_read_counter();
++	u64 (*reader)(void) = arch_timer_read_counter;
++	u64 capture_token = asus_capture_counter_enter((unsigned long)reader);
++	cycle_t value = reader();
++	asus_capture_exit(capture_token, value, 0);
++	return value;
+ }
+ 
+ static cycle_t arch_counter_read_cc(const struct cyclecounter *cc)

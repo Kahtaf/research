@@ -1,0 +1,11 @@
+{
+  "status": "PASS_BEFORE_BUILD_ACTUAL_BASE_ROUTE",
+  "actual_base": "/srv/android/asus-arm64-delay-loop-observation-20261108-f3da846c",
+  "base_image": "99daf8064b9818be1e822f41c83d626b79abd11daaf3742ddfdc10159d8e74e1",
+  "config": "708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1",
+  "direct_CNTVCT_sites": 3,
+  "virtual_OOL_calls": 3,
+  "physical_sites": 0,
+  "key_runtime_activation": "UNESTABLISHED; no historical activation inference",
+  "scope": "actual base linked __delay plus accessor source; no full audit"
+}

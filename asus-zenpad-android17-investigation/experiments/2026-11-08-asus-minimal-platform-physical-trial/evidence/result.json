@@ -1,0 +1,14 @@
+{
+  "status": "EXPERIMENT_3_OPEN",
+  "physical_entry_and_PID1": true,
+  "actual_normal_scheduler_record": true,
+  "compute_begin_observed": true,
+  "compute_completion_observed": false,
+  "timer_records_observed": false,
+  "new_stock_return_verified": true,
+  "new_stock_boot_id": "df901361-e9b9-4305-af24-292756b66e1e",
+  "cause": "UNKNOWN",
+  "absence_does_not_prove_nonexecution": true,
+  "original_decoder_refusal": "Known additional OEM Not Clear framing before entry; original unchanged. Independently extracted fresh exact markers remain partial. No pass possible from these records.",
+  "automatic_follow_on": false
+}

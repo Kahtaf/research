@@ -1,0 +1,38 @@
+{
+  "original_suite": {
+    "tests": 32,
+    "failures": 0,
+    "errors": 0
+  },
+  "independent_suite": {
+    "tests": 15,
+    "failures": 0,
+    "errors": 0
+  },
+  "peak_parent_rss_bytes": 694452224,
+  "peak_child_rss_bytes": 26705920,
+  "conservative_parent_plus_two_children_peak_bytes": 747864064,
+  "limits": {
+    "address_space": [
+      9223372036854775807,
+      9223372036854775807
+    ],
+    "data": [
+      9223372036854775807,
+      9223372036854775807
+    ],
+    "rss": [
+      9223372036854775807,
+      9223372036854775807
+    ],
+    "rejected_limit_settings": {
+      "RLIMIT_AS": "ValueError",
+      "RLIMIT_DATA": "ValueError",
+      "RLIMIT_RSS": "ValueError"
+    },
+    "cpu_seconds": 60,
+    "parallel_workers": 0,
+    "external_operations": "blocked",
+    "child_targets": "guarded fake shell and PLAN_ONLY only"
+  }
+}

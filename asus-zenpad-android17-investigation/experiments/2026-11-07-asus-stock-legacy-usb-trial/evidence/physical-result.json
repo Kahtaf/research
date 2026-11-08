@@ -1,0 +1,22 @@
+{
+  "outcome": "stock_legacy_RAM_USB_report_and_verified_Android_return",
+  "normal_android_return_proven": true,
+  "boot_id": "2c2cad13-96f1-4b99-b3a9-af1e9d88a62a",
+  "candidate_p10_sha256": "80270c24e310b5dd2a8e1e9e21b35a2f3d39c87dc2db25271d97b7d85da733eb",
+  "usb_descriptor_positive": true,
+  "report": {
+    "run_id": "9342cbf1-3bf0-44d4-b655-a1ca30146a99",
+    "pid1": "1",
+    "sysname": "Linux",
+    "release": "3.18.35",
+    "version": "#1 SMP PREEMPT Thu Aug 9 12:33:25 CST 2018",
+    "machine": "aarch64",
+    "status": "pid1_ram_report_ready"
+  },
+  "readonly_media_verified": true,
+  "readonly_evidence": "host-readonly-properties.json",
+  "host_observer_field_correction": "diskutil uses WritableMedia/WritableVolume=false on this Mac; original observer only recognized MediaReadOnly/VolumeReadOnly and falsely recorded false. Actual fresh properties retained separately; no rerun.",
+  "kernel_changed": false,
+  "normal_OS_partition_writes": false,
+  "does_not_establish_linux49_boot": true
+}

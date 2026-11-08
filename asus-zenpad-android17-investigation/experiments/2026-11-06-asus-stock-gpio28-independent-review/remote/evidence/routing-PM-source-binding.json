@@ -1,0 +1,6 @@
+{
+  "path": "/srv/android/asus-stock-gpio28-review-20261106-r1/kernel/sound/soc/mediatek/mt_soc_audio_8163_amzn/mt_soc_pcm_routing.c",
+  "sha256": "353a93308ec6e0c606fb32c2b28f2ca72186f71407e3c54a1db31a753194a327",
+  "baseline_only": true,
+  "no_patch_read": true
+}

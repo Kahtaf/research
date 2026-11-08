@@ -1,0 +1,585 @@
+--- /dev/null
++++ b/device/asus/p00a/audio/Android.bp
+@@ -0,0 +1,30 @@
++// SPDX-License-Identifier: Apache-2.0
++cc_library_shared {
++    name: "audio.primary.mt8163",
++    vendor: true,
++    relative_install_path: "hw",
++    compile_multilib: "64",
++    srcs: ["src/audio_hw.c", "src/transport.c", "src/routes.c"],
++    header_libs: ["libhardware_headers", "libaudio_system_headers"],
++    shared_libs: ["libtinyalsav2"],
++    cflags: ["-Wall", "-Wextra", "-Werror"],
++    stl: "none",
++}
++prebuilt_etc {
++    name: "p00a_audio_policy_configuration",
++    src: "staging/config/audio_policy_configuration.xml",
++    filename: "audio_policy_configuration.xml",
++    vendor: true,
++}
++prebuilt_etc {
++    name: "p00a_audio_policy_volumes",
++    src: "staging/config/audio_policy_volumes.xml",
++    filename: "audio_policy_volumes.xml",
++    vendor: true,
++}
++prebuilt_etc {
++    name: "p00a_audio_effects",
++    src: "staging/config/audio_effects.xml",
++    filename: "audio_effects.xml",
++    vendor: true,
++}
+--- /dev/null
++++ b/device/asus/p00a/audio/src/audio_hw.c
+@@ -0,0 +1,223 @@
++/* SPDX-License-Identifier: Apache-2.0 */
++#include <hardware/audio.h>
++#include <errno.h>
++#include <pthread.h>
++#include <stdint.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++#include "transport.h"
++
++struct device;
++/* Both C stream types start with audio_stream. Keep transport state at the
++ * same offset by embedding their union, rather than casting unequal layouts. */
++struct stream {
++    union { struct audio_stream_out out; struct audio_stream_in in; } api;
++    struct device *dev;
++    struct p00a_stream io;
++};
++struct device {
++    struct audio_hw_device api;
++    pthread_mutex_t lock;
++    struct stream *out, *in;
++    bool mic_muted, fault;
++};
++static struct stream *stream_of(const struct audio_stream *s) { return (struct stream *)s; }
++static audio_channel_mask_t channels(const struct audio_stream *s) {
++    return stream_of(s)->io.input ? AUDIO_CHANNEL_IN_MONO : AUDIO_CHANNEL_OUT_STEREO;
++}
++static uint32_t rate(const struct audio_stream *s) { (void)s; return P00A_RATE; }
++static int set_rate(struct audio_stream *s, uint32_t r) { (void)s; return r == P00A_RATE ? 0 : -EINVAL; }
++static size_t buffer_size(const struct audio_stream *s) { return P00A_PERIOD * (stream_of(s)->io.input ? 2u : 4u); }
++static audio_format_t format(const struct audio_stream *s) { (void)s; return AUDIO_FORMAT_PCM_16_BIT; }
++static int set_format(struct audio_stream *s, audio_format_t f) { (void)s; return f == AUDIO_FORMAT_PCM_16_BIT ? 0 : -EINVAL; }
++static int standby(struct audio_stream *api) {
++    struct stream *s = stream_of(api);
++    pthread_mutex_lock(&s->dev->lock);
++    int r = p00a_standby(&s->io);
++    s->dev->fault |= s->io.poisoned;
++    pthread_mutex_unlock(&s->dev->lock);
++    return r;
++}
++static int stream_dump(const struct audio_stream *api, int fd) {
++    struct stream *s = stream_of(api);
++    pthread_mutex_lock(&s->dev->lock);
++    int r = dprintf(fd, "P00A input=%d qualified=%d active=%d fault=%d\n",
++        s->io.input, s->io.route->qualified, s->io.pcm != NULL, s->dev->fault);
++    pthread_mutex_unlock(&s->dev->lock);
++    return r < 0 ? -errno : 0;
++}
++static audio_devices_t get_device(const struct audio_stream *s) {
++    return stream_of(s)->io.input ? AUDIO_DEVICE_IN_BUILTIN_MIC : AUDIO_DEVICE_OUT_SPEAKER;
++}
++static int set_device(struct audio_stream *s, audio_devices_t d) { return d == get_device(s) ? 0 : -ENOSYS; }
++static int stream_parameters(struct audio_stream *s, const char *kv) {
++    if (!kv) return -EINVAL;
++    if (!*kv) return 0;
++    /* C HAL 2.0 uses routing parameters. Only the single configured endpoint
++     * is accepted; no disconnect/unknown combination is silently discarded. */
++    const char key[] = "routing=";
++    if (!strncmp(kv, key, sizeof(key)-1)) {
++        char *end; errno = 0;
++        unsigned long v = strtoul(kv + sizeof(key)-1, &end, 10);
++        if (end == kv + sizeof(key)-1 || *end || errno || v > UINT32_MAX) return -EINVAL;
++        return set_device(s, (audio_devices_t)v);
++    }
++    return -ENOSYS;
++}
++static char *stream_get_parameters(const struct audio_stream *s, const char *keys) {
++    (void)s; (void)keys; return strdup("");
++}
++static int effect(const struct audio_stream *s, effect_handle_t e) { (void)s; (void)e; return -ENOSYS; }
++static struct audio_stream common_api(void) {
++    return (struct audio_stream){ .get_sample_rate=rate, .set_sample_rate=set_rate,
++        .get_buffer_size=buffer_size, .get_channels=channels, .get_format=format,
++        .set_format=set_format, .standby=standby, .dump=stream_dump,
++        .get_device=get_device, .set_device=set_device, .set_parameters=stream_parameters,
++        .get_parameters=stream_get_parameters, .add_audio_effect=effect, .remove_audio_effect=effect };
++}
++static uint32_t latency(const struct audio_stream_out *s) {
++    (void)s; return P00A_PERIOD * P00A_PERIODS * 1000u / P00A_RATE;
++}
++static int volume(struct audio_stream_out *s, float l, float r) { (void)s; (void)l; (void)r; return -ENOSYS; }
++static int gain(struct audio_stream_in *s, float g) { (void)s; (void)g; return -ENOSYS; }
++static ssize_t transfer(struct stream *s, void *data, size_t n) {
++    pthread_mutex_lock(&s->dev->lock);
++    ssize_t r;
++    if (s->dev->fault) r = -EIO;
++    else if (s->io.input && s->dev->mic_muted) r = -EACCES;
++    else r = p00a_transfer(&s->io, data, n);
++    s->dev->fault |= s->io.poisoned;
++    pthread_mutex_unlock(&s->dev->lock);
++    return r;
++}
++static ssize_t write_pcm(struct audio_stream_out *s, const void *b, size_t n) { return transfer((struct stream *)s, (void *)b, n); }
++static ssize_t read_pcm(struct audio_stream_in *s, void *b, size_t n) { return transfer((struct stream *)s, b, n); }
++static int render_position(const struct audio_stream_out *s, uint32_t *n) { (void)s; (void)n; return -ENOSYS; }
++static int timestamp(const struct audio_stream_out *s, int64_t *n) { (void)s; (void)n; return -ENOSYS; }
++static int presentation(const struct audio_stream_out *s, uint64_t *n, struct timespec *t) { (void)s; (void)n; (void)t; return -ENOSYS; }
++/* API has no error return for lost frames. We have no kernel loss counter;
++ * zero means none counted by this implementation, never a no-overrun claim. */
++static uint32_t lost(struct audio_stream_in *s) { (void)s; return 0; }
++static int check_config(struct audio_config *c, bool input) {
++    if (!c) return -EINVAL;
++    const audio_channel_mask_t mask = input ? AUDIO_CHANNEL_IN_MONO : AUDIO_CHANNEL_OUT_STEREO;
++    bool bad = (c->sample_rate && c->sample_rate != P00A_RATE) ||
++        (c->format != AUDIO_FORMAT_DEFAULT && c->format != AUDIO_FORMAT_PCM_16_BIT) ||
++        (c->channel_mask != AUDIO_CHANNEL_NONE && c->channel_mask != mask);
++    c->sample_rate=P00A_RATE; c->format=AUDIO_FORMAT_PCM_16_BIT; c->channel_mask=mask;
++    return bad ? -EINVAL : 0;
++}
++static int open_stream(struct device *d, struct audio_config *c, bool input, struct stream **result) {
++    *result=NULL;
++    int r=check_config(c,input);
++    if (r) return r;
++    const struct p00a_route *route = input ? &p00a_microphone : &p00a_speaker;
++    if (!route->qualified) return -ENODEV;
++    pthread_mutex_lock(&d->lock);
++    struct stream **slot=input ? &d->in : &d->out;
++    if (d->fault) r=-EIO;
++    else if (*slot || d->in || d->out) r=-EBUSY; /* duplex is not qualified */
++    else {
++        struct stream *s=calloc(1,sizeof(*s));
++        if (!s) r=-ENOMEM;
++        else {
++            s->dev=d; s->io.input=input; s->io.route=route;
++            if (input) s->api.in=(struct audio_stream_in){.common=common_api(),.set_gain=gain,.read=read_pcm,.get_input_frames_lost=lost};
++            else s->api.out=(struct audio_stream_out){.common=common_api(),.get_latency=latency,.set_volume=volume,
++                .write=write_pcm,.get_render_position=render_position,.get_next_write_timestamp=timestamp,.get_presentation_position=presentation};
++            *slot=s; *result=s;
++        }
++    }
++    pthread_mutex_unlock(&d->lock);
++    return r;
++}
++static int open_out(struct audio_hw_device *api, audio_io_handle_t h, audio_devices_t devices,
++    audio_output_flags_t flags, struct audio_config *c, struct audio_stream_out **out, const char *address) {
++    (void)h;
++    if (!out) return -EINVAL;
++    *out=NULL;
++    if (devices != AUDIO_DEVICE_OUT_SPEAKER || (flags & ~AUDIO_OUTPUT_FLAG_PRIMARY) || (address && *address)) return -EINVAL;
++    struct stream *s;
++    int r=open_stream((struct device *)api,c,false,&s);
++    if (!r) *out=&s->api.out;
++    return r;
++}
++static int open_in(struct audio_hw_device *api, audio_io_handle_t h, audio_devices_t devices,
++    struct audio_config *c, struct audio_stream_in **in, audio_input_flags_t flags, const char *address, audio_source_t source) {
++    (void)h;
++    if (!in) return -EINVAL;
++    *in=NULL;
++    if (devices != AUDIO_DEVICE_IN_BUILTIN_MIC || flags != AUDIO_INPUT_FLAG_NONE || (address && *address) ||
++        (source != AUDIO_SOURCE_DEFAULT && source != AUDIO_SOURCE_MIC)) return -EINVAL;
++    struct stream *s;
++    int r=open_stream((struct device *)api,c,true,&s);
++    if (!r) *in=&s->api.in;
++    return r;
++}
++static void close_stream(struct device *d, struct stream *s) {
++    if (!s) return;
++    pthread_mutex_lock(&d->lock);
++    p00a_standby(&s->io); d->fault |= s->io.poisoned;
++    if (s->io.input) d->in=NULL; else d->out=NULL;
++    free(s);
++    pthread_mutex_unlock(&d->lock);
++}
++static void close_out(struct audio_hw_device *d, struct audio_stream_out *s) { close_stream((struct device *)d,(struct stream *)s); }
++static void close_in(struct audio_hw_device *d, struct audio_stream_in *s) { close_stream((struct device *)d,(struct stream *)s); }
++static int init_check(const struct audio_hw_device *d) {
++    (void)d; return p00a_speaker.qualified && p00a_microphone.qualified ? 0 : -ENODEV;
++}
++static int device_volume(struct audio_hw_device *d, float v) { (void)d; (void)v; return -ENOSYS; }
++static int mode(struct audio_hw_device *d, audio_mode_t m) { (void)d; return m == AUDIO_MODE_NORMAL ? 0 : -ENOSYS; }
++static int mute(struct audio_hw_device *api, bool value) {
++    struct device *d=(struct device *)api;
++    pthread_mutex_lock(&d->lock);
++    d->mic_muted=value;
++    int r=0;
++    if (value && d->in) { r=p00a_standby(&d->in->io); d->fault |= d->in->io.poisoned; }
++    pthread_mutex_unlock(&d->lock);
++    return r;
++}
++static int get_mute(const struct audio_hw_device *api, bool *value) {
++    if (!value) return -EINVAL;
++    struct device *d=(struct device *)api;
++    pthread_mutex_lock(&d->lock); *value=d->mic_muted; pthread_mutex_unlock(&d->lock); return 0;
++}
++static int device_parameters(struct audio_hw_device *d, const char *kv) { (void)d; return !kv ? -EINVAL : *kv ? -ENOSYS : 0; }
++static char *device_get_parameters(const struct audio_hw_device *d, const char *keys) { (void)d; (void)keys; return strdup(""); }
++static size_t input_size(const struct audio_hw_device *d, const struct audio_config *c) {
++    (void)d; if (!c) return 0; struct audio_config copy=*c;
++    return check_config(&copy,true) ? 0 : P00A_PERIOD*2u;
++}
++static int device_dump(const struct audio_hw_device *d, int fd) {
++    (void)d; return dprintf(fd,"P00A source HAL API2.0: speaker/mic activation gated; no hardware qualification\n") < 0 ? -errno : 0;
++}
++static int close_device(struct hw_device_t *api) {
++    struct device *d=(struct device *)api;
++    pthread_mutex_lock(&d->lock);
++    if (d->in || d->out) { pthread_mutex_unlock(&d->lock); return -EBUSY; }
++    pthread_mutex_unlock(&d->lock); pthread_mutex_destroy(&d->lock); free(d); return 0;
++}
++static int module_open(const struct hw_module_t *module, const char *name, struct hw_device_t **out) {
++    if (!out) return -EINVAL;
++    *out=NULL;
++    if (!name || strcmp(name,AUDIO_HARDWARE_INTERFACE)) return -EINVAL;
++    struct device *d=calloc(1,sizeof(*d));
++    if (!d) return -ENOMEM;
++    int r=pthread_mutex_init(&d->lock,NULL);
++    if (r) { free(d); return -r; }
++    d->api=(struct audio_hw_device){
++        .common={.tag=HARDWARE_DEVICE_TAG,.version=AUDIO_DEVICE_API_VERSION_2_0,.module=(struct hw_module_t *)module,.close=close_device},
++        .init_check=init_check,.set_voice_volume=device_volume,.set_master_volume=device_volume,
++        .set_mode=mode,.set_mic_mute=mute,.get_mic_mute=get_mute,.set_parameters=device_parameters,
++        .get_parameters=device_get_parameters,.get_input_buffer_size=input_size,
++        .open_output_stream=open_out,.close_output_stream=close_out,.open_input_stream=open_in,
++        .close_input_stream=close_in,.dump=device_dump};
++    *out=&d->api.common; return 0;
++}
++static struct hw_module_methods_t methods={.open=module_open};
++__attribute__((visibility("default"))) struct audio_module HAL_MODULE_INFO_SYM={.common={
++    .tag=HARDWARE_MODULE_TAG,.module_api_version=AUDIO_MODULE_API_VERSION_0_1,
++    .hal_api_version=HARDWARE_HAL_API_VERSION,.id=AUDIO_HARDWARE_MODULE_ID,
++    .name="P00A bounded PCM primary (routes gated)",.author="P00A bring-up",.methods=&methods}};
+--- /dev/null
++++ b/device/asus/p00a/audio/src/routes.c
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: Apache-2.0 */
++#include "transport.h"
++/* Source-derived DAI order is a candidate, not an observed card assignment.
++ * No route can be enabled by a property or HAL parameter. Parent must supply
++ * reviewed on/off sequences and calibration prerequisites in a new revision.
++ * Do not fill these arrays with guessed values to make a test pass. */
++const struct p00a_route p00a_speaker = {
++    .qualified = false, .card = 0, .device = 0, .channels = 2,
++    .card_name = "mt-snd-card",
++};
++const struct p00a_route p00a_microphone = {
++    .qualified = false, .card = 0, .device = 1, .channels = 1,
++    .card_name = "mt-snd-card",
++};
+--- /dev/null
++++ b/device/asus/p00a/audio/src/transport.c
+@@ -0,0 +1,114 @@
++/* SPDX-License-Identifier: Apache-2.0 */
++#include "transport.h"
++#include <errno.h>
++#include <limits.h>
++#include <stdint.h>
++#include <string.h>
++
++static int setting(struct mixer *m, const struct p00a_setting *v, bool apply) {
++    struct mixer_ctl *c = mixer_get_ctl_by_name(m, v->name);
++    if (!c || mixer_ctl_get_type(c) != MIXER_CTL_TYPE_ENUM ||
++        mixer_ctl_get_num_values(c) != 1) return -EINVAL;
++    unsigned n = mixer_ctl_get_num_enums(c);
++    for (unsigned i = 0; i < n; ++i) {
++        const char *name = mixer_ctl_get_enum_string(c, i);
++        if (name && !strcmp(name, v->value))
++            return apply ? (mixer_ctl_set_enum_by_string(c, v->value) == 0 ? 0 : -EIO) : 0;
++    }
++    return -EINVAL;
++}
++
++int p00a_standby(struct p00a_stream *s) {
++    int result = 0;
++    /* Disable analog endpoints before stopping digital clocks. Explicit off
++     * sequence also applies after a partially successful enable sequence. */
++    if (s->mixer) {
++        for (size_t i = 0; i < s->route->off_count; ++i)
++            if (setting(s->mixer, &s->route->off[i], true)) result = -EIO;
++    }
++    if (s->pcm) { pcm_close(s->pcm); s->pcm = NULL; }
++    if (s->mixer) { mixer_close(s->mixer); s->mixer = NULL; }
++    if (result) s->poisoned = true;
++    return result;
++}
++
++int p00a_start(struct p00a_stream *s) {
++    const struct p00a_route *r = s->route;
++    if (s->poisoned) return -EIO;
++    if (s->pcm) return 0;
++    if (!r || !r->qualified || !r->card_name || !r->on || !r->off ||
++        !r->on_count || !r->off_count || r->channels < 1 || r->channels > 2)
++        return -ENODEV;
++    s->mixer = mixer_open(r->card);
++    if (!s->mixer) return -ENODEV;
++    const char *name = mixer_get_name(s->mixer);
++    int error = -EINVAL;
++    if (!name || strcmp(name, r->card_name)) goto invalid;
++    /* Validate the entire enable AND shutdown plan before any mixer write. */
++    for (size_t i = 0; i < r->on_count; ++i)
++        if (setting(s->mixer, &r->on[i], false)) goto invalid;
++    for (size_t i = 0; i < r->off_count; ++i)
++        if (setting(s->mixer, &r->off[i], false)) goto invalid;
++    struct pcm_config config = {
++        .channels = r->channels, .rate = P00A_RATE, .format = PCM_FORMAT_S16_LE,
++        .period_size = P00A_PERIOD, .period_count = P00A_PERIODS,
++        .start_threshold = s->input ? 1 : P00A_PERIOD,
++        .stop_threshold = P00A_PERIOD * P00A_PERIODS,
++        .silence_threshold = 0, .avail_min = P00A_PERIOD,
++    };
++    s->pcm = pcm_open(r->card, r->device, (s->input ? PCM_IN : PCM_OUT) | PCM_NORESTART, &config);
++    if (!s->pcm || !pcm_is_ready(s->pcm)) {
++        error = -ENODEV;
++        if (s->pcm) { pcm_close(s->pcm); s->pcm = NULL; }
++        goto invalid;
++    }
++    /* Codec prepare latches the PCM sample rate before ADC/DAC power-up.
++     * Do not let the first transfer enable analog at the codec's default rate. */
++    if (pcm_prepare(s->pcm) != 0) {
++        pcm_close(s->pcm); s->pcm = NULL; error = -EIO;
++        goto invalid;
++    }
++    for (size_t i = 0; i < r->on_count; ++i) {
++        if (setting(s->mixer, &r->on[i], true)) {
++            p00a_standby(s);
++            return -EIO;
++        }
++    }
++    return 0;
++invalid:
++    mixer_close(s->mixer); s->mixer = NULL;
++    return error;
++}
++
++ssize_t p00a_transfer(struct p00a_stream *s, void *data, size_t bytes) {
++    if (!s->route || s->route->channels < 1 || s->route->channels > 2) return -EINVAL;
++    const size_t frame = s->route->channels * sizeof(int16_t);
++    /* Bound a HAL call to one ring (40 ms), in integral PCM frames. */
++    if (bytes > P00A_PERIOD * P00A_PERIODS * frame || bytes % frame || bytes % 64u ||
++        (bytes && !data)) return -EINVAL;
++    if (!bytes) return 0;
++    int error = p00a_start(s);
++    if (error) return error;
++    size_t done = 0;
++    while (done < bytes) {
++        unsigned frames = (unsigned)((bytes - done) / frame);
++        errno = 0;
++        int n = s->input ? pcm_readi(s->pcm, (char *)data + done, frames)
++                         : pcm_writei(s->pcm, (char *)data + done, frames);
++        if (n <= 0 || (unsigned)n > frames) {
++            /* tinyalsa may return -errno or -1 with errno. No invented progress,
++             * padding, busy retry, or byte/frame confusion on short transfers. */
++            error = n == -1 && errno ? -errno : n < -1 ? n : -EIO;
++            p00a_standby(s);
++            return done ? (ssize_t)done : error;
++        }
++        done += (size_t)n * frame;
++        /* MT8163 copy callbacks round down to 64 bytes. A short result which
++         * leaves an unaligned tail cannot safely be retried through them. */
++        if (done < bytes && (bytes - done) % 64u) {
++            p00a_standby(s);
++            return (ssize_t)done;
++        }
++    }
++    return (ssize_t)done;
++}
+--- /dev/null
++++ b/device/asus/p00a/audio/src/transport.h
+@@ -0,0 +1,30 @@
++/* SPDX-License-Identifier: Apache-2.0 */
++#ifndef P00A_TRANSPORT_H
++#define P00A_TRANSPORT_H
++#include <stdbool.h>
++#include <stddef.h>
++#include <sys/types.h>
++#include <tinyalsa/asoundlib.h>
++
++#define P00A_RATE 48000u
++#define P00A_PERIOD 480u
++#define P00A_PERIODS 4u
++struct p00a_setting { const char *name; const char *value; };
++struct p00a_route {
++    bool qualified;
++    unsigned card, device, channels;
++    const char *card_name;
++    const struct p00a_setting *on, *off;
++    size_t on_count, off_count;
++};
++struct p00a_stream {
++    const struct p00a_route *route;
++    struct mixer *mixer;
++    struct pcm *pcm;
++    bool input, poisoned;
++};
++extern const struct p00a_route p00a_speaker, p00a_microphone;
++int p00a_start(struct p00a_stream *s);
++int p00a_standby(struct p00a_stream *s);
++ssize_t p00a_transfer(struct p00a_stream *s, void *data, size_t bytes);
++#endif
+--- /dev/null
++++ b/device/asus/p00a/audio/staging/board-audio.mk
+@@ -0,0 +1,5 @@
++# SPDX-License-Identifier: Apache-2.0
++# Must match the compiled primary HAL and installed HIDL implementation ELFs.
++SOONG_CONFIG_NAMESPACES += android_hardware_audio
++SOONG_CONFIG_android_hardware_audio += run_64bit
++SOONG_CONFIG_android_hardware_audio_run_64bit := true
+--- /dev/null
++++ b/device/asus/p00a/audio/staging/config/audio_effects.xml
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<audio_effects_conf version="2.0" xmlns="http://schemas.android.com/audio/audio_effects_conf/v2_0">
++    <libraries/>
++    <effects/>
++</audio_effects_conf>
+--- /dev/null
++++ b/device/asus/p00a/audio/staging/config/audio_policy_configuration.xml
+@@ -0,0 +1,33 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!-- FUTURE qualified route revision only. No headset, Bluetooth, USB,
++     offload, direct, fast, telephony, loopback or hardware effects. -->
++<audioPolicyConfiguration version="7.0" xmlns:xi="http://www.w3.org/2001/XInclude">
++    <globalConfiguration speaker_drc_enabled="false"/>
++    <modules>
++        <module name="primary" halVersion="2.0">
++            <attachedDevices><item>Speaker</item><item>Built-In Mic</item></attachedDevices>
++            <defaultOutputDevice>Speaker</defaultOutputDevice>
++            <mixPorts>
++                <mixPort name="primary output" role="source" flags="AUDIO_OUTPUT_FLAG_PRIMARY">
++                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT" samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
++                </mixPort>
++                <mixPort name="primary input" role="sink">
++                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT" samplingRates="48000" channelMasks="AUDIO_CHANNEL_IN_MONO"/>
++                </mixPort>
++            </mixPorts>
++            <devicePorts>
++                <devicePort tagName="Speaker" type="AUDIO_DEVICE_OUT_SPEAKER" role="sink">
++                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT" samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
++                </devicePort>
++                <devicePort tagName="Built-In Mic" type="AUDIO_DEVICE_IN_BUILTIN_MIC" role="source">
++                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT" samplingRates="48000" channelMasks="AUDIO_CHANNEL_IN_MONO"/>
++                </devicePort>
++            </devicePorts>
++            <routes>
++                <route type="mix" sink="Speaker" sources="primary output"/>
++                <route type="mix" sink="primary input" sources="Built-In Mic"/>
++            </routes>
++        </module>
++    </modules>
++    <xi:include href="audio_policy_volumes.xml"/>
++</audioPolicyConfiguration>
+--- /dev/null
++++ b/device/asus/p00a/audio/staging/config/audio_policy_volumes.xml
+@@ -0,0 +1,45 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<volumes>
++    <volume stream="AUDIO_STREAM_VOICE_CALL" deviceCategory="DEVICE_CATEGORY_SPEAKER">
++        <point>0,-9600</point><point>100,-4000</point>
++    </volume>
++    <volume stream="AUDIO_STREAM_SYSTEM" deviceCategory="DEVICE_CATEGORY_SPEAKER">
++        <point>0,-9600</point><point>100,-4000</point>
++    </volume>
++    <volume stream="AUDIO_STREAM_RING" deviceCategory="DEVICE_CATEGORY_SPEAKER">
++        <point>0,-9600</point><point>100,-4000</point>
++    </volume>
++    <volume stream="AUDIO_STREAM_MUSIC" deviceCategory="DEVICE_CATEGORY_SPEAKER">
++        <point>0,-9600</point><point>100,-4000</point>
++    </volume>
++    <volume stream="AUDIO_STREAM_ALARM" deviceCategory="DEVICE_CATEGORY_SPEAKER">
++        <point>0,-9600</point><point>100,-4000</point>
++    </volume>
++    <volume stream="AUDIO_STREAM_NOTIFICATION" deviceCategory="DEVICE_CATEGORY_SPEAKER">
++        <point>0,-9600</point><point>100,-4000</point>
++    </volume>
++    <volume stream="AUDIO_STREAM_BLUETOOTH_SCO" deviceCategory="DEVICE_CATEGORY_SPEAKER">
++        <point>0,-9600</point><point>100,-4000</point>
++    </volume>
++    <volume stream="AUDIO_STREAM_ENFORCED_AUDIBLE" deviceCategory="DEVICE_CATEGORY_SPEAKER">
++        <point>0,-9600</point><point>100,-4000</point>
++    </volume>
++    <volume stream="AUDIO_STREAM_DTMF" deviceCategory="DEVICE_CATEGORY_SPEAKER">
++        <point>0,-9600</point><point>100,-4000</point>
++    </volume>
++    <volume stream="AUDIO_STREAM_TTS" deviceCategory="DEVICE_CATEGORY_SPEAKER">
++        <point>0,-9600</point><point>100,-4000</point>
++    </volume>
++    <volume stream="AUDIO_STREAM_ACCESSIBILITY" deviceCategory="DEVICE_CATEGORY_SPEAKER">
++        <point>0,-9600</point><point>100,-4000</point>
++    </volume>
++    <volume stream="AUDIO_STREAM_ASSISTANT" deviceCategory="DEVICE_CATEGORY_SPEAKER">
++        <point>0,-9600</point><point>100,-4000</point>
++    </volume>
++    <volume stream="AUDIO_STREAM_REROUTING" deviceCategory="DEVICE_CATEGORY_SPEAKER">
++        <point>0,-9600</point><point>100,-4000</point>
++    </volume>
++    <volume stream="AUDIO_STREAM_PATCH" deviceCategory="DEVICE_CATEGORY_SPEAKER">
++        <point>0,-9600</point><point>100,-4000</point>
++    </volume>
++</volumes>
+--- /dev/null
++++ b/device/asus/p00a/audio/staging/init/upstream-audio-service.rc.reference
+@@ -0,0 +1,11 @@
++service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service
++    class hal
++    user audioserver
++    # media gid needed for /dev/fm (radio) and for /data/misc/media (tee)
++    group audio camera drmrpc inet media mediadrm net_bt net_bt_admin net_bw_acct wakelock context_hub system
++    capabilities BLOCK_SUSPEND SYS_NICE
++    # setting RLIMIT_RTPRIO allows binder RT priority inheritance
++    rlimit rtprio 10 10
++    ioprio rt 4
++    task_profiles ProcessCapacityHigh HighPerformance
++    onrestart restart audioserver
+--- /dev/null
++++ b/device/asus/p00a/audio/staging/product-audio.mk
+@@ -0,0 +1,19 @@
++# SPDX-License-Identifier: Apache-2.0
++# FUTURE INPUT ONLY. Install under device/asus/p00a/audio after parent review.
++# This guard is intentional: the delivered routes.c is unqualified and cannot
++# produce sound. Do not set the variable until a new reviewed route revision.
++ifneq ($(P00A_AUDIO_ROUTE_QUALIFIED),true)
++$(error P00A audio routes are unqualified; review the route ledger before integration)
++endif
++PRODUCT_PACKAGES += \
++    audio.primary.mt8163 \
++    libtinyalsav2 \
++    android.hardware.audio.service \
++    android.hardware.audio@7.1-impl \
++    android.hardware.audio.effect@7.0-impl \
++    p00a_audio_policy_configuration \
++    p00a_audio_policy_volumes \
++    p00a_audio_effects
++DEVICE_MANIFEST_FILE += device/asus/p00a/audio/staging/vintf/audio.xml
++# Include board-audio.mk from BoardConfig.mk before Soong config is frozen.
++# Existing wrapper owns its init_rc. No second service or effects are added.
+--- /dev/null
++++ b/device/asus/p00a/audio/staging/sepolicy/README.md
+@@ -0,0 +1,3 @@
++No new SELinux types, rules, file labels, permissive domains or exceptions are needed by this stage. Genuine upstream `hal_audio_default` hosts the wrapper and C HAL; platform `hal_audio_server` already grants `audio_device` directory and character access. `/dev/snd/*` must retain platform audio_device labels and audio group DAC permissions. No private calibration, NVRAM, sysfs, GPIO, broad /data or core-domain grants are added. The HAL does not open any such file. Parent must run the complete product neverallow/checkpolicy/secilc checks after integration; static reuse of platform policy is not a full-product pass.
++
++The upstream service init reference is evidence only; `android.hardware.audio.service` supplies its own `init_rc`. Do not install a duplicate service. Its upstream groups/capabilities are inherited platform behavior, not newly added policy in this bundle. Parent should inspect final init/DAC/labels before commissioning.
+--- /dev/null
++++ b/device/asus/p00a/audio/staging/vintf/audio.xml
+@@ -0,0 +1,14 @@
++<manifest version="1.0" type="device">
++    <hal format="hidl">
++        <name>android.hardware.audio</name>
++        <transport>hwbinder</transport>
++        <version>7.1</version>
++        <interface><name>IDevicesFactory</name><instance>default</instance></interface>
++    </hal>
++    <hal format="hidl">
++        <name>android.hardware.audio.effect</name>
++        <transport>hwbinder</transport>
++        <version>7.0</version>
++        <interface><name>IEffectsFactory</name><instance>default</instance></interface>
++    </hal>
++</manifest>

@@ -1,0 +1,47 @@
+{
+  "status": "missing-source-or-documented-ABI-required; no implementation invented",
+  "smallest_next_unit": "Obtain locally reviewable public fitted MT8163 userspace sensor/ISP caller source or an exact documented ABI for the two gaps below. Pin it, then implement a host-only adapter/recorder. Stop before transport or metadata authorship.",
+  "timing": {
+    "public_endpoint": "ACDK_SENSOR_FEATURECONTROL_STRUCT / selected feature_control",
+    "missing_input_contract": [
+      "request exposure and frame-duration units and clock basis",
+      "scenario selection and requested versus applied timing semantics",
+      "3A ordering, flicker policy, exposure limits and frame-latch/result latency"
+    ],
+    "required_output_contract": [
+      "SET_MAX_FRAME_RATE_BY_SCENARIO word0 scenario, word1 narrows to MUINT32 tenths-fps; positive-rate precondition except guarded video zero",
+      "SET_ESHUTTER word0 unsigned long long narrows to kal_uint16 line count; full readable 8-byte payload required by selected bodies",
+      "SET_FRAMERATE word0 narrows to kal_uint16 software current_fps; no applied timing alone",
+      "32/64-bit envelope layout, true enum values, alignment, payload length and pointer marshalling rules",
+      "application order, latching, error/result confirmation; GET_PERIOD is state only"
+    ],
+    "not_an_available_feature": "SET_SHUTTER_FRAME_TIME exists as an enum token, but selected drivers have no case and return default success"
+  },
+  "crop": {
+    "public_inputs": [
+      "pinned 32-byte SENSOR_WINSIZE_INFO_STRUCT ordered uint16 fields",
+      "scenario-specific get_info SensorGrabStartX/Y",
+      "get_resolution OEM grab dimensions",
+      "known/unknown sensor crop bytes, binning/mirror phase"
+    ],
+    "public_output_endpoint": "ISP_REG_IO_STRUCT { ISP_REG_STRUCT *pData; unsigned int Count; }, entries { unsigned int Addr; unsigned int Val; }",
+    "missing_rules": [
+      "exact userspace builder source/symbol or documented callable ABI (symbol absent from inspected local public release)",
+      "coordinate origins, units, stage order, crop/scale ratios, rounding, Bayer alignment, clipping and TG/grab offsets",
+      "which ISP registers consume each coordinate and how held lists latch to sensor frames",
+      "external GET_CROP_INFO destination marshalling; direct nested kernel pointer cast is not a safe external ABI proof",
+      "mapping into Android active-array/crop and per-output buffer/format layout, if supported"
+    ],
+    "transform_implemented": false
+  },
+  "remaining_blockers": [
+    "real fitted ISP/MIPI image and buffer contract including ION/VA ownership/layout",
+    "3A/gain/ISO controls, tuning, timestamps/results and synchronization",
+    "JPEG encoder and size/stall behavior",
+    "lens/physical calibration and qualified orientation/facing/logical IDs",
+    "sustained stream combinations and frame cadence"
+  ],
+  "android_metadata_templates_capabilities_supported": false,
+  "camera_enablement": false,
+  "hardware_qualification": false
+}

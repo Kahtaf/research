@@ -1,0 +1,9 @@
+# Deliberately not lazy-startable before the real device-local record gate.
+service vendor.bluetooth-p00a /vendor/bin/hw/android.hardware.bluetooth@1.1-service.p00a
+    class hal
+    user bluetooth
+    group bluetooth
+    capabilities BLOCK_SUSPEND NET_ADMIN SYS_NICE
+    task_profiles HighPerformance
+    disabled
+    oneshot

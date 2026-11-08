@@ -1,0 +1,39 @@
+{
+  "experiment": 2,
+  "outcome": "ACTUAL_ENTRY_AND_GUARD_OUTCOME_MEASURED",
+  "run_uuid": "ddfa517b-e809-45c8-83d9-a573403b3e68",
+  "late_lines": [
+    "[    0.062859]  (0)[0:swapper/0]ASUS-ENTRY-DIAG ddfa517b-e809-45c8-83d9-a573403b3e68 magic=454559535452454e x0=000000004e000000 el=8 sctlr=0000000030c50830 status=72"
+  ],
+  "matching_records": 1,
+  "stock_boot_id": "be73a526-a85c-4880-a9d6-6c2babd80aac",
+  "complete_log_bytes": 152537,
+  "complete_log_sha256": "a9a067a8ae90255594d932a1aa5f28c0b7c5d43ce047788006be6a2b929cea48",
+  "collector_receipt": "2026-11-07-asus-usb-retained-log-collector/evidence/retained-trace-b3fca6b4-64b9-4867-9406-a2fc92bc0723.json",
+  "normal_stock_return_verified": true,
+  "physical_linux49_execution_proven": false,
+  "OS_partitions_changed": false,
+  "at": "2026-11-08T00:19:33.838747+00:00",
+  "actual_record": {
+    "magic": "0x454559535452454e",
+    "x0": "0x4e000000",
+    "el": "0x8",
+    "sctlr": "0x30c50830",
+    "status": "0x72"
+  },
+  "early_magic_matches": true,
+  "MMU_enabled": false,
+  "Dcache_bit_set": false,
+  "refusal": {
+    "id": 114,
+    "source_line": 699,
+    "source_condition": "b.lo .Laet_done",
+    "branch": "0xffffffc0010ae568",
+    "actual_branch": "b.lo #0xffffffc0010ae978",
+    "preceding_test": "cmp x14, #0x200",
+    "stub": "0xffffffc0010ae978",
+    "source_context": "add x11, x11, x13      // end of both LK payloads | cmp x11, x5 | b.hi .Laet_done | mov x14, #0x200 | cbz x12, .Laet_linux | mov x14, x11 | .Laet_linux: | cmp x14, #0x200 | b.lo .Laet_done",
+    "source_block": ".Laet_linux"
+  },
+  "commit_completed": false
+}

@@ -1,0 +1,12 @@
+--- observer-preparation/resolve_contexts.c
++++ host-metadata-resolvers/resolve_contexts.c
+@@ -8,6 +8,8 @@
+  if(argc!=2){fprintf(stderr,"usage: resolve_contexts FROZEN_CONTEXT_STEM\n");return 2;}
+  struct selinux_opt options[]={{SELABEL_OPT_PATH,argv[1]},{SELABEL_OPT_BASEONLY,"1"}};
+  struct selabel_handle *h=selabel_open(SELABEL_CTX_FILE,options,2);if(!h){perror("selabel_open");return 1;}
+- for(int i=0;i<4;i++){char *label=NULL;if(selabel_lookup(h,&label,paths[i],S_IFREG)!=0){perror(paths[i]);selabel_close(h);return 1;}printf("%s %s\n",paths[i],label);freecon(label);}
++ char *labels[4]={NULL,NULL,NULL,NULL};
++ for(int i=0;i<4;i++){if(selabel_lookup(h,&labels[i],paths[i],S_IFREG)!=0){perror(paths[i]);for(int j=0;j<=i;j++)freecon(labels[j]);selabel_close(h);return 1;}}
++ for(int i=0;i<4;i++){printf("%s %s\n",paths[i],labels[i]);freecon(labels[i]);}
+  selabel_close(h);return ferror(stdout)?1:0;
+ }

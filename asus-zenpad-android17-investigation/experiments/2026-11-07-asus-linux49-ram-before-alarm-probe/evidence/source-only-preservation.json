@@ -1,0 +1,26 @@
+{
+  "scope": "Source order and copied helpers only; no static ELF or package available",
+  "helpers_byte_identical_to_parent": {
+    "bootformat.py": {
+      "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017",
+      "mode": "0o644"
+    },
+    "fdt.py": {
+      "sha256": "1bd710a08eae5677689a52042a621f39dcd57e49197749cf2833eead1fc0dcae",
+      "mode": "0o644"
+    },
+    "adb": {
+      "sha256": "820fd0d66e75ee98701798e385f04e48a026ec7abd22ec6a67e9760ed0829e82",
+      "mode": "0o755"
+    },
+    "legacy_adb.py": {
+      "sha256": "6d00836d7e0cc28834f858b0fd6ab5515ffe7b3ecd37a6da6ba1f66b43597731",
+      "mode": "0o644"
+    }
+  },
+  "copy_method": "shutil.copy2",
+  "compiler_invocations": 0,
+  "packaged_candidates": 0,
+  "PLAN_calls": 0,
+  "device_or_ADB_commands": false
+}

@@ -1,0 +1,218 @@
+From 6e83345c4d69e64cfc43bd3e804567a66bf1e156 Mon Sep 17 00:00:00 2001
+From: SamarV-121 <ACCOUNT_REDACTED>
+Date: Thu, 23 Jun 2022 12:15:53 +0530
+Subject: [PATCH] fs: Update erofs driver from oneplus_mt6893
+
+ * https://github.com/OnePlusOSS/android_kernel_oneplus_mt6893/blob/oneplus/mt6893_s_12.1_oneplus_nord2t/fs/erofs
+
+Change-Id: Id2ed8c3d163b72055fadacb05935f650f5c24136
+(cherry picked from commit 8b5d4a45b3cc76d201c213a9d59a9ae2bc83c01f)
+---
+ fs/erofs/Kconfig             |  2 +-
+ fs/erofs/data.c              |  0
+ fs/erofs/decompressor.c      |  2 +-
+ fs/erofs/internal.h          |  8 +++++++-
+ fs/erofs/lz4armv8/lz4armv8.S |  4 ++--
+ fs/erofs/super.c             |  3 ++-
+ fs/erofs/utils.c             | 18 +++++++++---------
+ fs/erofs/zdata.c             | 16 ++++------------
+ 8 files changed, 26 insertions(+), 27 deletions(-)
+ mode change 100644 => 100755 fs/erofs/data.c
+ mode change 100644 => 100755 fs/erofs/decompressor.c
+
+diff --git a/fs/erofs/Kconfig b/fs/erofs/Kconfig
+index 395cdc5c1d..bb857d0b85 100644
+--- a/fs/erofs/Kconfig
++++ b/fs/erofs/Kconfig
+@@ -91,7 +91,7 @@ config EROFS_FS_CLUSTER_PAGE_LIMIT
+ 
+ config OPLUS_FEATURE_EROFS
+ 	bool "EROFS oplus repo"
+-	default n
++	default y
+ 	depends on EROFS_FS
+ 	help
+ 	  define this config to switch oplus repo.
+diff --git a/fs/erofs/data.c b/fs/erofs/data.c
+old mode 100644
+new mode 100755
+diff --git a/fs/erofs/decompressor.c b/fs/erofs/decompressor.c
+old mode 100644
+new mode 100755
+index 2678d2b1f6..72f06e0a75
+--- a/fs/erofs/decompressor.c
++++ b/fs/erofs/decompressor.c
+@@ -169,7 +169,7 @@ static int z_erofs_lz4_decompress(struct z_erofs_decompress_req *rq, u8 *out)
+ 					test_opt(EROFS_SB(rq->sb), LZ4ASM),
+ 					rq->inplace_io);
+ #else
+-  	ret = LZ4_decompress_safe_partial(src + inputmargin, out,
++	ret = LZ4_decompress_safe_partial(src + inputmargin, out,
+ 					  inlen, rq->outputsize,
+ 					  rq->outputsize);
+ #endif
+diff --git a/fs/erofs/internal.h b/fs/erofs/internal.h
+index 197d4fbe21..ac31da06cf 100644
+--- a/fs/erofs/internal.h
++++ b/fs/erofs/internal.h
+@@ -53,7 +53,10 @@ struct erofs_sb_info {
+ 	struct mutex umount_mutex;
+ 
+ 	/* the dedicated workstation for compression */
+-	struct radix_tree_root workstn_tree;
++	struct {
++		struct radix_tree_root tree;
++		spinlock_t lock;
++	} workstn;
+ 
+ 	/* threshold for decompression synchronously */
+ 	unsigned int max_sync_decompress_pages;
+@@ -111,6 +114,9 @@ enum {
+ 
+ #define EROFS_LOCKED_MAGIC     (INT_MIN | 0xE0F510CCL)
+ 
++#define erofs_workstn_lock(sbi)         spin_lock(&(sbi)->workstn.lock)
++#define erofs_workstn_unlock(sbi)       spin_unlock(&(sbi)->workstn.lock)
++
+ /* basic unit of the workstation of a super_block */
+ struct erofs_workgroup {
+ 	/* the workgroup index in the workstation */
+diff --git a/fs/erofs/lz4armv8/lz4armv8.S b/fs/erofs/lz4armv8/lz4armv8.S
+index 1a6a145389..789d2e2060 100644
+--- a/fs/erofs/lz4armv8/lz4armv8.S
++++ b/fs/erofs/lz4armv8/lz4armv8.S
+@@ -40,8 +40,8 @@
+ #define save_dst		x15
+ #define save_src		x16
+ #define offset_src_ptr		x17
+-#define w_tmp_match_length	w18
+-#define tmp_match_length	x18
++#define w_tmp_match_length	w6
++#define tmp_match_length	x6
+ 
+ 
+ /* x3 >= x4 src overflow */
+diff --git a/fs/erofs/super.c b/fs/erofs/super.c
+index c9a9fdfafe..0a00f45067 100644
+--- a/fs/erofs/super.c
++++ b/fs/erofs/super.c
+@@ -402,7 +402,8 @@ static int erofs_fill_super(struct super_block *sb, void *data, int silent)
+ 		sb->s_flags &= ~SB_POSIXACL;
+ 
+ #ifdef CONFIG_EROFS_FS_ZIP
+-	INIT_RADIX_TREE(&sbi->workstn_tree, GFP_ATOMIC);
++	INIT_RADIX_TREE(&sbi->workstn.tree, GFP_ATOMIC);
++	spin_lock_init(&sbi->workstn.lock);
+ #endif
+ 
+ 	/* get the root inode */
+diff --git a/fs/erofs/utils.c b/fs/erofs/utils.c
+index eda098fb3d..45fcc47b43 100755
+--- a/fs/erofs/utils.c
++++ b/fs/erofs/utils.c
+@@ -67,7 +67,7 @@ struct erofs_workgroup *erofs_find_workgroup(struct super_block *sb,
+ 
+ repeat:
+ 	rcu_read_lock();
+-	grp = radix_tree_lookup(&sbi->workstn_tree, index);
++	grp = radix_tree_lookup(&sbi->workstn.tree, index);
+ 	if (grp) {
+ 		if (erofs_workgroup_get(grp)) {
+ 			/* prefer to relax rcu read side */
+@@ -98,16 +98,16 @@ int erofs_register_workgroup(struct super_block *sb,
+ 		return err;
+ 
+ 	sbi = EROFS_SB(sb);
+-	//xa_lock(&sbi->workstn_tree);
++	erofs_workstn_lock(sbi);
+ 
+ 	/*
+ 	 * Bump up reference count before making this workgroup
+ 	 * visible to other users in order to avoid potential UAF
+-	 * without serialized by workstn_lock.
++	 * without serialized by erofs_workstn_lock.
+ 	 */
+ 	__erofs_workgroup_get(grp);
+ 
+-	err = radix_tree_insert(&sbi->workstn_tree, grp->index, grp);
++	err = radix_tree_insert(&sbi->workstn.tree, grp->index, grp);
+ 	if (err)
+ 		/*
+ 		 * it's safe to decrease since the workgroup isn't visible
+@@ -115,7 +115,7 @@ int erofs_register_workgroup(struct super_block *sb,
+ 		 */
+ 		__erofs_workgroup_put(grp);
+ 
+-	//xa_unlock(&sbi->workstn_tree);
++	erofs_workstn_unlock(sbi);
+ 	radix_tree_preload_end();
+ 	return err;
+ }
+@@ -171,7 +171,7 @@ static bool erofs_try_to_release_workgroup(struct erofs_sb_info *sbi,
+ 	 * however in order to avoid some race conditions, add a
+ 	 * DBG_BUGON to observe this in advance.
+ 	 */
+-	DBG_BUGON(radix_tree_delete(&sbi->workstn_tree, grp->index) != grp);
++	DBG_BUGON(radix_tree_delete(&sbi->workstn.tree, grp->index) != grp);
+ 
+ 	/*
+ 	 * If managed cache is on, last refcount should indicate
+@@ -191,9 +191,9 @@ static unsigned long erofs_shrink_workstation(struct erofs_sb_info *sbi,
+ 
+ 	int i, found;
+ repeat:
+-	//xa_lock(&sbi->workstn_tree);
++	erofs_workstn_lock(sbi);
+ 
+-	found = radix_tree_gang_lookup(&sbi->workstn_tree,
++	found = radix_tree_gang_lookup(&sbi->workstn.tree,
+ 				       batch, first_index, PAGEVEC_SIZE);
+ 
+ 	for (i = 0; i < found; ++i) {
+@@ -209,7 +209,7 @@ repeat:
+ 		if (!--nr_shrink)
+ 			break;
+ 	}
+-	//xa_unlock(&sbi->workstn_tree);
++	erofs_workstn_unlock(sbi);
+ 
+ 	if (i && nr_shrink)
+ 		goto repeat;
+diff --git a/fs/erofs/zdata.c b/fs/erofs/zdata.c
+index fae81b5299..aec2bcd5d7 100755
+--- a/fs/erofs/zdata.c
++++ b/fs/erofs/zdata.c
+@@ -643,11 +643,7 @@ restart_now:
+ 
+ 	/* preload all compressed pages (maybe downgrade role if necessary) */
+ 	if (should_alloc_managed_pages(fe, sbi->cache_strategy, map->m_la))
+-#if defined(CONFIG_OPLUS_FEATURE_EROFS)
+ 		cache_strategy = TRYALLOC;
+-#else
+-		cache_strategy = DELAYEDALLOC;
+-#endif
+ 	else
+ 		cache_strategy = DONTALLOC;
+ 
+@@ -741,14 +737,10 @@ static void z_erofs_vle_unzip_kickoff(void *ptr, int bios)
+ 	}
+ 
+ 	if (!atomic_add_return(bios, &io->pending_bios)){
+-#if defined(CONFIG_OPLUS_FEATURE_EROFS) && defined(CONFIG_PREEMPT_COUNT)
+-	if (in_atomic() || irqs_disabled())
+-		queue_work(z_erofs_workqueue, &io->u.work);
+-	else
+-		z_erofs_vle_unzip_wq(&io->u.work);
+-#else
+-		queue_work(z_erofs_workqueue, &io->u.work);
+-#endif
++		if (in_atomic() || irqs_disabled())
++			queue_work(z_erofs_workqueue, &io->u.work);
++		else
++			z_erofs_vle_unzip_wq(&io->u.work);
+ 	}
+ }
+ 
+-- 
+2.43.0
+

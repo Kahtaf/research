@@ -1,0 +1,18 @@
+{
+  "before": {
+    "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-wifi-device-access/scripts/root_shell_wifi.py": "684bbe346488dfd0e7dfce741b7547021f019d3749235e6208eb1c9766395f34",
+    "/OWNER_HOME/Documents/workspace/ideas/2026-11-07-asus-wifi-microsd-probe/source/adb": "820fd0d66e75ee98701798e385f04e48a026ec7abd22ec6a67e9760ed0829e82",
+    "/OWNER_HOME/Documents/workspace/ideas/2026-11-07-asus-wifi-microsd-probe/source/legacy_adb.py": "6d00836d7e0cc28834f858b0fd6ab5515ffe7b3ecd37a6da6ba1f66b43597731",
+    "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-android17-orchestration/scripts/collect_trace_v2.py": "1a6902d2d43c27b39e161ec262e8fbd0ad32ca28b53434f2a6dcb80801c90642"
+  },
+  "after": {
+    "scripts/root_shell_usb.py": "76b28970223c63b9cdd6774c2190051953beee2d89cde1a22b30d1eebba5c78c",
+    "scripts/usb-adb/adb": "820fd0d66e75ee98701798e385f04e48a026ec7abd22ec6a67e9760ed0829e82",
+    "scripts/usb-adb/legacy_adb.py": "d8f6c1009bc535eb14fa3daeb4da7e01e788dbbfb973befc787ecc4942fd2fdf",
+    "scripts/collect.py": "b9c8a501436379245645246d37c64e296258410bdb3efdc371ba5e1345c9da47"
+  },
+  "originals_unchanged": true,
+  "image_writes": false,
+  "reboot": false,
+  "tcp_attempt_failed_before_root_dispatch": true
+}

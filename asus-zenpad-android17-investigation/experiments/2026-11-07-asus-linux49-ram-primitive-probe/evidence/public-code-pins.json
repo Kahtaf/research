@@ -1,0 +1,82 @@
+{
+  "2026-11-07-asus-linux49-ram-primitive-probe/source/adb": {
+    "sha256": "820fd0d66e75ee98701798e385f04e48a026ec7abd22ec6a67e9760ed0829e82",
+    "bytes": 164,
+    "mode": "0o755"
+  },
+  "2026-11-07-asus-linux49-ram-primitive-probe/source/bootformat.py": {
+    "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017",
+    "bytes": 3936,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-ram-primitive-probe/source/fdt.py": {
+    "sha256": "1bd710a08eae5677689a52042a621f39dcd57e49197749cf2833eead1fc0dcae",
+    "bytes": 3024,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-ram-primitive-probe/source/init.c": {
+    "sha256": "f3bbc220ec81a06a7aedd7ea31f0c332387dba4a56bfd48cf68809e9250a385c",
+    "bytes": 6840,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-ram-primitive-probe/source/install.diff": {
+    "sha256": "91ee4ded1deba72bb76a7c014547063314c932fb7904d016e8aa12a39a57bd88",
+    "bytes": 3800,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-ram-primitive-probe/source/install.py": {
+    "sha256": "5094db4bbfcf94dcf7a1386a1a4e919c9b726b04867f9e11a7cde53cd6c7b067",
+    "bytes": 9741,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-ram-primitive-probe/source/legacy_adb.py": {
+    "sha256": "6d00836d7e0cc28834f858b0fd6ab5515ffe7b3ecd37a6da6ba1f66b43597731",
+    "bytes": 1511,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-ram-primitive-probe/scripts/compile_once.py": {
+    "sha256": "235b3d69517074a77868117b76b819ab898d87663a989af9751d9412816342c9",
+    "bytes": 2663,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-ram-primitive-probe/scripts/finalize.py": {
+    "sha256": "973eb61ebb28873772eb47899f0dbd371dd0f3b95dec45689938092130695fce",
+    "bytes": 12211,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-ram-primitive-probe/scripts/package.py": {
+    "sha256": "2583250054486bf6ecf1a03374fc0011b5d52724c29b15c58ae5380bb5081dc9",
+    "bytes": 7892,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-ram-primitive-probe/scripts/plan_only.py": {
+    "sha256": "33eb410eab5577a38a2e9a202ad3d681b475b7478e3679150f557a43a7a2b32e",
+    "bytes": 3592,
+    "mode": "0o644"
+  },
+  "2026-11-06-asus-product-input-build-kit/scripts/remote.py": {
+    "sha256": "c22884576a780cbb1ddf5e1b02f0b6e9d6eb5c25f8d9bc82fb077543f05cf4ab",
+    "bytes": 545,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-calibrated-entry-build/source/install.py": {
+    "sha256": "7117e9419c73787a71d6e853d8b9bc5ef924aab6c243196ca8cf68e4f681d85d",
+    "bytes": 9677,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-calibrated-entry-build/scripts/package.py": {
+    "sha256": "a24f575f762c9004c2d2f3b6bc89341d8a1257ff48f2b7ac3cf3c3f1ef5937f5",
+    "bytes": 7004,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-calibrated-entry-build/source/arch/arm64/kernel/asus_entry_text.S": {
+    "sha256": "e56fffecd0f825439d3711ab931180d58a5a320e70ebb8b30fcc5e8442cd631d",
+    "bytes": 16909,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-calibrated-entry-build/source/arch/arm64/kernel/asus_entry_tag.h": {
+    "sha256": "eab7452d50d8c55403fb31d240f9742532e031472b919db72ee8975dfff0475d",
+    "bytes": 398,
+    "mode": "0o644"
+  }
+}

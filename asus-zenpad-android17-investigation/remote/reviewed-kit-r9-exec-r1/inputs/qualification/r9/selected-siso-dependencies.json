@@ -1,0 +1,17 @@
+{
+  "utc": "2026-11-07T00:51:15.179086+00:00",
+  "source_deps_sha256": "3594b00fbf8c55ed8b1cb9f67f33263f0dfd5ed333442069ef3a3f01419505b5",
+  "format": "Ninja deps v4 path-node records and output mtime/dependency-ID records; no per-input content digest fields",
+  "selected": {
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/PublicVolume.o": {
+      "output_mtime_ns": 1794007844976817385,
+      "dependency_count": 1032,
+      "dependency_paths_sha256": "3567ba777e9c0b098ff19b3808bdfc38c678d7479f5b13b11f69d476aed779b2",
+      "current_siso_output_mtime_ns": 1794007844976817385,
+      "matches_current_siso_output_mtime": true
+    }
+  },
+  "vm_only_dependency_names_path": "/srv/android/asus-reviewed-build-kit/r9-fixtures/selected-native-dependencies.json",
+  "historical_input_content_identity_proven": false,
+  "cache_admitted": false
+}

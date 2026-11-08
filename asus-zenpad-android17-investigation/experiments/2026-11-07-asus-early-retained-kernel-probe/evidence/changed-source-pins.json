@@ -1,0 +1,29 @@
+{
+  "before": {
+    "arch/arm64/kernel/asus_retained_trace.c": "f6abf5fd043d4749262b536c7c5d77d4e84dddcb658bc0a7ac5c1190aa4181ba",
+    "arch/arm64/kernel/setup.c": "b7e00601397e1cfa03bae081171b2cec66e271000933685bf655368f24c3b610",
+    "include/linux/asus_retained_trace.h": "97794b8e7c1c68172045c51cd90e6a12300da33e990b58072766320c4436416a"
+  },
+  "after": {
+    "arch/arm64/kernel/asus_retained_trace.c": "15c4e2069326c7e2ecd2679240983913fc51122f5149be215e4707cb76de0a64",
+    "arch/arm64/kernel/setup.c": "fd3d3040998562d2605eee91086df22b66d8a3da796bafd957853d74acd905fb",
+    "include/linux/asus_retained_trace.h": "e9cb0b89b39b04078aad6708f3ea0fbab04a748982ca840562d0844bcd5e132e"
+  },
+  "patch_sha256": "2991e2f9fdab79af5d87783fec3f3e7f0721cb8911df9f172c355d272489643d",
+  "patch_command": [
+    "patch",
+    "--batch",
+    "--forward",
+    "--fuzz=0",
+    "-p1",
+    "-d",
+    "/srv/android/asus-early-retained-kernel-probe-20261107/kernel",
+    "-i",
+    "/srv/android/asus-early-retained-kernel-probe-20261107/source/early-retained-checkpoint.patch"
+  ],
+  "patch_exit": 0,
+  "copy_method": "cp -a preserved retained-trace kernel; fresh out; no hardlinks",
+  "compile_corrections": [],
+  "only_three_documented_files_changed": true,
+  "no_full_tree_rehash": true
+}

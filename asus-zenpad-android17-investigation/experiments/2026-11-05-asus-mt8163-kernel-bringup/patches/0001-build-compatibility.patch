@@ -1,0 +1,126 @@
+diff --git a/drivers/misc/mediatek/base/power/mt8163/mt_cpufreq.c b/drivers/misc/mediatek/base/power/mt8163/mt_cpufreq.c
+--- a/drivers/misc/mediatek/base/power/mt8163/mt_cpufreq.c
++++ b/drivers/misc/mediatek/base/power/mt8163/mt_cpufreq.c
+@@ -1650,9 +1650,9 @@
+ 			TURBO_MODE_FREQ(mode, target_khz),
+ 			volt,
+ 			TURBO_MODE_VOLT(mode, volt));
+-		cpufreq_ver("num_online_cpus = %d, cur_khz = %d\n",
+-			num_online_cpus(),
+-			cur_khz);
++	cpufreq_ver("num_online_cpus = %d, cur_khz = %d\n",
++		num_online_cpus(),
++		cur_khz);
+ 
+ 	volt = TURBO_MODE_VOLT(mode, volt);
+ 	target_khz = TURBO_MODE_FREQ(mode, target_khz);
+
+diff --git a/drivers/misc/mediatek/boot/mtk_boot.c b/drivers/misc/mediatek/boot/mtk_boot.c
+--- a/drivers/misc/mediatek/boot/mtk_boot.c
++++ b/drivers/misc/mediatek/boot/mtk_boot.c
+@@ -85,7 +85,7 @@
+ 		return true;
+ }
+ 
+-unsigned int get_meta_com_type(void)
++enum meta_com_type get_meta_com_type(void)
+ {
+ 	return g_meta_com_type;
+ }
+
+diff --git a/drivers/misc/mediatek/boot/mtk_boot_common.c b/drivers/misc/mediatek/boot/mtk_boot_common.c
+--- a/drivers/misc/mediatek/boot/mtk_boot_common.c
++++ b/drivers/misc/mediatek/boot/mtk_boot_common.c
+@@ -115,7 +115,7 @@
+ }
+ 
+ /* return boot mode */
+-unsigned int get_boot_mode(void)
++enum boot_mode_t get_boot_mode(void)
+ {
+ 	if (atomic_read(&g_boot_init) != BM_INITIALIZED) {
+ 		pr_warn("fail, %s (%d) state(%d,%d)\n", __func__, __LINE__,
+
+diff --git a/drivers/misc/mediatek/sensors-1.0/alsps/alsps.c b/drivers/misc/mediatek/sensors-1.0/alsps/alsps.c
+--- a/drivers/misc/mediatek/sensors-1.0/alsps/alsps.c
++++ b/drivers/misc/mediatek/sensors-1.0/alsps/alsps.c
+@@ -80,7 +80,7 @@
+ 	return err;
+ }
+ 
+-int rgbw_data_report(int *value)
++int rgbw_data_report(int value[4])
+ {
+ 	int err = 0;
+ 	struct alsps_context *cxt = alsps_context_obj;
+
+diff --git a/drivers/misc/mediatek/usb20/musb_gadget_ep0.c b/drivers/misc/mediatek/usb20/musb_gadget_ep0.c
+--- a/drivers/misc/mediatek/usb20/musb_gadget_ep0.c
++++ b/drivers/misc/mediatek/usb20/musb_gadget_ep0.c
+@@ -340,7 +340,7 @@
+ 					if ((__ratelimit(&ratelimit)))
+ 						DBG(0,
+ 							"restarting the request\n");
+-						musb_ep_restart(musb, request);
++					musb_ep_restart(musb, request);
+ 						/* Modify for ALPS00451478 */
+ 					} else if (!is_in) {
+ 						csr =
+
+diff --git a/drivers/misc/mediatek/video/mt8163/videox/debug.h b/drivers/misc/mediatek/video/mt8163/videox/debug.h
+--- a/drivers/misc/mediatek/video/mt8163/videox/debug.h
++++ b/drivers/misc/mediatek/video/mt8163/videox/debug.h
+@@ -15,6 +15,7 @@
+ #define __MTKFB_DEBUG_H
+ 
+ #include "ddp_ovl.h"
++#include "disp_assert_layer.h"
+ #include "disp_drv_platform.h"
+ #include "lcm_drv.h"
+ #include "primary_display.h"
+@@ -46,8 +47,6 @@
+ extern void mtkfb_switch_factory_to_normal(void);
+ extern int mtkfb_get_debug_state(char *stringbuf, int buf_len);
+ extern unsigned int mtkfb_fm_auto_test(void);
+-extern int DAL_Clean(void);
+-extern int DAL_Printf(const char *fmt, ...);
+ extern void DSI_ChangeClk(enum DISP_MODULE_ENUM module, uint32_t clk);
+ extern void smp_inner_dcache_flush_all(void);
+ extern void mtkfb_clear_lcm(void);
+
+diff --git a/sound/soc/codecs/rt551x.c b/sound/soc/codecs/rt551x.c
+--- a/sound/soc/codecs/rt551x.c
++++ b/sound/soc/codecs/rt551x.c
+@@ -46,7 +46,9 @@
+ static u32 hw_analog_gain = 0xd, hw_digital_gain = 0x892f;
+ 
+ #define PRIO_TWO_BIGS_TWO_LITTLES_MAX_FREQ 11
++#if IS_ENABLED(CONFIG_MTK_DYNAMIC_BOOST)
+ extern int set_dynamic_boost(int duration, int prio_mode);
++#endif
+ 
+ static DBGBUF_MEM dbgBufLast;
+ 
+@@ -1523,7 +1525,9 @@
+ 
+ 	pr_info("%s -- ALC551X DSP IRQ Issued Successfully!\n", __func__);
+ 
++#if IS_ENABLED(CONFIG_MTK_DYNAMIC_BOOST)
+ 	set_dynamic_boost(200, PRIO_TWO_BIGS_TWO_LITTLES_MAX_FREQ);
++#endif
+ 
+ 	if(rt551x->had_suspend)
+ 	{
+
+diff --git a/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_pcm_dl1_bt.c b/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_pcm_dl1_bt.c
+--- a/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_pcm_dl1_bt.c
++++ b/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_pcm_dl1_bt.c
+@@ -240,7 +240,7 @@
+ 
+ 	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
+ 		PRINTK_AUDDRV("SNDRV_PCM_STREAM_PLAYBACK ");
+-		PRINTK_AUDDRV("mtkalsa_playback_constraints\n");
++	PRINTK_AUDDRV("mtkalsa_playback_constraints\n");
+ 
+ 	if (ret < 0) {
+ 		PRINTK_AUDDRV("mtk_Dl1Bt_close\n");

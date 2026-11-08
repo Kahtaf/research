@@ -1,0 +1,35 @@
+--- a/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/stp_chrdev_bt.c
++++ b/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/stp_chrdev_bt.c
+@@ -44,6 +44,10 @@
+ #define BT_LOG_INFO                 2
+ #define BT_LOG_WARN                 1
+ #define BT_LOG_ERR                  0
++
++#ifdef CONFIG_COMPAT
++#include <linux/compat.h>
++#endif
+ 
+ #define COMBO_IOC_MAGIC             0xb0
+ #define COMBO_IOCTL_FW_ASSERT       _IOWR(COMBO_IOC_MAGIC, 0, int)
+@@ -327,6 +331,21 @@
+ 
+ long BT_compat_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+ {
++#ifdef CONFIG_COMPAT
++	/* ioctl numbers include sizeof(void *); ARM clients encode four bytes. */
++	switch (cmd) {
++	case _IOWR(COMBO_IOC_MAGIC, 1, compat_uptr_t):
++		cmd = COMBO_IOCTL_BT_IC_HW_VER;
++		break;
++	case _IOWR(COMBO_IOC_MAGIC, 2, compat_uptr_t):
++		cmd = COMBO_IOCTL_BT_IC_FW_VER;
++		break;
++	case _IOWR(COMBO_IOC_MAGIC, 3, compat_uptr_t):
++		cmd = COMBO_IOC_BT_HWVER;
++		arg = (unsigned long)compat_ptr(arg);
++		break;
++	}
++#endif
+ 	return BT_unlocked_ioctl(filp, cmd, arg);
+ }
+ 

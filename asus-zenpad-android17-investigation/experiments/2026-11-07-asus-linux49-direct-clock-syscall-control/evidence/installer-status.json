@@ -1,0 +1,9 @@
+{
+  "status": "UNMODIFIED_BASE_COPY_NOT_A_NEW_CANDIDATE_INSTALLER",
+  "candidate_hashes_unavailable": true,
+  "diff_empty": true,
+  "execute_Transport_Guard_and_entire_installer_byte_identical": true,
+  "adapters_copy2_byte_identical": true,
+  "adb_mode": "0755",
+  "command_not_ready": true
+}

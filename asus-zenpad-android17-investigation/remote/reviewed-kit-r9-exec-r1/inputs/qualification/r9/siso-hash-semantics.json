@@ -1,0 +1,326 @@
+[
+  {
+    "url": "https://chromium.googlesource.com/build/+/refs/tags/siso/v1.5.8/siso/build/step.go?format=TEXT",
+    "path": "/srv/android/asus-reviewed-build-kit/r9-fixtures/siso-source/siso_build_step.go",
+    "status": 200,
+    "sha256": "c90a24490003590df7ad92dc4fc1e59c69a774503b86f1767c6802041307e68d",
+    "matching_context": [
+      {
+        "line": 49,
+        "text": "\t// IsPhony returns true if the step is phony."
+      },
+      {
+        "line": 50,
+        "text": "\tIsPhony() bool"
+      },
+      {
+        "line": 51,
+        "text": ""
+      },
+      {
+        "line": 52,
+        "text": "\t// CmdHash returns command hash of the step."
+      },
+      {
+        "line": 53,
+        "text": "\tCmdHash() []byte"
+      },
+      {
+        "line": 54,
+        "text": ""
+      },
+      {
+        "line": 55,
+        "text": "\t// Binding returns binding value."
+      },
+      {
+        "line": 56,
+        "text": "\tBinding(string) string"
+      },
+      {
+        "line": 57,
+        "text": ""
+      },
+      {
+        "line": 467,
+        "text": "\t}"
+      },
+      {
+        "line": 468,
+        "text": "\ts.cmd = newCmd(ctx, b, s.def, stepManifest)"
+      },
+      {
+        "line": 469,
+        "text": "\tif log.V(1) {"
+      },
+      {
+        "line": 470,
+        "text": "\t\tclog.Infof(ctx, \"cmdhash:%s\", base64.StdEncoding.EncodeToString(s.cmd.CmdHash))"
+      },
+      {
+        "line": 471,
+        "text": "\t}"
+      },
+      {
+        "line": 472,
+        "text": "}"
+      },
+      {
+        "line": 473,
+        "text": ""
+      },
+      {
+        "line": 474,
+        "text": "func newCmd(ctx context.Context, b *Builder, stepDef StepDef, stepManifest *stepManifest) *execute.Cmd {"
+      },
+      {
+        "line": 497,
+        "text": "\t\tArgs:                    b.argTab.InternSlice(stepDef.Args(ctx)),"
+      },
+      {
+        "line": 498,
+        "text": "\t\tRSPFile:                 stepDef.Rspfile(ctx),"
+      },
+      {
+        "line": 499,
+        "text": "\t\tRSPFileContent:          []byte(stepDef.Binding(\"rspfile_content\")),"
+      },
+      {
+        "line": 500,
+        "text": "\t\tCmdHash:                 stepManifest.cmdHash,"
+      },
+      {
+        "line": 501,
+        "text": "\t\tExecRoot:                b.path.ExecRoot, // use step binding?"
+      },
+      {
+        "line": 502,
+        "text": "\t\tDir:                     b.path.Dir,"
+      },
+      {
+        "line": 503,
+        "text": "\t\tInputs:                  stepInputs(ctx, stepDef),"
+      },
+      {
+        "line": 504,
+        "text": "\t\tToolInputs:              stepDef.ToolInputs(ctx),"
+      },
+      {
+        "line": 505,
+        "text": "\t\tOutputs:                 stepManifest.outputs,"
+      },
+      {
+        "line": 506,
+        "text": "\t\tEdgeHash:                stepManifest.edgeHash,"
+      },
+      {
+        "line": 507,
+        "text": "\t\tUseSystemInput:          stepDef.Binding(\"use_system_input\") != \"\","
+      },
+      {
+        "line": 508,
+        "text": "\t\tDeps:                    stepDef.Binding(\"deps\"),"
+      },
+      {
+        "line": 509,
+        "text": "\t\tDepfile:                 stepDef.Depfile(ctx),"
+      },
+      {
+        "line": 510,
+        "text": "\t\tAuxiliaryLogOutputFiles: stepDef.AuxiliaryLogOutputFiles(ctx),"
+      }
+    ]
+  },
+  {
+    "url": "https://chromium.googlesource.com/build/+/refs/tags/siso/v1.5.8/siso/build/stepdef.go?format=TEXT",
+    "status": 404
+  },
+  {
+    "url": "https://chromium.googlesource.com/build/+/refs/tags/siso/v1.5.8/siso/hashfs/state.go?format=TEXT",
+    "path": "/srv/android/asus-reviewed-build-kit/r9-fixtures/siso-source/siso_hashfs_state.go",
+    "status": 200,
+    "sha256": "175b14eb735aa5d1ee636567bb2861a33bf93e17413c888190066acd05339193",
+    "matching_context": [
+      {
+        "line": 394,
+        "text": "\tif log.V(1) {"
+      },
+      {
+        "line": 395,
+        "text": "\t\tclog.Infof(ctx, \"not exist %q\", es.ent.Name)"
+      },
+      {
+        "line": 396,
+        "text": "\t}"
+      },
+      {
+        "line": 397,
+        "text": "\tif len(es.ent.CmdHash) == 0 {"
+      },
+      {
+        "line": 398,
+        "text": "\t\tes.e.err = fs.ErrNotExist"
+      },
+      {
+        "line": 399,
+        "text": "\t\ties.nnotexist.Add(1)"
+      },
+      {
+        "line": 400,
+        "text": "\t\ties.dirty.Store(true)"
+      },
+      {
+        "line": 401,
+        "text": "\t\tclog.Infof(ctx, \"not exist with no cmd hash: %q\", es.ent.Name)"
+      },
+      {
+        "line": 484,
+        "text": "\tes.e.d = entDigest"
+      },
+      {
+        "line": 485,
+        "text": "\tes.e.directory = dir"
+      },
+      {
+        "line": 486,
+        "text": ""
+      },
+      {
+        "line": 487,
+        "text": "\tes.e.cmdhash = es.ent.CmdHash"
+      },
+      {
+        "line": 488,
+        "text": "\tes.e.edgehash = es.ent.EdgeHash"
+      },
+      {
+        "line": 489,
+        "text": "\tes.e.action = toDigest(es.ent.Action)"
+      },
+      {
+        "line": 490,
+        "text": "\tes.e.local = es.ent.Local"
+      },
+      {
+        "line": 491,
+        "text": ""
+      },
+      {
+        "line": 492,
+        "text": "\tes.prevGenerated = len(es.e.cmdhash) > 0"
+      },
+      {
+        "line": 1016,
+        "text": "\t\t\t\t\tDigest:       fromDigest(e.d),"
+      },
+      {
+        "line": 1017,
+        "text": "\t\t\t\t\tIsExecutable: e.mode&0111 != 0,"
+      },
+      {
+        "line": 1018,
+        "text": "\t\t\t\t\tTarget:       e.target,"
+      },
+      {
+        "line": 1019,
+        "text": "\t\t\t\t\tCmdHash:      e.cmdhash,"
+      },
+      {
+        "line": 1020,
+        "text": "\t\t\t\t\tEdgeHash:     e.edgehash,"
+      },
+      {
+        "line": 1021,
+        "text": "\t\t\t\t\tAction:       fromDigest(e.action),"
+      },
+      {
+        "line": 1022,
+        "text": "\t\t\t\t\tLocal:        e.local,"
+      },
+      {
+        "line": 1023,
+        "text": "\t\t\t\t\tUpdatedTime:  e.updatedTime.UnixNano(),"
+      },
+      {
+        "line": 1024,
+        "text": "\t\t\t\t})"
+      },
+      {
+        "line": 1031,
+        "text": "\t\t\t\t\t\tModTime: e.mtime.UnixNano(),"
+      },
+      {
+        "line": 1032,
+        "text": "\t\t\t\t\t},"
+      },
+      {
+        "line": 1033,
+        "text": "\t\t\t\t\tName:        name,"
+      },
+      {
+        "line": 1034,
+        "text": "\t\t\t\t\tCmdHash:     e.cmdhash,"
+      },
+      {
+        "line": 1035,
+        "text": "\t\t\t\t\tEdgeHash:    e.edgehash,"
+      },
+      {
+        "line": 1036,
+        "text": "\t\t\t\t\tAction:      fromDigest(e.action),"
+      },
+      {
+        "line": 1037,
+        "text": "\t\t\t\t\tLocal:       e.local,"
+      },
+      {
+        "line": 1038,
+        "text": "\t\t\t\t\tUpdatedTime: e.updatedTime.UnixNano(),"
+      },
+      {
+        "line": 1039,
+        "text": "\t\t\t\t})"
+      },
+      {
+        "line": 1141,
+        "text": "\t\tDigest:       fromDigest(e.d),"
+      },
+      {
+        "line": 1142,
+        "text": "\t\tIsExecutable: e.mode&0111 != 0,"
+      },
+      {
+        "line": 1143,
+        "text": "\t\tTarget:       e.target,"
+      },
+      {
+        "line": 1144,
+        "text": "\t\tCmdHash:      e.cmdhash,"
+      },
+      {
+        "line": 1145,
+        "text": "\t\tEdgeHash:     e.edgehash,"
+      },
+      {
+        "line": 1146,
+        "text": "\t\tAction:       fromDigest(e.action),"
+      },
+      {
+        "line": 1147,
+        "text": "\t\tLocal:        e.local,"
+      },
+      {
+        "line": 1148,
+        "text": "\t\tUpdatedTime:  e.updatedTime.UnixNano(),"
+      },
+      {
+        "line": 1149,
+        "text": "\t}"
+      }
+    ]
+  },
+  {
+    "url": "https://chromium.googlesource.com/build/+/refs/tags/siso/v1.5.8/siso/ninja/ninja.go?format=TEXT",
+    "status": 404
+  }
+]

@@ -1,0 +1,17 @@
+--- old/source/install.py
++++ new/source/install.py
+@@ -12,10 +12,10 @@
+ w=importlib.util.module_from_spec(spec);spec.loader.exec_module(w)
+ a,b=w.a,w.b
+ require=b.require
+-IMAGE=WORK/'2026-11-07-asus-linux49-microsd-report/artifacts/candidate.img'
+-IMAGE_SHA='505707610e035ea3b1b7364e5ad75ce1cf2396eca9b64e378c3b90150df6853d'
+-FULL_SHA='78005304291706fe2ad2affa185467c89464dc2f3216f97d572a29a1e058afa9'
+-INSTALL_PREIMAGES=(*a.INSTALL_PREIMAGES,a.FULL_SHA)
++IMAGE=ROOT/'artifacts/candidate.img'
++IMAGE_SHA='999a575cc3dcb20b92f45a8281de19d1d452ad304836b5dded93422aca9d2510'
++FULL_SHA='7161898f7858c5eb2887a4589fce5a62d4b2d556e1413e36e4e53c3cd8431b09'
++INSTALL_PREIMAGES=(*a.INSTALL_PREIMAGES,a.FULL_SHA,'78005304291706fe2ad2affa185467c89464dc2f3216f97d572a29a1e058afa9')
+ SELF=Path(__file__)
+ SELF_SHA=sha(SELF.read_bytes())
+ LEGACY_PINS={p:sha(p.read_bytes()) for p in (ROOT/'source/adb',ROOT/'source/legacy_adb.py')}

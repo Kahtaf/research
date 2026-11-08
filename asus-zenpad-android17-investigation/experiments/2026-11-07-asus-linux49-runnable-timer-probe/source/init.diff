@@ -1,0 +1,186 @@
+--- /OWNER_HOME/Documents/workspace/ideas/2026-11-07-asus-linux49-ram-before-alarm-probe/source/init.c
++++ /OWNER_HOME/Documents/workspace/ideas/2026-11-07-asus-linux49-runnable-timer-probe/source/init.c
+@@ -13,17 +13,19 @@
+ #include <time.h>
+ #include <unistd.h>
+ 
+-#define RUN_ID "5fa3e2cd-430d-4bbb-8b37-1adff9bb9439"
+-#define TAG "ASUS49-PREALARM run=" RUN_ID
++#define RUN_ID "83cc6715-05b7-48be-aaff-44ea5186ba8a"
++#define TAG "ASUS49-RUNNABLE run=" RUN_ID
+ #define NODE "/primitive-kmsg"
+ #define MAX_LOGS 768
+ static int sink=-1;
+ static unsigned logs;
+ static volatile sig_atomic_t sink_error;
++static volatile sig_atomic_t alarm_fired;
++static const char *phase="setup";
+ static void event(const char *stage,const char *op,const char *path,long rc,int error,const char *value){
+  int saved=errno;char line[768];
+  if(logs++<MAX_LOGS){
+-  int n=snprintf(line,sizeof(line),"<6>" TAG " stage=%s op=%s path=%s rc=%ld errno=%d value=%s\n",stage,op,path,rc,error,value);
++  int n=snprintf(line,sizeof(line),"<6>" TAG " phase=%s stage=%s op=%s path=%s rc=%ld errno=%d value=%s\n",phase,stage,op,path,rc,error,value);
+   if(n>0&&(size_t)n<sizeof(line)&&sink>=0){ssize_t w=write(sink,line,(size_t)n);if(w!=n)sink_error=w<0?errno:EIO;}
+  }
+  errno=saved;
+@@ -32,28 +34,24 @@
+ static void end(const char *op,const char *path,long rc,int error){event("end",op,path,rc,error,"-");}
+ static void park(void){for(;;)pause();}
+ static void alarm_handler(int signo){
+- (void)signo;
+- static const char line[]="<6>" TAG " stage=alarm op=reboot.begin nominal_seconds=10 timer_dependent=1\n";
+- if(sink>=0)(void)write(sink,line,sizeof(line)-1);
+- int rc=reboot(RB_AUTOBOOT),error=rc<0?errno:0;
+- char out[]="<6>" TAG " stage=alarm op=reboot.return errno=0000000000\n";
+- unsigned v=(unsigned)error;size_t p=sizeof(out)-3;
+- for(unsigned i=0;i<10;i++){out[p-i]=(char)('0'+v%10);v/=10;}
+- if(sink>=0)(void)write(sink,out,sizeof(out)-1);
+- park();
++ (void)signo;int saved=errno;alarm_fired=1;
++ static const char line[]="<6>" TAG " stage=alarm op=SIGALRM.fired nominal_seconds=1 timer_dependent=1\n";
++ if(sink>=0){ssize_t w=write(sink,line,sizeof(line)-1);(void)w;}
++ errno=saved;
+ }
+ static void finish(void){
+  sigset_t set;sigemptyset(&set);sigaddset(&set,SIGALRM);
+  begin("sigprocmask.block-alarm","-");int rc=sigprocmask(SIG_BLOCK,&set,NULL);end("sigprocmask.block-alarm","-",rc,rc<0?errno:0);
+- /* If blocking fails, leave the sole reboot attempt to the armed handler. */
+- if(rc<0)park();
+  begin("alarm.cancel","-");unsigned left=alarm(0);end("alarm.cancel","-",left,0);
++ event("actual","alarm.final-flag","SIGALRM",alarm_fired,0,"handler-write-result-unchecked;flag-proves-handler-entry");
++ event("complete","observation","-",0,0,"SIGALRM-block-and-cancel-attempted;Power-fallback-required");
++ event("actual","sink.write.error","-",sink_error,sink_error,"zero-if-all-records-written");
+  begin("reboot","-");rc=reboot(RB_AUTOBOOT);end("reboot","-",rc,rc<0?errno:0);park();
+ }
+ static int clock_sample(const char *name,struct timespec *t){
+  begin("clock_gettime",name);int rc=clock_gettime(CLOCK_MONOTONIC,t),e=rc<0?errno:0;char v[96]="unavailable";
+  if(!rc)snprintf(v,sizeof(v),"%lld.%09ld",(long long)t->tv_sec,t->tv_nsec);
+- event("end","clock_gettime",name,rc,e,v);return rc;
++ event("end","clock_gettime",name,rc,e,v);errno=e;return rc;
+ }
+ static void names(const char *path){
+  begin("opendir",path);DIR *d=opendir(path);int e=d?0:errno;end("opendir",path,d?0:-1,e);if(!d)return;
+@@ -80,6 +78,93 @@
+  if(n==128)event("bounded","metadata",path,n,0,"possibly-truncated-no-further-read");
+  begin("close",path);int rc=close(fd);end("close",path,rc,rc<0?errno:0);
+ }
++static void mmc_snapshot(void){
++ int rc;
++ names("/sys/class/mmc_host");names("/sys/class/block");
++ const char *nodes[]={"mmcblk0","mmcblk0p1","mmcblk1","mmcblk1p1"};
++ const char *attrs[]={"dev","size","removable","device/type"};char path[128];
++ for(unsigned i=0;i<4;i++){
++  snprintf(path,sizeof(path),"/sys/class/block/%s",nodes[i]);struct stat st;begin("stat.node",path);rc=stat(path,&st);end("stat.node",path,rc,rc<0?errno:0);
++  if(!rc)for(unsigned j=0;j<4;j++){snprintf(path,sizeof(path),"/sys/class/block/%s/%s",nodes[i],attrs[j]);metadata(path);}
++ }
++}
++/* Emit a reconstructed public arch_timer record, never arbitrary proc text. */
++static int number(char **p,unsigned long long *v){
++ char *q=*p;while(*q==' '||*q=='\t')q++;
++ if(*q<'0'||*q>'9')return -1;
++ *v=0;unsigned n=0;
++ while(*q>='0'&&*q<='9'){
++  unsigned d=(unsigned)(*q++-'0');
++  if(++n>20||*v>(~0ULL-d)/10)return -1;
++  *v=*v*10+d;
++ }
++ *p=q;return 0;
++}
++static int timer_line(char *line){
++ char *p=line;unsigned long long irq,ppi,c;char counts[384];size_t used=0;unsigned cpus=0;
++ if(number(&p,&irq)||*p++!=':')return -1;
++ for(;;){
++  while(*p==' '||*p=='\t')p++;
++  if(!strncmp(p,"GIC",3)&&(p[3]==' '||p[3]=='\t')){p+=3;break;}
++  if(cpus==16||number(&p,&c))return -1;
++  int n=snprintf(counts+used,sizeof(counts)-used,"%s%llu",cpus?",":"",c);
++  if(n<0||(size_t)n>=sizeof(counts)-used)return -1;
++  used+=(size_t)n;cpus++;
++ }
++ if(!cpus||number(&p,&ppi))return -1;
++ while(*p==' '||*p=='\t')p++;
++ if(strncmp(p,"arch_timer",10))return -1;
++ p+=10;while(*p==' '||*p=='\t')p++;if(*p)return -1;
++ char v[512];snprintf(v,sizeof(v),"irq=%llu counts=%s cpus=%u controller=GIC hwirq=%llu name=arch_timer",irq,counts,cpus,ppi);
++ event("actual","interrupts.arch_timer","/proc/interrupts",0,0,v);return 0;
++}
++static void timer_snapshot(void){
++ static char buf[32769];size_t used=0;unsigned calls=0,lines=0,found=0,emitted=0,errors=0;int eof=0;
++ const char *path="/proc/interrupts";begin("open.readonly",path);
++ int fd=open(path,O_RDONLY|O_CLOEXEC|O_NOFOLLOW|O_NONBLOCK),e=fd<0?errno:0;end("open.readonly",path,fd,e);if(fd<0)return;
++ while(calls<8&&used<32768){
++  begin("read.max4096",path);ssize_t n=read(fd,buf+used,4096);e=n<0?errno:0;calls++;end("read.max4096",path,n,e);
++  if(n<=0){eof=n==0;if(n<0)errors++;break;}used+=(size_t)n;
++ }
++ buf[used]=0;
++ begin("close",path);int rc=close(fd);end("close",path,rc,rc<0?errno:0);
++ size_t start=0;
++ while(start<used&&lines<256){
++  char *nl=memchr(buf+start,'\n',used-start);if(!nl)break;
++  *nl=0;lines++;
++  if(strstr(buf+start,"arch_timer")){
++   found++;
++   if(found>8){event("bounded","interrupts.lines",path,found,0,"arch_timer-output-limit");break;}
++   if(timer_line(buf+start)){errors++;event("error","interrupts.parse",path,-1,EINVAL,"arch_timer-line-rejected-no-raw-output");}
++   else emitted++;
++  }
++  start=(size_t)(nl-buf)+1;
++ }
++ if(!eof)event("bounded","interrupts.bytes",path,used,0,"possibly-truncated-read-call-or-byte-cap-or-error");
++ if(start<used)event("bounded","interrupts.lines",path,lines,0,"unparsed-tail-or-line-cap");
++ if(!found)event("actual","interrupts.arch_timer.absent",path,0,0,"none-in-bounded-complete-lines");
++ char v[160];snprintf(v,sizeof(v),"bytes=%zu read_calls=%u lines=%u arch_found=%u emitted=%u parse_or_read_errors=%u eof=%d",used,calls,lines,found,emitted,errors,eof);
++ event("complete","interrupts.snapshot",path,emitted,0,v);
++}
++static void observe(void){
++ struct timespec initial={0,0},final={0,0};unsigned iterations=0;long long delta=0;int error=0;const char *reason="initial-clock-error";
++ int rc=clock_sample("loop.initial",&initial),valid=!rc;
++ if(!rc){
++  final=initial;reason="iteration-cap";
++  while(iterations<2000000){
++   struct timespec next;iterations++;rc=clock_gettime(CLOCK_MONOTONIC,&next);
++   if(rc<0){error=errno;reason="clock-error";break;}
++   final=next;
++   delta=((long long)final.tv_sec-initial.tv_sec)*1000000000LL+final.tv_nsec-initial.tv_nsec;
++   if(delta<0){reason="counter-regressed";break;}
++   if(delta>=1500000000LL){reason="counter-target";break;}
++  }
++ }else error=errno;
++ char sample[96];snprintf(sample,sizeof(sample),"%lld.%09ld sample-valid=%d",(long long)final.tv_sec,final.tv_nsec,valid);
++ event("actual","clock_gettime.final","CLOCK_MONOTONIC",rc,error,sample);
++ char v[256];snprintf(v,sizeof(v),"delta_ns=%lld iterations=%u reason=%s alarm_flag=%d clock_error=%d counter_interval_not_wallclock=1",delta,iterations,reason,(int)alarm_fired,error);
++ event("complete","runnable.loop","CLOCK_MONOTONIC",rc,error,v);
++}
+ int main(void){
+  pid_t pid=getpid();if(pid!=1)return 1;
+  int made=mknod(NODE,S_IFCHR|0600,makedev(1,11)),me=made<0?errno:0;
+@@ -95,20 +180,13 @@
+  if(!rc){event("actual","uname.sysname","-",0,0,u.sysname);event("actual","uname.release","-",0,0,u.release);event("actual","uname.version","-",0,0,u.version);event("actual","uname.machine","-",0,0,u.machine);}
+  const char *targets[]={"/proc","/sys"},*types[]={"proc","sysfs"};
+  for(unsigned i=0;i<2;i++){begin("mount",targets[i]);rc=mount(types[i],targets[i],types[i],MS_NOSUID|MS_NODEV|MS_NOEXEC,NULL);end("mount",targets[i],rc,rc<0?errno:0);if(rc)finish();}
+- names("/sys/class/mmc_host");names("/sys/class/block");
+- const char *nodes[]={"mmcblk0","mmcblk0p1","mmcblk1","mmcblk1p1"};
+- const char *attrs[]={"dev","size","removable","device/type"};char path[128];
+- for(unsigned i=0;i<4;i++){
+-  snprintf(path,sizeof(path),"/sys/class/block/%s",nodes[i]);struct stat st;begin("stat.node",path);rc=stat(path,&st);end("stat.node",path,rc,rc<0?errno:0);
+-  if(!rc)for(unsigned j=0;j<4;j++){snprintf(path,sizeof(path),"/sys/class/block/%s/%s",nodes[i],attrs[j]);metadata(path);}
+- }
+- struct timespec before,after,request={0,100000000};int b=clock_sample("before-sleep",&before);
+- begin("alarm.nominal10s.timer-dependent","-");unsigned left=alarm(10);end("alarm.nominal10s.timer-dependent","-",left,0);
+- begin("clock_nanosleep.relative100ms","CLOCK_MONOTONIC");errno=0;rc=clock_nanosleep(CLOCK_MONOTONIC,0,&request,NULL);int captured_errno=errno;
+- char result[96];snprintf(result,sizeof(result),"error_number=%d libc_errno=%d no-retry=1",rc,captured_errno);
+- event("end","clock_nanosleep.relative100ms","CLOCK_MONOTONIC",rc,rc,result);
+- int a=clock_sample("after-sleep",&after);
+- if(!b&&!a){long long delta=((long long)after.tv_sec-before.tv_sec)*1000000000LL+after.tv_nsec-before.tv_nsec;char value[96];snprintf(value,sizeof(value),"delta_ns=%lld clock_frequency_not_calibrated=1",delta);event("actual","sleep.delta","-",rc,rc,value);}
+- event("complete","observation","-",0,0,"sleep-and-enumeration-returned");
+- event("actual","sink.write.error","-",sink_error,sink_error,"zero-if-all-records-written");finish();return 0;
++ phase="before";mmc_snapshot();
++ metadata("/sys/devices/system/clockevents/clockevent0/current_device");
++ metadata("/sys/devices/system/clockevents/broadcast/current_device");
++ timer_snapshot();
++ phase="observe";
++ begin("alarm.nominal1s.timer-dependent","-");unsigned left=alarm(1);end("alarm.nominal1s.timer-dependent","-",left,0);
++ observe();
++ phase="after";timer_snapshot();mmc_snapshot();
++ phase="finish";finish();return 0;
+ }

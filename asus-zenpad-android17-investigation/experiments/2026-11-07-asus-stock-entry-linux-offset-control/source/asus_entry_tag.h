@@ -1,0 +1,2 @@
+#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=3de99973-f225-47d8-9b0b-6d51a530ce40 stage=stext-preargs stock-control=LC donor=dc0b98e66798e3abc019f454921b1c84ff3ce58e356e26d0785e05b7714d3427 writer=32f22ec90acd2fc6787a15589ada5c2a1d06117768b43cc8ab88051c11cbfc5a\n"
+#define ASUS_ENTRY_TAG_LEN 234

@@ -1,0 +1,53 @@
+{
+  "at": "2026-11-08T03:11:49.272917+00:00",
+  "capture_uuid": "fef31ed4-f62b-4f2a-8cc8-8f5a6c96dbdb",
+  "capture_status": "COMPLETE_CAPTURE_ROWS",
+  "loss_latched": false,
+  "invalid_rows": [],
+  "monotonic_task": {
+    "entries": 391,
+    "complete": 390,
+    "latest_enter_token": "0x55a00",
+    "previous_exit_token": "0x55800",
+    "stage": 2,
+    "seq_enter": 312,
+    "seq_last": 312,
+    "caller": "posix_ktime_get_ts+16",
+    "meaning": "Latest captured read returned from read_seqcount_begin; no stage3 or matching captured function exit. The capture function itself may have been preempted before returning."
+  },
+  "task_counter": {
+    "entries": 391,
+    "complete": 391,
+    "parent_token": "0x55800",
+    "matches_latest_monotonic": false,
+    "reader": "arch_counter_get_cntvct",
+    "raw_decimal": 176016551
+  },
+  "timer_callback": {
+    "entries": 183,
+    "complete": 183,
+    "latest_token": "0x55b21",
+    "function": "hrtimer_interrupt",
+    "interrupted_PC_symbol": "_raw_spin_unlock_irqrestore+16",
+    "instruction": "mrs x1,sp_el0, immediately after msr daif,x1 and before preempt-count decrement",
+    "interrupted_task_pid": "NOT_CAPTURED; do not assume PID1 or recorder context"
+  },
+  "IRQ_counter": {
+    "entries": 410,
+    "complete": 410,
+    "parent_token": "0x55b21",
+    "matches_latest_timer_callback": true,
+    "reader": "arch_counter_get_cntvct",
+    "raw_decimal": 176017014
+  },
+  "ordered_complete_raw_counter_sample_difference_ticks": 463,
+  "sample_difference_is_not_wallclock_calibration": true,
+  "interpretation_limits": [
+    "Last completed timer callback does not prove IRQ-exit/softirq/scheduling completed.",
+    "Unfinished task clock capture can mean descheduling, not a clock-core fault.",
+    "Previous task counter value is not the unfinished task clock call sample.",
+    "A single latest capture does not establish duration, permanent stagnation or root cause."
+  ],
+  "normal_Android_return_verified": true,
+  "normal_OS_partitions_changed": false
+}

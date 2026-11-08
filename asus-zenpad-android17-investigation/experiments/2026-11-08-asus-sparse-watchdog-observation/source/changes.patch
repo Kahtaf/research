@@ -1,0 +1,233 @@
+--- base/drivers/watchdog/mtk_wdt.c
++++ candidate/drivers/watchdog/mtk_wdt.c
+@@ -18,6 +18,7 @@
+  * Based on sunxi_wdt.c
+  */
+ 
++#include <linux/asus_retained_trace.h>
+ #include <linux/err.h>
+ #include <linux/init.h>
+ #include <linux/io.h>
+@@ -188,8 +189,10 @@
+ 	mtk_wdt->reset_controller.rcdev.of_node = pdev->dev.of_node;
+ 
+ 	ret = reset_controller_register(&mtk_wdt->reset_controller.rcdev);
+-	if (ret != 0)
++	if (ret != 0) {
++		asus_sparse_wdt_record(ASUS_WDT_RESET_ERROR, ret, 0, 0, 0);
+ 		pr_err("could not register toprgu reset controller: %d\n", ret);
++	}
+ }
+ 
+ int __attribute__((weak)) rtc_mark_quiescent(int value) { return 0; }
+@@ -200,6 +203,8 @@
+ 	void __iomem *wdt_base;
+ 	u32 reg;
+ 
++	asus_sparse_wdt_record(ASUS_WDT_RESTART, 0, 0, 0,
++		(unsigned long)__builtin_return_address(0));
+ 	mtk_wdt = container_of(this, struct mtk_wdt_dev, restart_handler);
+ 	wdt_base = mtk_wdt->wdt_base;
+ 
+@@ -323,12 +328,16 @@
+ {
+ 	struct mtk_wdt_dev *mtk_wdt = watchdog_get_drvdata(wdt_dev);
+ 	void __iomem *wdt_base = mtk_wdt->wdt_base;
+-	u32 reg;
++	u32 reg, before, after;
+ 
+ 	reg = readl(wdt_base + WDT_MODE);
++	before = reg;
+ 	reg &= ~WDT_MODE_EN;
+ 	reg |= WDT_MODE_KEY;
+ 	iowrite32(reg, wdt_base + WDT_MODE);
++	after = readl(wdt_base + WDT_MODE);
++	asus_sparse_wdt_record(ASUS_WDT_STOP, 0, before, after,
++		(unsigned long)__builtin_return_address(0));
+ 
+ 	return 0;
+ }
+@@ -430,19 +439,27 @@
+ 	struct mtk_wdt_dev *mtk_wdt;
+ 	struct resource *res;
+ 	unsigned int tmp;
++	u32 req_mode, req_irq_en;
+ 	int err;
+ 
++	asus_sparse_wdt_record(ASUS_WDT_PROBE, 0, 0, 0,
++		(unsigned long)__builtin_return_address(0));
+ 	mtk_wdt = devm_kzalloc(&pdev->dev, sizeof(*mtk_wdt), GFP_KERNEL);
+-	if (!mtk_wdt)
++	if (!mtk_wdt) {
++		asus_sparse_wdt_record(ASUS_WDT_ALLOC_ERROR, -ENOMEM, 0, 0, 0);
+ 		return -ENOMEM;
++	}
+ 
+ 	platform_set_drvdata(pdev, mtk_wdt);
+ 
+ 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+ 	mtk_wdt->wdt_base = devm_ioremap_resource(&pdev->dev, res);
+ 
+-	if (IS_ERR(mtk_wdt->wdt_base))
++	if (IS_ERR(mtk_wdt->wdt_base)) {
++		asus_sparse_wdt_record(ASUS_WDT_MAP_ERROR,
++			PTR_ERR(mtk_wdt->wdt_base), 0, 0, 0);
+ 		return PTR_ERR(mtk_wdt->wdt_base);
++	}
+ 
+ 	pr_err("MTK_WDT_NONRST_REG(%x)\n", __raw_readl(mtk_wdt->wdt_base + WDT_NONRST_REG));
+ 
+@@ -489,29 +506,37 @@
+ #endif
+ 
+ 	err = watchdog_register_device(&mtk_wdt->wdt_dev);
+-	if (unlikely(err))
++	if (unlikely(err)) {
++		asus_sparse_wdt_record(ASUS_WDT_WATCHDOG_ERROR, err, 0, 0, 0);
+ 		return err;
++	}
+ 
+ 	mtk_wdt->restart_handler.notifier_call = mtk_reset_handler;
+ 	mtk_wdt->restart_handler.priority = 128;
+ 	if (arm_pm_restart) {
+ 		dev_info(&pdev->dev, "register restart_handler on reboot_notifier_list for psci reset\n");
+ 		err = register_reboot_notifier(&mtk_wdt->restart_handler);
+-		if (err != 0)
++		if (err != 0) {
++			asus_sparse_wdt_record(ASUS_WDT_REBOOT_ERROR, err, 0, 0, 0);
+ 			dev_warn(&pdev->dev,
+ 				"cannot register reboot notifier (err=%d)\n", err);
++		}
+ 	} else {
+ 		err = register_restart_handler(&mtk_wdt->restart_handler);
+-		if (err != 0)
++		if (err != 0) {
++			asus_sparse_wdt_record(ASUS_WDT_RESTART_ERROR, err, 0, 0, 0);
+ 			dev_warn(&pdev->dev,
+ 				"cannot register restart handler (err=%d)\n", err);
++		}
+ 	}
+ 
+ 	mtk_wdt->pm_handler.notifier_call = mtk_pm_handler;
+ 	err = register_pm_notifier(&mtk_wdt->pm_handler);
+-	if (err)
++	if (err) {
++		asus_sparse_wdt_record(ASUS_WDT_PM_ERROR, err, 0, 0, 0);
+ 		dev_warn(&pdev->dev,"[%s] failed to register WDT PM notifier %d\n",
+ 			__func__, err);
++	}
+ 
+ 	dev_info(&pdev->dev, "Watchdog enabled (timeout=%d sec, nowayout=%d)\n",
+ 			mtk_wdt->wdt_dev.timeout, nowayout);
+@@ -534,6 +559,10 @@
+         /* clear quiescent mode*/
+ 	rtc_mark_quiescent(0);
+ 
++	/* These configuration registers already use read/modify/write above. */
++	req_mode = ioread32(mtk_wdt->wdt_base + WDT_REQ_MODE);
++	req_irq_en = ioread32(mtk_wdt->wdt_base + WDT_REQ_IRQ_EN);
++	asus_sparse_wdt_record(ASUS_WDT_PROBE_DONE, 0, req_mode, req_irq_en, 0);
+ 	return 0;
+ }
+ 
+--- base/include/linux/asus_retained_trace.h
++++ candidate/include/linux/asus_retained_trace.h
+@@ -5,6 +5,21 @@
+ #include <linux/types.h>
+ #include <linux/string.h>
+ struct task_struct;
++/* Cold watchdog facts only; no MMIO or timing in the recorder. */
++enum asus_sparse_wdt_event {
++ ASUS_WDT_PROBE, ASUS_WDT_ALLOC_ERROR, ASUS_WDT_MAP_ERROR,
++ ASUS_WDT_WATCHDOG_ERROR, ASUS_WDT_REBOOT_ERROR, ASUS_WDT_RESTART_ERROR,
++ ASUS_WDT_PM_ERROR, ASUS_WDT_RESET_ERROR, ASUS_WDT_STOP,
++ ASUS_WDT_PROBE_DONE, ASUS_WDT_RESTART
++};
++#ifdef CONFIG_ASUS_P00A_RETAINED_BOOT_TRACE
++void asus_sparse_wdt_record(enum asus_sparse_wdt_event event, int rc,
++ u32 first, u32 second, unsigned long caller);
++#else
++static inline void asus_sparse_wdt_record(enum asus_sparse_wdt_event event, int rc,
++ u32 first, u32 second, unsigned long caller) { }
++#endif
++
+ #ifdef CONFIG_ASUS_P00A_RETAINED_BOOT_TRACE
+ void asus_capture_delay_calc(unsigned long xloops, unsigned long lpj,
+  unsigned long hz, unsigned long product, unsigned long cycles, unsigned long caller);
+--- base/arch/arm64/kernel/asus_retained_trace.c
++++ candidate/arch/arm64/kernel/asus_retained_trace.c
+@@ -1347,6 +1347,9 @@
+      SAME("06 time_init returned"))
+   return true;
+ #undef SAME
++ if (sparse_prefix(text, len, ASUS_SPARSE_WDT_PREFIX,
++                   sizeof(ASUS_SPARSE_WDT_PREFIX) - 1))
++  return true;
+  if (!sparse_prefix(text, len, helper, sizeof(helper) - 1))
+   return false;
+  text += sizeof(helper) - 1;
+@@ -1404,6 +1407,49 @@
+ 	__clean_dcache_area_poc(h, sizeof(*h));
+ out:
+ 	raw_spin_unlock_irqrestore(&trace_lock, flags);
++}
++
++/* No printk, clocks, allocation, sleep, or hardware access on this path. */
++void noinline notrace asus_sparse_wdt_record(enum asus_sparse_wdt_event event,
++ int rc, u32 first, u32 second, unsigned long caller)
++{
++ char line[288];
++ const char *site;
++ unsigned int len;
++
++ switch (event) {
++ case ASUS_WDT_PROBE:
++  len = scnprintf(line, sizeof(line), ASUS_SPARSE_WDT_PREFIX
++   "event=probe route=mtk_wdt_probe caller=%016lx", caller);
++  break;
++ case ASUS_WDT_STOP:
++  len = scnprintf(line, sizeof(line), ASUS_SPARSE_WDT_PREFIX
++   "event=stop before=%08x after=%08x en_before=%u en_after=%u caller=%016lx",
++   first, second, !!(first & 1U), !!(second & 1U), caller);
++  break;
++ case ASUS_WDT_PROBE_DONE:
++  len = scnprintf(line, sizeof(line), ASUS_SPARSE_WDT_PREFIX
++   "event=probe_done rc=%d req_mode=%08x req_irq_en=%08x", rc, first, second);
++  break;
++ case ASUS_WDT_RESTART:
++  len = scnprintf(line, sizeof(line), ASUS_SPARSE_WDT_PREFIX
++   "event=restart route=mtk_reset_handler caller=%016lx", caller);
++  break;
++ default:
++  switch (event) {
++  case ASUS_WDT_ALLOC_ERROR: site = "alloc"; break;
++  case ASUS_WDT_MAP_ERROR: site = "map"; break;
++  case ASUS_WDT_WATCHDOG_ERROR: site = "watchdog_register"; break;
++  case ASUS_WDT_REBOOT_ERROR: site = "reboot_notifier"; break;
++  case ASUS_WDT_RESTART_ERROR: site = "restart_handler"; break;
++  case ASUS_WDT_PM_ERROR: site = "pm_notifier"; break;
++  case ASUS_WDT_RESET_ERROR: site = "reset_controller"; break;
++  default: return;
++  }
++  len = scnprintf(line, sizeof(line), ASUS_SPARSE_WDT_PREFIX
++   "event=error site=%s rc=%d", site, rc);
++ }
++ asus_retained_trace_write(line, len);
+ }
+ 
+ static void __init trace_init(bool early)
+--- base/arch/arm64/kernel/asus_entry_tag.h
++++ candidate/arch/arm64/kernel/asus_entry_tag.h
+@@ -1,7 +1,9 @@
+-#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=e6799dac-43cb-4222-8ab6-5119397460b6 stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=e55f7efe0b074ca96c66526b2923b68c173d6b26c9c7ed007379af5b65762ecb cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
++#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=e0b1a1ba-ebd1-4454-a3fb-e8b05eedf5d9 stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=e55f7efe0b074ca96c66526b2923b68c173d6b26c9c7ed007379af5b65762ecb cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
+ #define ASUS_ENTRY_TAG_LEN 340
+ 
+-#define ASUS_CAPTURE_TAG "A49CAP1 uuid=e6799dac-43cb-4222-8ab6-5119397460b6 rows=15 row=384 fields=17 header=192"
++#define ASUS_CAPTURE_TAG "A49CAP1 uuid=e0b1a1ba-ebd1-4454-a3fb-e8b05eedf5d9 rows=15 row=384 fields=17 header=192"
+ 
+ #define ASUS_SPARSE_PROFILE 1
+-#define ASUS_SPARSE_MODE "ASUS49-MODE run=e6799dac-43cb-4222-8ab6-5119397460b6 profile=sparse-v1 hot=disabled ordinary_printk=filtered delay=original-virtual"
++#define ASUS_SPARSE_MODE "ASUS49-MODE run=e0b1a1ba-ebd1-4454-a3fb-e8b05eedf5d9 profile=sparse-wdt-v1 hot=disabled ordinary_printk=filtered delay=original-virtual"
++
++#define ASUS_SPARSE_WDT_PREFIX "ASUS49-WDT run=e0b1a1ba-ebd1-4454-a3fb-e8b05eedf5d9 "

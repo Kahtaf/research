@@ -1,0 +1,77 @@
+{
+  "seal": "9e02e9cd710497f9d6c046d0e1256d90adaae5cf72d2833561476f778fa3b979",
+  "commands": [
+    {
+      "name": "input-audit",
+      "argv": [
+        "python3",
+        "-B",
+        "/srv/android/asus-reviewed-build-kit/r3/scripts/integrate.py",
+        "--audit-inputs"
+      ],
+      "exit": 0,
+      "stdout_sha256": "7c2bad71c870ccd3dbd5b7666215dc67d874c66b745bce5b046af707ac352b9c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "live-preflight",
+      "argv": [
+        "python3",
+        "-B",
+        "/srv/android/asus-reviewed-build-kit/r3/scripts/integrate.py",
+        "--mode",
+        "PLAN_ONLY"
+      ],
+      "exit": 20,
+      "stdout_sha256": "91bc4a8d72010278bb6876d4237d85e58d1142c6f91ccc1fe851aec5bf22fbf9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "describe-prior",
+      "argv": [
+        "python3",
+        "-B",
+        "/srv/android/asus-reviewed-build-kit/r3/scripts/integrate.py",
+        "--describe-prior"
+      ],
+      "exit": 0,
+      "stdout_sha256": "8f05aea869937741dcaf866c296fd3d62b4c7bac0da065f840174a691998ec8d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "utc": "2026-11-06T22:11:27.799847+00:00",
+  "native_processes": [],
+  "r6_files": [],
+  "attempt_exists": false,
+  "parent_review_files": [],
+  "staged_sha256": "c168e1b13ad76b669655c071017f3ba038b06b1fc2b619df969aade441f7e17d",
+  "r5_terminal": {
+    "full-build-r5.finished": {
+      "sha256": "28fe7f126dce2c10f71e6c2ac6b46de3db0d1e211b25be55599fd750084aaf49",
+      "bytes": 26
+    },
+    "full-build-r5.log": {
+      "sha256": "4f317efdc2a8583190ca275084ccf976632573fe32a5c57e274d04d10e7570b2",
+      "bytes": 22563352
+    },
+    "full-build-r5.started": {
+      "sha256": "4e3bc24f179c505824a545f73b3f9215fc55146f1db6e3b0be39a922d8fa5cee",
+      "bytes": 26
+    },
+    "full-build-r5.vars": {
+      "sha256": "a78bfa9a87c674f2794e97c185303163ade7235f185e85ec3785dfea6a602855",
+      "bytes": 20863
+    },
+    "full-build-r5.exit-code": {
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytes": 2
+    },
+    "full-build-r5.pid": {
+      "sha256": "bc5bd66933c91178b8690af15f4d344b0e7a7814b6b35f28f1ca34ccd8f085de",
+      "bytes": 6
+    }
+  },
+  "all_outputs_preserved": true,
+  "active_writes": false,
+  "build_started": false
+}

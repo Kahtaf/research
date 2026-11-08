@@ -1,0 +1,42 @@
+# Independent stock-kernel OS rescue. No stock recovery binary, imports, fstab,
+# partition mounts, normal-boot repair, deadline, or power-control trigger.
+on early-init
+    write /sys/fs/selinux/enforce 1
+    start ueventd
+
+on init
+    export ANDROID_ROOT /system
+    export ANDROID_DATA /data
+    export PATH /sbin:/system/bin
+    mkdir /dev/rescue-state 0700 root root
+    restorecon /sbin/p10-restore /sbin/os-rescue /system/bin/sh /adb_keys /dev/rescue-state
+    start os-rescue
+
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 0E8D
+    write /sys/class/android_usb/android0/idProduct 201C
+    write /sys/class/android_usb/android0/f_ffs/aliases adb
+    write /sys/class/android_usb/android0/functions adb
+    write /sys/devices/platform/mt_usb/cmode 1
+    mkdir /dev/usb-ffs 0770 shell shell
+    mkdir /dev/usb-ffs/adb 0770 shell shell
+    mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+
+service ueventd /sbin/ueventd
+    seclabel u:r:ueventd:s0
+    disabled
+
+service os-rescue /sbin/os-rescue --serve
+    seclabel u:r:os_rescue:s0
+    user root
+    group root
+    socket os_rescue stream 0600 shell shell
+    disabled
+    oneshot
+
+service adbd /sbin/rescue-proxy --adbd
+    seclabel u:r:adbd:s0
+    socket adbd stream 0660 system system
+    disabled

@@ -1,0 +1,12 @@
+{
+  "source/service/controller.py": "0e4490a949214ceab11c44d05916e1555c02448ab0fe3f115a13f187f98c85b4",
+  "source/service/fixed.py": "66a59a241418c189a06243b17348a4c2cae433651517ac7c4b90d5ead4e34481",
+  "source/service/observer.py": "db39847cbf81eaff77636fb5cde46e413d667dc64c24e30e689d292be38c7443",
+  "source/service/root_dispatch.py": "067a357a60da9888578d76d9a0fb326d325b45825fc9e037cfd58353b81d94df",
+  "source/service/transport.py": "4d18a49cf0bc457aacf3ebaf83eb4503df57ef3de00485a7ecbc3de94c45e822",
+  "tests/service/test_faults.py": "8bb585b6f4b55404d6757120a7ae74849b53ececf3c2c67a8d3f2784a3efd85b",
+  "tests/service/test_firmware.py": "ce78cc1156a5068f67ed8df1989660550122cdba409851ddd94373c7daacd740",
+  "tests/service/test_nested_dispatch.py": "5302c00c2a40669426ed35c3eae2da9e68e8632180b112862069862ce64e72ac",
+  "tests/service/test_regressions.py": "f4330dc97ade3e5b05361011537a0a955a8d6b2cda3269cee1b4ea92a1cd4de2",
+  "tests/service/test_shell_guards.py": "a66ec3ed864617298f5098db84cdc36d439354542c7846b408e757db60594b9c"
+}

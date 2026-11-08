@@ -1,0 +1,199 @@
+{
+  "packaging": {
+    "actual_mtk_wrapper_names": [
+      "KERNEL",
+      "ROOTFS"
+    ],
+    "aosp_boot_sha256": "4b83266cc1f7f14a95d6e8ad5da490e1d358a4a1cebbdb2354454790a0d05b51",
+    "asus_signature_valid": false,
+    "compiled_config_sha256": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2",
+    "compressed_image_sha256": "6e445d5000ad1d8dba7dd947945f2db417c45800a6036b995340b9ffc3b57b6d",
+    "compressed_kernel_unchanged": true,
+    "dt_allowed_changes": [
+      "chosen/bootargs",
+      "chosen/linux,initrd-start",
+      "chosen/linux,initrd-end"
+    ],
+    "dtb_path": "/srv/android/asus-r9-independent-packaging-r2/checks/packaged.dtb",
+    "dtb_sha256": "2a5d74b0d1b60a31eda76008b9bdab5ef5fbf824f5b612add9c6f7eea94f7e5d",
+    "flash_ready": false,
+    "flashable_claim": false,
+    "hardware_boot_validated": false,
+    "header": {
+      "cmdline": "bootopt=64S3,32N2,64N2 build_version=3 androidboot.boot_devices=soc/11230000.mmc enforcing=1",
+      "component_id_hex": "dc3c04d15f7eb72ae859aabebfcd33af102e3510000000000000000000000000",
+      "header_version": 0,
+      "kernel_address": "0x40080000",
+      "kernel_bytes_including_wrapper": 7717661,
+      "magic": "ANDROID!",
+      "page_bytes": 2048,
+      "ramdisk_address": "0x44000000",
+      "ramdisk_bytes_including_wrapper": 1520552,
+      "second_address": "0x40f00000",
+      "second_bytes": 0,
+      "tags_address": "0x4e000000"
+    },
+    "header_cmdline": "bootopt=64S3,32N2,64N2 build_version=3 androidboot.boot_devices=soc/11230000.mmc enforcing=1",
+    "header_cmdline_bytes": 92,
+    "image_bytes": 9242624,
+    "image_path": "/srv/android/asus-r9-independent-packaging-r2/checks/UNTESTED-ROOT-ROUTE-FAILED-sdk37-combined-boot.img",
+    "image_sha256": "784d4dc565e7742ea607683d2a67d1fdb066764bddfa369895cbaaf6f048b435",
+    "input_header_cmdline": "bootopt=64S3,32N2,64N2 build_version=3 androidboot.hardware=mt8163 androidboot.fstab_suffix=mt8163 androidboot.boot_devices=soc/11230000.mmc",
+    "input_kernel_sha256": "e9cde06e85e752aec0433ea37fa926c31b4f7a72cd55453762ec6870e5bb5bf1",
+    "lk_gzip_semantic_model": {
+      "capacity": 29360128,
+      "copied_dt_tail_bytes": 64388,
+      "method": "host raw zlib substitute, not LK execution",
+      "output_bytes": 17345024,
+      "output_sha256": "43ee0529e371575bfaddb9de392b77a2279cb44bc60649fcd8d9a88b6e613b09",
+      "selected_dt_offset": 7653276,
+      "supplied_gzip_bytes": 7653273,
+      "unused_trailer_bytes": 5
+    },
+    "memory_layout": {
+      "dynamic_reservations": [
+        {
+          "alignment": 2097152,
+          "placement": "kernel memblock allocation after Image/initrd reservation",
+          "runtime_address_verified": false,
+          "size": 2097152,
+          "source": "/reserved-memory/consys-reserve-memory"
+        }
+      ],
+      "image_file_bytes": 17345024,
+      "image_flags": 10,
+      "image_size": 18841600,
+      "overlaps": false,
+      "payloads": [
+        {
+          "end": 1093107712,
+          "source": "ARM64 allocated Image",
+          "start": 1074266112
+        },
+        {
+          "end": 1142370728,
+          "source": "LK relocated compressed ramdisk (wrapper stripped)",
+          "start": 1140850688
+        },
+        {
+          "end": 1309671424,
+          "source": "DTB",
+          "start": 1308622848
+        }
+      ],
+      "reservations": [
+        {
+          "end": 1124270080,
+          "source": "/reserved-memory/atf-reserved-memory",
+          "start": 1124073472
+        },
+        {
+          "end": 1145569280,
+          "source": "/reserved-memory/ram_console-reserved-memory",
+          "start": 1145044992
+        },
+        {
+          "end": 1146617856,
+          "source": "/reserved-memory/minirdump-reserved-memory",
+          "start": 1146552320
+        },
+        {
+          "end": 3175088128,
+          "source": "/reserved-memory/secure-carveout",
+          "start": 3007315968
+        }
+      ],
+      "runtime_ram_and_framebuffer_verified": false,
+      "static_ram_banks": [
+        {
+          "end": 3177185280,
+          "start": 1073741824
+        }
+      ],
+      "text_offset": 524288
+    },
+    "overall_validation_passed": false,
+    "padded_partition_sha256": "a5bc3f7e3c5de03af35fea8d5493de86a792f212c93b90c07177d91f06697ebc",
+    "partition_bytes": 16740352,
+    "physical_boot_verified": false,
+    "ramdisk": {
+      "cpio_entries": 13,
+      "fstab_sha256": "04179d23e76be8755f6452319e05cc89f2438b51fcc539cb76695c9c65c57e75",
+      "synthetic_nonbootable": false
+    },
+    "ramdisk_bytes": 1520040,
+    "ramdisk_compressed_sha256": "95f5c2a8aded2e081e30e72ebd37322a24aa895bbe7e334c79c1381bcd3fe240",
+    "ramdisk_compressed_unchanged": true,
+    "ramdisk_end": "0x441731a8",
+    "ramdisk_start": "0x44000000",
+    "root_route_accepted": false,
+    "runtime_lk_properties_and_secure_monitor_verified": false,
+    "status": "PACKAGING_VALIDATED_HARDWARE_UNTESTED",
+    "wrapper_provenance": {
+      "kernel_wrapper_sha256": "95551a5693e175ffcde981848ea2f98183d141355cfb2febe6d35f6a1bc34552",
+      "no_private_device_data": true,
+      "ramdisk_wrapper_sha256": "07eccc6a7fb7a07a2989f2aabbefadea011dded4dd16934ec03f552c488d3fd0",
+      "stock_boot_sha256": "a175ed39c9e9642756dd28f1d006b39937d17f290da6af69dda6d4b52d6f910d"
+    }
+  },
+  "final_boot_sha256": "784d4dc565e7742ea607683d2a67d1fdb066764bddfa369895cbaaf6f048b435",
+  "wrapped_kernel_sha256": "e29ab096ea06d74b40faf99780a6945d7e164a625b9f68425ceba5913dfdd805",
+  "wrapped_ramdisk_sha256": "3db7542ec142d534a97ff541128da1b8d46ce9c6508ae7a520e8593921176b11",
+  "wrapped_kernel_payload_sha256": "24268961294320d3f0e077bc9f730767eaa95f88c357609640dcf5b5d0b89878",
+  "ramdisk_compressed_sha256": "95f5c2a8aded2e081e30e72ebd37322a24aa895bbe7e334c79c1381bcd3fe240",
+  "source_images": {
+    "boot": {
+      "path": "/srv/android/lineage24/out/target/product/p00a/boot.img",
+      "bytes": 9242624,
+      "sha256": "4b83266cc1f7f14a95d6e8ad5da490e1d358a4a1cebbdb2354454790a0d05b51"
+    },
+    "system": {
+      "path": "/srv/android/lineage24/out/target/product/p00a/system.img",
+      "bytes": 2583003956,
+      "sha256": "827904b17c29df5f0f213d3b94adc4a24ea007c698eeb60c61092a524b380ff3"
+    }
+  },
+  "raw_system": {
+    "path": "/srv/android/asus-r9-postbuild-validation-r2/validation/system-partition.raw",
+    "bytes": 3753902080,
+    "sha256": "baa69560ace09a478c902077d8ff926d7a079ecb9b9f1632e4c330169b243798",
+    "mode": "0o444"
+  },
+  "sole_raw_count": 1,
+  "independent_outcome": {
+    "elapsed_seconds": 10.450534985997365,
+    "flash_ready": false,
+    "independent_results_sha256": "673696357480460acec2b5cf1fa1be9c30360ea2bd333c6c9a81aa2d4e813dc3",
+    "kit_pins_sha256": "744fa117bba0e4ba9895af792ddc71f1cbe99196cb752593e560064ef8d41e69",
+    "original_and_prior_evidence_unchanged": true,
+    "original_native_phase_exits": {
+      "bootimage": 0,
+      "host_init_verifier": 0
+    },
+    "original_r9_overall_exit": 1,
+    "overall_validation_passed": false,
+    "peak_observed_owned_allocation_bytes": 4426088448,
+    "phase_results": {
+      "packaging": true,
+      "ramdisk-properties": true,
+      "source-postimages": true,
+      "vintf": false
+    },
+    "root_route_accepted": false,
+    "stop_reason": null,
+    "utc": "2026-11-07T02:55:55.067128+00:00",
+    "worker_exit": 0,
+    "worker_log_sha256": "36d92c7963a7192635baf2f49a5e1dfea7eafee43164fe57009dc8e869cf6ee8",
+    "worker_sha256": "fbf3baad19da78554dac3703f624e3ef6e0ea667f2e737b88e4c0419033febda"
+  },
+  "original_lock_inode": 15018964,
+  "lock_acquired_nonblocking": true,
+  "source_fix_applied": false,
+  "native_invocation_executed": false,
+  "overall_validation_passed": false,
+  "root_route_accepted": false,
+  "vintf_compatible": false,
+  "runtime_verified": false,
+  "physical_boot_verified": false,
+  "flash_ready": false
+}

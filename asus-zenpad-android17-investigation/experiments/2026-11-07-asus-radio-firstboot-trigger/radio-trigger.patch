@@ -1,0 +1,15 @@
+--- a/device/asus/p00a/radio/init.p00a-radio.rc
++++ b/device/asus/p00a/radio/init.p00a-radio.rc
+@@ -21,10 +21,10 @@
+     mkdir /data/vendor/bluetooth/p00a 0750 root bluetooth
+     restorecon_recursive /data/vendor/bluetooth/p00a
+ 
+-on post-fs-data && property:persist.vendor.p00a.radio.enable=1
++on property:ro.persistent_properties.ready=true && property:persist.vendor.p00a.radio.enable=1
+     start p00a-radio-load
+ 
+-on post-fs-data && property:persist.vendor.p00a.bluetooth.enable=1
++on property:ro.persistent_properties.ready=true && property:persist.vendor.p00a.bluetooth.enable=1
+     start p00a-radio-load
+ 
+ service p00a-radio-load /vendor/bin/p00a-wmt --load

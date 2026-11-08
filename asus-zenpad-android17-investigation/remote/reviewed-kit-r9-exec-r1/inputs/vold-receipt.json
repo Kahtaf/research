@@ -1,0 +1,13 @@
+{
+  "files": {
+    "model/PublicVolume.cpp": {
+      "after": "c5147ca901fb1c4678b34c6727e63eb325e1ad21de2cdcbcb19b8cf9af1d49c9",
+      "before": "0e17fccedefabb20e2d8650252af8c765af68378a1d853e0fbaa6a8bd1ea67fd"
+    }
+  },
+  "fixture_binary_is_shipping_input": false,
+  "native_product_rebuild_required": true,
+  "patch_sha256": "98e923b851c0de58d4ca7787628f2fb4ea6471fd1cf2a36fe44c6482061168af",
+  "root": "/srv/android/lineage24/system/vold",
+  "staged_root": "/srv/android/asus-product-integration-staging/r3/platform-vold"
+}

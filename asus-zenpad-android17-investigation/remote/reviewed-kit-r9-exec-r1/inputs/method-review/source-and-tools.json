@@ -1,0 +1,59 @@
+{
+  "prebuilts/siso/linux-x86/siso": {
+    "bytes": 60133643,
+    "mtime_ns": 1793904895856438151,
+    "symlink": false,
+    "prefix_hex": "7f454c4602010100000000000000000002003e000100000000784900000000004000000000000000580100000000000000000000400038000500400018001700",
+    "sha256": "f29c34711c7d18ce28126dcf6e6e0054517f82bb43807ee285ab0085513826b7"
+  },
+  "prebuilts/clang/host/linux-x86/clang-r584948b/bin/clang++": {
+    "bytes": 3805269,
+    "mtime_ns": 1793905475678888491,
+    "symlink": false,
+    "prefix_hex": "7f454c4602010100000000000000000002003e0001000000c0464700000000004000000000000000900100000000000000000000400038000600400019001600",
+    "sha256": "15261046b6ea9504da0ae57b9d65ebc869ab1942aecb1af2819762b9b5251957"
+  },
+  "prebuilts/rust-toolchain/linux-x86/1.93.1/bin/rustc": {
+    "bytes": 4200576,
+    "mtime_ns": 1793905137750193563,
+    "symlink": false,
+    "prefix_hex": "7f454c4602010100000000000000000003003e0001000000e0180000000000000000200000000000001040000000000000000000400038000c00400022002000",
+    "sha256": "ae9a00cb9f8af573e88027ee8c598842b5df68c029948e954cde7fae89db7b7d"
+  },
+  "plan_selected": {
+    "bpf_supplement_archive": "/srv/android/asus-reviewed-build-kit/r8/inputs/bpf-supplement.tar.gz",
+    "bpf_supplement_manifest": "/srv/android/asus-reviewed-build-kit/r8/inputs/bpf-supplement-manifest.json",
+    "clean_receipt": "/srv/android/asus-device-product/logs/full-product-installclean.complete",
+    "complete_kernel_manifest": "/srv/android/asus-reviewed-build-kit/r8/inputs/complete-kernel-postimages.json.gz",
+    "input_mapping_receipt": "/srv/android/asus-reviewed-build-kit/r8/inputs/input-mapping.json",
+    "network_receipt": "/srv/android/asus-reviewed-build-kit/r8/inputs/network-staging.json",
+    "parity_receipt": "/srv/android/asus-reviewed-build-kit/r8/inputs/firstboot-parent-acceptance.json",
+    "platform_bpf": "/srv/android/lineage24/system/bpf",
+    "platform_bpf_receipt": "/srv/android/asus-reviewed-build-kit/r8/inputs/platform_bpf-receipt.json",
+    "platform_bpf_staged": "/srv/android/asus-product-integration-staging/r3/platform-bpf",
+    "previous_source_receipt": "/srv/android/asus-reviewed-build-kit/r8/inputs/r2-source-receipt.json",
+    "previous_staged_receipt": "/srv/android/asus-reviewed-build-kit/r8/inputs/r2-STAGED.json",
+    "prior_sensor_receipt": "/srv/android/asus-reviewed-build-kit/r8/inputs/r3-sensor-selection.json",
+    "prior_staged_receipt": "/srv/android/asus-reviewed-build-kit/r8/inputs/r3-STAGED.json",
+    "r7_staged_receipt": "/srv/android/asus-reviewed-build-kit/r8/inputs/r7-STAGED.json",
+    "r7_staging_manifest": "/srv/android/asus-reviewed-build-kit/r8/inputs/r7-staging-manifest.json",
+    "radio_receipt": "/srv/android/asus-reviewed-build-kit/r8/inputs/staged-product-receipt.json",
+    "sensor_receipt": "/srv/android/asus-reviewed-build-kit/r8/inputs/sensor-selection.json",
+    "snapshot": "/srv/android/asus-reviewed-build-kit/r8/inputs/snapshot.json",
+    "source_receipt": "/srv/android/asus-reviewed-build-kit/r8/inputs/source-receipt.json",
+    "staged_receipt": "/srv/android/asus-reviewed-build-kit/r8/inputs/STAGED.json",
+    "staging_manifest": "/srv/android/asus-reviewed-build-kit/r8/inputs/r8-staging-manifest.json",
+    "vold_receipt": "/srv/android/asus-reviewed-build-kit/r8/inputs/vold-receipt.json"
+  },
+  "selected_success_headers": [],
+  "combined_graph": {
+    "sha256": "575989e8f82d71c33cc1ee5de3534ccc0461d1cac44c2b4c99ca46ead1ea5b5a",
+    "text": "\nbuilddir = out\npool highmem_pool\n depth = 7\n\nsubninja out/build-lineage_p00a.ninja\nsubninja out/build-lineage_p00a-package.ninja\nsubninja out/soong/build.lineage_p00a.ninja\n"
+  },
+  "/srv/android/lineage24/out/soong/build.lineage_p00a.ninja": {
+    "bytes": 520066043
+  },
+  "/srv/android/lineage24/out/build-lineage_p00a.ninja": {
+    "bytes": 1550844208
+  }
+}

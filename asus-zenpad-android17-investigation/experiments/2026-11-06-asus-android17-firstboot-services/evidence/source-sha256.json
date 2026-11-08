@@ -1,0 +1,467 @@
+{
+  "system/core/rootdir/init.rc": {
+    "sha256": "fbb9c80c87f31fd728c0657f30b38c68a5c02d5e066d2003dc7a1eaecfe49b3d"
+  },
+  "system/security/keystore2/Android.bp": {
+    "sha256": "f401cc506a32d908b47fbcc788f0f968f5d032371eed71fdf120408e7c4374e7"
+  },
+  "system/security/keystore2/keystore2.rc": {
+    "sha256": "8e8688ddc5841d25436100e96cc564715438745623087391f4b4894fc15ce465"
+  },
+  "system/security/keystore2/src/globals.rs": {
+    "sha256": "bc2beb5c4dc1d5157712707e22969ba688e1368db98165caf3cfd3892a3dab2a"
+  },
+  "system/security/keystore2/src/maintenance.rs": {
+    "sha256": "2f8e0889ed31ec0be49923a0f6568a29755cd6353f052c45e0d53617d18981ed"
+  },
+  "system/security/keystore2/src/boot_level_keys.rs": {
+    "sha256": "a11016dcc901d96a3acad3adb36ce4e630d3d552c8085e64fdc406e7f3acbd7d"
+  },
+  "system/security/keystore2/src/main.rs": {
+    "missing": true
+  },
+  "system/security/keystore2/src/module_hash.rs": {
+    "missing": true
+  },
+  "build/make/target/product/full_base.mk": {
+    "sha256": "7e344dd59bc0e033740a7d45d93131e6c2804396b6c7c1f0141e74f51350c287"
+  },
+  "build/make/target/product/base.mk": {
+    "sha256": "360b5b9497614161e670e40c7411f38494986d6eed0ade20d5911713b8e1abfd"
+  },
+  "build/make/target/product/core.mk": {
+    "missing": true
+  },
+  "build/make/target/product/core_base.mk": {
+    "missing": true
+  },
+  "build/make/target/product/default_art_config.mk": {
+    "sha256": "5212332d2b060338ce285dd6df7d85f6ce9d68bebe0310e06827d763b8bd73a4"
+  },
+  "vendor/lineage/config/common_full_tablet_wifionly.mk": {
+    "sha256": "3682cbef9d6e38de264692bd3a92f3a58cbca3dcfce29a0c0782b79d67bf71a4"
+  },
+  "vendor/lineage/config/common_full.mk": {
+    "missing": true
+  },
+  "vendor/lineage/config/common.mk": {
+    "sha256": "8aa90fd616b1b575d1ce167d6091ce176f64c88b2a41a1848e316518229985c2"
+  },
+  "build/make/target/product/generic_no_telephony.mk": {
+    "sha256": "34749a2faaea40ad322afa0f602e2ed8dcbae53697119b6a738128a10ed3e570"
+  },
+  "build/make/target/product/core_no_zygote.mk": {
+    "sha256": "5b11b8101a03f2d223a0070e62334d641d08adcc6ca968686f44e7b9e04c8b8f"
+  },
+  "build/make/target/product/core_minimal.mk": {
+    "sha256": "5204bb8c0729c1c93002bc0326438232f877bc6936407bc05e69b3754f4f17e5"
+  },
+  "build/make/target/product/base_system.mk": {
+    "sha256": "b06fc13b0948afec30d76a47eeaa12e1762254d50c5a223c86d71e56819ab980"
+  },
+  "build/make/target/product/base_vendor.mk": {
+    "sha256": "427557072caa756e5fb71243322d433ed337a30ece07ad619ac5733fae3690e0"
+  },
+  "build/make/target/product/handheld_system.mk": {
+    "sha256": "407e143f8d4cc6c84a3175ef93a4b0a7d359d0d20595e5d77fc8385154aaa1f7"
+  },
+  "vendor/lineage/config/common_mobile_full.mk": {
+    "sha256": "3b0b957dcebd18f90f2397d22e0ae6b755f19c80048eefcb3cafddca313d3cb2"
+  },
+  "vendor/lineage/config/common_mobile.mk": {
+    "sha256": "715652c852fde60ba9139fe5f16e3548159b73382c3a32d897612ea8d5c5178d"
+  },
+  "vendor/extra/product.mk": {
+    "missing": true
+  },
+  "system/security/keystore2/src/keystore2_main.rs": {
+    "sha256": "f78db2d798bddfdbcc28fe827817e5caecf618f5c254362d3dcd3f43c3ad11c0"
+  },
+  "system/security/keystore2/src/km_compat/km_compat.cpp": {
+    "sha256": "880bc19f657394920ca3562dc00327c92d97f6eb66b4a65507427328b69b2817"
+  },
+  "system/security/keystore2/src/km_compat/Android.bp": {
+    "sha256": "a05e5df4e7398dfe15d29a04434bf27adf911d0d65186a0f788cd78b946f719a"
+  },
+  "system/apex/apexd/apexd.cpp": {
+    "sha256": "c10e7fc3dcb913b1bb34c8a74cea6a1218d51d038ea3200f1e89d45dbf969c46"
+  },
+  "system/apex/apexd/apexd_main.cpp": {
+    "sha256": "40b18970dff4814e7af535b652ef94a718fefc25493b8914360372366970753a"
+  },
+  "system/apex/apexd/apexd.rc": {
+    "sha256": "4baae395daa83df7a35debff152cd8cdedb3bf7b9d87abb5c4ebb9fdde6fabe6"
+  },
+  "system/apex/apexd/apexd_session.cpp": {
+    "sha256": "d4f8a5c0d3faa54675feb81b7389ea357881254d8c843eca0dbe714a5fd0b826"
+  },
+  "system/apex/apexd/apexd.h": {
+    "sha256": "79d5cb9808c88a8cf8ccfa1efca184778464fc92fb852f132fb3a0cd40be6e95"
+  },
+  "hardware/interfaces/security/keymint/aidl/default/Android.bp": {
+    "sha256": "4fd5f0e9eb3a299ecaa59f6b943bf405be885c0f4174b1897fe90ee5aaedc2a6"
+  },
+  "hardware/interfaces/security/keymint/aidl/default/service.cpp": {
+    "sha256": "4e88dda633247cb239cd683f2d748f62c79c022b87f558d8bb317c3092e1ed19"
+  },
+  "hardware/interfaces/security/keymint/aidl/default/android.hardware.security.keymint-service.nonsecure.rc": {
+    "sha256": "ff2a262e0431a51b536ad73994b1f76de56943200e57d1315bcda8d0bcb6f40f"
+  },
+  "hardware/interfaces/security/keymint/aidl/default/android.hardware.security.keymint-service.xml": {
+    "sha256": "98264751a821ee28fa0373cc752d8121219cf4f53a116fd4882830f126ad7d83"
+  },
+  "hardware/interfaces/security/keymint/aidl/default/android.hardware.security.secureclock-service.xml": {
+    "sha256": "0da6d422d25853fe4286f53d718e9451b87a3a202d20b5f9b806c127ffeef5c0"
+  },
+  "hardware/interfaces/security/keymint/aidl/default/android.hardware.security.sharedsecret-service.xml": {
+    "sha256": "f4e85774cd06fc4d355a6ce5e0be738e66d0420bfc0fae5de9b6f5fccacbfaf6"
+  },
+  "hardware/interfaces/keymaster/4.1/default/service.cpp": {
+    "sha256": "2d0ae9af9887bd9baff8fa59f4eefa880ead595b2ea14078e1a76aa14d8a902c"
+  },
+  "hardware/interfaces/keymaster/4.1/default/Android.bp": {
+    "sha256": "14ed87488f73da9fbffeb91bb2279c5a45d37254c79072a3c836f0068a169c00"
+  },
+  "hardware/interfaces/keymaster/4.1/default/ACCOUNT_REDACTED": {
+    "sha256": "d52704e45c0ee1a0cd007fb822cb4ad1c3d902016209d7efb663cb7563cbb636"
+  },
+  "hardware/interfaces/keymaster/4.1/default/ACCOUNT_REDACTED": {
+    "sha256": "53b52bd9f04e6cf843f7df65f1d8af3e8209f7e33a0a92042aef1688ac10aa1e"
+  },
+  "hardware/interfaces/keymaster/4.1/support/Keymaster4.cpp": {
+    "sha256": "7db2255773c6302aac1866147f64f173cf69f46cc280971fc94e55cec659b607"
+  },
+  "system/security/keystore2/src/km_compat/km_compat.h": {
+    "sha256": "45a8feffa2590280703a0a01b5cd591d8f678ba90f46262b8db08b0d06d9a083"
+  },
+  "system/security/keystore2/src/shared_secret_negotiation.rs": {
+    "sha256": "002e8e2e5224eba1e43444eef514f1a7179f028c25706825434e2971b8bb5b82"
+  },
+  "system/keymaster/Android.bp": {
+    "sha256": "2b2ecaf049b331d446675c3f2226542e67f4a75c37316fba8cb9957b25a1afc3"
+  },
+  "system/apex/apexd/apexd_config.h": {
+    "missing": true
+  },
+  "system/apex/apexd/apexd_image_manager.cpp": {
+    "sha256": "5f08a54e3808dd92174a5c0d983307807c3b174ce05430fdb9ec266e62e97d4d"
+  },
+  "system/core/init/builtins.cpp": {
+    "sha256": "cc754f60283d8e31eaee7d14b7cee1abc3f19f86d78bcdb446eb44b831b83a14"
+  },
+  "system/core/init/util.cpp": {
+    "sha256": "d692940f4954c4ed71246e1de0f9beefd9e2d45b2895b8d34375f94e4d3659c8"
+  },
+  "system/extras/libfscrypt/fscrypt.cpp": {
+    "sha256": "18fc132f1e2a80d6ffcf40a8f7998bf7e6fe30ebc0264b1ff6519fa0f3892877"
+  },
+  "system/vold/KeyStorage.cpp": {
+    "sha256": "f199ffdb4b86223dc7b7c56970c513126dfe8dc35f7f40ed23e2cc3682eabc2a"
+  },
+  "system/vold/FsCrypt.cpp": {
+    "sha256": "6d99279ad6d08dc86d6055b75227b98df26185ffec4b27aa3381478f127bfa9b"
+  },
+  "build/make/target/product/media_system.mk": {
+    "sha256": "c1c8922532a79871760c470700d66a5e8e5165d9235103cb08a4a99a2f285f46"
+  },
+  "build/make/target/product/updatable_apex.mk": {
+    "sha256": "673ffa16669f747f387c7cef119d95e7adbe461e16ab6d78363262104f146b83"
+  },
+  "hardware/interfaces/keymaster/4.0/default/Android.bp": {
+    "sha256": "8cef63be8e3eef4352c729bcb04204b089a650109f7868b65c8c517e77d5353e"
+  },
+  "hardware/interfaces/keymaster/4.0/default/service.cpp": {
+    "sha256": "672cafd7aba008f3e040a381f8185f406d99f2e291a899d36c1b74497be429ae"
+  },
+  "hardware/interfaces/keymaster/4.0/default/ACCOUNT_REDACTED": {
+    "sha256": "38f94f31c03cc5433d231af6d898681b3c7c34d041232f1105342ae73d32f414"
+  },
+  "hardware/interfaces/security/keymint/aidl/default/main.rs": {
+    "sha256": "d130b0a47cde3d8b6c191bb25cd6c4c6cd9e1650d5f48896f70ac446ce077a10"
+  },
+  "hardware/interfaces/security/keymint/aidl/default/ta/lib.rs": {
+    "sha256": "d5a5d2d178908125837f3073a3ab7b51b5559c49d59db9db95c8206cd307dc77"
+  },
+  "system/keymaster/contexts/soft_keymaster_context.cpp": {
+    "sha256": "73fcade050b871e7d2b08e3e9e1a52c5e13b3622b283aaedbec19755a17e7f4b"
+  },
+  "system/keymaster/contexts/pure_soft_keymaster_context.cpp": {
+    "sha256": "c909253bcab05ee2bdb38c2109de5949bb1d53c1d7ddf64ff04200f22082020e"
+  },
+  "system/keymaster/legacy_support/keymaster4_support.cpp": {
+    "missing": true
+  },
+  "system/keymaster/legacy_support/keymaster4_1_support.cpp": {
+    "missing": true
+  },
+  "system/keymaster/ng/AndroidKeymaster4Device.cpp": {
+    "sha256": "69cbf238d96b943e0952e8e5a8d0e0ae12e2ebb84ed1a69a823839052aa15911"
+  },
+  "system/keymaster/ng/AndroidKeymaster41Device.cpp": {
+    "sha256": "4ddbff7fa51a1dbc77787c8aa94c6eb929d66a0290fce3228296a248895bad42"
+  },
+  "system/security/keystore2/src/service.rs": {
+    "sha256": "6e7109516b0ba7502caf174ab32bc7e96091bad45068c12f9a2630015bb0f944"
+  },
+  "system/security/keystore2/src/security_level.rs": {
+    "sha256": "e280721d06488d957a6d9b300ad0130497057f959222829c77c161be5b2095fd"
+  },
+  "system/gatekeeperd/gatekeeperd.cpp": {
+    "missing": true
+  },
+  "system/gatekeeperd/Android.bp": {
+    "missing": true
+  },
+  "system/apex/apexd/apex_constants.h": {
+    "sha256": "c34df66a5a9597d84fde64489d3483fb48a74d1525aa58ff26db10ffa92fc248"
+  },
+  "system/apex/apexd/apexd_session.h": {
+    "sha256": "390e02d6e5f1fc2152b05c8505cf9d5974a302f7465f46794af74009aea9b68a"
+  },
+  "system/core/gatekeeperd/gatekeeperd.cpp": {
+    "sha256": "ec14f124c8b4c323a6fd08e65112acf565190699623861b2aece7131b0fe2854"
+  },
+  "system/core/gatekeeperd/main.cpp": {
+    "sha256": "69b4d8129e31ecf928e0c9eff2ccad69bc27e9e80489c52a6f6b8c4a32e3d1ef"
+  },
+  "system/core/gatekeeperd/gatekeeperd.rc": {
+    "sha256": "d03a1ca16e4db87a11d47d03433f5d31cce5c9251f3cf8f5bd52f74bf3a9ae64"
+  },
+  "system/core/gatekeeperd/Android.bp": {
+    "sha256": "14c34b36e35c1b130f4bbc17ca71b073d486b762ce31a1cda938df59df2a6bce"
+  },
+  "hardware/interfaces/gatekeeper/1.0/software/Android.bp": {
+    "sha256": "050c438044462f45e0477ff477ea8d9dcd6687041c82d8a312011a0778f926e3"
+  },
+  "hardware/interfaces/gatekeeper/1.0/software/service.cpp": {
+    "sha256": "55efcec08d2304ab918d1e160c204977c8752a5caeb617c52dc5d6bc7c69f7e0"
+  },
+  "hardware/interfaces/gatekeeper/aidl/software/Android.bp": {
+    "sha256": "195824e42c91bcea88eb884821de518afc316f46dd4dbfc26fe969b2b9c9c9eb"
+  },
+  "hardware/interfaces/gatekeeper/aidl/software/service.cpp": {
+    "sha256": "9a5a9df96f8864b0b58517fee440b9266d448e469e0d8c5f8c330bdf57f1f996"
+  },
+  "system/sepolicy/vendor/file_contexts": {
+    "sha256": "3cf387ec4b497d6798c71a77066e8b3a2807963dc7ed2dfb27f2fbdd1a594fff"
+  },
+  "system/sepolicy/vendor/hal_keymaster_default.te": {
+    "sha256": "19156bd964a8a53c90221e57e6f6ee2c8af411cd0a03401b30f0bea16733f2fa"
+  },
+  "system/sepolicy/vendor/hal_gatekeeper_default.te": {
+    "sha256": "6da5f10fbe84f8ee163737d95acdbfd62f01aa3d06eca8b85bd814d5a32c6b0a"
+  },
+  "hardware/interfaces/keymaster/4.1/support/include/keymasterV4_1/Keymaster4.h": {
+    "sha256": "d6254f5bd3e606d25dcb9ae295ab854c8f39977a76caf8a94cb92d2785b91e39"
+  },
+  "system/core/init/fscrypt_init_extensions.cpp": {
+    "sha256": "4fa35131611b1d145436045ef9bf16a0ed934de176dfa57d87dce50130824034"
+  },
+  "system/core/init/mount_namespace.cpp": {
+    "sha256": "aca16a8acd8b49776714f6e40ffcd5ef4879a2bfeb68e3e681fea5af3ea35f7f"
+  },
+  "system/apex/apexd/apexd.aconfig": {
+    "sha256": "26d1547f22677ffb50eca55855310f735f3675f025ca0d774e0796c6dd516926"
+  },
+  "system/apex/apexd/apexd_utils.cpp": {
+    "missing": true
+  },
+  "packages/modules/adb/apex/adbd.rc": {
+    "sha256": "6e3178a7592af91f618207506777b470b7990a4ebae0ab9d241f676c5d40af1e"
+  },
+  "system/core/fs_mgr/fs_mgr.cpp": {
+    "missing": true
+  },
+  "system/core/fs_mgr/libfstab/fstab.cpp": {
+    "missing": true
+  },
+  "system/security/keystore2/src/raw_device.rs": {
+    "sha256": "099c11c4d1fd6d7c85347f4879a21cbd378fa4a3221acee8a3d3cb762412516a"
+  },
+  "system/core/init/fscrypt_init_extensions.h": {
+    "sha256": "e4c2e4de9f9cf85deaf4a5af863c1e2f33f278c6238e7047a198080731230e34"
+  },
+  "system/extras/libfscrypt/include/fscrypt/fscrypt.h": {
+    "sha256": "a892a04699018177430b7e7b4fe49f330c339a7474d5e9c0f6ef1038d6fd7d04"
+  },
+  "system/core/fs_mgr/libfstab/Android.bp": {
+    "missing": true
+  },
+  "system/memory/libdm/dm.cpp": {
+    "missing": true
+  },
+  "system/core/rootdir/init.usb.rc": {
+    "sha256": "0f08f29820a03ee5a145a2b91638f57f873c2cf87875e9429046a3a835ddce17"
+  },
+  "system/sepolicy/private/keystore.te": {
+    "sha256": "3963198137fc95e71a52bbc5620a4343b8bff1daa928a1db5b223cb88e7ffb3c"
+  },
+  "system/sepolicy/private/init.te": {
+    "sha256": "926636301c22c73f6c0513740e75e298d74a0ce5c052c51c1bea0415d42fca1a"
+  },
+  "system/sepolicy/private/apexd.te": {
+    "sha256": "ab0cfe22c030b34f91706274ed3a91382fffccc4ab7442dd2eb67cc8cd4d4683"
+  },
+  "frameworks/base/services/core/java/com/android/server/locksettings/LockSettingsService.java": {
+    "sha256": "a24cc8d60af0aeb4669de7ada5da866eb2c36c199ae8d3b69fe0a3c4c21be4e5"
+  },
+  "frameworks/base/services/core/java/com/android/server/locksettings/SyntheticPasswordManager.java": {
+    "sha256": "90808893537ca7e618dbc15be42e8c00c454990ffa6e6323a961c5aabd58df4f"
+  },
+  "system/apex/apexd/apexd_loop.cpp": {
+    "sha256": "3b7de85c1649b4901945d4625f179f558a09d9063408fb33e38af961ddd6ea4b"
+  },
+  "system/fs/fs_mgr/fs_mgr.cpp": {
+    "sha256": "52b8efcec778ccadfe341bc14d7f1b3062c8eaf5d580c66bf8d00ff1be7376c3"
+  },
+  "system/fs/fs_mgr/libfstab/fstab.cpp": {
+    "sha256": "2667f00763b474e55d658920e25923d17ec6c38eafa4243f33ad1924349338b5"
+  },
+  "system/apex/libs/libapexsupport/apex-info-list.cpp": {
+    "missing": true
+  },
+  "system/apex/libs/libapexsupport/apex-support.cpp": {
+    "missing": true
+  },
+  "system/apex/apexd/apexd_utils.h": {
+    "sha256": "9552db2316619792c19abd0d532593b9d22937a6e9a28675041edaa16173a67e"
+  },
+  "hardware/interfaces/gatekeeper/1.0/software/SoftGateKeeperDevice.cpp": {
+    "sha256": "a86912c00ce5fd3350333fd9097f7907ed32e07e4ae06c7ba99fa68b0b37b44a"
+  },
+  "hardware/interfaces/gatekeeper/1.0/software/SoftGateKeeperDevice.h": {
+    "sha256": "a5676db69721964674229947eb4fe4265bc972bfc5154125747d387e52d6e68d"
+  },
+  "hardware/interfaces/gatekeeper/1.0/software/ACCOUNT_REDACTED": {
+    "sha256": "00622afbc149e6652f29eb76f4cb8592359720f67bf5b08bc496e89f6112d0a9"
+  },
+  "hardware/interfaces/gatekeeper/1.0/software/ACCOUNT_REDACTED": {
+    "sha256": "4326b6362ef46b4cf87aea7d70c1e65d4c1cfd4f6aa94d1759a6fd424464768c"
+  },
+  "system/core/init/apex_init_util.cpp": {
+    "sha256": "f758ad99e5b7420b2ca7b96513b1a0f14027e9693cf93ea17fe19f576f0e4200"
+  },
+  "system/fs/fs_mgr/libfstab/fstab.h": {
+    "missing": true
+  },
+  "build/make/target/product/base_system_ext.mk": {
+    "sha256": "e2c557f74721bc38468c73150769ea79d248cbeaf754624b0ece1feb61448ae8"
+  },
+  "build/make/target/product/handheld_system_ext.mk": {
+    "sha256": "9e548dc57becae4dddea2ef93a6a3eaa831396de205fabc35b6a063adcb284c8"
+  },
+  "build/make/target/product/media_system_ext.mk": {
+    "sha256": "be0e60381847b84d782ede6c90354bf2a5e1e5437ff3b9c19459917d42f6fde4"
+  },
+  "build/make/target/product/core_64_bit.mk": {
+    "sha256": "66435d94707e1e5958432373347218c14f6fec0ebbe7c45af5c8cdb013668c67"
+  },
+  "build/make/target/product/handheld_vendor.mk": {
+    "sha256": "8d50b2f5f4faff658366c2e0cda0777981c065c337c33777e268c15fad4e88f2"
+  },
+  "build/make/target/product/media_vendor.mk": {
+    "sha256": "5d5007e3908e284615a533839aee5e6ceb192aa828d32565a7b583a945308af0"
+  },
+  "build/make/target/product/handheld_product.mk": {
+    "sha256": "20dc35da1af66e13255d46fbae4f0f0d8ddbc92e09ad226371e45abd98360f53"
+  },
+  "build/make/target/product/media_product.mk": {
+    "sha256": "eb0b0368767d620bcf11a926f9800894162e757d8d40d2f9f20e403692e16e44"
+  },
+  "build/make/target/product/base_product.mk": {
+    "sha256": "3b45b7967b09066044259415a7aa3d6e1ed147c2970a275b885607442d3bc40d"
+  },
+  "vendor/lineage/config/tablet.mk": {
+    "sha256": "903617f7824bb1186ffbfffc343cf3bc9ff506dc84a40df80736d516ef76d0a7"
+  },
+  "vendor/lineage/config/wifionly.mk": {
+    "sha256": "898725436add7a90eb9aad46e56e207b331a4d0ba52f3a92113cb3fb2bec6b0c"
+  },
+  "vendor/lineage/config/partner_gms.mk": {
+    "sha256": "d5adcb2d8fcc2da051c5e92c46d55ccaa5cebb20739324bb6c928e97c54aaade"
+  },
+  "vendor/asus/p00a/p00a-graphics-vendor.mk": {
+    "sha256": "0963f0562709bfcdd742b080af856a4859d626f8db3ae9d69aa567d784f6e3d1"
+  },
+  "system/hwservicemanager/Android.bp": {
+    "sha256": "30c544744e49332c150755c32669656138eca93169cdd5e4f80aa493f44a1ed2"
+  },
+  "system/hwservicemanager/service.cpp": {
+    "sha256": "53f9695c38d73824c576fa53cd1071c760cab542e0bdf4f3926b80e54a48fb81"
+  },
+  "hardware/interfaces/gatekeeper/1.0/software/SoftGateKeeper.h": {
+    "sha256": "978955e3aa4214e116e591e3098d94f6e8ccdf451931c3549f94a02df75941b4"
+  },
+  "build/make/core/product.mk": {
+    "sha256": "82d1ee8504124cd75f81398f35db6bea204064ce12b30454c195318caa739a69"
+  },
+  "build/make/core/main.mk": {
+    "sha256": "fda81a4ff9202ce641c9c2086275de64451d4f9470d1c5cfbfe4fc6557dc21df"
+  },
+  "system/core/init/apex_init_util.h": {
+    "sha256": "eaee1da78868b828307991b67310aa032fa8b5266fb422a5e2bee621b58f0cd4"
+  },
+  "system/apex/apexd/apexd_config.cpp": {
+    "missing": true
+  },
+  "system/apex/apexd/apexd_checkpoint.cpp": {
+    "sha256": "4c32aa71e6433183b9de1d2f98f50849729399e4075b6c2b3bc6a205d941c8c1"
+  },
+  "system/sepolicy/private/property_contexts": {
+    "sha256": "2a7e3fa9ff5b471369fec84a1959a8c0dc98acc505a1f57e0e43d4f9b9ab1af4"
+  },
+  "system/keymaster/contexts/soft_keymaster_enforcement.cpp": {
+    "missing": true
+  },
+  "system/apex/apexd/apexd_mount.cpp": {
+    "sha256": "2834bb4fc5fc3193851443d0e16ebea5ea37d29566d3c020f3907f83f284d200"
+  },
+  "system/apex/apexd/apexd_activation.cpp": {
+    "missing": true
+  },
+  "system/keymaster/km_openssl/soft_keymaster_enforcement.cpp": {
+    "sha256": "bfb1b04a5aede1498b5f4623112edb844e4b4775a6bfdc6fff5421f1a71a141e"
+  },
+  "system/keymaster/include/keymaster/soft_keymaster_enforcement.h": {
+    "missing": true
+  },
+  "system/core/init/service.cpp": {
+    "sha256": "dbbc3e02f4249538d39fe467d8b4c367cbd078e16df9ef5a4b598f10e7cdda13"
+  },
+  "system/core/rootdir/Android.bp": {
+    "sha256": "13a1827ef7386b5c321238e50bd2f0cb3b184c1a046aeb166db4d5d241112c57"
+  },
+  "system/vold/Checkpoint.cpp": {
+    "sha256": "7fd41d4ec0fc680975a04f28db976190d4cb346709e3c66993c736094cf15508"
+  },
+  "system/vold/VoldNativeService.cpp": {
+    "sha256": "6481fce1ef520fdda7a9b17f514d9a427292336f5372c6f283dac9ca5e36587f"
+  },
+  "system/fs/fs_mgr/libfstab/include/fstab/fstab.h": {
+    "sha256": "4108c6977507b74277c25d2100cbeada66462fc773e0d6b25b69413b0e84dc11"
+  },
+  "system/keymaster/android_keymaster/keymaster_enforcement.cpp": {
+    "sha256": "6e6b02025a08e6f85061d7d0f821b3382f870020a383dddb65cb9cab4abc19bb"
+  },
+  "system/keymaster/contexts/soft_attestation_context.cpp": {
+    "sha256": "12e2a805ab2fcc831ebfdefa943396dd4870c4249002725bb890f163b0ba283a"
+  },
+  "system/libhidl/vintfdata/Android.bp": {
+    "sha256": "fa9e0b07f4e9588b9fc1221f95b4017ccdc07677a4f6ff3d089eb464f7d01f66"
+  },
+  "system/libhidl/vintfdata/manifest.xml": {
+    "sha256": "127129f359fa54406692bc95fe057acb2a8e7ee2654babbed1797410a5fe52ea"
+  },
+  "system/libhidl/vintfdata/manifest_system_ext.xml": {
+    "missing": true
+  },
+  "system/hwservicemanager/hwservicemanager.rc": {
+    "sha256": "fec3f3312b7cb0f5c22438b62cca189964878874f8aabd47396ae1f4faf8c4f9"
+  },
+  "system/hwservicemanager/hwservicemanager.xml": {
+    "sha256": "3d1fe5e42e6679d396546b9ff61f4d4bfa35353b7bd9755591b366da486ce176"
+  },
+  "build/make/core/soong_config.mk": {
+    "sha256": "89f7e6573fe542a2ab1d4d9f975bb66ae624a2d8dcc33eb7d70550b4434a6296"
+  }
+}

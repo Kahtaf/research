@@ -1,0 +1,90 @@
+{
+  "repository": "https://github.com/LineageOS/android_external_chromium-webview_prebuilt_arm64",
+  "commit": "5de662a4d42b57a2efe4114e499d38fa3ce41f9d",
+  "pointer_git_blob_sha1": "7c4d3ca737b0559a5a248d5124adae14aba21ce0",
+  "pointer_sha256": "a7b12c1895a3b354a91997fffe0e383a88e5b0e0d4371f8fdc090c71f62aade7",
+  "source_manifest_entry": [
+    {
+      "tag": "project",
+      "attributes": {
+        "path": "external/chromium-webview/prebuilt/arm64",
+        "name": "LineageOS/android_external_chromium-webview_prebuilt_arm64",
+        "groups": "pdk",
+        "revision": "main"
+      }
+    }
+  ],
+  "source_checkout_metadata": {
+    "config": "[core]\n\trepositoryformatversion = 0\n\tfilemode = true\n[filter \"lfs\"]\n\tsmudge = git-lfs smudge --skip -- %f\n\tprocess = git-lfs filter-process --skip\n[remote \"github\"]\n\turl = https://github.com/LineageOS/android_external_chromium-webview_prebuilt_arm64\n\treview = review.lineageos.org\n\tprojectname = LineageOS/android_external_chromium-webview_prebuilt_arm64\n\tfetch = +refs/heads/*:refs/remotes/github/*\n[maintenance]\n\tauto = false\n[gc]\n\tauto = 0\n[lfs]\n\trepositoryformatversion = 0\n",
+    "HEAD": "5de662a4d42b57a2efe4114e499d38fa3ce41f9d\n",
+    "FETCH_HEAD": "5de662a4d42b57a2efe4114e499d38fa3ce41f9d\t\tbranch 'main' of https://github.com/LineageOS/android_external_chromium-webview_prebuilt_arm64\n",
+    "files": [
+      "objects",
+      "logs",
+      "lfs",
+      "refs",
+      "config",
+      "description",
+      "ORIG_HEAD",
+      ".repo_config.json",
+      "shallow",
+      "rr-cache",
+      "FETCH_HEAD",
+      "hooks",
+      "HEAD",
+      "branches",
+      "info",
+      "index"
+    ]
+  },
+  "pinned_lfsconfig": {
+    "status": 200,
+    "final_url": "https://raw.githubusercontent.com/LineageOS/android_external_chromium-webview_prebuilt_arm64/5de662a4d42b57a2efe4114e499d38fa3ce41f9d/.lfsconfig",
+    "bytes_read": 225,
+    "sha256": "dff2e354f8b7176284ecd1f8b2e3af75865def9ccc34de46e77e22a1d58a4d56",
+    "text": "[lfs]\n    url = \"https://review.lineageos.org/LineageOS/android_external_chromium-webview_prebuilt_arm64.git/info/lfs\"\n    pushurl = \"ssh://review.lineageos.org/LineageOS/android_external_chromium-webview_prebuilt_arm64.git\"\n"
+  },
+  "lfs_receipt": {
+    "request_url": "https://review.lineageos.org/LineageOS/android_external_chromium-webview_prebuilt_arm64.git/info/lfs/objects/batch",
+    "request": {
+      "operation": "download",
+      "transfers": [
+        "basic"
+      ],
+      "objects": [
+        {
+          "oid": "1d2f61832b2596b0046cb82cf3634609ea866098d097a83fac27c35272ac726a",
+          "size": 260835655
+        }
+      ],
+      "ref": {
+        "name": "refs/heads/main"
+      }
+    },
+    "attempts": [
+      {
+        "url": "https://media.githubusercontent.com/media/LineageOS/android_external_chromium-webview_prebuilt_arm64/5de662a4d42b57a2efe4114e499d38fa3ce41f9d/webview.apk",
+        "status": 404
+      }
+    ],
+    "batch": {
+      "objects": [
+        {
+          "oid": "1d2f61832b2596b0046cb82cf3634609ea866098d097a83fac27c35272ac726a",
+          "size": 260835655,
+          "actions": {
+            "download": {
+              "url_host": "02e8220d630bcced078978aeedad418f.r2.cloudflarestorage.com"
+            }
+          }
+        }
+      ]
+    },
+    "batch_status": 200,
+    "payload_status": 200,
+    "bytes": 260835655,
+    "sha256": "1d2f61832b2596b0046cb82cf3634609ea866098d097a83fac27c35272ac726a",
+    "streaming_verified": true
+  },
+  "payload_vm_only": true
+}

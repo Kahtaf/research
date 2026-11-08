@@ -1,0 +1,10 @@
+{
+  "qemu_exit": 0,
+  "timeout": false,
+  "complete": true,
+  "elapsed_seconds": 4.784132592001697,
+  "peak_child_rss_kib": 118168,
+  "serial_sha256": "46d99280d1bd9e00581e4035d6d5ef4fdf2709a5fd45be746c1fef26f6642951",
+  "kernel_config_unchanged": true,
+  "owned_allocation_bytes": 2732032
+}

@@ -1,0 +1,29 @@
+--- r3/arch/arm64/lib/delay.c
++++ delay-budget/arch/arm64/lib/delay.c
+@@ -27,9 +27,19 @@
+ void __delay(unsigned long cycles)
+ {
+ 	cycles_t start = get_cycles();
++	cycles_t last;
++	unsigned long iterations = 0;
+ 
+-	while ((get_cycles() - start) < cycles)
++	while (((last = get_cycles()) - start) < cycles) {
+ 		cpu_relax();
++		if (++iterations == (1UL << 24)) {
++			dump_stack();
++			panic("ASUS49-DELAY-BUDGET run=a4e847a5-f502-4562-8e6a-c9a358e3f22f start=%#llx last=%#llx requested=%lu iterations=%lu caller=%p caller_symbol=%pS",
++			      (unsigned long long)start, (unsigned long long)last,
++			      cycles, iterations, __builtin_return_address(0),
++			      __builtin_return_address(0));
++		}
++	}
+ }
+ EXPORT_SYMBOL(__delay);
+ 
+--- r3/arch/arm64/kernel/asus_entry_tag.h
++++ delay-budget/arch/arm64/kernel/asus_entry_tag.h
+@@ -1,2 +1,2 @@
+-#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=a60fca94-e760-4ce5-a790-5c9a818ce406 stage=stext-preargs release=4.9.337-asus-p00a-experimental-minplat base=97b7e1199d607f852bf52ff7766e8aa079fee92986cd3d473b765a45adbf45fb cfg=01d6729f825798899e21192e6c33f96a80b47ccbedd5dc6cab10f78c1f9c7f31 dts-source=2d0c95c12d0fce6629dede4e0eff6590725de9ef5dbbb1f0acc0f3e63fca41b6\n"
++#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=a4e847a5-f502-4562-8e6a-c9a358e3f22f stage=stext-preargs release=4.9.337-asus-p00a-experimental-minplat base=97b7e1199d607f852bf52ff7766e8aa079fee92986cd3d473b765a45adbf45fb cfg=01d6729f825798899e21192e6c33f96a80b47ccbedd5dc6cab10f78c1f9c7f31 dts-source=2d0c95c12d0fce6629dede4e0eff6590725de9ef5dbbb1f0acc0f3e63fca41b6\n"
+ #define ASUS_ENTRY_TAG_LEN 336

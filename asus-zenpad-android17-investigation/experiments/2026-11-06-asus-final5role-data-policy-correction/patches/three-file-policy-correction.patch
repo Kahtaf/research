@@ -1,0 +1,180 @@
+--- a/source/policy_build.c
++++ b/source/policy_build.c
+@@ -24,6 +24,8 @@
+ int main(int argc,char**argv){if(argc!=3)return 2;policy_file_t f;policydb_init(&p);policy_file_init(&f);f.type=PF_USE_STDIO;f.fp=fopen(argv[1],"rb");if(!f.fp||policydb_read(&p,&f,0))die("read");fclose(f.fp);
+ addtype("p10_restore",1);addtype("p10_restore_exec",0);
+ if(policydb_index_others(NULL,&p,0))die("index");
++allow("os_rescue","rescue_userdata_device","blk_file","open read write getattr ioctl");
++ioctl_only("rescue_userdata_device");
+ allow("os_rescue","p10_restore_exec","file","open read execute getattr");
+ allow("os_rescue","p10_restore","process","transition siginh rlimitinh");
+ transition("os_rescue","p10_restore_exec","process","p10_restore");
+--- a/source/policy_audit.c
++++ b/source/policy_audit.c
+@@ -5,6 +5,14 @@
+ #include <sepol/policydb/policydb.h>
+ static void load(policydb_t*p,char*n){policy_file_t f;policydb_init(p);policy_file_init(&f);f.type=PF_USE_STDIO;f.fp=fopen(n,"rb");assert(f.fp&&!policydb_read(p,&f,0));fclose(f.fp);}
+ static unsigned type(policydb_t*p,const char*n){type_datum_t*d=hashtab_search(p->p_types.table,n);assert(d);return d->s.value;}
++static unsigned permission(class_datum_t*c,const char*n){perm_datum_t*d=hashtab_search(c->permissions.table,n);if(!d&&c->comdatum)d=hashtab_search(c->comdatum->permissions.table,n);assert(d);return 1U<<(d->s.value-1);}
++static int singleton(avtab_extended_perms_t*x){if(!x||x->specified!=AVTAB_XPERMS_IOCTLFUNCTION||x->driver!=0x12)return 0;for(int j=0;j<256;j++)if(!!(x->perms[j/32]&(1U<<(j%32)))!=(j==0x72))return 0;return 1;}
++static int same(avtab_ptr_t a,avtab_ptr_t b){
++ if(a->key.specified!=b->key.specified)return 0;
++ if(a->key.specified&AVTAB_XPERMS){avtab_extended_perms_t*x=a->datum.xperms,*y=b->datum.xperms;return x&&y&&x->specified==y->specified&&x->driver==y->driver&&!memcmp(x->perms,y->perms,sizeof(x->perms));}
++ return a->datum.data==b->datum.data;
++}
++static int exists(avtab_t*t,avtab_ptr_t a){for(avtab_ptr_t b=avtab_search_node(t,&a->key);b;b=avtab_search_node_next(b,a->key.specified))if(same(a,b))return 1;return 0;}
+ static void constraints(constraint_node_t*a,constraint_node_t*b){
+  for(;a&&b;a=a->next,b=b->next){assert(a->permissions==b->permissions);constraint_expr_t*x=a->expr,*y=b->expr;
+   for(;x&&y;x=x->next,y=y->next){assert(x->expr_type==y->expr_type&&x->attr==y->attr&&x->op==y->op&&ebitmap_cmp(&x->names,&y->names));
+@@ -12,28 +20,59 @@
+   }assert(!x&&!y);
+  }assert(!a&&!b);
+ }
+-int main(int argc,char**argv){assert(argc==3);policydb_t old,p;load(&old,argv[1]);load(&p,argv[2]);
++static int data_pair(policydb_t*p,avtab_ptr_t a,unsigned bc){return a->key.source_type==type(p,"os_rescue")&&a->key.target_type==type(p,"rescue_userdata_device")&&a->key.target_class==bc;}
++/* Compare every serialized field with the exact frozen helper policy after
++   removing only the two already validated DATA rules from the candidate. */
++static void frozen_projection(policydb_t*p,policydb_t*frozen,unsigned bc){
++ unsigned removed=0;
++ for(unsigned i=0;i<p->te_avtab.nslot;i++)for(avtab_ptr_t*link=&p->te_avtab.htable[i];*link;){
++  avtab_ptr_t a=*link;
++  if(data_pair(p,a,bc)&&(a->key.specified==AVTAB_ALLOWED||a->key.specified==AVTAB_XPERMS_ALLOWED)){
++   *link=a->next;free(a->datum.xperms);free(a);p->te_avtab.nel--;removed++;
++  }else link=&a->next;
++ }
++ assert(removed==2);
++ void*a=NULL,*b=NULL;size_t na=0,nb=0;
++ assert(!policydb_to_image(NULL,p,&a,&na)&&!policydb_to_image(NULL,frozen,&b,&nb));
++ assert(na==nb&&!memcmp(a,b,na));free(a);free(b);
++}
++int main(int argc,char**argv){assert(argc==4);policydb_t old,p,frozen;load(&old,argv[1]);load(&p,argv[2]);load(&frozen,argv[3]);
+  assert(p.policyvers==old.policyvers&&p.mls==old.mls&&p.p_types.nprim==old.p_types.nprim+2&&ebitmap_cmp(&old.permissive_map,&p.permissive_map));
++ assert(p.p_classes.nprim==old.p_classes.nprim);
+  for(unsigned i=0;i<old.p_classes.nprim;i++){class_datum_t*a=old.class_val_to_struct[i],*b=p.class_val_to_struct[i];constraints(a->constraints,b->constraints);constraints(a->validatetrans,b->validatetrans);}
++ /* These pinned stock policies have no conditional rules. Refuse additions. */
++ assert(!old.cond_list&&!p.cond_list&&!old.te_cond_avtab.nel&&!p.te_cond_avtab.nel);
++ for(unsigned i=0;i<old.p_types.nprim;i++){
++  assert(!strcmp(old.p_type_val_to_name[i],p.p_type_val_to_name[i]));
++  assert(old.type_val_to_struct[i]->bounds==p.type_val_to_struct[i]->bounds);
++  assert(ebitmap_cmp(&old.type_attr_map[i],&p.type_attr_map[i]));
++ }
+  unsigned id=type(&p,"p10_restore"),exec=type(&p,"p10_restore_exec");
++ assert(!p.type_val_to_struct[id-1]->bounds&&!p.type_val_to_struct[exec-1]->bounds);
+  for(unsigned i=0;i<p.p_types.nprim;i++){assert(ebitmap_get_bit(&p.type_attr_map[id-1],i)==(i==id-1));assert(ebitmap_get_bit(&p.type_attr_map[exec-1],i)==(i==exec-1));}
+- /* No existing rule is altered or removed. New edges between old types are forbidden. */
+- for(unsigned i=0;i<old.te_avtab.nslot;i++)for(avtab_ptr_t a=old.te_avtab.htable[i];a;a=a->next){avtab_datum_t*b=avtab_search(&p.te_avtab,&a->key);assert(b);
+-  if(a->key.specified&AVTAB_XPERMS){
+-   int match=0;for(avtab_ptr_t q=avtab_search_node(&p.te_avtab,&a->key);q;q=avtab_search_node_next(q,a->key.specified)){
+-    avtab_extended_perms_t*x=a->datum.xperms,*y=q->datum.xperms;
+-    if(x->specified==y->specified&&x->driver==y->driver&&!memcmp(x->perms,y->perms,sizeof(x->perms)))match=1;
+-   }assert(match);
+-  }else assert(a->datum.data==b->data);
+- }
+- class_datum_t*bc=hashtab_search(p.p_classes.table,"blk_file");perm_datum_t*wp=hashtab_search(bc->comdatum->permissions.table,"write");unsigned writers=0,ioctls=0;
++ /* Every old datum must survive unchanged, including each xperm datum. */
++ for(unsigned i=0;i<old.te_avtab.nslot;i++)for(avtab_ptr_t a=old.te_avtab.htable[i];a;a=a->next)assert(exists(&p.te_avtab,a));
++ class_datum_t*bc=hashtab_search(p.p_classes.table,"blk_file");assert(bc);
++ unsigned data_mask=permission(bc,"open")|permission(bc,"read")|permission(bc,"write")|permission(bc,"getattr")|permission(bc,"ioctl");
++ unsigned write=permission(bc,"write"),writers=0,ioctls=0,data_av=0,data_xperm=0,ioctl_targets=0;
++ const char*nodes[]={"rescue_boot_device","rescue_system_device","rescue_recovery_device","rescue_disk_device"};
+  for(unsigned i=0;i<p.te_avtab.nslot;i++)for(avtab_ptr_t a=p.te_avtab.htable[i];a;a=a->next){
+-  if(a->key.source_type<=old.p_types.nprim&&a->key.target_type<=old.p_types.nprim)assert(avtab_search(&old.te_avtab,&a->key));
++  if(a->key.source_type<=old.p_types.nprim&&a->key.target_type<=old.p_types.nprim){
++   if(data_pair(&p,a,bc->s.value)&&a->key.specified==AVTAB_ALLOWED){assert(!avtab_search(&old.te_avtab,&a->key)&&a->datum.data==data_mask);data_av++;}
++   else if(data_pair(&p,a,bc->s.value)&&a->key.specified==AVTAB_XPERMS_ALLOWED){assert(!avtab_search(&old.te_avtab,&a->key)&&singleton(a->datum.xperms));data_xperm++;}
++   else assert(exists(&old.te_avtab,a));
++  }
+   if(a->key.source_type!=id)continue;
+-  if(a->key.specified==AVTAB_ALLOWED&&a->key.target_class==bc->s.value&&(a->datum.data&(1U<<(wp->s.value-1)))){writers++;assert(a->key.target_type==type(&p,"rescue_recovery_device"));}
+-  if(a->key.specified==AVTAB_XPERMS_ALLOWED){ioctls++;avtab_extended_perms_t*x=a->datum.xperms;assert(a->key.target_class==bc->s.value&&x->specified==AVTAB_XPERMS_IOCTLFUNCTION&&x->driver==0x12);
+-   for(int j=0;j<256;j++)assert(!!(x->perms[j/32]&(1U<<(j%32)))==(j==0x72));
++  if(a->key.specified==AVTAB_ALLOWED&&a->key.target_class==bc->s.value){
++   int found=0;for(unsigned j=0;j<4;j++)if(a->key.target_type==type(&p,nodes[j])){found=1;assert(a->datum.data==(j==2?data_mask:data_mask&~write));}
++   assert(found);
++   if(a->datum.data&write){writers++;assert(a->key.target_type==type(&p,"rescue_recovery_device"));}
++  }
++  if(a->key.specified==AVTAB_XPERMS_ALLOWED){ioctls++;assert(a->key.target_class==bc->s.value&&singleton(a->datum.xperms));
++   unsigned bit=0;for(unsigned j=0;j<4;j++)if(a->key.target_type==type(&p,nodes[j]))bit=1U<<j;
++   assert(bit&&!(ioctl_targets&bit));ioctl_targets|=bit;
+   }
+  }
+- assert(writers==1&&ioctls==4);
+- puts("{\"passed\":true,\"p10_restore_block_writers\":1,\"allowed_block_ioctl\":\"BLKGETSIZE64 only\",\"original_rules_unchanged\":true,\"constraints_unchanged\":true,\"permissive_map_unchanged\":true,\"no_inherited_attributes\":true}");return 0;}
++ assert(data_av==1&&data_xperm==1&&writers==1&&ioctls==4&&ioctl_targets==15);
++ frozen_projection(&p,&frozen,bc->s.value);
++ puts("{\"passed\":true,\"daemon_DATA_exact_AV_rules\":1,\"daemon_DATA_singleton_xperm_rules\":1,\"p10_restore_block_writers\":1,\"helper_restricted_ioctl_pairs\":4,\"original_rules_unchanged\":true,\"constraints_unchanged\":true,\"bounds_unchanged\":true,\"permissive_map_unchanged\":true,\"attributes_unchanged\":true,\"conditionals_empty_unchanged\":true,\"all_other_serialized_policy_fields_equal_frozen\":true}");return 0;}
+--- a/tests/policy_checks.py
++++ b/tests/policy_checks.py
+@@ -1,15 +1,23 @@
+ from pathlib import Path
+-import subprocess,json,sys,collections
+-R=Path(__file__).resolve().parents[1];A=R/'artifacts';T=Path('/srv/android/asus-target-rescue/artifacts/tools-delivery')
++import subprocess,json,sys,collections,os,hashlib,resource,time
++R=Path(__file__).resolve().parents[1];A=Path(os.environ.get('POLICY_CONTEXT_DIR',R/'inputs'));T=Path(os.environ.get('POLICY_TOOLS',R/'tools/host'))
++POLICY=Path(os.environ.get('POLICY_BINARY',R/'artifacts/UNQUALIFIED-future5role-policy'))
++started=time.monotonic()
++def limits():
++ resource.setrlimit(resource.RLIMIT_CPU,(10,10))
++ resource.setrlimit(resource.RLIMIT_CORE,(0,0))
++xperms=[]
+ checks=[]
+ def run(cmd,expect=0,want=None):
+- p=subprocess.run(list(map(str,cmd)),capture_output=True,text=True)
++ assert time.monotonic()-started<180
++ p=subprocess.run(list(map(str,cmd)),capture_output=True,text=True,timeout=10,preexec_fn=limits)
+  ok=p.returncode==expect and (want is None or p.stdout.strip()==want)
+  checks.append(dict(command=list(map(str,cmd)),returncode=p.returncode,stdout=p.stdout,stderr=p.stderr,passed=ok))
+  assert ok,checks[-1]
++ return p
+ def sub(t):return 'u:r:'+t+':s0'
+ def obj(t):return 'u:object_r:'+t+':s0'
+-def check(src,tgt,cl,perm,allowed):run([T/'policy_constraints',A/'restore-sepolicy',sub(src),tgt,cl,perm],0 if allowed else 1)
++def check(src,tgt,cl,perm,allowed):run([T/'policy_constraints',POLICY,sub(src),tgt,cl,perm],0 if allowed else 1)
+ for node in ['rescue_boot_device','rescue_system_device','rescue_recovery_device','rescue_disk_device']:
+  check('p10_restore',obj(node),'blk_file','open,read,getattr,ioctl',True)
+  check('p10_restore',obj(node),'blk_file','write',node=='rescue_recovery_device')
+@@ -28,7 +36,33 @@
+ check('p10_restore',sub('os_rescue'),'unix_stream_socket','accept,read,write,getopt,setopt,shutdown',True)
+ check('p10_restore',obj('p10_restore_exec'),'file','entrypoint,open,read,execute,getattr',True)
+ check('os_rescue',sub('p10_restore'),'process','transition,siginh,rlimitinh',True)
+-run([T/'policy_query',A/'restore-sepolicy',sub('os_rescue'),obj('p10_restore_exec'),'process','--transition'],want=sub('p10_restore'))
++run([T/'policy_query',POLICY,sub('os_rescue'),obj('p10_restore_exec'),'process','--transition'],want=sub('p10_restore'))
++# Preserve all 43 original policy assertions, including the transition query.
++original_policy_checks=len(checks)
++assert original_policy_checks==43
++for permission in ['open','read','write','getattr','ioctl']:
++ check('os_rescue',obj('rescue_userdata_device'),'blk_file',permission,True)
++for permission in ['create','unlink','append','execute','setattr','relabelfrom','relabelto','lock']:
++ check('os_rescue',obj('rescue_userdata_device'),'blk_file',permission,False)
++for permission in ['open','getattr','ioctl']:
++ check('p10_restore',obj('rescue_userdata_device'),'blk_file',permission,False)
++for node in ['rescue_disk_device','block_device','metadata_block_device','userdata_block_device','preloader_block_device','para_block_device','nvm_device','nvram_device']:
++ check('os_rescue',obj(node),'blk_file','write',False)
++for domain in ['shell','adbd']:
++ for node in ['rescue_boot_device','rescue_system_device','rescue_recovery_device','rescue_disk_device','rescue_userdata_device','block_device']:
++  for permission in ['open','read','write','getattr','ioctl']:
++   check(domain,obj(node),'blk_file',permission,False)
++for node in ['rescue_boot_device','rescue_system_device']:
++ check('os_rescue',obj(node),'blk_file','open,read,write,getattr,ioctl',True)
++pairs=[('os_rescue',n) for n in ['rescue_boot_device','rescue_system_device','rescue_recovery_device','rescue_disk_device','rescue_userdata_device']]+[('p10_restore',n) for n in ['rescue_boot_device','rescue_system_device','rescue_recovery_device','rescue_disk_device']]
++for src,node in pairs+[('p10_restore','rescue_userdata_device')]:
++ allowed=not (src=='p10_restore' and node=='rescue_userdata_device')
++ for command in [0x1272,0x125d,0x1277,0x1273,0x1372,0xffff]:
++  q=run([T/'policy_xperms',POLICY,src,node,hex(command)],0 if allowed and command==0x1272 else 1)
++  row=json.loads(q.stdout)
++  assert row['allowed']==([0x1272] if allowed else [])
++  assert row['allowed_count']==int(allowed) and row['denied_count']==65536-int(allowed)
++  xperms.append(row)
+ lookups=0
+ for part,alias,name in [(9,'boot','rescue_boot_device'),(10,'recovery','rescue_recovery_device'),(25,'system','rescue_system_device'),(26,'userdata','rescue_userdata_device')]:
+  direct='/dev/block/mmcblk0p'+str(part);link='/dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/'+alias
+@@ -41,5 +75,8 @@
+ actual=collections.Counter(extract((A/'file_contexts.bin').read_bytes()))
+ expected=collections.Counter((f[0],f[1] if len(f)==3 else '',f[-1]) for f in [l.split() for l in (A/'file_contexts').read_text().splitlines()])
+ assert actual==expected
+-(R/'evidence/policy-checks.json').write_text(json.dumps(dict(passed=True,checks=checks,compiled_context_lookups=lookups,compiled_rows=len(list(actual.elements()))),indent=2)+'\n')
++assert hashlib.sha256((A/"file_contexts.bin").read_bytes()).hexdigest()=="d82c9ca28d1d9017aea5f58d1cb9b46f6122ef22953ab32b7b4a3a8ccd07186c"
++assert resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss<1024**3
++(R/'evidence/policy-checks.json').write_text(json.dumps(dict(passed=True,observed_children_maxrss_bytes=resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss,serial=True,cpu_seconds_per_query=10,wall_seconds_per_query=10,suite_command_start_deadline_seconds=180,policy_sha256=hashlib.sha256(POLICY.read_bytes()).hexdigest(),checks=checks,original_policy_checks=original_policy_checks,original_context_checks=29,added_checks=len(checks)-72,compiled_context_lookups=lookups,compiled_rows=len(list(actual.elements())),xperms=xperms),indent=2)+'\n')
++assert lookups==29
+ print('POLICY_CONTEXT_PASS',len(checks),'checks;',lookups,'lookups')

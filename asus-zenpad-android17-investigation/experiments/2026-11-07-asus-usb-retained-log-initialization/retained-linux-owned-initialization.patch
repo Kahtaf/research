@@ -1,0 +1,69 @@
+--- a/arch/arm64/kernel/asus_retained_trace.c
++++ b/arch/arm64/kernel/asus_retained_trace.c
+@@ -130,7 +130,7 @@
+ {
+ 	struct trace_dt_check check = { };
+ 	struct trace_header *h;
+-	u64 linux_off, pl_end, lk_end;
++	u64 linux_off, console_off, pl_end, lk_end;
+ 	phys_addr_t page;
+ 	extern phys_addr_t __fdt_pointer;
+ 
+@@ -164,25 +164,26 @@
+ 	pl_end = (u64)h->off_pl + ALIGN((u64)h->sz_pl, 64);
+ 	lk_end = (u64)h->off_lk + ALIGN((u64)h->sz_lk, 64);
+ 	linux_off = h->sz_lk ? lk_end + ALIGN((u64)h->sz_lk, 64) : 512;
+-	if (h->sig != TRACE_SIG || h->sz_buffer != TRACE_SIZE ||
++	console_off = linux_off + TRACE_RR_SIZE;
++	if (h->sig != TRACE_SIG ||
+ 	    pl_end != h->off_lpl || lk_end != h->off_llk ||
+ 	    lk_end > linux_off ||
+ 	    linux_off < 512 || linux_off > TRACE_SIZE - TRACE_RR_SIZE ||
+ 	    (u64)h->off_lpl + ALIGN((u64)h->sz_pl, 64) > linux_off ||
+-	    h->off_linux != linux_off ||
+-	    h->off_console != linux_off + TRACE_RR_SIZE ||
+-	    h->sz_console != TRACE_SIZE - h->off_console || !h->sz_console ||
+-	    h->log_size > h->sz_console || h->log_start > h->log_size)
++	    console_off >= TRACE_SIZE)
+ 		goto unmap;
+ 
+ 	/* Additional early-map bounds do not weaken any OEM/DT/memblock guard.
+ 	 * Layouts outside this window retain the original post-paging path.
+ 	 */
+-	if (early && (h->off_linux > EARLY_MAP_SIZE - TRACE_RR_SIZE ||
+-		      h->off_console > EARLY_MAP_SIZE - (sizeof(early_marker) - 1)))
++	if (early && (linux_off > EARLY_MAP_SIZE - TRACE_RR_SIZE ||
++		      console_off > EARLY_MAP_SIZE - (sizeof(early_marker) - 1)))
+ 		goto unmap;
+-	if (!early && early_committed &&
+-	    (h->log_start || h->log_size != sizeof(early_marker) - 1 ||
++	if (early_committed &&
++	    (h->sz_buffer != TRACE_SIZE || h->off_linux != linux_off ||
++	     h->off_console != console_off ||
++	     h->sz_console != TRACE_SIZE - console_off ||
++	     h->log_start || h->log_size != sizeof(early_marker) - 1 ||
+ 	     memcmp((char *)h + h->off_console, early_marker,
+ 		    sizeof(early_marker) - 1)))
+ 		goto unmap;
+@@ -191,9 +192,19 @@
+ 	 * when switching from the temporary fixmap to the linear mapping.
+ 	 */
+ 	if (!early_committed) {
+-		h->log_start = 0;
++		/* Stock ram_console_init owns these fields; firmware need not
++		 * supply a usable previous Linux layout or ring counters.
++		 * Clear start before size so a reset cannot expose size < start
++		 * from our counter reset. Then publish the derived layout.
++		 */
++		WRITE_ONCE(h->log_start, 0);
+ 		__clean_dcache_area_poc(h, sizeof(*h));
+-		h->log_size = 0;
++		WRITE_ONCE(h->log_size, 0);
++		__clean_dcache_area_poc(h, sizeof(*h));
++		h->sz_buffer = TRACE_SIZE;
++		h->off_linux = linux_off;
++		h->off_console = console_off;
++		h->sz_console = TRACE_SIZE - console_off;
+ 		__clean_dcache_area_poc(h, sizeof(*h));
+ 		memset((char *)h + h->off_linux, 0, TRACE_RR_SIZE);
+ 		__clean_dcache_area_poc((char *)h + h->off_linux, TRACE_RR_SIZE);

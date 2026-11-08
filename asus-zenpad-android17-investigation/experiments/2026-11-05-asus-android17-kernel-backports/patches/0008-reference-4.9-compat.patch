@@ -1,0 +1,129 @@
+From 230ccf8e8e63fd4bf58a2d4d0f28fff16af7a4b8 Mon Sep 17 00:00:00 2001
+From: ahscholt <ACCOUNT_REDACTED>
+Date: Fri, 16 Oct 2026 09:55:00 -0400
+Subject: [PATCH] fs: erofs: Adapt to the 4.9 block and VFS APIs
+
+The imported driver comes from a 4.9 tree with more backports than this
+one. Use the 4.9 equivalents instead of pulling those APIs in tree-wide:
+
+- bio->bi_error instead of blk_status_t/bio->bi_status (only tested for
+  zero, so the errno-vs-status difference does not matter),
+- bio->bi_bdev instead of bio_set_dev(),
+- the 3-argument ->getattr() without statx attributes (4.11),
+- a local clear_and_wake_up_bit() (5.0).
+
+Co-Authored-By: Claude Opus 5.5 <ACCOUNT_REDACTED>
+---
+ fs/erofs/data.c     |  4 ++--
+ fs/erofs/inode.c    | 14 ++++----------
+ fs/erofs/internal.h | 16 ++++++++++++++--
+ fs/erofs/zdata.c    |  4 ++--
+ 4 files changed, 22 insertions(+), 16 deletions(-)
+
+diff --git a/fs/erofs/data.c b/fs/erofs/data.c
+index b259fc2957..55ef356f0a 100755
+--- a/fs/erofs/data.c
++++ b/fs/erofs/data.c
+@@ -15,7 +15,7 @@ static void erofs_readendio(struct bio *bio)
+ {
+ 	int i;
+ 	struct bio_vec *bvec;
+-	blk_status_t err = bio->bi_status;
++	int err = bio->bi_error;	/* 4.9: no blk_status_t */
+ 
+ 	bio_for_each_segment_all(bvec, bio, i) {
+ 		struct page *page = bvec->bv_page;
+@@ -223,7 +223,7 @@ submit_bio_retry:
+ 		bio = bio_alloc(GFP_NOIO, nblocks);
+ 
+ 		bio->bi_end_io = erofs_readendio;
+-		bio_set_dev(bio, sb->s_bdev);
++		bio->bi_bdev = sb->s_bdev;	/* 4.9: no bio_set_dev() */
+ 		bio->bi_iter.bi_sector = (sector_t)blknr <<
+ 			LOG_SECTORS_PER_BLOCK;
+ 		bio->bi_opf = REQ_OP_READ;
+diff --git a/fs/erofs/inode.c b/fs/erofs/inode.c
+index 3350ab65d8..1387fc6396 100644
+--- a/fs/erofs/inode.c
++++ b/fs/erofs/inode.c
+@@ -293,17 +293,11 @@ struct inode *erofs_iget(struct super_block *sb,
+ 	return inode;
+ }
+ 
+-int erofs_getattr(const struct path *path, struct kstat *stat,
+-		  u32 request_mask, unsigned int query_flags)
++/* 4.9 getattr signature; there is no statx attributes field to fill. */
++int erofs_getattr(struct vfsmount *mnt, struct dentry *dentry,
++		  struct kstat *stat)
+ {
+-	struct inode *const inode = d_inode(path->dentry);
+-
+-	if (erofs_inode_is_data_compressed(EROFS_I(inode)->datalayout))
+-		stat->attributes |= STATX_ATTR_COMPRESSED;
+-
+-	stat->attributes |= STATX_ATTR_IMMUTABLE;
+-	stat->attributes_mask |= (STATX_ATTR_COMPRESSED |
+-				  STATX_ATTR_IMMUTABLE);
++	struct inode *const inode = d_inode(dentry);
+ 
+ 	generic_fillattr(inode, stat);
+ 	return 0;
+diff --git a/fs/erofs/internal.h b/fs/erofs/internal.h
+index ac31da06cf..60158c6fa0 100644
+--- a/fs/erofs/internal.h
++++ b/fs/erofs/internal.h
+@@ -14,6 +14,18 @@
+ #include <linux/bio.h>
+ #include <linux/buffer_head.h>
+ #include <linux/magic.h>
++#include <linux/wait.h>
++
++/* 4.9 compat: clear_and_wake_up_bit() is from Linux 5.0. */
++#ifndef clear_and_wake_up_bit
++static inline void erofs_clear_and_wake_up_bit(int bit, void *word)
++{
++	clear_bit_unlock(bit, word);
++	smp_mb__after_atomic();
++	wake_up_bit(word, bit);
++}
++#define clear_and_wake_up_bit erofs_clear_and_wake_up_bit
++#endif
+ #include <linux/slab.h>
+ #include <linux/vmalloc.h>
+ #include "erofs_fs.h"
+@@ -376,8 +388,8 @@ extern const struct inode_operations erofs_symlink_iops;
+ extern const struct inode_operations erofs_fast_symlink_iops;
+ 
+ struct inode *erofs_iget(struct super_block *sb, erofs_nid_t nid, bool dir);
+-int erofs_getattr(const struct path *path, struct kstat *stat,
+-		  u32 request_mask, unsigned int query_flags);
++int erofs_getattr(struct vfsmount *mnt, struct dentry *dentry,
++		  struct kstat *stat);
+ 
+ /* namei.c */
+ extern const struct inode_operations erofs_dir_iops;
+diff --git a/fs/erofs/zdata.c b/fs/erofs/zdata.c
+index 80cde2a664..e6d09aaabc 100755
+--- a/fs/erofs/zdata.c
++++ b/fs/erofs/zdata.c
+@@ -747,7 +747,7 @@ static void z_erofs_vle_unzip_kickoff(void *ptr, int bios)
+ static inline void z_erofs_vle_read_endio(struct bio *bio)
+ {
+ 	struct erofs_sb_info *sbi = NULL;
+-	blk_status_t err = bio->bi_status;
++	int err = bio->bi_error;	/* 4.9: no blk_status_t */
+ 	unsigned int i;
+ 	struct bio_vec *bvec;
+ 
+@@ -1301,7 +1301,7 @@ submit_bio_retry:
+ 			bio = bio_alloc(GFP_NOIO, BIO_MAX_PAGES);
+ 
+ 			bio->bi_end_io = z_erofs_vle_read_endio;
+-			bio_set_dev(bio, sb->s_bdev);
++			bio->bi_bdev = sb->s_bdev;	/* 4.9: no bio_set_dev() */
+ 			bio->bi_iter.bi_sector = (sector_t)(first_index + i) <<
+ 				LOG_SECTORS_PER_BLOCK;
+ 			bio->bi_private = bi_private;
+-- 
+2.43.0
+

@@ -1,0 +1,21 @@
+{
+  "bytes": 775680,
+  "sha256": "b8cad792e6f178292ec6e604217dbbc392acbe1d91b18f222f14dd4e2c9ab745",
+  "machine": "AArch64",
+  "static_no_interp_or_dynamic": true,
+  "parallelism": 1,
+  "owned_prefix": "/srv/android/asus-microsd-frontend-20261107-impl1",
+  "source_sha256": {
+    "source/client.py": "0072398a0aa2da83bdf176d672e7ec767b6aaf034892fb603054a22549c5bf69",
+    "source/sha256.h": "4011564ce3516f8cc8e6e375cdd2923e72e9f9e74e77dc6e7db0637bda52efe0",
+    "source/test_frontend.c": "d4ed2c2344147b955b3a3abb99322cfb2dfc2ae0d137ba1782d1d88a27b26e4c",
+    "source/sd_frontend.c": "55788bdc403f4c86d99cf552d7649439b682e115ea58f985d28b02e1ed691e2b",
+    "source/bundle.py": "b648f2c95978cbe335c2c347c5eb016fd7fb4aa26283db37ee5dca678531324b",
+    "source/sd_mount.h": "59e6d4e4cefbfe6a83676277bef14a2afae77eb51ff38cf613b0be7ce2f5c989",
+    "source/manifest.py": "c9a40f5e1029e8252abc9a8256d63d9fae0d4e1c5373eb247dc76e2e06c52ae2",
+    "source/host.py": "2d6acd11f5b46585bec820188463e4ecb863ec19a6f106a83320f14c24c479d9",
+    "source/common.h": "90fe60e79b3cc3932dab7e824bc803bb18ba086ea079beca8298c34ccf2a53c3",
+    "source/rescue.c": "ade4ad301322995e29d55afe32621ae86dcdd89a29dde10c0ebfc5099072336f"
+  },
+  "physical_validation": false
+}

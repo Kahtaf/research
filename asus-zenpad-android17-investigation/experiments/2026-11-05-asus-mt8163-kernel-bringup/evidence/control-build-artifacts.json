@@ -1,0 +1,20 @@
+[
+  {
+    "path": "build/stable-baseline/arch/arm64/boot/Image",
+    "bytes": 16624128,
+    "sha256": "9141809bd68cb266dcff699d467312c06ee71a5e1e4b38bee4a237cf0d57feeb",
+    "role": "Amazon karnak control build, NOT for ASUS"
+  },
+  {
+    "path": "build/stable-baseline/arch/arm64/boot/Image.gz",
+    "bytes": 7270109,
+    "sha256": "131c16f76e33a7fda1a7ccae8ee3481d07d38ae4d43ac540dc9d99054682e3f8",
+    "role": "Amazon karnak control build, NOT for ASUS"
+  },
+  {
+    "path": "build/stable-baseline/arch/arm64/boot/Image.gz-dtb",
+    "bytes": 7701499,
+    "sha256": "a58e017c1d38d4364cc4babe200cc373e8f42a15a680d4f32643b407433dedb9",
+    "role": "Amazon karnak control build, NOT for ASUS"
+  }
+]

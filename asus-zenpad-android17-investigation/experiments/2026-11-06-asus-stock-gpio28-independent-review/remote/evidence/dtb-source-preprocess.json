@@ -1,0 +1,30 @@
+{
+  "command": [
+    "aarch64-linux-gnu-gcc",
+    "-E",
+    "-Wp,-MD,/srv/android/asus-stock-gpio28-review-20261106-r1/artifacts/asus-p00a.dts.d",
+    "-nostdinc",
+    "-undef",
+    "-D__DTS__",
+    "-x",
+    "assembler-with-cpp",
+    "-I",
+    "/srv/android/asus-stock-gpio28-review-20261106-r1/kernel/arch/arm64/boot/dts",
+    "-I",
+    "/srv/android/asus-stock-gpio28-review-20261106-r1/kernel/include",
+    "/srv/android/asus-stock-gpio28-review-20261106-r1/kernel/arch/arm64/boot/dts/mediatek/asus-p00a.dts",
+    "-o",
+    "/srv/android/asus-stock-gpio28-review-20261106-r1/artifacts/asus-p00a.preprocessed.dts"
+  ],
+  "exit": 0,
+  "wall_seconds": 0.0207672119140625,
+  "cpu_limit_seconds": 45,
+  "wall_limit_seconds": 60,
+  "affinity": [
+    0
+  ],
+  "rlimit_as": [
+    1073741824,
+    1073741824
+  ]
+}

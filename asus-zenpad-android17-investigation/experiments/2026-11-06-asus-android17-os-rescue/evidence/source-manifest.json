@@ -1,0 +1,134 @@
+{
+  "source/audit_binaries.py": {
+    "bytes": 2895,
+    "sha256": "bb753854d94f9a6ba26b1d5f07a52b56bd52d6c8146f62c903349d8c09f94c04"
+  },
+  "source/bootformat.py": {
+    "bytes": 3936,
+    "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017"
+  },
+  "source/build_rescue.py": {
+    "bytes": 1344,
+    "sha256": "a01dae8d28f05f157e8ffad2de8f2c54ae267be90a9105927bb396aabef1692e"
+  },
+  "source/build_tools.py": {
+    "bytes": 2611,
+    "sha256": "1f8d23e566bb14fa83b01f952e54775cd2c10163ce1b49b1f5ed36dae40b9c97"
+  },
+  "source/data_plan.py": {
+    "bytes": 4572,
+    "sha256": "c7a7a5626576acf89dddac5eb3e19cfef2f57a3727f33abc1716d54840372265"
+  },
+  "source/default.prop": {
+    "bytes": 254,
+    "sha256": "c38cb81c412aea0e45bdef7ad272f536b2d0f5d45e5bef13aa09cca158950134"
+  },
+  "source/diag.c": {
+    "bytes": 7794,
+    "sha256": "ff02d2c43e86810ca167e6c64674572f1909b1ba0e92f424dc30e12421fb7c4d"
+  },
+  "source/generate.py": {
+    "bytes": 5559,
+    "sha256": "40db7554d9dc7e88ac8ba04b91f6b2dd556e5f8fe15c9e2eb908e23aaade390e"
+  },
+  "source/init.rc": {
+    "bytes": 1586,
+    "sha256": "080d2c45d55ce23000098a6c3dbd358895ed54801506e385a7fbb688e0559d83"
+  },
+  "source/libsepol-android-7.1.2_r39.tar.gz": {
+    "bytes": 452022,
+    "sha256": "c17c444d73f1080a8959cfda2d4bdb529efd88f5af58a9e571917f473f83ff27"
+  },
+  "source/manifest_template.py": {
+    "bytes": 1745,
+    "sha256": "c427088557d18cb3d830b2d08a59ba0f2233c5cf7c26462624fdac93de158ad3"
+  },
+  "source/observer.py": {
+    "bytes": 5067,
+    "sha256": "2f9cf1ab7c47cf2c741d46d605fa9c6886babf003b1722b4913ce8cd7d703605"
+  },
+  "source/policy_constraints.c": {
+    "bytes": 1808,
+    "sha256": "ed7a4d6fba45f79009213a794b1c001aca3925655f8de41d5d79ee5649576b4d"
+  },
+  "source/policy_patch.c": {
+    "bytes": 2248,
+    "sha256": "71dcd39102578dc188360b70e26f299fff0a7dc1f9a8e8dd623fc704f02a074c"
+  },
+  "source/policy_query.c": {
+    "bytes": 2117,
+    "sha256": "630a63ac4218dee09f94f1ac0b2ef2104f9a73f74d6cd11aac28f80b3ac5e461"
+  },
+  "source/protocol.py": {
+    "bytes": 1119,
+    "sha256": "f14316141485f86b2818452c8e90bdd1dc571549a145f477b29eae3ee14e69d6"
+  },
+  "source/reference/cryptfs.c": {
+    "bytes": 124153,
+    "sha256": "54c3ef3fe61fd35c98d21555d1699ba721dcb1f5b91a96a41101d77c6cad20b4"
+  },
+  "source/reference/provenance.json": {
+    "bytes": 675,
+    "sha256": "f4f2fe9972a716d8f4e7a364840e5faa7f35b71492cda5450a2982cc5416d372"
+  },
+  "source/reference/recovery.cpp": {
+    "bytes": 55864,
+    "sha256": "aeb0f5f6ed5419b894eb68169bc138b33eeb5d5f66ba3c4c90fb925122e3fc66"
+  },
+  "source/reference/roots.cpp": {
+    "bytes": 9590,
+    "sha256": "c79775c678c44acc2855a4042e99b2ea5b077da87da219e9eb312795383476ac"
+  },
+  "source/reproduce.py": {
+    "bytes": 2115,
+    "sha256": "d9912f04ed68523c9d56523bd59961b95aec30c843037242c05d890b22f1137b"
+  },
+  "source/rescue.py": {
+    "bytes": 13540,
+    "sha256": "3b1595cdcbe2a5faf43fb08d4c0572621be79465ff7a9b5a7c7ff512dcf98afb"
+  },
+  "source/rescue_gate.c": {
+    "bytes": 2414,
+    "sha256": "b4fef0880e25405aae9d80c5350851d7e503a433a60d4d03ed04485de038d404"
+  },
+  "source/staged-rescue/file_contexts.in": {
+    "bytes": 243,
+    "sha256": "57b0018b832d017f9ce96dc59e0e5b330c60a1ee9037c45d6e36c846a3ecd53a"
+  },
+  "source/staged-rescue/fstab.internal-data.in": {
+    "bytes": 371,
+    "sha256": "dcd5943c46f6b9b348699d596cfb82ec4bb59723a65c946d23b8dd04a5dabfb0"
+  },
+  "source/staged-rescue/init.os-rescue.rc.in": {
+    "bytes": 603,
+    "sha256": "daee06529634a3927649cd325975fa1aadf973354487896f5025eca4398bad33"
+  },
+  "source/staged-rescue/os_rescue.te.in": {
+    "bytes": 2127,
+    "sha256": "1864935314b97c82d9ee472dd7ff2f7173bcc841940eea00e478f5c915102b0a"
+  },
+  "source/test_diag.c": {
+    "bytes": 7022,
+    "sha256": "7287596aeccd53fbbf4862d03286528e19ea1f6a38b8c1b2296fbf4e09b05089"
+  },
+  "source/ueventd.rc": {
+    "bytes": 263,
+    "sha256": "8c6c25eba59bcf6d9cf23d37fb0cd1e63f3ce379a56325fde9dae346e298871a"
+  },
+  "source/verify.py": {
+    "bytes": 6200,
+    "sha256": "a7aca831fac87feda4d6d9421eae853315dd4d581674ebb276cc895393d18701"
+  },
+  "tests/test_observer.py": {
+    "bytes": 1983,
+    "sha256": "3ee50cd4c68ead893c69749ecb1688a3557f054a0a4737b3ad23cf1e8e92c6a7"
+  },
+  "tests/test_protocol.py": {
+    "bytes": 2197,
+    "sha256": "223e37ce0b511301c3d26d9bc5877701be344dd457bfe6c09020c3346fdb8390"
+  },
+  "tests/test_rescue.py": {
+    "bytes": 11206,
+    "sha256": "e947ea95ddb5c37788221c343a0163b388f21e18dde797056c41c3476488a2e2"
+  }
+}

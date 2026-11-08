@@ -1,0 +1,93 @@
+{
+  "base_commit": "717bb3c9e13ce573cfdd2dda856debd27a0fa17f",
+  "base_config_sha256": "067090e03ad762344308cebd0a71274d9943e299ded6707051ebfdc075dd045f",
+  "base_image_sha256": "46895deb12ec94160ea5af0e85afa89c6de84971db126bb94c60cec1ec3ec401",
+  "compile_exit": 0,
+  "compile_log_gzip_sha256": "bd961adf30671e366811fab6035c0eb5ad002690f4bfe4cd88a72d2844ca682f",
+  "compile_log_sha256": "77d40007961d556b003e52afa405068496f2ba143f4d192a73e1ce8cb6fed5a2",
+  "compile_seconds": 1951.002346,
+  "compile_status_sha256": "6e9914c2e37fbfa764f5c57e30d4127bbc1a991ff612f53e8d78da65202f7611",
+  "config_sha256": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2",
+  "dtb_sha256": "a099d0538b270e23ec0d034b507eef9248252a3c459a11aa70edb6520bfd2b77",
+  "export_manifest_sha256": "b3b78bd493237634541d1eb1385f720100fec7d74f4f069da43deb3e9351c60f",
+  "full_compile_commands": [
+    {
+      "command": [
+        "make",
+        "-C",
+        "/srv/android/asus-bmc156-full-kernel-r1/kernel",
+        "O=/srv/android/asus-bmc156-full-kernel-r1/out",
+        "ARCH=arm64",
+        "CROSS_COMPILE=aarch64-linux-gnu-",
+        "HOSTCC=gcc",
+        "HOSTCXX=g++",
+        "LOCALVERSION=-g717bb3c9e13c-dirty",
+        "-j1",
+        "olddefconfig"
+      ],
+      "exit": 0,
+      "finished": "2026-11-06T20:45:30.735058+00:00",
+      "started": "2026-11-06T20:45:27.431183+00:00"
+    },
+    {
+      "command": [
+        "make",
+        "-C",
+        "/srv/android/asus-bmc156-full-kernel-r1/kernel",
+        "O=/srv/android/asus-bmc156-full-kernel-r1/out",
+        "ARCH=arm64",
+        "CROSS_COMPILE=aarch64-linux-gnu-",
+        "HOSTCC=gcc",
+        "HOSTCXX=g++",
+        "LOCALVERSION=-g717bb3c9e13c-dirty",
+        "-j1",
+        "Image.gz-dtb"
+      ],
+      "exit": 0,
+      "finished": "2026-11-06T21:18:01.746895+00:00",
+      "started": "2026-11-06T20:45:30.744549+00:00"
+    }
+  ],
+  "full_verification_sha256": "dfc3977b06abb18183732100edbf8fe37767644dbed1769c2aed01870f6ce372",
+  "image_bytes": 7716897,
+  "image_sha256": "e9cde06e85e752aec0433ea37fa926c31b4f7a72cd55453762ec6870e5bb5bf1",
+  "kernel_release": "4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty",
+  "physical_tested": false,
+  "pre_post_manifest_sha256": "d238debc70f0c67b204342ac4e6ff183cf07370fc82c4803f8f643d35115ac33",
+  "product_integrated": false,
+  "source_manifests": {
+    "post": {
+      "canonical_json_sha256": "c636d9abad7de61e242268372a3b6e3e0cc0ff23f1926274db21f17a6dd81124",
+      "local_reconstruction": "r5 complete manifest overlaid with patches/pre-post-hashes.json after values",
+      "remote_file": "/srv/android/asus-bmc156-full-kernel-r1/evidence/post-source-manifest.json.gz"
+    },
+    "r5": {
+      "canonical_json_sha256": "561adcedb030efd47cf7dc38c991f52dc52974ca227fa30267e16a3ba23ec70e",
+      "compressed_sha256": "93b4a51a45af00095283dc428d4ace6c5b8027b27cfc4f829f05d7453f572c04",
+      "file": "evidence/r5-source-manifest.json.gz"
+    }
+  },
+  "source_patch_sha256": "1f40942ee014bda87c4e4c382b881e27c98b2034b227a06020a7e96126399cec",
+  "toolchains": {
+    "aarch64-linux-gnu-gcc": {
+      "path": "/usr/bin/aarch64-linux-gnu-gcc-13",
+      "sha256": "cd90adc7801f4595267f61a5d25bd3a0c6beb2f9f1f107ab919a97a12972dc9a",
+      "version": "aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    },
+    "aarch64-linux-gnu-ld": {
+      "path": "/usr/bin/aarch64-linux-gnu-ld.bfd",
+      "sha256": "7c903ac277dd1f5c4397277db865f12d8239fe45782f71afbeb3d42180a4b1ae",
+      "version": "GNU ld (GNU Binutils for Ubuntu) 2.42"
+    },
+    "gcc": {
+      "path": "/usr/bin/x86_64-linux-gnu-gcc-13",
+      "sha256": "1b99826121ae6682a634e5efe09bd3e3df58ce58e0b28f849114ab5b89139c26",
+      "version": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0"
+    },
+    "make": {
+      "path": "/usr/bin/make",
+      "sha256": "d78b8f1d099fbcfb6f2f49ab87223b9b68fb3956642f92d6ec6de812e8afa965",
+      "version": "GNU Make 4.3"
+    }
+  }
+}

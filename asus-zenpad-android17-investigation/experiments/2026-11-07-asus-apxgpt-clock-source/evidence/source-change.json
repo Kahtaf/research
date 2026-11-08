@@ -1,0 +1,13 @@
+{
+  "preimage_sha256": "2b298b9f5b7951104340b20b5591c2496746be088d3bec935a69157ba30ca197",
+  "postimage_sha256": "0c9e26f54ecbbdd8d60c9ed35cbfb62820b6a515ef25d0750fd16c3834db2913",
+  "patch_sha256": "13294c10548d583e7fa86a4010fd3455822e3ba012a001cb40a6ecb1378d0816",
+  "changed_lines": 1,
+  "bus_gate_preserved": true,
+  "clock_name": "clk13m",
+  "expected_DT_rate_Hz": 13000000,
+  "compiled": true,
+  "physical_boot_cause_proven": false,
+  "active_sources_changed": false,
+  "object_sha256": "19893e566b1e527894299b07a2951a76e3cfde0d888f080075c04565b06a8cdb"
+}

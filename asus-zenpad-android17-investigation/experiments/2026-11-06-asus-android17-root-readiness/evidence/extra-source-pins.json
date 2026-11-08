@@ -1,0 +1,10 @@
+{
+  "packages/modules/adb/root/adbroot_service.cpp": "82c84f7e9a2982522a0741d97d848dda5970a98e16ea7a2d3860421d0d3bc05e",
+  "packages/modules/adb/root/adbroot_service.h": "3e3fcb02f98dddda05476f9115cdb312f24ec1411dbe0b424295dbf7d03e7153",
+  "packages/modules/adb/root/adb_root.rc": "bc48b60e0fdc752b44942add1a76427ddadba71ef2b221b36d7408747090d09f",
+  "packages/modules/adb/root/main.cpp": "cca8d4a7e85b124566f14392941e56f1bb95453463412623eee169e83dc7b6f3",
+  "packages/modules/adb/apex/adbd.rc": "6e3178a7592af91f618207506777b470b7990a4ebae0ab9d241f676c5d40af1e",
+  "packages/apps/Settings/src/com/android/settings/development/AdbRootPreferenceController.java": "09dbf490cfefc2cfac9a2f62c7ebedd7b1d3fcb80affba67b7dcaad769880105",
+  "device/lineage/sepolicy/common/private/file_contexts": "821064b939efdefa7a247c087be9a83db28e9f893af450eeb45dec15d481bc90",
+  "device/lineage/sepolicy/common/private/service_contexts": "3cf14bf82d29754dca5b593e39704c835b9a7af0f019de58642e961327c729eb"
+}

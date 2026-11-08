@@ -1,0 +1,22 @@
+{
+  "exact_prior_plus_identity_and_reorder": true,
+  "unchanged_SIGALRM_setup_handler_finish_and_helpers": true,
+  "first_clock_before_alarm": true,
+  "enumeration_and_fixed_metadata_before_alarm": true,
+  "single_unchanged_100ms_sleep": true,
+  "main_source_order": [
+    "begin(\"sigaction\"",
+    "begin(\"uname\"",
+    "begin(\"mount\"",
+    "names(\"/sys/class/mmc_host\")",
+    "const char *nodes[]",
+    "clock_sample(\"before-sleep\"",
+    "unsigned left=alarm(10)",
+    "begin(\"clock_nanosleep.relative100ms\"",
+    "clock_sample(\"after-sleep\"",
+    "event(\"complete\",\"observation\""
+  ],
+  "unarmed_before_enumeration_completes": true,
+  "power_fallback_required": true,
+  "delta_includes_alarm_arm_and_logging": true
+}

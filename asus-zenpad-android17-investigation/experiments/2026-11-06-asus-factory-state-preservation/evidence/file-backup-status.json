@@ -1,0 +1,12 @@
+{
+  "utc": "2026-11-06T19:45:08.557995+00:00",
+  "captured_entries": 53,
+  "regular_files_verified": 39,
+  "runtime_fifo_metadata_only": 3,
+  "source_metadata_stable": true,
+  "two_independent_captures_match": true,
+  "selinux_metadata_complete": true,
+  "private_payloads_uploaded": false,
+  "partition_writes": false,
+  "factory_preservation_complete": false
+}

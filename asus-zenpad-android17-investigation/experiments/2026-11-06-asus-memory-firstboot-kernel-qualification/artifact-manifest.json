@@ -1,0 +1,73 @@
+{
+  "files": {
+    "NEXT-RUNTIME-CHECKLIST.md": {
+      "bytes": 1896,
+      "sha256": "ff433bd9eab25799c9a8cd1a59dfd33f7e42a2fcd68e99841fd96ebcdca55b6c"
+    },
+    "README.md": {
+      "bytes": 1222,
+      "sha256": "a0f26f7b6f740ecfa43647575b0d88460642ac3c8ae5347b29d01c09a27899b4"
+    },
+    "REPORT.md": {
+      "bytes": 12442,
+      "sha256": "953bda490f0440c0527b67e2d3d9a84f1c2ca531e6fde37b46b0d277415025a3"
+    },
+    "acceptance.json": {
+      "bytes": 7898,
+      "sha256": "0b6b5414e5de9bef0fa83e233f35d29b2ef751f53ca2d8f8d75c43df7073a9b3"
+    },
+    "evidence/authorities.json": {
+      "bytes": 374875,
+      "sha256": "e5bf21679587ddd050dd3839023559507828c55a900d093d5da4fe5c041ec026"
+    },
+    "evidence/reference-hashes.json": {
+      "bytes": 2233,
+      "sha256": "d2525c27e9278e19ad065667d55baf65c3c17479b1083502549d89a0941f315a"
+    },
+    "evidence/remote-inspection.json": {
+      "bytes": 763610,
+      "sha256": "49f5cf42c33d40ccb5f3d59f2677c79abaf941337a2bb9996e45cbd76c36c215"
+    },
+    "evidence/remote-supplement.json": {
+      "bytes": 84047,
+      "sha256": "ed467f1c47517073afe9373046f274375027cd8976beb7f63fa390ef83ae98a5"
+    },
+    "evidence/selected-source-pins.json": {
+      "bytes": 50788,
+      "sha256": "4508acc3041997476529aab3f550ee9199e4f61b71ed8e9bdfdbee5b7be3d77c"
+    },
+    "evidence/verification.json": {
+      "bytes": 3095,
+      "sha256": "0cdf54eecb395843680cfbfb959a3ba0733f0cf188afb3433b7295c801190874"
+    },
+    "evidence/virtual-non-disabled-differences.json": {
+      "bytes": 6741,
+      "sha256": "a5c5fb75bafbc9b4d0a79eb56b6e3c4447724c92ca3a4761666aea937e15a9fe"
+    },
+    "evidence/whole-config-differences.tsv": {
+      "bytes": 193126,
+      "sha256": "f07d61e109dd28961177630b4980223bfd98f6c5808a53066f53dac61267054c"
+    },
+    "next-fixture-contract.json": {
+      "bytes": 5555,
+      "sha256": "f82950cc00e38227b60d416176e3b4707c1ee891cf7f0c1541a244abd3c438a9"
+    },
+    "scripts/finalize.py": {
+      "bytes": 13759,
+      "sha256": "160ba60d2b07f21328a0020c4e5a272f899223a7ff61477a434d3d7966cabce6"
+    },
+    "scripts/inspect.py": {
+      "bytes": 2113,
+      "sha256": "5af73401428c834f70de88e5f2ca280ce6b950bf26133fd161196b3951df6da5"
+    },
+    "scripts/remote_inspect.py": {
+      "bytes": 4542,
+      "sha256": "081ea13eb12d6c982682f8f0eac850b0252a8eb023da9bd696f313f53302a542"
+    },
+    "scripts/supplement.py": {
+      "bytes": 3653,
+      "sha256": "71c095549b1a90d15fbc153c5b52d895dc3b499ffd93db8a6d71aabcefedf634"
+    }
+  },
+  "scope": "All final spike files except this manifest; no generated runtime or future capture inputs."
+}

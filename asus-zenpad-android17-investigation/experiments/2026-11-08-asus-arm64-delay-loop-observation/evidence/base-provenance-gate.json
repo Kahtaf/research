@@ -1,0 +1,23 @@
+{
+  "status": "PASS_BEFORE_EDIT_SOURCE_REFERENCE_AND_LINKED_GATE",
+  "reference_delay_sha256": "0da96215d269330ff97e542421ed95178f8d6085a3df9b58d791f11fe308dda5",
+  "actual_delay_sha256": "0da96215d269330ff97e542421ed95178f8d6085a3df9b58d791f11fe308dda5",
+  "reference_timex_sha256": "e8f986efe1ede34400bfc5e994043cfa069e71000b0be7b8483dcbf82a7092ac",
+  "actual_arch_timer_sha256": "617e79936d3028e62b842c5e2b9499b19e54de5fac4c8c2bd87a9e18cfb0c614",
+  "compiler": "GCC 13.3.0 Ubuntu, actual .delay.o.cmd and compile.h retained",
+  "loop": "actual __const_udelay BL __delay; initial and per-condition ISB plus CNTVCT or optional selected function pointer",
+  "runtime_workaround_activation": "UNPROVED",
+  "source_vs_reference": "hash equality for delay.c and timex.h; scoped accessor fragment equality; ELF callflow checked separately, no C-vs-ELF byte comparison",
+  "route_offsets": {
+    "voltage_adc_return": 468,
+    "pmic_pre_hook_return": 912,
+    "pmic_const_return": 928
+  },
+  "nominal": {
+    "xloops": 1288500,
+    "lpj": 52000,
+    "HZ": 250,
+    "requested": 3900,
+    "runtime_lpj": "not yet observed"
+  }
+}

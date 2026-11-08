@@ -1,0 +1,9 @@
+{
+  "source": "2026-11-07-asus-sd-media-flag-probe/source/init.c",
+  "sha256": "26c0128326de953a7a0040db8258eecbeb8c90b0c7a7e001cffd333c85983d3e",
+  "new_sha256": "801a23c5d4835f88d70f5cf1ac74f50a6435f9befb5fe45e5dd32f8ec7164676",
+  "marker": "ASUS-stock-retained-control-20261107-v1 1fd4c968-c0b4-49ab-851a-b0ea4c50c01d",
+  "syslog_action": 8,
+  "console_level": 1,
+  "kmsg_priority": 0
+}

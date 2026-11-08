@@ -1,0 +1,37 @@
+# Advisory: ASUS P00A Linux 4.9 bring-up
+
+## Diagnosis of your method
+
+**What genuinely narrowed the failure.** Three facts are load-bearing, and one is under-appreciated:
+
+- **RAM persistence across a 4.9 attempt is now proven hardware fact.** The 507,837-byte last_kmsg you read after the final trial was the *previous* stock boot's console log — it survived the recovery reboot, the 4.9 attempt, the unknown reset, and the next stock boot. Therefore (a) the 0x44400000 region is an already-validated write→reset→readback channel that needs no UART, and (b) "zero markers" means *the kernel or its logger wrote nothing*, not "unknowable". You don't lack a transport; you lack a loud writer.
+- **Entry contract is well narrowed**: PSCI/CPU-method, GIC ranges, polarity, timer IRQ specifiers agree between FDTs; packaging premises are closed by passing stock controls.
+- **The cached LASTPC values live in 4.9's linear map.** 0xffffff8008xxxxxx cannot be stock text (3.18 sits at 0xffffffc0xxxxxxx). At least one earlier configuration ran 4.9 with the MMU on, interrupts being taken, a second core near idle. Your epoch caution is right, but "4.9 never executes" is no longer the default hypothesis — "we have no positively-validated trace for the exact final kernel" is.
+
+**Bad premises:**
+
+1. **Unvalidated, silence-capable instrument.** The retained logger has never produced one confirmed marker on hardware; its guards make refusal the default exactly when diagnosis matters. The physically trialed a49b8731 may even carry the superseded field-guard variant. A zero-marker result from such an instrument is not evidence of non-execution — you were forced to caveat it yourselves, which is the instrument's fault, not the data's.
+2. **Pooling across differently-configured kernels.** Deep-execution hints (LASTPC, earlycon-on era) and the zero-marker result (earlycon-off kernel) are different subjects. One cannot explain the other. Keep a per-trial kernel/config ledger.
+3. **Reporter information content.** The 4.9 configfs reporter needs musb/clock/pinctrl bring-up to report at all, and its own stock EBUSY failure proved it environment-sensitive. Its silence was always near-zero information about boot depth.
+4. **"No trace without UART" is contradicted by your own evidence.** Three UART-free channels exist: the persisting RAM console, the MCUCFG latch readable from stock (`/proc/aed/reboot-reason`, lastpc sysfs), and the runtime post-fixup FDT at `/proc/device-tree` — the "actual runtime arguments" you declared unobserved are sitting readable on the running tablet.
+5. **The 32.7s arithmetic mixes phases** (Android shutdown + two bootloader passes + 4.9 life + stock boot). Its only solid inference: the reset was not PID1's 60s alarm. The unexamined suspect is an RGU watchdog armed by LK/ATF *before* the jump (~31s class) — item D analyzed only the kernel-side registration, not firmware-side arming.
+
+## Ranked paths
+
+**1. Interrogate the witnesses — zero build, zero flash (do first; part is perishable).**
+Offline half: confirm which logger variant is actually inside the trialed a49b8731 vmlinux (marker strings, guard code); check the e9 DT's root compatible and `reserved-memory/ram_console` node against every logger guard. If any guard obviously fails, your zero-marker result collapses to "logger refused" and the final trial says nothing about execution. Live half: the single read-only session below. Positive: repeated 4.9-range PCs, a WDT-class reset reason, or a runtime memory map differing from e9's 0x7d600000 template. Negative: a clean/zeroed latch (epoch ambiguity — the DT/header reads still stand). Timebox: half a day, one session, no iteration.
+
+**2. The one justified build: a loud ladder.** Kernel delta = logger hardening only: unconditional magic+reason writes at fixed offsets inside the reserved region from the first C opportunity; rungs (CNTVCT + stage code) at memblock, paging, setup_arch end, init_IRQ, time_init, rest_init/PID1; dump the saved boot_args x0–x3 (the real FDT pointer) and first FDT magic; every refusal writes its reason instead of silence. Keep only the is-RAM guard. Ramdisk PID1: a minimal static init that writes a userspace magic via `/dev/mem` and self-reboots at 60s — removes configfs/USB from the boot question entirely. No other config/DT changes unless Path 1 found a concrete mismatch, in which case bundle exactly that one labeled fix. Positive: rung N gives exact depth, real entry registers, stage timings. Negative: zero rungs with the instrument now validated against the real OEM header ⇒ 4.9 never reached early C in this config ⇒ boundary is ATF/head.S, and only then is UART (or an LK-side print) worth its cost. Timebox: 1–2 days including one VM session (produce the stock raw-RAM-dumper ramdisk in the same session); one trial, one readback, then decide.
+
+**3. Offline contract elimination (parallel, no device).** (a) APXGPT: with `clk32k` present, the clockevent rate (32768) matches the RTC32K-programmed GPT1, so jiffy timing is right; the mislabeled GPT2 clocksource is outranked by the 13MHz arch timer. The mismatch only matters if the arch timer isn't actually serviced at EL1 — which yields wrong time scale, not pre-paging death; it cannot explain zero markers. Park the patch; ladder timestamps test it for free. (b) ATF/LK: disassemble the preserved SMC handoff for final EL, x0, MMU/cache state, and whether LK arms the RGU WDT pre-jump. If armed, the 32.7s story unifies and it predicts a healthy 4.9 boot may *hang* rather than auto-return — brief the owner to hold Power, and keep PID1's timed self-reboot as the designed return.
+
+## Best next step
+
+**Path 1, run offline first, then one bounded read-only device session — unchanged kernels, no build yet, no new hardware.** The exact query (existing adb/helper path, before any further reboot):
+
+1. `cat /proc/aed/reboot-reason` (full) — decides whether 4.9-range LASTPC recurs after the final-trial chain (execution depth for that config) and how aed classifies the last reset (WDT vs SW) — the 32.7s class.
+2. `cat /sys/bus/platform/drivers/lastpc/lastpc_dump` — current latch reread, complementing the cached snapshot.
+3. Bounded `/proc/device-tree` dump — at minimum `/memory/reg`, `/chosen`, the whole `/reserved-memory` subtree, the apxgpt node with clock phandles, musb/udc nodes — decides the actual post-LK-fixup contract: does the real memory map match e9's template, and does the ram_console reservation satisfy every logger guard? (Caveat: 3.18 may trim the memory node after boot; cross-check against LK's fixup code in the same offline pass.)
+4. If `/dev/mem` is readable: 64 bytes at 0x44400000 — the true OEM header, validating the ladder's write arithmetic offline before spending the build.
+
+**What changes the flash decision:** after the ladder build and one trial, rungs through the PID1 magic (plus magic bytes in the raw RAM readback) mean hardware-proven 4.9-to-userspace; flashing SYSTEM/DATA then becomes a *visible* driver-bring-up risk rather than a blind leap. If rungs stop early with a validated instrument, keep BOOT/recovery-only diagnostics — the boundary is the ATF→head.S handoff, and a full OS flash would still be betting blind.

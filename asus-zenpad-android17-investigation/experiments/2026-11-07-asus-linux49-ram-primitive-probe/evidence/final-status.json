@@ -1,0 +1,17 @@
+{
+  "status": "READY_FOR_PARENT_SINGLE_PHYSICAL_TRIAL",
+  "pid1_run_uuid": "b388b428-514d-49ee-949f-6b79317699bd",
+  "compile_attempts": 1,
+  "compile_exit": 0,
+  "compile_warnings": 2,
+  "packaged_candidates": 1,
+  "isolated_actual_PLAN_calls": 1,
+  "device_or_ADB_access": false,
+  "private_payload_or_retained_log_access": false,
+  "cloud_lifecycle_or_resource_operations": false,
+  "remote_kernel_copy_or_build": false,
+  "remote_prefix": "/srv/android/asus-linux49-ram-primitive-probe-20261107",
+  "VM": "VM8549823276971553556",
+  "VM_left_running_for_parent_stop": true,
+  "physical_timer_storage_usb_result": "NOT_OBSERVED"
+}

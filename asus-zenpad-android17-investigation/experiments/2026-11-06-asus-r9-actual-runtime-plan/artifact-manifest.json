@@ -1,0 +1,46 @@
+{
+  "README.md": {
+    "bytes": 863,
+    "sha256": "703174aa2e7bf56bd38de9fc69ddbc6fc5df0e1209290e8075e0533caa523458"
+  },
+  "REPORT.md": {
+    "bytes": 6375,
+    "sha256": "3cae46a9b9bad86474b4e4e97d544214f38c37a95d365b18ea65d33a3af0fac9"
+  },
+  "evidence/data-budget.json": {
+    "bytes": 5326,
+    "sha256": "54f95e8f7554a80c5d2903963816197aef856eba979f7567239a6745af6cc755"
+  },
+  "evidence/inspection.json": {
+    "bytes": 200126,
+    "sha256": "0518806d3c0a6cde74323b69ab76da5bbe5419432241d4140fe60626fd7a58c6"
+  },
+  "evidence/mapping.json": {
+    "bytes": 10253,
+    "sha256": "a59c9f16c6f69b45b20eb27753301de3f67c30b186713e17156a4928ba203377"
+  },
+  "evidence/prerequisites.json": {
+    "bytes": 1715,
+    "sha256": "3e18e558f12cb8ecb987d4bbdf197566fe18abc84c724f7b9fde061dd2ed6f60"
+  },
+  "scripts/data_budget_remote.py": {
+    "bytes": 766,
+    "sha256": "aec763045bdd3036fec5dc6fedc347e8d85be75550dc9f6810fbd275db741fd1"
+  },
+  "scripts/inspect_remote.py": {
+    "bytes": 4619,
+    "sha256": "26be382844d2390cbd5efdaf5d6d2dbb9d56b9d5348cc3632f00b7fa02427cfe"
+  },
+  "scripts/mapping_remote.py": {
+    "bytes": 1926,
+    "sha256": "dd46a10c90b9cabeaa674ca82a3f316e9f7038a2ba1fcf4691ba301f0e268cc1"
+  },
+  "scripts/prerequisites_remote.py": {
+    "bytes": 1546,
+    "sha256": "a19b40c55a1f3af996d16371efec7f688ce71b8afda57217f5fe9fe509f3fced"
+  },
+  "scripts/ssh_run.py": {
+    "bytes": 434,
+    "sha256": "cfa174fd170f4d578ff394dccdb9f92981258db529f7b00a1fb15cba6cc376ef"
+  }
+}

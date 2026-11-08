@@ -1,0 +1,45 @@
+{
+  "all_258_changed_source_files_independently_hash_matched": true,
+  "frozen_source_manifest_entries": 61976,
+  "whole_frozen_source_independently_rehashed": false,
+  "runtime_configs_independently_compared": 58,
+  "runtime_source_receipt_consistency_checked": 282,
+  "runtime_sources_all_read_in_this_review": false,
+  "profiles_matches_compiled_release": {
+    "battery_profile_t0": {
+      "pairs": 104,
+      "sha256": "71066b242852cde2b6bc41e83f88ff123d4eafbe34df710ff8c78540c0fa4d38"
+    },
+    "battery_profile_t1": {
+      "pairs": 104,
+      "sha256": "a24358fd345b1111a1d08672fbe740a73029578be7f562c1a65b5ce738626ab1"
+    },
+    "battery_profile_t2": {
+      "pairs": 104,
+      "sha256": "43bf9fdfdf0ddf0b2c502ebdc2c4f1c4bba2f3a9127940a4a10b4a98ab668afc"
+    },
+    "battery_profile_t3": {
+      "pairs": 104,
+      "sha256": "f8e1041531054f3585a6e600c342a45587f6120519e2a4d141c668adb4710118"
+    },
+    "r_profile_t0": {
+      "pairs": 104,
+      "sha256": "a775a40ae14dc23eb2d90625a4b48cbac9d85af7825ffc3d844f75cf33ee7bbb"
+    },
+    "r_profile_t1": {
+      "pairs": 104,
+      "sha256": "7d34c8bab34d748745e58a3c0c2ca32869c382b3a4acf0474c79ea8bacd305d2"
+    },
+    "r_profile_t2": {
+      "pairs": 104,
+      "sha256": "eda162f9bda97e7b437703214eceeafc79599f06423388955951cf15e30f576d"
+    },
+    "r_profile_t3": {
+      "pairs": 104,
+      "sha256": "a2d2cc2000abb65410e3eaf4cec5ad0e2b7308bfa70be943e04a0d15acbf7525"
+    }
+  },
+  "build_exit": "0",
+  "finished": "2026-11-06T17:07:10+00:00",
+  "patch_sha256": "479a32e8f1100045e31ffd738409b48e47692874fbf76e5b79044c9914ab5a38"
+}

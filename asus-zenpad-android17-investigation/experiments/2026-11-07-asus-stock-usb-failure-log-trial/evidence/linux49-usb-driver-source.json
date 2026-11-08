@@ -1,0 +1,55 @@
+[
+  {
+    "file": "drivers/usb/gadget/Makefile",
+    "sha256": "be31d94be9275abf6021cc9a6eb9bf183edff195594cacd8e5de8e33511c422e",
+    "matches": [
+      {
+        "line": 10,
+        "text": "libcomposite-y\t\t\t+= composite.o functions.o configfs.o u_f.o"
+      },
+      {
+        "line": 12,
+        "text": "obj-$(CONFIG_USB_GADGET)\t+= udc/ function/ legacy/"
+      }
+    ]
+  },
+  {
+    "file": "drivers/usb/gadget/legacy/Makefile",
+    "sha256": "bbe256c812f2b23633a7d208f00416383fe7688f724fdd85f27a37f4fa12ccc3",
+    "matches": []
+  },
+  {
+    "file": "drivers/usb/gadget/configfs.c",
+    "sha256": "b1652ce0af567c11c838fb27db01789cbc9749e645c1812f20b942a217e80adb",
+    "matches": [
+      {
+        "line": 328,
+        "text": "\t\tret = usb_gadget_probe_driver(&gi->composite.gadget_driver);"
+      },
+      {
+        "line": 1721,
+        "text": "static struct device_attribute *android_usb_attributes[] = {"
+      },
+      {
+        "line": 1739,
+        "text": "\tattrs = android_usb_attributes;"
+      },
+      {
+        "line": 1759,
+        "text": "\tattrs = android_usb_attributes;"
+      },
+      {
+        "line": 1873,
+        "text": "static int __init gadget_cfs_init(void)"
+      },
+      {
+        "line": 1882,
+        "text": "\tandroid_class = class_create(THIS_MODULE, \"android_usb\");"
+      },
+      {
+        "line": 1889,
+        "text": "module_init(gadget_cfs_init);"
+      }
+    ]
+  }
+]

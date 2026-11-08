@@ -1,0 +1,30 @@
+{
+  "arch/arm64/kernel/asus_retained_trace.c": {
+    "sha256": "8373baa301650d2bf3befe547df11a3079e22c51aec8a207de64eae0f1bb3348",
+    "independent_inode": true
+  },
+  "arch/arm64/kernel/setup.c": {
+    "sha256": "fd3d3040998562d2605eee91086df22b66d8a3da796bafd957853d74acd905fb",
+    "independent_inode": true
+  },
+  "arch/arm64/Kconfig": {
+    "sha256": "c6bab5f2ff78de90757e56e5b7e3c5ce8b8f361d76a068b4d7c94b833a118b14",
+    "independent_inode": true
+  },
+  "drivers/tty/serial/8250/Kconfig": {
+    "sha256": "965701d3e2a28e4505ce48b02f9cef774a96758cdd63bfc38c2ea327111c8a14",
+    "independent_inode": true
+  },
+  "drivers/tty/serial/8250/Makefile": {
+    "sha256": "5cff5baaaa052e2347761ff8c1f0b709c4e50457d935fbcfc5e586ff3100e6bf",
+    "independent_inode": true
+  },
+  "drivers/tty/serial/8250/8250_early.c": {
+    "sha256": "3d225dcdb60cb4b1ebbf34ac5f39df73cdf44b3989a28f8c9dc6ec2b1c2a8e3f",
+    "independent_inode": true
+  },
+  "drivers/tty/serial/Kconfig": {
+    "sha256": "d79ee5ba783df03168cc0532e70d4a08c43cae6ec0ecf8bb5589523c71f1665a",
+    "independent_inode": true
+  }
+}

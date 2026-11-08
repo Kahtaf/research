@@ -1,0 +1,378 @@
+{
+  "report.md": {
+    "bytes": 6108,
+    "sha256": "70cfca995e48db846ab3d286ce68de1a51ff2ab22711f9875bd57fc7e143b077"
+  },
+  "README.md": {
+    "bytes": 855,
+    "sha256": "c69338201fb8c4e7f453e5c6b23466d9a9fd90a3d3495b38183c206f08f18ddf"
+  },
+  "evidence/seed-build-r2-console.txt": {
+    "bytes": 1194,
+    "sha256": "0189131a17d7646b4e884462a161a4fc61e4b35a28ff6aedc36daa2894d5bf45"
+  },
+  "evidence/audit-console.txt": {
+    "bytes": 18006,
+    "sha256": "744756be0db0ca9f9c805244f41e78c45dab731331e163947cf78bdea56d61da"
+  },
+  "evidence/inspection.txt": {
+    "bytes": 45710,
+    "sha256": "433aff872823d6ea6e3fdc8480b167a5243bab11f6d0624a165c3c710553ed18"
+  },
+  "evidence/r2-intermediate.txt": {
+    "bytes": 7888,
+    "sha256": "5d3598a934d2e4a1c71da287d78700422705ce29351702d9d0d6fae61f04ae1d"
+  },
+  "evidence/final-report.json": {
+    "bytes": 19099,
+    "sha256": "83ef220278d3397175539426137950bb7a1c855b4d6eb7d42eaf639647d58e1b"
+  },
+  "evidence/runtime-r3-console.txt": {
+    "bytes": 10074,
+    "sha256": "614aeb9b0cbf24fd4e8afde73586e1ded183c0e617da32442c1e4a0822f26ea6"
+  },
+  "evidence/detail.txt": {
+    "bytes": 14755,
+    "sha256": "fb5eded72775a3743d9b7fc4aef63bc269d706506f7419a761d3180fcc4da1ba"
+  },
+  "evidence/runtime-r4-console.txt": {
+    "bytes": 5876,
+    "sha256": "0acb05feb9dcf3c0c3269179a0cbf4cbbbbe3169838db5e405c468b6fcc9997e"
+  },
+  "evidence/runtime-console.txt": {
+    "bytes": 593,
+    "sha256": "e0272191b70755571bdec626e89ab52cd86016895adfea9ad9c1ea32ddea82e8"
+  },
+  "evidence/preparation.txt": {
+    "bytes": 25358,
+    "sha256": "d11a9f17cff1d2dfc93d1842411dc20f7b95631e28d36fdc1e439cde5bf1e210"
+  },
+  "evidence/qa-results.json": {
+    "bytes": 602,
+    "sha256": "760f007669231f0d6664b7066d33de836169b5d45842e932b5185b0d24c7d013"
+  },
+  "evidence/metadata-inspection.txt": {
+    "bytes": 894,
+    "sha256": "eb9a78188f3c9afc89fe3f1794d10eb824c18a1a5301b3830a1b4087e5e6242e"
+  },
+  "evidence/source-reproduction-console.txt": {
+    "bytes": 1359,
+    "sha256": "39c93f1c08632584a1c6a8020bcaca0f4d6882e4535b562352e1dd21c9ed3851"
+  },
+  "evidence/seed-failure.txt": {
+    "bytes": 1857,
+    "sha256": "3924e7c35cec492e72fa4225d9a372c994f2a593b1c2a90862212d812ae2659b"
+  },
+  "evidence/genuine-loader-netd-selection.txt": {
+    "bytes": 9710,
+    "sha256": "a5e742042f180a778fb835af1d519bbc63bf79b67495b04b27da9acc5101ac83"
+  },
+  "evidence/seed-build-console.txt": {
+    "bytes": 1194,
+    "sha256": "0189131a17d7646b4e884462a161a4fc61e4b35a28ff6aedc36daa2894d5bf45"
+  },
+  "evidence/runtime-r2-console.txt": {
+    "bytes": 8523,
+    "sha256": "7fb2eb0c8af8cdd25ee463984d2a514ff3e66cfb5dc14cb3febcc3512014c594"
+  },
+  "evidence/attempt-r2-fixture_init.c": {
+    "bytes": 2666,
+    "sha256": "7c84efc1c9660dd2a6167bd8dfc12307d3b88c071f3d98e281ff7d58b1870537"
+  },
+  "evidence/attempt-r2-run_unit.py": {
+    "bytes": 4997,
+    "sha256": "7d528d1cc3275bd8f6b119eabc3168c2dcd315348003298a82f09a8d8dc7f561"
+  },
+  "scripts/pin_sources.py": {
+    "bytes": 2125,
+    "sha256": "c1ff8b665967b8c2823439969fe2ea3dc7963abd8f7f716ffa70ca0420c0660e"
+  },
+  "scripts/collect.py": {
+    "bytes": 596,
+    "sha256": "354a706e1686a706ac434106cdd6cc9adfaad41692ea2d3def3fef658e99c587"
+  },
+  "scripts/remote_call.py": {
+    "bytes": 325,
+    "sha256": "dd9f679172d11df3a8d910ad51f0031edf39aa85158c6ec71bdb6d1b815b90d0"
+  },
+  "scripts/fixture_init.c": {
+    "bytes": 2914,
+    "sha256": "3ccdacf2f91cf338e89bc9960e0f47f5e7b2e30d45c1ce9ba9ecb3aeda80b1ca"
+  },
+  "scripts/read_serial.py": {
+    "bytes": 153,
+    "sha256": "d3e8559e281046d3968f5a56027f9d459106436533172a0223b48012daabc340"
+  },
+  "scripts/run_unit.py": {
+    "bytes": 5167,
+    "sha256": "d92752026fa1f1e48d2ad83d05f06e55ae94a833655739dc6d4b5a90ea52f122"
+  },
+  "scripts/read_metadata.py": {
+    "bytes": 377,
+    "sha256": "d449a8c4b3b0091b1d7ea40d71eb5a67efa07310a51837c003271e0d1efeff70"
+  },
+  "scripts/read_r2.py": {
+    "bytes": 156,
+    "sha256": "f7da80115cdbb52db436c91abcf3de5515b89ba076ebc62b96f14936b6b9ca83"
+  },
+  "scripts/inspect.py": {
+    "bytes": 1215,
+    "sha256": "3c1b0dd648fb4c08ed476422ee64c8113ee8f6608f963997eadaca2e213d41f0"
+  },
+  "scripts/launch.py": {
+    "bytes": 712,
+    "sha256": "ea09e4edfac4a21dd099042b3dbb9ee206248f111c7bb75b6d74330b6fcab047"
+  },
+  "scripts/audit_export.py": {
+    "bytes": 2638,
+    "sha256": "25ebe252be2bcaacd4a77802dbd83a1cdce1018def1ab56957d5447d093dbfdc"
+  },
+  "scripts/detail.py": {
+    "bytes": 1413,
+    "sha256": "42a5bda6775f34d2d7ecc0857226fed3902cd23bb1ad009340c9d7b353a0b606"
+  },
+  "scripts/build_seed.py": {
+    "bytes": 3087,
+    "sha256": "719bd269d3ac6a5c96a5179b005fac78c5a6bf42419841a0dd05c865861b3002"
+  },
+  "scripts/report.py": {
+    "bytes": 12985,
+    "sha256": "f16520d5be7bc4d7ea40d764e83729e6a2c3393fb3db8bd24f0abe839e21160a"
+  },
+  "scripts/prepare.py": {
+    "bytes": 2913,
+    "sha256": "83855806356332de8b4e6762de936a8e35f23016934c85c1cf73496f04122517"
+  },
+  "evidence/remote/seed_properties.d": {
+    "bytes": 5531,
+    "sha256": "302bf31df3f2c4c6d870ab564f5c08bdb48502d618c574afcd3a61b6e1dbda3d"
+  },
+  "evidence/remote/run-r4-metadata-crud/result.json": {
+    "bytes": 171,
+    "sha256": "9b690822af3439bbadc424b2ef0b2bea4fd80672a3e6ea598ea65e0f99f5884f"
+  },
+  "evidence/remote/run-r4-metadata-crud/host-resources.txt": {
+    "bytes": 1110,
+    "sha256": "182dcbcb6d1bcb031231c2ebf98be02edc13c49af35ee0789c16fe944ac5cb9b"
+  },
+  "evidence/remote/run-r4-metadata-crud/serial.log": {
+    "bytes": 46036,
+    "sha256": "a20b7ee6808e5e79d7e4b9a17510f6fa6bbc8472fe305f01c7c5943b34b2a5b8"
+  },
+  "evidence/remote/run-r4-metadata-crud/command.json": {
+    "bytes": 778,
+    "sha256": "863aea4567b3c2b8384abe0feae4b87d10f81f01e16cdf5bfd30e0c7d85ab431"
+  },
+  "evidence/remote/run-r4-metadata-crud/inputs.json": {
+    "bytes": 9576,
+    "sha256": "f252c212ab1d5d40aabf0ee85b596c02b8fc312a12983940e5bd5fa832df4a98"
+  },
+  "evidence/remote/run-r3-metadata-crud/result.json": {
+    "bytes": 171,
+    "sha256": "c5ed7df59075708c4084afe7fd947dc5306da8971b4320e557dded1b3f471eb1"
+  },
+  "evidence/remote/run-r3-metadata-crud/host-resources.txt": {
+    "bytes": 1108,
+    "sha256": "1c0c5c1e153c41b7fee88d2a9fbda1ea2a6afe3668cd0e163a40fba778fc5ce3"
+  },
+  "evidence/remote/run-r3-metadata-crud/serial.log": {
+    "bytes": 12812,
+    "sha256": "7ea0b23ef8552338e1b7576f4a29f64d7bd4cb58042d6790b34a7ed180427883"
+  },
+  "evidence/remote/run-r3-metadata-crud/command.json": {
+    "bytes": 777,
+    "sha256": "b99c0d89ec2ef294801367dcdb98a8e091abcd42c5be2dd80d9d1b4ab9903a26"
+  },
+  "evidence/remote/run-r3-metadata-crud/inputs.json": {
+    "bytes": 9576,
+    "sha256": "24bdc4ba84b969629562806f96f8b1f016a1a7565ff8886c7ef01edc5a6f71a1"
+  },
+  "evidence/remote/evidence/property-seeds.json": {
+    "bytes": 1282,
+    "sha256": "a2f1ed32839d00813001d68b2a0b37c94587cb669c0ef8e82be717751d0d7b28"
+  },
+  "evidence/remote/evidence/source-apex-stat.txt": {
+    "bytes": 629,
+    "sha256": "c0c75c2a9640e5ace51ae5ca12349aef0d594bfd3af9295f0d4640bdd0e7d94f"
+  },
+  "evidence/remote/evidence/seed-compile.json": {
+    "bytes": 3244,
+    "sha256": "6b7edb558848b6806b81c3980d41ea1643bc325d955fadb8d4e9cf1db9684222"
+  },
+  "evidence/remote/evidence/frozen-receipts-sha256.json": {
+    "bytes": 437,
+    "sha256": "4cc8e06ae3134b9620a84c0690a013e5dcb3b5409fd550a5d1dd8cdea6725b5c"
+  },
+  "evidence/remote/evidence/capture.json": {
+    "bytes": 34842,
+    "sha256": "57f1ec0c4f25af86ea787fe8a52f92c9cbd1724e08abace996cc3d9d2bf981f5"
+  },
+  "evidence/remote/evidence/seed-compile-inputs.json": {
+    "bytes": 9485,
+    "sha256": "dcb183994e384b63f26eac8df1a54ff7b874573d222f0f5c4eb850aff88ccc3c"
+  },
+  "evidence/remote/evidence/init-source-reproduction.json": {
+    "bytes": 1358,
+    "sha256": "204aa4d3591d764df7bd1cfd2cc6b993faedee026d08527a3c584dc253cd01af"
+  },
+  "evidence/remote/evidence/fixture-compile.json": {
+    "bytes": 9717,
+    "sha256": "baac3a5eacebcf8ac69223ea2680e99e26bfd588a80213a7b9fec10686d61090"
+  },
+  "evidence/remote/evidence/property-capture-commands.json": {
+    "bytes": 1972,
+    "sha256": "88515f1c2605e28b5fc8b4bbe5e2f912c640132cadfae3c1b183434fc20aa44a"
+  },
+  "evidence/remote/evidence/final-host-binding.json": {
+    "bytes": 278827,
+    "sha256": "41f9f8f3de7914d91eb1ec0690fe8c7a9e752f2888dbd3fc9c893243c2013bc4"
+  },
+  "evidence/remote/evidence/final-audit.json": {
+    "bytes": 1811,
+    "sha256": "7fb73c3f2821be023f4c3628befe9a57028fd7b6cecf4c03e5f81e342080b8ab"
+  },
+  "evidence/remote/evidence/NetBpfLoad.cpp": {
+    "bytes": 74464,
+    "sha256": "49548c50cea266cbbbedee318374179d202cb59cd2e22e612276047890c129a3"
+  },
+  "evidence/remote/evidence/final-audit-owned.json": {
+    "bytes": 18005,
+    "sha256": "628c7417deb2ec0d4c7d3d78e8bf376c1c550683cbeb63e447585fb419cf6389"
+  },
+  "evidence/remote/run-actual/result.json": {
+    "bytes": 165,
+    "sha256": "6d7c84f9482b63088c59eac773f243d73c3f21319703513687beaa1e3e5bf716"
+  },
+  "evidence/remote/run-actual/host-resources.txt": {
+    "bytes": 1099,
+    "sha256": "fa06bf8bd1501fcc06d9111d5a0381b19332cdfeafa034b378bc180a9dbcb1aa"
+  },
+  "evidence/remote/run-actual/serial.log": {
+    "bytes": 1884,
+    "sha256": "2acbe3e1d1c704ce17a3b17a2d83f288cc27098fda07307ae4d2c4779dc6012e"
+  },
+  "evidence/remote/run-actual/command.json": {
+    "bytes": 768,
+    "sha256": "edacaddbb083a6589e038fc3a5b2b7ba8e93826b0b7e481dc7c5bbcc946ef99b"
+  },
+  "evidence/remote/run-actual/inputs.json": {
+    "bytes": 9302,
+    "sha256": "4edd3e01d6a0ca61f0957d0bb5e629fddc8fdb59576038582d7353e5e881669c"
+  },
+  "evidence/remote/run-r3-actual/result.json": {
+    "bytes": 164,
+    "sha256": "17ce600256ba4b356658ebe2611ca2fe03601459868aa5b091f642802a4de746"
+  },
+  "evidence/remote/run-r3-actual/host-resources.txt": {
+    "bytes": 1106,
+    "sha256": "6c6615c9ad0c6d918ffba3fd3753c8e1c2b57ad1c897874a51cb90a8bc5d0d94"
+  },
+  "evidence/remote/run-r3-actual/serial.log": {
+    "bytes": 60139,
+    "sha256": "dae0449a33180a2e6dc08a87c8fa04d9cbe2bd0da29a156d4c64b5af8fd1f151"
+  },
+  "evidence/remote/run-r3-actual/command.json": {
+    "bytes": 771,
+    "sha256": "c44ce3eb77180166bef563c176e0bba9d55a7ca9e4bdd4e4e3a49c83b9b02f79"
+  },
+  "evidence/remote/run-r3-actual/inputs.json": {
+    "bytes": 9489,
+    "sha256": "e85d5ec83ad7edcf9ce05032a6ed36ba2aeaa58df068cfedf0b9cf2bfab6195a"
+  },
+  "evidence/remote/run-r2-mandatory-malformed/result.json": {
+    "bytes": 177,
+    "sha256": "8338d383a163f704e878625bf0d27e33ba03bd0009208a2c43f171cc40860222"
+  },
+  "evidence/remote/run-r2-mandatory-malformed/host-resources.txt": {
+    "bytes": 1116,
+    "sha256": "ae5ce7932b873a2ef8e2e6c96fd46797a2cd46ea97dafc96f8ec7685e6046bce"
+  },
+  "evidence/remote/run-r2-mandatory-malformed/serial.log": {
+    "bytes": 25276,
+    "sha256": "f06d02f5e2a625ea645571b44eb29a499743bda2fe9eadd1f6544069c56dac85"
+  },
+  "evidence/remote/run-r2-mandatory-malformed/command.json": {
+    "bytes": 784,
+    "sha256": "6eabcce5d22ab7964936edc1217ed97d41289ab1c1a2d0782603c27404327b0d"
+  },
+  "evidence/remote/run-r2-mandatory-malformed/inputs.json": {
+    "bytes": 9302,
+    "sha256": "21664e829100b2ea00abb6eb7d18b5bbf3aa7d5860471a1ebb71aa236fb1c4fd"
+  },
+  "evidence/remote/scripts/fixture_init_r3.c": {
+    "bytes": 2720,
+    "sha256": "058489cd3bf7e7f79ad11701b3ba59a71d056e7fff9795ac816e2c0e8fba51ce"
+  },
+  "evidence/remote/scripts/fixture_init.c": {
+    "bytes": 2914,
+    "sha256": "3ccdacf2f91cf338e89bc9960e0f47f5e7b2e30d45c1ce9ba9ecb3aeda80b1ca"
+  },
+  "evidence/remote/scripts/fixture_init_r4.c": {
+    "bytes": 2914,
+    "sha256": "3ccdacf2f91cf338e89bc9960e0f47f5e7b2e30d45c1ce9ba9ecb3aeda80b1ca"
+  },
+  "evidence/remote/scripts/run_unit.py": {
+    "bytes": 5167,
+    "sha256": "d92752026fa1f1e48d2ad83d05f06e55ae94a833655739dc6d4b5a90ea52f122"
+  },
+  "evidence/remote/scripts/seed_properties.cpp": {
+    "bytes": 801,
+    "sha256": "0b083844df02bdd0d12b6c3cf109734c678c818b5036beca52429e3611b3e1b6"
+  },
+  "evidence/remote/scripts/run_unit_r3.py": {
+    "bytes": 5176,
+    "sha256": "1d017fda1e9be86a090f0dd4d4ee78c18e4700515c8790366978b5b7e4fa7636"
+  },
+  "evidence/remote/run-mandatory-malformed/result.json": {
+    "bytes": 178,
+    "sha256": "f29c496259b8644fe57ae7bbb3000a57eb8e0b9826cfa4ef9214cb85e48640e1"
+  },
+  "evidence/remote/run-mandatory-malformed/host-resources.txt": {
+    "bytes": 1111,
+    "sha256": "7e66a50f3f9c9e20ec1e436df93c40358eb88a394b7240629ebd22363ac16ae1"
+  },
+  "evidence/remote/run-mandatory-malformed/serial.log": {
+    "bytes": 1884,
+    "sha256": "2acbe3e1d1c704ce17a3b17a2d83f288cc27098fda07307ae4d2c4779dc6012e"
+  },
+  "evidence/remote/run-mandatory-malformed/command.json": {
+    "bytes": 781,
+    "sha256": "9c97c78d38ecfa28b4305df655e4298fa9c70bc264be8069416e30c7b5a6bb0e"
+  },
+  "evidence/remote/run-mandatory-malformed/inputs.json": {
+    "bytes": 9302,
+    "sha256": "3a51aa9d741672d152d3d6865519fa212b86bcf593693fcca30f62448703a785"
+  },
+  "evidence/remote/run-r2-actual/result.json": {
+    "bytes": 164,
+    "sha256": "50b04d83bf43609a5e60fadd917aadafcf7bd4b0d90db0b8585541d4411f045c"
+  },
+  "evidence/remote/run-r2-actual/host-resources.txt": {
+    "bytes": 1106,
+    "sha256": "4af6fc79a976e180564046df904b5b966e52295e9c3b98a1bc7d86d619b6ac39"
+  },
+  "evidence/remote/run-r2-actual/serial.log": {
+    "bytes": 58620,
+    "sha256": "521f5da2ad281d69cb811386cc48336a9974b4913cc673075b82f440301f384f"
+  },
+  "evidence/remote/run-r2-actual/command.json": {
+    "bytes": 771,
+    "sha256": "726d6e295c56fc2235325d25a1fe2580a588aac23f8d19df9fc9e7aa1b0e0529"
+  },
+  "evidence/remote/run-r2-actual/inputs.json": {
+    "bytes": 9302,
+    "sha256": "0f8385f3f7f4ddcacacbd94ead831bd29608699900030f1f7a2df5a93057e83b"
+  },
+  "evidence/remote/props/system/build.prop": {
+    "bytes": 6275,
+    "sha256": "985595ce4c8c20600ca942c8d3475f92bea8d1f2199bec74aa21abc16a16f5ce"
+  },
+  "evidence/remote/props/system/vendor/build.prop": {
+    "bytes": 3048,
+    "sha256": "edf1b920a05d55bfa78880f2b20cea088ba33b9ade3130d7b9cbabf7b7be82c0"
+  },
+  "evidence/remote/props/system/etc/init/netbpfload.rc": {
+    "bytes": 2952,
+    "sha256": "14c576d0d33894504202743e0a1ea28d16f964a72c6ac1924f78ef371736b05d"
+  }
+}

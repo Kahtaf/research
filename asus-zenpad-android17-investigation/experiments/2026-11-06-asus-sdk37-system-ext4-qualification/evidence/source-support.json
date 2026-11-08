@@ -1,0 +1,81 @@
+{
+  "ext4_files": 41,
+  "selected_source_map_sha256": "c4ed94509ec687af177daad45fdc1b4f3ea94c4f15ba5ca9ac41ca7d6f0a5cd3",
+  "source_map": {
+    "fs/ext4/Kconfig": "04ff53b3300abeaadbcf2be8e4c00c8a0daa34a243ea4715be583eef7d66f789",
+    "fs/ext4/Makefile": "13230ebab44fdc0fd33371a0dbfb6fe8edc2d140b759bff72b20d254bc33cd38",
+    "fs/ext4/acl.c": "7014574793d1d87738cd8eb3d138d2c4bdd943dd54a8977c1adfddd90b8762a8",
+    "fs/ext4/acl.h": "83b591666bf2555e8c721fbd343b6781deb57309e1c6167539df3418d22c206e",
+    "fs/ext4/balloc.c": "6545ce0b0af8a6d4ac60ecf2a4650eed9954c89c875945fda09319a1c50d3ef2",
+    "fs/ext4/bitmap.c": "245595c51a3f3658139613edf17fedb311756321e03170c8e347197a6f300557",
+    "fs/ext4/block_validity.c": "007e4576fe6088d28121de993b9cb823db2d75678b4286fa5cd644cfe726c599",
+    "fs/ext4/dir.c": "ddb089f16c284393288e8869bd502dba33425fd0be63176f364cbbc45c8f6270",
+    "fs/ext4/ext4.h": "e3dbb07b3d812ff9319b2f301ce6db20e3fdc0e922cbcaf5fc4c2b146707ae82",
+    "fs/ext4/ext4_extents.h": "4d0b8aaf88475a420cb832df0c5b0495c82ac0be74d10b57ba6a67727c367c66",
+    "fs/ext4/ext4_jbd2.c": "8631b51b79e0a98b21a7d617439116d0ab6cb5213ca59e31476d697c412c1b25",
+    "fs/ext4/ext4_jbd2.h": "6d705582c2d021365b2ac08fb23a6f0ad4273eb5d975a49659f5741c65a40e34",
+    "fs/ext4/extents.c": "30d89b1ec687bd8ab8b575ea8037498883b1f2c4742f21c0e0e434bc120413af",
+    "fs/ext4/extents_status.c": "28d9c6c580347bd244109540c383bd9402653f4ae50c1678aeb8ec78aff0a1f6",
+    "fs/ext4/extents_status.h": "e4e9d671537a1dc42f362fe56faf253132748f0abaad8dd477287dd6d6b0c5f6",
+    "fs/ext4/file.c": "bad191681b4686d7ff5f1d15377b89146964c3406837e9101854cd2c0c829788",
+    "fs/ext4/fsync.c": "563062d0dbe128d16c6b96295464dd68384bddfefba9d4102593e48647a3fa7a",
+    "fs/ext4/hash.c": "4f53f495e2428180113374091e72d99837a1e244b03cf40f43ff7677dde1be0b",
+    "fs/ext4/ialloc.c": "37de438aa82cae4133042578dd8abc71c0a0bcde3ca7f6e9f3fe86570fd9b922",
+    "fs/ext4/indirect.c": "1c1a7d6a7e0cb95c0545600787fbebc4d0e41e069e47197f56d99c47e606487d",
+    "fs/ext4/inline.c": "109980bdccd5a044476642d15358233eebdf5074df84b24257be13318e7c4172",
+    "fs/ext4/inode.c": "9365031ed09d563900f3fc1397fa6829c08f147ffdc37b4d2e047457485f4d81",
+    "fs/ext4/ioctl.c": "f665ccfd64f56beebc701719f9d887ecef2b1a00247c5a89f2686842f610a619",
+    "fs/ext4/mballoc.c": "642773619109b241a0d784acf0bc87665f1c6381b8c92ae232e3275634b42230",
+    "fs/ext4/mballoc.h": "48471e8d0777a74d6ea040798b073a14821b37732f1016004bdec766418dec32",
+    "fs/ext4/migrate.c": "158a92274bb1f5f898b18b2164eb80f41fa7fdd0804f0af8f8b0f5516878bea6",
+    "fs/ext4/mmp.c": "11a81ecdeaebf8ecc2797505d4fa316707ef0d8f3e4840032e8d2be6a0642a94",
+    "fs/ext4/move_extent.c": "a1cd9e1c3018872ae23c31a7c65a618ca1b294e1eb70b7d2d4efae0341cb5966",
+    "fs/ext4/namei.c": "0579c5b77f8101963116c61fe90159b9505185f8b77727b5f6f135a625b7824d",
+    "fs/ext4/page-io.c": "6c8d22a62793d1ddfc893970d141a24d164283e778862edc8565c7cadeeaf624",
+    "fs/ext4/readpage.c": "ac06377ea090c4c562b73c76df25285a52ecf0fabbee1ef28437b75847a809bc",
+    "fs/ext4/resize.c": "1fa497230e6462ce05a4e625ab37e33fcba621ada95f7daa7c5a9ad8e63bc09f",
+    "fs/ext4/super.c": "b941b6d5af7781d99bbcc5b429b3d62e515740b9a0d28675e1e10b080d630861",
+    "fs/ext4/symlink.c": "f51952969bca783bec1e601b814f753aefd9b7991323013dabe364c4fb1c532a",
+    "fs/ext4/sysfs.c": "c0dbafa0733883f6577dc9d3ba09ab0f77a40509343e471cb1c119ce10a39736",
+    "fs/ext4/truncate.h": "faad122e4e658de353f40f4c80a6a03db0b9c6fb579f6e3cdacb6a2b3b01a9af",
+    "fs/ext4/xattr.c": "d1a6ec418eb9d295249f6c9d9d35abb3fc06dca85431af9212e8476bdb41c49d",
+    "fs/ext4/xattr.h": "620dfdbca1a2cac6f7e2a705f974145f5b0b9522620f73a5ca6fdf02cf89e343",
+    "fs/ext4/xattr_security.c": "3f2b9b04d6f3956a0eea5ec6a99e1d80ba688ee1468618179a84caf17ef87bf8",
+    "fs/ext4/xattr_trusted.c": "a0760fe7ac298b5a9df6539f08b55bdbed84428c52615ae116cdcde85006b5d1",
+    "fs/ext4/xattr_user.c": "dae80be9d6081a7c3e2e77c1812f48804be7a9fae3a00017c629f225bf9d0fed"
+  },
+  "kernel_supported_incompat_mask": "0x1a3d6",
+  "kernel_supported_rw_ro_compat_mask": "0x277f",
+  "kernel_compat_mask_not_used_as_allowlist": true,
+  "profile": {
+    "compat": "0x28",
+    "incompat": "0x42",
+    "ro_compat": "0x7b"
+  },
+  "matching_config_options": {
+    "virtual": {
+      "CONFIG_ARM64_4K_PAGES": "y",
+      "CONFIG_EXT4_FS": "y",
+      "CONFIG_EXT4_FS_SECURITY": "y",
+      "CONFIG_EXT4_FS_POSIX_ACL": "n",
+      "CONFIG_EXT4_ENCRYPTION": "n",
+      "CONFIG_64BIT": "y"
+    },
+    "physical": {
+      "CONFIG_ARM64_4K_PAGES": "y",
+      "CONFIG_EXT4_FS": "y",
+      "CONFIG_EXT4_FS_SECURITY": "y",
+      "CONFIG_EXT4_FS_POSIX_ACL": "n",
+      "CONFIG_EXT4_ENCRYPTION": "n",
+      "CONFIG_64BIT": "y"
+    }
+  },
+  "references_sha256": {
+    "2026-11-06-asus-memory-firstboot-kernel-qualification/REPORT.md": "953bda490f0440c0527b67e2d3d9a84f1c2ca531e6fde37b46b0d277415025a3",
+    "2026-11-06-asus-memory-firstboot-kernel-qualification/acceptance.json": "0b6b5414e5de9bef0fa83e233f35d29b2ef751f53ca2d8f8d75c43df7073a9b3",
+    "2026-11-06-asus-memory-firstboot-kernel-qualification/next-fixture-contract.json": "f82950cc00e38227b60d416176e3b4707c1ee891cf7f0c1541a244abd3c438a9",
+    "2026-11-06-asus-memory-firstboot-kernel-qualification/evidence/parent-scoped-acceptance.json": "bcb5d2e1aec73db8d7719c0d6e4c4bc09ba337cbd9d6005fb176dd5e8561f68c",
+    "2026-11-06-asus-r8-continuation-kit/scripts/verify_full_images.py": "fdf966f051d6814332a7dfc9d84db37644064e8179469afecde2a7647407cc41",
+    "2026-11-06-asus-r8-continuation-kit/scripts/validate_completed_product.py": "bc2b5166e145f498572c22d5e51f68dca252f5c8c3b4bd3a4cc4986f966ce756"
+  }
+}

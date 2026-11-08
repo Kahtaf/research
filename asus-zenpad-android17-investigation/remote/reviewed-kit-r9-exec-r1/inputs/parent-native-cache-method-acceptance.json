@@ -1,0 +1,31 @@
+{
+  "schema": "parent-selected-native-lineage-policy/v1",
+  "utc": "2026-11-07T01:02:11.185215+00:00",
+  "decision": "ACCEPT_SCOPED_R8_EXECUTION_LINEAGE_UNDER_CONTROLLED_NATIVE_INCREMENTAL_TRUST",
+  "method_accepted": true,
+  "trust_model": "controlled-tree/native-incremental",
+  "independently_reviewed_outputs": [
+    "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader",
+    "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader",
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/PublicVolume.o",
+    "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold",
+    "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/vold",
+    "out/target/product/p00a/system/bin/bpfloader",
+    "out/target/product/p00a/system/bin/vold"
+  ],
+  "verified_local_evidence_files": 20,
+  "review_report_sha256": "aae3d9f599544e536c3797cc7ac519d9baf8030224d09ffe1faf917f0481186c",
+  "relational_evidence_sha256": "30596616d900600f830c7d50a3bbcab608766ccae4c90b8f8638fb8f342b7b99",
+  "qa_sha256": "a500f72e76e06936e840133fd4b5505dfa78e16779f253041ae22698fd77a402",
+  "historical_all_input_bytes_attested": false,
+  "current_log_membership_required_for_admitted_prior_execution": false,
+  "new_attempt_timestamp_required_for_admitted_prior_execution": false,
+  "new_native_validation_required": true,
+  "new_execution_requires_real_new_evidence": true,
+  "other_outputs_require_same_explicit_evidence_not_blanket_admission": true,
+  "all_existing_final_product_checks_required": true,
+  "source_mutation_scope": "exact pinned WebView materialization only for intended r9",
+  "r9_kit_accepted": false,
+  "r9_launch_authorized": false,
+  "physical_GO": false
+}

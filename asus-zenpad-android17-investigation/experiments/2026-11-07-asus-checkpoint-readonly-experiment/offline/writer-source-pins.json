@@ -1,0 +1,8 @@
+{
+  "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/ram_console/mtk_ram_console.c": "c966a4508bff43f31a551103b7c5a9cfad4b11164c069b7d30ba9c09199e86b2",
+  "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/aee/common/reboot-reason.c": "9bd99dfbf2e4b5e1aa7a78ad51f76406fcfd5397f854e6294851130b5d5f0cfa",
+  "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/aee/aed/aed-debug.c": "6835f07582b45c8b35f686014c91dbe68d172846a6de6577711959c52b8a370e",
+  "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/aee/aed/aed-main.c": "87c35aa209569b041e7e15180a8fad11e96fc20da1e5a8aa2a5a342a36778a07",
+  "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/kernel/printk/printk.c": "3307400a34620781223aee78a0acdffefc9f542a4ece7bc85395d3b837919b13",
+  "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/char/mem.c": "b693f13ce4edf0f0e5e3553ddf0d86fc779283c2ce6442972731cfbe31d45390"
+}

@@ -1,0 +1,5 @@
+{
+  "error": "Build/validation failed; preserve attempt, no retry",
+  "partial_state_preserved": true,
+  "retry_allowed": false
+}

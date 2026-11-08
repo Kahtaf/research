@@ -1,0 +1,61 @@
+{
+  "source_files": {
+    "source/assemble.py": "6f26b6f9c34cd56cb4049a8a8c7696d6152ad45890da46e5e65964d04c396c26",
+    "source/bootformat.py": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017",
+    "source/build.py": "dc0630f9247d5436741e5df20d93c6d6d525f983e2cf2c2646ab39e512502e2c",
+    "source/client.py": "0072398a0aa2da83bdf176d672e7ec767b6aaf034892fb603054a22549c5bf69",
+    "source/common.h": "90fe60e79b3cc3932dab7e824bc803bb18ba086ea079beca8298c34ccf2a53c3",
+    "source/context_lookup.c": "d4dff8d426e30bf05a5291ebe2a981d0b39866726d31c180d788958a61d9f564",
+    "source/default.prop": "cfbf9ec81d426f9278e782b841fa94b947384e09153e43089e9c05f121674000",
+    "source/file_contexts.py": "012a4f0a71f49772a12e537721b5aca3e5de1b201b2dc5aaa07a26e07cdb650c",
+    "source/init.rc": "c43855028bd18017c6920786ed54c21aa98a29d452b10a5d59df5dea21e3838f",
+    "source/libselinux-android-7.1.2_r39.tar.gz": "8a8b5ef512bd4aa7ac8cdb8e1f7f64644ad340d75f5280f77c9c912d53970b9b",
+    "source/libsepol-android-7.1.2_r39.tar.gz": "c17c444d73f1080a8959cfda2d4bdb529efd88f5af58a9e571917f473f83ff27",
+    "source/manifest.py": "c9a40f5e1029e8252abc9a8256d63d9fae0d4e1c5373eb247dc76e2e06c52ae2",
+    "source/parent_client.py": "0a63b272398fa00f33704d1e3cb8eb77852dee9d208977806d3082fc09ea0309",
+    "source/pcre-android-7.1.2_r39.tar.gz": "fb5d81e0e32b5047b2095ca865c75690aba079d5c8cb28497362deda95ab4947",
+    "source/policy_build.c": "009235520e71e62023ea42528472b484c8fa424ed7a5a69f4208efc035b4f238",
+    "source/policy_constraints.c": "ed7a4d6fba45f79009213a794b1c001aca3925655f8de41d5d79ee5649576b4d",
+    "source/policy_inspect.c": "3642509d5991d6a504824e986f59a1fba01fe9eef487c7fd5b68b47f96319e9f",
+    "source/policy_query.c": "630a63ac4218dee09f94f1ac0b2ef2104f9a73f74d6cd11aac28f80b3ac5e461",
+    "source/prepare_inverse.py": "ed7d823e571d36a4215ffcea622ca18c783e2abe35368c0baad75f7918e32e06",
+    "source/proxy.c": "3dacecfd307ef567146c55c988ae20296a7cfe987c16cc160677208a38af1d27",
+    "source/rescue.c": "b34bb2ac4429a635fa3c82f3327976dc052703a7b860b57c37a2df26c94e18c7",
+    "source/sha256.h": "4011564ce3516f8cc8e6e375cdd2923e72e9f9e74e77dc6e7db0637bda52efe0",
+    "source/ueventd.rc": "0502a4e7b2055e4cb98910bbd37786fabce8cb4abd4291bfa354d73cc2d187aa",
+    "tests/arm_fixture.py": "1c2c870b5937a3a5d1e24060fe6c789467f75883ad798093934c439669d6ba17",
+    "tests/build_compat_fixture.sh": "dc7cacfffdc28c60dfdc3c89b5c9e9690f02ac9f14e873e0aad8c259d9f888cc",
+    "tests/guest_init.c": "5a93d9149ef23a428559cb1548d7349f1483a2430d6ca2e86c4590147f92a4a8",
+    "tests/policy_audit.py": "d26f928ad6816d22efcc4e0fb9588da6abd71ec49e22ba9c437e188155085418",
+    "tests/run_guest.py": "6d3b7e908d4dc0e1d7aabc97344aaa0d64e84c35c307d96330c149e7d91514ee",
+    "tests/run_stock_init.py": "494e473c3d097d0956d032fb9d2e187935509e70b60bdfc90e10b6288b8d0ce2",
+    "tests/target_probe.c": "1aa13d3af6b7ceabe93749b660be8cccf2a358373036045e7e0d324ad56e89a6",
+    "tests/test_adapters.py": "6556cff96bb85cf690e63d67d2814021e38b036a078adbcc0f38d5c49a980170",
+    "tests/test_fullsize.py": "e98ad02a4d22fd0e9e1b75fca700eb64e8f00588d25435941945e34b310ed976",
+    "tests/test_server.c": "b85d2e5e2abbb6f3544ccd3997ce15046e7477a7e20c530e2c3bda5e16a24bd2"
+  },
+  "stock_kernel": {
+    "wrapped_sha256": "b0e5d48bf2889b418dda0fc867f70e42e27a0aeb0a0a3d37539d9a7435430880",
+    "wrapped_bytes": 7472341,
+    "payload_sha256": "a3e696ebbb222a331c8ba19da306eac709a771089b086baf0d208cb1221c4a4b",
+    "payload_bytes": 7471829,
+    "provenance": "byte-exact component of both independently saved original recovery partitions"
+  },
+  "archives": {
+    "libsepol-android-7.1.2_r39.tar.gz": {
+      "ref": "android-7.1.2_r39",
+      "sha256": "c17c444d73f1080a8959cfda2d4bdb529efd88f5af58a9e571917f473f83ff27"
+    },
+    "libselinux-android-7.1.2_r39.tar.gz": {
+      "ref": "android-7.1.2_r39",
+      "sha256": "8a8b5ef512bd4aa7ac8cdb8e1f7f64644ad340d75f5280f77c9c912d53970b9b"
+    },
+    "pcre-android-7.1.2_r39.tar.gz": {
+      "ref": "android-7.1.2_r39",
+      "sha256": "fb5d81e0e32b5047b2095ca865c75690aba079d5c8cb28497362deda95ab4947"
+    }
+  },
+  "compiler": "Ubuntu GCC/aarch64-linux-gnu-gcc 13.3.0-6ubuntu2~24.04.1",
+  "identity": "SHA256(lowercase32hex without newline), raw CID not supplied or stored",
+  "scope": "owned remote fixture; no active AOSP or physical kernel modifications"
+}

@@ -1,0 +1,139 @@
+{
+  "system": {
+    "path": "/srv/android/asus-bpf-name-product-build-20261107/system-partition.raw",
+    "bytes": 3753902080,
+    "sha256": "fa41395749229849344b216a8fa55de3c0a9fd029bc90f05543f6ba0cc8550f5",
+    "mode": "0444",
+    "allocated_bytes": 3753906176,
+    "source_system": {
+      "bytes": 2583089972,
+      "sha256": "36881e46852cb73a6e1954425294e4d76705456b12dfbc3b0bba2b3762278ee6",
+      "sparse": true,
+      "expanded_bytes": 3753902080,
+      "partition_bytes": 3753902080
+    },
+    "materializations_total": 1,
+    "all_zero_ranges_written": true,
+    "whole_and_1MiB_hashes_computed_during_single_materialization": true,
+    "chunk_table": {
+      "path": "/srv/android/asus-bpf-name-product-build-20261107/evidence/system-1MiB-chunks.tsv",
+      "bytes": 316470,
+      "sha256": "363d0679786262278ed573ab472810919e26abdb0a606ccebdfa07450dc7c5c6",
+      "chunk_bytes": 1048576,
+      "chunks": 3580
+    }
+  },
+  "source_image": {
+    "bytes": 2583089972,
+    "sha256": "36881e46852cb73a6e1954425294e4d76705456b12dfbc3b0bba2b3762278ee6",
+    "sparse": true,
+    "expanded_bytes": 3753902080,
+    "partition_bytes": 3753902080
+  },
+  "installed_libbpf_android": {
+    "path": "/srv/android/lineage24/out/target/product/p00a/system/lib64/libbpf_android.so",
+    "bytes": 56960,
+    "sha256": "380d0d96572c25d82a45eda9c7305fa5866ec722803a33396804c97223cc1e44",
+    "compiled_matches": [
+      {
+        "path": "/srv/android/lineage24/out/soong/.intermediates/system/bpf/loader/libbpf_android/android_arm64_armv8-a_shared/libbpf_android.so",
+        "sha256": "380d0d96572c25d82a45eda9c7305fa5866ec722803a33396804c97223cc1e44",
+        "bytes": 56960
+      },
+      {
+        "path": "/srv/android/lineage24/out/soong/.intermediates/system/bpf/loader/libbpf_android/android_arm64_armv8-a_shared/before_final_validations/libbpf_android.so",
+        "sha256": "380d0d96572c25d82a45eda9c7305fa5866ec722803a33396804c97223cc1e44",
+        "bytes": 56960
+      }
+    ],
+    "final_ext4": {
+      "path": "system/lib64/libbpf_android.so",
+      "bytes": 56960,
+      "sha256": "380d0d96572c25d82a45eda9c7305fa5866ec722803a33396804c97223cc1e44",
+      "system_bytes_verified": true
+    }
+  },
+  "security_properties": {
+    "ro.secure": [
+      {
+        "path": "system/build.prop",
+        "value": "1"
+      }
+    ],
+    "ro.debuggable": [
+      {
+        "path": "system/build.prop",
+        "value": "1"
+      }
+    ],
+    "ro.adb.secure": [
+      {
+        "path": "system/build.prop",
+        "value": "1"
+      },
+      {
+        "path": "system/system_ext/etc/build.prop",
+        "value": "1"
+      }
+    ]
+  },
+  "property_files": [
+    {
+      "path": "system/build.prop",
+      "bytes": 6275,
+      "sha256": "b823a3fd5ef48a889d13da590730cecdeb8e889cabe95e1624fe2eb80bbea10a",
+      "system_bytes_verified": true
+    },
+    {
+      "path": "system/system_ext/etc/build.prop",
+      "bytes": 1111,
+      "sha256": "caa83a8b16535903fd4c03767a7ff69c2aa4b8d77fe373653ebf1bc3b8f00bfe",
+      "system_bytes_verified": true
+    },
+    {
+      "path": "system/product/etc/build.prop",
+      "bytes": 2980,
+      "sha256": "7554f62c3538298e935b4be69f06377f0887befc00582ea023362faf727d9d52",
+      "system_bytes_verified": true
+    },
+    {
+      "path": "system/vendor/build.prop",
+      "bytes": 3048,
+      "sha256": "1cba1de1694d5a9376d188e2005a9c8a309f8d87cf48d39b949eda46d108e394",
+      "system_bytes_verified": true
+    }
+  ],
+  "google_play_core_retained": [
+    {
+      "path": "system/product/apex/com.google.android.gmssystem.prodvic.apex",
+      "bytes": 146501632,
+      "sha256": "fd56d1e45eb46c9a56253129242231c0d47555e568870ae39c1317ca818efa4c",
+      "system_bytes_verified": true
+    },
+    {
+      "path": "system/product/priv-app/Phonesky/Phonesky.apk",
+      "bytes": 106972026,
+      "sha256": "259bdd44ebaed8a0378b9773d5b838e9cb45383ae084458b3ec44e06a88c1039",
+      "system_bytes_verified": true
+    },
+    {
+      "path": "system/system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk",
+      "bytes": 1124332,
+      "sha256": "a923583e561945309599a8117cad54de2896f4f93b333e50789dc7b3f2cc30eb",
+      "system_bytes_verified": true
+    }
+  ],
+  "ext4_geometry": {
+    "blocks": 916480,
+    "block_bytes": 4096,
+    "filesystem_bytes": 3753902080,
+    "partition_bytes": 3753902080
+  },
+  "validation_limits": "Direct minimal authorized-delta artifact checks. Existing full host validator and broad ELF/policy/network/Google suites not rerun. Ordinary controlled incremental dependency trust accepted. No virtual or physical runtime verification.",
+  "preserved_boot": {
+    "path": "/srv/android/asus-radio-trigger-build-r4/checks/r3/UNTESTED-combined-MTKBOOT.img",
+    "bytes": 9242624,
+    "sha256": "784d4dc565e7742ea607683d2a67d1fdb066764bddfa369895cbaaf6f048b435",
+    "binding": "Prior identity retained; metadata verified by continuous-lock supervisor; not rebuilt or rehashed"
+  }
+}

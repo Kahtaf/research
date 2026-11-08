@@ -1,0 +1,66 @@
+diff --git a/services/core/java/com/android/server/BatteryService.java b/services/core/java/com/android/server/BatteryService.java
+index 0256c33ce..f76daeec4 100644
+--- a/services/core/java/com/android/server/BatteryService.java
++++ b/services/core/java/com/android/server/BatteryService.java
+@@ -570,9 +570,15 @@ public final class BatteryService extends SystemService {
+         // existing service in a near future. Wait for this.update() to instantiate
+         // the initial mHealthInfo.
+         long beforeWait = SystemClock.uptimeMillis();
+-        if (mHealthInfo == null) {
+-            Slog.i(TAG, "health: Waited " + (SystemClock.uptimeMillis() - beforeWait)
+-                    + "ms for callbacks. Waiting another " + HEALTH_HAL_WAIT_MS + " ms...");
++        while (true) {
++            synchronized (mLock) {
++                if (mHealthInfo != null) {
++                    break;
++                }
++            }
++            Slog.w(TAG, "health: No valid initial battery sample after "
++                    + (SystemClock.uptimeMillis() - beforeWait)
++                    + "ms; waiting another " + HEALTH_HAL_WAIT_MS + " ms");
+             mConditionVariable.block(HEALTH_HAL_WAIT_MS);
+         }
+ 
+diff --git a/services/core/java/com/android/server/health/HealthRegCallbackAidl.java b/services/core/java/com/android/server/health/HealthRegCallbackAidl.java
+index 90a2f4806..9a554e839 100644
+--- a/services/core/java/com/android/server/health/HealthRegCallbackAidl.java
++++ b/services/core/java/com/android/server/health/HealthRegCallbackAidl.java
+@@ -22,6 +22,7 @@ import android.hardware.health.HealthInfo;
+ import android.hardware.health.IHealth;
+ import android.hardware.health.IHealthInfoCallback;
+ import android.os.RemoteException;
++import android.os.ServiceSpecificException;
+ import android.os.Trace;
+ import android.util.Slog;
+ 
+@@ -105,7 +106,9 @@ public class HealthRegCallbackAidl {
+         // manual update here.
+         try {
+             newService.update();
+-        } catch (RemoteException e) {
++        } catch (RemoteException | ServiceSpecificException e) {
++            // Registration remains active. The HAL loop retries and sends the
++            // first valid sample when the measurement/model recovers.
+             Slog.e(TAG, "health: cannot update after registering health info callback", e);
+         }
+     }
+diff --git a/services/core/java/com/android/server/power/hint/HintManagerService.java b/services/core/java/com/android/server/power/hint/HintManagerService.java
+index 5d9e51289..791537c48 100644
+--- a/services/core/java/com/android/server/power/hint/HintManagerService.java
++++ b/services/core/java/com/android/server/power/hint/HintManagerService.java
+@@ -331,6 +331,15 @@ public final class HintManagerService extends SystemService {
+                 throw new IllegalStateException("Could not contact PowerHAL!", e);
+             }
+         }
++        if (mSupportInfo == null) {
++            // Local: no AIDL PowerHAL (e.g. legacy HIDL-only vendor) - report nothing supported.
++            mSupportInfo = new SupportInfo();
++            mSupportInfo.usesSessions = false;
++            mSupportInfo.headroom = new SupportInfo.HeadroomSupportInfo();
++            mSupportInfo.headroom.isCpuSupported = false;
++            mSupportInfo.headroom.isGpuSupported = false;
++            mSupportInfo.compositionData = new SupportInfo.CompositionDataSupportInfo();
++        }
+         if (mSupportInfo.headroom.isCpuSupported) {
+             mCpuHeadroomCache = new HeadroomCache<>(2, mSupportInfo.headroom.cpuMinIntervalMillis);
+             mUidToLastUserModeJiffies = new ArrayMap<>();

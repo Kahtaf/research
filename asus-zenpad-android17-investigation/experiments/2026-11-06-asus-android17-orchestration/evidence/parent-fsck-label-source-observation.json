@@ -1,0 +1,175 @@
+{
+  "scope": "sourceonlynotruntimevdanodelabelproof",
+  "files": [
+    {
+      "path": "system/sepolicy/private/fsck.te",
+      "sha256": "bdf31418f54380b46f0b451e0456d355f0e0c54ab7ed6b854d4760f796e9324c",
+      "selected": [
+        {
+          "line": 1,
+          "text": "typeattribute fsck coredomain;"
+        },
+        {
+          "line": 3,
+          "text": "init_daemon_domain(fsck)"
+        },
+        {
+          "line": 5,
+          "text": "# fsck can run before apex is ready."
+        },
+        {
+          "line": 6,
+          "text": "use_bootstrap_libs(fsck)"
+        },
+        {
+          "line": 8,
+          "text": "allow fsck metadata_block_device:blk_file rw_file_perms;"
+        },
+        {
+          "line": 11,
+          "text": "# open fd inherited by fsck."
+        },
+        {
+          "line": 12,
+          "text": "allow fsck tmpfs:chr_file { read write ioctl };"
+        },
+        {
+          "line": 15,
+          "text": "allow fsck devpts:chr_file { read write ioctl getattr };"
+        },
+        {
+          "line": 18,
+          "text": "allow fsck vold:fd use;"
+        },
+        {
+          "line": 19,
+          "text": "allow fsck vold:fifo_file { read write getattr };"
+        },
+        {
+          "line": 21,
+          "text": "# Run fsck on certain block devices"
+        },
+        {
+          "line": 22,
+          "text": "allow fsck userdata_block_device:blk_file rw_file_perms;"
+        },
+        {
+          "line": 23,
+          "text": "allow fsck cache_block_device:blk_file rw_file_perms;"
+        },
+        {
+          "line": 24,
+          "text": "allow fsck dm_device:blk_file rw_file_perms;"
+        },
+        {
+          "line": 25,
+          "text": "allow fsck zoned_block_device:blk_file rw_file_perms;"
+        },
+        {
+          "line": 27,
+          "text": "allow fsck system_block_device:blk_file rw_file_perms;"
+        },
+        {
+          "line": 30,
+          "text": "# e2fsck performs a comprehensive search of /proc/mounts to check whether the"
+        },
+        {
+          "line": 32,
+          "text": "allow fsck metadata_file:dir getattr;"
+        },
+        {
+          "line": 33,
+          "text": "allow fsck block_device:dir search;"
+        },
+        {
+          "line": 34,
+          "text": "allow fsck mirror_data_file:dir search;"
+        },
+        {
+          "line": 37,
+          "text": "# allow at a minimum the following common fsck ioctls."
+        },
+        {
+          "line": 38,
+          "text": "allowxperm fsck dev_type:blk_file ioctl {"
+        },
+        {
+          "line": 45,
+          "text": "# To determine if it is safe to run fsck on a filesystem, e2fsck"
+        },
+        {
+          "line": 47,
+          "text": "# e2fsck scans through /proc/mounts and collects all the mounted"
+        },
+        {
+          "line": 51,
+          "text": "# is currently mounted and running fsck is dangerous."
+        },
+        {
+          "line": 52,
+          "text": "# Allow stat access to all block devices so that fsck can compare"
+        },
+        {
+          "line": 54,
+          "text": "allow fsck dev_type:blk_file getattr;"
+        },
+        {
+          "line": 56,
+          "text": "allow fsck {"
+        },
+        {
+          "line": 61,
+          "text": "allow fsck rootfs:dir r_dir_perms;"
+        },
+        {
+          "line": 62,
+          "text": "allow fsck sysfs_dm:dir r_dir_perms;"
+        },
+        {
+          "line": 65,
+          "text": "### neverallow rules"
+        },
+        {
+          "line": 68,
+          "text": "# fsck should never be run on these block devices"
+        },
+        {
+          "line": 69,
+          "text": "neverallow fsck {"
+        },
+        {
+          "line": 70,
+          "text": "  boot_block_device"
+        },
+        {
+          "line": 71,
+          "text": "  frp_block_device"
+        }
+      ],
+      "unchanged": true
+    },
+    {
+      "path": "system/sepolicy/private/file_contexts",
+      "sha256": "2288d333f5a7a4c8ff20f348c2ab78626c4b819b8d547ce118ef5f0dbec9b77a",
+      "selected": [
+        {
+          "line": 105,
+          "text": "/dev/block/by-name/zoned_device\tu:object_r:zoned_block_device:s0"
+        }
+      ],
+      "unchanged": true
+    },
+    {
+      "path": "device/asus/p00a/sepolicy/vendor/file_contexts",
+      "sha256": "f7d5656f54655442056e607a620b3bcd37d8818f1f3b9116bbbb190212241f42",
+      "selected": [],
+      "unchanged": true
+    },
+    {
+      "path": "device/asus/p00a/rootdir/ueventd.rc",
+      "sha256": "27357623ffefae44db3678a44f5aaf28c9c4ae2c65ca1b699078c18924271936",
+      "selected": [],
+      "unchanged": true
+    }
+  ]
+}

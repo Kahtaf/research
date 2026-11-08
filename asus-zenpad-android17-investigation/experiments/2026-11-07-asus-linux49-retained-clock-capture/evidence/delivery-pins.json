@@ -1,0 +1,126 @@
+{
+  "artifacts/Image.gz-dtb": {
+    "bytes": 7715480,
+    "sha256": "1baa4bd8ea91477eb0592bc51d2d25a4cab8afe94c3c0014f98e2d4b222fbd90"
+  },
+  "artifacts/candidate.img": {
+    "bytes": 7976960,
+    "sha256": "666404b22886baab96ccd7b09ae258a9e65ecacbd674e1d70ae929b1083cdfce"
+  },
+  "artifacts/candidate.p10.raw": {
+    "bytes": 16740352,
+    "sha256": "4b474d6e714871dcefbba9510ff3d25f66e13147171ae39b0fa670c7cd70402e"
+  },
+  "artifacts/ramdisk.wrapped": {
+    "bytes": 256984,
+    "sha256": "df6406bd884126190ce05c26f097f9d84a36c64e332286fa5aee6225670857d3"
+  },
+  "artifacts/resolved.config": {
+    "bytes": 126443,
+    "sha256": "708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1"
+  },
+  "artifacts/runtime.dtb": {
+    "bytes": 63737,
+    "sha256": "7d8e0c2bd787ad756db9f1bb8b60efc5277fc78c8d401d2b60bafc8dfa7618f2"
+  },
+  "scripts/build_remote.py": {
+    "bytes": 2771,
+    "sha256": "ef10f5d0ecfa7e72fc34648ab50df138eca4d3812d113b3138c7bd44baaace3d"
+  },
+  "scripts/check_layout.py": {
+    "bytes": 5382,
+    "sha256": "15be3ae3f2a68712c9bb3b0ca7a682931cf4b47d57c53820491393bdbba064c8"
+  },
+  "scripts/decode.py": {
+    "bytes": 4102,
+    "sha256": "65558d4cdcbcd204abacba47dc15f0b35568db012c6cbd56401381f34b2f78a7"
+  },
+  "scripts/dispatch.py": {
+    "bytes": 2902,
+    "sha256": "ff7ec4d3fa0b103ecf269e4b215782e3abdfcc165e1ff3caef61f21cb04c6053"
+  },
+  "scripts/fetch_verify.py": {
+    "bytes": 2049,
+    "sha256": "c4900e2832984aa8938a34623e81c94e502b8190ef9072089b4989ea1d696f5f"
+  },
+  "scripts/finalize.py": {
+    "bytes": 15148,
+    "sha256": "e928af14c7c8c12cd9cca6f1cca5ceed7bc6b387307ead96a0d91a09a181b3f4"
+  },
+  "scripts/inspect_remote.py": {
+    "bytes": 614,
+    "sha256": "07221830cf4cd95e65971b50fa7c57e2ed9badd4894154a7a370acb93379eb41"
+  },
+  "scripts/package.py": {
+    "bytes": 8264,
+    "sha256": "9bd58cdbc86b7144af1f8ad7fa4e023327fde3779b331f7c9a970f9fbade2c20"
+  },
+  "scripts/plan_only.py": {
+    "bytes": 3593,
+    "sha256": "ac95483acd2061560248d8fcec5fb47a227837536071f1235a614ebe12f9c93f"
+  },
+  "scripts/remote_call.py": {
+    "bytes": 365,
+    "sha256": "d3a685db45f19891fda943ed82d0910a89359e76aa0363b1c03e7ef34c81d575"
+  },
+  "scripts/status_remote.py": {
+    "bytes": 308,
+    "sha256": "9070279872642892a4be6ee62cad93fdedeea54293030bb79f4ab9a41ffae8ed"
+  },
+  "scripts/verify_remote.py": {
+    "bytes": 4349,
+    "sha256": "746469f0e0fb7412c20cdf7013e9d8d1e686accfc84bd55a2c1fc266b8ea3485"
+  },
+  "scripts/vm.py": {
+    "bytes": 2374,
+    "sha256": "83a01d1e7646e741b3a7a25e59c13603cfa00a889c924e374f4f0acd2a94b85f"
+  },
+  "source/adb": {
+    "bytes": 164,
+    "sha256": "820fd0d66e75ee98701798e385f04e48a026ec7abd22ec6a67e9760ed0829e82"
+  },
+  "source/arch/arm64/kernel/asus_entry_tag.h": {
+    "bytes": 513,
+    "sha256": "079c20ce859c8d224da2ba71d4ad0cb9337385a7e334c10a503b528b4ccaa6a8"
+  },
+  "source/arch/arm64/kernel/asus_retained_trace.c": {
+    "bytes": 16372,
+    "sha256": "55cac3b4714ee35a8365ca37678f797f54903ac80ae7c8bfcf41ca5b38d72849"
+  },
+  "source/bootformat.py": {
+    "bytes": 3936,
+    "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017"
+  },
+  "source/changes.patch": {
+    "bytes": 12642,
+    "sha256": "53d660b45e494e4763d240cd818f0f23602d0ab7d3993a07354efdc020af39a1"
+  },
+  "source/drivers/clocksource/arm_arch_timer.c": {
+    "bytes": 31521,
+    "sha256": "ed5182139af568c73a8c7eb6eb600d647a97ef5d91ce942d52c47260ddbd06c4"
+  },
+  "source/fdt.py": {
+    "bytes": 3024,
+    "sha256": "1bd710a08eae5677689a52042a621f39dcd57e49197749cf2833eead1fc0dcae"
+  },
+  "source/include/linux/asus_retained_trace.h": {
+    "bytes": 1646,
+    "sha256": "8922d8a5a9fd716c242889fc8d863f9f71fc1c7cd72bf920a81d8c90b3c6f25d"
+  },
+  "source/install.diff": {
+    "bytes": 4865,
+    "sha256": "41236f359b435cb74c1a8a18e461d16b339eb77fe63d1147714ba6afb7859af3"
+  },
+  "source/install.py": {
+    "bytes": 10278,
+    "sha256": "86627e608b5c832936e45b9d5e9fc1ddc756e95cbf68ce5fb5d443b67766c35c"
+  },
+  "source/kernel/time/timekeeping.c": {
+    "bytes": 68355,
+    "sha256": "42effa2858ae8683a555757f1d82c7a8b9384f656296e234f88efa4384f77e07"
+  },
+  "source/legacy_adb.py": {
+    "bytes": 1511,
+    "sha256": "6d00836d7e0cc28834f858b0fd6ab5515ffe7b3ecd37a6da6ba1f66b43597731"
+  }
+}

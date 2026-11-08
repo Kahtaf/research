@@ -1,0 +1,18 @@
+{
+  "drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc": {
+    "before": "78396990fbffd1d1459fa939ff91f658b77cf57d1ea507417e51963caa4c93e1",
+    "after": "aa1ab909484560707fa67ec238350ab5ce8040116b0a5df2374f183d04be6fae"
+  },
+  "arch/arm64/kernel/asus_retained_trace.c": {
+    "before": "ce4b26cb937c2aa4cae2c53d23096bdb70a4fb8ca8beeab7f94cf4092775c2d4",
+    "after": "4e270ea5e201e4b3ced5e2f0c03169b6326e9e84d0c5a742df5139437a856bf8"
+  },
+  "include/linux/asus_retained_trace.h": {
+    "before": "9b7a55ca92aa273cb4f494eb5de040225af80b089596b425fafb35e158fa7692",
+    "after": "ab1072598f740f6e529167931d270cb2f79f18eefa41b7a487030f4899dec982"
+  },
+  "arch/arm64/kernel/asus_entry_tag.h": {
+    "before": "4a5414485ea11f5a85802ac5e4c9e48af4d4099c810be643dab43cf09b01a402",
+    "after": "a53c4e8680ec6463c6548a168d2edf47192b444eb899654b266ff84c924f2e1e"
+  }
+}

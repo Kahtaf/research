@@ -1,0 +1,21 @@
+{
+  "HANDOFF.json": "9f59e0a939829fe18482e89013f5244480f7716a145f4ee4b6c542d107099bf0",
+  "README.md": "cdcba6f4ae3b918d9c1440c8ed1e21082f23b7f636e29d3899d1754aa88f6cbc",
+  "REPORT.md": "ca0c392b85954b945b3ab6baf23660d72bd09be0e565e16d4ae6a59764ddaaed",
+  "evidence/analysis-manifest.json": "282bca08165d1610776a207b4aceb26570e70ea2e059566a99a54d5d03404abc",
+  "evidence/callgraph.html": "28c5ea2ecb05fb5edce2bef6335d6c964aa90202c887aa020db8e72fc5dd5a4e",
+  "evidence/checks.json": "1973847a6150ab7f5d8d10e3255fd8d9e43ee08c05903f182113c7c69e58364c",
+  "evidence/discovery-disassembly.txt": "3cbebc3a57c954d25be74ea7fa3358173b4b93c7b53138b224dc893dcd465cf7",
+  "evidence/emulation.json": "6108877c62584743c8c23c02a0d51dbd377bf0044721c0da2e23652b6dbb383a",
+  "evidence/executed-disassembly.txt": "3d32286a8b1c213b44a4f7b8f03571d5486409a12902f9b28c9bf43e94615dcd",
+  "evidence/input-pins.json": "dd6fd9d7737fbb23913c98598ae32dcf7498b1921fd1680e0a37580c261e82e2",
+  "evidence/instruction-pins.json": "c98768807e8e05aac7e59a64333e046d9c37a2b8d56b9da7bb771d1497cd8e70",
+  "evidence/mmc-command-reference.txt": "b6378bab2cce05a07e9af4fd053ee21bff12b523f34143fb15251b730f33b200",
+  "evidence/registration.json": "52896737d17e1067239c0913fefb0cdf6b89a7a58d1850cc80c9b8289895e30f",
+  "evidence/route-disassembly.txt": "968da5635413a9c6ab3afe75b1dc32c7652a3e95186ce2c41f9db9e353d4dd4c",
+  "evidence/saved-identity.json": "be77a1f8975d792fcac8f85680a6b3eae53ce86cea3cecfa53714e3f12c8a410",
+  "source/collect_evidence.py": "838475aec26e7626dc8499d5b205c0489c41725e954c4a6efcfee9203f5a2576",
+  "source/disassemble.py": "365327d7dca9f0a443d0c34ee242b66f00501e36ede4ffa2e86d020b968d7516",
+  "source/discover.py": "c80b693f8cde98b3be81fcdf6aa4aea73c5c9b14c85cb98efef6fecb0e4fe7c4",
+  "source/emulate.py": "fb4738309a5ce1a0c844086886aa195f06e3bee234f1986bcc10b5c27d6957a3"
+}

@@ -1,0 +1,4 @@
+{
+  "kernel/arch/arm64/kernel/asus_retained_trace.c": "3234aad2e3d2375d991c4a7ca7028c1d2bd8aa1ba7b6fe74558095cafa3a8658",
+  "kernel/arch/arm64/kernel/asus_entry_tag.h": "10ad9f976ce674961f0ae5dc91c8225c0dde11619af7f2cfdf9b6d4b314e55dc"
+}

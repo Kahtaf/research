@@ -1,0 +1,10 @@
+--- a/contents/tests/configuration/p00a_legacy_graphics_test.cc
++++ b/contents/tests/configuration/p00a_legacy_graphics_test.cc
+@@ -3,6 +3,7 @@
+ #include <iostream>
+ 
+ #include <gtest/gtest.h>
++#include "linkerconfig/apex.h"
+ #include "mockenv.h"
+ #include "linkerconfig/baseconfig.h"
+ #include "linkerconfig/configwriter.h"

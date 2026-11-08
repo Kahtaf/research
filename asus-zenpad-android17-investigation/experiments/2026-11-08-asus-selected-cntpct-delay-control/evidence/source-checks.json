@@ -1,0 +1,13 @@
+{
+  "status": "PASS_EXACT_REVERSE_DIFF",
+  "delay_body_and_arithmetic_restores_byte_exact": true,
+  "old_five_capture_layouts_and_hooks_restore_except_UUID": true,
+  "delay_area_bytes": 2560,
+  "header_fields": 9,
+  "header_tail": 168,
+  "all_other_offsets_unchanged": true,
+  "backend_reset_before_arm": true,
+  "backend_set_under_existing_selected_claim_lock": true,
+  "no_new_recorder_counter_reads": true,
+  "no_new_lock_or_IRQmask_across_delay": true
+}

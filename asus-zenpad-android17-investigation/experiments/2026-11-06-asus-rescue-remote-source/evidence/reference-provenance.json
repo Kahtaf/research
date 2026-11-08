@@ -1,0 +1,23 @@
+{
+  "references": [
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-android17-internal-data-validation/evidence/image-manifest.json",
+      "bytes": 51319,
+      "sha256": "0afad94fb24a71ab3ddb0641ae1b50cbc9dbb15125754fc18783b1ed6ca5963c"
+    },
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-android17-internal-data-validation/evidence/fresh_userdata.reference-1MiB.json",
+      "bytes": 778229,
+      "sha256": "feaa51c3f2c2139b5d8a224c3794d6186f536ceff134127edee5e841cba7bd24"
+    },
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-android17-target-rescue/artifacts/stock-inverse.PLAN_ONLY.json",
+      "bytes": 277151,
+      "sha256": "0ce07f7c35ce4c8384b322d2752106bab8e45d5037843af8ce7edf8b956926c3"
+    }
+  ],
+  "full_vm_sources_rehashed": false,
+  "calibration_accessed": false,
+  "local_stock_boot_streamed_bytes": 16740352,
+  "new_os_images_bound": false
+}

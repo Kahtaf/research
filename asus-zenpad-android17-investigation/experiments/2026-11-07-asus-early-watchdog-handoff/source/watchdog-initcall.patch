@@ -1,0 +1,21 @@
+--- a/drivers/watchdog/mtk_wdt.c
++++ b/drivers/watchdog/mtk_wdt.c
+@@ -611,7 +611,17 @@
+ 	},
+ };
+ 
+-module_platform_driver(mtk_wdt_driver);
++static int __init mtk_wdt_driver_init(void)
++{
++	return platform_driver_register(&mtk_wdt_driver);
++}
++arch_initcall(mtk_wdt_driver_init);
++
++static void __exit mtk_wdt_driver_exit(void)
++{
++	platform_driver_unregister(&mtk_wdt_driver);
++}
++module_exit(mtk_wdt_driver_exit);
+ 
+ static int wk_proc_cmd_read(struct seq_file *s, void *v)
+ {

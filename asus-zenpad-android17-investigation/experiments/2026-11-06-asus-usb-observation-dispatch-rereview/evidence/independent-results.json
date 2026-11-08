@@ -1,0 +1,234 @@
+[
+  {
+    "test": "independent_checks.IndependentCases.test_current_epoch_change_at_write_boundary",
+    "source_sha256": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8",
+    "stage": "writable",
+    "probes": 6,
+    "request_write_attempts": 0,
+    "terminal": "UNKNOWN",
+    "retry_new_children": 0,
+    "last_gate": {
+      "wall_age": 179.33687686920166,
+      "monotonic_age": 179.33687854203163,
+      "changed_epoch": true
+    },
+    "wall_delta": 0,
+    "mono_delta": 0,
+    "epoch_changed": true,
+    "original_deadline_expired": false
+  },
+  {
+    "test": "independent_checks.IndependentCases.test_eagain_rechecks_and_sends_exactly_one_request",
+    "source_sha256": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8",
+    "scenario": "eagain",
+    "attempts": [
+      {
+        "bytes": 80,
+        "gates": 14,
+        "previous": "gate"
+      },
+      {
+        "bytes": 80,
+        "gates": 15,
+        "previous": "gate"
+      }
+    ],
+    "committed_bytes": 80,
+    "terminal": "OBSERVED_MATCH",
+    "shell_children": 1
+  },
+  {
+    "test": "independent_checks.IndependentCases.test_eagain_then_expiry_refuses_zero_committed_bytes",
+    "source_sha256": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8",
+    "scenario": "eagain_expiry",
+    "attempts": [
+      {
+        "bytes": 80,
+        "gates": 14,
+        "previous": "gate"
+      }
+    ],
+    "committed_bytes": 0,
+    "terminal": "UNKNOWN",
+    "shell_children": 1
+  },
+  {
+    "test": "independent_checks.IndependentCases.test_fresh_dispatch_late_binding_completion_is_accepted",
+    "source_sha256": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8",
+    "dispatch_ages": {
+      "wall_age": 179.34093403816223,
+      "monotonic_age": 179.34093583299546
+    },
+    "finish_monotonic_age": 180.8445528750308,
+    "terminal": "OBSERVED_MATCH",
+    "accepted": true
+  },
+  {
+    "test": "independent_checks.IndependentCases.test_monotonic_backward_to_future_binding",
+    "source_sha256": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8",
+    "stage": "writable",
+    "probes": 6,
+    "request_write_attempts": 0,
+    "terminal": "UNKNOWN",
+    "retry_new_children": 0,
+    "last_gate": {
+      "wall_age": 179.34080505371094,
+      "monotonic_age": -1.659192749997601,
+      "changed_epoch": false
+    },
+    "wall_delta": 0,
+    "mono_delta": -181,
+    "epoch_changed": false,
+    "original_deadline_expired": false
+  },
+  {
+    "test": "independent_checks.IndependentCases.test_monotonic_only_expiry_at_writable_event",
+    "source_sha256": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8",
+    "stage": "writable",
+    "probes": 6,
+    "request_write_attempts": 0,
+    "terminal": "UNKNOWN",
+    "retry_new_children": 0,
+    "last_gate": {
+      "wall_age": 179.3558168411255,
+      "monotonic_age": 180.85581833397737,
+      "changed_epoch": false
+    },
+    "wall_delta": 0,
+    "mono_delta": 1.5,
+    "epoch_changed": false,
+    "original_deadline_expired": false
+  },
+  {
+    "test": "independent_checks.IndependentCases.test_old_p1_delayed_writable_event",
+    "source_sha256": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8",
+    "stage": "writable",
+    "probes": 6,
+    "request_write_attempts": 0,
+    "terminal": "UNKNOWN",
+    "retry_new_children": 0,
+    "last_gate": {
+      "wall_age": 180.8618721961975,
+      "monotonic_age": 180.86187329195673,
+      "changed_epoch": false
+    },
+    "wall_delta": 1.5,
+    "mono_delta": 1.5,
+    "epoch_changed": false,
+    "original_deadline_expired": false
+  },
+  {
+    "test": "independent_checks.IndependentCases.test_old_p1_slow_final_probe",
+    "source_sha256": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8",
+    "stage": "probe",
+    "probes": 6,
+    "request_write_attempts": 0,
+    "terminal": "UNKNOWN",
+    "retry_new_children": 0,
+    "last_gate": {
+      "wall_age": 180.82657313346863,
+      "monotonic_age": 180.82657554198522,
+      "changed_epoch": false
+    },
+    "wall_delta": 1.5,
+    "mono_delta": 1.5,
+    "epoch_changed": false,
+    "original_deadline_expired": false
+  },
+  {
+    "test": "independent_checks.IndependentCases.test_original_whole_deadline_checked_after_wait",
+    "source_sha256": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8",
+    "stage": "writable",
+    "probes": 6,
+    "request_write_attempts": 0,
+    "terminal": "UNKNOWN",
+    "retry_new_children": 0,
+    "last_gate": {
+      "wall_age": 0.3259909152984619,
+      "monotonic_age": 11.325992707978003,
+      "changed_epoch": false
+    },
+    "wall_delta": 0,
+    "mono_delta": 11,
+    "epoch_changed": false,
+    "original_deadline_expired": true
+  },
+  {
+    "test": "independent_checks.IndependentCases.test_partial_write_rechecks_and_sends_exactly_one_request",
+    "source_sha256": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8",
+    "scenario": "partial",
+    "attempts": [
+      {
+        "bytes": 80,
+        "gates": 14,
+        "previous": "gate"
+      },
+      {
+        "bytes": 73,
+        "gates": 15,
+        "previous": "gate"
+      }
+    ],
+    "committed_bytes": 80,
+    "terminal": "OBSERVED_MATCH",
+    "shell_children": 1
+  },
+  {
+    "test": "independent_checks.IndependentCases.test_partial_write_then_expiry_stops_without_retry",
+    "source_sha256": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8",
+    "scenario": "partial_expiry",
+    "attempts": [
+      {
+        "bytes": 80,
+        "gates": 14,
+        "previous": "gate"
+      }
+    ],
+    "committed_bytes": 7,
+    "terminal": "UNKNOWN",
+    "shell_children": 1
+  },
+  {
+    "test": "independent_checks.IndependentCases.test_readme_all_pin_assertions_and_actual_plan",
+    "source_sha256": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8",
+    "readme_assertions_executed": 4,
+    "source_pin": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8",
+    "observe_recipe_executed": false
+  },
+  {
+    "test": "independent_checks.IndependentCases.test_wall_backward_to_future_binding",
+    "source_sha256": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8",
+    "stage": "writable",
+    "probes": 6,
+    "request_write_attempts": 0,
+    "terminal": "UNKNOWN",
+    "retry_new_children": 0,
+    "last_gate": {
+      "wall_age": -1.678480863571167,
+      "monotonic_age": 179.3215209590271,
+      "changed_epoch": false
+    },
+    "wall_delta": -181,
+    "mono_delta": 0,
+    "epoch_changed": false,
+    "original_deadline_expired": false
+  },
+  {
+    "test": "independent_checks.IndependentCases.test_wall_only_expiry_at_writable_event",
+    "source_sha256": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8",
+    "stage": "writable",
+    "probes": 6,
+    "request_write_attempts": 0,
+    "terminal": "UNKNOWN",
+    "retry_new_children": 0,
+    "last_gate": {
+      "wall_age": 180.82670497894287,
+      "monotonic_age": 179.32670645898907,
+      "changed_epoch": false
+    },
+    "wall_delta": 1.5,
+    "mono_delta": 0,
+    "epoch_changed": false,
+    "original_deadline_expired": false
+  }
+]

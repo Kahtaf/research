@@ -1,0 +1,3 @@
+from pathlib import Path
+import os,shutil
+R=Path('/srv/android/asus-r9-linkerconfig-ownership-fix-20261106');os.environ['TMPDIR']=str(R/'tmp');p=R/'source/runtime_patcher_r2.c';shutil.copyfile(p,R/'source/runtime_patcher_r2-before-format-fix.c');text=p.read_text().replace('))die("symlink owner");put(', ')){die("symlink owner");}\nput(');p.write_text(text);shutil.copyfile(R/'evidence/runtime-r2-prepare-commands.json',R/'evidence/runtime-r2-prepare-failure1.json');src=(R/'source/prepare_runtime_r2_actual.py').read_text().replace('I.mkdir();','I.mkdir(exist_ok=True);');(R/'source/prepare_runtime_r2_resumed.py').write_text(src);exec(compile(src,str(R/'source/prepare_runtime_r2_resumed.py'),'exec'))

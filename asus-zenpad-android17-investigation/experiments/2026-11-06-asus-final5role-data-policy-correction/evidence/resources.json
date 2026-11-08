@@ -1,0 +1,1971 @@
+{
+  "platform": "native Darwin arm64",
+  "serial_compiler_jobs": 1,
+  "serialized_final_commands": true,
+  "initial_QA_overlap_retained": "initial-run-scheduling.json",
+  "cpu_limit_seconds_per_host_process": 60,
+  "wall_timeout_seconds_per_host_command_max": 190,
+  "suite_command_start_deadline_seconds": 300,
+  "policy_test_cpu_seconds_per_query": 10,
+  "policy_test_wall_seconds_per_query": 10,
+  "policy_test_suite_command_start_deadline_seconds": 180,
+  "policy_test_supervisor_wall_timeout_seconds": 190,
+  "hard_memory_setrlimit_rejected": true,
+  "hard_CPU_affinity_unavailable": true,
+  "hard_one_core_or_1GiB_quota_claimed": false,
+  "observed_maxrss_bytes": 79495168,
+  "observed_maxrss_below_1GiB": true,
+  "host_command_count": 353,
+  "nonzero_host_commands": [
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-c",
+        "import resource; r=resource.RLIMIT_AS; resource.setrlimit(r,(1073741824,1073741824)); print(resource.getrlimit(r))"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-c",
+        "import resource; r=resource.RLIMIT_DATA; resource.setrlimit(r,(1073741824,1073741824)); print(resource.getrlimit(r))"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-c",
+        "import resource; r=resource.RLIMIT_RSS; resource.setrlimit(r,(1073741824,1073741824)); print(resource.getrlimit(r))"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:rescue_boot_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:rescue_system_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:rescue_disk_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:rescue_recovery_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_recovery_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_recovery_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:block_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:block_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:metadata_block_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:metadata_block_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:userdata_block_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:userdata_block_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:preloader_block_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:preloader_block_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:para_block_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:para_block_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:nvm_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:nvm_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:nvram_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:nvram_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:r:p10_restore:s0",
+        "tcp_socket",
+        "create"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:r:p10_restore:s0",
+        "udp_socket",
+        "create"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:r:p10_restore:s0",
+        "capability",
+        "sys_boot"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:r:p10_restore:s0",
+        "capability",
+        "sys_admin"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:r:p10_restore:s0",
+        "capability",
+        "dac_override"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:r:kernel:s0",
+        "security",
+        "setenforce"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:rootfs:s0",
+        "filesystem",
+        "mount"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:shell_exec:s0",
+        "file",
+        "execute"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:p10_restore_exec:s0",
+        "file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:p10_restore_exec:s0",
+        "file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:p10_restore_exec:s0",
+        "file",
+        "execute"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "create"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "unlink"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "append"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "execute"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "setattr"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "relabelfrom"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "relabelto"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "lock"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "open"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "getattr"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:p10_restore:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "ioctl"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:rescue_disk_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:block_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:metadata_block_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:userdata_block_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:preloader_block_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:para_block_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:nvm_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:os_rescue:s0",
+        "u:object_r:nvram_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_boot_device:s0",
+        "blk_file",
+        "open"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_boot_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_boot_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_boot_device:s0",
+        "blk_file",
+        "getattr"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_boot_device:s0",
+        "blk_file",
+        "ioctl"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_system_device:s0",
+        "blk_file",
+        "open"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_system_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_system_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_system_device:s0",
+        "blk_file",
+        "getattr"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_system_device:s0",
+        "blk_file",
+        "ioctl"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_recovery_device:s0",
+        "blk_file",
+        "open"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_recovery_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_recovery_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_recovery_device:s0",
+        "blk_file",
+        "getattr"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_recovery_device:s0",
+        "blk_file",
+        "ioctl"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_disk_device:s0",
+        "blk_file",
+        "open"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_disk_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_disk_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_disk_device:s0",
+        "blk_file",
+        "getattr"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_disk_device:s0",
+        "blk_file",
+        "ioctl"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "open"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "getattr"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "ioctl"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:block_device:s0",
+        "blk_file",
+        "open"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:block_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:block_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:block_device:s0",
+        "blk_file",
+        "getattr"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:shell:s0",
+        "u:object_r:block_device:s0",
+        "blk_file",
+        "ioctl"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_boot_device:s0",
+        "blk_file",
+        "open"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_boot_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_boot_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_boot_device:s0",
+        "blk_file",
+        "getattr"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_boot_device:s0",
+        "blk_file",
+        "ioctl"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_system_device:s0",
+        "blk_file",
+        "open"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_system_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_system_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_system_device:s0",
+        "blk_file",
+        "getattr"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_system_device:s0",
+        "blk_file",
+        "ioctl"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_recovery_device:s0",
+        "blk_file",
+        "open"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_recovery_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_recovery_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_recovery_device:s0",
+        "blk_file",
+        "getattr"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_recovery_device:s0",
+        "blk_file",
+        "ioctl"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_disk_device:s0",
+        "blk_file",
+        "open"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_disk_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_disk_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_disk_device:s0",
+        "blk_file",
+        "getattr"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_disk_device:s0",
+        "blk_file",
+        "ioctl"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "open"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "getattr"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:rescue_userdata_device:s0",
+        "blk_file",
+        "ioctl"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:block_device:s0",
+        "blk_file",
+        "open"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:block_device:s0",
+        "blk_file",
+        "read"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:block_device:s0",
+        "blk_file",
+        "write"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:block_device:s0",
+        "blk_file",
+        "getattr"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_constraints",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "u:r:adbd:s0",
+        "u:object_r:block_device:s0",
+        "blk_file",
+        "ioctl"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_boot_device",
+        "0x125d"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_boot_device",
+        "0x1277"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_boot_device",
+        "0x1273"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_boot_device",
+        "0x1372"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_boot_device",
+        "0xffff"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_system_device",
+        "0x125d"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_system_device",
+        "0x1277"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_system_device",
+        "0x1273"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_system_device",
+        "0x1372"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_system_device",
+        "0xffff"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_recovery_device",
+        "0x125d"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_recovery_device",
+        "0x1277"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_recovery_device",
+        "0x1273"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_recovery_device",
+        "0x1372"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_recovery_device",
+        "0xffff"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_disk_device",
+        "0x125d"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_disk_device",
+        "0x1277"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_disk_device",
+        "0x1273"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_disk_device",
+        "0x1372"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_disk_device",
+        "0xffff"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_userdata_device",
+        "0x125d"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_userdata_device",
+        "0x1277"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_userdata_device",
+        "0x1273"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_userdata_device",
+        "0x1372"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "os_rescue",
+        "rescue_userdata_device",
+        "0xffff"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_boot_device",
+        "0x125d"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_boot_device",
+        "0x1277"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_boot_device",
+        "0x1273"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_boot_device",
+        "0x1372"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_boot_device",
+        "0xffff"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_system_device",
+        "0x125d"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_system_device",
+        "0x1277"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_system_device",
+        "0x1273"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_system_device",
+        "0x1372"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_system_device",
+        "0xffff"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_recovery_device",
+        "0x125d"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_recovery_device",
+        "0x1277"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_recovery_device",
+        "0x1273"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_recovery_device",
+        "0x1372"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_recovery_device",
+        "0xffff"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_disk_device",
+        "0x125d"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_disk_device",
+        "0x1277"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_disk_device",
+        "0x1273"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_disk_device",
+        "0x1372"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_disk_device",
+        "0xffff"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_userdata_device",
+        "0x1272"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_userdata_device",
+        "0x125d"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_userdata_device",
+        "0x1277"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_userdata_device",
+        "0x1273"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_userdata_device",
+        "0x1372"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_xperms",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/UNQUALIFIED-future5role-policy",
+        "p10_restore",
+        "rescue_userdata_device",
+        "0xffff"
+      ],
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-helper-data-read.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-helper-data-write.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-helper-system-write.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-daemon-p10-write.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-daemon-disk-write.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-daemon-generic-write.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-extra-data-permission.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-alter-old-av.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-missing-data-av.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-missing-data-xperm.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-data-driver-wide.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-data-extra-function.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-alter-old-xperm.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-helper-extra-function.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-changed-attribute.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-changed-bound.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-changed-permissive.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-changed-constraint.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/artifacts/negative-fixtures/REJECTED-helper-extra-fd.policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    },
+    {
+      "argv": [
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/tools/host/policy_audit",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/base-policy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-final5role-data-policy-correction/inputs/restore-sepolicy"
+      ],
+      "returncode": -6
+    }
+  ],
+  "scope": "Host commands only; no target I/O. Native compiler/linker OS runtime threads are not affinity constrained."
+}

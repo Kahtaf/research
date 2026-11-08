@@ -1,0 +1,2932 @@
+{
+  "utc": "2026-11-06T22:52:59.068211+00:00",
+  "default_low_ram_functional_pass_with_staged_label_fix": true,
+  "negative_checks": {
+    "missing_PSI_ENOENT": true,
+    "invalid_window_EINVAL": true,
+    "old_strategy_MEMCG_v1_rejected": true,
+    "original_zram_label_denied": true
+  },
+  "runs": {
+    "r4": {
+      "status": {
+        "returncode": 0,
+        "timeout": false
+      },
+      "serial_sha256": "b682fa5a216c0c5d05817d921e25060303de0ca6387e2d916d7995bbf9a38a44",
+      "serial_bytes": 19427,
+      "abort": false,
+      "properties": {},
+      "psi_registered": false,
+      "psi_fd_numbers": [],
+      "epoll_entries": [],
+      "daemon_domain": false,
+      "enforcing": false,
+      "native_adjs": [],
+      "notifications": [],
+      "child_final": [],
+      "rounds": [],
+      "recoveries": [],
+      "kernel_oom_log": false,
+      "swap_write_errors": 0,
+      "foreground_adj_verified": false,
+      "memtotal_KiB": [],
+      "swap_KiB": [],
+      "workload_swap_kB": [],
+      "zram_samples": [],
+      "psi_totals_us": [],
+      "zram_label": [],
+      "backing_devices": []
+    },
+    "r5": {
+      "status": {
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 23.66130967999925,
+        "cpu_seconds": 4.758745,
+        "finished": "2026-11-06T22:30:26.930182+00:00"
+      },
+      "serial_sha256": "52f411b026bb047147769e54b97c30886a11858ef451d723ead3a5e144f59a5d",
+      "serial_bytes": 19402,
+      "abort": false,
+      "properties": {},
+      "psi_registered": true,
+      "psi_fd_numbers": [],
+      "epoll_entries": [],
+      "daemon_domain": false,
+      "enforcing": false,
+      "native_adjs": [],
+      "notifications": [],
+      "child_final": [],
+      "rounds": [],
+      "recoveries": [],
+      "kernel_oom_log": false,
+      "swap_write_errors": 0,
+      "foreground_adj_verified": false,
+      "memtotal_KiB": [],
+      "swap_KiB": [],
+      "workload_swap_kB": [],
+      "zram_samples": [],
+      "psi_totals_us": [],
+      "zram_label": [],
+      "backing_devices": []
+    },
+    "r10": {
+      "status": {
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 23.56083252999815,
+        "cpu_seconds": 4.654357999999999,
+        "finished": "2026-11-06T22:33:36.916482+00:00"
+      },
+      "serial_sha256": "914b26c9b3a855151db71450413d1939981b5987f71ed933047c32aded7bec8e",
+      "serial_bytes": 22058,
+      "abort": false,
+      "properties": {},
+      "psi_registered": true,
+      "psi_fd_numbers": [],
+      "epoll_entries": [],
+      "daemon_domain": false,
+      "enforcing": true,
+      "native_adjs": [],
+      "notifications": [],
+      "child_final": [],
+      "rounds": [],
+      "recoveries": [],
+      "kernel_oom_log": false,
+      "swap_write_errors": 0,
+      "foreground_adj_verified": false,
+      "memtotal_KiB": [
+        2001792
+      ],
+      "swap_KiB": [
+        524284
+      ],
+      "workload_swap_kB": [],
+      "zram_samples": [],
+      "psi_totals_us": [
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        }
+      ],
+      "zram_label": [
+        "u:object_r:swap_block_device:s0"
+      ],
+      "backing_devices": []
+    },
+    "r11": {
+      "status": {
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 32.79637664799884,
+        "cpu_seconds": 21.069588,
+        "finished": "2026-11-06T22:34:49.864250+00:00"
+      },
+      "serial_sha256": "0288b5b6571e969b85633e90da4ddd9afaffb4ff0111ceebf31b84a5da1781ed",
+      "serial_bytes": 87579,
+      "abort": false,
+      "properties": {},
+      "psi_registered": true,
+      "psi_fd_numbers": [
+        5,
+        6,
+        19
+      ],
+      "epoll_entries": [
+        {
+          "fd": 6,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 5,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 23,
+          "events_hex": "19"
+        },
+        {
+          "fd": 8,
+          "events_hex": "19"
+        },
+        {
+          "fd": 6,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 5,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 23,
+          "events_hex": "19"
+        },
+        {
+          "fd": 8,
+          "events_hex": "19"
+        },
+        {
+          "fd": 6,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 5,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 23,
+          "events_hex": "19"
+        }
+      ],
+      "daemon_domain": true,
+      "enforcing": true,
+      "native_adjs": [
+        {
+          "pid": 68,
+          "adj": -1000
+        },
+        {
+          "pid": 69,
+          "adj": 900
+        },
+        {
+          "pid": 70,
+          "adj": 901
+        },
+        {
+          "pid": 71,
+          "adj": 902
+        },
+        {
+          "pid": 72,
+          "adj": 903
+        },
+        {
+          "pid": 73,
+          "adj": 904
+        },
+        {
+          "pid": 74,
+          "adj": 905
+        },
+        {
+          "pid": 75,
+          "adj": 900
+        },
+        {
+          "pid": 76,
+          "adj": 901
+        },
+        {
+          "pid": 77,
+          "adj": 902
+        },
+        {
+          "pid": 78,
+          "adj": 903
+        },
+        {
+          "pid": 79,
+          "adj": 904
+        },
+        {
+          "pid": 80,
+          "adj": 905
+        }
+      ],
+      "notifications": [
+        {
+          "pid": 74,
+          "uid": 10006
+        },
+        {
+          "pid": 80,
+          "uid": 10006
+        }
+      ],
+      "child_final": [
+        {
+          "pid": 69,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 70,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 71,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 72,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 73,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 74,
+          "wait_status": 9,
+          "daemon_notification": true
+        },
+        {
+          "pid": 75,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 76,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 77,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 78,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 79,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 80,
+          "wait_status": 9,
+          "daemon_notification": true
+        },
+        {
+          "pid": 68,
+          "wait_status": 15,
+          "daemon_notification": false
+        }
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "notifications": 1,
+          "killcnt": 1,
+          "foreground_alive": 1
+        },
+        {
+          "round": 2,
+          "notifications": 1,
+          "killcnt": 2,
+          "foreground_alive": 1
+        }
+      ],
+      "recoveries": [
+        {
+          "round": 1,
+          "foreground_heartbeat": 1,
+          "daemon_alive": 1,
+          "killcnt": 1
+        },
+        {
+          "round": 2,
+          "foreground_heartbeat": 1,
+          "daemon_alive": 1,
+          "killcnt": 2
+        }
+      ],
+      "kernel_oom_log": false,
+      "swap_write_errors": 0,
+      "foreground_adj_verified": true,
+      "memtotal_KiB": [
+        2001792
+      ],
+      "swap_KiB": [
+        524284
+      ],
+      "workload_swap_kB": [],
+      "zram_samples": [
+        {
+          "stage": "before",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "after-pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "recovery",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "after-pressure",
+          "fields_bytes_except_page_counters": [
+            581632,
+            142712,
+            540672,
+            0,
+            540672,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "recovery",
+          "fields_bytes_except_page_counters": [
+            581632,
+            142712,
+            540672,
+            0,
+            540672,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "psi_totals_us": [
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 239663
+        },
+        {
+          "kind": "full",
+          "total": 75732
+        },
+        {
+          "kind": "some",
+          "total": 239663
+        },
+        {
+          "kind": "full",
+          "total": 75732
+        },
+        {
+          "kind": "some",
+          "total": 239663
+        },
+        {
+          "kind": "full",
+          "total": 75732
+        },
+        {
+          "kind": "some",
+          "total": 239663
+        },
+        {
+          "kind": "full",
+          "total": 75732
+        },
+        {
+          "kind": "some",
+          "total": 239663
+        },
+        {
+          "kind": "full",
+          "total": 75732
+        },
+        {
+          "kind": "some",
+          "total": 239663
+        },
+        {
+          "kind": "full",
+          "total": 75732
+        },
+        {
+          "kind": "some",
+          "total": 376568
+        },
+        {
+          "kind": "full",
+          "total": 123235
+        },
+        {
+          "kind": "some",
+          "total": 376568
+        },
+        {
+          "kind": "full",
+          "total": 123235
+        }
+      ],
+      "zram_label": [
+        "u:object_r:swap_block_device:s0"
+      ],
+      "backing_devices": [
+        "none"
+      ]
+    },
+    "r12": {
+      "status": {
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 34.598671954001475,
+        "cpu_seconds": 22.049872999999998,
+        "finished": "2026-11-06T22:37:14.867222+00:00"
+      },
+      "serial_sha256": "cd4059c039e7627d00d9a609ea2cced217813093f9bad327b4e55102ea0f0479",
+      "serial_bytes": 87608,
+      "abort": false,
+      "properties": {},
+      "psi_registered": true,
+      "psi_fd_numbers": [
+        5,
+        6,
+        19
+      ],
+      "epoll_entries": [
+        {
+          "fd": 5,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 6,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 23,
+          "events_hex": "19"
+        },
+        {
+          "fd": 8,
+          "events_hex": "19"
+        },
+        {
+          "fd": 5,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 6,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 23,
+          "events_hex": "19"
+        },
+        {
+          "fd": 8,
+          "events_hex": "19"
+        },
+        {
+          "fd": 5,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 6,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 23,
+          "events_hex": "19"
+        }
+      ],
+      "daemon_domain": true,
+      "enforcing": true,
+      "native_adjs": [
+        {
+          "pid": 68,
+          "adj": -1000
+        },
+        {
+          "pid": 69,
+          "adj": 900
+        },
+        {
+          "pid": 70,
+          "adj": 901
+        },
+        {
+          "pid": 71,
+          "adj": 902
+        },
+        {
+          "pid": 72,
+          "adj": 903
+        },
+        {
+          "pid": 73,
+          "adj": 904
+        },
+        {
+          "pid": 74,
+          "adj": 905
+        },
+        {
+          "pid": 75,
+          "adj": 900
+        },
+        {
+          "pid": 76,
+          "adj": 901
+        },
+        {
+          "pid": 77,
+          "adj": 902
+        },
+        {
+          "pid": 78,
+          "adj": 903
+        },
+        {
+          "pid": 79,
+          "adj": 904
+        },
+        {
+          "pid": 80,
+          "adj": 905
+        }
+      ],
+      "notifications": [
+        {
+          "pid": 74,
+          "uid": 10006
+        },
+        {
+          "pid": 80,
+          "uid": 10006
+        }
+      ],
+      "child_final": [
+        {
+          "pid": 69,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 70,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 71,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 72,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 73,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 74,
+          "wait_status": 9,
+          "daemon_notification": true
+        },
+        {
+          "pid": 75,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 76,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 77,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 78,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 79,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 80,
+          "wait_status": 9,
+          "daemon_notification": true
+        },
+        {
+          "pid": 68,
+          "wait_status": 15,
+          "daemon_notification": false
+        }
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "notifications": 1,
+          "killcnt": 1,
+          "foreground_alive": 1
+        },
+        {
+          "round": 2,
+          "notifications": 1,
+          "killcnt": 2,
+          "foreground_alive": 1
+        }
+      ],
+      "recoveries": [
+        {
+          "round": 1,
+          "foreground_heartbeat": 1,
+          "daemon_alive": 1,
+          "killcnt": 1
+        },
+        {
+          "round": 2,
+          "foreground_heartbeat": 1,
+          "daemon_alive": 1,
+          "killcnt": 2
+        }
+      ],
+      "kernel_oom_log": false,
+      "swap_write_errors": 0,
+      "foreground_adj_verified": true,
+      "memtotal_KiB": [
+        2001792
+      ],
+      "swap_KiB": [
+        524284
+      ],
+      "workload_swap_kB": [],
+      "zram_samples": [
+        {
+          "stage": "before",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "after-pressure",
+          "fields_bytes_except_page_counters": [
+            507904,
+            129466,
+            507904,
+            0,
+            507904,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "recovery",
+          "fields_bytes_except_page_counters": [
+            507904,
+            129466,
+            507904,
+            0,
+            507904,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            507904,
+            129466,
+            507904,
+            0,
+            507904,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            507904,
+            129466,
+            507904,
+            0,
+            507904,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            507904,
+            129466,
+            507904,
+            0,
+            507904,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            507904,
+            129466,
+            507904,
+            0,
+            507904,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "after-pressure",
+          "fields_bytes_except_page_counters": [
+            11431936,
+            1308826,
+            1802240,
+            0,
+            1802240,
+            27,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "recovery",
+          "fields_bytes_except_page_counters": [
+            11431936,
+            1308826,
+            1802240,
+            0,
+            1802240,
+            27,
+            0,
+            0
+          ]
+        }
+      ],
+      "psi_totals_us": [
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 170263
+        },
+        {
+          "kind": "full",
+          "total": 66586
+        },
+        {
+          "kind": "some",
+          "total": 170263
+        },
+        {
+          "kind": "full",
+          "total": 66586
+        },
+        {
+          "kind": "some",
+          "total": 170263
+        },
+        {
+          "kind": "full",
+          "total": 66586
+        },
+        {
+          "kind": "some",
+          "total": 170263
+        },
+        {
+          "kind": "full",
+          "total": 66586
+        },
+        {
+          "kind": "some",
+          "total": 170263
+        },
+        {
+          "kind": "full",
+          "total": 66586
+        },
+        {
+          "kind": "some",
+          "total": 170263
+        },
+        {
+          "kind": "full",
+          "total": 66586
+        },
+        {
+          "kind": "some",
+          "total": 583349
+        },
+        {
+          "kind": "full",
+          "total": 238135
+        },
+        {
+          "kind": "some",
+          "total": 583349
+        },
+        {
+          "kind": "full",
+          "total": 238135
+        }
+      ],
+      "zram_label": [
+        "u:object_r:swap_block_device:s0"
+      ],
+      "backing_devices": [
+        "none"
+      ]
+    },
+    "r13": {
+      "status": {
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 23.961571054998785,
+        "cpu_seconds": 4.724127,
+        "finished": "2026-11-06T22:38:48.305574+00:00"
+      },
+      "serial_sha256": "29e85adad3e241bde868c0e44d043d0493525f289189833026c5fec80c7f5b35",
+      "serial_bytes": 22057,
+      "abort": false,
+      "properties": {},
+      "psi_registered": true,
+      "psi_fd_numbers": [],
+      "epoll_entries": [],
+      "daemon_domain": false,
+      "enforcing": true,
+      "native_adjs": [],
+      "notifications": [],
+      "child_final": [],
+      "rounds": [],
+      "recoveries": [],
+      "kernel_oom_log": false,
+      "swap_write_errors": 0,
+      "foreground_adj_verified": false,
+      "memtotal_KiB": [
+        2001792
+      ],
+      "swap_KiB": [
+        524284
+      ],
+      "workload_swap_kB": [],
+      "zram_samples": [],
+      "psi_totals_us": [
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        }
+      ],
+      "zram_label": [
+        "u:object_r:swap_block_device:s0"
+      ],
+      "backing_devices": []
+    },
+    "r14": {
+      "status": {
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 23.569166559002042,
+        "cpu_seconds": 4.659082,
+        "finished": "2026-11-06T22:39:12.971881+00:00"
+      },
+      "serial_sha256": "69282e017f02bfacd3b92297382a05af697b532171f1231fb09525dc46f92950",
+      "serial_bytes": 22058,
+      "abort": false,
+      "properties": {},
+      "psi_registered": true,
+      "psi_fd_numbers": [],
+      "epoll_entries": [],
+      "daemon_domain": false,
+      "enforcing": true,
+      "native_adjs": [],
+      "notifications": [],
+      "child_final": [],
+      "rounds": [],
+      "recoveries": [],
+      "kernel_oom_log": false,
+      "swap_write_errors": 0,
+      "foreground_adj_verified": false,
+      "memtotal_KiB": [
+        2001792
+      ],
+      "swap_KiB": [
+        524284
+      ],
+      "workload_swap_kB": [],
+      "zram_samples": [],
+      "psi_totals_us": [
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        }
+      ],
+      "zram_label": [
+        "u:object_r:swap_block_device:s0"
+      ],
+      "backing_devices": []
+    },
+    "r15": {
+      "status": {
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 26.743259875998774,
+        "cpu_seconds": 7.8556170000000005,
+        "finished": "2026-11-06T22:39:41.654859+00:00"
+      },
+      "serial_sha256": "2a63153729c4b09d74dc8cf07dacf17858798bf33012238316ae3719fbb696af",
+      "serial_bytes": 22000,
+      "abort": false,
+      "properties": {},
+      "psi_registered": true,
+      "psi_fd_numbers": [],
+      "epoll_entries": [],
+      "daemon_domain": false,
+      "enforcing": true,
+      "native_adjs": [],
+      "notifications": [],
+      "child_final": [],
+      "rounds": [],
+      "recoveries": [],
+      "kernel_oom_log": false,
+      "swap_write_errors": 0,
+      "foreground_adj_verified": false,
+      "memtotal_KiB": [
+        2001792
+      ],
+      "swap_KiB": [
+        0
+      ],
+      "workload_swap_kB": [],
+      "zram_samples": [],
+      "psi_totals_us": [
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        }
+      ],
+      "zram_label": [
+        "u:object_r:ram_device:s0"
+      ],
+      "backing_devices": []
+    },
+    "r17": {
+      "status": {
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 23.86090351999883,
+        "cpu_seconds": 4.735729,
+        "finished": "2026-11-06T22:41:43.660026+00:00"
+      },
+      "serial_sha256": "f46dda8004140c817fb988255d9f4bfaeeabddaccffafa20a2fed7333253ab6c",
+      "serial_bytes": 22763,
+      "abort": false,
+      "properties": {},
+      "psi_registered": false,
+      "psi_fd_numbers": [],
+      "epoll_entries": [],
+      "daemon_domain": false,
+      "enforcing": true,
+      "native_adjs": [],
+      "notifications": [],
+      "child_final": [],
+      "rounds": [],
+      "recoveries": [],
+      "kernel_oom_log": false,
+      "swap_write_errors": 0,
+      "foreground_adj_verified": false,
+      "memtotal_KiB": [
+        2001792
+      ],
+      "swap_KiB": [
+        524284
+      ],
+      "workload_swap_kB": [],
+      "zram_samples": [],
+      "psi_totals_us": [
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        }
+      ],
+      "zram_label": [
+        "u:object_r:swap_block_device:s0"
+      ],
+      "backing_devices": []
+    },
+    "r18": {
+      "status": {
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 23.505243958999927,
+        "cpu_seconds": 4.6312619999999995,
+        "finished": "2026-11-06T22:42:08.558298+00:00"
+      },
+      "serial_sha256": "567091f9f8cb89bee2a2303dc72ebc6ad375390ce717704c3772fd57c38935bd",
+      "serial_bytes": 22760,
+      "abort": false,
+      "properties": {},
+      "psi_registered": false,
+      "psi_fd_numbers": [],
+      "epoll_entries": [],
+      "daemon_domain": false,
+      "enforcing": true,
+      "native_adjs": [],
+      "notifications": [],
+      "child_final": [],
+      "rounds": [],
+      "recoveries": [],
+      "kernel_oom_log": false,
+      "swap_write_errors": 0,
+      "foreground_adj_verified": false,
+      "memtotal_KiB": [
+        2001792
+      ],
+      "swap_KiB": [
+        524284
+      ],
+      "workload_swap_kB": [],
+      "zram_samples": [],
+      "psi_totals_us": [
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        }
+      ],
+      "zram_label": [
+        "u:object_r:swap_block_device:s0"
+      ],
+      "backing_devices": []
+    },
+    "r20": {
+      "status": {
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 32.03096170199933,
+        "cpu_seconds": 20.061319,
+        "finished": "2026-11-06T22:42:50.201055+00:00"
+      },
+      "serial_sha256": "53a2dd84b521f9ce0e3ceb5ccb733e81b46996b716b813f0b9e057b7aceab0d9",
+      "serial_bytes": 87941,
+      "abort": false,
+      "properties": {
+        "ro.config.low_ram": "true",
+        "ro.config.per_app_memcg": "false",
+        "ro.lmk.use_new_strategy": "true",
+        "ro.lmk.use_minfree_levels": "false",
+        "ro.lmk.debug": "true",
+        "ro.lmk.psi_partial_stall_ms": "unset",
+        "ro.lmk.psi_complete_stall_ms": "unset",
+        "ro.lmk.psi_window_size_ms": "unset"
+      },
+      "psi_registered": true,
+      "psi_fd_numbers": [
+        5,
+        6,
+        19
+      ],
+      "epoll_entries": [
+        {
+          "fd": 5,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 6,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 23,
+          "events_hex": "19"
+        },
+        {
+          "fd": 5,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 6,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 23,
+          "events_hex": "19"
+        },
+        {
+          "fd": 8,
+          "events_hex": "19"
+        },
+        {
+          "fd": 5,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 6,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 23,
+          "events_hex": "19"
+        },
+        {
+          "fd": 8,
+          "events_hex": "19"
+        }
+      ],
+      "daemon_domain": true,
+      "enforcing": true,
+      "native_adjs": [
+        {
+          "pid": 61,
+          "adj": -1000
+        },
+        {
+          "pid": 62,
+          "adj": 900
+        },
+        {
+          "pid": 63,
+          "adj": 901
+        },
+        {
+          "pid": 64,
+          "adj": 902
+        },
+        {
+          "pid": 65,
+          "adj": 903
+        },
+        {
+          "pid": 66,
+          "adj": 904
+        },
+        {
+          "pid": 67,
+          "adj": 905
+        },
+        {
+          "pid": 68,
+          "adj": 900
+        },
+        {
+          "pid": 69,
+          "adj": 901
+        },
+        {
+          "pid": 70,
+          "adj": 902
+        },
+        {
+          "pid": 71,
+          "adj": 903
+        },
+        {
+          "pid": 72,
+          "adj": 904
+        },
+        {
+          "pid": 73,
+          "adj": 905
+        }
+      ],
+      "notifications": [
+        {
+          "pid": 67,
+          "uid": 10006
+        },
+        {
+          "pid": 73,
+          "uid": 10006
+        }
+      ],
+      "child_final": [
+        {
+          "pid": 62,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 63,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 64,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 65,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 66,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 67,
+          "wait_status": 9,
+          "daemon_notification": true
+        },
+        {
+          "pid": 68,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 69,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 70,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 71,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 72,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 73,
+          "wait_status": 9,
+          "daemon_notification": true
+        },
+        {
+          "pid": 61,
+          "wait_status": 15,
+          "daemon_notification": false
+        }
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "notifications": 1,
+          "killcnt": 1,
+          "foreground_alive": 1
+        },
+        {
+          "round": 2,
+          "notifications": 1,
+          "killcnt": 2,
+          "foreground_alive": 1
+        }
+      ],
+      "recoveries": [
+        {
+          "round": 1,
+          "foreground_heartbeat": 1,
+          "daemon_alive": 1,
+          "killcnt": 1
+        },
+        {
+          "round": 2,
+          "foreground_heartbeat": 1,
+          "daemon_alive": 1,
+          "killcnt": 2
+        }
+      ],
+      "kernel_oom_log": false,
+      "swap_write_errors": 0,
+      "foreground_adj_verified": true,
+      "memtotal_KiB": [
+        2001792
+      ],
+      "swap_KiB": [
+        524284
+      ],
+      "workload_swap_kB": [],
+      "zram_samples": [
+        {
+          "stage": "before",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "after-pressure",
+          "fields_bytes_except_page_counters": [
+            10620928,
+            1279334,
+            1773568,
+            0,
+            1773568,
+            28,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "recovery",
+          "fields_bytes_except_page_counters": [
+            10575872,
+            1271930,
+            1761280,
+            0,
+            1773568,
+            28,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            10575872,
+            1271930,
+            1761280,
+            0,
+            1773568,
+            28,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            10575872,
+            1271930,
+            1761280,
+            0,
+            1773568,
+            28,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            10575872,
+            1271930,
+            1761280,
+            0,
+            1773568,
+            28,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            10575872,
+            1271930,
+            1761280,
+            0,
+            1773568,
+            28,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "after-pressure",
+          "fields_bytes_except_page_counters": [
+            25620480,
+            1830226,
+            2351104,
+            0,
+            2351104,
+            28,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "recovery",
+          "fields_bytes_except_page_counters": [
+            25620480,
+            1830226,
+            2351104,
+            0,
+            2351104,
+            28,
+            0,
+            0
+          ]
+        }
+      ],
+      "psi_totals_us": [
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 573845
+        },
+        {
+          "kind": "full",
+          "total": 256536
+        },
+        {
+          "kind": "some",
+          "total": 574542
+        },
+        {
+          "kind": "full",
+          "total": 256536
+        },
+        {
+          "kind": "some",
+          "total": 574542
+        },
+        {
+          "kind": "full",
+          "total": 256536
+        },
+        {
+          "kind": "some",
+          "total": 574542
+        },
+        {
+          "kind": "full",
+          "total": 256536
+        },
+        {
+          "kind": "some",
+          "total": 574542
+        },
+        {
+          "kind": "full",
+          "total": 256536
+        },
+        {
+          "kind": "some",
+          "total": 574542
+        },
+        {
+          "kind": "full",
+          "total": 256536
+        },
+        {
+          "kind": "some",
+          "total": 1019178
+        },
+        {
+          "kind": "full",
+          "total": 446361
+        },
+        {
+          "kind": "some",
+          "total": 1019178
+        },
+        {
+          "kind": "full",
+          "total": 446361
+        }
+      ],
+      "zram_label": [
+        "u:object_r:swap_block_device:s0"
+      ],
+      "backing_devices": [
+        "none"
+      ],
+      "checks": {
+        "normal_terminal": true,
+        "actual_low_ram_props": true,
+        "psi_start_and_two_real_fds": true,
+        "psi_epoll_registration": true,
+        "enforcing_lmkd_domain": true,
+        "approximately_stock_memory": true,
+        "zram_active": true,
+        "two_daemon_evictions": true,
+        "sigkill_correlates": true,
+        "protected_foreground_recovers_twice": true,
+        "no_kernel_oom_or_swap_write_error": true,
+        "real_pressure": true
+      },
+      "accepted": true
+    },
+    "r21": {
+      "status": {
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 31.978467634999106,
+        "cpu_seconds": 20.354729,
+        "finished": "2026-11-06T22:44:24.900389+00:00"
+      },
+      "serial_sha256": "ab8d8d6b356e353ee1d57ab0d4747cb7f8bd1508f420ee9477e04328a880c263",
+      "serial_bytes": 87002,
+      "abort": false,
+      "properties": {
+        "ro.config.low_ram": "true",
+        "ro.config.per_app_memcg": "false",
+        "ro.lmk.use_new_strategy": "true",
+        "ro.lmk.use_minfree_levels": "false",
+        "ro.lmk.debug": "true",
+        "ro.lmk.psi_partial_stall_ms": "unset",
+        "ro.lmk.psi_complete_stall_ms": "unset",
+        "ro.lmk.psi_window_size_ms": "unset"
+      },
+      "psi_registered": true,
+      "psi_fd_numbers": [
+        5,
+        6,
+        19
+      ],
+      "epoll_entries": [
+        {
+          "fd": 23,
+          "events_hex": "19"
+        },
+        {
+          "fd": 5,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 6,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 23,
+          "events_hex": "19"
+        },
+        {
+          "fd": 8,
+          "events_hex": "19"
+        },
+        {
+          "fd": 5,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 6,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 23,
+          "events_hex": "19"
+        },
+        {
+          "fd": 8,
+          "events_hex": "19"
+        },
+        {
+          "fd": 5,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 6,
+          "events_hex": "1a"
+        }
+      ],
+      "daemon_domain": true,
+      "enforcing": true,
+      "native_adjs": [
+        {
+          "pid": 61,
+          "adj": -1000
+        },
+        {
+          "pid": 62,
+          "adj": 900
+        },
+        {
+          "pid": 63,
+          "adj": 901
+        },
+        {
+          "pid": 64,
+          "adj": 902
+        },
+        {
+          "pid": 65,
+          "adj": 903
+        },
+        {
+          "pid": 66,
+          "adj": 904
+        },
+        {
+          "pid": 67,
+          "adj": 905
+        },
+        {
+          "pid": 68,
+          "adj": 900
+        },
+        {
+          "pid": 69,
+          "adj": 901
+        },
+        {
+          "pid": 70,
+          "adj": 902
+        },
+        {
+          "pid": 71,
+          "adj": 903
+        },
+        {
+          "pid": 72,
+          "adj": 904
+        },
+        {
+          "pid": 73,
+          "adj": 905
+        }
+      ],
+      "notifications": [
+        {
+          "pid": 67,
+          "uid": 10006
+        },
+        {
+          "pid": 73,
+          "uid": 10006
+        }
+      ],
+      "child_final": [
+        {
+          "pid": 62,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 63,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 64,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 65,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 66,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 67,
+          "wait_status": 9,
+          "daemon_notification": true
+        },
+        {
+          "pid": 68,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 69,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 70,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 71,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 72,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 73,
+          "wait_status": 9,
+          "daemon_notification": true
+        },
+        {
+          "pid": 61,
+          "wait_status": 15,
+          "daemon_notification": false
+        }
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "notifications": 1,
+          "killcnt": 1,
+          "foreground_alive": 1
+        },
+        {
+          "round": 2,
+          "notifications": 1,
+          "killcnt": 2,
+          "foreground_alive": 1
+        }
+      ],
+      "recoveries": [
+        {
+          "round": 1,
+          "foreground_heartbeat": 1,
+          "daemon_alive": 1,
+          "killcnt": 1
+        },
+        {
+          "round": 2,
+          "foreground_heartbeat": 1,
+          "daemon_alive": 1,
+          "killcnt": 2
+        }
+      ],
+      "kernel_oom_log": false,
+      "swap_write_errors": 0,
+      "foreground_adj_verified": true,
+      "memtotal_KiB": [
+        2001792
+      ],
+      "swap_KiB": [
+        524284
+      ],
+      "workload_swap_kB": [],
+      "zram_samples": [
+        {
+          "stage": "before",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "after-pressure",
+          "fields_bytes_except_page_counters": [
+            1060864,
+            267234,
+            708608,
+            0,
+            708608,
+            7,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "recovery",
+          "fields_bytes_except_page_counters": [
+            1060864,
+            267234,
+            708608,
+            0,
+            708608,
+            7,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            1060864,
+            267234,
+            708608,
+            0,
+            708608,
+            7,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            1060864,
+            267234,
+            708608,
+            0,
+            708608,
+            7,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            1060864,
+            267234,
+            708608,
+            0,
+            708608,
+            7,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "pressure",
+          "fields_bytes_except_page_counters": [
+            1060864,
+            267234,
+            708608,
+            0,
+            708608,
+            7,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "after-pressure",
+          "fields_bytes_except_page_counters": [
+            12427264,
+            1348035,
+            1814528,
+            0,
+            1814528,
+            26,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "recovery",
+          "fields_bytes_except_page_counters": [
+            12427264,
+            1348035,
+            1814528,
+            0,
+            1814528,
+            26,
+            0,
+            0
+          ]
+        }
+      ],
+      "psi_totals_us": [
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 278065
+        },
+        {
+          "kind": "full",
+          "total": 114838
+        },
+        {
+          "kind": "some",
+          "total": 278065
+        },
+        {
+          "kind": "full",
+          "total": 114838
+        },
+        {
+          "kind": "some",
+          "total": 278065
+        },
+        {
+          "kind": "full",
+          "total": 114838
+        },
+        {
+          "kind": "some",
+          "total": 278065
+        },
+        {
+          "kind": "full",
+          "total": 114838
+        },
+        {
+          "kind": "some",
+          "total": 278065
+        },
+        {
+          "kind": "full",
+          "total": 114838
+        },
+        {
+          "kind": "some",
+          "total": 278065
+        },
+        {
+          "kind": "full",
+          "total": 114838
+        },
+        {
+          "kind": "some",
+          "total": 615338
+        },
+        {
+          "kind": "full",
+          "total": 275425
+        },
+        {
+          "kind": "some",
+          "total": 615338
+        },
+        {
+          "kind": "full",
+          "total": 275425
+        }
+      ],
+      "zram_label": [
+        "u:object_r:swap_block_device:s0"
+      ],
+      "backing_devices": [
+        "none"
+      ],
+      "checks": {
+        "normal_terminal": true,
+        "actual_low_ram_props": true,
+        "psi_start_and_two_real_fds": true,
+        "psi_epoll_registration": true,
+        "enforcing_lmkd_domain": true,
+        "approximately_stock_memory": true,
+        "zram_active": true,
+        "two_daemon_evictions": true,
+        "sigkill_correlates": true,
+        "protected_foreground_recovers_twice": true,
+        "no_kernel_oom_or_swap_write_error": true,
+        "real_pressure": true
+      },
+      "accepted": true
+    },
+    "r22": {
+      "status": {
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 27.929295332000038,
+        "cpu_seconds": 19.834691,
+        "finished": "2026-11-06T22:47:18.433747+00:00"
+      },
+      "serial_sha256": "679335b1b2ecb1a8c6a1288c71c2555c0498bc267cbb822b4e027defa007a25d",
+      "serial_bytes": 94574,
+      "abort": false,
+      "properties": {
+        "ro.config.low_ram": "true",
+        "ro.config.per_app_memcg": "false",
+        "ro.lmk.use_new_strategy": "true",
+        "ro.lmk.use_minfree_levels": "false",
+        "ro.lmk.debug": "true",
+        "ro.lmk.psi_partial_stall_ms": "unset",
+        "ro.lmk.psi_complete_stall_ms": "unset",
+        "ro.lmk.psi_window_size_ms": "unset"
+      },
+      "psi_registered": true,
+      "psi_fd_numbers": [
+        5,
+        6
+      ],
+      "epoll_entries": [
+        {
+          "fd": 23,
+          "events_hex": "19"
+        },
+        {
+          "fd": 6,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 5,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 8,
+          "events_hex": "19"
+        },
+        {
+          "fd": 23,
+          "events_hex": "19"
+        },
+        {
+          "fd": 6,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 5,
+          "events_hex": "1a"
+        }
+      ],
+      "daemon_domain": true,
+      "enforcing": true,
+      "native_adjs": [
+        {
+          "pid": 61,
+          "adj": -1000
+        },
+        {
+          "pid": 62,
+          "adj": -900
+        },
+        {
+          "pid": 63,
+          "adj": -899
+        },
+        {
+          "pid": 64,
+          "adj": -898
+        },
+        {
+          "pid": 65,
+          "adj": -897
+        },
+        {
+          "pid": 66,
+          "adj": -896
+        },
+        {
+          "pid": 67,
+          "adj": -895
+        }
+      ],
+      "notifications": [
+        {
+          "pid": 65,
+          "uid": 10004
+        }
+      ],
+      "child_final": [
+        {
+          "pid": 62,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 63,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 64,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 65,
+          "wait_status": 9,
+          "daemon_notification": true
+        },
+        {
+          "pid": 66,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 67,
+          "wait_status": 15,
+          "daemon_notification": false
+        },
+        {
+          "pid": 61,
+          "wait_status": 15,
+          "daemon_notification": false
+        }
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "notifications": 1,
+          "killcnt": 1,
+          "foreground_alive": 1
+        }
+      ],
+      "recoveries": [
+        {
+          "round": 1,
+          "foreground_heartbeat": 1,
+          "daemon_alive": 1,
+          "killcnt": 1
+        }
+      ],
+      "kernel_oom_log": false,
+      "swap_write_errors": 0,
+      "foreground_adj_verified": true,
+      "memtotal_KiB": [
+        2001792
+      ],
+      "swap_KiB": [
+        524284
+      ],
+      "workload_swap_kB": [
+        153412
+      ],
+      "zram_samples": [
+        {
+          "stage": "before",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "warmup-pressure",
+          "fields_bytes_except_page_counters": [
+            229601280,
+            9408865,
+            10330112,
+            0,
+            10330112,
+            27,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "after-pressure",
+          "fields_bytes_except_page_counters": [
+            206979072,
+            8567727,
+            9478144,
+            0,
+            10436608,
+            27,
+            0,
+            0
+          ]
+        },
+        {
+          "stage": "recovery",
+          "fields_bytes_except_page_counters": [
+            71667712,
+            3537660,
+            4128768,
+            0,
+            10436608,
+            27,
+            0,
+            0
+          ]
+        }
+      ],
+      "psi_totals_us": [
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        },
+        {
+          "kind": "some",
+          "total": 5615273
+        },
+        {
+          "kind": "full",
+          "total": 2691550
+        },
+        {
+          "kind": "some",
+          "total": 5746198
+        },
+        {
+          "kind": "full",
+          "total": 2732379
+        },
+        {
+          "kind": "some",
+          "total": 5747574
+        },
+        {
+          "kind": "full",
+          "total": 2732379
+        }
+      ],
+      "zram_label": [
+        "u:object_r:swap_block_device:s0"
+      ],
+      "backing_devices": [
+        "none"
+      ]
+    },
+    "r23": {
+      "status": {
+        "returncode": 0,
+        "timeout": false,
+        "seconds": 184.71294997100267,
+        "cpu_seconds": 180.89021300000002,
+        "finished": "2026-11-06T22:50:24.628900+00:00"
+      },
+      "serial_sha256": "b3be7c62003cde3d7f30b1950cf57dd7444490167c96477b27702e96d628a0f9",
+      "serial_bytes": 1303187,
+      "abort": true,
+      "properties": {
+        "ro.config.low_ram": "true",
+        "ro.config.per_app_memcg": "false",
+        "ro.lmk.use_new_strategy": "true",
+        "ro.lmk.use_minfree_levels": "false",
+        "ro.lmk.debug": "true",
+        "ro.lmk.psi_partial_stall_ms": "unset",
+        "ro.lmk.psi_complete_stall_ms": "unset",
+        "ro.lmk.psi_window_size_ms": "unset"
+      },
+      "psi_registered": true,
+      "psi_fd_numbers": [
+        5,
+        6
+      ],
+      "epoll_entries": [
+        {
+          "fd": 23,
+          "events_hex": "19"
+        },
+        {
+          "fd": 5,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 6,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 8,
+          "events_hex": "19"
+        },
+        {
+          "fd": 23,
+          "events_hex": "19"
+        },
+        {
+          "fd": 5,
+          "events_hex": "1a"
+        },
+        {
+          "fd": 6,
+          "events_hex": "1a"
+        }
+      ],
+      "daemon_domain": true,
+      "enforcing": true,
+      "native_adjs": [
+        {
+          "pid": 61,
+          "adj": -1000
+        },
+        {
+          "pid": 62,
+          "adj": -900
+        },
+        {
+          "pid": 63,
+          "adj": -899
+        },
+        {
+          "pid": 64,
+          "adj": -898
+        },
+        {
+          "pid": 65,
+          "adj": -897
+        },
+        {
+          "pid": 66,
+          "adj": -896
+        },
+        {
+          "pid": 67,
+          "adj": -895
+        }
+      ],
+      "notifications": [],
+      "child_final": [],
+      "rounds": [],
+      "recoveries": [],
+      "kernel_oom_log": false,
+      "swap_write_errors": 17613,
+      "foreground_adj_verified": true,
+      "memtotal_KiB": [
+        2001792
+      ],
+      "swap_KiB": [
+        524284
+      ],
+      "workload_swap_kB": [],
+      "zram_samples": [
+        {
+          "stage": "before",
+          "fields_bytes_except_page_counters": [
+            4096,
+            65,
+            4096,
+            0,
+            4096,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "psi_totals_us": [
+        {
+          "kind": "some",
+          "total": 0
+        },
+        {
+          "kind": "full",
+          "total": 0
+        }
+      ],
+      "zram_label": [
+        "u:object_r:swap_block_device:s0"
+      ],
+      "backing_devices": [
+        "none"
+      ]
+    }
+  },
+  "parser_revision": "r2: distinguish the two EPOLLPRI monitor fds from the additional read-only PSI statistics fd; r1 false rejection preserved",
+  "limits": [
+    "No full framework/GMS/hardware usability acceptance",
+    "Compiled policy unchanged, but fixture uses diagnostic su-domain harness and a one-line vendor file-context candidate",
+    "Auxiliary protected incompressible overload r23 aborted after swap-write failures; QEMU exit 0 does not mean pass",
+    "r11/r12 used defaults because prop.default was not consumed; superseded by r20/r21",
+    "r13/r14 ineffective config negatives superseded by r17/r18",
+    "r21 runtime succeeded; post-run text display raised UnicodeDecodeError; raw evidence retained"
+  ]
+}

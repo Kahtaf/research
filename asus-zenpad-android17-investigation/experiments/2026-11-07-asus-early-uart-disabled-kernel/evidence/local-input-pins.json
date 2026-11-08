@@ -1,0 +1,26 @@
+{
+  "2026-11-07-asus-usb-retained-log-kernel-build/source/package_probe.py": {
+    "bytes": 7082,
+    "sha256": "38ed98b493bf45119e992249f145bba964d3da29fc110585befaf7846c88a133"
+  },
+  "2026-11-07-asus-usb-retained-log-kernel-build/source/install.py": {
+    "bytes": 9147,
+    "sha256": "381804f92747cccc50e4e4f1d24bd602e5764890a2bedf673b26e232b51408c6"
+  },
+  "2026-11-07-asus-usb-retained-log-kernel-build/source/bootformat.py": {
+    "bytes": 3936,
+    "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017"
+  },
+  "2026-11-07-asus-usb-retained-log-kernel-build/source/fdt.py": {
+    "bytes": 3024,
+    "sha256": "1bd710a08eae5677689a52042a621f39dcd57e49197749cf2833eead1fc0dcae"
+  },
+  "2026-11-07-asus-usb-retained-log-kernel-build/artifacts/candidate.img": {
+    "bytes": 8044544,
+    "sha256": "4eab0d05c2bd05d3ced4d47471867a401babd56c96a3ff989c70b555edd9b3e6"
+  },
+  "2026-11-07-asus-usb-retained-log-kernel-build/scripts/plan_only.py": {
+    "bytes": 2456,
+    "sha256": "d994c605080faed3caaa698c193d528c83d1ed8dc6c7af90f45656e4b7e519b1"
+  }
+}

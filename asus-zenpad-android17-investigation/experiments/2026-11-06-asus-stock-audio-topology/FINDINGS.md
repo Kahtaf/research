@@ -1,0 +1,10 @@
+# Actual stock audio observations
+
+Normal stock Android, exact fingerprint guarded, reports card0 `mt-snd-card` with ALSA ID `mtsndcard`. PCM0 is playback-only `MultiMedia1_PLayback mt-soc-codec-tx-dai-0`; PCM1 is capture-only `MultiMedia1_Capture mt-soc-codec-rx-dai-1`. These match the staged HAL source candidates and remove uncertainty about stock numeric card/device selection. They do not prove future Linux4.9 enumeration.
+
+The ordinary shell cannot list `/dev/snd`. Platform driver inventory is partial: ls exited1 with some unrelated denied entries, so its filtered names are observations, not a complete absence proof. Do not infer that the external amplifier is absent from that list.
+
+The actual amp/power topology remains unresolved: stock options choose int_spk_amp and OEM CONFIG_MTK_SPEAKER makes the external pulse path inert, while the combined kernel additionally selects AW8737S. No experimental switch or GPIO action was taken. Main microphone mode/source/preamp/ADC and acoustic channel identity remain unqualified. Raw vendor calibration values are not required for the next mixer-name/type/enum observation.
+
+Next: a narrowly reviewed metadata-only mixer reader if ordinary tools are unavailable, then supervised normal stock playback/record route observations and separate source reconciliation. Never qualify a route by toggling arbitrary controls. The rejected PCM independent review is separate; its patch remains unaccepted and outside the product.
+\nActual fixed single-control queries through the existing on-demand root helper succeeded: MIC1 ACCMODE, source1 ADC1, preamp1 OPEN, ADC1 Off, speaker CLASSAB, internal and external speaker switches Off. The helper staged its existing root executable and verified Enforcing restoration. These are idle cached states, not evidence of active microphone wiring, amplifier identity, sound, or future4.9 behavior. No route/PCM/GPIO/mixer change was requested.\n

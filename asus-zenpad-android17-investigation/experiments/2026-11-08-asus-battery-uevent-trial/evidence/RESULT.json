@@ -1,0 +1,66 @@
+{
+  "status": "OMISSION_AND_WORKER_RETURN_OBSERVED_NO_RAM_PROGRESS_STOP_BRANCH",
+  "candidate_p10_sha256": "d78e6ddd7f4a555201515df3aef6d8d7f15203c20e3b8d201ea7eb2f4c5df081",
+  "normal_android_return_proven": true,
+  "new_stock_boot": "d7b79f08-88e7-4c89-a262-329031588db8",
+  "one_recovery_dispatch": true,
+  "fresh_mode": [
+    "ASUS49-MODE run=493581ca-5125-4f85-9f15-c0fe2ea6a1c7 profile=battery-uevent-omit-v1 format=1 poll_budget=16777216 pid1_write_budget=768 hot=disabled ordinary_printk=filtered delay=original-virtual"
+  ],
+  "console": {
+    "bytes": 19425,
+    "sha256": "664bf74ab0bf3dabe97e47bd79c649f6d52440a2a3613fa592342eda959a6314"
+  },
+  "calibration": {
+    "initial_clock_begin": "TRIPLE_OBSERVED",
+    "initial_clock": "TRIPLE_OBSERVED",
+    "normal_policy": "TRIPLE_OBSERVED_POLICY0_PRIORITY0",
+    "frozen_control": "TRIPLE_OBSERVED_REUSED_HELPER_CONTROL"
+  },
+  "paired_writes": 100,
+  "last_boundary": {
+    "seq": 100,
+    "input_length": 176,
+    "WENT": true,
+    "LOG": true,
+    "WRET": true,
+    "rc": 176,
+    "later_PID1_write_entry": null,
+    "signal_handler": "MAIN_FLOW_LOG",
+    "span": "WRET_REACHED_BEFORE_C_RETURN",
+    "helper_LOG": "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=actual op=sched.original path=pid0 rc=0 errno=0 value=getparam_rc=0 getparam_errno=0 priority=0"
+  },
+  "uevent_omission_observed": [
+    {
+      "line": 225,
+      "first_scoped_omission": 2,
+      "before_call": 1,
+      "after_return": 2,
+      "omissions_in_interval": 1,
+      "same_task": true,
+      "actual_kobject_call_returned": true,
+      "kobject_uevent_rc": 0,
+      "battery_property_getters_omitted": true
+    }
+  ],
+  "last_pid1_WRET_line": 224,
+  "omission_after_last_pid1_WRET": true,
+  "execution_facts": {
+    "compute_completion": [],
+    "afterIRQ": [],
+    "alarm_handler_count": 0,
+    "finish": [],
+    "limit": "Fast 2M completion is not 30-second stability. Alarm can remain unfired before normal finish. WRET remains pre-C-return; absence exonerates neither execution nor reporting. Positive skip plus compute/afterIRQ supports workload dependence, not a unique mechanism; a negative with skip weakens this trigger only."
+  },
+  "parser_status": "UNKNOWN_STOP",
+  "parser_errors": [
+    "fresh exact entry must be first console line"
+  ],
+  "interpretation": "Omission in armed same-task worker call and kobject rc0 observed; no normalcompute/afterIRQ progress. Weakens this specific uevent property path as sole trigger; other compiledAUXADC readers remain. End this branch; no automaticnextvariant.",
+  "limits": [
+    "Originalstockproc framing/refusal/raw preserved; noformal decoderintegritypassclaimed.",
+    "WRET beforeCreturn; missingnextPID1 recordnotpermanenthang proof.",
+    "Singleexposure supportsboundednegative only; nohardwaretimer/PMICexoneration.",
+    "NormalAndroidreturned; BOOT/SYSTEM/DATA unchanged."
+  ]
+}

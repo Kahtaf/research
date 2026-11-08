@@ -1,0 +1,32 @@
+{
+  "started_utc": "2026-11-07T03:56:12.061433+00:00",
+  "wall_limit_seconds": 45,
+  "raw_before": {
+    "path": "/srv/android/asus-root-enabled-incremental-r1/host-r2/validation/system-partition.raw",
+    "dev": 2049,
+    "inode": 27265511,
+    "bytes": 3753902080,
+    "mtime_ns": 1794021699662444618,
+    "ctime_ns": 1794021854546051800,
+    "mode": "0o444"
+  },
+  "cpu_affinity": [
+    0
+  ],
+  "phase": "patch",
+  "returncode": 0,
+  "timeout": false,
+  "finished_utc": "2026-11-07T03:56:13.590174+00:00",
+  "raw_after": {
+    "path": "/srv/android/asus-root-enabled-incremental-r1/host-r2/validation/system-partition.raw",
+    "dev": 2049,
+    "inode": 27265511,
+    "bytes": 3753902080,
+    "mtime_ns": 1794021699662444618,
+    "ctime_ns": 1794021854546051800,
+    "mode": "0o444"
+  },
+  "raw_identity_unchanged": true,
+  "owned_allocated_bytes": 485007360,
+  "owned_logical_bytes": 1516863317
+}

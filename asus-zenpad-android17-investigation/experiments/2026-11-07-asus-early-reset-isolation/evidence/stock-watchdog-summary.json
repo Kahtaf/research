@@ -1,0 +1,344 @@
+{
+  "aee_wdt_zap_locks": {
+    "address": "0xffffffc0000ec8f4",
+    "image_offset": 444660,
+    "bytes": 76,
+    "sha256": "a1cfc0f8049b2005dbb79d455d44516b2ae3ea867a63157fcdd00d249393757d"
+  },
+  "aee_wdt_logbuf_lock": {
+    "address": "0xffffffc0000ec940",
+    "image_offset": 444736,
+    "bytes": 44,
+    "sha256": "78258ee813f8c28558665062063cc9f929e2f7da5bc07600d5f51d6fd3891dd0"
+  },
+  "get_boot_reason": {
+    "address": "0xffffffc0004cd3f4",
+    "image_offset": 4510708,
+    "bytes": 156,
+    "sha256": "76185c8937d004463b247a04b15a485c100e94c7028285c845d74810ab06d41e"
+  },
+  "aee_rr_show_wdt_status": {
+    "address": "0xffffffc000695304",
+    "image_offset": 6378244,
+    "bytes": 100,
+    "sha256": "0d9c94c7d3f31d5a77b71cd90e486bd8427d60d21937660874c2fe001fc324b9"
+  },
+  "aee_wdt_dump_info": {
+    "address": "0xffffffc0006afd94",
+    "image_offset": 6487444,
+    "bytes": 688,
+    "sha256": "ac0b7467f286876b67a8b9e86a45974f96eebca5ba9fd346dd536336970a9044"
+  },
+  "aee_wdt_percpu_printf": {
+    "address": "0xffffffc0006b0044",
+    "image_offset": 6488132,
+    "bytes": 168,
+    "sha256": "28edc2749f907a73e4d9df2d8f75713a1553e3f7225ecbcfdf2ad24a8e4d6f62"
+  },
+  "aee_wdt_dump_stack_bin": {
+    "address": "0xffffffc0006b00ec",
+    "image_offset": 6488300,
+    "bytes": 540,
+    "sha256": "63fadde5133cc733b176423970f6665cb4b56a089ff31c4f37265052cb346b4a"
+  },
+  "aee_wdt_printf": {
+    "address": "0xffffffc0006b0308",
+    "image_offset": 6488840,
+    "bytes": 164,
+    "sha256": "20ba8273d977cacb7076db6734135fc31521e15dbd68f103f6aed03330fe59df"
+  },
+  "aee_wdt_irq_info": {
+    "address": "0xffffffc0006b03ac",
+    "image_offset": 6489004,
+    "bytes": 60,
+    "sha256": "f42cd88b6b45aa11835849b3eec095febf3e57b0be8e74c8567ee2c5f114052f"
+  },
+  "aee_wdt_atf_info": {
+    "address": "0xffffffc0006b03e8",
+    "image_offset": 6489064,
+    "bytes": 1852,
+    "sha256": "194fc337bc5ddf81ad13882de13f8ada7affa27fae942b208a9a2a3f017e5d59"
+  },
+  "aee_wdt_atf_entry": {
+    "address": "0xffffffc0006b0b24",
+    "image_offset": 6490916,
+    "bytes": 216,
+    "sha256": "d490a1d4cd125cbfe1625cb46a3b97bde97c8ae87f56a18b8240ab0b39b21a5f"
+  },
+  "wdt_atf_hang": {
+    "address": "0xffffffc0006b3f0c",
+    "image_offset": 6504204,
+    "bytes": 56,
+    "sha256": "0916755c6980552880b5515846f01531616d7598aa429c08ee1c84ac464fc792"
+  },
+  "proc_generate_wdt_read": {
+    "address": "0xffffffc0006b3f44",
+    "image_offset": 6504260,
+    "bytes": 16,
+    "sha256": "32c7630a829beee2549c9f1777ff59f8b12d7e93131854fd49a7f2c99696c99b"
+  },
+  "kwdt_thread_test": {
+    "address": "0xffffffc0006b3fcc",
+    "image_offset": 6504396,
+    "bytes": 516,
+    "sha256": "8e4d781ae90b5328faf69e7522c1ac16967cc1c4dd59df84fab958d24c20defd"
+  },
+  "proc_generate_wdt_write": {
+    "address": "0xffffffc0006b4bc4",
+    "image_offset": 6507460,
+    "bytes": 692,
+    "sha256": "28503ec5cb3160f52ec2f208f5b552fe17ad74943ea7653a402360a0ab28fbcf"
+  },
+  "aee_kernel_wdt_kick_Powkey_api": {
+    "address": "0xffffffc0006b55dc",
+    "image_offset": 6510044,
+    "bytes": 72,
+    "sha256": "7e21743d55a6f685a0ea719d5ccabd3350ebfbb7ee4a914dd247200287823784"
+  },
+  "aee_kernel_wdt_kick_api": {
+    "address": "0xffffffc0006b5910",
+    "image_offset": 6510864,
+    "bytes": 228,
+    "sha256": "c8d9c5950e3c762a1a84ebc9f5848823e4394b097c236823b9b48100960fa34a"
+  },
+  "ipanic_kick_wdt": {
+    "address": "0xffffffc0006b669c",
+    "image_offset": 6514332,
+    "bytes": 48,
+    "sha256": "abb10b78a7fff0090a892c44375025f0392b3ad17527ed56e6f01e7b64627b8a"
+  },
+  "md32_wdt_handler": {
+    "address": "0xffffffc0006c2f84",
+    "image_offset": 6565764,
+    "bytes": 32,
+    "sha256": "3010ef0abb7b529c21f6833a2b51cbb2d16a0f9f67ab0f03291b2637828c61bf"
+  },
+  "mtk_rgu_pause_wdt_show": {
+    "address": "0xffffffc0007fede0",
+    "image_offset": 7859680,
+    "bytes": 8,
+    "sha256": "d3c844a0173107453aa9896cdb7276470625501e7ff067cd764c7a160ece5ca3"
+  },
+  "mtk_rgu_pause_wdt_store": {
+    "address": "0xffffffc0007fefb0",
+    "image_offset": 7860144,
+    "bytes": 100,
+    "sha256": "d2a4e476a59e2a0baf40a6fbdbf7a7ffb5b203c3f3c8e1db3a74228900c7f2ee"
+  },
+  "mtk_wdt_cpu_callback": {
+    "address": "0xffffffc0007ff2a0",
+    "image_offset": 7860896,
+    "bytes": 4,
+    "sha256": "110f46b5b35c069160560c6ad6786f647dd44e8760a52a46fc22dbbcd7630b91"
+  },
+  "wk_start_kick_cpu": {
+    "address": "0xffffffc0007ff2a4",
+    "image_offset": 7860900,
+    "bytes": 68,
+    "sha256": "abb5019b85681625a81f75b9a53c368931d71876cf1e202385fef6d2f6f0a1b2"
+  },
+  "kwdt_print_utc": {
+    "address": "0xffffffc0007ff6ec",
+    "image_offset": 7861996,
+    "bytes": 84,
+    "sha256": "05ed9066fc2aee5a84dfb09f76bd3139a46941cb0d53e67c3350064c1921fc4b"
+  },
+  "kwdt_thread": {
+    "address": "0xffffffc0007ff740",
+    "image_offset": 7862080,
+    "bytes": 588,
+    "sha256": "633cdf2d76e8d162f0e9470840cc3694f59fb3f8205c07c84c011be532b6a22a"
+  },
+  "mtk_wk_wdt_config": {
+    "address": "0xffffffc0007ffd00",
+    "image_offset": 7863552,
+    "bytes": 64,
+    "sha256": "212892603c03c243118246ae54e83958bf4063e797f48b5277969b940b1dfd48"
+  },
+  "spmwdt_mode_config": {
+    "address": "0xffffffc0007fffd8",
+    "image_offset": 7864280,
+    "bytes": 136,
+    "sha256": "890bc9fe9dea96849f6f92dfc772d5ea862a0e5df7d52a898fec3f453267c1a4"
+  },
+  "wd_api_init": {
+    "address": "0xffffffc0008000e4",
+    "image_offset": 7864548,
+    "bytes": 52,
+    "sha256": "078bd4739c6c6ce62eb54cd37f9e02d61e6b5940d7343183adb9e22d3af9c45f"
+  },
+  "get_wd_api": {
+    "address": "0xffffffc000800118",
+    "image_offset": 7864600,
+    "bytes": 32,
+    "sha256": "34ee455e7ce6d88c8f5630292a0286c79d926df75ad74465d63b514995e3c594"
+  },
+  "arch_reset": {
+    "address": "0xffffffc000800138",
+    "image_offset": 7864632,
+    "bytes": 296,
+    "sha256": "13b00f050f995bddc6c482d85dca1412c855c895f109a6306b37585e1cba0e64"
+  },
+  "mtk_arch_reset_handle": {
+    "address": "0xffffffc000800260",
+    "image_offset": 7864928,
+    "bytes": 72,
+    "sha256": "44b06511b3dc45d6198eabfec0d2abbc2dc03c2f6d8f576f1f957ff4aa189931"
+  },
+  "mtk_wdt_remove": {
+    "address": "0xffffffc0008002a8",
+    "image_offset": 7865000,
+    "bytes": 36,
+    "sha256": "c59aa74d1dda98cfa034047cd779d13bee1b9d3d4b99166a18f0c29b47c1592a"
+  },
+  "mtk_wdt_isr": {
+    "address": "0xffffffc0008002cc",
+    "image_offset": 7865036,
+    "bytes": 196,
+    "sha256": "38d1522841e4bddb8b22200b605a766ad101f586e6f7a43953175e2b4fda993b"
+  },
+  "mtk_wdt_shutdown": {
+    "address": "0xffffffc0008004bc",
+    "image_offset": 7865532,
+    "bytes": 72,
+    "sha256": "e8e4eb53fee72e1f84570b9181b23562926ab51dd1f5b911daa0fcd2d6e7064b"
+  },
+  "mtk_wdt_set_time_out_value": {
+    "address": "0xffffffc000800504",
+    "image_offset": 7865604,
+    "bytes": 96,
+    "sha256": "e2616ea474ac642ef94ab54e7fa2e21818ee7adea94bfbcea0170b27a03fc900"
+  },
+  "mtk_wdt_mode_config": {
+    "address": "0xffffffc000800564",
+    "image_offset": 7865700,
+    "bytes": 212,
+    "sha256": "7ca31b4aa12cd50572c3d298ec86f76db18beee090ed52c644a8bc086f6fa0a5"
+  },
+  "mtk_wdt_probe": {
+    "address": "0xffffffc000800638",
+    "image_offset": 7865912,
+    "bytes": 540,
+    "sha256": "6c0407b5752d91c59b2d11943682fc09632d69765b1f64d24f4976dbc52445d5"
+  },
+  "mtk_wdt_enable": {
+    "address": "0xffffffc000800854",
+    "image_offset": 7866452,
+    "bytes": 148,
+    "sha256": "cdc9ebb262a74e3753e4d69c6a6ff90ad03b0a515f84ee025fedf14a374c587b"
+  },
+  "mtk_wdt_confirm_hwreboot": {
+    "address": "0xffffffc0008008e8",
+    "image_offset": 7866600,
+    "bytes": 44,
+    "sha256": "17a5a9ef297800c1e93d7fdaad245b2e4596480f1ba529de9729863c7d3b1c29"
+  },
+  "mtk_wdt_restart": {
+    "address": "0xffffffc000800914",
+    "image_offset": 7866644,
+    "bytes": 124,
+    "sha256": "cadad3a6eae7e70892a8ed2ea8b8d55a45deedce9090d5e3037dbdc5385f3dff"
+  },
+  "wdt_dump_reg": {
+    "address": "0xffffffc000800990",
+    "image_offset": 7866768,
+    "bytes": 312,
+    "sha256": "0648df1edf6b5e959072f2ba366ee3cc64d0073082f7f1e39e3cb804502cbe10"
+  },
+  "wdt_arch_reset": {
+    "address": "0xffffffc000800ac8",
+    "image_offset": 7867080,
+    "bytes": 308,
+    "sha256": "896c1c9a752d2b1ecc581abe78210ae5fa04d3a7e445394008827714ccfb2d6c"
+  },
+  "mtk_wdt_swsysret_config": {
+    "address": "0xffffffc000800c10",
+    "image_offset": 7867408,
+    "bytes": 216,
+    "sha256": "c4ca8b1fe5c3fcb2b75e438cf44db0bfc1066b1e95369e0ce47d42402e738f8e"
+  },
+  "mtk_wdt_request_en_set": {
+    "address": "0xffffffc000800ce8",
+    "image_offset": 7867624,
+    "bytes": 260,
+    "sha256": "84f7f94c00a5eb75c2a8903532a1ec47f971d2f025e932e977f83a0d7582b6d2"
+  },
+  "mtk_wdt_request_mode_set": {
+    "address": "0xffffffc000800dec",
+    "image_offset": 7867884,
+    "bytes": 260,
+    "sha256": "17a752eab1363d2cbf46a3855a930a5e653b2fc100fd87aa95454ef76bdba24a"
+  },
+  "proc_generate_wdt_fops": {
+    "address": "0xffffffc000b7d7c8",
+    "image_offset": 11524040,
+    "bytes": 232,
+    "sha256": "847b92a8bbe5ce2b1ec71e56c58b3b354163957a49dbfedfb405ef8e1ba4681f"
+  },
+  "aed_wdt_RT_Monitor_fops": {
+    "address": "0xffffffc000b7dd78",
+    "image_offset": 11525496,
+    "bytes": 248,
+    "sha256": "599dac028826217fd61c8d973466e381165aa7024b5f0457ec2750a9f4b9951e"
+  },
+  "__ksymtab_aee_kernel_wdt_kick_Powkey_api": {
+    "address": "0xffffffc000ec6640",
+    "image_offset": 14968384,
+    "bytes": 16,
+    "sha256": "209e7c1eae16db8b17552f0f78726c4ea20180be5ac1c75ab746fc059197ba2c"
+  },
+  "__ksymtab_aee_kernel_wdt_kick_api": {
+    "address": "0xffffffc000ec6650",
+    "image_offset": 14968400,
+    "bytes": 16,
+    "sha256": "994b6b44af77ff0483ab3cf8e57815397d9e3263fd95dadaba2c71bd41fae53a"
+  },
+  "__kstrtab_aee_kernel_wdt_kick_api": {
+    "address": "0xffffffc000ef6e4e",
+    "image_offset": 15167054,
+    "bytes": 24,
+    "sha256": "e313e763b86491a8ee63cb29d6e800c08c5b657e797e00bfa2c90898f34da622"
+  },
+  "__kstrtab_aee_kernel_wdt_kick_Powkey_api": {
+    "address": "0xffffffc000ef6e80",
+    "image_offset": 15167104,
+    "bytes": 31,
+    "sha256": "7e7b1876673be0cf193cecd000d0e842e5ed751cdcd36fbd7c568f0757ae9378"
+  },
+  "boot_reason_init": {
+    "address": "0xffffffc000f3fa78",
+    "image_offset": 15465080,
+    "bytes": 28,
+    "sha256": "57d534e530a9c7c6c2fd6ea5ff6ef1cd7acd1dbc7fa250e461de9f9f6d77be18"
+  },
+  "dt_get_boot_reason": {
+    "address": "0xffffffc000f3fa94",
+    "image_offset": 15465108,
+    "bytes": 208,
+    "sha256": "0cbb08f2bc9419010b4d9471805c1db2e4af511b3c5408bc9496ab89a4a23fa2"
+  },
+  "aee_wdt_init": {
+    "address": "0xffffffc000f426b0",
+    "image_offset": 15476400,
+    "bytes": 388,
+    "sha256": "a0d13ec5d32be935f523ba5a54449d26807f59393cc471d8565e882ecca20a55"
+  },
+  "mtk_arch_reset_init": {
+    "address": "0xffffffc000f4884c",
+    "image_offset": 15501388,
+    "bytes": 116,
+    "sha256": "c9a22b3ecaa6099b06ea67fc453454a00e418e14f28936aad3ef389393541841"
+  },
+  "mtk_wdt_get_base_addr": {
+    "address": "0xffffffc000f488c0",
+    "image_offset": 15501504,
+    "bytes": 124,
+    "sha256": "092486268d334c6a8e065cc4af15f7bbc7d0ba23c5025450b90a38d62daa8fd7"
+  },
+  "mtk_wdt_driver_init": {
+    "address": "0xffffffc000f4893c",
+    "image_offset": 15501628,
+    "bytes": 32,
+    "sha256": "7a35c07ff6bdc23fa01351dac5cd2c12ae8fbfda0ec5fbb603cf5475983d5bba"
+  }
+}

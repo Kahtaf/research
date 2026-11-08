@@ -1,0 +1,24 @@
+{
+  "built_on": "PROJECT_REDACTED/us-central1-a/PROJECT_REDACTED",
+  "case_sensitive_source": true,
+  "stock_boot_partition_bytes": 16740352,
+  "is_android17_rom": false,
+  "flash_ready": false,
+  "artifacts": [
+    {
+      "path": "artifacts/linux-hardware/ASUS-P00A-HARDWARE-ONLY-UNTESTED.Image.gz-dtb",
+      "bytes": 7200108,
+      "sha256": "b66d2c249c13c57c1ff84699b3e3c73905ad507b4e1d7c12b5b04e9296929fcc"
+    },
+    {
+      "path": "artifacts/linux-hardware/asus-p00a.dtb",
+      "bytes": 63429,
+      "sha256": "577a1ca5fbfe646ca02a50c190ac60efab0edd73c77c904a33865859e2d87bfc"
+    },
+    {
+      "path": "artifacts/linux-hardware/kernel.config",
+      "bytes": 125992,
+      "sha256": "d2404901b5306e3c639ea31b4b03506345ee16de33be1bfd4087085d78f7c18e"
+    }
+  ]
+}

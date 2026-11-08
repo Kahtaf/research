@@ -1,0 +1,9 @@
+<manifest version="1.0" type="device">
+    <!-- Merge ONLY after a real ELF32 vendor transport dependency closure. -->
+    <hal format="hidl">
+        <name>android.hardware.bluetooth</name>
+        <transport>hwbinder</transport>
+        <version>1.1</version>
+        <interface><name>IBluetoothHci</name><instance>default</instance></interface>
+    </hal>
+</manifest>

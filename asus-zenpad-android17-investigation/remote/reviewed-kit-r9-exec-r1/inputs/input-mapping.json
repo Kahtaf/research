@@ -1,0 +1,12 @@
+{
+  "files": {
+    "input/Goodix_Capacitive_TouchScreen.idc": "ff9c53351559ea415c5bbb2aafd3472bbedd6f264646903d20189e41da2d8a55",
+    "input/mtk-kpd.kl": "a940764c7807d582cb04cadeb3140566d6472353cf27a31a52a2e7aefcb0a942",
+    "input/input-mapping.mk": "6ec0030412932f6dcef9795aa9d708425661ff2368282b6b4536e03f743c1a75"
+  },
+  "device_mk_before_sha256": "018b4bf7928fda40dd0503281494dd635ec4dfd9d2267967165cfd31727dfc87",
+  "device_mk_after_sha256": "ca2993e8303061d8d29656470cab29146287b1c5c6c6257dd7715a42b09e19b7",
+  "suffix": "\n$(call inherit-product, device/asus/p00a/input/input-mapping.mk)\n",
+  "base_staged_sha256": "b6dd5e14c88eb19ece0187ac586ecea8186c45a238c5fbc21a94ef97f4426bca",
+  "public_input_handoff_sha256": "591f5207117513011c3d616698443367e2fc0187e1a8f4722e34bfb230f3f2b6"
+}

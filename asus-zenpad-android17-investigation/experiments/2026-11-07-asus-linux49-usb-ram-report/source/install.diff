@@ -1,0 +1,24 @@
+--- silent-single-cpu/source/install.py
++++ source/install.py
+@@ -13,9 +13,9 @@
+ a,b=w.a,w.b
+ require=b.require
+ IMAGE=ROOT/'artifacts/candidate.img'
+-IMAGE_SHA='827d338c1733665c5adb40daa4a20505ec9ca7e2e586decd6069e2299bf4e062'
+-FULL_SHA='ad32e78548ec22d03685839858bcbccd163465125d4fe7c6b68f86dd19f65982'
+-INSTALL_PREIMAGES=(*a.INSTALL_PREIMAGES,a.FULL_SHA,'78005304291706fe2ad2affa185467c89464dc2f3216f97d572a29a1e058afa9','7161898f7858c5eb2887a4589fce5a62d4b2d556e1413e36e4e53c3cd8431b09','4b564d404bc13b20ba44790733a37010fe0677bfced235de2b334c3bff08fa19','631cebb6df7be4b08edb713c976799ac60b4552e2caa3d4f1ea15b11a37610b9')
++IMAGE_SHA='6b8c2d1c41685c7592a4aa42cd809e070e8033c0226febb9137285ef4e379f5d'
++FULL_SHA='fbd4a68ea1d1794db939ec8a9c154b419ecfdd99924e2ca251411525649c3401'
++INSTALL_PREIMAGES=(*a.INSTALL_PREIMAGES,a.FULL_SHA,'78005304291706fe2ad2affa185467c89464dc2f3216f97d572a29a1e058afa9','7161898f7858c5eb2887a4589fce5a62d4b2d556e1413e36e4e53c3cd8431b09','4b564d404bc13b20ba44790733a37010fe0677bfced235de2b334c3bff08fa19','631cebb6df7be4b08edb713c976799ac60b4552e2caa3d4f1ea15b11a37610b9','ad32e78548ec22d03685839858bcbccd163465125d4fe7c6b68f86dd19f65982')
+ SELF=Path(__file__)
+ SELF_SHA=sha(SELF.read_bytes())
+ LEGACY_PINS={p:sha(p.read_bytes()) for p in (ROOT/'source/adb',ROOT/'source/legacy_adb.py')}
+@@ -56,7 +56,7 @@
+  a.check_sources()
+  stock,_=b.local_inputs()
+  image=a.read(IMAGE)
+- require(len(image)==8044544 and sha(image)==IMAGE_SHA,'Exact SD candidate required')
++ require(len(image)==7976960 and sha(image)==IMAGE_SHA,'Exact SD candidate required')
+  full=image+bytes(b.SIZE-len(image))
+  require(sha(full)==FULL_SHA,'Full padded recovery hash mismatch')
+  p,s=b.unpack_image(image),b.unpack_image(stock)

@@ -1,0 +1,54 @@
+{
+  "supplied_38": {
+    "tests": 38,
+    "failures": 0,
+    "errors": 0
+  },
+  "prior_regressions": {
+    "tests": 12,
+    "failures": 0,
+    "errors": 0
+  },
+  "independent_checks": {
+    "tests": 15,
+    "failures": 0,
+    "errors": 0
+  },
+  "source_sha256": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8",
+  "baseline_32_methods_identical": true,
+  "children_launched": 188,
+  "children_reaped": 188,
+  "elapsed_seconds": 18.52730104100192,
+  "actual_ADB_or_device_or_network": false,
+  "parallel_workers": 0,
+  "peak_parent_rss_bytes": 699351040,
+  "peak_child_rss_bytes": 26722304,
+  "conservative_parent_plus_two_children_peak_bytes": 752795648,
+  "limits": {
+    "RLIMIT_CPU": [
+      60,
+      60
+    ],
+    "RLIMIT_AS": [
+      9223372036854775807,
+      9223372036854775807
+    ],
+    "RLIMIT_DATA": [
+      9223372036854775807,
+      9223372036854775807
+    ],
+    "RLIMIT_RSS": [
+      9223372036854775807,
+      9223372036854775807
+    ]
+  },
+  "rejected_limit_settings": {
+    "RLIMIT_AS": "ValueError",
+    "RLIMIT_DATA": "ValueError",
+    "RLIMIT_RSS": "ValueError"
+  },
+  "cpu_seconds_parent": 11.510275,
+  "cpu_seconds_children": 4.920448,
+  "selected_inputs_unchanged": 30,
+  "old_inputs_unchanged": 19
+}

@@ -1,0 +1,152 @@
+[
+  {
+    "path": "run-boot-r1/initramfs.cpio.gz",
+    "bytes": 1811677,
+    "sha256": "63f9a26a9f927031dc992784239b5b1cbae28757d3d01cd266af11c22e9317a2"
+  },
+  {
+    "path": "run-boot-r1/system.ext4",
+    "bytes": 805306368,
+    "sha256": "f0869e04826a900334be10f29aa6311b8c5f42dfd701255a1cdf6c476f6cdfa0"
+  },
+  {
+    "path": "run-boot-r1/data.ext4",
+    "bytes": 536870912,
+    "sha256": "7ce3f9326a1b72a00380eeedb89d8d7bdf51b08ea9e413c5693f50f2603e9e8c"
+  },
+  {
+    "path": "run-boot-r1/seed-exec",
+    "bytes": 704264,
+    "sha256": "eddd78f4558e38ba1a1b5f2d9a8420111859e70a1d9c0d3b9cd837a4207ecf60"
+  },
+  {
+    "path": "run-boot-r1/serial.log",
+    "bytes": 25535,
+    "sha256": "946f5d6dc9e39e83e139e30c44f5a5ac1f3552025d6034cd07c66d7673fa7396"
+  },
+  {
+    "path": "run-boot-r1/command.json",
+    "bytes": 969,
+    "sha256": "357b07423a26cdc9ebad4c347e18140bb9bb1106f590fd7c00125564f440ad2f"
+  },
+  {
+    "path": "run-boot-r2/initramfs.cpio.gz",
+    "bytes": 1811677,
+    "sha256": "47c5e19f1f9319e28d44f57d25cc85c92266317c3a1a67d460be484fd87278eb"
+  },
+  {
+    "path": "run-boot-r2/system.ext4",
+    "bytes": 805306368,
+    "sha256": "c287a68b45552f5dc3875333d73757cee9a4f59dbc8a0812410999fb9beb18e4"
+  },
+  {
+    "path": "run-boot-r2/data.ext4",
+    "bytes": 536870912,
+    "sha256": "8d1b50910d3681f0b884a49a58c8589db643e72e396a3040a260c132e80c1f60"
+  },
+  {
+    "path": "run-boot-r2/seed-exec",
+    "bytes": 704264,
+    "sha256": "eddd78f4558e38ba1a1b5f2d9a8420111859e70a1d9c0d3b9cd837a4207ecf60"
+  },
+  {
+    "path": "run-boot-r2/serial.log",
+    "bytes": 34799,
+    "sha256": "36d77e96042a4681430eb6cc754e48b44239d72b93c1965150c20b03aaef1c01"
+  },
+  {
+    "path": "run-boot-r2/command.json",
+    "bytes": 969,
+    "sha256": "a446605be54b3fe62fef613fe9ca126355f105501e5d8d7e9d989e8932494648"
+  },
+  {
+    "path": "run-boot-r3/initramfs.cpio.gz",
+    "bytes": 1811678,
+    "sha256": "8a5f42b523af066c5edbc600d81b9595325d512ec7df4c029197e522ba38087e"
+  },
+  {
+    "path": "run-boot-r3/system.ext4",
+    "bytes": 805306368,
+    "sha256": "f290206e49f3d265e364e33308476ad2a8a70844b34ecca3da2c2802c2fbb2b8"
+  },
+  {
+    "path": "run-boot-r3/data.ext4",
+    "bytes": 536870912,
+    "sha256": "239429a25ce0db1aae4ccc3c656320b4cc869c3029893ecb6bc5ead27e410add"
+  },
+  {
+    "path": "run-boot-r3/seed-exec",
+    "bytes": 704264,
+    "sha256": "eddd78f4558e38ba1a1b5f2d9a8420111859e70a1d9c0d3b9cd837a4207ecf60"
+  },
+  {
+    "path": "run-boot-r3/serial.log",
+    "bytes": 33304,
+    "sha256": "0917fef462556819c777bf1a08f371ebdf597edd7e8ba45f0bae989e683b9074"
+  },
+  {
+    "path": "run-boot-r3/command.json",
+    "bytes": 969,
+    "sha256": "083729ca603520c790b81a44b05037b834e33e9c05d3c2f2cc9a8c7ee6f074a3"
+  },
+  {
+    "path": "run-boot-r4/initramfs.cpio.gz",
+    "bytes": 1811678,
+    "sha256": "206c407d236cc52a04999a31469d2beba4957b7f3307b234f60573c321c59937"
+  },
+  {
+    "path": "run-boot-r4/system.ext4",
+    "bytes": 805306368,
+    "sha256": "a440cfe1c5f3873e7e1e88cd577b2f2923d630c64b0fc22e8f8d79c51fd15ecf"
+  },
+  {
+    "path": "run-boot-r4/data.ext4",
+    "bytes": 536870912,
+    "sha256": "5a73cd863b5dd5073fc2b47f39b580ea74d675f2f1e7cc6a3ffdd3b93cdc5bf3"
+  },
+  {
+    "path": "run-boot-r4/seed-exec",
+    "bytes": 704264,
+    "sha256": "eddd78f4558e38ba1a1b5f2d9a8420111859e70a1d9c0d3b9cd837a4207ecf60"
+  },
+  {
+    "path": "run-boot-r4/serial.log",
+    "bytes": 33828,
+    "sha256": "b187e11d3ccd5a93a1da2cee5a8664606759768b83ef8861b363d66e2be856af"
+  },
+  {
+    "path": "run-boot-r4/command.json",
+    "bytes": 969,
+    "sha256": "93187b5f7ce9474e261c6e82c714de68a9e35d26864578798e9543e472c80e90"
+  },
+  {
+    "path": "run-boot-r5/initramfs.cpio.gz",
+    "bytes": 1811677,
+    "sha256": "1e5f694a8109bb578a8046b14c7613a9704cd615116c7213a6e0e0402d75bd28"
+  },
+  {
+    "path": "run-boot-r5/system.ext4",
+    "bytes": 805306368,
+    "sha256": "d3a8fe60b83894a82b4619a4d7c489c278f01c0a9cd2415b8ac127b300830a2a"
+  },
+  {
+    "path": "run-boot-r5/data.ext4",
+    "bytes": 536870912,
+    "sha256": "7361c6cada2f4a1d07385cae7c2f4eeac89a5660767892a4e9fddab0f8eaa829"
+  },
+  {
+    "path": "run-boot-r5/seed-exec",
+    "bytes": 704264,
+    "sha256": "eddd78f4558e38ba1a1b5f2d9a8420111859e70a1d9c0d3b9cd837a4207ecf60"
+  },
+  {
+    "path": "run-boot-r5/serial.log",
+    "bytes": 40852,
+    "sha256": "7c4b099fdde78a19190fa785c3a896d92b278e7d91d744ba04303c9adddb3dfe"
+  },
+  {
+    "path": "run-boot-r5/command.json",
+    "bytes": 969,
+    "sha256": "77b96e2c7c6022c8f616e009bbde924d35084bdcfdc3cb2d4c771cefcf52b2ec"
+  }
+]

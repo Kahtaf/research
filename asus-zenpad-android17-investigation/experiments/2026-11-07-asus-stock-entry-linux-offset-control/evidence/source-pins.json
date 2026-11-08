@@ -1,0 +1,47 @@
+{
+  "sources": {
+    "entry.S": {
+      "before_sha256": "7ff08d60562d3c5d2d95f7a4040996d316976e433a14971da412794d005976cd",
+      "after_sha256": "7ff08d60562d3c5d2d95f7a4040996d316976e433a14971da412794d005976cd",
+      "before_bytes": 1202,
+      "after_bytes": 1202
+    },
+    "asus_entry_text.S": {
+      "before_sha256": "857ad1329075ff8a6bb6daff7f237871e80ccb2fafce4970e6f7b84ec1cf39d7",
+      "after_sha256": "6ef35f6c45661f9c7c67fffd05554aebf65f063bb4da7c3197282ba0dd76046e",
+      "before_bytes": 17835,
+      "after_bytes": 17834
+    },
+    "asus_entry_tag.h": {
+      "before_sha256": "58d6a0df63de0414ba87fea73baef2c3db7215f79fad4ab1fb01c3166d15524d",
+      "after_sha256": "4ef5e65238c7cf7a311683ae7d7e80381d6dbb13ae539544083d6704818e7213",
+      "before_bytes": 292,
+      "after_bytes": 292
+    },
+    "readback.S": {
+      "before_sha256": "6a4bdd831eca1c7fd98c1bb06d847501e8e206ed723c0fd8f68a1c6e87ccf60d",
+      "after_sha256": "6d235d428ccfecda52713b867883e8543992a9521dd988c9f2f217b8a888cf69",
+      "before_bytes": 569,
+      "after_bytes": 994
+    },
+    "control.ld": {
+      "before_sha256": "f431a5f91600388c69c3678cf81c3dbe8072ae32be81d7cd5afafef99dd882da",
+      "after_sha256": "8595b32142e96c399aa9fc03f745205ae04873541464980bfa6c5c8e105dd7a2",
+      "before_bytes": 609,
+      "after_bytes": 637
+    },
+    "install.py": {
+      "before_sha256": "8043326124ad650a8020922187b4810fc522d621f27f42418bf824294bd5d0b2",
+      "after_sha256": "bcd1b06bf93edf398418ea1089cc91ae4afdd63166fa9299394a4745e552fe39",
+      "before_bytes": 9871,
+      "after_bytes": 9943
+    }
+  },
+  "corrected_plain_assembly_sha256": "e56fffecd0f825439d3711ab931180d58a5a320e70ebb8b30fcc5e8442cd631d",
+  "future_C_sha256": "76d9ff38bbf47995594a4795fe5af5b22f78b93fa91f6190bb4bbdf1c864721e",
+  "failure_114": "derived Linux offset < 0x40 (64); all other IDs retain original conditions",
+  "fallback_mov_x14_0x200_unchanged": true,
+  "callback_table_and_kallsyms_pointers_unchanged": true,
+  "inherited_fixed_helper_slot_proof": "prior-r2-completion.json",
+  "tag_writer_field": "Inherited original R2 writer identifier 32f22ec9...; active source hashes are pinned here and in file-manifest.json"
+}

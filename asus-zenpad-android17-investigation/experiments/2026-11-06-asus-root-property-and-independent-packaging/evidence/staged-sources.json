@@ -1,0 +1,1 @@
+{"vm_prefix": "/srv/android/asus-r9-independent-packaging-r1", "code_sha256": {"worker.py": "ae1ce13a45fc2eaaacd6023bb809f89504d20335ef5bf43e82dc507fee870e86", "supervisor.py": "6214cd5b52c59ce1f864c4238a6815a3ec3bbfa78d68810d07e64cd8e4dfe167"}, "scope": "Independent host checks and packaging only; root-route failure retained; no native build/source/out mutation"}

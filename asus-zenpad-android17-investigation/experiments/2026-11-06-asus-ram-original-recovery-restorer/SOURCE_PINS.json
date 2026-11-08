@@ -1,0 +1,168 @@
+{
+  "files": {
+    "source/bootformat.py": {
+      "bytes": 3936,
+      "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017"
+    },
+    "source/client.py": {
+      "bytes": 7199,
+      "sha256": "0072398a0aa2da83bdf176d672e7ec767b6aaf034892fb603054a22549c5bf69"
+    },
+    "source/common.h": {
+      "bytes": 2773,
+      "sha256": "90fe60e79b3cc3932dab7e824bc803bb18ba086ea079beca8298c34ccf2a53c3"
+    },
+    "source/core_binding.h": {
+      "bytes": 907,
+      "sha256": "3856a65d798c494286b42362fb2132f697ec7b4427a9fceeb6befb75e9c08be7"
+    },
+    "source/file_contexts.py": {
+      "bytes": 1657,
+      "sha256": "012a4f0a71f49772a12e537721b5aca3e5de1b201b2dc5aaa07a26e07cdb650c"
+    },
+    "source/generated_host_binding.py": {
+      "bytes": 173,
+      "sha256": "ad07c65143a15699012716ecc8d78606ea2a18aa870ae2d9d288ea1e316cec67"
+    },
+    "source/handoff.h": {
+      "bytes": 735,
+      "sha256": "7281fcf20343f8e6fbd95fa70c73b0c753f42f91e7230fc84014f02ee68af908"
+    },
+    "source/host.py": {
+      "bytes": 4567,
+      "sha256": "7830374c08c78db915099f12c7d635c7df9280fc153e12b165ef54a1d98d6dd3"
+    },
+    "source/manifest.py": {
+      "bytes": 4200,
+      "sha256": "c9a40f5e1029e8252abc9a8256d63d9fae0d4e1c5373eb247dc76e2e06c52ae2"
+    },
+    "source/p10_restore.c": {
+      "bytes": 6615,
+      "sha256": "cddda42708f1444b7d773d57cb7e750a8a34d32e7a78b2c791a096a0a420b943"
+    },
+    "source/policy_audit.c": {
+      "bytes": 3512,
+      "sha256": "a8419a1ff771646dc28c96fa342f87ce4d949ee6368660bcd962f4d3053d9333"
+    },
+    "source/policy_build.c": {
+      "bytes": 5562,
+      "sha256": "1fbb9b714f630c7d058f583b3d42242814413988ee41b188463c1291dda56fdf"
+    },
+    "source/prior_container.h": {
+      "bytes": 2998,
+      "sha256": "ef0b9c351e4ffb33e0d9159c192a479ec426b1d332f27f9000598d0cf8160df4"
+    },
+    "source/rescue.c": {
+      "bytes": 15945,
+      "sha256": "23b0af1a8c813ae925459bf4614f768a5f90e5a76efb49bf8523135159c72c49"
+    },
+    "source/restore_core.h": {
+      "bytes": 4439,
+      "sha256": "152d83f4110bc1eb4f1ab5d285ae4c322cd9e8a87937c96ea332489429c26c8f"
+    },
+    "source/sha1.h": {
+      "bytes": 1458,
+      "sha256": "ef1b62f9220f23b953833d4066e2fc154b25abe4780b867feeba45dc6012cbce"
+    },
+    "source/sha256.h": {
+      "bytes": 2434,
+      "sha256": "4011564ce3516f8cc8e6e375cdd2923e72e9f9e74e77dc6e7db0637bda52efe0"
+    },
+    "source/stock_binding.h": {
+      "bytes": 213,
+      "sha256": "e85c82f2357850cd438766fb775033e9f0d52aa25a4f387db0ce61e51c86c140"
+    },
+    "tests/concat_probe.c": {
+      "bytes": 931,
+      "sha256": "9a5149a190f82f92d3af294199e2f7f869a0e04d79ac546a7e28e3e93981d503"
+    },
+    "tests/concat_test.py": {
+      "bytes": 1974,
+      "sha256": "1d443d060b5561d66216c5b72cc9e3218db55a470772a0e919366191fb7edaa6"
+    },
+    "tests/core_tests.c": {
+      "bytes": 2576,
+      "sha256": "4b7084d62b53c42c092e15638847c5516a322dd6599d87c0b2651128c3b7d04a"
+    },
+    "tests/host_durability.py": {
+      "bytes": 2330,
+      "sha256": "e932b96d9ca061ba99c48d664d9dfc769feb136026ca2d4e9c1979dbb7095a3b"
+    },
+    "tests/host_tests.py": {
+      "bytes": 4901,
+      "sha256": "729ded16bf728d7528dde676647bc53fbba7813650a4f57ce461c85bd6c033a2"
+    },
+    "tests/policy_checks.py": {
+      "bytes": 3690,
+      "sha256": "0a367f27a483ef0918d95a984efae0cde307d2920b3f42e998d8b11cb00ecca9"
+    },
+    "tests/probe_binding.h": {
+      "bytes": 182,
+      "sha256": "08b3ea6e34744d2bacdf4d89bf658a683d7b1f736e57d382393bf9be079289a4"
+    },
+    "tests/reproduce.py": {
+      "bytes": 1831,
+      "sha256": "3c307c221bf680e8e39022bbc975fbc7611267eef642ba371a91da7f9f28bf5c"
+    },
+    "tests/session_server.c": {
+      "bytes": 1036,
+      "sha256": "6ae8e4ff9e52d0a9fb7443ca47b328cde24c4282b3684101133cc464db427ec9"
+    },
+    "tests/storage.h": {
+      "bytes": 3051,
+      "sha256": "18c911276f71b84d5b6c7bbd1add027422d8b0bddf3ac822c6eb9e52cf4e6b43"
+    },
+    "tests/test_adapters.py": {
+      "bytes": 15503,
+      "sha256": "6556cff96bb85cf690e63d67d2814021e38b036a078adbcc0f38d5c49a980170"
+    },
+    "tests/test_server.c": {
+      "bytes": 760,
+      "sha256": "b85d2e5e2abbb6f3544ccd3997ce15046e7477a7e20c530e2c3bda5e16a24bd2"
+    },
+    "scripts/assemble_core.py": {
+      "bytes": 1871,
+      "sha256": "5475fb1f379e57070368427788c4350dd051aff98c64351cd2cc5134e9c4f892"
+    },
+    "scripts/assemble_final.py": {
+      "bytes": 1880,
+      "sha256": "876fdd4610b16ab59a9dca0b60fdd169f88ccddfac160ebe48a79283d2a0ac36"
+    },
+    "scripts/build_remote.py": {
+      "bytes": 3736,
+      "sha256": "31f84421635ab9d7e573d3ee6ca48b30b25e4c71082c7e01482c2d4f9d1bb487"
+    },
+    "scripts/collect.py": {
+      "bytes": 1158,
+      "sha256": "c640293f4e69e08c363e8fc67abe0de9c53a5849c70261bf0b0edebe0e07d92b"
+    },
+    "scripts/finish_audit.py": {
+      "bytes": 1599,
+      "sha256": "2304de63cb00e00c8cd1575bc0897f55e48eef32a8514de327f15365623faaa5"
+    },
+    "scripts/prepare.py": {
+      "bytes": 2622,
+      "sha256": "584c8da3f9230558d812346e031463318a75154b1c84a98143d520cbee141fd4"
+    },
+    "scripts/remote.py": {
+      "bytes": 1869,
+      "sha256": "0fc5c5d6455edd68ea38f318011451a4aa4096d9de9c7b0662c828b874dd3f5f"
+    },
+    "scripts/retry_concat.py": {
+      "bytes": 966,
+      "sha256": "9e679b107efad67873978d5d17216db65b2df06069bf2041a6c6e32725ed3832"
+    },
+    "scripts/update_remote.py": {
+      "bytes": 1740,
+      "sha256": "c8590c1ece0a60ea5f1905db16d80f96fadeb9beb6c05f6a7d122f1aac9bfb18"
+    },
+    "scripts/verify_container.py": {
+      "bytes": 5039,
+      "sha256": "201b904e036b3482547799298303d2cc55b654a497b1e40b1cdd378d41db40b5"
+    },
+    "scripts/verify_delivery.py": {
+      "bytes": 2156,
+      "sha256": "70989177c497a6ec03f7e3fa460d5b694f7186122825ae276f824c593895da20"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "stock_log_path": "2026-11-06-asus-android17-orchestration/artifacts/private/control-20261106T151423Z/stock-last-kmsg-dd.txt",
+  "stock_log_sha256": "3a5eada8f96c3b785ccb4be577a5edf9c9269973d977accabcfbb968d9f12f68",
+  "scope": "Existing read-only capture, initial ~0.54-second snapshot only; subsequent limits change; not validated charge policy",
+  "new_hardware_operations": false
+}

@@ -1,0 +1,242 @@
+{
+  "at": "2026-11-08T04:44:34.846119+00:00",
+  "capture_uuid": "b4702f9a-6b32-423f-b789-d2bd515c0707",
+  "clock_status": "COMPLETE_CAPTURE_ROWS",
+  "clock_loss": false,
+  "switch_status": "FINITE_SWITCH_CAPTURE",
+  "switch_sticky": "A49SLOSS 0 guard=0 busy=0 admission=0 overflow=0",
+  "work_status": "FINITE_WORK_CAPTURE",
+  "work_sticky": "A49WLOSS 0 guard=0 busy=0 admission=0 overflow=0",
+  "work_bounds": {
+    "generation": 131,
+    "total": 130,
+    "first_retained": 115,
+    "last_retained": 130,
+    "wraps": 8,
+    "retained_count": 16,
+    "entries": 66,
+    "nr_cpu_ids": 1
+  },
+  "target": {
+    "status": "SELECTED_WORKER_DISPATCH_BOUNDARY_NO_POSTCALL_IN_FINITE_CAPTURE",
+    "selected_sequence": 1233,
+    "selected_pid": 119,
+    "selected_comm": "kworker/0:3",
+    "latest_entry_sequence": 130,
+    "token": 66,
+    "return_sequence": null
+  },
+  "last_selected_task": {
+    "sequence": 1233,
+    "raw_cntvct": 174507718,
+    "prev_pid": 1,
+    "prev_state_bits": 0,
+    "next_pid": 119,
+    "next_prio": 120,
+    "next_policy": 0,
+    "prev_prio": 120,
+    "preempt_count": 2,
+    "context": 1,
+    "capture_serial_anchor": 1266,
+    "worker_flags": 3,
+    "slot": 0,
+    "comm_hex": "6b776f726b65722f303a330000000000",
+    "next_comm": "kworker/0:3",
+    "PF_WQ_WORKER": true,
+    "worker_present": true,
+    "active_work_assessment": "no_active_function_at_seam"
+  },
+  "last_PID1_out": {
+    "sequence": 1233,
+    "raw_cntvct": 174507718,
+    "prev_pid": 1,
+    "prev_state_bits": 0,
+    "next_pid": 119,
+    "next_prio": 120,
+    "next_policy": 0,
+    "prev_prio": 120,
+    "preempt_count": 2,
+    "context": 1,
+    "capture_serial_anchor": 1266,
+    "worker_flags": 3,
+    "slot": 8,
+    "comm_hex": "6b776f726b65722f303a330000000000",
+    "next_comm": "kworker/0:3",
+    "PF_WQ_WORKER": true,
+    "worker_present": true,
+    "active_work_assessment": "no_active_function_at_seam"
+  },
+  "pairs": [
+    {
+      "token": 59,
+      "pid": 119,
+      "entry_sequence": 116,
+      "return_sequence": 117,
+      "status": "PAIRED_POSTCALL"
+    },
+    {
+      "token": 60,
+      "pid": 119,
+      "entry_sequence": 118,
+      "return_sequence": 119,
+      "status": "PAIRED_POSTCALL"
+    },
+    {
+      "token": 61,
+      "pid": 119,
+      "entry_sequence": 120,
+      "return_sequence": 121,
+      "status": "PAIRED_POSTCALL"
+    },
+    {
+      "token": 62,
+      "pid": 119,
+      "entry_sequence": 122,
+      "return_sequence": 123,
+      "status": "PAIRED_POSTCALL"
+    },
+    {
+      "token": 63,
+      "pid": 119,
+      "entry_sequence": 124,
+      "return_sequence": 125,
+      "status": "PAIRED_POSTCALL"
+    },
+    {
+      "token": 64,
+      "pid": 119,
+      "entry_sequence": 126,
+      "return_sequence": 127,
+      "status": "PAIRED_POSTCALL"
+    },
+    {
+      "token": 65,
+      "pid": 119,
+      "entry_sequence": 128,
+      "return_sequence": 129,
+      "status": "PAIRED_POSTCALL"
+    },
+    {
+      "token": 66,
+      "pid": 119,
+      "entry_sequence": 130,
+      "return_sequence": null,
+      "status": "NO_POSTCALL_IN_FINITE_CAPTURE"
+    },
+    {
+      "token": 58,
+      "pid": 119,
+      "entry_sequence": null,
+      "return_sequence": 115,
+      "status": "UNKNOWN_ENTRY_OUTSIDE_RING_HORIZON"
+    }
+  ],
+  "work_symbols": {
+    "map_verified": true,
+    "results": [
+      {
+        "sequence": 116,
+        "token": 59,
+        "pid": 119,
+        "comm": "kworker/0:3",
+        "pair_status": "PAIRED_POSTCALL",
+        "return_sequence": 117,
+        "symbol": "power_supply_changed_work",
+        "offset": 0,
+        "assessment": "numeric function snapshot at dispatch boundary; no function-body entry or causal proof"
+      },
+      {
+        "sequence": 118,
+        "token": 60,
+        "pid": 119,
+        "comm": "kworker/0:3",
+        "pair_status": "PAIRED_POSTCALL",
+        "return_sequence": 119,
+        "symbol": "power_supply_changed_work",
+        "offset": 0,
+        "assessment": "numeric function snapshot at dispatch boundary; no function-body entry or causal proof"
+      },
+      {
+        "sequence": 120,
+        "token": 61,
+        "pid": 119,
+        "comm": "kworker/0:3",
+        "pair_status": "PAIRED_POSTCALL",
+        "return_sequence": 121,
+        "symbol": "deferred_probe_work_func",
+        "offset": 0,
+        "assessment": "numeric function snapshot at dispatch boundary; no function-body entry or causal proof"
+      },
+      {
+        "sequence": 122,
+        "token": 62,
+        "pid": 119,
+        "comm": "kworker/0:3",
+        "pair_status": "PAIRED_POSTCALL",
+        "return_sequence": 123,
+        "symbol": "power_supply_deferred_register_work",
+        "offset": 0,
+        "assessment": "numeric function snapshot at dispatch boundary; no function-body entry or causal proof"
+      },
+      {
+        "sequence": 124,
+        "token": 63,
+        "pid": 119,
+        "comm": "kworker/0:3",
+        "pair_status": "PAIRED_POSTCALL",
+        "return_sequence": 125,
+        "symbol": "power_supply_deferred_register_work",
+        "offset": 0,
+        "assessment": "numeric function snapshot at dispatch boundary; no function-body entry or causal proof"
+      },
+      {
+        "sequence": 126,
+        "token": 64,
+        "pid": 119,
+        "comm": "kworker/0:3",
+        "pair_status": "PAIRED_POSTCALL",
+        "return_sequence": 127,
+        "symbol": "power_supply_deferred_register_work",
+        "offset": 0,
+        "assessment": "numeric function snapshot at dispatch boundary; no function-body entry or causal proof"
+      },
+      {
+        "sequence": 128,
+        "token": 65,
+        "pid": 119,
+        "comm": "kworker/0:3",
+        "pair_status": "PAIRED_POSTCALL",
+        "return_sequence": 129,
+        "symbol": "power_supply_deferred_register_work",
+        "offset": 0,
+        "assessment": "numeric function snapshot at dispatch boundary; no function-body entry or causal proof"
+      },
+      {
+        "sequence": 130,
+        "token": 66,
+        "pid": 119,
+        "comm": "kworker/0:3",
+        "pair_status": "NO_POSTCALL_IN_FINITE_CAPTURE",
+        "return_sequence": null,
+        "symbol": "power_supply_changed_work",
+        "offset": 0,
+        "assessment": "numeric function snapshot at dispatch boundary; no function-body entry or causal proof"
+      }
+    ],
+    "target": {
+      "status": "SELECTED_WORKER_DISPATCH_BOUNDARY_NO_POSTCALL_IN_FINITE_CAPTURE",
+      "token": 66,
+      "symbol": "power_supply_changed_work",
+      "offset": 0,
+      "assessment": "numeric function snapshot at dispatch boundary; no function-body entry or causal proof"
+    }
+  },
+  "helper_records": 99,
+  "last_helper_record": "ASUS49-SYSCLOCK run=f0c3c82c-d639-4d8a-90f2-155fd4224ceb phase=observe stage=end op=clock_gettime path=loop.initial rc=0 errno=0 value=0.651048153",
+  "loop_completion_observed": false,
+  "new_stock_boot_id": "525b531b-25f1-4046-aeb0-765023a72a0c",
+  "normal_stock_return_verified": true,
+  "normal_OS_partitions_changed": false,
+  "full_console_sha256": "867ebb960675757f538d95c5c7233973a6ca45096f71c954e4a3b09465351940",
+  "conclusion": "Latest matched selected worker PID119 kworker0:3 reaches power_supply_changed_work dispatch boundary token66/event130; no paired postcall in finite capture. Seven preceding visible jobs returned. Narrow named boundary only, not proof of function-body entry, permanent hang, root cause or syscall/timer fault."
+}

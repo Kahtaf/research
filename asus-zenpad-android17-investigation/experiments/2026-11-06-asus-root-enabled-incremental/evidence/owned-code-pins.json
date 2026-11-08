@@ -1,0 +1,15 @@
+{
+  "scripts/verify_full_images.py": "f1c87274db8c03d86437bc7694f614748aade6550b69402ee0a4df52a8346fd3",
+  "scripts/native_adapter.py": "74d219336326bece1239fd8e593279fe113ad562d3f6ef9b648a01660f008c2b",
+  "scripts/postbuild.py": "1b8c475d5a9686aea650a0f986a8fd2579085c64699fc48f0a62d661d97ba0cf",
+  "scripts/execute.py": "53767bcd3454cbba708e5961bc7683704c487087d7197ed235f262cf15566055",
+  "scripts/integrate.py": "8ede9b0e5691b27dcfff447613469000bd128e3c99d7281247b54774c96fc5e7",
+  "scripts/continuation.py": "77ea9ff4c5f834a9d2d3e5feebb219ffa18a75e2779aa46529318fef3a6f28c4",
+  "scripts/validate_completed_product.py": "9f8b10362a6bae131bb4547b8e912332e8ba763e641222712f6559ea819f8d19",
+  "scripts/build.sh": "3a986285f023f6391370f46fe609c92f5ac819af9694d66579aaae26e2bc1a49",
+  "scripts/verify_product_r3.py": "cd8fe28919477e474caeb5137dddd9fdee4a7536baf3a03226f5f0dd27fd61b2",
+  "scripts/owned_bootformat.py": "4f38f11a5b92437f57f17d644b9d97c9596f1116ce7f53a5da73c82e82ddc030",
+  "inputs/parent-acceptance.json": "0692a11ed26e1a128220d8406ed3932e13338e0d0d04d7c8a4002edc20dd8ca5",
+  "inputs/source.patch": "babbe11017688a24aa64f3b279e0fa751e7e365608c77e6c65c164bb0890fb60",
+  "inputs/source-after.mk": "9eef1d1e5463f43500863604641f8fb3af8d91fb9100b83f231b216041f79c75"
+}

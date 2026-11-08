@@ -1,0 +1,74 @@
+{
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/kernel/drivers/watchdog/mtk_wdt.c": {
+    "bytes": 18416,
+    "sha256": "b4650c1d087bc2ef4e0e4161afc9dd54cb38901e98af16a1b2fc2e784f1d927b"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/kernel/drivers/watchdog/watchdog_core.c": {
+    "bytes": 11342,
+    "sha256": "a6f79808ca6cb599483beda9054cc838f14016ee3be6ad863da2b9d41cabda53"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/kernel/drivers/watchdog/watchdog_dev.c": {
+    "bytes": 27665,
+    "sha256": "6d812799206c527b844506faf5d9a06b9f654d4753ef295d69446187c82460b7"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/kernel/drivers/base/platform.c": {
+    "bytes": 37407,
+    "sha256": "04ca20908225428f5444329d248f5df2709b544ec44494a8b9342cbf3bc5a21b"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/kernel/drivers/base/init.c": {
+    "bytes": 776,
+    "sha256": "79d28eed6c9b8b65f6c24a90c73a298bd6d56a5086a5338f6518671c3f61396a"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/kernel/drivers/of/platform.c": {
+    "bytes": 18163,
+    "sha256": "63430a886c0c4b5a9a5ba537a921818a191b9fa49d30eb6cd5d88fa257f539cc"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/kernel/arch/arm64/kernel/setup.c": {
+    "bytes": 10109,
+    "sha256": "fd3d3040998562d2605eee91086df22b66d8a3da796bafd957853d74acd905fb"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/kernel/arch/arm64/kernel/asus_retained_trace.c": {
+    "bytes": 7964,
+    "sha256": "8373baa301650d2bf3befe547df11a3079e22c51aec8a207de64eae0f1bb3348"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/kernel/include/linux/device.h": {
+    "bytes": 49072,
+    "sha256": "0a28a651066643a67fbf4a9cdea35c3dc3cba0e81949ce1220cb1c43d55a6b5b"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/kernel/include/linux/platform_device.h": {
+    "bytes": 12730,
+    "sha256": "6c1ded422b6c7fcd9b59d04d872a57176f2a35509b74f219681710e7c619b600"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/kernel/include/linux/init.h": {
+    "bytes": 9674,
+    "sha256": "f270a27a64c4f441e9645f59755c7e306516651be57839eaefc8f6ed64581da6"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/kernel/include/linux/module.h": {
+    "bytes": 22673,
+    "sha256": "ea1bab79f5b702560a4451f52377b5d689b59945781700e83e38fbfb9a6a3b95"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/kernel/init/main.c": {
+    "bytes": 26653,
+    "sha256": "6780e3143dc45bc1b63df0dd1e96033028008553303e0e382cb1737747d4ac8a"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/kernel/drivers/tty/serial/8250/Kconfig": {
+    "bytes": 16365,
+    "sha256": "965701d3e2a28e4505ce48b02f9cef774a96758cdd63bfc38c2ea327111c8a14"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/kernel/drivers/tty/serial/8250/Makefile": {
+    "bytes": 1538,
+    "sha256": "5cff5baaaa052e2347761ff8c1f0b709c4e50457d935fbcfc5e586ff3100e6bf"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/out/.config": {
+    "bytes": 126443,
+    "sha256": "708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/out/arch/arm64/boot/Image.gz-dtb": {
+    "bytes": 7711217,
+    "sha256": "063dad1d9cc03b1c335dd712c9fcb0c36a006e5e99ebee4577e73e669613ac2d"
+  },
+  "/srv/android/asus-early-uart-disabled-kernel-20261107/out/System.map": {
+    "bytes": 4390329,
+    "sha256": "6fe830064afe629e96c9e05300ee7eefb0e7f05015fbe63a7e8f88a793b07a49"
+  }
+}

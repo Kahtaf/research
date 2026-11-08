@@ -1,0 +1,30 @@
+{
+  "exact_extra_functions": [
+    {
+      "source": "sound/core/pcm_lib.c",
+      "function": "snd_pcm_lib_ioctl_reset",
+      "sha256": "b370f9800e1085b593d39b7c20dde478c4d462ded3495a42ebc9e12a15ee73d7"
+    },
+    {
+      "source": "sound/core/pcm_native.c",
+      "function": "snd_pcm_pre_prepare",
+      "sha256": "a91aea8d86c024c55fb924adc62aa96e7997e1b3eed2ea3f44729f35c3de102b"
+    },
+    {
+      "source": "sound/core/pcm_native.c",
+      "function": "snd_pcm_post_prepare",
+      "sha256": "9008672ff283daea3d2dee529e3e6cfa9a9a12402e202e18d5a67bf21cfadc9c"
+    },
+    {
+      "source": "sound/core/pcm_native.c",
+      "function": "snd_pcm_playback_rewind",
+      "sha256": "1e31b4f28052410503aa48178c653606babc8f69a94ea1a57fbec50eb3af2bab"
+    },
+    {
+      "source": "sound/soc/mediatek/mt_soc_audio_8163/mt_soc_pcm_dl1.c",
+      "function": "mtk_afe_reboot",
+      "sha256": "380375529af4ee7cfbca485fbe65e129bf50cf273bf844d20c02cf9567b053c2"
+    }
+  ],
+  "boundary_changes": "Owned shim adds ALSA state/control fields and macros; snd_pcm_running uses RUNNING for these cases; snd_pcm_update_hw_ptr aborts if reached (none of these core cases should call it). Driver prepare is source-audited, not executed. Caller appl_ptr publication between callback and reset is explicit in the test. Supplied generated.c and cases.c are unchanged."
+}

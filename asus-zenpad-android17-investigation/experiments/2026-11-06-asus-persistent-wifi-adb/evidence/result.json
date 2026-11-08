@@ -1,0 +1,9 @@
+{
+  "utc": "2026-11-07T04:56:46.495820+00:00",
+  "wifi_connected": false,
+  "persistence_enabled": false,
+  "image_writes": false,
+  "error_type": "TimeoutExpired",
+  "error": "Command '['/opt/homebrew/Caskroom/android-platform-tools/37.0.1/platform-tools/adb', '-s', 'DEVICE_SERIAL_REDACTED', 'wait-for-usb-device']' timed out after 55 seconds",
+  "automatic_retry": false
+}

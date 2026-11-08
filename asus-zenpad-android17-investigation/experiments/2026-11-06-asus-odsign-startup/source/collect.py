@@ -1,0 +1,17 @@
+from pathlib import Path
+import os,json,hashlib,subprocess as s,re,stat,datetime
+R=Path('/srv/android/asus-odsign-startup-20261106');P=Path('/srv/android/asus-r9-linkerconfig-ownership-fix-20261106');I=R/'inputs/runtime-r1';E=R/'evidence';os.environ['TMPDIR']=str(R/'tmp');assert (R/'run-runtime-r1/status.json').is_file()
+debug=Path('/srv/android/asus-full-system-observer-preparation-20261106/immutable/bin/debugfs');env=os.environ.copy();env['LD_LIBRARY_PATH']=str(debug.parents[1]/'lib64');out=E/'actual-runtime-report.txt';cmd=[str(debug),'-R','dump /local/tmp/actual-runtime-report.txt '+str(out),str(I/'data.ext4')];p=s.run(cmd,env=env,capture_output=True,text=True,timeout=20);(E/'public-report-extraction.json').write_text(json.dumps(dict(command=cmd,rc=p.returncode,stdout=p.stdout,stderr=p.stderr),indent=2));os.chmod(I/'data.ext4',0o444)
+serial=(R/'run-runtime-r1/serial.log').read_text();report=out.read_text();high=[]
+for origin,b in [('serial',serial),('public',report)]:
+ for i,line in enumerate(b.splitlines(),1):
+  if any(w in line.lower() for w in ['odsign','odrefresh','dex2oat','public_process','wchan','could not create','keystore2.*exited']):high.append(dict(origin=origin,line=i,text=line))
+(E/'highlights.json').write_text(json.dumps(high,indent=2))
+# Hash only public/system artifacts, never DATA or entropy-bearing initramfs.
+seal={'sealed_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'namespace_frozen_unchanged':True,'prior_runs_COW_unchanged':True,'raw_identity_unchanged':json.loads((R/'run-runtime-r1/status.json').read_text())['raw_identity_unchanged'],'new_logical_bytes':sum(p.stat().st_size for p in R.rglob('*') if p.is_file() and not p.is_symlink()),'new_allocated_bytes':sum(p.stat().st_blocks*512 for p in R.rglob('*') if p.is_file() and not p.is_symlink()),'budget_bytes':1024**3,'policy_unchanged':True,'candidate_namespace_SHA256':'cb03a693acab8781ffa9ee4ccaca3ecd4967bd985ff87db3a23af14e5357c573','public_report_bytes':out.stat().st_size,'cow_sha256':hashlib.sha256((I/'system.qcow2').read_bytes()).hexdigest(),'runtime_iterations':1,'readiness_setters':False,'private_DATA_or_entropy_exported':False}
+old=json.loads((E/'final-seal.json').read_text())
+for n,v in old['owned_cow_pins'].items():assert hashlib.sha256((P/'inputs'/('runtime-'+n)/'system.qcow2').read_bytes()).hexdigest()==v['sha256']
+frozen={'REPORT.md':'a5139b9a288cfe13bf9751a6e95a358e479da892e630ff49da9b0c8802dc813c','namespace.patch':'d7c6088b233ebb0d893e46816768d11798609c499a8b64337ccf98843bb4abcc','pins.json':'1e73dc018962e0c83a4fb682b0238e2fa821d660730de68dec7b50ee8f36e1a0'}
+for n,h in frozen.items():assert hashlib.sha256((P/'frozen-namespace-handoff-v1'/n).read_bytes()).hexdigest()==h
+pins=json.loads((E/'compiler-pins.json').read_text());assert all(hashlib.sha256((R/'inputs/tools'/n).read_bytes()).hexdigest()==h for n,h in pins.items());seal['compiler_snapshot_unchanged']=True;assert seal['new_logical_bytes']<seal['budget_bytes'];(E/'seal.json').write_text(json.dumps(seal,indent=2))
+print(json.dumps(seal,indent=2));print('\n'.join(line for line in serial.splitlines() if any(w in line for w in ['odsign','odrefresh','dex2oat','key.done']))[-16000:]);print('\nPUBLIC INTERNAL LOGS\n');print('\n'.join(line for line in report.splitlines() if any(w in line for w in [' I odsign',' E odsign',' W odsign',' I odrefresh',' E odrefresh',' W odrefresh','PUBLIC_PROCESS','wchan']))[-23000:])

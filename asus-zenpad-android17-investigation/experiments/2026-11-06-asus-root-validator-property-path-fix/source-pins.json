@@ -1,0 +1,10 @@
+{
+  "source": "2026-11-06-asus-r8-continuation-kit/scripts/verify_root_payload.py",
+  "preimage_sha256": "679eafacaa685fd0869b2793e99de726870ba424bff44105fb3e5fe4e707e63d",
+  "postimage_sha256": "c819e17595d14531d065fbafdab4a44871f34cfb7120490a75e488083e0e74f7",
+  "changes": [
+    "system_ext/etc/build.prop",
+    "product/etc/build.prop"
+  ],
+  "scope": "host validation paths only"
+}

@@ -1,0 +1,8 @@
+{
+  "validator_r2_sha256": "bd9fc7e253995dc8d98e5204d6993865a59c1fa9f1a3907bac3c3c62c3e4a9a4",
+  "validator_r3_sha256": "0fb59d0ba37059f64a04ed1825b8245b0049915c68005f8b5f3bed854d5834a5",
+  "sealed_helper_sha256": "5a6a5a4966e3bf3b9b9d33c17a1264cabbe5b139deca1431310ec1c8afd881b4",
+  "corrected_helper_sha256": "ef1567d7ee0d31e6f2bb0c3c56191a02719a9b9f65552824d83867a458fee00f",
+  "reuse_receipt_sha256": "c58b4ff873d8692c0c39f641bec997b09235296434b655882cc17a2a5745d28a",
+  "scope": "Exact normalized sensor VINTF fqname metadata, new validation output directory, pinned reuse of sole raw SYSTEM and actual APEX extraction; strict original semantic constraints retained."
+}

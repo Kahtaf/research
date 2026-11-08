@@ -1,0 +1,38 @@
+{
+  "candidate.img": {
+    "bytes": 3565568,
+    "sha256": "7ccd7d4554a764d0717c79d30668626c1fbd032218f8598bf7e4a2913bce30a1"
+  },
+  "candidate.p10.raw": {
+    "bytes": 16740352,
+    "sha256": "9939e802ab349dd01fe5ab9c643f2ce0d3219846e3f54513a9b1e9982146965c"
+  },
+  "Image.gz-dtb": {
+    "bytes": 3241432,
+    "sha256": "d164cbbee409d192caf9b0135238f0382c2f66ed31e622cc0bdb4f815baa8cec"
+  },
+  "resolved.config": {
+    "bytes": 80695,
+    "sha256": "01d6729f825798899e21192e6c33f96a80b47ccbedd5dc6cab10f78c1f9c7f31"
+  },
+  "compiled.dtb": {
+    "bytes": 65873,
+    "sha256": "156e92ec5d4f5c4bd20169128c8aed0a89b43636d945d648392aaaec8b9bf82e"
+  },
+  "init": {
+    "bytes": 772248,
+    "sha256": "37e9e2a2d73447947fb33e57e9513fa6079517b571f5a41bc58fbb91f84633fc"
+  },
+  "ramdisk.wrapped": {
+    "bytes": 320474,
+    "sha256": "69535be3b3b3bf160a05fb555078dd7eca239db55980fd8732f14ee7d6cc6082"
+  },
+  "initramfs.cpio.gz": {
+    "bytes": 319962,
+    "sha256": "a6d3b165771c639c33ae853af270c27c8ad4771868b195cdadbe7bb16531b501"
+  },
+  "System.map.gz": {
+    "bytes": 440368,
+    "sha256": "f023ed88ca2f582b99b1a962c543a303475a7e6883174df0605862989241e183"
+  }
+}

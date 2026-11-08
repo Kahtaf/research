@@ -1,0 +1,19 @@
+{
+  "utc": "2026-11-07T13:01:59.416933+00:00",
+  "exit": 0,
+  "log_sections": 1,
+  "log_chars": 523001,
+  "selected_lines": [
+    "[    2.145435]  (3)[1:swapper/0]Freeing unused kernel memory: 456K (ffffffc000f13000 - ffffffc000f85000)",
+    "[  506.198142]  (0)[1:init]android_reboot: Failed to open sysrq-trigger.",
+    "[  514.764931]  (0)[1:init]reboot: Restarting system with command 'recovery'"
+  ],
+  "last_timestamps": [
+    "514.765739",
+    "514.765749",
+    "514.765759",
+    "514.765768",
+    "514.765778"
+  ],
+  "read_only": true
+}

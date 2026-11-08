@@ -1,0 +1,11 @@
+--- a/source/graph.py
++++ b/source/graph.py
+@@ -124,7 +124,7 @@
+     def edge(self, target):
+         relative(target)
+         rows=self.rows('edge',target)
+-        need(rows and len(rows)<20 and len({raw for _,_,raw in rows})==1,'GRAPH_UNKNOWN','edge '+target)
++        need(len(rows)==1,'GRAPH_UNKNOWN','ambiguous/missing edge '+target)
+         self.record('edge',target,*rows[0])
+         return self.scopes.edge(target,rows[0])
+ 

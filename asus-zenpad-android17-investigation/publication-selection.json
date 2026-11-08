@@ -1,0 +1,25 @@
+{
+  "indexed_experiments": 391,
+  "included_files": 5102,
+  "included_bytes": 34022531,
+  "excluded_files": 1342,
+  "selection_counts": {
+    "included: investigation report/readme/handoff": 731,
+    "included: authored investigation/build/packaging helper": 3034,
+    "excluded: duplicate/baseline/fetched snapshot, retain canonical authored files and reports": 66,
+    "included: authored Git/source delta, no full fetched tree": 267,
+    "included: selected result/source-pin/hash metadata": 729,
+    "included: authored experiment configuration": 73,
+    "excluded: uncertain authorship or full existing source/config postimage; conservative exclusion": 588,
+    "included: clearly named new standalone RAM/rescue/probe helper": 43,
+    "excluded: remote fetched/modified source postimage or duplicate kit snapshot; retain patches/provenance": 78,
+    "included: project device/vendor configuration": 47,
+    "included: source pins/project states or authored root build entrypoint": 28,
+    "included: new untracked linkerconfig tests established by VM source audit": 2,
+    "included: compact kit evidence/provenance metadata": 118,
+    "included: authored kit script/test": 29,
+    "excluded: fetched/modified existing source postimage or checkpoint; retain delta/provenance instead": 610,
+    "included: new project Wi-Fi setup helper Java": 1
+  },
+  "note": "391 experiment boundaries retained. Omitted fetched or uncertain source remains in local checkpoint only. Relative paths retained, but links to omitted postimages may not resolve; publication-mapping.json explains every omission. No license is asserted for preserved patches."
+}

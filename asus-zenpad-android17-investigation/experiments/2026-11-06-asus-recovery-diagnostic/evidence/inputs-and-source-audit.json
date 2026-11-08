@@ -1,0 +1,53 @@
+{
+  "files": {
+    "orchestration_readme": {
+      "path": "2026-11-06-asus-android17-orchestration/README.md",
+      "sha256": "15463285975301785699e1b5a243d766263a28ad146d4b0079742a7555b06a6f"
+    },
+    "reused_packager": {
+      "path": "2026-11-06-asus-boot-image-bringup/scripts/package_kernel.py",
+      "sha256": "fb95c0e1489a5050ff7841dcf4a5dfccec3ca0b0463d79e81135c58be5a2f48c"
+    },
+    "stock_physical_power_evidence": {
+      "path": "2026-11-05-asus-boot-access-audit/evidence/physical-return-method.json",
+      "sha256": "23d3ea85de95686943d78e392109908b50b00a2adf2bdd5d44aa4e6383363d88"
+    },
+    "root_raw_read_evidence": {
+      "path": "2026-11-05-asus-root-hardware-validation/evidence/direct-block-read-verification.json",
+      "sha256": "17e37b45707aca2601adf2926303c72131f33866e0cc982ea1c341e5e4d7cbf8"
+    },
+    "root_wrapper_reviewed_not_run": {
+      "path": "2026-11-05-asus-root-hardware-validation/scripts/root_shell.py",
+      "sha256": "951b3b7f8c099550554a9689b0be5995981def7060735109c66761be611ad8ec"
+    },
+    "live_partition_map": {
+      "path": "2026-11-05-asus-latest-android-feasibility/evidence/live-partition-layout.json",
+      "sha256": "7a85518d59bdc187c1a3ba376bb14d6a33656dc218d08343b56faaf2c8a13870"
+    },
+    "kernel_config": {
+      "path": "2026-11-05-asus-android17-kernel-backports/artifacts/linux-bpf-fd/bpf-fd-result/kernel.config",
+      "sha256": "0a79503b82ed5980a3b3e0ffb288cdadc49abb67969221960c1295cd7bae03df"
+    }
+  },
+  "stock_power": {
+    "source": "User confirmation in this session",
+    "method": "Long press Power for 5 seconds",
+    "observed_result": "Returned to stock Android after fastboot command transport stalled",
+    "repeatability": "One reported successful recovery; not independently stress-tested"
+  },
+  "kernel_source_commit": "717bb3c9e13ce573cfdd2dda856debd27a0fa17f",
+  "newkernel_source_findings": {
+    "long_press": "KEYBOARD_MTK and ONEKEY_REBOOT_NORMAL_MODE/OTHER_MODE enabled; LPRST_TD=2 maps to 14 seconds in Kconfig. kpd probe calls long_press_reboot_function_setting; PMIC wrappers ignore write result. Not runtime proof.",
+    "reset": "machine_restart uses arm_pm_restart if present, else do_kernel_restart. mtk_wdt registers a restart handler or reboot notifier; normal RESTART takes no recovery/bootloader command. Handler hardware/firmware result untested.",
+    "hardware_watchdog": "MEDIATEK_WATCHDOG=y; DOUGLAS and GIZA are disabled, so mtk_wdt_probe calls mtk_wdt_stop. No diagnostic watchdog device is opened/armed. A user-space deadline is not an independent hardware watchdog.",
+    "usb": "usb20.c allocates musb-hdrc with PLATFORM_DEVID_NONE; candidate UDC string musb-hdrc follows source, not a runtime observation."
+  },
+  "boot_recovery_partition_bytes": 16740352,
+  "recovery_linux_by_name": "/dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/recovery",
+  "recovery_live_start_sector": 160184,
+  "recovery_live_sectors": 32696,
+  "no_device_commands_executed": true,
+  "no_vm_source_or_build_mutations": true,
+  "no_cloud_or_goal_changes": true,
+  "ready_for_supervised_stock_control": false
+}

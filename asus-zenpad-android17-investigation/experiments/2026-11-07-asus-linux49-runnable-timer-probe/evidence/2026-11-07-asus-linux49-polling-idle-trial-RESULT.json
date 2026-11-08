@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-08T01:48:20.167807+00:00",
+  "helper_record_count": 76,
+  "same_helper_uuid": "5fa3e2cd-430d-4bbb-8b37-1adff9bb9439",
+  "nohlt_token_reached_kernel": true,
+  "printk_devkmsg_on_reached_kernel": true,
+  "clock_nanosleep_return_records": [],
+  "complete_records": [],
+  "alarm_records": [],
+  "last_helper_record": "ASUS49-PREALARM run=5fa3e2cd-430d-4bbb-8b37-1adff9bb9439 stage=begin op=clock_nanosleep.relative100ms path=CLOCK_MONOTONIC rc=0 errno=0 value=-",
+  "stock_return_verified": true,
+  "new_stock_boot_id": "198ef897-99a5-4a06-8e4b-25ab84eb7a3a",
+  "complete_console_bytes": 40492,
+  "complete_console_sha256": "37677f2e3cd85cc7fba44c1b40776757486d7d91bb0566ea3948585cfe4298df",
+  "normal_OS_partitions_changed": false,
+  "outcome": "NOHLT_CONFIRMED_SAME_TIMER_SLEEP_BOUNDARY",
+  "interpretation": "Normal generic idle hardware-entry path is not necessary to reproduce; nohlt reached kernel and bypasses cpuidle/defaultidle. NO_HZ bookkeeping still runs. No IRQ routing/frequency/thermal cause proven.",
+  "next_scope": "One RAM helper IRQ/signal-vs-counter busy-loop observation, no blocking sleep, same kernel."
+}

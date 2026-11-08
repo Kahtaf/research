@@ -1,0 +1,36 @@
+{
+  "build/soong": "/srv/android/lineage24/build/soong/android/vintf_fragment_test.go\n/srv/android/lineage24/build/soong/android/vintf_data.go\n/srv/android/lineage24/build/soong/android/vintf_fragment.go\n",
+  "system/libvintf": "/srv/android/lineage24/system/libvintf/RuntimeInfo-host.cpp\n/srv/android/lineage24/system/libvintf/test/RuntimeInfo-fake.cpp\n/srv/android/lineage24/system/libvintf/RuntimeInfo-target.cpp\n/srv/android/lineage24/system/libvintf/include/vintf/RuntimeInfo.h\n/srv/android/lineage24/system/libvintf/RuntimeInfo.cpp\n",
+  "system/libvintf/RuntimeInfo-target.cpp": {
+    "sha256": "992f55413ea575ff1159060b96da5055b168f8a21e6a806f3a79dbe94a534810",
+    "base64_omitted_publication": {
+      "reason": "fetched source bytes excluded by research repository rules",
+      "decoded_bytes": 5887,
+      "decoded_sha256": "992f55413ea575ff1159060b96da5055b168f8a21e6a806f3a79dbe94a534810"
+    }
+  },
+  "system/libvintf/RuntimeInfo-host.cpp": {
+    "sha256": "654ec32f3e8352f2aaa02f6c95db01c1444c441d4860ba0a8a6b6ebbb5679d77",
+    "base64_omitted_publication": {
+      "reason": "fetched source bytes excluded by research repository rules",
+      "decoded_bytes": 974,
+      "decoded_sha256": "654ec32f3e8352f2aaa02f6c95db01c1444c441d4860ba0a8a6b6ebbb5679d77"
+    }
+  },
+  "system/libvintf/include/vintf/CheckFlags.h": {
+    "sha256": "36b7f1f705c25cf6d58882627d6e29c6ba376c6d11ff1042ed27d4d760366bf9",
+    "base64_omitted_publication": {
+      "reason": "fetched source bytes excluded by research repository rules",
+      "decoded_bytes": 2385,
+      "decoded_sha256": "36b7f1f705c25cf6d58882627d6e29c6ba376c6d11ff1042ed27d4d760366bf9"
+    }
+  },
+  "system/libhidl/vintfdata/Android.bp": {
+    "sha256": "fa9e0b07f4e9588b9fc1221f95b4017ccdc07677a4f6ff3d089eb464f7d01f66",
+    "base64_omitted_publication": {
+      "reason": "fetched source bytes excluded by research repository rules",
+      "decoded_bytes": 1510,
+      "decoded_sha256": "fa9e0b07f4e9588b9fc1221f95b4017ccdc07677a4f6ff3d089eb464f7d01f66"
+    }
+  }
+}

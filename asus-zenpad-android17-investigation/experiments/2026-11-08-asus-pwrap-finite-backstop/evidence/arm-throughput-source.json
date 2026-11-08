@@ -1,0 +1,10 @@
+{
+  "title": "Cortex-A53 Cycle Model User Guide",
+  "document": "ARM 101013_0902_00 (ID050417)",
+  "url": "https://documentation-service.arm.com/static/5efa37a7cafe527e86f55c4c",
+  "page": 12,
+  "section": "1.1 Cortex-A53 Functionality",
+  "claim": "In-order pipeline; symmetric dual issue of most instructions",
+  "use": "Optimistic upper issue envelope 2 architectural instructions/cycle; no stall penalties included",
+  "retrieved": "2026-11-08"
+}

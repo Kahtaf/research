@@ -1,0 +1,18 @@
+{
+  "exit": 0,
+  "target": [
+    "target datalayout = \"e-m:e-p270:32:32-p271:32:32-p272:64:64-i8:8:32-i16:16:32-i64:64-i128:128-n32:64-S128-Fn32\"",
+    "target triple = \"aarch64-unknown-linux-android37\""
+  ],
+  "functions": [
+    "define i32 @wpa_driver_nl80211_driver_cmd",
+    "define internal i32 @_ZL8snprintfPcU25pass_dynamic_object_size1mPKcz",
+    "define noundef i32 @wpa_driver_set_p2p_noa",
+    "define noundef i32 @wpa_driver_get_p2p_noa",
+    "define noundef i32 @wpa_driver_set_p2p_ps",
+    "define noundef i32 @wpa_driver_set_ap_wps_p2p_ie",
+    "define weak_odr hidden void @__cfi_check_fail",
+    "define weak void @__cfi_check"
+  ],
+  "native_product_object": false
+}

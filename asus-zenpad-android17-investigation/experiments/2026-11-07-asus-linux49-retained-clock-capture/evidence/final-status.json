@@ -1,0 +1,29 @@
+{
+  "status": "ONE_CANDIDATE_DELIVERED_PARENT_OWNS_PHYSICAL_TRIAL",
+  "run_uuid": "fef31ed4-f62b-4f2a-8cc8-8f5a6c96dbdb",
+  "candidate": {
+    "bytes": 7976960,
+    "sha256": "666404b22886baab96ccd7b09ae258a9e65ecacbd674e1d70ae929b1083cdfce"
+  },
+  "full_p10": {
+    "bytes": 16740352,
+    "sha256": "4b474d6e714871dcefbba9510ff3d25f66e13147171ae39b0fa670c7cd70402e"
+  },
+  "admitted_current_full_p10": "e4afdc3542ecfbc5a4105ab6eb9d5b9f78ff614c2455b8e0b8dee5932e7ad3f4",
+  "complete_kernel_builds": 1,
+  "compile_attempts": 1,
+  "compile_exit": 0,
+  "build_warnings": 24,
+  "build_log_preserved": true,
+  "config_byte_identical": true,
+  "scoped_ELF_source_package_verification": true,
+  "capture_layout_acceptance": "PASS (host synthetic actual recorder body)",
+  "installer_PLAN": "PASS (one isolated public-reader actual main call; delivered guards unchanged)",
+  "device_ADB_private_payload_raw_target_log_access": false,
+  "physical_GO": false,
+  "subagents": false,
+  "VM_final_state": "TERMINATED",
+  "VM_exact_id": "8549823276971553556",
+  "remote_owned_root": "/srv/android/asus-linux49-retained-clock-capture-20261107-fef31ed4",
+  "large_out_vmlinux_remain_remote": true
+}

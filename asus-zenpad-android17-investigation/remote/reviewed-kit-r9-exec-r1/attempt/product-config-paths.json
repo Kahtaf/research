@@ -1,0 +1,54 @@
+{
+  "dumpvars_sha256": "cad93c4a0c5341018b9770b32406c1201575c71ebbafab95a793fdc4e84cd335",
+  "manifests": {
+    "DEVICE_FRAMEWORK_MANIFEST_FILE": [],
+    "DEVICE_MANIFEST_FILE": [
+      "device/asus/p00a/manifest.xml",
+      "device/asus/p00a/firstboot/manifest-keymaster.xml",
+      "device/asus/p00a/radio/manifest-bluetooth.xml",
+      "device/asus/p00a/sensors/manifest.xml"
+    ],
+    "ODM_MANIFEST_FILES": [],
+    "PRODUCT_MANIFEST_FILES": [],
+    "SYSTEM_EXT_HWSERVICE_FILES": [],
+    "SYSTEM_EXT_MANIFEST_FILES": []
+  },
+  "native_compilation_started_by_this_check": false,
+  "policy_dirs": {
+    "BOARD_ODM_SEPOLICY_DIRS": [],
+    "BOARD_PRODUCT_SEPOLICY_PREBUILT_DIRS": [],
+    "BOARD_SEPOLICY_DIRS": [],
+    "BOARD_SYSTEM_EXT_SEPOLICY_PREBUILT_DIRS": [],
+    "BOARD_VENDOR_SEPOLICY_DIRS": [
+      "device/asus/p00a/sepolicy/vendor",
+      "device/asus/p00a/radio/sepolicy",
+      "device/asus/p00a/sensors/sepolicy",
+      "device/lineage/sepolicy/common/dynamic",
+      "device/lineage/sepolicy/common/vendor"
+    ],
+    "PRODUCT_PRIVATE_SEPOLICY_DIRS": [],
+    "PRODUCT_PUBLIC_SEPOLICY_DIRS": [],
+    "SEPOLICY_FREEZE_TEST_EXTRA_DIRS": [],
+    "SEPOLICY_FREEZE_TEST_EXTRA_PREBUILT_DIRS": [],
+    "SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS": [
+      "device/lineage/sepolicy/common/private"
+    ],
+    "SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS": [
+      "device/lineage/sepolicy/common/public"
+    ]
+  },
+  "sensor_board_sha256": "9207c304761cf86afb423641534ed383e7f8dae613e64061e972d2f65832aa4d",
+  "sensor_manifest_sha256": "051ea959884e25bc75009ceddd19c8f689bae989f9973e36a0032ab8cdf32c22",
+  "sensor_policy": {
+    "file_contexts": {
+      "sha256": "2f39279a5a2f1a22b0cadcf5a85c682f3c522744a9840c18ce91e9aa32a2d034"
+    },
+    "genfs_contexts": {
+      "sha256": "ac05b23dd0fdfb9b7bd2dd83401d4ab461efd96bf2ab6da87ad471423564b23d"
+    },
+    "p00a_accelerometer.te": {
+      "sha256": "54bc1962f05ffa1987bf01d5cfa89f1b5c752120890bed1eef36c877165f6a47"
+    }
+  },
+  "source_configuration_paths_verified": true
+}

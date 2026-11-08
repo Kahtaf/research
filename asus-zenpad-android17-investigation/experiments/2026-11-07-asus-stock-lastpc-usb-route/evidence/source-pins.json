@@ -1,0 +1,201 @@
+{
+  "source_provenance": {
+    "stock_tree": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/",
+    "original_archive_url": "https://dlcdnets.asus.com/pub/ASUS/EeePAD/Zenpad/Z380M/Kernel_V4_7_0.zip",
+    "archive_provenance_basis": "Existing feasibility REPORT.md, line 36; archive not reread or fetched here",
+    "source_version": "3.18.22 GPL reference; shipped 3.18.35 behavior independently corroborated in public original.img",
+    "port_tree": "2026-11-05-asus-p00a-power-port/sources/kernel/"
+  },
+  "files": [
+    {
+      "path": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/debug_latch/lastpc/lastpc.c",
+      "bytes": 6240,
+      "sha256": "4687efdfd268c165ad232c2a560142b6038e7f42106312277969a3a4b6c3c127",
+      "excerpt_ranges": [
+        [
+          47,
+          62
+        ],
+        [
+          160,
+          183
+        ],
+        [
+          218,
+          274
+        ]
+      ]
+    },
+    {
+      "path": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/debug_latch/lastpc/mt8163/lastpc_plt.c",
+      "bytes": 5033,
+      "sha256": "511f9a9d6ef713697a8b8a596b6f506384c5b3584d218c864d31d08cf69de505",
+      "excerpt_ranges": [
+        [
+          27,
+          101
+        ],
+        [
+          140,
+          172
+        ]
+      ]
+    },
+    {
+      "path": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/debug_latch/lastpc/lastpc.h",
+      "bytes": 1468,
+      "sha256": "f7f9efe6ff5d374c9e9f4d4534ce1706a81f3a6a88c8af704e6d45b4c23a5014",
+      "excerpt_ranges": [
+        [
+          10,
+          38
+        ]
+      ]
+    },
+    {
+      "path": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/include/mt-plat/mt_lastpc.h",
+      "bytes": 263,
+      "sha256": "1c86215c1bc02501eda6c31a35ddb07746f3319b4d47119e1b175f5a8aff1f0f",
+      "excerpt_ranges": [
+        [
+          1,
+          10
+        ]
+      ]
+    },
+    {
+      "path": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/debug_latch/Kconfig",
+      "bytes": 853,
+      "sha256": "ed511bc50c3c86aa12b1b07b62241d01d6f48c81fa3941d40d813d9f8320aff8",
+      "excerpt_ranges": [
+        [
+          1,
+          20
+        ]
+      ]
+    },
+    {
+      "path": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/debug_latch/lastpc/Makefile",
+      "bytes": 130,
+      "sha256": "d929939c4675a65df0bdacdbdc163c113ff0f62b02b236901e5be4367fc840c2",
+      "excerpt_ranges": [
+        [
+          1,
+          7
+        ]
+      ]
+    },
+    {
+      "path": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/arch/arm64/boot/dts/mt8163.dtsi",
+      "bytes": 46308,
+      "sha256": "a635a298c57fc5cd22afd1fe9dc6f1682e4536319dd01f3a90d3aa84917af3cd",
+      "excerpt_ranges": [
+        [
+          452,
+          469
+        ]
+      ]
+    },
+    {
+      "path": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/ram_console/mtk_ram_console.c",
+      "bytes": 57775,
+      "sha256": "c966a4508bff43f31a551103b7c5a9cfad4b11164c069b7d30ba9c09199e86b2",
+      "excerpt_ranges": [
+        [
+          2337,
+          2380
+        ],
+        [
+          2458,
+          2477
+        ]
+      ]
+    },
+    {
+      "path": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/aee/common/reboot-reason.c",
+      "bytes": 9585,
+      "sha256": "9bd99dfbf2e4b5e1aa7a78ad51f76406fcfd5397f854e6294851130b5d5f0cfa",
+      "excerpt_ranges": [
+        [
+          22,
+          24
+        ],
+        [
+          45,
+          71
+        ]
+      ]
+    },
+    {
+      "path": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/aee/aed/aed-main.c",
+      "bytes": 54478,
+      "sha256": "87c35aa209569b041e7e15180a8fad11e96fc20da1e5a8aa2a5a342a36778a07",
+      "excerpt_ranges": [
+        [
+          1984,
+          2000
+        ]
+      ]
+    },
+    {
+      "path": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/debug_latch/lastbus/lastbus.c",
+      "bytes": 7251,
+      "sha256": "371f14a63dc9f885a2f6ca7e04d88d256ddef1571c52d3e5d2c20767396af74b",
+      "excerpt_ranges": [
+        [
+          192,
+          196
+        ]
+      ]
+    },
+    {
+      "path": "2026-11-05-asus-p00a-power-port/sources/kernel/drivers/misc/mediatek/lastpc/lastpc.c",
+      "bytes": 6152,
+      "sha256": "067342380caa3d2626f4847efcf6020940d2a0fe59e37195c6bb2ce3c9421608",
+      "excerpt_ranges": [
+        [
+          158,
+          181
+        ],
+        [
+          231,
+          272
+        ]
+      ]
+    },
+    {
+      "path": "2026-11-05-asus-p00a-power-port/sources/kernel/drivers/misc/mediatek/lastpc/mt8163/lastpc_plt.c",
+      "bytes": 7450,
+      "sha256": "8ec567d324242e08a83ad8f68c1d46079a83d4a6d9e641d0c61ddaacff28a982",
+      "excerpt_ranges": [
+        [
+          29,
+          37
+        ],
+        [
+          109,
+          178
+        ],
+        [
+          217,
+          248
+        ]
+      ]
+    },
+    {
+      "path": "2026-11-07-asus-usb-retained-log-kernel-trial/evidence/lastpc-driver-listing.json",
+      "bytes": 278,
+      "sha256": "302d56c8a697678b511e460ba950863340f8b9b1f35f49cbe4aeb0aead2d9fa2"
+    },
+    {
+      "path": "2026-11-07-asus-usb-retained-log-kernel-trial/evidence/physical-result.json",
+      "bytes": 1136,
+      "sha256": "5eabda24a044db36d12891135bcf103299e355fb0fd0333eb2476f94bf040c0a"
+    },
+    {
+      "path": "2026-11-05-asus-latest-android-feasibility/REPORT.md",
+      "bytes": 20328,
+      "sha256": "1d7ff17597d622797ee11cb7fbda5d9b964abed8a3bad201c2da5d3e8f233eaa"
+    }
+  ]
+}

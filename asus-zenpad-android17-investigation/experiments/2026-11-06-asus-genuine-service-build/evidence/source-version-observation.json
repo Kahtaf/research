@@ -1,0 +1,26 @@
+{
+  "utc": "2026-11-06T22:06:45.273438+00:00",
+  "repo_heads": {
+    "build/make": "90d006387398ae6899145e6531a304500cfa0f70 2026-10-11T13:15:58-04:00 Revert \"releasetools: build_super_image: Do not set readonly attr\"",
+    "build/soong": "a528a88bd553d2a449ad9338a3e944b89a164971 2026-10-19T20:36:16+00:00 systemfeatures: Only update outputs when their contents change",
+    "frameworks/base": "696a5773fa284f53429dbb6c3e5dcc96bf5bd0b3 2026-11-04T18:37:17+00:00 Defer disassociation of revoked CDM associations until user unlock.",
+    "frameworks/av": "1c5914737a1a89d0c5b3e52e8289019eab3f8cbf 2026-10-14T12:23:27-04:00 Fix stack buffer overflow in LWOmxNode::getParameter and getConfig",
+    "system/core": "65d661b1a536701e8b118be4e9728d7b5ca727c9 2026-10-22T01:49:18+00:00 Add AID for AOA daemon"
+  },
+  "source_versions": {
+    "build/release/flag_values/trunk_staging/RELEASE_PLATFORM_SDK_VERSION.textproto": [
+      "name:  \"RELEASE_PLATFORM_SDK_VERSION\"",
+      "value:  {",
+      "  string_value:  \"37\""
+    ],
+    "frameworks/base/core/api/37.txt": false,
+    "frameworks/base/api/37.txt": false,
+    "prebuilts/sdk/37": false,
+    "prebuilts/sdk/current": true
+  },
+  "r5_dumpvars": [
+    "TARGET_BUILD_VARIANT='userdebug'",
+    "PLATFORM_SDK_VERSION='37'",
+    "PLATFORM_VERSION_LAST_STABLE='17'"
+  ]
+}

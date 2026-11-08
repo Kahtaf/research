@@ -1,0 +1,89 @@
+{
+  "status": "VERIFIED_FIFO_BOOST_NO_COMPLETION_OBSERVED",
+  "candidate_p10_sha256": "6f5577f7330754c43c52ad4e522fd487fd1cb4d56331991684f8515b03eba353",
+  "normal_android_return_proven": true,
+  "new_stock_boot_id": "0878e452-ee13-491a-957b-9be4eaeb096c",
+  "one_recovery_dispatch": true,
+  "runtime_mode": [
+    "ASUS49-MODE run=f53fadc2-5cd5-4c44-b5a3-7a65567c6935 profile=sparse-fifo-v1 hot=disabled ordinary_printk=filtered delay=original-virtual"
+  ],
+  "initial_clock": [
+    "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=begin op=clock_gettime path=loop.initial rc=0 errno=0 value=-",
+    "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=end op=clock_gettime path=loop.initial rc=0 errno=0 value=0.646235615"
+  ],
+  "complete_console": {
+    "bytes": 3436,
+    "sha256": "90e973743859cc820fdf623d0a6f37e75cf5dcae7c1f25ce9f3adb59ba5436ab"
+  },
+  "parsed": {
+    "status": "UNKNOWN_SCHEDULING_COMPLETION",
+    "physical_admission": "parent must independently verify full p10 and fresh stock boot",
+    "old_six_protocols": "deliberately absent; never admitted",
+    "loop": null,
+    "irqs": {
+      "before": {
+        "counts": {
+          "2:GIC-0:29:Level": [
+            0
+          ],
+          "3:GIC-0:30:Level": [
+            180
+          ]
+        },
+        "snapshot_complete": true
+      },
+      "after": {
+        "counts": {},
+        "snapshot_complete": false
+      },
+      "growth": false
+    },
+    "alarm_marker": false,
+    "limit": "Verified FIFO execution changes work ordering; no scheduling cause, calibrated walltime, timer-deadness, storage-under-RT or fullOS claim. Missing output remains UNKNOWN.",
+    "begin_and_initial_begin": true,
+    "detail": "Missing/failed/unverified boost or final restoration; progress is conditional publication only.",
+    "control_accepted": false,
+    "scheduling": {
+      "sched.original": {
+        "pos": 24,
+        "phase": "observe",
+        "stage": "actual",
+        "op": "sched.original",
+        "path": "pid0",
+        "rc": 0,
+        "errno": 0,
+        "value": "getparam_rc=0 getparam_errno=0 priority=0"
+      },
+      "sched.boost": {
+        "pos": 25,
+        "phase": "observe",
+        "stage": "actual",
+        "op": "sched.boost",
+        "path": "pid0",
+        "rc": 0,
+        "errno": 0,
+        "value": "requested_policy=1 requested_priority=1"
+      },
+      "sched.boost.observed": {
+        "pos": 26,
+        "phase": "observe",
+        "stage": "actual",
+        "op": "sched.boost.observed",
+        "path": "pid0",
+        "rc": 1,
+        "errno": 0,
+        "value": "getparam_rc=0 getparam_errno=0 priority=1"
+      },
+      "sched.restore": null,
+      "sched.restored": null
+    },
+    "conditional_progress": []
+  },
+  "limits": [
+    "No loop/progress/restoration/afterIRQ observed; unknown absence/publication, not proof permanent lockup.",
+    "Verified FIFO priority1 is one observed runtime policy; RT throttling unchanged and not observed.",
+    "No clean accepted scheduling control without restoration and final records.",
+    "No original scheduling root cause or thermal/reset cause established.",
+    "No SYSTEM/BOOT/DATA writes or Android17 readiness."
+  ]
+}

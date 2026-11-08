@@ -1,0 +1,11 @@
+--- a/source/parent_remote.py
++++ b/source/parent_remote.py
+@@ -50,7 +50,7 @@
+   cb=a.contract.read_bytes()
+   if hashlib.sha256(cb).hexdigest()!=a.contract_sha256:raise ValueError('reviewed session contract hash required')
+   contract=json.loads(cb)
+-  if contract['mode']!='PARENT_APPROVED' or not contract['armed']:raise ValueError('parent-approved armed session contract required')
++  if contract['mode']!='PARENT_APPROVED' or contract['armed'] is not True:raise ValueError('parent-approved armed session contract required')
+   b=a.manifest.read_bytes()
+   if hashlib.sha256(b).hexdigest()!=contract['manifest_sha256']:raise ValueError('manifest pin')
+   if len(bytes.fromhex(contract['p10_full_sha256']))!=32:raise ValueError('p10 pin')

@@ -1,0 +1,21 @@
+{
+  "seal": "ebedbf5c6ebd1f6f17d695c1936e520abe18cefa15f56781a086fe4f19a4a664",
+  "audit": {
+    "active_baseline_files": 61976,
+    "kernel_postimages": 276,
+    "radio_changes": 25,
+    "total_product_changes": 43,
+    "input_mapping_files": 3,
+    "sensor_source_files": 12,
+    "platform_source_files": 2,
+    "qualified_bpf_files": 201,
+    "complete_compiled_files": 62228,
+    "connectivity_files": 3,
+    "scoped_parity": true,
+    "full_service_chain_accepted": false,
+    "flash_ready": false
+  },
+  "read_only": true,
+  "global_lock_acquired": false,
+  "product_build_started": false
+}

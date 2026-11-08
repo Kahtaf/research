@@ -1,0 +1,174 @@
+{
+  "HANDOFF.json": {
+    "bytes": 3269,
+    "sha256": "9622ed25af2676df3337ee0a1e4f0f2a969adf63f834ce3a85dfa9959216895c"
+  },
+  "README.md": {
+    "bytes": 2067,
+    "sha256": "7ca06f5bd674b338d28019f87347154178072941d3a640df288bcdec5a96eece"
+  },
+  "REPORT.md": {
+    "bytes": 23789,
+    "sha256": "3de4a67ef04b489f794b86ba8552b7ede7bd76a40af15b7d8a39ad95375c9704"
+  },
+  "commissioning-gates.html": {
+    "bytes": 1695,
+    "sha256": "732ee3586a0bda00c926a796e42ee950371217fb3f75fff1043b0cba80741bbd"
+  },
+  "evidence/aggregate-fixture-correction.patch": {
+    "bytes": 513,
+    "sha256": "5da8eb447704ad30798b32c56124053bbbfdf47e932b3eb455c3dc8f12a52545"
+  },
+  "evidence/dispatch.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/dispatch.stdout": {
+    "bytes": 1552,
+    "sha256": "1c0bd644a217478ae4ac7a23fda4abe6e182b6be89e7468f44ae725d217ac1c7"
+  },
+  "evidence/final-validation.json": {
+    "bytes": 233,
+    "sha256": "efd4d6d1fe1991d22e585ac5988562b8ecec7fc944d451fcdd026113c484e9db"
+  },
+  "evidence/linux-compile.json": {
+    "bytes": 251,
+    "sha256": "830d7b5d9a8d8ad5f8dadf49e5feb2bd1a0ce3d9234c02f5f9375c5edad507ed"
+  },
+  "evidence/linux-policy-alias-queries.json": {
+    "bytes": 4712,
+    "sha256": "63d2bed96cd84ccbb6f2fd60018e0a32a05cba418211f14f684660096f857cb8"
+  },
+  "evidence/linux-run-receipt.json": {
+    "bytes": 1552,
+    "sha256": "1c0bd644a217478ae4ac7a23fda4abe6e182b6be89e7468f44ae725d217ac1c7"
+  },
+  "evidence/linux-run.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/linux-run.stdout": {
+    "bytes": 162,
+    "sha256": "b6516dd79bdf62d8561eaf2d65f9bc9001c6158db4ad418a3c778e19c95a1c85"
+  },
+  "evidence/linux-semantics-commands.json": {
+    "bytes": 16492,
+    "sha256": "ed2ca977496c0ce3fcade82b97910e0c4d705292858d5f967fc789dfe462dd91"
+  },
+  "evidence/linux-semantics.json": {
+    "bytes": 6055,
+    "sha256": "633de98939307a21061886b088d02ddbc56d77bd44b309a68c543ee18237a18f"
+  },
+  "evidence/linux-session-tests.json": {
+    "bytes": 764,
+    "sha256": "1aa94650879633b0b81535c53d82770392425477cff43e15bb16af9bfdab3ae5"
+  },
+  "evidence/linux-session-tests.stderr": {
+    "bytes": 2223,
+    "sha256": "e4fb6642eaf2ee2389599a7e2369fefb035738d7f8acfc0db8b9dfd20e81c223"
+  },
+  "evidence/linux-session-tests.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/linux-setup.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/linux-setup.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/original-source-integrity.json": {
+    "bytes": 1070,
+    "sha256": "876a8acccc866db4412982f01f1182c30f08d05c0d1859f13fa579c4274aac6f"
+  },
+  "evidence/read-amplification.json": {
+    "bytes": 1158,
+    "sha256": "c65950bcf8916fe1383541a6e932d09f51780dd8385310ac8a45dedd5d4f2281"
+  },
+  "evidence/recovery-trace.json": {
+    "bytes": 1384,
+    "sha256": "45b1ebe6c14b81084908932d7969032822e75cad5d1a70ab2e7ae7d3a916974c"
+  },
+  "evidence/remote-source-integrity.json": {
+    "bytes": 237,
+    "sha256": "fa2a9fd630065053de96b64c383b8a9e60ba84239952c1cca9db9553df1ffb82"
+  },
+  "evidence/rollback-stat-only.json": {
+    "bytes": 1247,
+    "sha256": "12e2951338ab67abf90085e998c9877a64d3454861d20d14c7a1ff640c24bdd4"
+  },
+  "evidence/semantics.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/semantics.stdout": {
+    "bytes": 4865,
+    "sha256": "be8f2434234e3cd635a66b3f105877541f998cab96197cb9463490170b1fa799"
+  },
+  "evidence/trace.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/trace.stdout": {
+    "bytes": 1186,
+    "sha256": "63aba28cd834386ccf80c6fa937e6c73a912587da28ca7ccc2b63a0a495519e7"
+  },
+  "evidence/ueventd-source-receipts.json": {
+    "bytes": 575,
+    "sha256": "910b87a341cf574b9fc80056bb21b1ebe9083c1d35df8bb745b970c16bea559a"
+  },
+  "evidence/variant-independent.json": {
+    "bytes": 1803,
+    "sha256": "bef7d49379fbf1f79668d8808efe5ae0c2a9dd80ce67afd6267e28dd0693af89"
+  },
+  "evidence/variant.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/variant.stdout": {
+    "bytes": 1803,
+    "sha256": "bef7d49379fbf1f79668d8808efe5ae0c2a9dd80ce67afd6267e28dd0693af89"
+  },
+  "scripts/remote_semantics.py": {
+    "bytes": 106318,
+    "sha256": "6419af5f53aaacd774d59bf88f980a59f756e18ececdc76615d2985907f1e4b2"
+  },
+  "scripts/review_sessions.py": {
+    "bytes": 6248,
+    "sha256": "e2283904de5eceba07ad654126b23a7fbb36d007f2526e8166073a75d857022f"
+  },
+  "scripts/run_linux_review.py": {
+    "bytes": 6693,
+    "sha256": "15a4f79bb180274b432a5c49987230fc1f0790946609d3ac98445d800dcce39d"
+  },
+  "scripts/run_trace.py": {
+    "bytes": 1677,
+    "sha256": "dc18af8d1a2c161dc687bfd562561b77ce53d4fbdbefee8879cba05397ddd735"
+  },
+  "scripts/trace_recovery.py": {
+    "bytes": 1842,
+    "sha256": "52816bf7ab716294255c7483777aa3db9addbf20efacfbc267d1d2429c5bf303"
+  },
+  "scripts/verify_linux_semantics.py": {
+    "bytes": 5093,
+    "sha256": "e07a10149bdafe5972200d1bcda97f35c425bbf9b5d9a48c22e95c2c1804fd9c"
+  },
+  "scripts/verify_variant.py": {
+    "bytes": 4315,
+    "sha256": "d024b4a1e54ab3a8b2cf49abda92833f2cf97fd54a44d9b52dd1797a51de393a"
+  },
+  "source/android-6.0.1_r81-devices.cpp": {
+    "bytes": 27057,
+    "sha256": "b7d423e6c381bcebff645586c0b7c5c645b8863ec2db8276c244bd67b73ba2c9"
+  },
+  "source/android-7.1.2_r39-devices.cpp": {
+    "bytes": 27329,
+    "sha256": "fb809675946d28860971fb6b8b1eacf5899bf2c4d5d53d7b7225700a48bd2cf6"
+  },
+  "source/trace_server.c": {
+    "bytes": 410,
+    "sha256": "60049e50335e7aeadb3de14d746cd87d15c9f38d6b91ec8de806141d13b15c64"
+  }
+}

@@ -1,0 +1,598 @@
+{
+  "source/install.diff": {
+    "bytes": 6273,
+    "sha256": "c29e7b2c9c58cb388ba97d2cd970d5de107020527012d4af34a63768f9c2a2d8"
+  },
+  "source/legacy_adb.py": {
+    "bytes": 1511,
+    "sha256": "6d00836d7e0cc28834f858b0fd6ab5515ffe7b3ecd37a6da6ba1f66b43597731"
+  },
+  "source/decoder.diff": {
+    "bytes": 3038,
+    "sha256": "941ee650c8cb305826c811c55e374ee3fccf83c535226c9140f515993d61df9d"
+  },
+  "source/changes.patch": {
+    "bytes": 7823,
+    "sha256": "c629c2a838270627a753bf3f52ce9bd8ff4715e6c25ae0564175eec4c3e82b9e"
+  },
+  "source/bootformat.py": {
+    "bytes": 3936,
+    "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017"
+  },
+  "source/adb": {
+    "bytes": 164,
+    "sha256": "820fd0d66e75ee98701798e385f04e48a026ec7abd22ec6a67e9760ed0829e82"
+  },
+  "source/install.py": {
+    "bytes": 11206,
+    "sha256": "021b6c057609aba2f9f87289f749d84b53f2d26cdaa6a50198422631cc47a7e2"
+  },
+  "source/fdt.py": {
+    "bytes": 3024,
+    "sha256": "1bd710a08eae5677689a52042a621f39dcd57e49197749cf2833eead1fc0dcae"
+  },
+  "source/base/arch/arm64/kernel/asus_entry_tag.h": {
+    "bytes": 920,
+    "sha256": "587f53d78f3ac099699dbeb5492ecd40eae41e03d63a35c31ff2fb3f53c67a90"
+  },
+  "source/base/arch/arm64/kernel/asus_retained_trace.c": {
+    "bytes": 54156,
+    "sha256": "261a21ec9f0e9d6b0920cad44224f369e166dc44a460b31af20c8681c42cd29b"
+  },
+  "source/base/arch/arm64/include/asm/barrier.h": {
+    "bytes": 3813,
+    "sha256": "1916bd7657459d59adbf4cadd08a605baf5ec256374eefb6d567644cf325983f"
+  },
+  "source/base/arch/arm64/include/asm/atomic.h": {
+    "bytes": 8548,
+    "sha256": "cf6d2797344fa7852ef8687de448e1eb2a07060b6e3207f4bd91b16aba6fb4ae"
+  },
+  "source/base/include/linux/compiler.h": {
+    "bytes": 18899,
+    "sha256": "ebd6cf8794da562bf878d796e4d127c297830974d3c8f1e507f0838efa829970"
+  },
+  "source/base/include/linux/asus_retained_trace.h": {
+    "bytes": 5948,
+    "sha256": "a50511cce7b819e1b6c565da7ac98e9d70f3590793d85b50507f8a60e405bf2e"
+  },
+  "source/base/include/linux/atomic.h": {
+    "bytes": 29266,
+    "sha256": "aad6a2d5148cb3f3acf54e168077e2c69b8855ef98be069f48c8859f05a7bd7d"
+  },
+  "source/base/drivers/soc/mediatek/mtk-pmic-wrap.c": {
+    "bytes": 37222,
+    "sha256": "0432a02bdb38abed8a6251d58a36ca952207c9636726b26bc71fa016674eba5e"
+  },
+  "source/base/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c": {
+    "bytes": 4552,
+    "sha256": "03e05c11d4c08f9f2cb030bc05ea94b3c5310c6c1d0905d470181dcf9e4f800e"
+  },
+  "source/base/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc": {
+    "bytes": 8405,
+    "sha256": "aa1ab909484560707fa67ec238350ab5ce8040116b0a5df2374f183d04be6fae"
+  },
+  "source/base/drivers/power/supply/mediatek/battery/battery_common.c": {
+    "bytes": 148747,
+    "sha256": "d750ffb77339826bd0a2282e71660d2899f5139a527d8b3ea966a954a74a22c9"
+  },
+  "source/arch/arm64/kernel/asus_entry_tag.h": {
+    "bytes": 1025,
+    "sha256": "4a7cb17af9efe97c2e7f960a15ce71c8703a0b6ac067db43672216f3e584d9ca"
+  },
+  "source/arch/arm64/kernel/asus_retained_trace.c": {
+    "bytes": 54271,
+    "sha256": "fd4d6df76e3bb44aee8c28dc0822bef97828d96e186052e1e8eab490644695cc"
+  },
+  "source/arch/arm64/boot/dts/mediatek/mt8163.dtsi": {
+    "bytes": 51729,
+    "sha256": "a605903380bac77de2d077e002d215e20422f4a9bf6441c9d782fef3e0c2382a"
+  },
+  "source/include/linux/asus_retained_trace.h": {
+    "bytes": 6164,
+    "sha256": "6b1bd74f8a43d758ad7f354e18e4e3b0816c742d54dc172a483d05fe8dc8ceff"
+  },
+  "source/drivers/cpufreq/Makefile": {
+    "bytes": 5402,
+    "sha256": "be0f926c3ebb8f2648deb1dc0a66e743cd6fc259a47c83a2ea1cc0899e47d094"
+  },
+  "source/drivers/cpufreq/Kconfig": {
+    "bytes": 11538,
+    "sha256": "bf3cbc7af24b582b835ee87d617f6542c6bcd6b4a9ca841f776016d67fae2009"
+  },
+  "source/drivers/clk/mediatek/clk-pll.c": {
+    "bytes": 9578,
+    "sha256": "04eea81c899f1047a3cb2f3ee6d2f13f85b0716c8465bd68cb7543264161b5a9"
+  },
+  "source/drivers/clk/mediatek/clk-mt8163.c": {
+    "bytes": 36074,
+    "sha256": "e9c54ca7528f3dfb5761bd913b9639448715e14875ca2254e1a24a8748bfd1e6"
+  },
+  "source/drivers/soc/mediatek/mtk-pmic-wrap.c": {
+    "bytes": 40036,
+    "sha256": "0e95ec753bb078694aa9821f337b24796edce324eba16f31d95f252692a743f8"
+  },
+  "source/drivers/misc/mediatek/base/power/Makefile": {
+    "bytes": 2032,
+    "sha256": "d70979780d45cfec27451d0a6876802ab8c95800f8de0700e190089b3afcb5df"
+  },
+  "source/drivers/misc/mediatek/base/power/mt8163/Makefile": {
+    "bytes": 1438,
+    "sha256": "15aa1a28795005637de1987ab78fd01fc59c8b2e3f69c54ce4f541b28dc88061"
+  },
+  "source/drivers/misc/mediatek/base/power/mt8163/mt_cpufreq.c": {
+    "bytes": 111476,
+    "sha256": "e528b3b8a790c0c8da117c8c96229d6cf9dcebd57a71691015f3769e6ba4c491"
+  },
+  "source/drivers/misc/mediatek/base/power/mt8163/mt_cpufreq.h": {
+    "bytes": 6177,
+    "sha256": "cecd6b53520236347067a1f55ee098e259015fc482b83ec0d19edbed0bdf8c26"
+  },
+  "source/drivers/power/supply/mediatek/battery/battery_common.c": {
+    "bytes": 148904,
+    "sha256": "072cf7b43a0b2b8f23dcdf216246e107d007c41ad817013073c085608ebad4a1"
+  },
+  "scripts/fetch.py": {
+    "bytes": 1636,
+    "sha256": "1acf8d5f0e1507c7db58bc73300fabdc864c68f6682bcd1f8e815e7359701239"
+  },
+  "scripts/package.py": {
+    "bytes": 6463,
+    "sha256": "9f1f55ecc1ec75222200d2f25d3574bed3c74d4e8d427e1504ef282bf95a714c"
+  },
+  "scripts/vm.py": {
+    "bytes": 2563,
+    "sha256": "7a5f2bfa7b925aa33391541fba9adc5188ca1018fc8bf5207714d1903b345e77"
+  },
+  "scripts/dispatch.py": {
+    "bytes": 1248,
+    "sha256": "c2d4df71d602ffe5f9adfa133b2ba7c4c9e8b28f3158b4cbb43985f4a07418c4"
+  },
+  "scripts/finalize.py": {
+    "bytes": 9460,
+    "sha256": "70ea86a566a3408d50f642b872ba3b021ad31e25934cd351308d7c73f6c5b552"
+  },
+  "scripts/plan_only.py": {
+    "bytes": 4272,
+    "sha256": "2fd383d4829adae962bfc58f247fbd9f6037a26a8739f815b8c05cac817e7054"
+  },
+  "scripts/inspect_frequency.py": {
+    "bytes": 1520,
+    "sha256": "792f1d131de45c971573fc14bab4539bcef14a07d720170e8148a76856c29eab"
+  },
+  "scripts/check_focused.py": {
+    "bytes": 7911,
+    "sha256": "77693a05f802bf436d34954792b0210ee935ea254f660c346365be349b22c929"
+  },
+  "scripts/acquire_implementation.py": {
+    "bytes": 1660,
+    "sha256": "c96af1688d29b9198690e033f2bf3ad97352507ef28a82b0bb7e3ccc8bf2fa93"
+  },
+  "scripts/decode_boundary.py": {
+    "bytes": 10480,
+    "sha256": "98d7320b9cee6405b9cffa95f59d1c58495d10152a1a68c9e60b494f00ac8c59"
+  },
+  "scripts/build_remote.py": {
+    "bytes": 6450,
+    "sha256": "47490e407acc41b4f8d7f4bf3625d1fc2f41494401606472511784745a9cd4f0"
+  },
+  "scripts/inspect_envelope.py": {
+    "bytes": 2013,
+    "sha256": "f2c164bc55421d0eb824b17b83335548de72f3f25bf2bc8c468b5cd50a119ab9"
+  },
+  "scripts/prepare.py": {
+    "bytes": 6650,
+    "sha256": "ca6b0f3e793bd6d219d070846e6248742ca4d9882db8790fd19eb258ef56000f"
+  },
+  "scripts/check_loop.py": {
+    "bytes": 3662,
+    "sha256": "b0d17b777c49dc964d988c8e6ededf6dd381f7bb7f6d9e9aba1f4433624927c8"
+  },
+  "artifacts/candidate.p10.raw": {
+    "bytes": 16740352,
+    "sha256": "00f163a6a2500ec61b286be7bc6a3fa70f5bb707f2c554a217757649e1f4410e"
+  },
+  "artifacts/Image.gz-dtb": {
+    "bytes": 7729624,
+    "sha256": "9acf2a25fac771cb1aab3bf613f8ec4289f89b49df4775d8d311005b64cf53d9"
+  },
+  "artifacts/System.map.gz": {
+    "bytes": 878433,
+    "sha256": "04c56f34756a0e43847a789bdfbc2fe00f685d69d08d56b2e6431944c88d0301"
+  },
+  "artifacts/resolved.config": {
+    "bytes": 126443,
+    "sha256": "708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1"
+  },
+  "artifacts/candidate.img": {
+    "bytes": 7991296,
+    "sha256": "98abc7acab66442831b2f7a2d92c0224f9e5477cb29e2311d797b69e2ea5dab6"
+  },
+  "artifacts/ramdisk.wrapped": {
+    "bytes": 256810,
+    "sha256": "96828e7b595a9ef8687fd5bebfbf0ddbafca31d9e0955041e5f2a0720bd55cb2"
+  },
+  "artifacts/runtime.dtb": {
+    "bytes": 63737,
+    "sha256": "50b6f1eda7ec9548fb169ebd6e97581f7808f4f5fa8ff69bed01d16014a3b5f2"
+  },
+  "output/RECORD-CONTRACT.md": {
+    "bytes": 2954,
+    "sha256": "adfde71d60654801d248b888d4398aa8ead0ce83889841cce1daee14e5057942"
+  },
+  "output/HANDOFF.md": {
+    "bytes": 5340,
+    "sha256": "fe64455129d6f72cbdff1eb20c7d71a813e2f7f81db81c1996b697654ac02cd2"
+  },
+  "evidence/after.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/master-exit.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/handoff.json": {
+    "bytes": 3841,
+    "sha256": "60034e5c1c6ea4fa21d45fd529ec6687e623bd2b0faa2ac55c58d9a3ea418281"
+  },
+  "evidence/envelope-inspection.stderr": {
+    "bytes": 56,
+    "sha256": "6cf977362462c92363fa720c0fa8eea5df9d0e541403dd610326c26662f72c19"
+  },
+  "evidence/master-2.stderr": {
+    "bytes": 64,
+    "sha256": "ceb5130627c381442a5a6da8ff3a0420e64d6d476b81193bb5dc5208e677c2a9"
+  },
+  "evidence/stop.stderr": {
+    "bytes": 465,
+    "sha256": "50dbff979e830db243138e83fb3ee0fd24d52112d6b780d9a25be3f3615c3357"
+  },
+  "evidence/linked-p00a_pmic_prepare_adc.disasm": {
+    "bytes": 18787,
+    "sha256": "d9632a2b1ec4fe1baf72fa98e53f01fea46358a320f04a2cea7abbecdc83af47"
+  },
+  "evidence/frequency.json": {
+    "bytes": 1451,
+    "sha256": "ca2a7c5ca36fd05f3a4ae250333f8436c4ae90c544bf7da59058a73e6acb1b0f"
+  },
+  "evidence/loop-compile.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/additional-linkage.json": {
+    "bytes": 740,
+    "sha256": "ac3c2a1749624b63ea8bd6c40c2f3b45b01aff20d3a9a2253ec45f746f82d355"
+  },
+  "evidence/space-receipt.json": {
+    "bytes": 169,
+    "sha256": "a6cbd060725eae87d64667c2f986e89a9aa44fc5272bd4217ad3a9cca0a936a6"
+  },
+  "evidence/fetch.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/candidate-instruction-proof.json": {
+    "bytes": 316,
+    "sha256": "01229ad6e18ffcb72a4b6d5a2e7beb9f7f1a2e52e42e929895dc69e880b5b67f"
+  },
+  "evidence/linked-pmic_read_interface_nolock.disasm": {
+    "bytes": 2781,
+    "sha256": "88cdd2e4f7ca0c762ed113a575686934c5ce20cf0e62b147ed7ffc1e43f46e09"
+  },
+  "evidence/linked-regmap_lock_spinlock.disasm": {
+    "bytes": 768,
+    "sha256": "07ab59c5eaf2d5e86dfb5e8a5b11304e479bbbad0f9a666daa8f31f2a9635b41"
+  },
+  "evidence/build-receipt.json": {
+    "bytes": 2771,
+    "sha256": "f1d84ce5d5e4d3a4347a4c929ad037d5a426d0cbc0c6ebfe6d578fcd7f781aea"
+  },
+  "evidence/master-check.stderr": {
+    "bytes": 27,
+    "sha256": "1829a1e830e8105ef0c981610fadb90f55289e631ac478731e1aa5918dff2f28"
+  },
+  "evidence/linked-asus_devkmsg_boundary.disasm": {
+    "bytes": 4626,
+    "sha256": "f51649436a06131e85997484f056a6c58e354c2ba2e4e96d04849ef3235f2af1"
+  },
+  "evidence/SOURCE-ELF-PROOF.md": {
+    "bytes": 8576,
+    "sha256": "be9a979fc2e4c140b5fd756d163dde7241c0f53a6c9198791b5c67ac626a88c4"
+  },
+  "evidence/linked-asus_pwrap_backstop_publish.disasm": {
+    "bytes": 3694,
+    "sha256": "451f49c29fee0af22cfd0364f9b31c280474fe43851825cc8cf187273f9b0912"
+  },
+  "evidence/production-loop-harness": {
+    "bytes": 33704,
+    "sha256": "6c12d9e0e1ec5737a90181df4bb66ce2431434202e7c92fb0e5d8fa92787e75f"
+  },
+  "evidence/linked-pwrap_is_fsm_vldclr.disasm": {
+    "bytes": 821,
+    "sha256": "e7625f08b018362cb5ebf1ae320dd3008210bd4a4ad49202da074d9b472116ca"
+  },
+  "evidence/base-freeze.json": {
+    "bytes": 4023,
+    "sha256": "b3cf9f50ecee623b8ed4dae8b7a8b3d1f5e80768f3b47624c5a3194f67f42efb"
+  },
+  "evidence/linked-pwrap_backstop_record.disasm": {
+    "bytes": 295,
+    "sha256": "27555a7b8bb2240d50b1c3f5aa7e4b09b6e7e67239cb4b827369ef637a4f06d3"
+  },
+  "evidence/linked-_raw_spin_unlock_irqrestore.disasm": {
+    "bytes": 1194,
+    "sha256": "3b5672cbb2acff208576110af8bcd6e95ee7fba5c428d255923c9f21ca748b5c"
+  },
+  "evidence/build-status.json": {
+    "bytes": 431,
+    "sha256": "e892d9a2b8555e64ea2a0f5c78b8420db78550314fcb722e6a965261bee737fa"
+  },
+  "evidence/prepost.json": {
+    "bytes": 1076,
+    "sha256": "52767df47e5b5360798a8322201fdadc6b50cb24646974fe677e822eed46e51f"
+  },
+  "evidence/envelope-inspection.json": {
+    "bytes": 7230,
+    "sha256": "4a3e83950b0025fd8f61d0f930a77edb5c4acca762b3e49db3f19ac5e99a7f50"
+  },
+  "evidence/BUDGET-DERIVATION.md": {
+    "bytes": 4328,
+    "sha256": "084f0850086e1e8ff723f1020d9c09710e2b653a38436af6b1eadebcbdc9c8f7"
+  },
+  "evidence/implementation-acquisition.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/master-check.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/copy-out.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/linked-pwrap_readl.isra.0.disasm": {
+    "bytes": 583,
+    "sha256": "37aa04554b0053834733ce07eeae0c6e1f46b41050f941f867d3c048194eecc7"
+  },
+  "evidence/linked-asus_retained_trace_write.disasm": {
+    "bytes": 46806,
+    "sha256": "bdfebb0a03e3f497a0eb80b6b8f1ba5ea8ad5600009bf962efca69ab4cd7ef58"
+  },
+  "evidence/plan-isolation-receipt.json": {
+    "bytes": 2319,
+    "sha256": "dd66d0b23d6ff640f0fea6e0852d12bd04b5f638b4cff60dddf903d6a2e478aa"
+  },
+  "evidence/linked-regmap_unlock_spinlock.disasm": {
+    "bytes": 640,
+    "sha256": "ff882098ff698ddea15e9a62657410a7569a64fec3a94d66183ded41921f050a"
+  },
+  "evidence/master-2.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/stop.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/base.config": {
+    "bytes": 126443,
+    "sha256": "708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1"
+  },
+  "evidence/master-exit.stderr": {
+    "bytes": 19,
+    "sha256": "748c9f993f5dbd096f309bb50f8deb41d93c0743b59186f195774cf93e564eba"
+  },
+  "evidence/after.stdout": {
+    "bytes": 747,
+    "sha256": "a0510cfb268a4f351baa0d8adba6767bb80263511447e8ed0f9b13b97e2e496c"
+  },
+  "evidence/production-loop-harness.c": {
+    "bytes": 2849,
+    "sha256": "75261ee7a005984c0d02570a2bce7f1e06be3752ebbb19109500de0c5d3c2614"
+  },
+  "evidence/focused-checks.json": {
+    "bytes": 2009,
+    "sha256": "6e28cc330123539dcd8bb43407340652280a863301f6c5e3b32e51772b6457cd"
+  },
+  "evidence/dispatch.json": {
+    "bytes": 98,
+    "sha256": "565a89f78cf88709f54aeb0c52088405d915fd4b12ca4c5d3a933a1e33646939"
+  },
+  "evidence/System.map-uncompressed.json": {
+    "bytes": 103,
+    "sha256": "34e7c5dac807e531cc6a3abe5cf36a7d89e386f3bc8b4e8cec7dc723f618ca8b"
+  },
+  "evidence/supplied-physical-context.json": {
+    "bytes": 586,
+    "sha256": "1e7c0b90a01c793ceae43cb9fc0ad4b5b09a733b35c52fd6d7a23495e1476120"
+  },
+  "evidence/linked-asus_p00a_pmic_present.disasm": {
+    "bytes": 7975,
+    "sha256": "3862e5875dfb08599f474a27064613e00d3ad5b975259c2ad7308932ec8b6eae"
+  },
+  "evidence/copy-receipt.json": {
+    "bytes": 101127,
+    "sha256": "74670896f4a70431fb69ca9d76b7350c6715ec8c3451c8c761061b98da8c8d04"
+  },
+  "evidence/production-loop-results.txt": {
+    "bytes": 288,
+    "sha256": "a6b9faeca821c34a176d199b7a64de9f0e41c1f27e8fe64047adb3711fda23d9"
+  },
+  "evidence/selected-symbols.txt": {
+    "bytes": 4175,
+    "sha256": "13ced890c1b0a884b6f6df654545abb2d479a5ff5e828f36a51a01fba0d0a643"
+  },
+  "evidence/before.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/linked-regmap_write.disasm": {
+    "bytes": 1651,
+    "sha256": "fd29f64597b85a279c6f9211a4d6fba948035a88ebe56121d6e7e1b2a8f63ada"
+  },
+  "evidence/master-3.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/as-dispatched-packaging-receipt.json": {
+    "bytes": 3783,
+    "sha256": "9c25d21154aff15beff476166c9aa1e6636b724264c8960080655f15b1c0cc47"
+  },
+  "evidence/identity.json": {
+    "bytes": 607,
+    "sha256": "40907bd2df26a0fb36f9c7797cf11594a07e443cf85c86685edcbbe39babd981"
+  },
+  "evidence/lifecycle.jsonl": {
+    "bytes": 748,
+    "sha256": "0ffba9785a872e61eabb350cefb18096af3146c3df7b390087353997fd287313"
+  },
+  "evidence/linked-regmap_read.disasm": {
+    "bytes": 1647,
+    "sha256": "c665fd80e53bb277e20a57b8401f004623c431e0d94a217debf1e93bc721b746"
+  },
+  "evidence/running.stdout": {
+    "bytes": 744,
+    "sha256": "5e972f6d63b8ea7f111d5564071c5846a4a6e985036e737d1527d9e2e63bd9d3"
+  },
+  "evidence/arm-throughput-source.json": {
+    "bytes": 451,
+    "sha256": "859e011deb3eb40ae5bdb0474c3253a6129461923011965aa23cb707c87692a4"
+  },
+  "evidence/linked-pwrap_write.disasm": {
+    "bytes": 2460,
+    "sha256": "7ea1b3e8b85bbc02a494e6db7e5b9649c6de49ef326e0c6b23c6787364f0fa6a"
+  },
+  "evidence/dispatch.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/linked-sparse_admit.disasm": {
+    "bytes": 295,
+    "sha256": "27555a7b8bb2240d50b1c3f5aa7e4b09b6e7e67239cb4b827369ef637a4f06d3"
+  },
+  "evidence/linked-devkmsg_write.disasm": {
+    "bytes": 7585,
+    "sha256": "74fa6b842518fafabcb6bedab48302a4c69ae9bd7b778a0824fb8fe1150dae16"
+  },
+  "evidence/loop-checks.json": {
+    "bytes": 942,
+    "sha256": "9a021fa705f1adfaa419486ce2768e222883553c779cc436ac8678f2de4d16cf"
+  },
+  "evidence/linked-battery_get_property.disasm": {
+    "bytes": 926,
+    "sha256": "27617b59985f4510ba7d65d6689462447c9da49114b7f777c272743e664a6a8e"
+  },
+  "evidence/install-plan.json": {
+    "bytes": 326,
+    "sha256": "197d99cc6f4fb1c6b607d9c3152c9bc6689bb9a2c69c7628700993c4eafb88a0"
+  },
+  "evidence/master-1.stderr": {
+    "bytes": 65,
+    "sha256": "06498467ad43b14b358c0776d7333978f43b1efc9309be74bdf08f6c167585be"
+  },
+  "evidence/start.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/copy-kernel.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/start.stderr": {
+    "bytes": 345,
+    "sha256": "8b296ac7a1fffc52a52e95ffbf8713b8783050f1e38e7bd5aff74d929da3e320"
+  },
+  "evidence/linked-pwrap_read.disasm": {
+    "bytes": 3436,
+    "sha256": "57d2638ba8c100503af304a21d51a64018b0567738abacf415abd1587d6b2340"
+  },
+  "evidence/linked-pwrap_is_fsm_idle.disasm": {
+    "bytes": 764,
+    "sha256": "563ef6e90729f0639feed7056160129f5740a9cfbecbeaf23862d651f86ce61a"
+  },
+  "evidence/master-1.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/metadata-correction.json": {
+    "bytes": 589,
+    "sha256": "a01668056308dbb0fc73188603d6a8076af85d5cf1df6e588e73861492ca1d35"
+  },
+  "evidence/linked-sched_clock.disasm": {
+    "bytes": 1968,
+    "sha256": "ffb4eb33ec05749d9e56538e9d4fa5b48df73b08ec10c7d8e33224430df7c391"
+  },
+  "evidence/compile-1.log": {
+    "bytes": 4706,
+    "sha256": "39f1db3a7c1d6dfe953e8fde062e14a07acd20d203e27a2e004e4374a6165ad1"
+  },
+  "evidence/as-dispatched-identity.json": {
+    "bytes": 558,
+    "sha256": "f66c1d81067a69fb77d8830e64c246cec45355ca366b78a35df20fb7d02210a6"
+  },
+  "evidence/frequency.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/implementation-acquisition.json": {
+    "bytes": 3260,
+    "sha256": "0c0a5531a808d1433d940ab0c048742de23b76a909eb1d7892a3234e79ebbd9c"
+  },
+  "evidence/linked-power_supply_uevent.disasm": {
+    "bytes": 7652,
+    "sha256": "db268661a7a912853726dc1102b839135f9d049898281d1b43838b398ccfafdd"
+  },
+  "evidence/running.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/linked-asus_p00a_pmic_adc.disasm": {
+    "bytes": 23137,
+    "sha256": "8e2f26db40facf4dc394bb8c688415a249f11d04517b2b0f3fd8f59170f3ef2f"
+  },
+  "evidence/linked-asus_p00a_battery_get_property.disasm": {
+    "bytes": 9985,
+    "sha256": "23a08392ba2f6fed934c973cb5ec443230ee50736129568004cc2bc081bf8a41"
+  },
+  "evidence/fetch-receipt.json": {
+    "bytes": 5615,
+    "sha256": "4122ef5816bb6c606db1fb3f6c3318133eaac2cfed1ff4f72b860bd092c0a121"
+  },
+  "evidence/package-attempt.json": {
+    "bytes": 60,
+    "sha256": "f84dc4df9561a14f2bead4eec97d394b4a2a24025f49bad2cd825f391543e52d"
+  },
+  "evidence/dispatch.stdout": {
+    "bytes": 373,
+    "sha256": "b8393d731967c39d71d9abad60fe5e165494ffbc5503d83c560f94d8dcc8da7c"
+  },
+  "evidence/packaging-receipt.json": {
+    "bytes": 3783,
+    "sha256": "25b345da0c6aa29b69c37c680ecb77f650ca82b22dca4654d2c0a9216d49c538"
+  },
+  "evidence/before.stdout": {
+    "bytes": 747,
+    "sha256": "a0510cfb268a4f351baa0d8adba6767bb80263511447e8ed0f9b13b97e2e496c"
+  },
+  "evidence/linked-_raw_spin_lock_irqsave.disasm": {
+    "bytes": 1334,
+    "sha256": "cf6166a96a03fc47bf003e9d05d6514dd6ec6b3ffb1b0fa1e7eb3ec10ef37d5d"
+  },
+  "evidence/linked-pwrap_wait_for_state.disasm": {
+    "bytes": 4970,
+    "sha256": "ed1e09f80a2613febf4576e61cb8e25ac8f623c7b1d5dbd0bb7ca4d527d714a5"
+  },
+  "evidence/linked-pmic_read_interface.disasm": {
+    "bytes": 3242,
+    "sha256": "58798ec958ef831998ac21c8b7d2e776befe2791212d94844a08945a57018451"
+  },
+  "evidence/master-3.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "README.md": {
+    "bytes": 1365,
+    "sha256": "b25745a85d0af7578755d666d795acc03143f42c08d9823bfbe4b7cab99a476b"
+  }
+}

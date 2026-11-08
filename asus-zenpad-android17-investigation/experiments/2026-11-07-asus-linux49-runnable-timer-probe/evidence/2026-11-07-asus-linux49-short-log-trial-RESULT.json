@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-08T01:41:10.769219+00:00",
+  "helper_record_count": 76,
+  "last_helper_record": "ASUS49-PREALARM run=5fa3e2cd-430d-4bbb-8b37-1adff9bb9439 stage=begin op=clock_nanosleep.relative100ms path=CLOCK_MONOTONIC rc=0 errno=0 value=-",
+  "printk_devkmsg_on_reached_kernel": true,
+  "stock_return_verified": true,
+  "new_stock_boot_id": "ef069232-687a-4a2a-8879-9969e8aa1ae9",
+  "complete_log_bytes": 40354,
+  "complete_log_sha256": "9f4c2124870845e3299d14d4d56dd3a0cd5398add0a83bcccfeda96dac7069da",
+  "OS_partitions_changed": false,
+  "outcome": "DEFINITE_TIMER_WAKE_BOUNDARY_OBSERVED",
+  "helper_UUID_reused_controlled_experiment": true,
+  "freshness": "Exact new container full readback, one entry, different returned stock boot, complete console and newly exposed post-tenth records.",
+  "devkmsg_ratelimit_confounder_resolved": true,
+  "uname_returned_successfully": true,
+  "mount_proc_sysfs_returned_successfully": true,
+  "mmc_hosts": [
+    "mmc1",
+    "mmc0"
+  ],
+  "mmc_block_nodes_present_at_initial_snapshot": [],
+  "mmc_card_absence_is_initial_snapshot_only": true,
+  "clock_gettime_returned_successfully": true,
+  "initial_monotonic_seconds": "0.665805999",
+  "alarm_setup_returned_successfully": true,
+  "clock_nanosleep_100ms_return_observed": false,
+  "alarm_handler_observed": false,
+  "completion_observed": false,
+  "first_unfinished_boundary": "clock_nanosleep CLOCK_MONOTONIC relative100ms",
+  "causality_limit": "The log proves the begin and absence of return, not the exact timer/IRQ reset mechanism. No temperature/watchdog attribution."
+}

@@ -1,0 +1,13 @@
+--- a/source/source_client.py
++++ b/source/source_client.py
+@@ -29,7 +29,9 @@
+ def record_unknown(fd,evidence):
+  fd.poison()  # In-memory truth is terminal even if the evidence sink is broken.
+  try:
+-  write_all(evidence,json.dumps({'outcome':'UNKNOWN','possible_partition_modification':fd.possible_partition_modification,'automatic_retry':False})+'\n')
++  # Preserve torn bytes, then establish a new record boundary. The separator
++  # passes through BoundedJournal too, so it consumes the same byte budget.
++  write_all(evidence,'\n'+json.dumps({'outcome':'UNKNOWN','possible_partition_modification':fd.possible_partition_modification,'automatic_retry':False})+'\n')
+   evidence.flush();os.fsync(evidence.fileno())
+   return True
+  except BaseException:return False

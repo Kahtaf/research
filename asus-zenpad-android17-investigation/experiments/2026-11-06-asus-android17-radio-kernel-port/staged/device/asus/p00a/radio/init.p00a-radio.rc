@@ -1,0 +1,66 @@
+# Opt in only after the parent validates the local calibration and policy.
+# No radio is powered by kernel boot, loader registration, or daemon readiness.
+on init
+    setprop vendor.p00a.radio.loaded 0
+    setprop vendor.p00a.wmt.ready 0
+    setprop vendor.p00a.wifi.ready 0
+    setprop vendor.p00a.btcal Unavailable
+
+on post-fs-data && property:persist.vendor.p00a.radio.enable=1
+    start p00a-radio-load
+
+on post-fs-data && property:persist.vendor.p00a.bluetooth.enable=1
+    start p00a-radio-load
+
+service p00a-radio-load /vendor/bin/p00a-wmt --load
+    class core
+    user root
+    group root
+    disabled
+    oneshot
+
+on property:vendor.p00a.radio.loaded=1
+    start p00a-wmt
+
+service p00a-wmt /vendor/bin/p00a-wmt --serve
+    class core
+    user system
+    group system wifi
+    socket p00a_wmt_ready stream 0660 system wifi
+    disabled
+    onrestart setprop vendor.p00a.wmt.ready 0
+    onrestart setprop vendor.p00a.wifi.ready 0
+    onrestart stop wificond
+
+on property:vendor.p00a.wmt.ready=1 && property:persist.vendor.p00a.radio.enable=1
+    start p00a-wifi-on
+
+service p00a-wifi-on /vendor/bin/p00a-wmt --wifi-on
+    class core
+    user root
+    group root wifi
+    disabled
+    oneshot
+
+on property:vendor.p00a.wifi.ready=1
+    start wificond
+
+on post-fs-data
+    mkdir /data/vendor/bluetooth/p00a 0750 root bluetooth
+    restorecon_recursive /data/vendor/bluetooth/p00a
+
+on property:vendor.p00a.wmt.ready=1 && property:persist.vendor.p00a.bluetooth.enable=1
+    start p00a-bt-prepare
+
+service p00a-bt-prepare /vendor/bin/p00a-wmt --bt-prepare
+    class core
+    user root
+    group root bluetooth
+    disabled
+    oneshot
+
+on property:vendor.p00a.btcal=Ready && property:persist.vendor.p00a.bluetooth.enable=1
+    chown bluetooth bluetooth /data/vendor/bluetooth/p00a/bdaddr
+    chmod 0600 /data/vendor/bluetooth/p00a/bdaddr
+    restorecon /data/vendor/bluetooth/p00a/bdaddr
+    start vendor.bluetooth-p00a

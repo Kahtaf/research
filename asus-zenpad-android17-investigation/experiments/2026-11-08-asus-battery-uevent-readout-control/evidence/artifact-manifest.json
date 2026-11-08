@@ -1,0 +1,518 @@
+{
+  "source/install.diff": {
+    "bytes": 6822,
+    "sha256": "fdabad403f278a7c36098d0e7bfa78a36f32e861d18e4cfaeb240b0723c3ecec"
+  },
+  "source/legacy_adb.py": {
+    "bytes": 1511,
+    "sha256": "6d00836d7e0cc28834f858b0fd6ab5515ffe7b3ecd37a6da6ba1f66b43597731"
+  },
+  "source/decoder.diff": {
+    "bytes": 5186,
+    "sha256": "9233ed031ef57cf3c691eeba2b9c42820b708b919be1583ffe1fcaff14fd938e"
+  },
+  "source/changes.patch": {
+    "bytes": 7199,
+    "sha256": "ce39cd56d820af5760f9cedf4febb584246f3fdbcbb879023647345712b61606"
+  },
+  "source/bootformat.py": {
+    "bytes": 3936,
+    "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017"
+  },
+  "source/adb": {
+    "bytes": 164,
+    "sha256": "820fd0d66e75ee98701798e385f04e48a026ec7abd22ec6a67e9760ed0829e82"
+  },
+  "source/install.py": {
+    "bytes": 11275,
+    "sha256": "27208a75291284648faca2a62cb74a8a74de007793b6c4461307db09de1a553e"
+  },
+  "source/fdt.py": {
+    "bytes": 3024,
+    "sha256": "1bd710a08eae5677689a52042a621f39dcd57e49197749cf2833eead1fc0dcae"
+  },
+  "source/base/arch/arm64/kernel/asus_entry_tag.h": {
+    "bytes": 1025,
+    "sha256": "4a7cb17af9efe97c2e7f960a15ce71c8703a0b6ac067db43672216f3e584d9ca"
+  },
+  "source/base/arch/arm64/kernel/asus_retained_trace.c": {
+    "bytes": 54271,
+    "sha256": "fd4d6df76e3bb44aee8c28dc0822bef97828d96e186052e1e8eab490644695cc"
+  },
+  "source/base/include/linux/asus_retained_trace.h": {
+    "bytes": 6164,
+    "sha256": "6b1bd74f8a43d758ad7f354e18e4e3b0816c742d54dc172a483d05fe8dc8ceff"
+  },
+  "source/base/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c": {
+    "bytes": 4552,
+    "sha256": "03e05c11d4c08f9f2cb030bc05ea94b3c5310c6c1d0905d470181dcf9e4f800e"
+  },
+  "source/base/drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c": {
+    "bytes": 7459,
+    "sha256": "e087d8d7f1482c9dd5a427ce96584439e71e656379eab6167307a0cb5508eed9"
+  },
+  "source/base/drivers/power/supply/power_supply_sysfs.c": {
+    "bytes": 10197,
+    "sha256": "e04ee771d01e58b88ec4ac0f266e37d1867e4f0a55b143b0a13525b2c31cd3b3"
+  },
+  "source/base/drivers/power/supply/power_supply_core.c": {
+    "bytes": 27976,
+    "sha256": "f97d2c922cf42e0dcc415735afb55b0bfee38dd48dd7c6612c287d30297dbecd"
+  },
+  "source/base/drivers/power/supply/mediatek/battery/battery_common.c": {
+    "bytes": 148904,
+    "sha256": "072cf7b43a0b2b8f23dcdf216246e107d007c41ad817013073c085608ebad4a1"
+  },
+  "source/base/drivers/power/supply/mediatek/battery/battery_meter.c": {
+    "bytes": 130248,
+    "sha256": "1f063043ecc794020942c0ea81a80c075acaddf99c080b217fb1b7ec07cd8d2f"
+  },
+  "source/arch/arm64/kernel/asus_entry_tag.h": {
+    "bytes": 1128,
+    "sha256": "4332945d926b5236a8891e230efabf1c75132b653eeea1379f63a59106f7f72f"
+  },
+  "source/arch/arm64/kernel/asus_retained_trace.c": {
+    "bytes": 54404,
+    "sha256": "d08370dc41aa63e608c516542f3af535dc745b3086e1b076c98eeaa8c4f89892"
+  },
+  "source/include/linux/asus_retained_trace.h": {
+    "bytes": 6372,
+    "sha256": "6b58db9ff13a03b6ef6438a144951bbebdb6f3f11486a1b4f16271e8fc698ad2"
+  },
+  "source/drivers/power/supply/power_supply_sysfs.c": {
+    "bytes": 12714,
+    "sha256": "aadc4ae2e445052b2a8831a36d3362bb50e5770e526542e6d8b7b30e898df364"
+  },
+  "source/drivers/power/supply/power_supply_core.c": {
+    "bytes": 28127,
+    "sha256": "9990721f010abbc8ec2e8d340c8222632bb0396835f48f9f7ac8e80816426f21"
+  },
+  "scripts/fetch.py": {
+    "bytes": 1636,
+    "sha256": "1acf8d5f0e1507c7db58bc73300fabdc864c68f6682bcd1f8e815e7359701239"
+  },
+  "scripts/package.py": {
+    "bytes": 6462,
+    "sha256": "df7a3d8d04204e85f0a9bdb69cc1dc6e332628f17be4c1fb27e1190909c539b5"
+  },
+  "scripts/acquire.py": {
+    "bytes": 2088,
+    "sha256": "c83d6e759128bf957c30df6f8fcc52372844bfa392896061fb290e552b6bae83"
+  },
+  "scripts/vm.py": {
+    "bytes": 2564,
+    "sha256": "24e7852c87af176c40422191757d9b4fe44a9f9346091496ddf58c38ab81284d"
+  },
+  "scripts/dispatch.py": {
+    "bytes": 1282,
+    "sha256": "ebb26d0f71fbb31582ea547e7153f44d739799c736e7535fd8c2007c2a37f50f"
+  },
+  "scripts/finalize.py": {
+    "bytes": 20959,
+    "sha256": "e532dd33d405a0f91fb481a4ac9ab55889c5ddc2e2d5655efb950fa8dde314b1"
+  },
+  "scripts/check_production.py": {
+    "bytes": 7792,
+    "sha256": "b945dc44f0ec6d582b1a1b7f904f4401b9ccaa324d80be50d47ab160d62007c3"
+  },
+  "scripts/plan_only.py": {
+    "bytes": 4369,
+    "sha256": "f3ae30bf8acc5598cd8e2a6d977953b62b397ff7046fdf861ea3f75dddf6bbfc"
+  },
+  "scripts/check_focused.py": {
+    "bytes": 8772,
+    "sha256": "3e611844cab4beb43d63a640c4e2fdfd58e682dca5adef10ad1cc26493818ea3"
+  },
+  "scripts/decode_boundary.py": {
+    "bytes": 12715,
+    "sha256": "086f844a0e8d8bb4fbcef5047d9f6d7320317a9fd11c2e8196f2a409102cbf17"
+  },
+  "scripts/build_remote.py": {
+    "bytes": 6483,
+    "sha256": "3838fe5a2be33353e493e14644dd93f24435f90bc4347e377065ccabf10feb6c"
+  },
+  "scripts/prepare.py": {
+    "bytes": 10284,
+    "sha256": "12c42914ea78abe74eac6e01de9e8083b59919b132c349522451ae285b75208c"
+  },
+  "artifacts/candidate.p10.raw": {
+    "bytes": 16740352,
+    "sha256": "d78e6ddd7f4a555201515df3aef6d8d7f15203c20e3b8d201ea7eb2f4c5df081"
+  },
+  "artifacts/Image.gz-dtb": {
+    "bytes": 7730694,
+    "sha256": "b08852576b5897b941af68d92173ec59348f6c356ceb7599fdb6fba090af26b5"
+  },
+  "artifacts/System.map.gz": {
+    "bytes": 878424,
+    "sha256": "171b67822f8fda221308f9d23d84491944ca07bbec880cb1a24715f5bc05a24d"
+  },
+  "artifacts/resolved.config": {
+    "bytes": 126443,
+    "sha256": "708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1"
+  },
+  "artifacts/candidate.img": {
+    "bytes": 7993344,
+    "sha256": "66ff8472af7ec3475bd2761a2a320bde81abb0ed95290d3005c2c2a996eb24ab"
+  },
+  "artifacts/ramdisk.wrapped": {
+    "bytes": 256810,
+    "sha256": "96828e7b595a9ef8687fd5bebfbf0ddbafca31d9e0955041e5f2a0720bd55cb2"
+  },
+  "artifacts/runtime.dtb": {
+    "bytes": 63737,
+    "sha256": "50b6f1eda7ec9548fb169ebd6e97581f7808f4f5fa8ff69bed01d16014a3b5f2"
+  },
+  "evidence/after.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/master-exit.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/charger-acquisition.json": {
+    "bytes": 151,
+    "sha256": "0d581f1a75d7f7e776f2d961740934bce38dcdfabe284c8d8c1e734ce47df28c"
+  },
+  "evidence/handoff.json": {
+    "bytes": 7957,
+    "sha256": "a88e9d1437037c976f51027c5ca11113eaa3128af1c060543aea3970b311a176"
+  },
+  "evidence/master-2.stderr": {
+    "bytes": 64,
+    "sha256": "ceb5130627c381442a5a6da8ff3a0420e64d6d476b81193bb5dc5208e677c2a9"
+  },
+  "evidence/stop.stderr": {
+    "bytes": 482,
+    "sha256": "3d2c6531f148d5a027852fc81b2adae7dbe5e7a45aff5f096cb4a180230e663c"
+  },
+  "evidence/space-receipt.json": {
+    "bytes": 169,
+    "sha256": "6c88503000c11ec301adf958e0aed73429e0065241075e52bcb5e1668a4fd888"
+  },
+  "evidence/fetch.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/build-receipt.json": {
+    "bytes": 2907,
+    "sha256": "b449acf7acf8762b71ab108cc63043ccfd7ec0d743712c8447039c8ef9fab116"
+  },
+  "evidence/master-check.stderr": {
+    "bytes": 27,
+    "sha256": "e36a3ca548afee0e49793fc8ee269a2b86973b6b4463c043ca3a21ea9fdded76"
+  },
+  "evidence/linked-asus_devkmsg_boundary.disasm": {
+    "bytes": 4627,
+    "sha256": "663fb3b0d2eac0803ccaa52da67a6a29d6bec1e93be6b3e08c0f445d974a5f0f"
+  },
+  "evidence/SOURCE-ELF-PROOF.md": {
+    "bytes": 6714,
+    "sha256": "b6652c88a93bea75fd22f0a5b09985f55343ca158cf97e9400c5cf5d1657d3e1"
+  },
+  "evidence/linked-asus_pwrap_backstop_publish.disasm": {
+    "bytes": 3697,
+    "sha256": "b5a1d9396ad93435a4b1b3e81d9830c6441b7aeef15bba11d5f9f9f11fa69a0e"
+  },
+  "evidence/production-check.txt": {
+    "bytes": 187,
+    "sha256": "122c5149234a59f718dfc08b216671476a1426b1d0ed4e54c65b97ac6b4e5e07"
+  },
+  "evidence/base-freeze.json": {
+    "bytes": 4407,
+    "sha256": "e317eadfed4c7ded9525c3afac447bce00a19f86adecccbc05b982f29eaad301"
+  },
+  "evidence/acquisition.json": {
+    "bytes": 2394,
+    "sha256": "dd62acc94bc2dee1d293b03e3e2472be24049a53c9edb14e2f5f856023096040"
+  },
+  "evidence/build-status.json": {
+    "bytes": 433,
+    "sha256": "cae581030533fba716ead542b5b3d4eb1c23f7a064083716ed395d6f6193c843"
+  },
+  "evidence/prepost.json": {
+    "bytes": 1067,
+    "sha256": "2f5c58c8ff318f6106ff73b1a0f105535a706efe7b1e46a4a88fb6f20c6642bd"
+  },
+  "evidence/caller-selected.config": {
+    "bytes": 422,
+    "sha256": "da56c5b32f3d0812e96e8ae4ea21d59fe64cb4a019b3ce82d1d87aafa3619ef8"
+  },
+  "evidence/production-harness.c": {
+    "bytes": 12300,
+    "sha256": "34b0a3d047e973f941807d070dd128cfc3c4ebaee84ea6365a4aa80f0abd3cb8"
+  },
+  "evidence/master-check.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/copy-out.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/linked-asus_retained_trace_write.disasm": {
+    "bytes": 45620,
+    "sha256": "c4a8835235a5e3cd39a949658edf44e8df13b9f9fd1b9600b539f36de834d24a"
+  },
+  "evidence/plan-isolation-receipt.json": {
+    "bytes": 2346,
+    "sha256": "505c2cf9619dcade152aa2d571272f63d77c4a7c24590c8aec6efe104bd03158"
+  },
+  "evidence/master-2.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/stop.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/linked-BAT_thread.disasm": {
+    "bytes": 12928,
+    "sha256": "f6a4d0e465182c77ccb0795e982d0827e439e49e143907dd17ad9e05fb31cabe"
+  },
+  "evidence/base.config": {
+    "bytes": 126443,
+    "sha256": "708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1"
+  },
+  "evidence/master-exit.stderr": {
+    "bytes": 19,
+    "sha256": "748c9f993f5dbd096f309bb50f8deb41d93c0743b59186f195774cf93e564eba"
+  },
+  "evidence/after.stdout": {
+    "bytes": 747,
+    "sha256": "a0510cfb268a4f351baa0d8adba6767bb80263511447e8ed0f9b13b97e2e496c"
+  },
+  "evidence/focused-checks.json": {
+    "bytes": 2328,
+    "sha256": "71f0e0d6371b8692031e37e620bd64d0b8fa1fcc0718b9c4b71e72102da97d62"
+  },
+  "evidence/linked-asus_battery_uevent_publish.disasm": {
+    "bytes": 4223,
+    "sha256": "437450ecf29f5fab1d51e1d96564befb1eebc327fef569de224e0002b321b332"
+  },
+  "evidence/dispatch.json": {
+    "bytes": 99,
+    "sha256": "080e27d9e6cf1a503982d9b2dc9dc471057492539633cf268146b0a2787cb5aa"
+  },
+  "evidence/System.map-uncompressed.json": {
+    "bytes": 103,
+    "sha256": "fd7eb7c350d238d02ba33807ebf642642328792efd26c49269f202360dc7ecb5"
+  },
+  "evidence/linked-power_supply_changed_work.disasm": {
+    "bytes": 12101,
+    "sha256": "c04cdd2485eca9da87c8a74c5d71a195101a621d47a37b4f9e96abf5f54f1d66"
+  },
+  "evidence/linked-battery-literal.json": {
+    "bytes": 144,
+    "sha256": "9ad267f16fa05746e22c45dd25404492f36c1ab1aafbf0b78e15197302913aab"
+  },
+  "evidence/linked-battery_uevent_omitted.disasm": {
+    "bytes": 296,
+    "sha256": "f13be381f450ce1095ca53799ee436b4ea40fd9bd17c4f7d095bdc6f508264c8"
+  },
+  "evidence/copy-receipt.json": {
+    "bytes": 101127,
+    "sha256": "74670896f4a70431fb69ca9d76b7350c6715ec8c3451c8c761061b98da8c8d04"
+  },
+  "evidence/caller-selected-System.map": {
+    "bytes": 868,
+    "sha256": "ebe3ab02cf1577ff0f1a3cf81da20b56f90136461542d26bfcacc0efbcf95872"
+  },
+  "evidence/selected-symbols.txt": {
+    "bytes": 4175,
+    "sha256": "672493859418ba06a9d07177c15a265722c8c03f1271206d25c4dc77e7b35d71"
+  },
+  "evidence/before.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/parent-input-pins.json": {
+    "bytes": 389,
+    "sha256": "1d2c362ed598ba2886e8b787dfd4284e47611512f1866ef05ab3b40f13a013cc"
+  },
+  "evidence/master-3.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/identity.json": {
+    "bytes": 593,
+    "sha256": "06dac9f67949dc3019cb048d0ddf27cfebfb90c766838bacb5dd1db6f35ba2d1"
+  },
+  "evidence/lifecycle.jsonl": {
+    "bytes": 748,
+    "sha256": "b7673874b5b20ca2c166696ea2c77c132d76851ecdbfe914042f5790d1a0c60c"
+  },
+  "evidence/running.stdout": {
+    "bytes": 744,
+    "sha256": "5e972f6d63b8ea7f111d5564071c5846a4a6e985036e737d1527d9e2e63bd9d3"
+  },
+  "evidence/synthetic-parser-fixture.txt": {
+    "bytes": 2784,
+    "sha256": "79fc97e8cc018321c32d61965a5d990d89eeff36d5ccb09220de0e129c9e3e18"
+  },
+  "evidence/dispatch.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/linked-sparse_admit.disasm": {
+    "bytes": 296,
+    "sha256": "f13be381f450ce1095ca53799ee436b4ea40fd9bd17c4f7d095bdc6f508264c8"
+  },
+  "evidence/linked-devkmsg_write.disasm": {
+    "bytes": 7587,
+    "sha256": "84d0f8d26995254330618fec87492e9e57a3cacb0d9413024279d34d8d503272"
+  },
+  "evidence/linked-battery_get_property.disasm": {
+    "bytes": 927,
+    "sha256": "9c0cd508180959a0e769bf4e32d59bb0f5f7ba2fa68664d203f37ac155ebdd8e"
+  },
+  "evidence/install-plan.json": {
+    "bytes": 326,
+    "sha256": "c181f97b6c2767a19b3889559f88b83bf1dbf1a3c6fb783e3c407e26eb5d76b1"
+  },
+  "evidence/linked-asus_battery_uevent_begin.disasm": {
+    "bytes": 2160,
+    "sha256": "b3b83518bbc60cbb5031a36891d05492d257e14c4f1133bae59295dfcbabc610"
+  },
+  "evidence/master-1.stderr": {
+    "bytes": 65,
+    "sha256": "06498467ad43b14b358c0776d7333978f43b1efc9309be74bdf08f6c167585be"
+  },
+  "evidence/start.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/production-check.json": {
+    "bytes": 274,
+    "sha256": "61891b1f91db8076ea6061e4b067057d51e3fa84b1be684ab02072d4a4d498db"
+  },
+  "evidence/CALLER-INVENTORY.md": {
+    "bytes": 2780,
+    "sha256": "c5bda92aa30a1aeee8c861538772a1644df540e4687e27accdca7733f26c29a5"
+  },
+  "evidence/copy-kernel.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/base-System.map.gz": {
+    "bytes": 878433,
+    "sha256": "04c56f34756a0e43847a789bdfbc2fe00f685d69d08d56b2e6431944c88d0301"
+  },
+  "evidence/start.stderr": {
+    "bytes": 314,
+    "sha256": "1189e2b10e0ee94c6ca39ce655328bb75a1908fcf50c4b9d9849b368b75e8c7d"
+  },
+  "evidence/master-1.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/linked-power_supply_read_temp.disasm": {
+    "bytes": 2723,
+    "sha256": "7461f6e1b58aab3dda7c982e69306ad465c0c302f9462ecb89629583cce46231"
+  },
+  "evidence/compile-1.log": {
+    "bytes": 4774,
+    "sha256": "b07c5f72a5da10690f65881c2f6bd8e437f55d25988772b506585be2a300ad63"
+  },
+  "evidence/parent-supplied-facts.json": {
+    "bytes": 611,
+    "sha256": "0ef2f19b4e85cf638cf0fb8e7304cb567b39a2d2edeb8c78db1fd2fbe3e70ca0"
+  },
+  "evidence/linked-power_supply_show_property.disasm": {
+    "bytes": 9269,
+    "sha256": "c20dbcd4a2200f5342e346f36220ed24ebeb6bf4c61f3aa597aab33fdd9617fb"
+  },
+  "evidence/production-compile.txt": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/linked-power_supply_uevent.disasm": {
+    "bytes": 10337,
+    "sha256": "b7dfbaafe39823073ee3965bb5ef965001263b44887e5b2db79547429e2bd15f"
+  },
+  "evidence/running.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/linked-asus_p00a_soc_update.disasm": {
+    "bytes": 22296,
+    "sha256": "75c40f706f32b297cdee2471517a5ffe069e1207c05802962af32ab2050476b4"
+  },
+  "evidence/caller-inventory-pins.json": {
+    "bytes": 748,
+    "sha256": "319293620176d977488b0fc944e435bd55c0f8be291f99877357d4c7033f1314"
+  },
+  "evidence/CALLER-ELF-ADDENDUM.md": {
+    "bytes": 805,
+    "sha256": "089ef4dcf072967421587f3d006de6bbf42e1567223fdec170a62643a3793c48"
+  },
+  "evidence/linked-asus_p00a_battery_read_sample.disasm": {
+    "bytes": 4348,
+    "sha256": "9cc13b66f63a7846054743835df871fa1f4c460467dcd7b58e69422aab1ce6fc"
+  },
+  "evidence/acquire.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/fetch-receipt.json": {
+    "bytes": 4878,
+    "sha256": "70900e60eb99228538b22beec59afe2079c3e171009974a873ac7a086051d40e"
+  },
+  "evidence/package-attempt.json": {
+    "bytes": 60,
+    "sha256": "f84dc4df9561a14f2bead4eec97d394b4a2a24025f49bad2cd825f391543e52d"
+  },
+  "evidence/dispatch.stdout": {
+    "bytes": 375,
+    "sha256": "2eac81b5bb999fe431f4d2348915160b57cbe5f6275e329b01ff02104c1c2f19"
+  },
+  "evidence/packaging-receipt.json": {
+    "bytes": 3793,
+    "sha256": "2fbda92b84d9f6b78425fe6b4ac3508a9adca3240d5dcb3fc884f236e66bf2ae"
+  },
+  "evidence/before.stdout": {
+    "bytes": 747,
+    "sha256": "a0510cfb268a4f351baa0d8adba6767bb80263511447e8ed0f9b13b97e2e496c"
+  },
+  "evidence/master-3.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evidence/caller-slices/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c": {
+    "bytes": 2261,
+    "sha256": "004ce8433f3269c2460c171ea47e94df88eba3fbd9abc1de5d35035da3b7b565"
+  },
+  "evidence/caller-slices/drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c": {
+    "bytes": 2235,
+    "sha256": "d5332c7ca7d24dbb8541984292588d1aa3ef6beb709f16353512dd0a1c79075e"
+  },
+  "evidence/caller-slices/drivers/power/supply/power_supply_sysfs.c": {
+    "bytes": 2008,
+    "sha256": "96dec75b89375675840faca3c1a19a064e8976a828664e7cb746795609f1e5d8"
+  },
+  "evidence/caller-slices/drivers/power/supply/power_supply_core.c": {
+    "bytes": 5362,
+    "sha256": "4ae48468eee2dbe890df8caae2130029bfcf7a25d11eef299689a293fd89c4b4"
+  },
+  "evidence/caller-slices/drivers/power/supply/mediatek/battery/battery_common.c": {
+    "bytes": 5022,
+    "sha256": "7c44aefd8a0a1d0ad3efdecb7a38dc44577ef2c9fe486aa1da1fb158576ad71d"
+  },
+  "evidence/caller-slices/drivers/power/supply/mediatek/battery/battery_meter.c": {
+    "bytes": 1083,
+    "sha256": "ccaf9208466bb8a153a19ad57d9389e4f2b6d3454b1364022af13f59bee8da8d"
+  },
+  "output/RECORD-CONTRACT.md": {
+    "bytes": 3315,
+    "sha256": "6abc020542b515bb54fe56aea516e79dc48f50fe7dd95118c70bb5d0c2ea63e1"
+  },
+  "output/HANDOFF.md": {
+    "bytes": 5506,
+    "sha256": "d75714f26cb92ccd578a46b89dc913a7eeb0b35121f7c0913d5e1715cf713a4f"
+  },
+  "README.md": {
+    "bytes": 1257,
+    "sha256": "3f773bd2534d879f39ca4420a99fd2ba1e0be7644b2cdcf88d127cb38409037f"
+  }
+}

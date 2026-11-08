@@ -1,0 +1,43 @@
+{
+  "at": "2026-11-08T10:29:44.667454+00:00",
+  "uuid": "e6799dac-43cb-4222-8ab6-5119397460b6",
+  "alternate_profile": "Hot areas/readiness absent; ordinary printk filtered; original virtualcounter/helper/config/DT",
+  "parser_result": {
+    "status": "UNKNOWN_STOP",
+    "physical_admission": "parent must independently verify full p10 and fresh stock boot",
+    "old_six_protocols": "deliberately absent; never admitted",
+    "loop": null,
+    "irqs": {
+      "before": {
+        "counts": {
+          "2:GIC-0:29:Level": [
+            0
+          ],
+          "3:GIC-0:30:Level": [
+            178
+          ]
+        },
+        "snapshot_complete": true
+      },
+      "after": {
+        "counts": {},
+        "snapshot_complete": false
+      },
+      "growth": false
+    },
+    "alarm_marker": false,
+    "limit": "Positive supports load/timing sensitivity, not exclusive cause or Android17 readiness. Missing final does not exonerate instrumentation.",
+    "begin_and_initial_begin": true,
+    "detail": "Unresolved publication/environment: missing initial end, final, or loop completion."
+  },
+  "fresh_mode_and_entry_verified": true,
+  "initial_clock_end_observed": true,
+  "last_helper_record": "ASUS49-SYSCLOCK run=f0c3c82c-d639-4d8a-90f2-155fd4224ceb phase=observe stage=end op=clock_gettime path=loop.initial rc=0 errno=0 value=0.641975076",
+  "final_loop_observed": false,
+  "new_stock_boot_id": "9ccaccb0-bdf0-4230-b92a-d630dd80d3da",
+  "normal_stock_return_verified": true,
+  "normal_OS_partitions_changed": false,
+  "full_console_bytes": 2550,
+  "full_console_sha256": "f100181354e82e98c23cfa8958d8916ba347fa07a54a921f1da693a6f300130d",
+  "conclusion": "Reduced-observer exposure still stops after initial0.641975076 sample; no final/alarm/afterIRQ markers. Heavyhotobservers not necessary for this exposure. Sparsepublication/residualinstrumentation/timing/realenvironment remain unresolved; no driver/clock fix inferred."
+}

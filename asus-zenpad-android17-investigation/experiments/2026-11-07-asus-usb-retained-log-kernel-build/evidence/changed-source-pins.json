@@ -1,0 +1,24 @@
+{
+  "before": {
+    "arch/arm64/kernel/asus_retained_trace.c": "15c4e2069326c7e2ecd2679240983913fc51122f5149be215e4707cb76de0a64"
+  },
+  "after": {
+    "arch/arm64/kernel/asus_retained_trace.c": "8373baa301650d2bf3befe547df11a3079e22c51aec8a207de64eae0f1bb3348"
+  },
+  "patch_sha256": "9d9790f13e837ab7569a706e790d99c372d69c3700e8767811723c0bdd0718fa",
+  "patch_command": [
+    "patch",
+    "--batch",
+    "--forward",
+    "--fuzz=0",
+    "-p1",
+    "-d",
+    "/srv/android/asus-usb-retained-log-kernel-build-20261107/kernel",
+    "-i",
+    "/srv/android/asus-usb-retained-log-kernel-build-20261107/source/retained-linux-owned-initialization.patch"
+  ],
+  "patch_exit": 0,
+  "copy_method": "cp -a; independent files, no hardlinks; fresh out/config/tmp",
+  "compile_corrections": [],
+  "no_full_tree_rehash": true
+}

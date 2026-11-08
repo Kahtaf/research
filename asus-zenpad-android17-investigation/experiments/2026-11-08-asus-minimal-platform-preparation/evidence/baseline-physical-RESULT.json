@@ -1,0 +1,43 @@
+{
+  "experiment": 2,
+  "outcome": "PHYSICAL_LINUX49_ENTRY_PROVEN",
+  "run_uuid": "23cdb057-295c-4b42-9ade-a4324162ad02",
+  "exact_full_tag_count": 1,
+  "UUID_count": 1,
+  "candidate_p10_sha256": "c89bedfba2bd8550580f394bb4774018523855b622851d563a56975746f99bb5",
+  "compiled_Image_gz_dtb_sha256": "97b7e1199d607f852bf52ff7766e8aa079fee92986cd3d473b765a45adbf45fb",
+  "fresh_checkpoints": [
+    "ASUS-e9-retained-v2 00 arm64_memblock_init returned; before paging_init",
+    "ASUS-e9-retained-v2 01 paging_init returned; trace ready",
+    "02 setup_arch returned",
+    "03 before init_IRQ",
+    "04 init_IRQ returned",
+    "05 before time_init",
+    "06 time_init returned"
+  ],
+  "complete_log_bytes": 31655,
+  "complete_log_sha256": "de4240564eeef48d0186079b7d8e3b4016d7b102114bef39296aaeeee2ccb429",
+  "collector_receipt": "2026-11-07-asus-usb-retained-log-collector/evidence/retained-trace-a07f3275-6843-448f-bd8b-323b5819bc58.json",
+  "normal_stock_return_verified": true,
+  "new_stock_boot_id": "50b24296-10fc-4e9b-8461-f384ed73feed",
+  "PID1_USB_observed": false,
+  "physical_kernel_entry_proven": true,
+  "minimal_userspace_proven": true,
+  "full_OS_ready": false,
+  "OS_partitions_changed": false,
+  "at": "2026-11-08T00:46:32.896775+00:00",
+  "minimal_userspace_evidence": [
+    "ASUS-RAM-FAILLOG-20261107-R1 event=entry op=logger path=/reporter-kmsg errno=0",
+    "ASUS-RAM-FAILLOG-20261107-R1 event=ready op=kmsg-sink path=/reporter-kmsg errno=0",
+    "ASUS-RAM-FAILLOG-20261107-R1 event=actual op=uname.sysname path=Linux errno=0",
+    "ASUS-RAM-FAILLOG-20261107-R1 event=actual op=uname.release path=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty errno=0",
+    "ASUS-RAM-FAILLOG-20261107-R1 event=actual op=uname.version path=#1 SMP PREEMPT Sun Nov 08 00:38:04 UTC 2026 errno=0",
+    "ASUS-RAM-FAILLOG-20261107-R1 event=actual op=uname.machine path=aarch64 errno=0",
+    "ASUS-RAM-FAILLOG-20261107-R1 event=stage op=setup.entry path=- errno=0",
+    "ASUS-RAM-FAILLOG-20261107-R1 event=stage op=mounts.ready path=- errno=0",
+    "ASUS-RAM-FAILLOG-20261107-R1 event=stage op=ram.ready path=/ram/probe.img errno=0"
+  ],
+  "milestone": "Physical4.9entry+memory/IRQ/timerinit+RAMonlyPID1actualunameproven; storageandfunctionalblockingIOnotyetqualified",
+  "first_unfinished_boundary": "After ram.ready, unique_udc enumeration/wait; kernelUSBprobe failedEINVAL and MMCcommands timedout. Do not infer first fatal without measurement.",
+  "next_scope": "One RAM-only timer/enumeration observation bypassing USB, no new kernel driver changes."
+}

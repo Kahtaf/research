@@ -1,0 +1,42 @@
+{
+  "request_url": "https://review.lineageos.org/LineageOS/android_external_chromium-webview_prebuilt_arm64.git/info/lfs/objects/batch",
+  "request": {
+    "operation": "download",
+    "transfers": [
+      "basic"
+    ],
+    "objects": [
+      {
+        "oid": "1d2f61832b2596b0046cb82cf3634609ea866098d097a83fac27c35272ac726a",
+        "size": 260835655
+      }
+    ],
+    "ref": {
+      "name": "refs/heads/main"
+    }
+  },
+  "attempts": [
+    {
+      "url": "https://media.githubusercontent.com/media/LineageOS/android_external_chromium-webview_prebuilt_arm64/5de662a4d42b57a2efe4114e499d38fa3ce41f9d/webview.apk",
+      "status": 404
+    }
+  ],
+  "batch": {
+    "objects": [
+      {
+        "oid": "1d2f61832b2596b0046cb82cf3634609ea866098d097a83fac27c35272ac726a",
+        "size": 260835655,
+        "actions": {
+          "download": {
+            "url_host": "02e8220d630bcced078978aeedad418f.r2.cloudflarestorage.com"
+          }
+        }
+      }
+    ]
+  },
+  "batch_status": 200,
+  "payload_status": 200,
+  "bytes": 260835655,
+  "sha256": "1d2f61832b2596b0046cb82cf3634609ea866098d097a83fac27c35272ac726a",
+  "streaming_verified": true
+}

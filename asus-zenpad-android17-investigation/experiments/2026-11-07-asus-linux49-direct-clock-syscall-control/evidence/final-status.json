@@ -1,0 +1,8 @@
+{
+  "status": "PARENT_COMPILED_PACKAGED_PLAN_PASSED",
+  "actual_compile_exit": 0,
+  "VM_status": "TERMINATED",
+  "full_p10_sha256": "39241265432908288561ce54d8dde8ae28f55ce97468b3193251444f6a43c52c",
+  "physical_result": "NOT_YET_OBSERVED",
+  "original_failed_status_preserved": true
+}

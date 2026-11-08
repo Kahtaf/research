@@ -1,0 +1,329 @@
+{
+  "synthetic_not_physical": true,
+  "positive": {
+    "status": "CALIBRATED_BOUNDARY_FACTS_STOP",
+    "integrity": "OBSERVED_RECORD_ORDER_VALID_NO_VISIBLE_GAP",
+    "physical_binding": {
+      "exact_full_p10": true,
+      "fresh_stock_boot_reference": "synthetic-stock-reference",
+      "complete_console_reference": "synthetic-complete-reference",
+      "parent_attestations_only": true
+    },
+    "calibration": {
+      "initial_clock_begin": "TRIPLE_OBSERVED",
+      "initial_clock": "TRIPLE_OBSERVED",
+      "normal_policy": "TRIPLE_OBSERVED_POLICY0_PRIORITY0",
+      "frozen_control": "TRIPLE_OBSERVED_REUSED_HELPER_CONTROL"
+    },
+    "observed_boundaries": [
+      {
+        "seq": 1,
+        "input_length": 80,
+        "WENT": true,
+        "LOG": false,
+        "WRET": true,
+        "rc": 80,
+        "later_PID1_write_entry": 2,
+        "signal_handler": "UNKNOWN",
+        "span": "WRET_REACHED_BEFORE_C_RETURN"
+      },
+      {
+        "seq": 2,
+        "input_length": 278,
+        "WENT": true,
+        "LOG": true,
+        "WRET": true,
+        "rc": 278,
+        "later_PID1_write_entry": 3,
+        "signal_handler": "MAIN_FLOW_LOG",
+        "span": "WRET_REACHED_BEFORE_C_RETURN",
+        "helper_LOG": "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=actual op=clock.path path=CLOCK_MONOTONIC rc=0 errno=0 value=kernel-syscall:syscall(SYS_clock_gettime);vDSO-bypassed;control=342c9034-6b6f-4d95-aa67-9228b0904eb2;loop=pure-compute-normal-final-only"
+      },
+      {
+        "seq": 3,
+        "input_length": 142,
+        "WENT": true,
+        "LOG": true,
+        "WRET": true,
+        "rc": 142,
+        "later_PID1_write_entry": 4,
+        "signal_handler": "MAIN_FLOW_LOG",
+        "span": "WRET_REACHED_BEFORE_C_RETURN",
+        "helper_LOG": "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=begin op=clock_gettime path=loop.initial rc=0 errno=0 value=-"
+      },
+      {
+        "seq": 4,
+        "input_length": 150,
+        "WENT": true,
+        "LOG": true,
+        "WRET": true,
+        "rc": 150,
+        "later_PID1_write_entry": 5,
+        "signal_handler": "MAIN_FLOW_LOG",
+        "span": "WRET_REACHED_BEFORE_C_RETURN",
+        "helper_LOG": "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=end op=clock_gettime path=loop.initial rc=0 errno=0 value=0.642032768"
+      },
+      {
+        "seq": 5,
+        "input_length": 125,
+        "WENT": true,
+        "LOG": true,
+        "WRET": true,
+        "rc": 125,
+        "later_PID1_write_entry": 6,
+        "signal_handler": "OBSERVED_ALARM_HANDLER",
+        "span": "WRET_REACHED_BEFORE_C_RETURN",
+        "helper_LOG": "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 stage=alarm op=SIGALRM.fired nominal_seconds=1 timer_dependent=1"
+      },
+      {
+        "seq": 6,
+        "input_length": 176,
+        "WENT": true,
+        "LOG": true,
+        "WRET": true,
+        "rc": 176,
+        "later_PID1_write_entry": null,
+        "signal_handler": "MAIN_FLOW_LOG",
+        "span": "WRET_REACHED_BEFORE_C_RETURN",
+        "helper_LOG": "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=actual op=sched.original path=pid0 rc=0 errno=0 value=getparam_rc=0 getparam_errno=0 priority=0"
+      }
+    ],
+    "signal_handler_writes": [
+      {
+        "seq": 5,
+        "line": 14,
+        "main_flow_inference": false
+      }
+    ],
+    "limit": "WRET observes the point before original C return, not userspace resumption. A later PID1 WENT adds sequential boundary evidence; the alarm handler is a different user flow and may run between main-flow writes. Missing/torn/gapped/unknown records remain UNKNOWN. No absence proves CPU hang, allocation fault, reporting failure or execution loss. No storage advance or automatic fix.",
+    "errors": []
+  },
+  "negative": {
+    "stale_kernel": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "fresh exact entry must be first console line",
+        "unknown instrument marker",
+        "wrong mode/order",
+        "unknown/stale/malformed/overflow boundary marker",
+        "LOG without open WENT"
+      ]
+    },
+    "stale_control": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "stale/invalid frozen control or missing control WRET"
+      ]
+    },
+    "wrong_format": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "unknown/stale/malformed/overflow boundary marker",
+        "LOG without open WENT"
+      ]
+    },
+    "sequence_gap": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "entry duplicate/gap/order",
+        "LOG without open WENT",
+        "return without matching entry/length/order"
+      ]
+    },
+    "duplicate_entry": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "entry duplicate/gap/order"
+      ]
+    },
+    "mismatched_length": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "return without matching entry/length/order",
+        "entry duplicate/gap/order",
+        "LOG/input length mismatch",
+        "multiple LOGs in a write; interleaving cannot be assigned",
+        "stale/invalid frozen control or missing control WRET",
+        "incomplete final write; missing boundary UNKNOWN"
+      ]
+    },
+    "bad_LOG_length": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "LOG/input length mismatch"
+      ]
+    },
+    "LOG_without_WENT": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "LOG without open WENT",
+        "return without matching entry/length/order",
+        "entry duplicate/gap/order"
+      ]
+    },
+    "LOG_without_WRET": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "incomplete final write; missing boundary UNKNOWN"
+      ]
+    },
+    "WENT_without_LOG_or_WRET": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "incomplete final write; missing boundary UNKNOWN"
+      ]
+    },
+    "unknown_marker": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "unknown/stale/malformed/overflow boundary marker"
+      ]
+    },
+    "torn_last_record": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "truncated final line",
+        "unexpected original return rc"
+      ]
+    },
+    "interleaved_nested_entry": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "entry duplicate/gap/order"
+      ]
+    },
+    "duplicate_LOG": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "multiple LOGs in a write; interleaving cannot be assigned"
+      ]
+    },
+    "impossible_original_rc": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "unexpected original return rc"
+      ]
+    },
+    "unknown_helper": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "malformed/unadmitted helper LOG"
+      ]
+    },
+    "hot_marker": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "hot observer unexpectedly enabled",
+        "unknown/hot marker"
+      ]
+    },
+    "bad_record_order": {
+      "status": "UNKNOWN_STOP",
+      "errors": [
+        "return without matching entry/length/order",
+        "entry duplicate/gap/order",
+        "LOG without open WENT"
+      ]
+    }
+  },
+  "partial_tail": {
+    "status": "UNKNOWN_STOP",
+    "integrity": "UNKNOWN",
+    "physical_binding": {
+      "exact_full_p10": true,
+      "fresh_stock_boot_reference": "synthetic-stock-reference",
+      "complete_console_reference": "synthetic-complete-reference",
+      "parent_attestations_only": true
+    },
+    "calibration": {
+      "initial_clock_begin": "TRIPLE_OBSERVED",
+      "initial_clock": "TRIPLE_OBSERVED",
+      "normal_policy": "UNKNOWN",
+      "frozen_control": "TRIPLE_OBSERVED_REUSED_HELPER_CONTROL"
+    },
+    "observed_boundaries": [
+      {
+        "seq": 1,
+        "input_length": 80,
+        "WENT": true,
+        "LOG": false,
+        "WRET": true,
+        "rc": 80,
+        "later_PID1_write_entry": 2,
+        "signal_handler": "UNKNOWN",
+        "span": "WRET_REACHED_BEFORE_C_RETURN"
+      },
+      {
+        "seq": 2,
+        "input_length": 278,
+        "WENT": true,
+        "LOG": true,
+        "WRET": true,
+        "rc": 278,
+        "later_PID1_write_entry": 3,
+        "signal_handler": "MAIN_FLOW_LOG",
+        "span": "WRET_REACHED_BEFORE_C_RETURN",
+        "helper_LOG": "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=actual op=clock.path path=CLOCK_MONOTONIC rc=0 errno=0 value=kernel-syscall:syscall(SYS_clock_gettime);vDSO-bypassed;control=342c9034-6b6f-4d95-aa67-9228b0904eb2;loop=pure-compute-normal-final-only"
+      },
+      {
+        "seq": 3,
+        "input_length": 142,
+        "WENT": true,
+        "LOG": true,
+        "WRET": true,
+        "rc": 142,
+        "later_PID1_write_entry": 4,
+        "signal_handler": "MAIN_FLOW_LOG",
+        "span": "WRET_REACHED_BEFORE_C_RETURN",
+        "helper_LOG": "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=begin op=clock_gettime path=loop.initial rc=0 errno=0 value=-"
+      },
+      {
+        "seq": 4,
+        "input_length": 150,
+        "WENT": true,
+        "LOG": true,
+        "WRET": true,
+        "rc": 150,
+        "later_PID1_write_entry": 5,
+        "signal_handler": "MAIN_FLOW_LOG",
+        "span": "WRET_REACHED_BEFORE_C_RETURN",
+        "helper_LOG": "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=end op=clock_gettime path=loop.initial rc=0 errno=0 value=0.642032768"
+      },
+      {
+        "seq": 5,
+        "input_length": 125,
+        "WENT": true,
+        "LOG": true,
+        "WRET": true,
+        "rc": 125,
+        "later_PID1_write_entry": 6,
+        "signal_handler": "OBSERVED_ALARM_HANDLER",
+        "span": "WRET_REACHED_BEFORE_C_RETURN",
+        "helper_LOG": "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 stage=alarm op=SIGALRM.fired nominal_seconds=1 timer_dependent=1"
+      },
+      {
+        "seq": 6,
+        "input_length": 176,
+        "WENT": true,
+        "LOG": true,
+        "WRET": false,
+        "rc": null,
+        "later_PID1_write_entry": null,
+        "signal_handler": "MAIN_FLOW_LOG",
+        "span": "LOG_CAPTURED_WRET_UNKNOWN",
+        "helper_LOG": "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=actual op=sched.original path=pid0 rc=0 errno=0 value=getparam_rc=0 getparam_errno=0 priority=0"
+      }
+    ],
+    "signal_handler_writes": [
+      {
+        "seq": 5,
+        "line": 14,
+        "main_flow_inference": false
+      }
+    ],
+    "limit": "WRET observes the point before original C return, not userspace resumption. A later PID1 WENT adds sequential boundary evidence; the alarm handler is a different user flow and may run between main-flow writes. Missing/torn/gapped/unknown records remain UNKNOWN. No absence proves CPU hang, allocation fault, reporting failure or execution loss. No storage advance or automatic fix.",
+    "errors": [
+      "incomplete final write; missing boundary UNKNOWN"
+    ]
+  }
+}

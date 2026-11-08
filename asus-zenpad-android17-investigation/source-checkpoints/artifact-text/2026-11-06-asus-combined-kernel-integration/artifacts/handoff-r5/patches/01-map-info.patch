@@ -1,0 +1,121 @@
+--- a/include/uapi/linux/bpf.h
++++ b/include/uapi/linux/bpf.h
+@@ -81,6 +81,7 @@
+ 	BPF_MAP_GET_NEXT_ID = 12,
+ 	BPF_PROG_GET_FD_BY_ID = 13,
+ 	BPF_MAP_GET_FD_BY_ID = 14,
++	BPF_OBJ_GET_INFO_BY_FD = 15,
+ };
+ 
+ enum bpf_map_type {
+@@ -169,6 +170,16 @@
+ /* Flags for accessing BPF object */
+ #define BPF_F_RDONLY		(1U << 3)
+ #define BPF_F_WRONLY		(1U << 4)
++
++/* Initial upstream map-info ABI. Program info is not implemented here. */
++struct bpf_map_info {
++	__u32 type;
++	__u32 id;
++	__u32 key_size;
++	__u32 value_size;
++	__u32 max_entries;
++	__u32 map_flags;
++} __attribute__((aligned(8)));
+ 
+ union bpf_attr {
+ 	struct { /* anonymous struct used by BPF_MAP_CREATE command */
+@@ -220,6 +231,11 @@
+ 		};
+ 		__u32 next_id;
+ 	};
++	struct { /* BPF_OBJ_GET_INFO_BY_FD */
++		__u32 bpf_fd;
++		__u32 info_len;
++		__aligned_u64 info;
++	} info;
+ } __attribute__((aligned(8)));
+ 
+ /* integer value in 'imm' field of BPF_CALL instruction selects which helper
+--- a/kernel/bpf/syscall.c
++++ b/kernel/bpf/syscall.c
+@@ -1202,6 +1202,69 @@
+ 	return fd;
+ }
+ 
++/*
++ * Map metadata follows the initial upstream BPF_OBJ_GET_INFO_BY_FD ABI.
++ * A held file reference protects the map and its immutable attributes from
++ * concurrent close/unpin. Possession of a map fd authorizes metadata access;
++ * the syscall's existing unprivileged-BPF and LSM checks still apply.
++ *
++ * Program metadata needs separate tag/instruction-dump backports. Report it
++ * as unsupported rather than returning incomplete or invented program data.
++ */
++#define BPF_OBJ_GET_INFO_BY_FD_LAST_FIELD info.info
++
++static int bpf_map_get_info_by_fd(struct bpf_map *map,
++                                 const union bpf_attr *attr,
++                                 union bpf_attr __user *uattr)
++{
++	struct bpf_map_info __user *uinfo = u64_to_ptr(attr->info.info);
++	struct bpf_map_info info = {};
++	u32 info_len = attr->info.info_len;
++	u32 i;
++	unsigned char val;
++
++	if (info_len > PAGE_SIZE)
++		return -E2BIG;
++	for (i = sizeof(info); i < info_len; i++) {
++		if (get_user(val, (unsigned char __user *)uinfo + i))
++			return -EFAULT;
++		if (val)
++			return -E2BIG;
++	}
++	info_len = min_t(u32, sizeof(info), info_len);
++	info.type = map->map_type;
++	info.id = map->id;
++	info.key_size = map->key_size;
++	info.value_size = map->value_size;
++	info.max_entries = map->max_entries;
++	info.map_flags = map->map_flags;
++	if (copy_to_user(uinfo, &info, info_len) ||
++	    put_user(info_len, &uattr->info.info_len))
++		return -EFAULT;
++	return 0;
++}
++
++static int bpf_obj_get_info_by_fd(const union bpf_attr *attr,
++                                union bpf_attr __user *uattr)
++{
++	struct fd f;
++	int err;
++
++	if (CHECK_ATTR(BPF_OBJ_GET_INFO_BY_FD))
++		return -EINVAL;
++	f = fdget(attr->info.bpf_fd);
++	if (!f.file)
++		return -EBADFD;
++	if (f.file->f_op == &bpf_map_fops)
++		err = bpf_map_get_info_by_fd(f.file->private_data, attr, uattr);
++	else if (f.file->f_op == &bpf_prog_fops)
++		err = -EOPNOTSUPP;
++	else
++		err = -EINVAL;
++	fdput(f);
++	return err;
++}
++
+ SYSCALL_DEFINE3(bpf, int, cmd, union bpf_attr __user *, uattr, unsigned int, size)
+ {
+ 	union bpf_attr attr;
+@@ -1249,6 +1312,9 @@
+ 		return err;
+ 
+ 	switch (cmd) {
++	case BPF_OBJ_GET_INFO_BY_FD:
++		err = bpf_obj_get_info_by_fd(&attr, uattr);
++		break;
+ 	case BPF_PROG_GET_FD_BY_ID:
+ 		err = bpf_prog_get_fd_by_id(&attr);
+ 		break;

@@ -1,0 +1,16 @@
+{
+  "status": "PASS_PUBLICATION_ARTIFACT_REVIEW",
+  "manifest_bound_files": 5102,
+  "total_files": 5122,
+  "total_bytes": 43366196,
+  "research_rules": "new folder; README+notes; authored code/diffs; fetched postimages excluded; no _summary.md authored",
+  "source_checkpoint_not_a_standalone_build": true,
+  "privacy_pattern_findings": 0,
+  "binaries_or_images": 0,
+  "no_executable_permissions": true,
+  "platform_working_tree_diffs": 11,
+  "fetched_source_bytes_removed_from_receipts": true,
+  "private_backups_in_Git": false,
+  "cloud_resources_removed": true,
+  "historical_scripts_executed_for_validation": false
+}

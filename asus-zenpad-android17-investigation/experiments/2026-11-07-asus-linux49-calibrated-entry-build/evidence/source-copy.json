@@ -1,0 +1,67 @@
+{
+  "selected_baseline": {
+    "arch/arm64/kernel/head.S": "f8cc22696326b68e69b4e858dffbe16940c257520a556cd374ba5abee70762c0",
+    "arch/arm64/kernel/asus_retained_trace.c": "8373baa301650d2bf3befe547df11a3079e22c51aec8a207de64eae0f1bb3348",
+    "arch/arm64/kernel/setup.c": "fd3d3040998562d2605eee91086df22b66d8a3da796bafd957853d74acd905fb",
+    "drivers/watchdog/mtk_wdt.c": "d215d7e458eed74b98e0d165d753db4a41712051a0f6a258616b45761cff1320",
+    "drivers/watchdog/watchdog_core.c": "a6f79808ca6cb599483beda9054cc838f14016ee3be6ad863da2b9d41cabda53",
+    "drivers/watchdog/watchdog_dev.c": "6d812799206c527b844506faf5d9a06b9f654d4753ef295d69446187c82460b7",
+    "drivers/tty/serial/8250/Kconfig": "965701d3e2a28e4505ce48b02f9cef774a96758cdd63bfc38c2ea327111c8a14",
+    "drivers/tty/serial/8250/Makefile": "5cff5baaaa052e2347761ff8c1f0b709c4e50457d935fbcfc5e586ff3100e6bf",
+    "arch/arm64/boot/dts/mediatek/asus-p00a.dts": "bb39c36199b6cb92b453c59116d85bc3e6769663792d0ddf7f18e7509d81f572",
+    "arch/arm64/boot/dts/mediatek/mt8163.dtsi": "a605903380bac77de2d077e002d215e20422f4a9bf6441c9d782fef3e0c2382a",
+    "arch/arm64/mm/proc.S": "c7610ddbda0eeebecc51f3734a917121baf3560d190685124f74e97c7f64077f",
+    "arch/arm64/kernel/process.c": "83c5443d277e1226c129e23a67ab006eabb293af87f64cd615605fd0ebacb2bb"
+  },
+  "selected_copy": {
+    "arch/arm64/kernel/head.S": {
+      "sha256": "f8cc22696326b68e69b4e858dffbe16940c257520a556cd374ba5abee70762c0",
+      "independent_inode": true
+    },
+    "arch/arm64/kernel/asus_retained_trace.c": {
+      "sha256": "8373baa301650d2bf3befe547df11a3079e22c51aec8a207de64eae0f1bb3348",
+      "independent_inode": true
+    },
+    "arch/arm64/kernel/setup.c": {
+      "sha256": "fd3d3040998562d2605eee91086df22b66d8a3da796bafd957853d74acd905fb",
+      "independent_inode": true
+    },
+    "drivers/watchdog/mtk_wdt.c": {
+      "sha256": "d215d7e458eed74b98e0d165d753db4a41712051a0f6a258616b45761cff1320",
+      "independent_inode": true
+    },
+    "drivers/watchdog/watchdog_core.c": {
+      "sha256": "a6f79808ca6cb599483beda9054cc838f14016ee3be6ad863da2b9d41cabda53",
+      "independent_inode": true
+    },
+    "drivers/watchdog/watchdog_dev.c": {
+      "sha256": "6d812799206c527b844506faf5d9a06b9f654d4753ef295d69446187c82460b7",
+      "independent_inode": true
+    },
+    "drivers/tty/serial/8250/Kconfig": {
+      "sha256": "965701d3e2a28e4505ce48b02f9cef774a96758cdd63bfc38c2ea327111c8a14",
+      "independent_inode": true
+    },
+    "drivers/tty/serial/8250/Makefile": {
+      "sha256": "5cff5baaaa052e2347761ff8c1f0b709c4e50457d935fbcfc5e586ff3100e6bf",
+      "independent_inode": true
+    },
+    "arch/arm64/boot/dts/mediatek/asus-p00a.dts": {
+      "sha256": "bb39c36199b6cb92b453c59116d85bc3e6769663792d0ddf7f18e7509d81f572",
+      "independent_inode": true
+    },
+    "arch/arm64/boot/dts/mediatek/mt8163.dtsi": {
+      "sha256": "a605903380bac77de2d077e002d215e20422f4a9bf6441c9d782fef3e0c2382a",
+      "independent_inode": true
+    },
+    "arch/arm64/mm/proc.S": {
+      "sha256": "c7610ddbda0eeebecc51f3734a917121baf3560d190685124f74e97c7f64077f",
+      "independent_inode": true
+    },
+    "arch/arm64/kernel/process.c": {
+      "sha256": "83c5443d277e1226c129e23a67ab006eabb293af87f64cd615605fd0ebacb2bb",
+      "independent_inode": true
+    }
+  },
+  "full_tree_rehash": false
+}

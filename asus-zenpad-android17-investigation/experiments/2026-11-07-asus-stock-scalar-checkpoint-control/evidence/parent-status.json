@@ -1,0 +1,15 @@
+{
+  "utc": "2026-11-07T22:08:00.438733+00:00",
+  "phase": "PREPARED_AWAITING_NEARBY_FALLBACK",
+  "candidate_sha256": "ebc410fb95113d74c2b16fe7a56e398215b99fcad4f6c948946af49de7e07bc4",
+  "full_p10_sha256": "b403e999805fcbbc76b988100cad5c49f13f5ca33fb70e99b555d6292e2107db",
+  "expected_saved_fiq_step": 167,
+  "physical_installed": false,
+  "physical_trial": false,
+  "normal_OS_partitions_untouched": true,
+  "VM_still_stopped": true,
+  "parent_semantic_review": "Tag changes only disposable x0 print argument; setter call occurs after live reset args saved and these are restored. Prior normal-RAMPID1 runtime stack reached this exact handler. Route expected, not universally guaranteed.",
+  "success": "Same normal Android returns and saved diagnostic reports167",
+  "negative": "Failed/unknown calibration; not evidence of4.9nonexecution",
+  "remaining_prerequisite": "Owner response confirming nearby Power fallback; no device operation until received"
+}

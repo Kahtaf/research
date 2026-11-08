@@ -1,0 +1,15 @@
+# Standard ueventd core handles ordinary device creation. No vendor firmware rules.
+/dev/null 0666 root root
+/dev/zero 0666 root root
+/dev/full 0666 root root
+/dev/random 0666 root root
+/dev/urandom 0666 root root
+/dev/tty 0666 root root
+/dev/ptmx 0666 root root
+
+# Fixed rescue nodes; shell has no block DAC access.
+/dev/block/mmcblk0 0600 root root
+/dev/block/mmcblk0p9 0600 root root
+/dev/block/mmcblk0p10 0600 root root
+/dev/block/mmcblk0p25 0600 root root
+/dev/block/mmcblk0p26 0600 root root

@@ -1,0 +1,25 @@
+{
+  "current_platform_projects": 1239,
+  "HEADs_matching_initial_resolved_manifest": 1239,
+  "tracked_dirty_projects": [
+    "bionic",
+    "external/XMP-Toolkit-SDK",
+    "external/google-highway",
+    "external/skia",
+    "frameworks/base",
+    "hardware/interfaces",
+    "packages/modules/Connectivity",
+    "system/bpf",
+    "system/connectivity/wificond",
+    "system/linkerconfig",
+    "system/vold"
+  ],
+  "omitted_tracked_changed_files": 0,
+  "untracked_authored_source_files": 2,
+  "active_device_text_files": 80,
+  "remote_export_files": 317,
+  "stock_rollback_local_hashes_verified": true,
+  "existing_factory_backup_preserved_locally": true,
+  "factory_preservation_completeness_claim": false,
+  "generated_Android17_images_preserved_in_Git": false
+}

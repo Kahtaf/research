@@ -1,0 +1,490 @@
+{
+  "review_date": "2026-11-08",
+  "method": "local read-only source slices and existing public receipts; no execution of reviewed code, builds, tests, device, network, VM, or children",
+  "scope_A_production_paths": 12,
+  "source_entries": [
+    {
+      "scope": "A",
+      "path": "2026-11-08-asus-selected-cntpct-delay-control/source/base/drivers/power/supply/power_supply_core.c",
+      "sha256": "f97d2c922cf42e0dcc415735afb55b0bfee38dd48dd7c6612c287d30297dbecd",
+      "identity": "selected-control ancestry: locally matches preserved source receipt; current FIFO ancestry not independently pinned",
+      "slices": [
+        {
+          "first": 83,
+          "last": 144,
+          "sha256": "ccfff0c1e56d86b8c2e74a7a12d8fe7d7ceff73cc8109772c0ed59b8c2a187f6"
+        },
+        {
+          "first": 530,
+          "last": 550,
+          "sha256": "83a9d13785069002ef39bf3abe8f10d37af3c9950b756701ab09a156ea811810"
+        }
+      ],
+      "receipt": "2026-11-08-asus-selected-cntpct-delay-control/evidence/preserved-source-pins.json",
+      "receipt_sha256": "f97d2c922cf42e0dcc415735afb55b0bfee38dd48dd7c6612c287d30297dbecd",
+      "matches_receipt": true
+    },
+    {
+      "scope": "A",
+      "path": "2026-11-08-asus-selected-cntpct-delay-control/source/base/drivers/power/supply/power_supply_sysfs.c",
+      "sha256": "e04ee771d01e58b88ec4ac0f266e37d1867e4f0a55b143b0a13525b2c31cd3b3",
+      "identity": "selected-control ancestry: locally matches preserved source receipt; current FIFO ancestry not independently pinned",
+      "slices": [
+        {
+          "first": 78,
+          "last": 92,
+          "sha256": "288d72219e05f113e781f4119ad38cb0e4e47dcc8a9ca4ca8f1b4ac6c8b86dc7"
+        },
+        {
+          "first": 305,
+          "last": 361,
+          "sha256": "6f83ecae229c34ac2cdf07b657c90a7bda19cd15830f8be3eb92529423abb63e"
+        }
+      ],
+      "receipt": "2026-11-08-asus-selected-cntpct-delay-control/evidence/preserved-source-pins.json",
+      "receipt_sha256": "e04ee771d01e58b88ec4ac0f266e37d1867e4f0a55b143b0a13525b2c31cd3b3",
+      "matches_receipt": true
+    },
+    {
+      "scope": "A",
+      "path": "2026-11-08-asus-selected-cntpct-delay-control/source/base/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c",
+      "sha256": "03e05c11d4c08f9f2cb030bc05ea94b3c5310c6c1d0905d470181dcf9e4f800e",
+      "identity": "selected-control ancestry: locally matches preserved source receipt; current FIFO ancestry not independently pinned",
+      "slices": [
+        {
+          "first": 37,
+          "last": 97,
+          "sha256": "d98acf232090e20969c9858bf9474b60f41226cff6df2ed10400bf5a75cc45f1"
+        },
+        {
+          "first": 136,
+          "last": 160,
+          "sha256": "0627683c2219a6bff6ecc8c82c68105302a85881f07f23dfdefa6b83e0d7afe3"
+        }
+      ],
+      "receipt": "2026-11-08-asus-selected-cntpct-delay-control/evidence/preserved-source-pins.json",
+      "receipt_sha256": "03e05c11d4c08f9f2cb030bc05ea94b3c5310c6c1d0905d470181dcf9e4f800e",
+      "matches_receipt": true
+    },
+    {
+      "scope": "A",
+      "path": "2026-11-08-asus-selected-cntpct-delay-control/source/base/drivers/misc/mediatek/power/mt8163/pmic_mt6323.c",
+      "sha256": "be1932abf3164ed2e2fe64b524878def16d7bdfc3f149e162095390c7232af19",
+      "identity": "selected-control ancestry: locally matches preserved source receipt; current FIFO ancestry not independently pinned",
+      "slices": [
+        {
+          "first": 66,
+          "last": 75,
+          "sha256": "c959a5323bbdbd8be510f1de5d176c329f3e2fc09c67c7f0fd6258631cc85346"
+        },
+        {
+          "first": 135,
+          "last": 235,
+          "sha256": "a23e290cb822c7f41504c113d91326fd6c97394c06b373491e90176c5180f331"
+        },
+        {
+          "first": 255,
+          "last": 329,
+          "sha256": "403ccb5a6f39cb25b5f415b64f25faa47a05d3b5e3d7349a6e043fe61978aff8"
+        },
+        {
+          "first": 1736,
+          "last": 1744,
+          "sha256": "fa5bec1a10cd5c2ed99d60a3482de1dd0fd0e04d2b55553ee0b28320d63ef3aa"
+        }
+      ],
+      "receipt": "2026-11-08-asus-selected-cntpct-delay-control/evidence/preserved-source-pins.json",
+      "receipt_sha256": "be1932abf3164ed2e2fe64b524878def16d7bdfc3f149e162095390c7232af19",
+      "matches_receipt": true
+    },
+    {
+      "scope": "A",
+      "path": "2026-11-08-asus-selected-cntpct-delay-control/source/base/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc",
+      "sha256": "aa1ab909484560707fa67ec238350ab5ce8040116b0a5df2374f183d04be6fae",
+      "identity": "selected-control ancestry: locally matches preserved source receipt; current FIFO ancestry not independently pinned",
+      "slices": [
+        {
+          "first": 6,
+          "last": 69,
+          "sha256": "63628784f3ae2bf3d207a70cafded053a0c48c499ae7da282ea3de585c2f7450"
+        },
+        {
+          "first": 117,
+          "last": 219,
+          "sha256": "1e4ac1106de86df0586d455ef2e558c391866cad63729f88a519dc9da9b8adb1"
+        }
+      ],
+      "receipt": "2026-11-08-asus-selected-cntpct-delay-control/evidence/preserved-source-pins.json",
+      "receipt_sha256": "aa1ab909484560707fa67ec238350ab5ce8040116b0a5df2374f183d04be6fae",
+      "matches_receipt": true
+    },
+    {
+      "scope": "A",
+      "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/drivers/misc/mediatek/pmic_wrap/mtk_pmic_wrap.c",
+      "sha256": "1b1f93293c80434fdbdeb151cc88cb4041203cd5d5da27336846737bed3d229e",
+      "identity": "baseline donor only; no exact current compiled source receipt found",
+      "slices": [
+        {
+          "first": 61,
+          "last": 86,
+          "sha256": "081b8302994b7249f3c3100458102667b8aaaa90e75db2fcbd3924dd3a353cdb"
+        }
+      ]
+    },
+    {
+      "scope": "A",
+      "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/drivers/soc/mediatek/mtk-pmic-wrap.c",
+      "sha256": "0432a02bdb38abed8a6251d58a36ca952207c9636726b26bc71fa016674eba5e",
+      "identity": "baseline donor only; no exact current compiled source receipt found",
+      "slices": [
+        {
+          "first": 625,
+          "last": 761,
+          "sha256": "5a0053a40dd36ab001fef13ffe45e6d78ef14da7c5c58a7e70ae3ac705182b3c"
+        },
+        {
+          "first": 1167,
+          "last": 1198,
+          "sha256": "3ec73aaade6a38a978482277580414267f4af4ffe46782b066968df4461b4d72"
+        },
+        {
+          "first": 1239,
+          "last": 1268,
+          "sha256": "ec32f2eaa2d521dd05a5687ebeb67e8e24537190733180bf8a16113070a26b6e"
+        },
+        {
+          "first": 1405,
+          "last": 1409,
+          "sha256": "eff4d50be7e1ab4b8564d9a371d6f767f7395207ba9e3df93fc7f66c90592872"
+        }
+      ]
+    },
+    {
+      "scope": "A",
+      "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/drivers/base/regmap/regmap.c",
+      "sha256": "f44d84d83c76ec9d3439f2a50cd1ef25baa0186871aafb7fbcb9d0fb93bb446c",
+      "identity": "baseline donor only; no exact current compiled source receipt found",
+      "slices": [
+        {
+          "first": 428,
+          "last": 445,
+          "sha256": "45d135aef44aa025047e573392293d1c518ff9131ac756108964dcb11e082bf2"
+        },
+        {
+          "first": 626,
+          "last": 646,
+          "sha256": "a4293b9fa8c0beb41f3a5ca655f6d23ebb2c685119070e0ceb8fe9b978ee7d3a"
+        },
+        {
+          "first": 705,
+          "last": 708,
+          "sha256": "bec324be91bfa5af5cc511698bf6d6d51ea71185282ffbd64ed6367f7b13f991"
+        },
+        {
+          "first": 2355,
+          "last": 2413,
+          "sha256": "0d693c8024d2986f7c5e601bb17bc6a57a55233565f3f8145291f8a4e86d92e1"
+        }
+      ]
+    },
+    {
+      "scope": "A",
+      "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/kernel/time/sched_clock.c",
+      "sha256": "6338a5e16059ccf43ed0b07724afd818905506811020fcbd9d0d8dedc8a762fe",
+      "identity": "baseline donor only; no exact current compiled source receipt found",
+      "slices": [
+        {
+          "first": 76,
+          "last": 113,
+          "sha256": "f19a3d844e76e12d210a96faf6ad8c6cb983abb62f8db81e86069fde71c313db"
+        },
+        {
+          "first": 168,
+          "last": 205,
+          "sha256": "ab07b9653225add9cdbfe61735f3c50db9c5c50b450c30e1fe6964c95293c7da"
+        },
+        {
+          "first": 239,
+          "last": 256,
+          "sha256": "8f82ea9fad736db7ed907b8fa22147c4efe3ac691cd72b5f9c4bf161faf86446"
+        }
+      ]
+    },
+    {
+      "scope": "A",
+      "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/drivers/mfd/mt6397-core.c",
+      "sha256": "ccae740b0cd68e38a3e371e1bc8dceb370fdb70dd23065b04027ff9b00193e29",
+      "identity": "baseline donor only; no exact current compiled source receipt found",
+      "slices": [
+        {
+          "first": 283,
+          "last": 315,
+          "sha256": "eee68f93980a38c57cbddf86115ecac9ace2ac64dcaf20a25df8a1e2a5f7b5a1"
+        }
+      ]
+    },
+    {
+      "scope": "A",
+      "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/drivers/power/supply/mediatek/battery/battery_common.c",
+      "sha256": "f133db5d90f9f78d8e036e489871a0e163cbdbf25fd09cfbe3faade5d4d169e4",
+      "identity": "baseline donor only; no exact current compiled source receipt found",
+      "slices": [
+        {
+          "first": 591,
+          "last": 628,
+          "sha256": "460661b9cf2da1c093d0f531236529aff5796bccc19f6228379c421b495ac988"
+        },
+        {
+          "first": 773,
+          "last": 785,
+          "sha256": "db35a8866f087ad14df18a89e5e3fbd9d61056ae224f0cb08423c89c9f1c0144"
+        }
+      ]
+    },
+    {
+      "scope": "A",
+      "path": "2026-11-08-asus-selected-cntpct-delay-control/source/arch/arm64/lib/delay.c",
+      "sha256": "409ad5988ad419bc11e4c14b1a273fcfa07fa5fcccc798a70292f9bca117e82a",
+      "identity": "selected-control postimage; not current sparse original-virtual candidate",
+      "slices": [
+        {
+          "first": 28,
+          "last": 86,
+          "sha256": "18f758f68e5b1be4e7ddd54f100152a81834b1425825d53cbf4e8a1d1fd8e843"
+        }
+      ],
+      "receipt": "2026-11-08-asus-selected-cntpct-delay-control/evidence/source-pins.json",
+      "receipt_sha256": "409ad5988ad419bc11e4c14b1a273fcfa07fa5fcccc798a70292f9bca117e82a",
+      "matches_receipt": true
+    },
+    {
+      "scope": "B",
+      "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/kernel/watchdog.c",
+      "sha256": "7dabe34ed926b6dffa6318ae6a459e2d75272576c9dccc4923a83d4cdb8ef0dd",
+      "identity": "bounded baseline detector feasibility only; current exact source receipt unavailable",
+      "slices": [
+        {
+          "first": 80,
+          "last": 126,
+          "sha256": "b8aeafecf490d4445947c8871145c585f218ea6eb2307ac62e618f3e583c999a"
+        },
+        {
+          "first": 136,
+          "last": 160,
+          "sha256": "59b176fa51537ad76c4a316933c5f512cf834e96b19d7fe6dcc0885cafb985d4"
+        },
+        {
+          "first": 225,
+          "last": 234,
+          "sha256": "60033cec9e9a046c658ee6ae1b0f3e0fafa5cf7f120f72bf11a3a14969d991ac"
+        },
+        {
+          "first": 258,
+          "last": 299,
+          "sha256": "a954c458da5513f44ca801c04303c50ec8833bc170ce75e312671b02d284433d"
+        },
+        {
+          "first": 345,
+          "last": 394,
+          "sha256": "e7530e823980348ea724334293dd7edf2ae939be18cc687ebc28183b828b1fc2"
+        },
+        {
+          "first": 566,
+          "last": 593,
+          "sha256": "218c7ec619d0f636b8f9573ecf0ebd586a5b0137b84c87e2c6f02285ea1ef8f3"
+        },
+        {
+          "first": 823,
+          "last": 839,
+          "sha256": "814a5710fccbb7de966a64ea430129b000ee18ed9ab00536120ad2ce287d348a"
+        }
+      ]
+    },
+    {
+      "scope": "B",
+      "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/lib/Kconfig.debug",
+      "sha256": "6e077c296708004ff1db9c9949c69a12efe4843a352a5e57fdc76993a0e62533",
+      "identity": "bounded baseline detector feasibility only; current exact source receipt unavailable",
+      "slices": [
+        {
+          "first": 746,
+          "last": 773,
+          "sha256": "5556e28f7fe34c6c97a4ed22ec7a2b9a237bbb377a5aecc13cc6b24256b75ce5"
+        },
+        {
+          "first": 817,
+          "last": 845,
+          "sha256": "5058277436e37c75db0a21fae08e7a12e45b671b244c444a0cf74ac1e192eba2"
+        },
+        {
+          "first": 1455,
+          "last": 1464,
+          "sha256": "a2ccb60ddf61a77ed05b070bc40e4f71e928593d94ce9245a1badff3d0ae95d3"
+        }
+      ]
+    },
+    {
+      "scope": "B",
+      "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/kernel/rcu/tree.c",
+      "sha256": "0191bc067ae141bbf5b297f9c154c3969abe0c5f6fbf877fd74c08bbbcfaf6bf",
+      "identity": "bounded baseline detector feasibility only; current exact source receipt unavailable",
+      "slices": [
+        {
+          "first": 1466,
+          "last": 1521,
+          "sha256": "d650a1803362990b2e8b36b579a6fd34acbac5734856063d9c1e9e9ae8268912"
+        },
+        {
+          "first": 2855,
+          "last": 2888,
+          "sha256": "9986a56ea39c82b13f4add36190505c35e3cc7f08ca1d8f1f569c2eb679780be"
+        },
+        {
+          "first": 3488,
+          "last": 3495,
+          "sha256": "7664b9c5c74effe4505ff0b68d6fb3894abc917cf3b576d1e6576a7538e957f1"
+        }
+      ]
+    },
+    {
+      "scope": "B",
+      "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/kernel/rcu/update.c",
+      "sha256": "a696e629d94ddd425f9b7e883640e7d69593d427e2942fb6557f58a23f63176f",
+      "identity": "bounded baseline detector feasibility only; current exact source receipt unavailable",
+      "slices": [
+        {
+          "first": 452,
+          "last": 473,
+          "sha256": "4685bd2f498b73b2f3602d34d36b40868722873f586dc02611c4ac6d91868637"
+        }
+      ]
+    },
+    {
+      "scope": "B",
+      "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/kernel/hung_task.c",
+      "sha256": "88b2856a025a7cb3fc9e11239e206a71e73f35efb246e38cddc94d14534d6dfe",
+      "identity": "bounded baseline detector feasibility only; current exact source receipt unavailable",
+      "slices": [
+        {
+          "first": 181,
+          "last": 194,
+          "sha256": "0350f605d66310e5fc5ad49f98e4dcefcc1b7fd196050805421f900438f641f1"
+        },
+        {
+          "first": 250,
+          "last": 284,
+          "sha256": "5e45af3b710a077b3f7c1f925c4fbc8c96792785fa8128acdd9c4929d6f53d0f"
+        }
+      ]
+    },
+    {
+      "scope": "B",
+      "path": "2026-11-08-asus-sparse-watchdog-observation/source/arch/arm64/kernel/asus_retained_trace.c",
+      "sha256": "30dea5891a66613f587c7775841f27854d4ffd4a9fe43ab3ed6f01b4289cdc1e",
+      "identity": "named sparse candidate source; general detector lines rejected",
+      "slices": [
+        {
+          "first": 1329,
+          "last": 1400,
+          "sha256": "58ee3df26660c9ba1b762a5299c953accf0010896d2f94a15610d9ac3be8fecb"
+        }
+      ]
+    }
+  ],
+  "metadata_pins": [
+    {
+      "path": "2026-11-08-asus-pid1-fifo-loop-control/artifacts/resolved.config",
+      "sha256": "708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1"
+    },
+    {
+      "path": "2026-11-08-asus-opus55-execution-review/OPUS-RESPONSE.md",
+      "sha256": "96a4c168fe5b2497bb893c866a3590bd7dc8c5f202f04c646221ea3fbedb6de7"
+    },
+    {
+      "path": "2026-11-08-asus-opus55-execution-review/ASSESSMENT.md",
+      "sha256": "d7597e0a825a72043ef76fc6b0cc5dbe5addf246777b2cd6c62173630f2a5151"
+    },
+    {
+      "path": "2026-11-08-asus-selected-cntpct-delay-control/evidence/source-pins.json",
+      "sha256": "73d5af2ea56ca5a2e876b294af44720068f6a58e76dc5c285f5d4dc91f693e86"
+    },
+    {
+      "path": "2026-11-08-asus-selected-cntpct-delay-control/evidence/preserved-source-pins.json",
+      "sha256": "23f2a124b4f8adc06402e26bc4716e1741dd2f52b92236a1e6283efec7b72ffa"
+    },
+    {
+      "path": "2026-11-08-asus-selected-cntpct-delay-control/evidence/prepost.json",
+      "sha256": "83465f04d73f71ecaebd2592fdd69de48cb1f05598d711abb31afc70aa092b91"
+    },
+    {
+      "path": "2026-11-08-asus-selected-cntpct-delay-control/evidence/linked-capture.json",
+      "sha256": "acfb7bec240ec9356cf935823110125d028aaa72a770217368b23d9539b7759a"
+    },
+    {
+      "path": "2026-11-08-asus-linux49-pmic-stage-capture/evidence/source-pins.json",
+      "sha256": "84a9d01a3645f4672f6564636370315dac1f05bf65d1b784c4551c44ef018aef"
+    },
+    {
+      "path": "2026-11-08-asus-linux49-pmic-stage-capture/source/base/drivers/misc/mediatek/power/mt8163/Makefile",
+      "sha256": "1184e12416d83536495d0ff8661f8a8115384992cf510f159cfe3f12986abed8"
+    },
+    {
+      "path": "2026-11-08-asus-linux49-pmic-stage-capture/source/base/drivers/misc/mediatek/power/mt8163/asus_p00a/Makefile",
+      "sha256": "9bff0d2e4930a699ec8fdc485e6e2b96e8d2e6ea660560380510203ce8535bef"
+    },
+    {
+      "path": "2026-11-08-asus-linux49-pmic-stage-capture/source/base/out-provenance/drivers/misc/mediatek/power/mt8163/asus_p00a/.battery_diag.o.cmd",
+      "sha256": "5d397ca9d9ec4cfead9d210a4c911d36a245456112944728434d44e146a917a8"
+    },
+    {
+      "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/drivers/soc/mediatek/Makefile",
+      "sha256": "fd378b9d794376e75a69a7c15fe6a3f1e89d0286d89cd6ae813f14dfefbe398f"
+    },
+    {
+      "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/drivers/soc/mediatek/Kconfig",
+      "sha256": "c79c99f02444870913f66950e91778b5411fd0d0cc4be213c61ff729b5d2a582"
+    },
+    {
+      "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/drivers/misc/mediatek/pmic_wrap/Makefile",
+      "sha256": "bf6c2723fb6d91fac7ee75a4e6fa74c3ededec518b1fab7bb0b88059929edf0f"
+    },
+    {
+      "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/drivers/misc/mediatek/pmic_wrap/Kconfig",
+      "sha256": "0f78c46dc65bf6fd5b8593bcc183958f818ea8a0095d793938ab71f056878cc6"
+    },
+    {
+      "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/kernel/Makefile",
+      "sha256": "262013498aebda47b1252d9db8dd990e7fde4eabb61030b0914769767e5c48f7"
+    },
+    {
+      "path": "2026-11-08-asus-devkmsg-return-boundary/README.md",
+      "sha256": "ae950461c6665f0b06c9eecad54d41a19f01f635a8283a90eecc76a62bdb115f"
+    },
+    {
+      "path": "2026-11-08-asus-devkmsg-return-boundary/output/HANDOFF.md",
+      "sha256": "396807bce1dae64e0e9b2a80e9e37b7a6a7802e52bb5a85959b7bcead6d2aa9f"
+    },
+    {
+      "path": "2026-11-08-asus-devkmsg-return-boundary/evidence/prepost.json",
+      "sha256": "51bdc12beccf14f7d82c1b1dd2366272b74733bd212be922909438f2b8a0f810"
+    },
+    {
+      "path": "2026-11-08-asus-devkmsg-return-boundary/evidence/handoff.json",
+      "sha256": "4d808e5ad265bee1c81dbcdcb87a37b636b1d0ee0d01111748ef2170ff7d5505"
+    }
+  ],
+  "pmic_stage_prepost": {
+    "receipt": "2026-11-08-asus-linux49-pmic-stage-capture/evidence/source-pins.json",
+    "before_path": "2026-11-08-asus-linux49-pmic-stage-capture/source/base/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc",
+    "before_sha256": "78396990fbffd1d1459fa939ff91f658b77cf57d1ea507417e51963caa4c93e1",
+    "receipt_before_sha256": "78396990fbffd1d1459fa939ff91f658b77cf57d1ea507417e51963caa4c93e1",
+    "before_matches": true,
+    "after_sha256": "aa1ab909484560707fa67ec238350ab5ce8040116b0a5df2374f183d04be6fae",
+    "after_matches_selected_preserved": true
+  },
+  "limits": [
+    "Baseline directory has no Git repository identity (git rev-parse failed); byte hashes identify only local donor files.",
+    "No source-equivalence claim for donor transport/regmap/MFD/sched_clock or battery_common against current FIFO/devkmsg ancestry.",
+    "Existing linked-capture receipt confirms compiled selected ancestry battery_get_property, diagnostic ADC/presence/prepare and delay symbols; no new ELF inspection performed."
+  ]
+}

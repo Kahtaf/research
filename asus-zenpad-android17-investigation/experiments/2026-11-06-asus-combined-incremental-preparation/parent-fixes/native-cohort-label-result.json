@@ -1,0 +1,22 @@
+{
+  "finding": "Prepared adapter labels new combined executions as root-enabled, and retained root-enabled executions as R9/R8. This is evidence labeling only, not permission to change admission or cached-output checks.",
+  "before_sha256": "32fbcb83fa8a44924977723785b9628d5a5fa8407d396709ee3e4a0088520e54",
+  "after_sha256": "fa0728baf0e712e7fabe59da09dddc291fee970b2b05768b51df07a02f0b2a11",
+  "method_cases": [
+    {
+      "path": "/srv/android/asus-combined-incremental-prep-r1/attempt/native-evidence/selected-images",
+      "cohort": "COMBINED_INCREMENTAL"
+    },
+    {
+      "path": "/srv/android/asus-root-enabled-incremental-r1/attempt/native-evidence/selected-images",
+      "cohort": "ROOT_ENABLED_INCREMENTAL"
+    },
+    {
+      "path": "/srv/android/asus-reviewed-build-kit/r9-exec-r1/attempt/native-evidence/bootimage",
+      "cohort": "RETAINED_REVIEWED_R9_OR_R8"
+    }
+  ],
+  "original_preparation_unchanged": true,
+  "adopt_before_next_launch": true,
+  "active_source_out_or_native_changed": false
+}

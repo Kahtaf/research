@@ -1,0 +1,7 @@
+<resources>
+    <!-- Keep the source-built vendor AIDL supplicant for the first STA trial. -->
+    <bool name="config_wifiMainlineSupplicantEnabled">false</bool>
+    <!-- No proven MAC-change operation on the candidate kernel yet. -->
+    <bool name="config_wifi_connected_mac_randomization_supported">false</bool>
+    <bool name="config_wifi_p2p_mac_randomization_supported">false</bool>
+</resources>

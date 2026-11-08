@@ -1,0 +1,131 @@
+--- baseline/init.c
++++ fifo/init.c
+@@ -3,6 +3,7 @@
+ #include <errno.h>
+ #include <fcntl.h>
+ #include <signal.h>
++#include <sched.h>
+ #include <stdio.h>
+ #include <string.h>
+ #include <sys/mount.h>
+@@ -14,7 +15,7 @@
+ #include <time.h>
+ #include <unistd.h>
+ 
+-#define RUN_ID "f0c3c82c-d639-4d8a-90f2-155fd4224ceb"
++#define RUN_ID "ef56ad88-6904-4452-90a1-3744beaa3c78"
+ #define TAG "ASUS49-SYSCLOCK run=" RUN_ID
+ #define NODE "/primitive-kmsg"
+ #define MAX_LOGS 768
+@@ -155,25 +156,58 @@
+  char v[160];snprintf(v,sizeof(v),"bytes=%zu read_calls=%u lines=%u arch_found=%u emitted=%u parse_or_read_errors=%u eof=%d",used,calls,lines,found,emitted,errors,eof);
+  event("complete","interrupts.snapshot",path,emitted,0,v);
+ }
+-static void observe(void){
++static int observe(void){
+  event("actual","clock.path","CLOCK_MONOTONIC",0,0,"kernel-syscall:syscall(SYS_clock_gettime);vDSO-bypassed");
+  struct timespec initial={0,0},final={0,0};unsigned iterations=0;long long delta=0;int error=0;const char *reason="initial-clock-error";
+  int rc=clock_sample("loop.initial",&initial),valid=!rc;
+  if(!rc){
++  struct sched_param original={.sched_priority=-1},fifo={.sched_priority=1},actual={.sched_priority=-1};
++  int policy=(int)syscall(SYS_sched_getscheduler,0),pe=policy<0?errno:0;
++  int pr=(int)syscall(SYS_sched_getparam,0,&original),pre=pr<0?errno:0;char sv[192];
++  snprintf(sv,sizeof(sv),"getparam_rc=%d getparam_errno=%d priority=%d",pr,pre,original.sched_priority);
++  event("actual","sched.original","pid0",policy,pe,sv);
++  if(policy!=SCHED_OTHER||pr||original.sched_priority!=0){
++   event("invalid","sched.control","pid0",-1,0,"baseline-refused;require-SCHED_OTHER-priority0;no-RT-exposure");return -1;
++  }
++  int boost=(int)syscall(SYS_sched_setscheduler,0,SCHED_FIFO,&fifo),be=boost<0?errno:0;
++  event("actual","sched.boost","pid0",boost,be,"requested_policy=1 requested_priority=1");
++  int observed=(int)syscall(SYS_sched_getscheduler,0),oe=observed<0?errno:0;
++  pr=(int)syscall(SYS_sched_getparam,0,&actual);pre=pr<0?errno:0;
++  snprintf(sv,sizeof(sv),"getparam_rc=%d getparam_errno=%d priority=%d",pr,pre,actual.sched_priority);
++  event("actual","sched.boost.observed","pid0",observed,oe,sv);
++  int exposed=!boost&&observed==SCHED_FIFO&&!pr&&actual.sched_priority==1;
++  if(!exposed)event("invalid","sched.control","pid0",-1,0,"boost-noop-or-control-invalid;no-accepted-RT-exposure");
+   final=initial;reason="iteration-cap";
+-  while(iterations<2000000){
++  if(exposed)while(iterations<2000000){
+    struct timespec next;iterations++;rc=monotonic_clock(&next);
+    if(rc<0){error=errno;reason="clock-error";break;}
+    final=next;
+    delta=((long long)final.tv_sec-initial.tv_sec)*1000000000LL+final.tv_nsec-initial.tv_nsec;
++   if(iterations==500000||iterations==1000000||iterations==1500000){
++    char progress[96];snprintf(progress,sizeof(progress),"iterations=%u delta_ns=%lld",iterations,delta);
++    event("actual","runnable.progress","CLOCK_MONOTONIC",0,0,progress);
++   }
+    if(delta<0){reason="counter-regressed";break;}
+    if(delta>=1500000000LL){reason="counter-target";break;}
+   }
++  int restore=(int)syscall(SYS_sched_setscheduler,0,policy,&original),re=restore<0?errno:0;
++  event("actual","sched.restore","pid0",restore,re,"requested_policy=0 requested_priority=0");
++  actual.sched_priority=-1;
++  observed=(int)syscall(SYS_sched_getscheduler,0);oe=observed<0?errno:0;
++  pr=(int)syscall(SYS_sched_getparam,0,&actual);pre=pr<0?errno:0;
++  snprintf(sv,sizeof(sv),"getparam_rc=%d getparam_errno=%d priority=%d",pr,pre,actual.sched_priority);
++  event("actual","sched.restored","pid0",observed,oe,sv);
++  if(restore||observed!=policy||pr||actual.sched_priority!=original.sched_priority){
++   event("invalid","sched.control","pid0",-1,0,"restore-failed-or-unverified;finish-reboot-attempt;no-retry");return -1;
++  }
++  if(!exposed)return -1;
++  event("accepted","sched.control","pid0",0,0,"boost-and-restore-verified;loop-outcome-separate");
+  }else error=errno;
+  char sample[96];snprintf(sample,sizeof(sample),"%lld.%09ld sample-valid=%d",(long long)final.tv_sec,final.tv_nsec,valid);
+  event("actual","clock_gettime.final","CLOCK_MONOTONIC",rc,error,sample);
+  char v[256];snprintf(v,sizeof(v),"delta_ns=%lld iterations=%u reason=%s alarm_flag=%d clock_error=%d counter_interval_not_wallclock=1",delta,iterations,reason,(int)alarm_fired,error);
+  event("complete","runnable.loop","CLOCK_MONOTONIC",rc,error,v);
++ return 0;
+ }
+ int main(void){
+  pid_t pid=getpid();if(pid!=1)return 1;
+@@ -196,7 +230,7 @@
+  timer_snapshot();
+  phase="observe";
+  begin("alarm.nominal1s.timer-dependent","-");unsigned left=alarm(1);end("alarm.nominal1s.timer-dependent","-",left,0);
+- observe();
++ if(observe()){phase="finish";finish();return 0;}
+  phase="after";timer_snapshot();mmc_snapshot();
+  phase="finish";finish();return 0;
+ }
+--- baseline/arch/arm64/kernel/asus_entry_tag.h
++++ fifo/arch/arm64/kernel/asus_entry_tag.h
+@@ -1,9 +1,9 @@
+-#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=e0b1a1ba-ebd1-4454-a3fb-e8b05eedf5d9 stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=e55f7efe0b074ca96c66526b2923b68c173d6b26c9c7ed007379af5b65762ecb cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
++#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=f53fadc2-5cd5-4c44-b5a3-7a65567c6935 stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=e55f7efe0b074ca96c66526b2923b68c173d6b26c9c7ed007379af5b65762ecb cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
+ #define ASUS_ENTRY_TAG_LEN 340
+ 
+-#define ASUS_CAPTURE_TAG "A49CAP1 uuid=e0b1a1ba-ebd1-4454-a3fb-e8b05eedf5d9 rows=15 row=384 fields=17 header=192"
++#define ASUS_CAPTURE_TAG "A49CAP1 uuid=f53fadc2-5cd5-4c44-b5a3-7a65567c6935 rows=15 row=384 fields=17 header=192"
+ 
+ #define ASUS_SPARSE_PROFILE 1
+-#define ASUS_SPARSE_MODE "ASUS49-MODE run=e0b1a1ba-ebd1-4454-a3fb-e8b05eedf5d9 profile=sparse-wdt-v1 hot=disabled ordinary_printk=filtered delay=original-virtual"
++#define ASUS_SPARSE_MODE "ASUS49-MODE run=f53fadc2-5cd5-4c44-b5a3-7a65567c6935 profile=sparse-fifo-v1 hot=disabled ordinary_printk=filtered delay=original-virtual"
+ 
+-#define ASUS_SPARSE_WDT_PREFIX "ASUS49-WDT run=e0b1a1ba-ebd1-4454-a3fb-e8b05eedf5d9 "
++#define ASUS_SPARSE_WDT_PREFIX "ASUS49-WDT run=f53fadc2-5cd5-4c44-b5a3-7a65567c6935 "
+--- baseline/arch/arm64/kernel/asus_retained_trace.c
++++ fifo/arch/arm64/kernel/asus_retained_trace.c
+@@ -1329,7 +1329,7 @@
+ static bool sparse_admit(const char *text, unsigned int len)
+ {
+  unsigned int i;
+- static const char helper[] = "ASUS49-SYSCLOCK run=f0c3c82c-d639-4d8a-90f2-155fd4224ceb";
++ static const char helper[] = "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78";
+  if (!len || len > 767)
+   return false;
+  if (text[len - 1] == '\n')
+@@ -1362,6 +1362,14 @@
+         PREFIX(" phase=observe stage=end op=clock_gettime path=loop.initial rc=") ||
+         PREFIX(" phase=observe stage=begin op=alarm.nominal1s.timer-dependent path=- rc=") ||
+         PREFIX(" phase=observe stage=end op=alarm.nominal1s.timer-dependent path=- rc=") ||
++        PREFIX(" phase=observe stage=actual op=sched.original path=pid0 rc=") ||
++        PREFIX(" phase=observe stage=actual op=sched.boost path=pid0 rc=") ||
++        PREFIX(" phase=observe stage=actual op=sched.boost.observed path=pid0 rc=") ||
++        PREFIX(" phase=observe stage=actual op=sched.restore path=pid0 rc=") ||
++        PREFIX(" phase=observe stage=actual op=sched.restored path=pid0 rc=") ||
++        PREFIX(" phase=observe stage=invalid op=sched.control path=pid0 rc=") ||
++        PREFIX(" phase=observe stage=accepted op=sched.control path=pid0 rc=") ||
++        PREFIX(" phase=observe stage=actual op=runnable.progress path=CLOCK_MONOTONIC rc=") ||
+         PREFIX(" phase=observe stage=actual op=clock_gettime.final path=CLOCK_MONOTONIC rc=") ||
+         PREFIX(" phase=observe stage=complete op=runnable.loop path=CLOCK_MONOTONIC rc=") ||
+         PREFIX(" phase=before stage=actual op=interrupts.arch_timer path=/proc/interrupts rc=") ||

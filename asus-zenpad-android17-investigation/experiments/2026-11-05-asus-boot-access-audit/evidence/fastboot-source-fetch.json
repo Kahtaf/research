@@ -1,0 +1,56 @@
+[
+  {
+    "tag": "android-7.1.1_r59",
+    "path": "usb_osx.cpp",
+    "url": "https://android.googlesource.com/platform/system/core/+/refs/tags/android-7.1.1_r59/fastboot/usb_osx.cpp?format=TEXT",
+    "sha256": "0b886d4141c1c3b1beac23cddbc5cf397d1b798a97587f872bae6294af1579da",
+    "bytes": 17469
+  },
+  {
+    "tag": "android-7.1.1_r59",
+    "path": "fastboot.cpp",
+    "url": "https://android.googlesource.com/platform/system/core/+/refs/tags/android-7.1.1_r59/fastboot/fastboot.cpp?format=TEXT",
+    "sha256": "a95651cdb15896563c3022989d5ed66335dfbb384e70d85c97df7e1671346093",
+    "bytes": 62476
+  },
+  {
+    "tag": "android-7.1.1_r59",
+    "path": "usb.h",
+    "url": "https://android.googlesource.com/platform/system/core/+/refs/tags/android-7.1.1_r59/fastboot/usb.h?format=TEXT",
+    "sha256": "7ae9bd4850740336fae7915fcc63f94abc66fbd3d900e9a668b8ce85d07961a8",
+    "bytes": 2025
+  },
+  {
+    "tag": "android-7.1.1_r59",
+    "path": "fastboot_driver.cpp",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "tag": "android-17.0.0_r1",
+    "path": "usb_osx.cpp",
+    "url": "https://android.googlesource.com/platform/system/core/+/refs/tags/android-17.0.0_r1/fastboot/usb_osx.cpp?format=TEXT",
+    "sha256": "34397a07b25a1682d5d376f3fdf36b4d783930bba1d5ea581edfbc31279e2bbf",
+    "bytes": 18874
+  },
+  {
+    "tag": "android-17.0.0_r1",
+    "path": "fastboot.cpp",
+    "url": "https://android.googlesource.com/platform/system/core/+/refs/tags/android-17.0.0_r1/fastboot/fastboot.cpp?format=TEXT",
+    "sha256": "5f720e5965663e9930f7c1a0ba55d37ce218561168f23ff43b567d3c0cf41e21",
+    "bytes": 103580
+  },
+  {
+    "tag": "android-17.0.0_r1",
+    "path": "usb.h",
+    "url": "https://android.googlesource.com/platform/system/core/+/refs/tags/android-17.0.0_r1/fastboot/usb.h?format=TEXT",
+    "sha256": "32a5ac8a696d517a8d192e8ef8cb29d9a5b3606bcefb1736134ea982f2cac5e4",
+    "bytes": 2344
+  },
+  {
+    "tag": "android-17.0.0_r1",
+    "path": "fastboot_driver.cpp",
+    "url": "https://android.googlesource.com/platform/system/core/+/refs/tags/android-17.0.0_r1/fastboot/fastboot_driver.cpp?format=TEXT",
+    "sha256": "4c0dcb644eedc4051e92e56764a286912262fdef9886fd9bdaa0f6bc078e2ba2",
+    "bytes": 22822
+  }
+]

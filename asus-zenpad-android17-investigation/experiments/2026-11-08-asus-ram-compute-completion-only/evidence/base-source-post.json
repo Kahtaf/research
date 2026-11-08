@@ -1,0 +1,14 @@
+{
+  "source/init.c": "b70b0768fcd5619317a78f922e4f5fb7bdeffd1707a26eb9928886011a0c22e2",
+  "source/bootformat.py": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017",
+  "source/fdt.py": "1bd710a08eae5677689a52042a621f39dcd57e49197749cf2833eead1fc0dcae",
+  "source/adb": "820fd0d66e75ee98701798e385f04e48a026ec7abd22ec6a67e9760ed0829e82",
+  "source/legacy_adb.py": "6d00836d7e0cc28834f858b0fd6ab5515ffe7b3ecd37a6da6ba1f66b43597731",
+  "source/reused/asus_retained_trace.c": "3234aad2e3d2375d991c4a7ca7028c1d2bd8aa1ba7b6fe74558095cafa3a8658",
+  "source/reused/asus_entry_tag.h": "10ad9f976ce674961f0ae5dc91c8225c0dde11619af7f2cfdf9b6d4b314e55dc",
+  "artifacts/Image.gz-dtb": "948539cd11744e1f3bbed55389c2118c940d8206ce7e6ea1e89dce54f0b99954",
+  "artifacts/resolved.config": "708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1",
+  "source/install.py": "2f2f55c415c1e11991d97545c10c89481340c367e2294bc27146b09ecb608ce3",
+  "artifacts/candidate.img": "85f282b8ac7cfb4ee8f85737bcc2d9760059a8363ad9f5c58a857cd7f6bd0bd6",
+  "artifacts/candidate.p10.raw": "9a836b53aaf66366a93f2f715c73247ae49e889cb4bce4a369655939142c04ad"
+}

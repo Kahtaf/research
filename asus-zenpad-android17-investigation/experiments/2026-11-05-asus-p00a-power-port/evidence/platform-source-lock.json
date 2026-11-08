@@ -1,0 +1,8 @@
+{
+  "manifest_commit": "e4b71068f6ee045ff30e4865a8d82f4047eb78ea",
+  "resolved_manifest_sha256": "49c13d9f852b45ce9f411e8d968866f47e5e30d55bf7c26f361a9b5a99760569",
+  "projects": 1239,
+  "all_revisions_pinned": true,
+  "platform": "LineageOS 24 / Android 17",
+  "asus_product_built": false
+}

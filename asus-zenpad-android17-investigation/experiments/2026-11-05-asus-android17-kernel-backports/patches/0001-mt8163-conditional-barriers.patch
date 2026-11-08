@@ -1,0 +1,112 @@
+From 0977ab3a1693867dd1577aa2a237addc872ac523 Mon Sep 17 00:00:00 2001
+From: Will Deacon <ACCOUNT_REDACTED>
+Date: Thu, 26 Apr 2018 11:34:15 +0100
+Subject: [PATCH] locking/barriers: Introduce smp_cond_load_relaxed() and
+ atomic_cond_read_relaxed()
+
+Whilst we currently provide smp_cond_load_acquire() and
+atomic_cond_read_acquire(), there are cases where the ACQUIRE semantics are
+not required because of a subsequent fence or release operation once the
+conditional loop has exited.
+
+This patch adds relaxed versions of the conditional spinning primitives
+to avoid unnecessary barrier overhead on architectures such as arm64.
+
+Signed-off-by: Will Deacon <ACCOUNT_REDACTED>
+Acked-by: Peter Zijlstra (Intel) <ACCOUNT_REDACTED>
+Acked-by: Waiman Long <ACCOUNT_REDACTED>
+Cc: Linus Torvalds <ACCOUNT_REDACTED>
+Cc: Thomas Gleixner <ACCOUNT_REDACTED>
+Cc: ACCOUNT_REDACTED
+Cc: ACCOUNT_REDACTED
+Cc: ACCOUNT_REDACTED
+Link: http://lkml.kernel.org/r/ACCOUNT_REDACTED
+Signed-off-by: Ingo Molnar <ACCOUNT_REDACTED>
+Signed-off-by: kdrag0n <ACCOUNT_REDACTED>
+Signed-off-by: Danny Lin <ACCOUNT_REDACTED>
+Change-Id: I389a995ba3a350c45b12a8a4e553e85b0a49280a
+Signed-off-by: SamarV-121 <ACCOUNT_REDACTED>
+(cherry picked from commit 9266d5193fbc061178efcda4db5da882da90288f)
+
+ASUS 4.9 adaptation: this MT8163 baseline lacks the atomic conditional
+read acquire wrappers already present in the donor Samsung tree. Supply
+the same wrappers over its existing smp_cond_load_acquire primitive before
+adding the relaxed variants. No ordering guarantee is weakened.
+---
+--- a/include/asm-generic/barrier.h
++++ b/include/asm-generic/barrier.h
+@@ -221,18 +221,17 @@
+ #endif
+ 
+ /**
+- * smp_cond_load_acquire() - (Spin) wait for cond with ACQUIRE ordering
++ * smp_cond_load_relaxed() - (Spin) wait for cond with no ordering guarantees
+  * @ptr: pointer to the variable to wait on
+  * @cond: boolean expression to wait for
+  *
+- * Equivalent to using smp_load_acquire() on the condition variable but employs
+- * the control dependency of the wait to reduce the barrier on many platforms.
++ * Equivalent to using READ_ONCE() on the condition variable.
+  *
+  * Due to C lacking lambda expressions we load the value of *ptr into a
+  * pre-named variable @VAL to be used in @cond.
+  */
+-#ifndef smp_cond_load_acquire
+-#define smp_cond_load_acquire(ptr, cond_expr) ({		\
++#ifndef smp_cond_load_relaxed
++#define smp_cond_load_relaxed(ptr, cond_expr) ({		\
+ 	typeof(ptr) __PTR = (ptr);				\
+ 	typeof(*ptr) VAL;					\
+ 	for (;;) {						\
+@@ -241,8 +240,24 @@
+ 			break;					\
+ 		cpu_relax();					\
+ 	}							\
++	VAL;							\
++})
++#endif
++
++/**
++ * smp_cond_load_acquire() - (Spin) wait for cond with ACQUIRE ordering
++ * @ptr: pointer to the variable to wait on
++ * @cond: boolean expression to wait for
++ *
++ * Equivalent to using smp_load_acquire() on the condition variable but employs
++ * the control dependency of the wait to reduce the barrier on many platforms.
++ */
++#ifndef smp_cond_load_acquire
++#define smp_cond_load_acquire(ptr, cond_expr) ({		\
++	typeof(*ptr) _val;					\
++	_val = smp_cond_load_relaxed(ptr, cond_expr);		\
+ 	smp_acquire__after_ctrl_dep();				\
+-	VAL;							\
++	_val;							\
+ })
+ #endif
+ 
+--- a/include/asm-generic/atomic-long.h
++++ b/include/asm-generic/atomic-long.h
+@@ -243,4 +243,9 @@
+ #define atomic_long_inc_not_zero(l) \
+ 	ATOMIC_LONG_PFX(_inc_not_zero)((ATOMIC_LONG_PFX(_t) *)(l))
+ 
++#define atomic_long_cond_read_relaxed(v, c) \
++	ATOMIC_LONG_PFX(_cond_read_relaxed)((ATOMIC_LONG_PFX(_t) *)(v), (c))
++#define atomic_long_cond_read_acquire(v, c) \
++	ATOMIC_LONG_PFX(_cond_read_acquire)((ATOMIC_LONG_PFX(_t) *)(v), (c))
++
+ #endif  /*  _ASM_GENERIC_ATOMIC_LONG_H  */
+--- a/include/linux/atomic.h
++++ b/include/linux/atomic.h
+@@ -1023,6 +1023,11 @@
+ }
+ #endif
+ 
++#define atomic_cond_read_relaxed(v, c)	smp_cond_load_relaxed(&(v)->counter, (c))
++#define atomic_cond_read_acquire(v, c)	smp_cond_load_acquire(&(v)->counter, (c))
++#define atomic64_cond_read_relaxed(v, c)	smp_cond_load_relaxed(&(v)->counter, (c))
++#define atomic64_cond_read_acquire(v, c)	smp_cond_load_acquire(&(v)->counter, (c))
++
+ #include <asm-generic/atomic-long.h>
+ 
+ #endif /* _LINUX_ATOMIC_H */

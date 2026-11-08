@@ -1,0 +1,11 @@
+{
+  "utc": "2026-11-06T23:43:50.230691+00:00",
+  "original_spike": "2026-11-06-asus-readonly-rescue-usb-transport",
+  "files": {
+    "source/transport.py": "bcb3d7c6f6b823491f8fe2a115b72549139b0f2d315e4cf8de620d1e6bb90146",
+    "tests/test_transport.py": "30145b74087154a988587e7d0a6fdeb1d89b428fbc9f944919751f79da1bcbe4",
+    "tests/fake_shell.py": "862f816f18ebda37fa0ce5948eae378256dcc4b80451c82bc57e412783aad5df",
+    "README.md": "b7cff0d657c9836db4b3e438f9160994d7ebeeab0f6d24305bc64cb405303a59"
+  },
+  "fixed_source_sha256": "27b8fbf665e8efd5b41b6485184393f112eb7c6fe6854a6821d0f14a84f785d8"
+}

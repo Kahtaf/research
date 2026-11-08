@@ -1,0 +1,6 @@
+{
+  "include/linux/asus_retained_trace.h": "8922d8a5a9fd716c242889fc8d863f9f71fc1c7cd72bf920a81d8c90b3c6f25d",
+  "arch/arm64/kernel/asus_retained_trace.c": "55cac3b4714ee35a8365ca37678f797f54903ac80ae7c8bfcf41ca5b38d72849",
+  "kernel/time/timekeeping.c": "42effa2858ae8683a555757f1d82c7a8b9384f656296e234f88efa4384f77e07",
+  "drivers/clocksource/arm_arch_timer.c": "ed5182139af568c73a8c7eb6eb600d647a97ef5d91ce942d52c47260ddbd06c4"
+}

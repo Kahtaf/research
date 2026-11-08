@@ -1,0 +1,50 @@
+{
+  "status": "configured_awaiting_dependency_gate",
+  "rlimit_as": [
+    -1,
+    -1
+  ],
+  "source_edits": [],
+  "copy_method": "ordinary cp -a, independent inodes; no hardlinks",
+  "full_tree_rehash": false,
+  "olddefconfig_command": [
+    "make",
+    "-C",
+    "/srv/android/asus-early-uart-disabled-kernel-20261107/kernel",
+    "O=/srv/android/asus-early-uart-disabled-kernel-20261107/out",
+    "ARCH=arm64",
+    "CROSS_COMPILE=aarch64-linux-gnu-",
+    "HOSTCC=gcc",
+    "HOSTCXX=g++",
+    "LOCALVERSION=-g717bb3c9e13c-dirty",
+    "olddefconfig"
+  ],
+  "olddefconfig_exit": 0,
+  "config_sha256": "708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1",
+  "config_delta": {
+    "CONFIG_SERIAL_CORE_CONSOLE": {
+      "before": "y",
+      "after": "n",
+      "before_present": true,
+      "after_present": false
+    },
+    "CONFIG_SERIAL_EARLYCON": {
+      "before": "y",
+      "after": "n",
+      "before_present": true,
+      "after_present": false
+    },
+    "CONFIG_SERIAL_8250_CONSOLE": {
+      "before": "y",
+      "after": "n",
+      "before_present": true,
+      "after_present": true
+    },
+    "CONFIG_SERIAL_8250_FSL": {
+      "before": "y",
+      "after": "n",
+      "before_present": true,
+      "after_present": false
+    }
+  }
+}

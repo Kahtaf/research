@@ -1,0 +1,497 @@
+[
+  {
+    "path": "/soc/usb@11200000",
+    "device_class": "USB",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/usb@11270000",
+    "device_class": "USB",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mmc@11230000",
+    "device_class": "MMC",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mmc@11240000",
+    "device_class": "MMC",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mmc@11250000",
+    "device_class": "MMC",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/lcm",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mtkfb@0",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt8163-dispsys",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/hdmi@1401d000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_ovl0@14007000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_ovl1@14008000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_rdma0@14009000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_rdma1@1400a000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_wdma0@1400b000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_wdma1@14018000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_color@1400c000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_ccorr@1400d000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_aal@1400e000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_gamma@1400f000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_dither@14010000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_ufoe@14011000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_dsi0@14012000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_dpi0@14013000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_dpi1@1401c000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_pwm0@14014000",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/disp_lvds_tx@1401b200",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/i2c@11007000/lp8557_led@2c",
+    "device_class": "display",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/gce@10212000",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mdp_rdma@14001000",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mdp_rsz0@14002000",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mdp_rsz1@14003000",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mdp_wdma@14004000",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mdp_wrot@14005000",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mdp_tdshp@14006000",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/ispsys@15000000",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/isp_display",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/camera1@15008000",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/camera2@15008000",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/vdec@16020000",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/venc@17002000",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/jpgenc@17003000",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/isp_pipemgr",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/isp_sysram",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/flashlight@",
+    "device_class": "media-camera",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/cust_accel@0",
+    "device_class": "sensors-touch",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/cust_mag@0",
+    "device_class": "sensors-touch",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/hall_sensor",
+    "device_class": "sensors-touch",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/i2c@11009000",
+    "device_class": "sensors-touch",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/i2c@11007000/elan@10",
+    "device_class": "sensors-touch",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/i2c@11007000/goodix@14",
+    "device_class": "sensors-touch",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/touch@",
+    "device_class": "sensors-touch",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/hwmsensor@0",
+    "device_class": "sensors-touch",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/gsensor@0",
+    "device_class": "sensors-touch",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/als_ps@0",
+    "device_class": "sensors-touch",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/batchsensor@0",
+    "device_class": "sensors-touch",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/gyroscope@0",
+    "device_class": "sensors-touch",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/barometer@0",
+    "device_class": "sensors-touch",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/msensor@0",
+    "device_class": "sensors-touch",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/orientation@0",
+    "device_class": "sensors-touch",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/consys@18070000",
+    "device_class": "network",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/wifi@180f0000",
+    "device_class": "network",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/gps",
+    "device_class": "network",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/btif@1100c000",
+    "device_class": "network",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/btif_tx@11000700",
+    "device_class": "network",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/btif_rx@11000780",
+    "device_class": "network",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/btcvsd@18000000",
+    "device_class": "network",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/pwm@11006000",
+    "device_class": "other-consumers",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/nfi@1100d000",
+    "device_class": "other-consumers",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/nfiecc@1100e000",
+    "device_class": "other-consumers",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/dumchar",
+    "device_class": "other-consumers",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_dl1_pcm@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_ul1_pcm@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_voice_md1@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_hdmi_pcm@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_uldlloopback@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_i2s0_pcm@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_mrgrx_pcm@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_mrgrx_awb_pcm@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_fm_i2s_pcm@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_fm_i2s_awb_pcm@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_i2s0dl1_pcm@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_dl1_awb_pcm@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_voice_md1_bt@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_voip_bt_out@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_voip_bt_in@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_tdmrx_pcm@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_fm_mrgtx_pcm@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_ul2_pcm@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_i2s0_awb_pcm@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_voice_md2@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_routing_pcm@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_voice_md2_bt@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_hp_impedance@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_codec_name@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_dummy_pcm@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_codec_dummy_name@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_routing_dai_name@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/mt_soc_dai_name@11220000",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  },
+  {
+    "path": "/soc/accdet@",
+    "device_class": "audio",
+    "reason": "No RAM PID1 function; class driver disabled in config; status prevents ordinary OF population/probe"
+  }
+]

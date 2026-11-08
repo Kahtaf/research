@@ -1,0 +1,111 @@
+{
+  "decision": "unavailable_for_static_qualification_not_a_parent_trial_candidate",
+  "primary_post_found": true,
+  "maintainer": "diplomatic",
+  "primary_snapshot_utc": "2020-11-29T03:23:50Z",
+  "artifact_filename": "twrp-3.2.1-0-z380m.zip",
+  "artifact_attachment_id": 4408923,
+  "artifact_sha256": null,
+  "artifact_downloaded": false,
+  "image_inspected": false,
+  "fetch_count": 13,
+  "fetched_body_bytes": 261367,
+  "fetches": [
+    {
+      "label": "e-foundation-lead",
+      "url": "https://community.e.foundation/t/asus-zenpad-z380m-p001/28968.json",
+      "status": 200,
+      "bytes": 18419,
+      "sha256": "0e6bdffb69bd03337f3ed0a337a4dd99b2ece6a25e8fa64effe23d23f8cf2d1b"
+    },
+    {
+      "label": "github-repository-search",
+      "url": "https://api.github.com/search/repositories?q=z380m+twrp&per_page=10",
+      "status": 200,
+      "bytes": 55,
+      "sha256": "4af480b8ee5b87b369a76c49bd22c9a783908272ebffbe97898f8ab0f0772a5f"
+    },
+    {
+      "label": "github-z380m-repositories",
+      "url": "https://api.github.com/search/repositories?q=z380m&per_page=30",
+      "status": 200,
+      "bytes": 11045,
+      "sha256": "7efb041e65b63aed244480f0845abbd021fa83408e874977e4fd0f42819bb02b"
+    },
+    {
+      "label": "twrp-asus-official",
+      "url": "https://twrp.me/Devices/Asus/",
+      "status": 200,
+      "bytes": 10310,
+      "sha256": "1cd56504443a28086950b742a06ec08501d1134782c315843b483a7b55777cc2"
+    },
+    {
+      "label": "wayback-availability",
+      "url": "https://archive.org/wayback/available?url=forum.xda-developers.com/zenpad-8/development/twrp-custom-recovery-asus-zenpad-8-0-t3588765/",
+      "status": 200,
+      "bytes": 359,
+      "sha256": "2acec5ee0436a94617e26060205a2fdc2eb43911f0a7348fffbc80a03e662742"
+    },
+    {
+      "label": "wayback-exact-zip-availability",
+      "url": "https://archive.org/wayback/available?url=forum.xda-developers.com/attachment.php%3Fattachmentid%3D4408923%26d%3D1517718308",
+      "status": 200,
+      "bytes": 110,
+      "sha256": "a228d0245cc4aaae952fed7a945cd13a84725026b2cbd6d4a2ef95356a143998"
+    },
+    {
+      "label": "wayback-https-short-zip-availability",
+      "url": "https://archive.org/wayback/available?url=https%3A%2F%2Fforum.xda-developers.com%2Fattachment.php%3Fattachmentid%3D4408923",
+      "status": 200,
+      "bytes": 105,
+      "sha256": "109dc0c6cc31d49a3b5b41478979fb7df0291ecf6004b265910d90737ad3b8a9"
+    },
+    {
+      "label": "wayback-https-zip-availability",
+      "url": "https://archive.org/wayback/available?url=https%3A%2F%2Fforum.xda-developers.com%2Fattachment.php%3Fattachmentid%3D4408923%26d%3D1517718308",
+      "status": 200,
+      "bytes": 118,
+      "sha256": "aaf10f00157922581b4b4bdbe5a79a3742e4ef1f9fe42f07965f63de204ac6e7"
+    },
+    {
+      "label": "wayback-short-zip-availability",
+      "url": "https://archive.org/wayback/available?url=forum.xda-developers.com/attachment.php%3Fattachmentid%3D4408923",
+      "status": 200,
+      "bytes": 97,
+      "sha256": "139d9e8bb1977eb5f4182d3d322a9c6935af1baec96fc57363f2d19d661c3c51"
+    },
+    {
+      "label": "xda-archived-primary",
+      "url": "https://web.archive.org/web/20201129032350id_/https://forum.xda-developers.com/zenpad-8/development/twrp-custom-recovery-asus-zenpad-8-0-t3588765",
+      "status": 200,
+      "bytes": 215166,
+      "sha256": "60494146497b8e5e4bd51d7aa1c508c6afd0fdac917a587c93fd8bfc42cb8eb8"
+    },
+    {
+      "label": "xda-exact-zip-live",
+      "url": "https://forum.xda-developers.com/attachment.php?attachmentid=4408923&d=1517718308",
+      "status": 403,
+      "bytes": 1861,
+      "sha256": "6785e6b47a049ad4e9a043400ae384784fb93b9a5496340adeb873752bdae374",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "label": "xda-migrated-exact-zip",
+      "url": "https://xdaforums.com/attachments/twrp-3-2-1-0-z380m-zip.4408923/",
+      "status": 403,
+      "bytes": 1861,
+      "sha256": "2febb216d7ae406cf738592da65a4dd2320e9db5210f1b5b9e3ef6da7e938fe6",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "label": "xda-primary",
+      "url": "https://xdaforums.com/t/twrp-recovery-asus-zenpad-8-0-z380m-locked-bootloader-ok.3588765/",
+      "status": 403,
+      "bytes": 1861,
+      "sha256": "ff442ac07331778216481f41b79b1bedfce69dfc430c7ef610768a0a9581be7a",
+      "error": "HTTP Error 403: Forbidden"
+    }
+  ],
+  "safety_gate": "Parent reports p12 recovery\\n--wipe_data with command/status zero and hash prefix 8d0cf5c. Clear/reconcile and verify through parent-owned separate BCB operation before any future TWRP entry; never assume read-only UI prevents command replay.",
+  "scope": "Public acquisition and static text review only. No device, ADB, USB, root, VM, process, active source/out, private backups or security metadata inspection."
+}

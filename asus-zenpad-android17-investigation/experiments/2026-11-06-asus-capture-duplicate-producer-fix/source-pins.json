@@ -1,0 +1,6 @@
+{
+  "preimage_sha256": "1b71be2b602c979d577b7129f1fd564abfe878e3042d792cd3cfa6631072fe08",
+  "postimage_sha256": "8c18686203fcd4c11136b1df6c595c182479ebbd6a86a640b3820df4a612c316",
+  "source": "2026-11-06-asus-official-runtime-capture-v5/source/graph.py",
+  "scope": "require exactly one selected indexed producer record"
+}

@@ -1,0 +1,25 @@
+--- qualified-prior-vendor.cil
++++ capture-r1-vendor.cil
+@@ -1,7 +1,9 @@
+ ;;* lms 1 out/soong/.intermediates/system/sepolicy/vendor_sepolicy.unversioned.cil/android_common/p00a/vendor_sepolicy.unversioned.cil
+ (genfscon proc "/sys/kernel/deny_new_usb" (u object_r proc_deny_new_usb ((s0) (s0))))
++(genfscon sysfs "/devices/platform/leds-mt65xx/leds/lcd-backlight" (u object_r sysfs_leds ((s0) (s0))))
+ (genfscon sysfs "/devices/virtual/graphics/fb0/color_enhance" (u object_r sysfs_livedisplay_tuneable ((s0) (s0))))
+ (genfscon sysfs "/devices/virtual/graphics/fb0/reading_mode" (u object_r sysfs_livedisplay_tuneable ((s0) (s0))))
++(genfscon sysfs "/devices/platform/battery/power_supply" (u object_r sysfs_batteryinfo ((s0) (s0))))
+ (genfscon sysfs "/devices/virtual/graphics/fb0/cabc" (u object_r sysfs_livedisplay_tuneable ((s0) (s0))))
+ (genfscon sysfs "/devices/virtual/graphics/fb0/acl" (u object_r sysfs_livedisplay_tuneable ((s0) (s0))))
+ (genfscon sysfs "/devices/virtual/graphics/fb0/aco" (u object_r sysfs_livedisplay_tuneable ((s0) (s0))))
+@@ -2734,6 +2736,12 @@
+ ;;* lmx 27 system/sepolicy/vendor/wpa_supplicant_macsec.te
+ (allow hal_macsec wpa_supplicant_macsec (memfd_file (read write getattr map)))
+ ;;* lme
++;;* lmx 1 device/asus/p00a/sepolicy/vendor/hal_light_default.te
++(allow hal_light_default sysfs_leds_202704 (dir (search)))
++;;* lme
++;;* lmx 2 device/asus/p00a/sepolicy/vendor/hal_light_default.te
++(allow hal_light_default sysfs_leds_202704 (file (ioctl read write getattr lock append map open watch watch_reads)))
++;;* lme
+ ;;* lmx 2 device/lineage/sepolicy/common/dynamic/hal_lineage_health.te
+ (allow hal_lineage_health_client hal_lineage_health_server (binder (call transfer)))
+ ;;* lme

@@ -1,0 +1,21 @@
+{
+  "bytes": 151747,
+  "sha256": "02d36c924e23a818dc447a383577740eeb09db1ce97eb7cf1c731f90adb124ce",
+  "tail": [
+    "  KSYM    .tmp_kallsyms1.o",
+    "aarch64-linux-gnu-ld: warning: -z norelro ignored",
+    "aarch64-linux-gnu-ld: warning: .tmp_vmlinux2 has a LOAD segment with RWX permissions",
+    "  KSYM    .tmp_kallsyms2.o",
+    "  LD      vmlinux",
+    "aarch64-linux-gnu-ld: warning: -z norelro ignored",
+    "aarch64-linux-gnu-ld: warning: vmlinux has a LOAD segment with RWX permissions",
+    "  SORTEX  vmlinux",
+    "  SYSMAP  System.map",
+    "  OBJCOPY arch/arm64/boot/Image",
+    "  DTC     arch/arm64/boot/dts/mediatek/asus-p00a.dtb",
+    "  GZIP    arch/arm64/boot/Image.gz",
+    "  CAT     arch/arm64/boot/Image.gz-dtb",
+    "make[1]: Leaving directory '/srv/android/asus-linux49-calibrated-entry-build-20261107/out'",
+    "make: Leaving directory '/srv/android/asus-linux49-calibrated-entry-build-20261107/kernel'"
+  ]
+}

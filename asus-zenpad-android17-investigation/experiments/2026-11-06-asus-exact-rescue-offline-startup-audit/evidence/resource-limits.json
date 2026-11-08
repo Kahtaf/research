@@ -1,0 +1,6 @@
+{
+  "cpu_seconds": 90,
+  "address_space_bytes": null,
+  "address_space_error": "current limit exceeds maximum limit",
+  "data_segment_error": "current limit exceeds maximum limit"
+}

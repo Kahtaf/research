@@ -1,0 +1,866 @@
+{
+  "scope": "Strict local subset replay and source consistency; NOT full kernel/Android compilation",
+  "passed": 215,
+  "checks": [
+    {
+      "check": "entire prior measurement spike byte-for-byte unchanged",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/arch/arm64/configs/asus_p00a_defconfig",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/arch/arm64/boot/dts/mediatek/asus-p00a.dts",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/arch/arm64/boot/dts/mediatek/asus8163_tb_380_m_bat_setting.dtsi",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/include/linux/power_supply.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/include/linux/power/asus_p00a_battery.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/misc/mediatek/thermal/mt8163/mtk_ts_bts.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/misc/mediatek/thermal/mt8163/mtk_ts_battery.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/misc/mediatek/include/mt-plat/battery_meter.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/misc/mediatek/include/mt-plat/battery_meter_table.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/misc/mediatek/include/mt-plat/upmu_common.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/upmu_sw.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/mtk_battery_meter.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/upmu_hw.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/misc/mediatek/power/mt8163/battery_meter_hal.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/misc/mediatek/power/mt8163/pmic_mt6323.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/misc/mediatek/power/mt8163/asus_p00a/control.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/misc/mediatek/power/mt8163/asus_p00a/Makefile",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_status.inc",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/power/supply/power_supply_sysfs.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/power/supply/mediatek/battery/switch_charging.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/power/supply/mediatek/battery/Makefile",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/power/supply/mediatek/battery/Kconfig",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/power/supply/mediatek/battery/battery_common.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-after-measurement/drivers/power/supply/mediatek/battery/battery_meter.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input asus-3.18/arch/arm64/boot/dts/asus8163_tb_380_m_bat_setting.dtsi",
+      "pass": true
+    },
+    {
+      "check": "immutable input asus-3.18/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/mt_battery_meter.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input asus-3.18/drivers/power/mediatek/battery_meter.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input platform/frameworks/base/services/core/java/com/android/server/BatteryService.java",
+      "pass": true
+    },
+    {
+      "check": "immutable input platform/system/core/healthd/BatteryMonitor.cpp",
+      "pass": true
+    },
+    {
+      "check": "immutable input platform/hardware/interfaces/health/aidl/default/Health.cpp",
+      "pass": true
+    },
+    {
+      "check": "immutable input platform/hardware/interfaces/health/aidl/default/include/health-impl/Health.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/arch/arm64/configs/asus_p00a_defconfig",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/arch/arm64/boot/dts/mediatek/asus-p00a.dts",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/arch/arm64/boot/dts/mediatek/asus8163_tb_380_m_bat_setting.dtsi",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/include/linux/power_supply.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/misc/mediatek/thermal/mt8163/mtk_ts_bts.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/misc/mediatek/thermal/mt8163/mtk_ts_battery.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/misc/mediatek/include/mt-plat/battery_meter.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/misc/mediatek/include/mt-plat/battery_meter_table.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/misc/mediatek/include/mt-plat/upmu_common.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/upmu_sw.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/mtk_battery_meter.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/upmu_hw.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/misc/mediatek/power/mt8163/battery_meter_hal.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/misc/mediatek/power/mt8163/pmic_mt6323.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/misc/mediatek/power/mt8163/asus_p00a/control.h",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/misc/mediatek/power/mt8163/asus_p00a/Makefile",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/power/supply/power_supply_sysfs.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/power/supply/mediatek/battery/switch_charging.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/power/supply/mediatek/battery/Makefile",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/power/supply/mediatek/battery/Kconfig",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/power/supply/mediatek/battery/battery_common.c",
+      "pass": true
+    },
+    {
+      "check": "immutable input kernel-base/drivers/power/supply/mediatek/battery/battery_meter.c",
+      "pass": true
+    },
+    {
+      "check": "pinned extra kernel source drivers/misc/mediatek/include/mt-plat/battery_common.h",
+      "pass": true
+    },
+    {
+      "check": "pinned extra kernel source drivers/misc/mediatek/include/mt-plat/battery_meter_hal.h",
+      "pass": true
+    },
+    {
+      "check": "pinned extra kernel source include/linux/of.h",
+      "pass": true
+    },
+    {
+      "check": "pinned extra kernel source include/linux/timekeeping.h",
+      "pass": true
+    },
+    {
+      "check": "pinned extra kernel source include/linux/math64.h",
+      "pass": true
+    },
+    {
+      "check": "pinned extra kernel source include/linux/pm_wakeup.h",
+      "pass": true
+    },
+    {
+      "check": "pinned extra kernel source drivers/power/supply/power_supply_core.c",
+      "pass": true
+    },
+    {
+      "check": "pinned extra kernel source drivers/power/supply/power_supply_sysfs.c",
+      "pass": true
+    },
+    {
+      "check": "pinned extra kernel source drivers/misc/mediatek/power/mt8163/asus_p00a/policy.h",
+      "pass": true
+    },
+    {
+      "check": "pinned extra kernel source Makefile",
+      "pass": true
+    },
+    {
+      "check": "pinned extra platform source health/aidl/default/HalHealthLoop.cpp",
+      "pass": true
+    },
+    {
+      "check": "pinned extra platform source health/aidl/default/Android.bp",
+      "pass": true
+    },
+    {
+      "check": "pinned extra platform source health/aidl/default/include/health-impl/HalHealthLoop.h",
+      "pass": true
+    },
+    {
+      "check": "pinned extra platform source health/aidl/android/hardware/health/IHealth.aidl",
+      "pass": true
+    },
+    {
+      "check": "pinned extra platform source healthd/include/healthd/healthd.h",
+      "pass": true
+    },
+    {
+      "check": "pinned extra platform source services/core/java/com/android/server/health/HealthServiceWrapperAidl.java",
+      "pass": true
+    },
+    {
+      "check": "pinned extra platform source services/core/java/com/android/server/health/HealthRegCallbackAidl.java",
+      "pass": true
+    },
+    {
+      "check": "patch hash 0002-asus-p00a-checked-main-battery-soc.patch",
+      "pass": true
+    },
+    {
+      "check": "patch hash 0003-android17-health-checked-snapshot.patch",
+      "pass": true
+    },
+    {
+      "check": "patch hash 0004-android17-battery-startup-errors.patch",
+      "pass": true
+    },
+    {
+      "check": "immutable prerequisite patch hash",
+      "pass": true
+    },
+    {
+      "check": "git init -q in kernel: ",
+      "pass": true
+    },
+    {
+      "check": "git add . in kernel: ",
+      "pass": true
+    },
+    {
+      "check": "git -c user.name=Offline replay -c in kernel: ",
+      "pass": true
+    },
+    {
+      "check": "SOC patch rejects kernel base without prerequisite measurement patch",
+      "pass": true
+    },
+    {
+      "check": "git apply --check --index in kernel: ",
+      "pass": true
+    },
+    {
+      "check": "git apply --index --whitespace=error-all in kernel: ",
+      "pass": true
+    },
+    {
+      "check": "git apply --check --index in kernel: ",
+      "pass": true
+    },
+    {
+      "check": "git apply --index --whitespace=error-all in kernel: ",
+      "pass": true
+    },
+    {
+      "check": "exact kernel replay arch/arm64/configs/asus_p00a_defconfig",
+      "pass": true
+    },
+    {
+      "check": "exact kernel replay include/linux/power/asus_p00a_battery.h",
+      "pass": true
+    },
+    {
+      "check": "exact kernel replay drivers/misc/mediatek/thermal/mt8163/mtk_ts_battery.c",
+      "pass": true
+    },
+    {
+      "check": "exact kernel replay drivers/misc/mediatek/include/mt-plat/battery_meter_table.h",
+      "pass": true
+    },
+    {
+      "check": "exact kernel replay drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c",
+      "pass": true
+    },
+    {
+      "check": "exact kernel replay drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc",
+      "pass": true
+    },
+    {
+      "check": "exact kernel replay drivers/power/supply/mediatek/battery/Kconfig",
+      "pass": true
+    },
+    {
+      "check": "exact kernel replay drivers/power/supply/mediatek/battery/battery_common.c",
+      "pass": true
+    },
+    {
+      "check": "exact kernel replay drivers/power/supply/mediatek/battery/battery_meter.c",
+      "pass": true
+    },
+    {
+      "check": "exact kernel replay drivers/power/supply/mediatek/battery/asus_p00a_soc.inc",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency arch/arm64/boot/dts/mediatek/asus-p00a.dts",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency arch/arm64/boot/dts/mediatek/asus8163_tb_380_m_bat_setting.dtsi",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency include/linux/power_supply.h",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency drivers/misc/mediatek/thermal/mt8163/mtk_ts_bts.c",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency drivers/misc/mediatek/include/mt-plat/battery_meter.h",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency drivers/misc/mediatek/include/mt-plat/upmu_common.h",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/upmu_sw.h",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/mtk_battery_meter.h",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/upmu_hw.h",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency drivers/misc/mediatek/power/mt8163/battery_meter_hal.c",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency drivers/misc/mediatek/power/mt8163/pmic_mt6323.c",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency drivers/misc/mediatek/power/mt8163/asus_p00a/control.h",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency drivers/misc/mediatek/power/mt8163/asus_p00a/policy.h",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency drivers/misc/mediatek/power/mt8163/asus_p00a/Makefile",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency drivers/misc/mediatek/power/mt8163/asus_p00a/battery_status.inc",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency drivers/power/supply/power_supply_sysfs.c",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency drivers/power/supply/mediatek/battery/switch_charging.c",
+      "pass": true
+    },
+    {
+      "check": "unchanged kernel dependency drivers/power/supply/mediatek/battery/Makefile",
+      "pass": true
+    },
+    {
+      "check": "idempotent exact application preflight",
+      "pass": true
+    },
+    {
+      "check": "git init -q in hardware-interfaces: ",
+      "pass": true
+    },
+    {
+      "check": "git add . in hardware-interfaces: ",
+      "pass": true
+    },
+    {
+      "check": "git -c user.name=Offline replay -c in hardware-interfaces: ",
+      "pass": true
+    },
+    {
+      "check": "git apply --check --index in hardware-interfaces: ",
+      "pass": true
+    },
+    {
+      "check": "git apply --index --whitespace=error-all in hardware-interfaces: ",
+      "pass": true
+    },
+    {
+      "check": "exact platform replay hardware/interfaces/health/aidl/default/HalHealthLoop.cpp",
+      "pass": true
+    },
+    {
+      "check": "exact platform replay hardware/interfaces/health/aidl/default/Health.cpp",
+      "pass": true
+    },
+    {
+      "check": "exact platform replay hardware/interfaces/health/aidl/default/include/health-impl/Health.h",
+      "pass": true
+    },
+    {
+      "check": "git init -q in frameworks-base: ",
+      "pass": true
+    },
+    {
+      "check": "git add . in frameworks-base: ",
+      "pass": true
+    },
+    {
+      "check": "git -c user.name=Offline replay -c in frameworks-base: ",
+      "pass": true
+    },
+    {
+      "check": "git apply --check --index in frameworks-base: ",
+      "pass": true
+    },
+    {
+      "check": "git apply --index --whitespace=error-all in frameworks-base: ",
+      "pass": true
+    },
+    {
+      "check": "exact platform replay frameworks/base/services/core/java/com/android/server/BatteryService.java",
+      "pass": true
+    },
+    {
+      "check": "exact platform replay frameworks/base/services/core/java/com/android/server/health/HealthRegCallbackAidl.java",
+      "pass": true
+    },
+    {
+      "check": "all eight raw model tables and eight Qmax constants exactly equal original ASUS source",
+      "pass": true
+    },
+    {
+      "check": "all 104 pairs retained: battery_profile_t0",
+      "pass": true
+    },
+    {
+      "check": "all 104 pairs retained: battery_profile_t1",
+      "pass": true
+    },
+    {
+      "check": "all 104 pairs retained: battery_profile_t2",
+      "pass": true
+    },
+    {
+      "check": "all 104 pairs retained: battery_profile_t3",
+      "pass": true
+    },
+    {
+      "check": "all 104 pairs retained: r_profile_t0",
+      "pass": true
+    },
+    {
+      "check": "all 104 pairs retained: r_profile_t1",
+      "pass": true
+    },
+    {
+      "check": "all 104 pairs retained: r_profile_t2",
+      "pass": true
+    },
+    {
+      "check": "all 104 pairs retained: r_profile_t3",
+      "pass": true
+    },
+    {
+      "check": "DT and all charge limits unchanged after measurement predecessor",
+      "pass": true
+    },
+    {
+      "check": "charging opt-in remains absent",
+      "pass": true
+    },
+    {
+      "check": "required config ASUS_P00A_MAIN_BATTERY_SOC",
+      "pass": true
+    },
+    {
+      "check": "required config ASUS_P00A_BATTERY_DIAGNOSTIC",
+      "pass": true
+    },
+    {
+      "check": "required config ASUS_P00A_BQ25896",
+      "pass": true
+    },
+    {
+      "check": "required config MTK_SMART_BATTERY",
+      "pass": true
+    },
+    {
+      "check": "unsupported config disabled MTK_MULTI_BAT_PROFILE_SUPPORT",
+      "pass": true
+    },
+    {
+      "check": "unsupported config disabled MTK_BATTERY_LIFETIME_DATA_SUPPORT",
+      "pass": true
+    },
+    {
+      "check": "selected kernel meter branches preprocess on host",
+      "pass": true
+    },
+    {
+      "check": "old resume sleep-current advancement unreachable",
+      "pass": true
+    },
+    {
+      "check": "unchecked old OAM advancement unreachable",
+      "pass": true
+    },
+    {
+      "check": "legacy oam_init charging_enable initialized false",
+      "pass": true
+    },
+    {
+      "check": "four-axis model functions preprocess",
+      "pass": true
+    },
+    {
+      "check": "aggregate getter remains final",
+      "pass": true
+    },
+    {
+      "check": "aggregate error hook is in final getter",
+      "pass": true
+    },
+    {
+      "check": "Health loop retries failed aggregate without abort",
+      "pass": true
+    },
+    {
+      "check": "device does not replace callbacks or override final getter",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryStatusPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryHealthPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryPresentPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryCapacityPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryVoltagePath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryFullChargePath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryCurrentNowPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryCycleCountPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryCapacityLevelPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryChargeTimeToFullNowPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryFullChargeDesignCapacityUahPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryCurrentAvgPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryChargeCounterPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryTemperaturePath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryTechnologyPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryStateOfHealthPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryHealthStatusPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryManufacturingDatePath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryFirstUsageDatePath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: chargingStatePath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: chargingPolicyPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batterySerialPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryManufacturerPath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryModelNamePath",
+      "pass": true
+    },
+    {
+      "check": "main battery pinned: batteryVoltageMinDesignPath",
+      "pass": true
+    },
+    {
+      "check": "framework startup waits for actual initial sample",
+      "pass": true
+    },
+    {
+      "check": "initial update tolerates reported transient service error",
+      "pass": true
+    },
+    {
+      "check": "host sanitizer suite model",
+      "pass": true
+    },
+    {
+      "check": "host sanitizer suite measurement",
+      "pass": true
+    },
+    {
+      "check": "host sanitizer suite health",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: staged/arch/arm64/configs/asus_p00a_defconfig",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: staged/include/linux/power/asus_p00a_battery.h",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: staged/drivers/misc/mediatek/thermal/mt8163/mtk_ts_battery.c",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: staged/drivers/misc/mediatek/include/mt-plat/battery_meter_table.h",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: staged/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: staged/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: staged/drivers/power/supply/mediatek/battery/Kconfig",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: staged/drivers/power/supply/mediatek/battery/battery_common.c",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: staged/drivers/power/supply/mediatek/battery/battery_meter.c",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: staged/drivers/power/supply/mediatek/battery/asus_p00a_soc.inc",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: integration/platform/frameworks/base/services/core/java/com/android/server/BatteryService.java",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: integration/platform/frameworks/base/services/core/java/com/android/server/health/HealthRegCallbackAidl.java",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: integration/platform/hardware/interfaces/health/aidl/default/HalHealthLoop.cpp",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: integration/platform/hardware/interfaces/health/aidl/default/Health.cpp",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: integration/platform/hardware/interfaces/health/aidl/default/include/health-impl/Health.h",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: integration/device/asus/p00a/health/health.xml",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: integration/device/asus/p00a/health/BatterySnapshot.cpp",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: integration/device/asus/p00a/health/BatterySnapshot.h",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: integration/device/asus/p00a/health/Android.bp",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: integration/device/asus/p00a/health/health.rc",
+      "pass": true
+    },
+    {
+      "check": "tested production input current: integration/device/asus/p00a/health/Health.cpp",
+      "pass": true
+    },
+    {
+      "check": "device handoff hash asus/p00a/health/health.xml",
+      "pass": true
+    },
+    {
+      "check": "device handoff hash asus/p00a/health/BatterySnapshot.cpp",
+      "pass": true
+    },
+    {
+      "check": "device handoff hash asus/p00a/health/BatterySnapshot.h",
+      "pass": true
+    },
+    {
+      "check": "device handoff hash asus/p00a/health/Android.bp",
+      "pass": true
+    },
+    {
+      "check": "device handoff hash asus/p00a/health/health.rc",
+      "pass": true
+    },
+    {
+      "check": "device handoff hash asus/p00a/health/Health.cpp",
+      "pass": true
+    }
+  ]
+}

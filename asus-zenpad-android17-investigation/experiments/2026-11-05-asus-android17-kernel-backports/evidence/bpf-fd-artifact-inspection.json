@@ -1,0 +1,8 @@
+{
+  "checkpoint_files_verified": 12,
+  "config_identical_to_ids": true,
+  "arm64_image_magic": true,
+  "gzip_trailing_bytes_exact_dtb": true,
+  "dtb_sha256": "577a1ca5fbfe646ca02a50c190ac60efab0edd73c77c904a33865859e2d87bfc",
+  "hardware_runtime_validated": false
+}

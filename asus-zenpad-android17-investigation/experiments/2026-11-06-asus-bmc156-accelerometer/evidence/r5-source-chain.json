@@ -1,0 +1,10 @@
+{
+  "exact_parent_compiled_r5_source_match": true,
+  "baseline_source_files": 62224,
+  "parent_base_files": 61976,
+  "parent_r5_changes": 268,
+  "parent_base_commit": "717bb3c9e13ce573cfdd2dda856debd27a0fa17f",
+  "snapshot_sha256": "e219c0e87d2cfca252088e06839dbf9cedaa794b3832e3829cf5c96021717315",
+  "parent_source_receipt_sha256": "b207be8fcb6739202fae31f54a987f2d11834d43f618edd2a47c6cc33fe2ebe4",
+  "parent_full_delta_sha256": "3ee1f9835330e1a589c0e93a73fc65ebdb57ffd9b48a8bbbd32a7bc98e0f3f8b"
+}

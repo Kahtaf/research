@@ -1,0 +1,54 @@
+{
+  "2026-11-06-asus-android17-orchestration/NEXT-RUNTIME-INPUTS.md": {
+    "sha256": "d5a968425fa64c4053aec595266f7170fb7a3a420a92285550d95e4003ed4c7b",
+    "bytes": 1335
+  },
+  "2026-11-06-asus-sdk37-lmkd-functional/report/REPORT.md": {
+    "sha256": "9b9cef064f5f894f4f8c2b115341af007e5038921196f82ed3638dcfa3aa687b",
+    "bytes": 12801
+  },
+  "2026-11-06-asus-sdk37-lmkd-functional/report/HANDOFF.md": {
+    "sha256": "d817d66962903c45d0f52fd517d22de6beb557d52786b96a71f9fea0318b0408",
+    "bytes": 4111
+  },
+  "2026-11-06-asus-sdk37-lmkd-functional/evidence/parent-memory-acceptance.json": {
+    "sha256": "fc8f9a4c3077e29fa7dfb222e0313d58813ea8092ada90337b952c3e93c481ff",
+    "bytes": 849
+  },
+  "2026-11-06-asus-genuine-service-runtime/REPORT.md": {
+    "sha256": "f75f442f984416125c0f3fd0e0d62f604b8eba6fc2bfbb4a9f95403a37d17d41",
+    "bytes": 7626
+  },
+  "2026-11-06-asus-genuine-service-runtime/HANDOFF.json": {
+    "sha256": "80b09ebdd630afba7db96f0b5cdbdf84de278b7c3f4c1eefff4b4478f8b4fcd8",
+    "bytes": 3256
+  },
+  "2026-11-06-asus-genuine-service-runtime/evidence/parent-runtime-acceptance.json": {
+    "sha256": "ada10c7315d21d1ed62c5b5416c44284caaa95f508bf66d847bc293e7390eac7",
+    "bytes": 988
+  },
+  "2026-11-06-asus-firstboot-parity-continuation/REPORT.md": {
+    "sha256": "4295d8ed5db6cefb48a6ac8f36b2dfb7a31f5d2f6e94410795c7d6b73c696f81",
+    "bytes": 9318
+  },
+  "2026-11-06-asus-bmc156-full-kernel/report/REPORT.md": {
+    "sha256": "1dd33eae076525ff0882906d75ae05a9c230bd974e6be43ac99d3fa73745a427",
+    "bytes": 6635
+  },
+  "2026-11-06-asus-bmc156-full-kernel/report/HANDOFF.md": {
+    "sha256": "6d08d956e9b71a18f9889fc035f5efba27ffc2c711db3b69fd9e7f98cfbd053e",
+    "bytes": 2788
+  },
+  "2026-11-06-asus-bmc156-full-kernel/report/SOURCE-PINS.json": {
+    "sha256": "f6e8b9d198608e507e7a97ae528e5b29a95b54fc3aa03bfb2b3020ce2c9afd03",
+    "bytes": 3940
+  },
+  "2026-11-06-asus-bmc156-full-kernel/patches/pre-post-hashes.json": {
+    "sha256": "d238debc70f0c67b204342ac4e6ff183cf07370fc82c4803f8f643d35115ac33",
+    "bytes": 1880
+  },
+  "2026-11-06-asus-product-input-build-kit/scripts/remote.py": {
+    "sha256": "c22884576a780cbb1ddf5e1b02f0b6e9d6eb5c25f8d9bc82fb077543f05cf4ab",
+    "bytes": 545
+  }
+}

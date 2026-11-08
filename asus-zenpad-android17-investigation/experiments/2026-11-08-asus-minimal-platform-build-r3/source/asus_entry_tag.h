@@ -1,0 +1,2 @@
+#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=a60fca94-e760-4ce5-a790-5c9a818ce406 stage=stext-preargs release=4.9.337-asus-p00a-experimental-minplat base=97b7e1199d607f852bf52ff7766e8aa079fee92986cd3d473b765a45adbf45fb cfg=01d6729f825798899e21192e6c33f96a80b47ccbedd5dc6cab10f78c1f9c7f31 dts-source=2d0c95c12d0fce6629dede4e0eff6590725de9ef5dbbb1f0acc0f3e63fca41b6\n"
+#define ASUS_ENTRY_TAG_LEN 336

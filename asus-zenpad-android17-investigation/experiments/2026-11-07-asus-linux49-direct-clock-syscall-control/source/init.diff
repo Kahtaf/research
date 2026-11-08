@@ -1,0 +1,54 @@
+--- runnable-timer-format-fix/source/init.c
++++ direct-clock-syscall-control/source/init.c
+@@ -9,12 +9,13 @@
+ #include <sys/reboot.h>
+ #include <sys/stat.h>
+ #include <sys/sysmacros.h>
++#include <sys/syscall.h>
+ #include <sys/utsname.h>
+ #include <time.h>
+ #include <unistd.h>
+ 
+-#define RUN_ID "bee07d4f-f6c2-4845-bfe8-c4745767c216"
+-#define TAG "ASUS49-RUNNABLE run=" RUN_ID
++#define RUN_ID "f0c3c82c-d639-4d8a-90f2-155fd4224ceb"
++#define TAG "ASUS49-SYSCLOCK run=" RUN_ID
+ #define NODE "/primitive-kmsg"
+ #define MAX_LOGS 768
+ static int sink=-1;
+@@ -48,8 +49,11 @@
+  event("actual","sink.write.error","-",sink_error,sink_error,"zero-if-all-records-written");
+  begin("reboot","-");rc=reboot(RB_AUTOBOOT);end("reboot","-",rc,rc<0?errno:0);park();
+ }
++static int monotonic_clock(struct timespec *t){
++ return (int)syscall(SYS_clock_gettime,CLOCK_MONOTONIC,t);
++}
+ static int clock_sample(const char *name,struct timespec *t){
+- begin("clock_gettime",name);int rc=clock_gettime(CLOCK_MONOTONIC,t),e=rc<0?errno:0;char v[96]="unavailable";
++ begin("clock_gettime",name);int rc=monotonic_clock(t),e=rc<0?errno:0;char v[96]="unavailable";
+  if(!rc)snprintf(v,sizeof(v),"%lld.%09ld",(long long)t->tv_sec,t->tv_nsec);
+  event("end","clock_gettime",name,rc,e,v);errno=e;return rc;
+ }
+@@ -106,6 +110,7 @@
+  for(;;){
+   while(*p==' '||*p=='\t')p++;
+   if(!strncmp(p,"GICv2",5)&&(p[5]==' '||p[5]=='\t')){chip="GICv2";p+=5;break;}
++  if(!strncmp(p,"GIC-0",5)&&(p[5]==' '||p[5]=='\t')){chip="GIC-0";p+=5;break;}
+   if(!strncmp(p,"GIC",3)&&(p[3]==' '||p[3]=='\t')){p+=3;break;}
+   if(cpus==16||number(&p,&c))return -1;
+   int n=snprintf(counts+used,sizeof(counts)-used,"%s%llu",cpus?",":"",c);
+@@ -151,12 +156,13 @@
+  event("complete","interrupts.snapshot",path,emitted,0,v);
+ }
+ static void observe(void){
++ event("actual","clock.path","CLOCK_MONOTONIC",0,0,"kernel-syscall:syscall(SYS_clock_gettime);vDSO-bypassed");
+  struct timespec initial={0,0},final={0,0};unsigned iterations=0;long long delta=0;int error=0;const char *reason="initial-clock-error";
+  int rc=clock_sample("loop.initial",&initial),valid=!rc;
+  if(!rc){
+   final=initial;reason="iteration-cap";
+   while(iterations<2000000){
+-   struct timespec next;iterations++;rc=clock_gettime(CLOCK_MONOTONIC,&next);
++   struct timespec next;iterations++;rc=monotonic_clock(&next);
+    if(rc<0){error=errno;reason="clock-error";break;}
+    final=next;
+    delta=((long long)final.tv_sec-initial.tv_sec)*1000000000LL+final.tv_nsec-initial.tv_nsec;

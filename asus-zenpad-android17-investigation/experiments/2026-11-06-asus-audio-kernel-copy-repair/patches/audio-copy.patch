@@ -1,0 +1,834 @@
+--- a/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_pcm_capture.c
++++ b/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_pcm_capture.c
+@@ -35,6 +35,7 @@
+ #include "mt_soc_afe_control.h"
+ #define AUDIO_ALLOCATE_SMP_RATE_DECLARE
+ #include "mt_soc_pcm_common.h"
++#include "mt_soc_pcm_transfer.h"
+ 
+ 
+ /* information about */
+@@ -42,7 +43,8 @@
+ static struct snd_dma_buffer *Capture_dma_buf;
+ static struct AudioDigtalI2S *mAudioDigitalI2S;
+ static bool mCaptureUseSram;
+-static DEFINE_SPINLOCK(auddrv_ULInCtl_lock);
++static unsigned long ul1_copy_generation;
++static DEFINE_MUTEX(ul1_copy_lock);
+ static pid_t pid_old;
+ 
+ static void StartAudioCaptureHardware(struct snd_pcm_substream *substream);
+@@ -182,6 +184,8 @@
+ 
+ static int mtk_capture_alsa_stop(struct snd_pcm_substream *substream)
+ {
++	/* Trigger holds the PCM stream lock. */
++	ul1_copy_generation++;
+ 	pr_debug("mtk_capture_alsa_stop\n");
+ 	StopAudioCaptureHardware(substream);
+ 	RemoveMemifSubStream(Soc_Aud_Digital_Block_MEM_VUL, substream);
+@@ -191,60 +195,36 @@
+ static snd_pcm_uframes_t mtk_capture_pcm_pointer(
+ 	struct snd_pcm_substream *substream)
+ {
+-	kal_int32 HW_memory_index = 0;
+-	kal_int32 HW_Cur_ReadIdx = 0;
+-	/* kal_uint32 Frameidx = 0; */
+-	kal_int32 Hw_Get_bytes = 0;
+-	bool bIsOverflow = false;
+-	struct AFE_BLOCK_T *UL1_Block = &(VUL_Control_context->rBlock);
+-
+-	PRINTK_AUD_UL1("captpcm_ptr Awb_Block_wrid=0x%x\n",
+-		UL1_Block->u4WriteIdx);
+-	Auddrv_UL1_Spinlock_lock();
+-	if (GetMemoryPathEnable(Soc_Aud_Digital_Block_MEM_VUL) == true) {
+-		HW_Cur_ReadIdx = Align64ByteSize(Afe_Get_Reg(AFE_VUL_CUR));
+-		if (HW_Cur_ReadIdx == 0) {
+-			PRINTK_AUD_UL1
+-			(" mtk_awb_pcm_pointer HW_Cur_ReadIdx == 0\n");
+-			HW_Cur_ReadIdx = UL1_Block->pucPhysBufAddr;
+-		}
+-		HW_memory_index = (HW_Cur_ReadIdx - UL1_Block->pucPhysBufAddr);
+-
+-		/* update for data get to hardware */
+-		Hw_Get_bytes = (HW_Cur_ReadIdx - UL1_Block->pucPhysBufAddr)
+-			 - UL1_Block->u4WriteIdx;
+-
+-		if (Hw_Get_bytes < 0)
+-			Hw_Get_bytes += UL1_Block->u4BufferSize;
+-
+-		UL1_Block->u4WriteIdx += Hw_Get_bytes;
+-		UL1_Block->u4WriteIdx %= UL1_Block->u4BufferSize;
+-		UL1_Block->u4DataRemained += Hw_Get_bytes;
+-
+-		/* buffer overflow */
+-		if (UL1_Block->u4DataRemained > UL1_Block->u4BufferSize) {
+-			bIsOverflow = true;
+-			pr_debug
+-			("%s buf overflow Id:%x, WrtId:%x,Rem:%x,sz:%x\n",
+-			__func__, UL1_Block->u4DMAReadIdx,
+-			UL1_Block->u4WriteIdx,
+-			UL1_Block->u4DataRemained,
+-			UL1_Block->u4BufferSize);
+-		}
+-
+-		PRINTK_AUD_UL1
+-		("[Auddrv] mtk_capture_pcm_pointer 0x%x mem_index 0x%x\n",
+-		HW_Cur_ReadIdx, HW_memory_index);
+-		Auddrv_UL1_Spinlock_unlock();
+-
+-		if (bIsOverflow == true)
+-			return -1;
+-
+-		return audio_bytes_to_frame(substream, HW_memory_index);
+-	}
+-	Auddrv_UL1_Spinlock_unlock();
+-	return 0;
+-
++	struct AFE_BLOCK_T *b = &VUL_Control_context->rBlock;
++	unsigned long flags;
++	snd_pcm_uframes_t result = SNDRV_PCM_POS_XRUN;
++	kal_uint32 cur;
++	int offset, delta;
++
++	/* The IRQ handler and copy commit use this same lock. */
++	spin_lock_irqsave(&VUL_Control_context->substream_lock, flags);
++	if (!mtk_pcm_ring_valid(substream->runtime, b))
++		goto out;
++	if (GetMemoryPathEnable(Soc_Aud_Digital_Block_MEM_VUL)) {
++		cur = Align64ByteSize(Afe_Get_Reg(AFE_VUL_CUR));
++		if (!cur)
++			cur = b->pucPhysBufAddr;
++		if (cur < b->pucPhysBufAddr ||
++		    cur - b->pucPhysBufAddr >= b->u4BufferSize)
++			goto out;
++		offset = cur - b->pucPhysBufAddr;
++		delta = offset - b->u4WriteIdx;
++		if (delta < 0)
++			delta += b->u4BufferSize;
++		b->u4DataRemained += delta;
++		b->u4WriteIdx = (b->u4WriteIdx + delta) % b->u4BufferSize;
++		if (b->u4DataRemained > b->u4BufferSize)
++			goto out;
++	}
++	result = bytes_to_frames(substream->runtime, b->u4WriteIdx);
++out:
++	spin_unlock_irqrestore(&VUL_Control_context->substream_lock, flags);
++	return result;
+ }
+ 
+ static void SetVULBuffer(struct snd_pcm_substream *substream,
+@@ -279,6 +259,8 @@
+ 	struct snd_pcm_runtime *runtime = substream->runtime;
+ 	struct snd_dma_buffer *dma_buf = &substream->dma_buffer;
+ 	int ret = 0;
++
++	mutex_lock(&ul1_copy_lock);
+ 
+ 	pr_debug("mtk_capture_pcm_hw_params\n");
+ 
+@@ -311,17 +293,19 @@
+ 	pr_info("dma_bytes = %zu dma_area = %p dma_addr = 0x%lx\n",
+ 	       substream->runtime->dma_bytes, substream->runtime->dma_area,
+ 	       (long)substream->runtime->dma_addr);
++	mutex_unlock(&ul1_copy_lock);
+ 	return ret;
+ }
+ 
+ static int mtk_capture_pcm_hw_free(struct snd_pcm_substream *substream)
+ {
+-	pr_debug("mtk_capture_pcm_hw_free\n");
+-
+-	if (Capture_dma_buf->area)
+-		return 0;
+-	else
+-		return snd_pcm_lib_free_pages(substream);
++	int ret = 0;
++
++	mutex_lock(&ul1_copy_lock);
++	if (!Capture_dma_buf->area)
++		ret = snd_pcm_lib_free_pages(substream);
++	mutex_unlock(&ul1_copy_lock);
++	return ret;
+ }
+ 
+ static struct snd_pcm_hw_constraint_list constraints_sample_rates = {
+@@ -445,191 +429,18 @@
+ 	return -EINVAL;
+ }
+ 
+-static bool CheckNullPointer(void *pointer)
+-{
+-	if (pointer == NULL) {
+-		pr_debug("CheckNullPointer pointer = NULL");
+-		return true;
+-	}
+-	return false;
+-}
+ 
+ static int mtk_capture_pcm_copy(struct snd_pcm_substream *substream,
+-				int channel, snd_pcm_uframes_t pos,
+-				void __user *dst, snd_pcm_uframes_t count)
+-{
+-
+-	struct AFE_MEM_CONTROL_T *pVUL_MEM_ConTrol = NULL;
+-	struct AFE_BLOCK_T *Vul_Block = NULL;
+-	char *Read_Data_Ptr = (char *)dst;
+-	ssize_t DMA_Read_Ptr = 0, read_size = 0, read_count = 0;
+-	/* struct snd_pcm_runtime *runtime = substream->runtime; */
+-	unsigned long flags;
+-
+-	PRINTK_AUD_UL1
+-		("mtk_capture_pcm_copy pos = %lu count = %lu\n",
+-		pos, count);
+-	/* get total bytes to copy */
+-	count = Align64ByteSize(audio_frame_to_bytes(substream, count));
+-
+-	/* check which memif nned to be write */
+-	pVUL_MEM_ConTrol = VUL_Control_context;
+-	Vul_Block = &(pVUL_MEM_ConTrol->rBlock);
+-
+-	if (pVUL_MEM_ConTrol == NULL) {
+-		pr_err("cannot find MEM control !!!!!!!\n");
+-		msleep(50);
+-		return 0;
+-	}
+-
+-	if (Vul_Block->u4BufferSize <= 0) {
+-		msleep(50);
+-		pr_err("Vul_Block->u4BufferSize = %d\n",
+-		 Vul_Block->u4BufferSize);
+-		return 0;
+-	}
+-
+-	if (CheckNullPointer((void *)Vul_Block->pucVirtBufAddr)) {
+-		pr_err("CheckNullPointer pucVirtBufAddr = %p\n",
+-		 Vul_Block->pucVirtBufAddr);
+-		return 0;
+-	}
+-
+-	spin_lock_irqsave(&auddrv_ULInCtl_lock, flags);
+-	if (Vul_Block->u4DataRemained > Vul_Block->u4BufferSize) {
+-		PRINTK_AUD_UL1("%s u4DataRemained=%x > u4BufferSize=%x\n",
+-		 __func__,
+-			Vul_Block->u4DataRemained, Vul_Block->u4BufferSize);
+-		Vul_Block->u4DataRemained = 0;
+-		Vul_Block->u4DMAReadIdx = Vul_Block->u4WriteIdx;
+-	}
+-
+-	if (count > Vul_Block->u4DataRemained)
+-		read_size = Vul_Block->u4DataRemained;
+-	else
+-		read_size = count;
+-
+-	DMA_Read_Ptr = Vul_Block->u4DMAReadIdx;
+-	spin_unlock_irqrestore(&auddrv_ULInCtl_lock, flags);
+-
+-	PRINTK_AUD_UL1
+-	("%s finish0,count:%x,size:%x, remained:%x, rp:%x, wp:%x\n",
+-	__func__, (unsigned int)read_count, (unsigned int)read_size,
+-	Vul_Block->u4DataRemained, Vul_Block->u4DMAReadIdx,
+-	Vul_Block->u4WriteIdx);
+-
+-	if (DMA_Read_Ptr + read_size < Vul_Block->u4BufferSize) {
+-		if (DMA_Read_Ptr != Vul_Block->u4DMAReadIdx) {
+-			PRINTK_AUD_UL1
+-			("%s 1,rd_sz:%zu,Rem:%x,Ptr:%zu,Id:%x\n",
+-				__func__, read_size,
+-				 Vul_Block->u4DataRemained, DMA_Read_Ptr,
+-				Vul_Block->u4DMAReadIdx);
+-		}
+-
+-		if (copy_to_user_fromio((void __user *)Read_Data_Ptr,
+-			 (Vul_Block->pucVirtBufAddr + DMA_Read_Ptr),
+-		     read_size)) {
+-			pr_err("%s Fail1 cp to user RdPtr:%p,pucAddr:%p,",
+-			 __func__,
+-			Read_Data_Ptr, Vul_Block->pucVirtBufAddr);
+-			pr_err("DMARdId:0x%x, DMARdPtr:%zu,rd_sz:%zu\n",
+-				Vul_Block->u4DMAReadIdx,
+-					 DMA_Read_Ptr, read_size);
+-			return 0;
+-		}
+-
+-		read_count += read_size;
+-		spin_lock(&auddrv_ULInCtl_lock);
+-		Vul_Block->u4DataRemained -= read_size;
+-		Vul_Block->u4DMAReadIdx += read_size;
+-		Vul_Block->u4DMAReadIdx %= Vul_Block->u4BufferSize;
+-		DMA_Read_Ptr = Vul_Block->u4DMAReadIdx;
+-		spin_unlock(&auddrv_ULInCtl_lock);
+-
+-		Read_Data_Ptr += read_size;
+-		count -= read_size;
+-
+-		PRINTK_AUD_UL1
+-			("%s end1,cp_sz:%x,DMARdId:%x,Wtid:%x,Rem:%x\n",
+-			__func__, (unsigned int)read_size,
+-				 Vul_Block->u4DMAReadIdx,
+-			Vul_Block->u4WriteIdx, Vul_Block->u4DataRemained);
+-	} else {
+-		uint32 size_1 = Vul_Block->u4BufferSize - DMA_Read_Ptr;
+-		uint32 size_2 = read_size - size_1;
+-
+-		if (DMA_Read_Ptr != Vul_Block->u4DMAReadIdx) {
+-			PRINTK_AUD_UL1
+-			("%s2,rd_sz:%x,DataRem:%x,DMA_Ptr:%zu,DMARdId:%x",
+-			__func__, size_1, Vul_Block->u4DataRemained,
+-			 DMA_Read_Ptr,
+-			Vul_Block->u4DMAReadIdx);
+-		}
+-		if (copy_to_user_fromio((void __user *)Read_Data_Ptr,
+-			 (Vul_Block->pucVirtBufAddr + DMA_Read_Ptr),
+-		     (unsigned int)size_1)) {
+-			pr_err("%s Fail 2 copy to user rp:%p, virAddr:%p,",
+-				__func__, Read_Data_Ptr,
+-				Vul_Block->pucVirtBufAddr);
+-			pr_err("DMARdId:0x%x,DMAPtr:%zu,rdsz:%zu",
+-				Vul_Block->u4DMAReadIdx,
+-				DMA_Read_Ptr, read_size);
+-			return 0;
+-		}
+-
+-		read_count += size_1;
+-		spin_lock(&auddrv_ULInCtl_lock);
+-		Vul_Block->u4DataRemained -= size_1;
+-		Vul_Block->u4DMAReadIdx += size_1;
+-		Vul_Block->u4DMAReadIdx %= Vul_Block->u4BufferSize;
+-		DMA_Read_Ptr = Vul_Block->u4DMAReadIdx;
+-		spin_unlock(&auddrv_ULInCtl_lock);
+-
+-
+-		PRINTK_AUD_UL1
+-			("%s end, cp sz1:%x,DMARdId:%x,WtId:%x, Rem:%x",
+-			__func__, size_1, Vul_Block->u4DMAReadIdx,
+-				 Vul_Block->u4WriteIdx,
+-			Vul_Block->u4DataRemained);
+-
+-		if (DMA_Read_Ptr != Vul_Block->u4DMAReadIdx) {
+-			PRINTK_AUD_UL1
+-			("%s 3,rd_sz2:%x,Rem:%x, DMARd:%zu,Id:%x\n",
+-			__func__, size_2,
+-			 Vul_Block->u4DataRemained, DMA_Read_Ptr,
+-			Vul_Block->u4DMAReadIdx);
+-		}
+-
+-		if (copy_to_user_fromio((void __user *)(Read_Data_Ptr + size_1),
+-		     (Vul_Block->pucVirtBufAddr + DMA_Read_Ptr), size_2)) {
+-			pr_err("%sFail3 cp to user RdPtr:%p,Addr:%p,",
+-			 __func__,
+-				Read_Data_Ptr, Vul_Block->pucVirtBufAddr);
+-			pr_err(" u4DMAReadIdx:0x%x, DMA_Read_Ptr:%zu, read_size:%zu\n",
+-				Vul_Block->u4DMAReadIdx, DMA_Read_Ptr,
+-				 read_size);
+-			return read_count << 2;
+-		}
+-
+-		read_count += size_2;
+-		spin_lock(&auddrv_ULInCtl_lock);
+-		Vul_Block->u4DataRemained -= size_2;
+-		Vul_Block->u4DMAReadIdx += size_2;
+-		DMA_Read_Ptr = Vul_Block->u4DMAReadIdx;
+-		spin_unlock(&auddrv_ULInCtl_lock);
+-
+-		count -= read_size;
+-		Read_Data_Ptr += read_size;
+-
+-		PRINTK_AUD_UL1
+-		("%s finish3, size_2:%x, rp:%x, wp:%x, remained:%x\n",
+-		__func__, size_2, Vul_Block->u4DMAReadIdx,
+-		 Vul_Block->u4WriteIdx,
+-		Vul_Block->u4DataRemained);
+-	}
+-
+-	return read_count >> 2;
++			int channel, snd_pcm_uframes_t pos,
++			void __user *dst, snd_pcm_uframes_t count)
++{
++	int ret;
++
++	mutex_lock(&ul1_copy_lock);
++	ret = mtk_pcm_transfer(substream, VUL_Control_context,
++			       &ul1_copy_generation, channel, pos, dst, count, true);
++	mutex_unlock(&ul1_copy_lock);
++	return ret;
+ }
+ 
+ static int mtk_capture_pcm_silence(struct snd_pcm_substream *substream,
+--- a/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_pcm_dl1.c
++++ b/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_pcm_dl1.c
+@@ -31,6 +31,7 @@
+ #include "mt_soc_afe_control.h"
+ #include "mt_soc_digital_type.h"
+ #include "mt_soc_pcm_common.h"
++#include "mt_soc_pcm_transfer.h"
+ #include "AudDrv_Gpio.h"
+ 
+ #include <linux/kernel.h>
+@@ -98,7 +99,8 @@
+ static int mPlaybackSramState;
+ static struct snd_dma_buffer *Dl1_Playback_dma_buf;
+ 
+-static DEFINE_SPINLOCK(auddrv_DLCtl_lock);
++static unsigned long dl1_copy_generation;
++static DEFINE_MUTEX(dl1_copy_lock);
+ 
+ static struct device *mDev;
+ static int afe_emergency_stop;
+@@ -142,6 +144,8 @@
+ 
+ static int mtk_pcm_dl1_stop(struct snd_pcm_substream *substream)
+ {
++	/* Trigger holds the PCM stream lock. */
++	dl1_copy_generation++;
+ 	pr_warn("%s\n", __func__);
+ 
+ 	SetMemoryPathEnable(Soc_Aud_Digital_Block_MEM_DL1, false);
+@@ -155,60 +159,48 @@
+ 		 Soc_Aud_InterConnectionInput_I06,
+ 		      Soc_Aud_InterConnectionOutput_O04);
+ 
++	spin_lock(&pMemControl->substream_lock);
+ 	ClearMemBlock(Soc_Aud_Digital_Block_MEM_DL1);
++	spin_unlock(&pMemControl->substream_lock);
+ 	return 0;
+ }
+ 
+ static snd_pcm_uframes_t mtk_pcm_pointer(struct snd_pcm_substream *substream)
+ {
+-	kal_int32 HW_memory_index = 0;
+-	kal_int32 HW_Cur_ReadIdx = 0;
+-	kal_uint32 Frameidx = 0;
+-	kal_int32 Afe_consumed_bytes = 0;
+-	struct AFE_BLOCK_T *Afe_Block = &pMemControl->rBlock;
+-	/* struct snd_pcm_runtime *runtime = substream->runtime; */
+-	PRINTK_AUD_DL1("%s Afe_Block->u4DMAReadIdx = 0x%x\n",
+-		 __func__, Afe_Block->u4DMAReadIdx);
+-
+-	Auddrv_Dl1_Spinlock_lock();
+-
+-	if (GetMemoryPathEnable(Soc_Aud_Digital_Block_MEM_DL1) == true) {
+-		HW_Cur_ReadIdx = Afe_Get_Reg(AFE_DL1_CUR);
+-		if (HW_Cur_ReadIdx == 0) {
+-			PRINTK_AUDDRV("[%s] HW_Cur_ReadIdx == 0\n", __func__);
+-			HW_Cur_ReadIdx = Afe_Block->pucPhysBufAddr;
+-		}
+-
+-		HW_memory_index = (HW_Cur_ReadIdx - Afe_Block->pucPhysBufAddr);
+-
+-		if (HW_memory_index >= Afe_Block->u4DMAReadIdx)
+-			Afe_consumed_bytes =
+-				HW_memory_index - Afe_Block->u4DMAReadIdx;
+-		else {
+-			Afe_consumed_bytes =
+-			    Afe_Block->u4BufferSize +
+-			     HW_memory_index - Afe_Block->u4DMAReadIdx;
+-		}
+-
+-		Afe_consumed_bytes = Align64ByteSize(Afe_consumed_bytes);
+-
+-		Afe_Block->u4DataRemained -= Afe_consumed_bytes;
+-		Afe_Block->u4DMAReadIdx += Afe_consumed_bytes;
+-		Afe_Block->u4DMAReadIdx %= Afe_Block->u4BufferSize;
+-
+-		PRINTK_AUD_DL1
+-			("[%s] HW_Cur_ReadIdx = 0x%x  0x%x  0x%x\n",
+-			__func__, HW_Cur_ReadIdx,
+-			HW_memory_index, Afe_consumed_bytes);
+-
+-		Auddrv_Dl1_Spinlock_unlock();
+-
+-		return audio_bytes_to_frame(substream, Afe_Block->u4DMAReadIdx);
+-	}
+-
+-	Frameidx = audio_bytes_to_frame(substream, Afe_Block->u4DMAReadIdx);
+-	Auddrv_Dl1_Spinlock_unlock();
+-	return Frameidx;
++	struct AFE_BLOCK_T *b = &pMemControl->rBlock;
++	unsigned long flags;
++	snd_pcm_uframes_t result = SNDRV_PCM_POS_XRUN;
++	kal_uint32 cur;
++	int offset, delta;
++
++	/* The IRQ handler and copy commit use this same lock. */
++	spin_lock_irqsave(&pMemControl->substream_lock, flags);
++	if (!mtk_pcm_ring_valid(substream->runtime, b))
++		goto out;
++	if (GetMemoryPathEnable(Soc_Aud_Digital_Block_MEM_DL1)) {
++		cur = Afe_Get_Reg(AFE_DL1_CUR);
++		if (!cur)
++			cur = b->pucPhysBufAddr;
++		if (cur < b->pucPhysBufAddr ||
++		    cur - b->pucPhysBufAddr >= b->u4BufferSize)
++			goto out;
++		offset = cur - b->pucPhysBufAddr;
++		delta = offset - b->u4DMAReadIdx;
++		if (delta < 0)
++			delta += b->u4BufferSize;
++		delta = Align64ByteSize(delta);
++		if (delta > b->u4DataRemained) {
++			b->u4DataRemained = -1;
++			result = SNDRV_PCM_POS_XRUN;
++			goto out;
++		}
++		b->u4DataRemained -= delta;
++		b->u4DMAReadIdx = (b->u4DMAReadIdx + delta) % b->u4BufferSize;
++	}
++	result = bytes_to_frames(substream->runtime, b->u4DMAReadIdx);
++out:
++	spin_unlock_irqrestore(&pMemControl->substream_lock, flags);
++	return result;
+ }
+ 
+ static void SetDL1Buffer(struct snd_pcm_substream *substream,
+@@ -239,6 +231,8 @@
+ {
+ 	/* struct snd_dma_buffer *dma_buf = &substream->dma_buffer; */
+ 	int ret = 0;
++
++	mutex_lock(&dl1_copy_lock);
+ 
+ 	PRINTK_AUDDRV("mtk_pcm_dl1_params\n");
+ 
+@@ -272,6 +266,7 @@
+ 	substream->runtime->dma_bytes,
+ 	substream->runtime->dma_area,
+ 	(long)substream->runtime->dma_addr);
++	mutex_unlock(&dl1_copy_lock);
+ 	return ret;
+ }
+ 
+@@ -490,158 +485,13 @@
+ 			int channel, snd_pcm_uframes_t pos,
+ 			void __user *dst, snd_pcm_uframes_t count)
+ {
+-	struct AFE_BLOCK_T *Afe_Block = NULL;
+-	int copy_size = 0, Afe_WriteIdx_tmp;
+-	unsigned long flags;
+-	/* struct snd_pcm_runtime *runtime = substream->runtime; */
+-	char *data_w_ptr = (char *)dst;
+-
+-	PRINTK_AUD_DL1("mtk_pcm_copy pos = %lu count = %lu\n",
+-	pos, count);
+-	/* get total bytes to copy */
+-	count = audio_frame_to_bytes(substream, count);
+-
+-	/* check which memif nned to be write */
+-	Afe_Block = &pMemControl->rBlock;
+-
+-	PRINTK_AUD_DL1("%s, wp=0x%x, rp=0x%x, remained=0x%x\n",
+-	__func__, Afe_Block->u4WriteIdx,
+-	Afe_Block->u4DMAReadIdx, Afe_Block->u4DataRemained);
+-
+-	if (Afe_Block->u4BufferSize == 0) {
+-		pr_err("AudDrv_write: u4BufferSize=0 Error\n");
+-		return 0;
+-	}
+-
+-	spin_lock_irqsave(&auddrv_DLCtl_lock, flags);
+-	copy_size = Afe_Block->u4BufferSize - Afe_Block->u4DataRemained;
+-	spin_unlock_irqrestore(&auddrv_DLCtl_lock, flags);
+-
+-	if (count <= copy_size) {
+-		if (copy_size < 0)
+-			copy_size = 0;
+-		else
+-			copy_size = count;
+-	}
+-
+-	copy_size = Align64ByteSize(copy_size);
+-	PRINTK_AUD_DL1("copy_size=0x%x, count=0x%x\n",
+-	copy_size, (unsigned int)count);
+-
+-	if (copy_size != 0) {
+-		spin_lock_irqsave(&auddrv_DLCtl_lock, flags);
+-		Afe_WriteIdx_tmp = Afe_Block->u4WriteIdx;
+-		spin_unlock_irqrestore(&auddrv_DLCtl_lock, flags);
+-
+-		if (Afe_WriteIdx_tmp + copy_size < Afe_Block->u4BufferSize) {
+-			if (!access_ok(VERIFY_READ, data_w_ptr, copy_size)) {
+-				PRINTK_AUDDRV
+-				("write 0 data_w_ptr=%p, size=%d\n",
+-				data_w_ptr, copy_size);
+-				PRINTK_AUDDRV
+-				("write u4BufferSize=%d, u4DataRemained=%d\n",
+-				Afe_Block->u4BufferSize,
+-				Afe_Block->u4DataRemained);
+-			} else {
+-				if (copy_from_user_toio((
+-					Afe_Block->pucVirtBufAddr +
+-					Afe_WriteIdx_tmp),
+-					data_w_ptr, copy_size)) {
+-					pr_debug("write Fail copy from user\n");
+-					return -1;
+-				}
+-			}
+-
+-			spin_lock_irqsave(&auddrv_DLCtl_lock, flags);
+-			Afe_Block->u4DataRemained += copy_size;
+-			Afe_Block->u4WriteIdx = Afe_WriteIdx_tmp + copy_size;
+-			Afe_Block->u4WriteIdx %= Afe_Block->u4BufferSize;
+-			spin_unlock_irqrestore(&auddrv_DLCtl_lock, flags);
+-			data_w_ptr += copy_size;
+-			count -= copy_size;
+-
+-			PRINTK_AUD_DL1
+-			("%s finish 1,size=%x,remained=%x,count %d\n",
+-			__func__, copy_size, Afe_Block->u4DataRemained,
+-			(int)count);
+-
+-		} else {	/* copy twice */
+-			kal_uint32 size_1 = 0, size_2 = 0;
+-
+-			size_1 = Align64ByteSize(
+-				(Afe_Block->u4BufferSize - Afe_WriteIdx_tmp));
+-			size_2 = Align64ByteSize((copy_size - size_1));
+-			PRINTK_AUD_DL1("size_1=0x%x, size_2=0x%x\n",
+-			size_1, size_2);
+-
+-			if (!access_ok(VERIFY_READ, data_w_ptr, size_1)) {
+-				pr_debug("write 1w_ptr=%p, size_1=%d\n",
+-				data_w_ptr, size_1);
+-				pr_debug("write size=%d, remained=%d\n",
+-				Afe_Block->u4BufferSize,
+-				Afe_Block->u4DataRemained);
+-			} else {
+-				PRINTK_AUD_DL1
+-				("write addr=%p, w_ptr=%p, size_1=%x\n",
+-				Afe_Block->pucVirtBufAddr + Afe_WriteIdx_tmp,
+-				data_w_ptr, size_1);
+-
+-				if ((copy_from_user_toio(
+-					(Afe_Block->pucVirtBufAddr +
+-					Afe_WriteIdx_tmp),
+-					data_w_ptr, (unsigned int)size_1))) {
+-					pr_debug("write Fail 1\n");
+-					return -1;
+-				}
+-			}
+-
+-			spin_lock_irqsave(&auddrv_DLCtl_lock, flags);
+-			Afe_Block->u4DataRemained += size_1;
+-			Afe_Block->u4WriteIdx = Afe_WriteIdx_tmp + size_1;
+-			Afe_Block->u4WriteIdx %= Afe_Block->u4BufferSize;
+-			Afe_WriteIdx_tmp = Afe_Block->u4WriteIdx;
+-			spin_unlock_irqrestore(&auddrv_DLCtl_lock, flags);
+-
+-			if (!access_ok(VERIFY_READ,
+-				data_w_ptr + size_1, size_2)) {
+-				PRINTK_AUDDRV
+-				("write2 fail w_ptr=%p, size1=%d, size2=%d\n",
+-			     data_w_ptr, size_1, size_2);
+-				PRINTK_AUDDRV
+-				("AudDrv_write size=%d, remained=%d\n",
+-				Afe_Block->u4BufferSize,
+-				Afe_Block->u4DataRemained);
+-			} else {
+-				PRINTK_AUD_DL1
+-				("addr %p, size_1=%p, size_2=%x\n",
+-				Afe_Block->pucVirtBufAddr + Afe_WriteIdx_tmp,
+-				data_w_ptr + size_1,
+-				(unsigned int)size_2);
+-
+-				if ((copy_from_user_toio((Afe_Block->pucVirtBufAddr +
+-					 Afe_WriteIdx_tmp),
+-					(data_w_ptr + size_1), size_2))) {
+-					pr_debug("write Fail 2\n");
+-					return -1;
+-				}
+-			}
+-			spin_lock_irqsave(&auddrv_DLCtl_lock, flags);
+-
+-			Afe_Block->u4DataRemained += size_2;
+-			Afe_Block->u4WriteIdx = Afe_WriteIdx_tmp + size_2;
+-			Afe_Block->u4WriteIdx %= Afe_Block->u4BufferSize;
+-			spin_unlock_irqrestore(&auddrv_DLCtl_lock, flags);
+-			count -= copy_size;
+-			data_w_ptr += copy_size;
+-
+-			PRINTK_AUD_DL1
+-			("%s finish 2 size:%x wp:%x rp:%x remained:%x\n",
+-			__func__, copy_size, Afe_Block->u4WriteIdx,
+-			Afe_Block->u4DMAReadIdx,
+-			Afe_Block->u4DataRemained);
+-		}
+-	}
+-	return 0;
++	int ret;
++
++	mutex_lock(&dl1_copy_lock);
++	ret = mtk_pcm_transfer(substream, pMemControl, &dl1_copy_generation,
++				channel, pos, dst, count, false);
++	mutex_unlock(&dl1_copy_lock);
++	return ret;
+ }
+ 
+ static int mtk_pcm_silence(struct snd_pcm_substream *substream,
+--- /dev/null
++++ b/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_pcm_transfer.h
+@@ -0,0 +1,165 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef MT_SOC_PCM_TRANSFER_H
++#define MT_SOC_PCM_TRANSFER_H
++
++#include <linux/slab.h>
++#include <linux/mutex.h>
++#include <linux/io.h>
++#include <linux/uaccess.h>
++
++/* Byte accounting must describe the negotiated ALSA ring, not a format guess. */
++static bool mtk_pcm_ring_valid(struct snd_pcm_runtime *runtime,
++			       const struct AFE_BLOCK_T *b)
++{
++	unsigned int frame_bytes = runtime->frame_bits / 8;
++
++	if (!frame_bytes || runtime->frame_bits % 8 ||
++	    b->u4BufferSize <= 0 || !b->pucVirtBufAddr ||
++	    runtime->buffer_size > INT_MAX / frame_bytes ||
++	    runtime->buffer_size * frame_bytes != b->u4BufferSize ||
++	    runtime->dma_bytes < b->u4BufferSize ||
++	    b->u4BufferSize > runtime->hw.buffer_bytes_max ||
++	    b->u4WriteIdx < 0 || b->u4WriteIdx >= b->u4BufferSize ||
++	    b->u4DMAReadIdx < 0 || b->u4DMAReadIdx >= b->u4BufferSize ||
++	    b->u4DataRemained < 0 || b->u4DataRemained > b->u4BufferSize)
++		return false;
++	return true;
++}
++
++static int mtk_pcm_copy_state(struct snd_pcm_runtime *runtime, bool capture)
++{
++	switch (runtime->status->state) {
++	case SNDRV_PCM_STATE_PREPARED:
++	case SNDRV_PCM_STATE_RUNNING:
++	case SNDRV_PCM_STATE_PAUSED:
++		return 0;
++	case SNDRV_PCM_STATE_DRAINING:
++		return capture ? 0 : -EBADFD;
++	case SNDRV_PCM_STATE_SUSPENDED:
++		return -ESTRPIPE;
++	case SNDRV_PCM_STATE_XRUN:
++		return -EPIPE;
++	default:
++		return -EBADFD;
++	}
++}
++
++/*
++ * Linux 4.9 .copy returns status: every nonnegative result accepts ALL frames.
++ * Stage the entire request so user faults cannot publish part of a ring write.
++ * Capture faults may change the user buffer, but do not consume ring bytes.
++ * Only kernel/MMIO copies run under the stream and IRQ ring locks.
++ */
++static int mtk_pcm_transfer(struct snd_pcm_substream *substream,
++		struct AFE_MEM_CONTROL_T *control, unsigned long *generation,
++		int channel, snd_pcm_uframes_t pos, void __user *user,
++		snd_pcm_uframes_t count, bool capture)
++{
++	struct snd_pcm_runtime *runtime = substream->runtime;
++	struct AFE_BLOCK_T *b;
++	unsigned long flags, saved_generation;
++	unsigned int frame_bytes;
++	unsigned char *staging, *ring;
++	int bytes, offset, size, first, err;
++
++	if (!count)
++		return 0;
++	if (!control)
++		return -ENODEV;
++	/* These platforms expose interleaved mono/stereo, not per-channel copies. */
++	frame_bytes = runtime->frame_bits / 8;
++	if (channel != -1 || runtime->channels < 1 || runtime->channels > 2 ||
++	    !frame_bytes || runtime->frame_bits % 8 ||
++	    count > INT_MAX / frame_bytes || pos > INT_MAX / frame_bytes ||
++	    count > runtime->buffer_size || pos >= runtime->buffer_size ||
++	    count > runtime->hw.buffer_bytes_max / frame_bytes)
++		return -EINVAL;
++	bytes = count * frame_bytes;
++	offset = pos * frame_bytes;
++	staging = kmalloc(bytes, GFP_KERNEL);
++	if (!staging)
++		return -ENOMEM;
++	b = &control->rBlock;
++
++	snd_pcm_stream_lock_irqsave(substream, flags);
++	err = mtk_pcm_copy_state(runtime, capture);
++	if (err)
++		goto stream_out;
++	/* Refresh DMA progress without holding the lock taken by .pointer. */
++	if (runtime->status->state == SNDRV_PCM_STATE_RUNNING &&
++	    substream->ops->pointer(substream) == SNDRV_PCM_POS_XRUN) {
++		err = -EPIPE;
++		goto stream_out;
++	}
++	spin_lock(&control->substream_lock);
++	if (!mtk_pcm_ring_valid(runtime, b) ||
++	    offset != (capture ? b->u4DMAReadIdx : b->u4WriteIdx) ||
++	    bytes > (capture ? b->u4DataRemained :
++			       b->u4BufferSize - b->u4DataRemained)) {
++		err = -EPIPE;
++		goto ring_out;
++	}
++	size = b->u4BufferSize;
++	ring = b->pucVirtBufAddr;
++	saved_generation = *generation;
++	first = min(bytes, size - offset);
++	if (capture) {
++		memcpy_fromio(staging, ring + offset, first);
++		if (bytes > first)
++			memcpy_fromio(staging + first, ring, bytes - first);
++	}
++	spin_unlock(&control->substream_lock);
++	snd_pcm_stream_unlock_irqrestore(substream, flags);
++
++	if (capture ? copy_to_user(user, staging, bytes) :
++		      copy_from_user(staging, user, bytes)) {
++		err = -EFAULT;
++		goto free_out;
++	}
++
++	snd_pcm_stream_lock_irqsave(substream, flags);
++	err = mtk_pcm_copy_state(runtime, capture);
++	if (err)
++		goto stream_out;
++	/* Stop or another successful copy invalidates the snapshot, even at wrap. */
++	if (*generation != saved_generation) {
++		err = -EPIPE;
++		goto stream_out;
++	}
++	if (runtime->status->state == SNDRV_PCM_STATE_RUNNING &&
++	    substream->ops->pointer(substream) == SNDRV_PCM_POS_XRUN) {
++		err = -EPIPE;
++		goto stream_out;
++	}
++	spin_lock(&control->substream_lock);
++	if (!mtk_pcm_ring_valid(runtime, b) || b->pucVirtBufAddr != ring ||
++	    b->u4BufferSize != size || runtime->frame_bits / 8 != frame_bytes ||
++	    offset != (capture ? b->u4DMAReadIdx : b->u4WriteIdx) ||
++	    bytes > (capture ? b->u4DataRemained : size - b->u4DataRemained)) {
++		err = -EPIPE;
++		goto ring_out;
++	}
++	if (capture) {
++		b->u4DMAReadIdx = offset >= size - bytes ?
++			offset - (size - bytes) : offset + bytes;
++		b->u4DataRemained -= bytes;
++	} else {
++		memcpy_toio(ring + offset, staging, first);
++		if (bytes > first)
++			memcpy_toio(ring, staging + first, bytes - first);
++		b->u4WriteIdx = offset >= size - bytes ?
++			offset - (size - bytes) : offset + bytes;
++		b->u4DataRemained += bytes;
++	}
++	(*generation)++;
++	err = 0;
++ring_out:
++	spin_unlock(&control->substream_lock);
++stream_out:
++	snd_pcm_stream_unlock_irqrestore(substream, flags);
++free_out:
++	kfree(staging);
++	return err;
++}
++
++#endif

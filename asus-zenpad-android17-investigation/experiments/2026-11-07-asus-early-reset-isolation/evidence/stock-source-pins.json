@@ -1,0 +1,7 @@
+{
+  "drivers/watchdog/mediatek/wdt/common/mtk_wdt.c": "4f937311dea2aa982258b4b60e2411167eeaa293d8bba4615b19a805f1fe2ccd",
+  "drivers/watchdog/mediatek/wdk/wd_common_drv.c": "9d281870db307cf8d1b22b073b75760f986bf42cacab2ae8752084d6b1c9f646",
+  "drivers/watchdog/mediatek/wdk/wd_api.c": "80607c145b5bab2587947014cba6d474dd27b1168222daff67bad5f6e64996e3",
+  "drivers/misc/mediatek/include/mt-plat/mt_boot_reason.h": "10c5df5db4d871ec932d3364b4ea8e5b479e26ac844f3a8a4fcc26b6f436b61d",
+  "drivers/misc/mediatek/ram_console/mtk_ram_console.c": "c966a4508bff43f31a551103b7c5a9cfad4b11164c069b7d30ba9c09199e86b2"
+}

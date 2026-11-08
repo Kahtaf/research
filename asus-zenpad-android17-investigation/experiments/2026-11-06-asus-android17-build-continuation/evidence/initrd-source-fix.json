@@ -1,0 +1,6 @@
+{
+  "path": "/srv/android/asus-build-continuation/kernel/arch/arm64/boot/dts/mediatek/asus-p00a.dts",
+  "before_sha256": "d5b630b1a943788a3b5b1a341c9cd56e3d551c0462333f480066d693e1e9b14c",
+  "after_sha256": "bb39c36199b6cb92b453c59116d85bc3e6769663792d0ddf7f18e7509d81f572",
+  "reason": "setup_arch scans FDT then parse_early_param; early_initrd overwrites start/end. Remove inherited fixed 2 MiB range; package must provide exact final bounds."
+}

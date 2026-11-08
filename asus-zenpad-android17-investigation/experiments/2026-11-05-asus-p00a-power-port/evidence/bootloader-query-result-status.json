@@ -1,0 +1,19 @@
+{
+  "serial": "DEVICE_SERIAL_REDACTED",
+  "fastboot_enumerated": true,
+  "attempted_queries": [
+    "product",
+    "version-bootloader",
+    "secure",
+    "unlocked",
+    "partition-size:boot",
+    "partition-size:recovery",
+    "max-download-size",
+    "all"
+  ],
+  "trustworthy_query_results_retained": false,
+  "reboot_to_android": "Host fastboot subprocess timed out after 10 seconds",
+  "writes_or_unlock_commands_issued": false,
+  "log_limitation": "The query runner raised in its reboot cleanup before writing its buffered query results. Do not infer lock state or individual query outcomes.",
+  "user_availability": "Away from tablet for several hours; physical restart pending; device operations stopped."
+}

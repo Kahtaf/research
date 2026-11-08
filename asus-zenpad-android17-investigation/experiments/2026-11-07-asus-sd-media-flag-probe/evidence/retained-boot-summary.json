@@ -1,0 +1,13 @@
+{
+  "utc": "2026-11-07T12:52:21.049783+00:00",
+  "exit": 0,
+  "bounded_section_observed": true,
+  "selected_boot_lines": [
+    "ro.boot.bootreason=",
+    "sys.boot.reason=0",
+    "-r--r----- 1 system log 0 2026-11-07 07:52 /proc/last_kmsg",
+    "-rw-rw-r-- 1 system system 0 2026-11-07 07:52 /proc/bootprof"
+  ],
+  "read_only": true,
+  "image_write": false
+}

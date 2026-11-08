@@ -1,0 +1,24 @@
+{
+  "base": "/srv/android/asus-linux49-scheduler-switch-capture-20261107-3d26cc95",
+  "owned": "/srv/android/asus-linux49-active-work-capture-20261107-8e5c5d4d",
+  "method": "cp -a --reflink=auto kernel AND out; independent inodes",
+  "scoped_source_pins": {
+    "kernel/sched/core.c": {
+      "before": "2bb1af2c2e97102e853516c6d6322bae70bff69e2db6f2d62e6b816f800fb875",
+      "after": "0011d79248859aa241a025767ff30ea50002b6e879ca56372468c3ca0c363ec7"
+    },
+    "arch/arm64/kernel/asus_retained_trace.c": {
+      "before": "429acf38afae690e74a0d8f4a51b18836ad0bb51cd230f3b88e0ccaeacccfc87",
+      "after": "40be697aeb81f2f331089e55afb55a2dc62c2b43b6fe5e397948bc19b084c3d2"
+    },
+    "include/linux/asus_retained_trace.h": {
+      "before": "d85d948587407ccb6c0c7ef0cf72c8efbdd904cd64e40531382cde4166905f4e",
+      "after": "bbe073fb605cbdac2fcdfc6c7ecc23565d4be47d61b88f04240cc618f4b56371"
+    },
+    "arch/arm64/kernel/asus_entry_tag.h": {
+      "before": "3b64c0bc989b1622506ee160a1f3f8d1e6ad049e8ca53bce81ae56be65ecb28e",
+      "after": "9af32cb97b0fe829779a1958f0933fe61332eb03e19fd0bacae0673a9da6338b"
+    }
+  },
+  "full_tree_rehash": false
+}

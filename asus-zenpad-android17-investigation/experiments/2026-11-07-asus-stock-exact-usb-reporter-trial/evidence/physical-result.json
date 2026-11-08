@@ -1,0 +1,24 @@
+{
+  "outcome": "stock_PID1_executed_no_USB_report",
+  "utc": "2026-11-07T19:39:58.883362+00:00",
+  "install_run": "e3836a55-65a8-4a04-b92a-d41b186cbb15",
+  "candidate_p10_sha256": "039c5a52d9ac04fd515c2081c455066057d1503d6979fc81a5b2c70712bc7dba",
+  "one_recovery_entry": true,
+  "new_stock_boot_id": "d4645837-0fa4-496c-94b9-f48f9c0f46a9",
+  "normal_android_return_proven": true,
+  "usb_descriptor_observed": false,
+  "host_inventory_errors": 0,
+  "retained_log_sha256": "ed8a7a4ab254cb4e23cb991298e0d1d3861c8bb131a96c3c4f4a9dc3086478d2",
+  "retained_log_bytes": 141908,
+  "retained_log_evidence": [
+    "Linux version 3.18.35; recovery command line",
+    "Unpacking initramfs; freeing initrd memory 248K",
+    "PID1 init executing at 2.1159 seconds",
+    "PID1 Mass Storage Function initialization at 2.1213 seconds",
+    "PID1 fsg_store_file file=/ram/probe.img at 2.1216 seconds",
+    "PID1 reboot: Restarting system at 70.9046 seconds"
+  ],
+  "inference": "Reporter ran on stock but setup/binding/host visibility failed; no exact failure syscall yet. Prior missing USB alone cannot establish Linux4.9 nonexecution.",
+  "next_action": "Unchanged stock-kernel reporter failure-stage logging; no more speculative Linux4.9 variants",
+  "normal_OS_partition_writes": false
+}

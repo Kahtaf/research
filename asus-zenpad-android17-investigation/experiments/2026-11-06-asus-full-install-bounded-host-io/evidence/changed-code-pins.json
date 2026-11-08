@@ -1,0 +1,51 @@
+[
+  {
+    "path": "source/bounded_client.py",
+    "before_sha256": null,
+    "after_sha256": "b64b6c5ed72077008509366c4300e7d8a5d94e8511e12cc5c10fabd59d342c39",
+    "added_lines": 45,
+    "deleted_lines": 0
+  },
+  {
+    "path": "source/bounded_io.py",
+    "before_sha256": null,
+    "after_sha256": "46eba9cd40c7cde56ad8b0781c052c0b6c23f8c82f14a34d7cc8c67181dcd5d7",
+    "added_lines": 294,
+    "deleted_lines": 0
+  },
+  {
+    "path": "source/local_pipe_worker.py",
+    "before_sha256": null,
+    "after_sha256": "3f08a6677658b2295da83add015e6f6fee7d32a5f2a08be23e2c6fdf49d4e970",
+    "added_lines": 9,
+    "deleted_lines": 0
+  },
+  {
+    "path": "source/parent_remote.py",
+    "before_sha256": "9ee2f38683728ff93aaf62b2b28eabe8afa71a969fd2f390df8ecd9765d5271b",
+    "after_sha256": "20896740a02181fd78142038e12a9a4a64bdac42ccef9cc46036a917ea71deda",
+    "added_lines": 46,
+    "deleted_lines": 16
+  },
+  {
+    "path": "source/source_client.py",
+    "before_sha256": "ec6935d41aae8c3cb5fd71be05e087af58154adced56a7746637dfe9b012fcc8",
+    "after_sha256": "ccb8b3139b56df82e6d67a0b2a24cafc4af776f541bc9d51afea3e686f02d19b",
+    "added_lines": 33,
+    "deleted_lines": 14
+  },
+  {
+    "path": "source/sources.py",
+    "before_sha256": "b76600d02008aa5c211bdc6d417226cb5539a708eef57f45b433a6b7f226ac65",
+    "after_sha256": "ab4871bda4f54d1b2c8052b952f8aea5212940c6477e6691ae3a901f3977958c",
+    "added_lines": 68,
+    "deleted_lines": 48
+  },
+  {
+    "path": "source/verify_handoff.py",
+    "before_sha256": "05f5cbcc3bd998872c91e0e1c9423749a718a6422a2f7ca1e44d70f07f93a970",
+    "after_sha256": "2d9e7a21ad18da36c02ea2a5391bbef26a33e76bbf55a17ba29997e751322512",
+    "added_lines": 53,
+    "deleted_lines": 22
+  }
+]

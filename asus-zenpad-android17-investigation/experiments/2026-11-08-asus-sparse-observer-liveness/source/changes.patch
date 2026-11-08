@@ -1,0 +1,109 @@
+--- base/arch/arm64/kernel/asus_retained_trace.c
++++ candidate/arch/arm64/kernel/asus_retained_trace.c
+@@ -1060,6 +1060,9 @@
+  char *dest;
+  unsigned int row;
+  u32 pos;
++ /* Keep all six ready pointers at their zero-initialized not-ready state. */
++ if (ASUS_SPARSE_PROFILE)
++  return;
+  BUILD_BUG_ON(CAP_SIZE > 8192);
+  BUILD_BUG_ON(CAP_SIZE % 64);
+  BUILD_BUG_ON(SW_SIZE % 64);
+@@ -1310,6 +1313,67 @@
+ 	return 0;
+ }
+ 
++/* Sparse admission only; accepted writes retain the original publication path. */
++static bool sparse_prefix(const char *p, unsigned int n,
++                          const char *s, unsigned int k)
++{
++ return n >= k && !memcmp(p, s, k);
++}
++
++static bool sparse_equal(const char *p, unsigned int n,
++                         const char *s, unsigned int k)
++{
++ return n == k && !memcmp(p, s, k);
++}
++
++static bool sparse_admit(const char *text, unsigned int len)
++{
++ unsigned int i;
++ static const char helper[] = "ASUS49-SYSCLOCK run=f0c3c82c-d639-4d8a-90f2-155fd4224ceb";
++ if (!len || len > 767)
++  return false;
++ if (text[len - 1] == '\n')
++  --len;
++ for (i = 0; i < len; ++i)
++  if ((unsigned char)text[i] < 32 || (unsigned char)text[i] > 126)
++   return false;
++#define SAME(s) sparse_equal(text, len, s, sizeof(s) - 1)
++ if (SAME(ASUS_SPARSE_MODE) || SAME("ASUS-e9-retained-v2 00 arm64_memblock_init returned; before paging_init") ||
++     SAME("ASUS-e9-retained-v2 01 paging_init returned; trace ready") ||
++     SAME("02 setup_arch returned") ||
++     SAME("03 before init_IRQ") ||
++     SAME("04 init_IRQ returned") ||
++     SAME("05 before time_init") ||
++     SAME("06 time_init returned"))
++  return true;
++#undef SAME
++ if (!sparse_prefix(text, len, helper, sizeof(helper) - 1))
++  return false;
++ text += sizeof(helper) - 1;
++ len -= sizeof(helper) - 1;
++#define PREFIX(s) sparse_prefix(text, len, s, sizeof(s) - 1)
++ return PREFIX(" phase=setup stage=actual op=getpid path=- rc=") ||
++        PREFIX(" phase=setup stage=actual op=uname.release path=- rc=") ||
++        PREFIX(" phase=observe stage=actual op=clock.path path=CLOCK_MONOTONIC rc=") ||
++        PREFIX(" phase=observe stage=begin op=clock_gettime path=loop.initial rc=") ||
++        PREFIX(" phase=observe stage=end op=clock_gettime path=loop.initial rc=") ||
++        PREFIX(" phase=observe stage=begin op=alarm.nominal1s.timer-dependent path=- rc=") ||
++        PREFIX(" phase=observe stage=end op=alarm.nominal1s.timer-dependent path=- rc=") ||
++        PREFIX(" phase=observe stage=actual op=clock_gettime.final path=CLOCK_MONOTONIC rc=") ||
++        PREFIX(" phase=observe stage=complete op=runnable.loop path=CLOCK_MONOTONIC rc=") ||
++        PREFIX(" phase=before stage=actual op=interrupts.arch_timer path=/proc/interrupts rc=") ||
++        PREFIX(" phase=before stage=complete op=interrupts.snapshot path=/proc/interrupts rc=") ||
++        PREFIX(" phase=after stage=actual op=interrupts.arch_timer path=/proc/interrupts rc=") ||
++        PREFIX(" phase=after stage=complete op=interrupts.snapshot path=/proc/interrupts rc=") ||
++        PREFIX(" phase=finish stage=actual op=alarm.final-flag path=SIGALRM rc=") ||
++        PREFIX(" phase=finish stage=complete op=observation path=- rc=") ||
++        PREFIX(" phase=finish stage=actual op=sink.write.error path=- rc=") ||
++        PREFIX(" phase=finish stage=begin op=reboot path=- rc=") ||
++        PREFIX(" phase=finish stage=end op=reboot path=- rc=") ||
++        sparse_equal(text, len, " stage=alarm op=SIGALRM.fired nominal_seconds=1 timer_dependent=1", sizeof(" stage=alarm op=SIGALRM.fired nominal_seconds=1 timer_dependent=1") - 1);
++#undef PREFIX
++}
++
+ /* Keep the first text; a full buffer freezes instead of losing entry markers. */
+ void asus_retained_trace_write(const char *text, unsigned int len)
+ {
+@@ -1318,6 +1382,8 @@
+ 	u32 pos, count;
+ 	char *dest;
+ 
++	if (ASUS_SPARSE_PROFILE && !sparse_admit(text, len))
++		return;
+ 	if (!h || !len || !raw_spin_trylock_irqsave(&trace_lock, flags))
+ 		return;
+ 	pos = h->log_size;
+@@ -1454,6 +1520,7 @@
+ 		WRITE_ONCE(trace, NULL);
+ 	} else {
+ 		asus_retained_trace_mark("ASUS-e9-retained-v2 01 paging_init returned; trace ready");
++		asus_retained_trace_mark(ASUS_SPARSE_MODE);
+ 		cap_init(h);
+ 	}
+ unmap:
+--- base/arch/arm64/kernel/asus_entry_tag.h
++++ candidate/arch/arm64/kernel/asus_entry_tag.h
+@@ -1,4 +1,7 @@
+-#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=f3da846c-cbd9-4623-adc2-5e54d097dfdc stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=e55f7efe0b074ca96c66526b2923b68c173d6b26c9c7ed007379af5b65762ecb cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
++#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=e6799dac-43cb-4222-8ab6-5119397460b6 stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=e55f7efe0b074ca96c66526b2923b68c173d6b26c9c7ed007379af5b65762ecb cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
+ #define ASUS_ENTRY_TAG_LEN 340
+ 
+-#define ASUS_CAPTURE_TAG "A49CAP1 uuid=f3da846c-cbd9-4623-adc2-5e54d097dfdc rows=15 row=384 fields=17 header=192"
++#define ASUS_CAPTURE_TAG "A49CAP1 uuid=e6799dac-43cb-4222-8ab6-5119397460b6 rows=15 row=384 fields=17 header=192"
++
++#define ASUS_SPARSE_PROFILE 1
++#define ASUS_SPARSE_MODE "ASUS49-MODE run=e6799dac-43cb-4222-8ab6-5119397460b6 profile=sparse-v1 hot=disabled ordinary_printk=filtered delay=original-virtual"

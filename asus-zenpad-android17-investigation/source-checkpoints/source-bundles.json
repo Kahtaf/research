@@ -1,0 +1,17 @@
+[
+  {
+    "original_path": "2026-11-06-asus-combined-kernel-integration/artifacts/handoff-r5/combined-source-changes.tar.gz",
+    "sha256": "b499290449edc35f95286ba59406b743c6322b985a6e650c72435537e694b0a8",
+    "bytes": 1460954
+  },
+  {
+    "original_path": "2026-11-06-asus-bmc156-accelerometer/artifacts/bmc156-accelerometer-staging.tar.gz",
+    "sha256": "35362114ef735a99db8412a9aaa516633f7f579fb0dd422afce82d58917a03a9",
+    "bytes": 3296273
+  },
+  {
+    "original_path": "2026-11-06-asus-minimal-audio-hal/bundle/p00a-audio-stage.tar.gz",
+    "sha256": "f772d0099cc161e13608582b906202330dc536159583008efc75f22789e9ccdc",
+    "bytes": 576884
+  }
+]

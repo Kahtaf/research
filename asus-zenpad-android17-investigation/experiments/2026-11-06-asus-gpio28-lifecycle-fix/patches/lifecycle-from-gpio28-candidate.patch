@@ -1,0 +1,959 @@
+--- a/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c
++++ b/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c
+@@ -387,16 +387,18 @@
+ 
+ void AudDrv_GPIO_Headset_Changed(bool plugged)
+ {
++	mutex_lock(&mt8163_codec_state_mutex);
+ 	mutex_lock(&aud_amp_mutex);
+ 	aud_amp_headset = plugged;
+ 	if (aud_amp_headset_switch) {
+ 		if (!plugged)
+-			UpdateHeadsetGain();
++			UpdateHeadsetGainLocked();
+ 		AudDrv_GPIO_Amp_Apply();
+ 		if (plugged)
+-			UpdateHeadsetGain();
++			UpdateHeadsetGainLocked();
+ 	}
+ 	mutex_unlock(&aud_amp_mutex);
++	mutex_unlock(&mt8163_codec_state_mutex);
+ }
+ 
+ bool AudDrv_GPIO_Headset_Boost(void)
+--- /dev/null
++++ b/sound/soc/mediatek/mt_soc_audio_8163/codec_state_controls.h
+@@ -0,0 +1,20 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef MT8163_CODEC_STATE_CONTROLS_H
++#define MT8163_CODEC_STATE_CONTROLS_H
++
++/* Control entry points serialize the entire call, including nested analog access. */
++#define CODEC_STATE_CONTROL(name) \
++static int name##_state(struct snd_kcontrol *kcontrol, \
++		       struct snd_ctl_elem_value *ucontrol) \
++{ \
++	int ret; \
++	mutex_lock(&mt8163_codec_state_mutex); \
++	if (!mInitCodec || !mCodec_data) \
++		ret = -ENODEV; \
++	else \
++		ret = name(kcontrol, ucontrol); \
++	mutex_unlock(&mt8163_codec_state_mutex); \
++	return ret; \
++}
++#define CODEC_CONTROL(name) name##_state
++#endif
+--- a/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c
++++ b/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c
+@@ -72,6 +72,9 @@
+ static uint32 mBlockSampleRate[AUDIO_ANALOG_DEVICE_INOUT_MAX] = {
+ 	48000, 48000, 48000 };
+ 
++/* Lock order: codec state -> analog/GPIO amp locks -> gate lock. */
++DEFINE_MUTEX(mt8163_codec_state_mutex);
++static DEFINE_MUTEX(codec_registration_mutex);
+ static DEFINE_MUTEX(Ana_Ctrl_Mutex);
+ static DEFINE_MUTEX(Ana_buf_Ctrl_Mutex);
+ static DEFINE_MUTEX(Ana_Clk_Mutex);
+@@ -159,19 +162,19 @@
+ }
+ 
+ 
++/* Intent outlives private allocations; applied state belongs to one allocation. */
+ static bool mAnaSuspend;
++static bool mAnalogSuspendApplied;
+ #ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
+ #include "p00a_stock_gate.h"
+ #endif
+-void SetAnalogSuspend(bool bEnable)
+-{
+-	pr_debug("%s bEnable ==%d mAnaSuspend = %d\n",
+-		__func__, bEnable, mAnaSuspend);
+-	if ((bEnable == true) && (mAnaSuspend == false)) {
++#include "codec_state_controls.h"
++static void SetAnalogSuspend_locked(bool bEnable)
++{
++	pr_debug("%s bEnable ==%d mAnalogSuspendApplied = %d\n",
++		__func__, bEnable, mAnalogSuspendApplied);
++	if ((bEnable == true) && (mAnalogSuspendApplied == false)) {
+ 		Ana_Log_Print();
+-#ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
+-		p00a_gate_suspend(true);
+-#endif
+ 		SavePowerState();
+ 		if (mCodec_data->mAudio_Ana_DevicePower[
+ 			AUDIO_ANALOG_DEVICE_OUT_HEADSETL]
+@@ -201,8 +204,8 @@
+ 			Speaker_Amp_Change(false);
+ 		}
+ 		Ana_Log_Print();
+-		mAnaSuspend = true;
+-	} else if ((bEnable == false) && (mAnaSuspend == true)) {
++		mAnalogSuspendApplied = true;
++	} else if ((bEnable == false) && (mAnalogSuspendApplied == true)) {
+ 		Ana_Log_Print();
+ 		if (mCodec_data->mAudio_BackUpAna_DevicePower[
+ 			AUDIO_ANALOG_DEVICE_OUT_HEADSETL]
+@@ -233,13 +236,24 @@
+ 			AUDIO_ANALOG_DEVICE_OUT_SPEAKERL] = false;
+ 		}
+ 		RestorePowerState();
++		Ana_Log_Print();
++		mAnalogSuspendApplied = false;
++	}
++}
++
++void SetAnalogSuspend(bool bEnable)
++{
++	mutex_lock(&mt8163_codec_state_mutex);
++	/* Record even detached PM transitions; only an intended resume clears it. */
++	mAnaSuspend = bEnable;
+ #ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
+-		p00a_gate_suspend(false);
+-#endif
+-		Ana_Log_Print();
+-		mAnaSuspend = false;
+-	}
+-}
++	p00a_gate_suspend(bEnable);
++#endif
++	if (mInitCodec && mCodec_data)
++		SetAnalogSuspend_locked(bEnable);
++	mutex_unlock(&mt8163_codec_state_mutex);
++}
++
+ 
+ static int audck_buf_Count;
+ void audckbufEnable(bool enable)
+@@ -448,7 +462,7 @@
+ }
+ 
+ 
+-void OpenAnalogHeadphone(bool bEnable)
++static void OpenAnalogHeadphone_locked(bool bEnable)
+ {
+ 	pr_debug("OpenAnalogHeadphone bEnable = %d\n", bEnable);
+ 	if (bEnable) {
+@@ -474,6 +488,15 @@
+ 		Audio_Amp_Change(AUDIO_ANALOG_CHANNELS_RIGHT1, false);
+ 	}
+ }
++
++void OpenAnalogHeadphone(bool bEnable)
++{
++	mutex_lock(&mt8163_codec_state_mutex);
++	if (mInitCodec && mCodec_data && (!bEnable || !mAnaSuspend))
++		OpenAnalogHeadphone_locked(bEnable);
++	mutex_unlock(&mt8163_codec_state_mutex);
++}
++
+ 
+ bool OpenHeadPhoneImpedanceSetting(bool bEnable)
+ {
+@@ -1042,7 +1065,7 @@
+ 	return 7 - clamp(index, 0, 7);
+ }
+ 
+-void UpdateHeadsetGain(void)
++static void UpdateHeadsetGain_locked(void)
+ {
+ 	if (!mCodec_data)
+ 		return;
+@@ -1053,9 +1076,24 @@
+ 		AUDIO_ANALOG_VOLUME_HPOUTR]) << 8, 0x00000700);
+ }
+ 
++void UpdateHeadsetGainLocked(void)
++{
++	lockdep_assert_held(&mt8163_codec_state_mutex);
++	if (mInitCodec && mCodec_data)
++		UpdateHeadsetGain_locked();
++}
++
++void UpdateHeadsetGain(void)
++{
++	mutex_lock(&mt8163_codec_state_mutex);
++	UpdateHeadsetGainLocked();
++	mutex_unlock(&mt8163_codec_state_mutex);
++}
++
++
+ static void HeadsetVolumeSet(void)
+ {
+-	UpdateHeadsetGain();
++	UpdateHeadsetGain_locked();
+ }
+ 
+ static void Audio_Amp_Change(int channels, bool enable)
+@@ -1172,6 +1210,8 @@
+ 	    mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_OUT_HEADSETL];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_AmpL_Get)
++
+ 
+ static int Audio_AmpL_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -1199,6 +1239,8 @@
+ 	mutex_unlock(&Ana_Ctrl_Mutex);
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_AmpL_Set)
++
+ 
+ static int Audio_AmpR_Get(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -1211,6 +1253,8 @@
+ 	    mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_OUT_HEADSETR];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_AmpR_Get)
++
+ 
+ static int Audio_AmpR_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -1237,6 +1281,8 @@
+ 	mutex_unlock(&Ana_Ctrl_Mutex);
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_AmpR_Set)
++
+ 
+ #if 0				/* not used */
+ static void SetVoiceAmpVolume(void)
+@@ -1326,6 +1372,8 @@
+ 	    mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_OUT_EARPIECEL];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Voice_Amp_Get)
++
+ 
+ static int Voice_Amp_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -1352,6 +1400,8 @@
+ 	mutex_unlock(&Ana_Ctrl_Mutex);
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Voice_Amp_Set)
++
+ 
+ static void Speaker_Amp_Change(bool enable)
+ {
+@@ -1470,6 +1520,8 @@
+ 		mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_OUT_SPEAKERL];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Speaker_Amp_Get)
++
+ 
+ static int Speaker_Amp_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -1495,6 +1547,8 @@
+ 	}
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Speaker_Amp_Set)
++
+ 
+ #ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
+ static int Ext_Speaker_Amp_Change(bool enable)
+@@ -1746,6 +1800,8 @@
+ #endif
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Ext_Speaker_Amp_Get)
++
+ 
+ static int Ext_Speaker_Amp_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -1769,6 +1825,8 @@
+ 	return 0;
+ #endif
+ }
++CODEC_STATE_CONTROL(Ext_Speaker_Amp_Set)
++
+ 
+ static void Headphone_Speaker_Switch_Change(bool enable)
+ {
+@@ -1794,6 +1852,8 @@
+ 	mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_HP_SPK_SWITCH];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Headphone_Speaker_Mux_Get)
++
+ 
+ static int Headphone_Speaker_Mux_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -1820,6 +1880,8 @@
+ 	mutex_unlock(&Ana_Ctrl_Mutex);
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Headphone_Speaker_Mux_Set)
++
+ 
+ static void Ext_Headphone_Amp_Change(bool enable)
+ {
+@@ -1844,6 +1906,8 @@
+ 	mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_OUT_EXTHPAMP];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Ext_Headphone_Amp_Get)
++
+ 
+ static int Ext_Headphone_Amp_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -1870,6 +1934,8 @@
+ 	mutex_unlock(&Ana_Ctrl_Mutex);
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Ext_Headphone_Amp_Set)
++
+ 
+ static void Headset_Speaker_Amp_Change(bool enable)
+ {
+@@ -2005,6 +2071,8 @@
+ 	    mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_OUT_SPEAKER_HEADSET_R];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Headset_Speaker_Amp_Get)
++
+ 
+ static int Headset_Speaker_Amp_Set(struct snd_kcontrol *kcontrol,
+ 				   struct snd_ctl_elem_value *ucontrol)
+@@ -2031,6 +2099,8 @@
+ 	}
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Headset_Speaker_Amp_Set)
++
+ 
+ #ifdef CONFIG_MTK_SPEAKER
+ static const char * const speaker_amp_function[] = {
+@@ -2090,6 +2160,8 @@
+ 	    ucontrol->value.integer.value[0];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_Speaker_Pga_Gain_Set)
++
+ 
+ static int Audio_Speaker_OcFlag_Get(struct snd_kcontrol *kcontrol,
+ 				    struct snd_ctl_elem_value *ucontrol)
+@@ -2131,7 +2203,7 @@
+ 		     Audio_Speaker_Class_Set),
+ 	SOC_ENUM_EXT("Audio_Speaker_PGA_gain",
+ 		     Audio_Speaker_Enum[1], Audio_Speaker_Pga_Gain_Get,
+-		     Audio_Speaker_Pga_Gain_Set),
++		     CODEC_CONTROL(Audio_Speaker_Pga_Gain_Set)),
+ 	SOC_ENUM_EXT("Audio_Speaker_OC_Falg",
+ 		     Audio_Speaker_Enum[2], Audio_Speaker_OcFlag_Get,
+ 		     Audio_Speaker_OcFlag_Set),
+@@ -2173,6 +2245,8 @@
+ 		mCodec_data->mAudio_Ana_Volume[AUDIO_ANALOG_VOLUME_SPKL];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Lineout_PGAL_Get)
++
+ 
+ static int Lineout_PGAL_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -2197,6 +2271,8 @@
+ 		ucontrol->value.integer.value[0];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Lineout_PGAL_Set)
++
+ 
+ static int Lineout_PGAR_Get(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -2208,6 +2284,8 @@
+ 		mCodec_data->mAudio_Ana_Volume[AUDIO_ANALOG_VOLUME_SPKR];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Lineout_PGAR_Get)
++
+ 
+ static int Lineout_PGAR_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -2233,6 +2311,8 @@
+ 		ucontrol->value.integer.value[0];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Lineout_PGAR_Set)
++
+ 
+ static int Handset_PGA_Get(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -2243,6 +2323,8 @@
+ 	    mCodec_data->mAudio_Ana_Volume[AUDIO_ANALOG_VOLUME_HSOUTL];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Handset_PGA_Get)
++
+ 
+ static int Handset_PGA_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -2268,6 +2350,8 @@
+ 	    ucontrol->value.integer.value[0];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Handset_PGA_Set)
++
+ 
+ static int Headset_PGAL_Get(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -2278,6 +2362,8 @@
+ 	    mCodec_data->mAudio_Ana_Volume[AUDIO_ANALOG_VOLUME_HPOUTL];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Headset_PGAL_Get)
++
+ 
+ static int Headset_PGAL_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -2295,9 +2381,11 @@
+ 	if (index > index2)
+ 		index = index2;
+ 	mCodec_data->mAudio_Ana_Volume[AUDIO_ANALOG_VOLUME_HPOUTL] = index;
+-	UpdateHeadsetGain();
+-	return 0;
+-}
++	UpdateHeadsetGain_locked();
++	return 0;
++}
++CODEC_STATE_CONTROL(Headset_PGAL_Set)
++
+ 
+ static int Headset_PGAR_Get(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -2308,6 +2396,8 @@
+ 	    mCodec_data->mAudio_Ana_Volume[AUDIO_ANALOG_VOLUME_HPOUTR];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Headset_PGAR_Get)
++
+ 
+ 
+ static int Headset_PGAR_Set(struct snd_kcontrol *kcontrol,
+@@ -2328,9 +2418,11 @@
+ 	if (index > index2)
+ 		index = index2;
+ 	mCodec_data->mAudio_Ana_Volume[AUDIO_ANALOG_VOLUME_HPOUTR] = index;
+-	UpdateHeadsetGain();
+-	return 0;
+-}
++	UpdateHeadsetGain_locked();
++	return 0;
++}
++CODEC_STATE_CONTROL(Headset_PGAR_Set)
++
+ 
+ 
+ static int Apply_Ext_Amp_Gain(int index)
+@@ -2351,6 +2443,8 @@
+ 	    mCodec_data->mAudio_Ana_Volume[AUDIO_ANALOG_VOLUME_EXT_AMP];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Ext_Amp_Gain_Get)
++
+ 
+ static int Ext_Amp_Gain_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -2376,6 +2470,8 @@
+ 
+ 	return ret;
+ }
++CODEC_STATE_CONTROL(Ext_Amp_Gain_Set)
++
+ 
+ static int Aud_Clk_Buf_Get(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -2443,37 +2539,37 @@
+ static const struct snd_kcontrol_new mt6323_snd_controls[] = {
+ 
+ 	SOC_ENUM_EXT("Audio_Amp_R_Switch",
+-		Audio_DL_Enum[0], Audio_AmpR_Get, Audio_AmpR_Set),
++		Audio_DL_Enum[0], CODEC_CONTROL(Audio_AmpR_Get), CODEC_CONTROL(Audio_AmpR_Set)),
+ 	SOC_ENUM_EXT("Audio_Amp_L_Switch",
+-		Audio_DL_Enum[1], Audio_AmpL_Get, Audio_AmpL_Set),
++		Audio_DL_Enum[1], CODEC_CONTROL(Audio_AmpL_Get), CODEC_CONTROL(Audio_AmpL_Set)),
+ 	SOC_ENUM_EXT("Voice_Amp_Switch",
+-		Audio_DL_Enum[2], Voice_Amp_Get, Voice_Amp_Set),
++		Audio_DL_Enum[2], CODEC_CONTROL(Voice_Amp_Get), CODEC_CONTROL(Voice_Amp_Set)),
+ 	SOC_ENUM_EXT("Speaker_Amp_Switch",
+-		Audio_DL_Enum[3], Speaker_Amp_Get, Speaker_Amp_Set),
++		Audio_DL_Enum[3], CODEC_CONTROL(Speaker_Amp_Get), CODEC_CONTROL(Speaker_Amp_Set)),
+ 	SOC_ENUM_EXT("Headset_Speaker_Amp_Switch",
+-		Audio_DL_Enum[4], Headset_Speaker_Amp_Get,
+-		     Headset_Speaker_Amp_Set),
++		Audio_DL_Enum[4], CODEC_CONTROL(Headset_Speaker_Amp_Get),
++		     CODEC_CONTROL(Headset_Speaker_Amp_Set)),
+ 	SOC_ENUM_EXT("Ext_Speaker_Amp_Switch",
+-		Audio_DL_Enum[5], Ext_Speaker_Amp_Get,
+-		     Ext_Speaker_Amp_Set),
++		Audio_DL_Enum[5], CODEC_CONTROL(Ext_Speaker_Amp_Get),
++		     CODEC_CONTROL(Ext_Speaker_Amp_Set)),
+ 	SOC_ENUM_EXT("Ext_Headphone_Amp_Switch",
+-		Audio_DL_Enum[6], Ext_Headphone_Amp_Get,
+-		     Ext_Headphone_Amp_Set),
++		Audio_DL_Enum[6], CODEC_CONTROL(Ext_Headphone_Amp_Get),
++		     CODEC_CONTROL(Ext_Headphone_Amp_Set)),
+ 	SOC_ENUM_EXT("Headphone_Speaker_Mux",
+-		Audio_DL_Enum[7], Headphone_Speaker_Mux_Get,
+-		      Headphone_Speaker_Mux_Set),
++		Audio_DL_Enum[7], CODEC_CONTROL(Headphone_Speaker_Mux_Get),
++		      CODEC_CONTROL(Headphone_Speaker_Mux_Set)),
+ 	SOC_ENUM_EXT("Headset_PGAL_GAIN",
+-		Audio_DL_Enum[8], Headset_PGAL_Get, Headset_PGAL_Set),
++		Audio_DL_Enum[8], CODEC_CONTROL(Headset_PGAL_Get), CODEC_CONTROL(Headset_PGAL_Set)),
+ 	SOC_ENUM_EXT("Headset_PGAR_GAIN",
+-		Audio_DL_Enum[9], Headset_PGAR_Get, Headset_PGAR_Set),
++		Audio_DL_Enum[9], CODEC_CONTROL(Headset_PGAR_Get), CODEC_CONTROL(Headset_PGAR_Set)),
+ 	SOC_ENUM_EXT("Handset_PGA_GAIN",
+-		Audio_DL_Enum[10], Handset_PGA_Get, Handset_PGA_Set),
++		Audio_DL_Enum[10], CODEC_CONTROL(Handset_PGA_Get), CODEC_CONTROL(Handset_PGA_Set)),
+ 	SOC_ENUM_EXT("Lineout_PGAR_GAIN",
+-		Audio_DL_Enum[11], Lineout_PGAR_Get, Lineout_PGAR_Set),
++		Audio_DL_Enum[11], CODEC_CONTROL(Lineout_PGAR_Get), CODEC_CONTROL(Lineout_PGAR_Set)),
+ 	SOC_ENUM_EXT("Lineout_PGAL_GAIN",
+-		Audio_DL_Enum[12], Lineout_PGAL_Get, Lineout_PGAL_Set),
++		Audio_DL_Enum[12], CODEC_CONTROL(Lineout_PGAL_Get), CODEC_CONTROL(Lineout_PGAL_Set)),
+ 	SOC_ENUM_EXT("Ext_Amp_Gain",
+-		Audio_DL_Enum[13], Ext_Amp_Gain_Get, Ext_Amp_Gain_Set),
++		Audio_DL_Enum[13], CODEC_CONTROL(Ext_Amp_Gain_Get), CODEC_CONTROL(Ext_Amp_Gain_Set)),
+ 	SOC_ENUM_EXT("AUD_CLK_BUF_Switch",
+ 		Audio_DL_Enum[14], Aud_Clk_Buf_Get, Aud_Clk_Buf_Set),
+ #ifdef CONFIG_AMP_AW8737S
+@@ -2488,7 +2584,7 @@
+ #endif
+ };
+ 
+-void SetMicPGAGain(void)
++static void SetMicPGAGain(void)
+ {
+ 	int index = 0;
+ 	int index2 = 5;
+@@ -2796,6 +2892,8 @@
+ 	    mCodec_data->mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_IN_ADC1];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_ADC1_Get)
++
+ 
+ static int Audio_ADC1_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -2837,6 +2935,8 @@
+ 	mutex_unlock(&Ana_Power_Mutex);
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_ADC1_Set)
++
+ 
+ static int Audio_ADC2_Get(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -2848,6 +2948,8 @@
+ 	    mCodec_data->mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_IN_ADC2];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_ADC2_Get)
++
+ 
+ static int Audio_ADC2_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -2902,6 +3004,8 @@
+ 	mutex_unlock(&Ana_Power_Mutex);
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_ADC2_Set)
++
+ 
+ static int Audio_ADC3_Get(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -2960,6 +3064,8 @@
+ 	    mCodec_data->mAudio_Ana_Mux[AUDIO_ANALOG_MUX_IN_PREAMP_1];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_PreAmp1_Get)
++
+ 
+ static int Audio_PreAmp1_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -2977,6 +3083,8 @@
+ 	pr_debug("%s() done\n", __func__);
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_PreAmp1_Set)
++
+ 
+ static bool AudioPreAmp2_Sel(int Mul_Sel)
+ {
+@@ -3007,6 +3115,8 @@
+ 	    mCodec_data->mAudio_Ana_Mux[AUDIO_ANALOG_MUX_IN_PREAMP_2];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_PreAmp2_Get)
++
+ 
+ static int Audio_PreAmp2_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -3024,6 +3134,8 @@
+ 	pr_debug("%s() done\n", __func__);
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_PreAmp2_Set)
++
+ 
+ /* PGA1: PGA_L */
+ static int Audio_PGA1_Get(struct snd_kcontrol *kcontrol,
+@@ -3035,6 +3147,8 @@
+ 	    mCodec_data->mAudio_Ana_Volume[AUDIO_ANALOG_VOLUME_MICAMP1];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_PGA1_Get)
++
+ 
+ static int Audio_PGA1_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -3060,6 +3174,8 @@
+ 	    ucontrol->value.integer.value[0];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_PGA1_Set)
++
+ 
+ /* PGA2: PGA_R */
+ static int Audio_PGA2_Get(struct snd_kcontrol *kcontrol,
+@@ -3071,6 +3187,8 @@
+ 	    mCodec_data->mAudio_Ana_Volume[AUDIO_ANALOG_VOLUME_MICAMP2];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_PGA2_Get)
++
+ 
+ static int Audio_PGA2_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -3094,6 +3212,8 @@
+ 	    ucontrol->value.integer.value[0];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_PGA2_Set)
++
+ 
+ static int Audio_PGA3_Get(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -3132,6 +3252,8 @@
+ 		mCodec_data->mAudio_Ana_Mux[AUDIO_MICSOURCE_MUX_IN_1];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_MicSource1_Get)
++
+ 
+ static int Audio_MicSource1_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -3151,6 +3273,8 @@
+ 		ucontrol->value.integer.value[0];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_MicSource1_Set)
++
+ 
+ static int Audio_MicSource2_Get(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -3161,6 +3285,8 @@
+ 		mCodec_data->mAudio_Ana_Mux[AUDIO_MICSOURCE_MUX_IN_2];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_MicSource2_Get)
++
+ 
+ static int Audio_MicSource2_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -3178,6 +3304,8 @@
+ 		ucontrol->value.integer.value[0];
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Audio_MicSource2_Set)
++
+ 
+ static int Audio_MicSource3_Get(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+@@ -3806,6 +3934,8 @@
+ 
+ 	return 0;
+ }
++CODEC_STATE_CONTROL(Codec_Loopback_Mode_Set)
++
+ 
+ 
+ static const struct soc_enum Pmic_Test_Enum[] = {
+@@ -3822,37 +3952,37 @@
+ 	SOC_ENUM_EXT("SineTable_UL_ADC", Pmic_Test_Enum[1],
+ 		SineTable_UL_ADC_Get, SineTable_UL_ADC_Set),
+ 	SOC_ENUM_EXT("Codec_Loopback_Setting", Pmic_Test_Enum[2],
+-		Codec_Loopback_Mode_Get, Codec_Loopback_Mode_Set),
++		Codec_Loopback_Mode_Get, CODEC_CONTROL(Codec_Loopback_Mode_Set)),
+ };
+ 
+ static const struct snd_kcontrol_new mt6323_UL_Codec_controls[] = {
+ 
+ 	SOC_ENUM_EXT("Audio_Preamp1_Switch",
+-		Audio_UL_Enum[0], Audio_PreAmp1_Get, Audio_PreAmp1_Set),
++		Audio_UL_Enum[0], CODEC_CONTROL(Audio_PreAmp1_Get), CODEC_CONTROL(Audio_PreAmp1_Set)),
+ 	SOC_ENUM_EXT("Audio_Preamp2_Switch",
+-		Audio_UL_Enum[1], Audio_PreAmp2_Get, Audio_PreAmp2_Set),
++		Audio_UL_Enum[1], CODEC_CONTROL(Audio_PreAmp2_Get), CODEC_CONTROL(Audio_PreAmp2_Set)),
+ 	SOC_ENUM_EXT("Audio_ADC_1_Switch",
+-		Audio_UL_Enum[2], Audio_ADC1_Get, Audio_ADC1_Set),
++		Audio_UL_Enum[2], CODEC_CONTROL(Audio_ADC1_Get), CODEC_CONTROL(Audio_ADC1_Set)),
+ 	SOC_ENUM_EXT("Audio_ADC_2_Switch",
+-		Audio_UL_Enum[3], Audio_ADC2_Get, Audio_ADC2_Set),
++		Audio_UL_Enum[3], CODEC_CONTROL(Audio_ADC2_Get), CODEC_CONTROL(Audio_ADC2_Set)),
+ 	SOC_ENUM_EXT("Audio_ADC_3_Switch",
+ 		Audio_UL_Enum[4], Audio_ADC3_Get, Audio_ADC3_Set),
+ 	SOC_ENUM_EXT("Audio_ADC_4_Switch",
+ 		Audio_UL_Enum[5], Audio_ADC4_Get, Audio_ADC4_Set),
+ 	SOC_ENUM_EXT("Audio_PGA1_Setting",
+-		Audio_UL_Enum[6], Audio_PGA1_Get, Audio_PGA1_Set),
++		Audio_UL_Enum[6], CODEC_CONTROL(Audio_PGA1_Get), CODEC_CONTROL(Audio_PGA1_Set)),
+ 	SOC_ENUM_EXT("Audio_PGA2_Setting",
+-		Audio_UL_Enum[7], Audio_PGA2_Get, Audio_PGA2_Set),
++		Audio_UL_Enum[7], CODEC_CONTROL(Audio_PGA2_Get), CODEC_CONTROL(Audio_PGA2_Set)),
+ 	SOC_ENUM_EXT("Audio_PGA3_Setting",
+ 		Audio_UL_Enum[8], Audio_PGA3_Get, Audio_PGA3_Set),
+ 	SOC_ENUM_EXT("Audio_PGA4_Setting",
+ 		Audio_UL_Enum[9], Audio_PGA4_Get, Audio_PGA4_Set),
+ 	SOC_ENUM_EXT("Audio_MicSource1_Setting",
+-		Audio_UL_Enum[10], Audio_MicSource1_Get,
+-		     Audio_MicSource1_Set),
++		Audio_UL_Enum[10], CODEC_CONTROL(Audio_MicSource1_Get),
++		     CODEC_CONTROL(Audio_MicSource1_Set)),
+ 	SOC_ENUM_EXT("Audio_MicSource2_Setting",
+-		Audio_UL_Enum[11], Audio_MicSource2_Get,
+-		     Audio_MicSource2_Set),
++		Audio_UL_Enum[11], CODEC_CONTROL(Audio_MicSource2_Get),
++		     CODEC_CONTROL(Audio_MicSource2_Set)),
+ 	SOC_ENUM_EXT("Audio_MicSource3_Setting",
+ 		Audio_UL_Enum[12], Audio_MicSource3_Get,
+ 		     Audio_MicSource3_Set),
+@@ -3914,7 +4044,7 @@
+ 	AudDrv_Clk_Off();
+ }
+ 
+-void InitCodecDefault(void)
++static void InitCodecDefault(void)
+ {
+ 	pr_debug("%s\n", __func__);
+ 	mCodec_data->mAudio_Ana_Volume[AUDIO_ANALOG_VOLUME_MICAMP1] = 3;
+@@ -3933,13 +4063,10 @@
+ 	    AUDIO_ANALOG_AUDIOANALOG_INPUT_PREAMP;
+ }
+ 
+-static int mt6323_codec_probe(struct snd_soc_codec *codec)
++static void mt6323_codec_add_controls(struct snd_soc_codec *codec)
+ {
+ 	struct snd_soc_dapm_context *dapm = &codec->component.dapm;
+ 
+-	pr_debug("%s()\n", __func__);
+-	if (mInitCodec == true)
+-		return 0;
+ 	snd_soc_dapm_new_controls(dapm, mt6323_dapm_widgets,
+ 		ARRAY_SIZE(mt6323_dapm_widgets));
+ 	snd_soc_dapm_add_routes(dapm, mtk_audio_map, ARRAY_SIZE(mtk_audio_map));
+@@ -3957,6 +4084,15 @@
+ 				   ARRAY_SIZE(mt6323_snd_Speaker_controls));
+ #endif
+ 
++}
++
++static int mt6323_codec_probe_locked(struct snd_soc_codec *codec)
++{
++
++	pr_debug("%s()\n", __func__);
++	if (mInitCodec == true)
++		return 0;
++
+ 	/* here to set  private data */
+ 	mCodec_data = kzalloc(sizeof(struct mt6323_Codec_Data_Priv),
+ 		GFP_KERNEL);
+@@ -3974,17 +4110,52 @@
+ 	return 0;
+ }
+ 
++static int mt6323_codec_probe(struct snd_soc_codec *codec)
++{
++	int ret;
++
++	mutex_lock(&codec_registration_mutex);
++	mutex_lock(&mt8163_codec_state_mutex);
++	if (mInitCodec) {
++		mutex_unlock(&mt8163_codec_state_mutex);
++		mutex_unlock(&codec_registration_mutex);
++		return 0;
++	}
++	mutex_unlock(&mt8163_codec_state_mutex);
++	/* Never take ALSA controls_rwsem with the private-state mutex held. */
++	mt6323_codec_add_controls(codec);
++	mutex_lock(&mt8163_codec_state_mutex);
++	mAnalogSuspendApplied = false;
++	ret = mt6323_codec_probe_locked(codec);
++	if (!ret) {
++#ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++		p00a_gate_suspend(mAnaSuspend);
++#endif
++		if (mAnaSuspend)
++			SetAnalogSuspend_locked(true);
++	}
++	mutex_unlock(&mt8163_codec_state_mutex);
++	mutex_unlock(&codec_registration_mutex);
++	return ret;
++}
++
++
+ static int mt6323_codec_remove(struct snd_soc_codec *codec)
+ {
+ 	pr_debug("%s()\n", __func__);
+ #ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++	mutex_lock(&codec_registration_mutex);
++	mutex_lock(&mt8163_codec_state_mutex);
+ 	p00a_gate_stop(codec->dev);
+ 	mutex_lock(&p00a_gate_lock);
+ 	snd_soc_codec_set_drvdata(codec, NULL);
+ 	kfree(mCodec_data);
+ 	mCodec_data = NULL;
+ 	mInitCodec = false;
++	mAnalogSuspendApplied = false;
+ 	mutex_unlock(&p00a_gate_lock);
++	mutex_unlock(&mt8163_codec_state_mutex);
++	mutex_unlock(&codec_registration_mutex);
+ #endif
+ 	return 0;
+ }
+@@ -4046,7 +4217,9 @@
+ {
+ 	pr_debug("%s\n", __func__);
+ #ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++	mutex_lock(&mt8163_codec_state_mutex);
+ 	p00a_gate_stop(&pdev->dev);
++	mutex_unlock(&mt8163_codec_state_mutex);
+ #endif
+ 	snd_soc_unregister_codec(&pdev->dev);
+ 	return 0;
+@@ -4055,7 +4228,9 @@
+ #ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
+ static void mtk_mt6323_codec_dev_shutdown(struct platform_device *pdev)
+ {
++	mutex_lock(&mt8163_codec_state_mutex);
+ 	p00a_gate_stop(&pdev->dev);
++	mutex_unlock(&mt8163_codec_state_mutex);
+ }
+ #endif
+ 
+--- a/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.h
++++ b/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.h
+@@ -36,6 +36,10 @@
+ void setHpDcCalibration(unsigned int type, int dc_cali_value);
+ void setHpDcCalibrationGain(unsigned int type, int gain_value);
+ void UpdateHeadsetGain(void);
++#include <linux/mutex.h>
++/* Acquire before aud_amp_mutex; Locked helper requires this mutex throughout. */
++extern struct mutex mt8163_codec_state_mutex;
++void UpdateHeadsetGainLocked(void);
+ 
+ 
+ #endif
+--- a/sound/soc/mediatek/mt_soc_audio_8163/p00a_stock_gate.h
++++ b/sound/soc/mediatek/mt_soc_audio_8163/p00a_stock_gate.h
+@@ -24,6 +24,7 @@
+ 
+ static void p00a_gate_cache(bool on)
+ {
++	lockdep_assert_held(&mt8163_codec_state_mutex);
+ 	p00a_gate_on = on;
+ 	if (mCodec_data)
+ 		mCodec_data->mAudio_Ana_DevicePower[
+@@ -35,6 +36,7 @@
+ {
+ 	int ret, off_ret;
+ 
++	lockdep_assert_held(&mt8163_codec_state_mutex);
+ 	if (!p00a_gate_owner)
+ 		return -ENODEV;
+ 	if (on && p00a_gate_stopping)
+@@ -66,6 +68,7 @@
+ {
+ 	int ret;
+ 
++	lockdep_assert_held(&mt8163_codec_state_mutex);
+ 	mutex_lock(&p00a_gate_lock);
+ 	ret = mCodec_data && mInitCodec ?
+ 		p00a_gate_output_locked(on) : -ENODEV;
+@@ -77,6 +80,7 @@
+ {
+ 	int ret;
+ 
++	lockdep_assert_held(&mt8163_codec_state_mutex);
+ 	mutex_lock(&p00a_gate_lock);
+ 	ret = !p00a_gate_owner || !mCodec_data || !mInitCodec ? -ENODEV :
+ 		(p00a_gate_fault ? -EIO : p00a_gate_on);
+@@ -88,6 +92,7 @@
+ {
+ 	int ret = 0;
+ 
++	lockdep_assert_held(&mt8163_codec_state_mutex);
+ 	mutex_lock(&p00a_gate_lock);
+ 	p00a_gate_suspended = suspend;
+ 	if (suspend)
+@@ -100,6 +105,7 @@
+ {
+ 	int ret = 0;
+ 
++	lockdep_assert_held(&mt8163_codec_state_mutex);
+ 	mutex_lock(&p00a_gate_lock);
+ 	if (p00a_gate_owner == dev) {
+ 		p00a_gate_stopping = true;
+@@ -114,6 +120,7 @@
+ {
+ 	struct device *dev = data;
+ 
++	mutex_lock(&mt8163_codec_state_mutex);
+ 	p00a_gate_stop(dev);
+ 	mutex_lock(&p00a_gate_lock);
+ 	if (p00a_gate_owner == dev) {
+@@ -121,6 +128,7 @@
+ 		p00a_gate_gpio = -EINVAL;
+ 	}
+ 	mutex_unlock(&p00a_gate_lock);
++	mutex_unlock(&mt8163_codec_state_mutex);
+ }
+ 
+ static int p00a_gate_probe(struct device *dev)
+@@ -160,15 +168,18 @@
+ 	if (!gpio_is_valid(gpio) || flags != 0)
+ 		return -EINVAL;
+ 
++	mutex_lock(&mt8163_codec_state_mutex);
+ 	mutex_lock(&p00a_gate_lock);
+ 	if (p00a_gate_owner) {
+ 		mutex_unlock(&p00a_gate_lock);
++		mutex_unlock(&mt8163_codec_state_mutex);
+ 		return -EBUSY;
+ 	}
+ 	ret = devm_gpio_request_one(dev, gpio, GPIOF_OUT_INIT_LOW,
+ 				    "spkamp-en-gpio");
+ 	if (ret) {
+ 		mutex_unlock(&p00a_gate_lock);
++		mutex_unlock(&mt8163_codec_state_mutex);
+ 		return ret;
+ 	}
+ 	p00a_gate_gpio = gpio;
+@@ -176,8 +187,9 @@
+ 	p00a_gate_on = false;
+ 	p00a_gate_fault = false;
+ 	p00a_gate_stopping = false;
+-	p00a_gate_suspended = false;
++	p00a_gate_suspended = mAnaSuspend;
+ 	mutex_unlock(&p00a_gate_lock);
++	mutex_unlock(&mt8163_codec_state_mutex);
+ 	return devm_add_action_or_reset(dev, p00a_gate_release, dev);
+ }
+ #endif

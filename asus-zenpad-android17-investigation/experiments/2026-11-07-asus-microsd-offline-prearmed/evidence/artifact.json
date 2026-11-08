@@ -1,0 +1,29 @@
+{
+  "daemon_object": {
+    "bytes": 40584,
+    "sha256": "7cd6d8c57767f409e06d8bf17ab8192ce11fb8aafb5f58eb6d7684693eaa07ee",
+    "machine": "AArch64",
+    "type": "relocatable"
+  },
+  "bytes": 775736,
+  "sha256": "0d7ad266bbe5fefc1ce7db8716d209ed3a6da3d4de124e1d99d84a4634d5e7cb",
+  "machine": "AArch64",
+  "static_no_interp_or_dynamic": true,
+  "parallelism": 1,
+  "owned_prefix": "/srv/android/asus-microsd-offline-prearmed-20261107-impl1",
+  "source_sha256": {
+    "source/client.py": "0072398a0aa2da83bdf176d672e7ec767b6aaf034892fb603054a22549c5bf69",
+    "source/sha256.h": "4011564ce3516f8cc8e6e375cdd2923e72e9f9e74e77dc6e7db0637bda52efe0",
+    "source/test_phase.c": "5104fff1780db8eeabbf146e61bbb871467611c0f857ceff83240eda811a024a",
+    "source/sd_frontend.c": "ff9471d12e80716fc5a8a5ee560e00079d8d5f831e9ed3a8ee9f9dc04e771814",
+    "source/bundle.py": "b648f2c95978cbe335c2c347c5eb016fd7fb4aa26283db37ee5dca678531324b",
+    "source/sd_mount.h": "59e6d4e4cefbfe6a83676277bef14a2afae77eb51ff38cf613b0be7ce2f5c989",
+    "source/recovery_phase.h": "9fb1ba3cfa052472d91141f5414c9a9915c87ae370965a35a6dffde66b89e79d",
+    "source/manifest.py": "c9a40f5e1029e8252abc9a8256d63d9fae0d4e1c5373eb247dc76e2e06c52ae2",
+    "source/host.py": "2d6acd11f5b46585bec820188463e4ecb863ec19a6f106a83320f14c24c479d9",
+    "source/common.h": "90fe60e79b3cc3932dab7e824bc803bb18ba086ea079beca8298c34ccf2a53c3",
+    "source/test_offline.c": "2ff13c1920b95d3d08ec36be883a58f288002532180679ccde73f7e5f52ddb28",
+    "source/rescue.c": "f2ddf12673897f75522b30a3bfe52385e89b15965d6417e0c592ff40d4a9656a"
+  },
+  "physical_validation": false
+}

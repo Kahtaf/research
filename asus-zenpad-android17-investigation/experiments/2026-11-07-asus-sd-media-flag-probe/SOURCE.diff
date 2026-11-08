@@ -1,0 +1,53 @@
+--- old/source/init.c
++++ new/source/init.c
+@@ -93,7 +93,7 @@
+  if(strncmp(b->disk,"/sys/devices/",13)||n<=s||strcmp(b->disk+n-s,suffix))return -1;
+  if(snprintf(want,sizeof(want),"%s/mmcblk1p1",b->disk)>=(int)sizeof(want)||strcmp(want,b->part))return -1;
+  if(!op.realpath(DISK "/device",card)||strlen(card)!=n-s||strncmp(card,b->disk,n-s))return -1;
+- if(equals(DISK "/removable","1\n")||equals(DISK "/device/type","SD\n")||equals(PART "/partition","1\n"))return -1;
++ if(equals(DISK "/removable","0\n")||equals(DISK "/device/type","SD\n")||equals(PART "/partition","1\n"))return -1;
+  if(dev_number(DISK "/dev",&diskdev)||dev_number(PART "/dev",&b->dev)||minor(b->dev)!=minor(diskdev)+1)return -1;
+  /* Independent dev-number links must resolve to those same canonical objects. */
+  snprintf(p,sizeof(p),"/sys/dev/block/%u:%u",major(diskdev),minor(diskdev));
+--- old/source/test_init.c
++++ new/source/test_init.c
+@@ -5,7 +5,7 @@
+ /* Three focused host simulations; no real mounts, devices, reboot or init run. */
+ static const char diskpath[]="/sys/devices/platform/test/mmc_host/mmc1/mmc1:0001/block/mmcblk1";
+ static const char cardpath[]="/sys/devices/platform/test/mmc_host/mmc1/mmc1:0001";
+-static int wrong_card,wrong_marker,no_marker,ro,created,mounted,remounts,unmounts,closed_file,syncs,reads,writes,io_mode;
++static int wrong_card,wrong_type,wrong_marker,no_marker,ro,created,mounted,remounts,unmounts,closed_file,syncs,reads,writes,io_mode;
+ static size_t offset,file_size;
+ static char readbuf[100],output[1024];
+ static unsigned ticks;
+@@ -32,8 +32,8 @@
+ static int f_open(const char *p,int flags,...){
+  assert(flags&O_NOFOLLOW);
+  if(!strcmp(p,SD)){assert(flags&O_DIRECTORY);return 30;}
+- if(!strcmp(p,DISK "/removable"))strcpy(readbuf,wrong_card?"0\n":"1\n");
+- else if(!strcmp(p,DISK "/device/type"))strcpy(readbuf,"SD\n");
++ if(!strcmp(p,DISK "/removable"))strcpy(readbuf,wrong_card?"1\n":"0\n");
++ else if(!strcmp(p,DISK "/device/type"))strcpy(readbuf,wrong_type?"MMC\n":"SD\n");
+  else if(!strcmp(p,PART "/partition"))strcpy(readbuf,"1\n");
+  else if(!strcmp(p,DISK "/dev"))strcpy(readbuf,"179:32\n");
+  else if(!strcmp(p,PART "/dev"))strcpy(readbuf,"179:33\n");
+@@ -79,16 +79,17 @@
+ static int f_time(clockid_t c,struct timespec *t){assert(c==CLOCK_MONOTONIC);t->tv_sec=ticks/4;t->tv_nsec=(ticks%4)*250000000;return 0;}
+ static int f_sleep(clockid_t c,int flags,const struct timespec *t,struct timespec *r){(void)c;(void)t;(void)r;assert(!flags);ticks++;return 0;}
+ static void reset(void){
+- wrong_card=wrong_marker=no_marker=ro=created=mounted=remounts=unmounts=closed_file=syncs=reads=writes=io_mode=0;
++ wrong_card=wrong_type=wrong_marker=no_marker=ro=created=mounted=remounts=unmounts=closed_file=syncs=reads=writes=io_mode=0;
+  offset=file_size=ticks=0;memset(output,0,sizeof(output));
+  op.mount=f_mount;op.umount=f_umount;op.mknod=f_mknod;op.lstat=f_lstat;op.realpath=f_realpath;
+  op.open=f_open;op.openat=f_openat;op.read=f_read;op.write=f_write;op.close=f_close;op.fstat=f_stat;op.fstatfs=f_statfs;op.fsync=f_sync;op.getpid=f_pid;op.uname=f_uname;op.clock_gettime=f_time;op.clock_nanosleep=f_sleep;
+ }
+ int main(void){
+  reset();wrong_card=1;assert(setup()<0&&!mounted&&!created&&!remounts&&ticks==40);
++ reset();wrong_type=1;assert(setup()<0&&!mounted&&!created&&!remounts&&ticks==40);
+  reset();wrong_marker=1;assert(setup()<0&&!created&&!remounts&&unmounts==1);
+  reset();no_marker=1;assert(setup()<0&&!created&&!remounts&&unmounts==1);
+- puts("PASS wrong/nonremovable card and wrong/missing marker: no writable mount or report; discovery <=10s simulated");
++ puts("PASS wrong media flag/type and wrong/missing marker: no writable mount or report; discovery <=10s simulated");
+  reset();io_mode=1;assert(setup()==0&&created&&syncs==2&&closed_file==1&&unmounts==1&&!mounted);
+  assert(strstr(output,"run_id=" RUN_ID "\npid1=1\nsysname=Linux\nrelease=FIXTURE-4.9\nversion=FIXTURE-version\nmachine=aarch64\nstatus=pid1_uname_observed\n"));
+  int saved_writes=writes;mounted=1;ro=0;assert(write_report(30,sddev(),"x",1)<0&&writes==saved_writes);mounted=0;

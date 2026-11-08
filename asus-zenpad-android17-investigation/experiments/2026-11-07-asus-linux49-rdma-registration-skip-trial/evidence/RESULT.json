@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-08T03:44:13.482192+00:00",
+  "capture_uuid": "d140b2bf-e06f-4ba7-8203-83a1c4ce4119",
+  "capture_status": "COMPLETE_CAPTURE_ROWS",
+  "loss_latched": false,
+  "invalid_rows": [],
+  "runtime_skip_lines": [
+    "ASUS49-DIAG headless RDMA IRQ registration skipped module=2 name=rdma0 linux_irq=237",
+    "ASUS49-DIAG headless RDMA IRQ registration skipped module=3 name=rdma1 linux_irq=238"
+  ],
+  "helper_records": 99,
+  "last_helper_record": "ASUS49-SYSCLOCK run=f0c3c82c-d639-4d8a-90f2-155fd4224ceb phase=observe stage=end op=clock_gettime path=loop.initial rc=0 errno=0 value=0.646106692",
+  "loop_completion_observed": false,
+  "after_irq_snapshot_observed": false,
+  "SIGALRM_marker_observed": false,
+  "capture_all_selected_entered_operations_complete": true,
+  "new_stock_boot_id": "a7a59acf-9c82-42f4-9a56-22fb8bd4775e",
+  "normal_stock_return_verified": true,
+  "normal_OS_partitions_changed": false,
+  "full_console_bytes": 48557,
+  "full_console_sha256": "ce6c9d29e207f611d925c161b46f410414d444c7b092fb03099f4cc50e4834f1",
+  "outcome": "Verified RDMA0/1 registration skip did not clear observed loop boundary in this exposure. Latest selected clock/counter/callback captures all completed. No clock-core fault or display-storm cause established."
+}

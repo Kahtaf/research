@@ -1,0 +1,41 @@
+{
+  "verdict": "CHANGES_REQUESTED",
+  "findings": [
+    {
+      "severity": "P1",
+      "issue": "codec removal frees private analog data still used by independently registered routing PM callback",
+      "repro": "remote/evidence/lifetime-routing-pm-run.log",
+      "result": "UBSan NULL member access; expected exit 1"
+    },
+    {
+      "severity": "P2",
+      "issue": "full reprobe leaves mAnaSuspend and gate suspend flags inconsistent",
+      "repro": "remote/evidence/lifetime-stale-suspend-run.log",
+      "result": "external On accepted after repeated suspend request"
+    }
+  ],
+  "genuine_kbuild": {
+    "olddefconfig": 0,
+    "mt_soc_codec_63xx.o": 0,
+    "AudDrv_Gpio.o": 0,
+    "AudDrv_Afe.o": 0,
+    "asus-p00a.dtb": 0
+  },
+  "host_original": {
+    "cases": 38,
+    "assertions": 984
+  },
+  "host_extended": {
+    "cases": 55,
+    "recorded_assertions": 23438,
+    "assertion_count_schedule_dependent": true
+  },
+  "blocking_finding_discovered_after_target_builds": true,
+  "target_builds_after_blocker": 0,
+  "candidate_fixed": false,
+  "HAL_routes_qualified": false,
+  "full_kernel_or_hardware_GO": false,
+  "constraints": "CPU0 affinity, -j1, per-process 1GiB RLIMIT_AS; finite command CPU/wall; no aggregate memory cgroup guarantee; owned allocated files below 4GiB",
+  "remote_prefix": "/srv/android/asus-stock-gpio28-review-20261106-r1",
+  "handoff": "report/HANDOFF.md"
+}

@@ -1,0 +1,362 @@
+[
+  {
+    "file": "recovery__default.prop",
+    "bytes": 8869,
+    "sha256": "9232966b06ec96b5a079e4ce639b59f59417cc445d0dd74e110116327565e999",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:default.prop"
+  },
+  {
+    "file": "recovery__etc_recovery.fstab",
+    "bytes": 2187,
+    "sha256": "9f22f786ac2fdbaa10d0d40a7f2a962a3c7008cd22c8c54d4c4454232a6bf46c",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:etc/recovery.fstab"
+  },
+  {
+    "file": "recovery__factory_init.connectivity.rc",
+    "bytes": 1560,
+    "sha256": "da04c1525d35042399c1b2afe8d1c0d23d02f9ff00f943d5be2d4c61bc0bf5ce",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:factory_init.connectivity.rc"
+  },
+  {
+    "file": "recovery__factory_init.project.rc",
+    "bytes": 979,
+    "sha256": "673fd41f472275595371bb9072529a41c314dc2e24568967fb4521b3d823c072",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:factory_init.project.rc"
+  },
+  {
+    "file": "recovery__factory_init.rc",
+    "bytes": 24674,
+    "sha256": "38dbb199ecb54405baace83bf973beab403ee92d4272b185999d84432fb7662b",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:factory_init.rc"
+  },
+  {
+    "file": "recovery__fstab.mt8163",
+    "bytes": 2187,
+    "sha256": "9f22f786ac2fdbaa10d0d40a7f2a962a3c7008cd22c8c54d4c4454232a6bf46c",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:fstab.mt8163"
+  },
+  {
+    "file": "recovery__init",
+    "bytes": 1254760,
+    "sha256": "e9594c0d1cbe7d05d34acd63e90b424672360ceb09112fa16b5b23390c21b7e5",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:init"
+  },
+  {
+    "file": "recovery__init.rc",
+    "bytes": 3596,
+    "sha256": "8cc5d734a7f246bf7f4b4c6a8f90239e0e17b679d6e48804dd826ee6efd67001",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:init.rc"
+  },
+  {
+    "file": "recovery__init.recovery.mt8163.rc",
+    "bytes": 1177,
+    "sha256": "ac635d171a8777288fdb8cf9986b6ad877cf28cb96e465b950c01ed64c28edc1",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:init.recovery.mt8163.rc"
+  },
+  {
+    "file": "recovery__meta_init.connectivity.rc",
+    "bytes": 1146,
+    "sha256": "bc3581a6303ea420e9581db88594af9d1c4e6cf92499391cdce9ec30d47d25d7",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:meta_init.connectivity.rc"
+  },
+  {
+    "file": "recovery__meta_init.modem.rc",
+    "bytes": 1423,
+    "sha256": "5f51ba183c47186d474c95b44610d6fabc665bcf076eb84b3811a32159698660",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:meta_init.modem.rc"
+  },
+  {
+    "file": "recovery__meta_init.project.rc",
+    "bytes": 773,
+    "sha256": "7932ca0ac6c19eda4f9ab70dd8df93b2e60592d6cb1673914004f71ff761a3a9",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:meta_init.project.rc"
+  },
+  {
+    "file": "recovery__meta_init.rc",
+    "bytes": 17035,
+    "sha256": "cb1048519307203b4a3e0436a13c6d770bfad814a93446cb2c89aa291778c96a",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:meta_init.rc"
+  },
+  {
+    "file": "recovery__multi_init.rc",
+    "bytes": 306,
+    "sha256": "6ba1817a251be0f4ef56c8efda1856c396b14ee5e17f91b4e4c7481547bf177b",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:multi_init.rc"
+  },
+  {
+    "file": "recovery__sbin_recovery",
+    "bytes": 1459224,
+    "sha256": "24e3cca9acc9f59947358cb739b1082c9926181623ad075b3a986eba62f40fc7",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:sbin/recovery"
+  },
+  {
+    "file": "recovery__ueventd.mt8163.rc",
+    "bytes": 1697,
+    "sha256": "f24beef659e250a6ad16b708a681fc56b1b4ea6ef354f3c0535e5272a4908496",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:ueventd.mt8163.rc"
+  },
+  {
+    "file": "recovery__ueventd.rc",
+    "bytes": 4853,
+    "sha256": "1fb28b94ef8496969179f79f3e1ba510c17913f02f5b59a977aa845c4031c800",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin#902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20:ueventd.rc"
+  },
+  {
+    "file": "boot__default.prop",
+    "bytes": 1598,
+    "sha256": "b9c8086b245a1915295b3602e557c033a71b6ca3c7abbc9f2c19a36a5433684c",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:default.prop"
+  },
+  {
+    "file": "boot__factory_init.connectivity.rc",
+    "bytes": 1560,
+    "sha256": "da04c1525d35042399c1b2afe8d1c0d23d02f9ff00f943d5be2d4c61bc0bf5ce",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:factory_init.connectivity.rc"
+  },
+  {
+    "file": "boot__factory_init.project.rc",
+    "bytes": 979,
+    "sha256": "673fd41f472275595371bb9072529a41c314dc2e24568967fb4521b3d823c072",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:factory_init.project.rc"
+  },
+  {
+    "file": "boot__factory_init.rc",
+    "bytes": 24674,
+    "sha256": "38dbb199ecb54405baace83bf973beab403ee92d4272b185999d84432fb7662b",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:factory_init.rc"
+  },
+  {
+    "file": "boot__fstab.mt8163",
+    "bytes": 2187,
+    "sha256": "9f22f786ac2fdbaa10d0d40a7f2a962a3c7008cd22c8c54d4c4454232a6bf46c",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:fstab.mt8163"
+  },
+  {
+    "file": "boot__init",
+    "bytes": 1254760,
+    "sha256": "e9594c0d1cbe7d05d34acd63e90b424672360ceb09112fa16b5b23390c21b7e5",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init"
+  },
+  {
+    "file": "boot__init.aee.rc",
+    "bytes": 852,
+    "sha256": "e5b4805d17a19d4f2762ba28e7a2ac9939a46e22a314523c3322ef212f4eea5e",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.aee.rc"
+  },
+  {
+    "file": "boot__init.bt.rc",
+    "bytes": 201,
+    "sha256": "5f38d8902873c94661d46261fc9c5b83fea62d3b255c4cd2b66400d121e00947",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.bt.rc"
+  },
+  {
+    "file": "boot__init.common_svc.rc",
+    "bytes": 430,
+    "sha256": "0f812ee7b0edddb374a0491563a0d713d3c6535acf4fa3770fbe648cf0f4fc95",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.common_svc.rc"
+  },
+  {
+    "file": "boot__init.connectivity.rc",
+    "bytes": 3075,
+    "sha256": "4427ba0ce716b4b90f043bef01d457c86b338884826ecc3564f0c84676eb8846",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.connectivity.rc"
+  },
+  {
+    "file": "boot__init.environ.rc",
+    "bytes": 1014,
+    "sha256": "e6fd0bdf589a6cc23efe89b82902ff3f584ede1f937f6c32fe259fae3be42a38",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.environ.rc"
+  },
+  {
+    "file": "boot__init.largeram.rc",
+    "bytes": 61,
+    "sha256": "d418bca98649a19a3d079312ba2d2397908f5a6ed5ef6d99004598654d953545",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.largeram.rc"
+  },
+  {
+    "file": "boot__init.logtool.rc",
+    "bytes": 9405,
+    "sha256": "2d27abea8e6c56e70ba87ab63f89191964cb799b34fbbdf2cd1bb03e95507f19",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.logtool.rc"
+  },
+  {
+    "file": "boot__init.modem.rc",
+    "bytes": 4154,
+    "sha256": "877d0dc4255521e1c48568cf830744ab1ebfb33b45dc9d2d4a486de5ee279264",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.modem.rc"
+  },
+  {
+    "file": "boot__init.mt8163.rc",
+    "bytes": 59241,
+    "sha256": "da9a1f687a8e4826e3ceb5f0ed39a6e263c1c82d44ed6ad09eae3502e4edc290",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.mt8163.rc"
+  },
+  {
+    "file": "boot__init.mt8163.usb.rc",
+    "bytes": 29450,
+    "sha256": "10a22c28a34cde6364709c1dd0c6e762ae8f29b8676392318396b705b38b8afd",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.mt8163.usb.rc"
+  },
+  {
+    "file": "boot__init.normalram.rc",
+    "bytes": 60,
+    "sha256": "f9089f411f270ba17007a8b5a306096e367708915e28cc4df7074376eb9c3470",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.normalram.rc"
+  },
+  {
+    "file": "boot__init.project.rc",
+    "bytes": 3718,
+    "sha256": "c3416db437e37fe8f31b59c6b240c6a34db8d39928c2bd1d6959724356f0695b",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.project.rc"
+  },
+  {
+    "file": "boot__init.rc",
+    "bytes": 24430,
+    "sha256": "4bcf2f965fb8bdce152952447539f4a7442d6b1076ad23548fbafa525d2c4f96",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.rc"
+  },
+  {
+    "file": "boot__init.recovery.mt8163.rc",
+    "bytes": 1177,
+    "sha256": "ac635d171a8777288fdb8cf9986b6ad877cf28cb96e465b950c01ed64c28edc1",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.recovery.mt8163.rc"
+  },
+  {
+    "file": "boot__init.rilproxy.rc",
+    "bytes": 1838,
+    "sha256": "47db197758b70129daef291d27eb9b7b527489fc701aa296c9603a61ebed18ef",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.rilproxy.rc"
+  },
+  {
+    "file": "boot__init.smallram.rc",
+    "bytes": 67,
+    "sha256": "df8034d32b27ef425f0c5db0f408dd3ca46271f3d97552831c0cc288ddb83060",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.smallram.rc"
+  },
+  {
+    "file": "boot__init.usb.configfs.rc",
+    "bytes": 9283,
+    "sha256": "9a062bc6095a26188831814a9509fbdff1f37c05426849bd24cae15ca7d40923",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.usb.configfs.rc"
+  },
+  {
+    "file": "boot__init.usb.rc",
+    "bytes": 5707,
+    "sha256": "fa910fc304883ef07098d4bfbb6f18213cc7e455956416d715a7c6bf3b252e8d",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.usb.rc"
+  },
+  {
+    "file": "boot__init.wifi.rc",
+    "bytes": 503,
+    "sha256": "3d5d856d4d7df0090d4a55d1187201f7a2c6faf103a60032c5041f66e04765a4",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.wifi.rc"
+  },
+  {
+    "file": "boot__init.zygote32.rc",
+    "bytes": 439,
+    "sha256": "ac80aafa5d4a1dc38dddb410d96619a9c17c898f7d7c0156f777a47b148d203b",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.zygote32.rc"
+  },
+  {
+    "file": "boot__init.zygote64_32.rc",
+    "bytes": 750,
+    "sha256": "487a6455ff3a0b3cc755fdd9578d245461804e013f1210704328728746eda295",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:init.zygote64_32.rc"
+  },
+  {
+    "file": "boot__meta_init.connectivity.rc",
+    "bytes": 1146,
+    "sha256": "bc3581a6303ea420e9581db88594af9d1c4e6cf92499391cdce9ec30d47d25d7",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:meta_init.connectivity.rc"
+  },
+  {
+    "file": "boot__meta_init.modem.rc",
+    "bytes": 1423,
+    "sha256": "5f51ba183c47186d474c95b44610d6fabc665bcf076eb84b3811a32159698660",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:meta_init.modem.rc"
+  },
+  {
+    "file": "boot__meta_init.project.rc",
+    "bytes": 773,
+    "sha256": "7932ca0ac6c19eda4f9ab70dd8df93b2e60592d6cb1673914004f71ff761a3a9",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:meta_init.project.rc"
+  },
+  {
+    "file": "boot__meta_init.rc",
+    "bytes": 17035,
+    "sha256": "cb1048519307203b4a3e0436a13c6d770bfad814a93446cb2c89aa291778c96a",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:meta_init.rc"
+  },
+  {
+    "file": "boot__multi_init.rc",
+    "bytes": 306,
+    "sha256": "6ba1817a251be0f4ef56c8efda1856c396b14ee5e17f91b4e4c7481547bf177b",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:multi_init.rc"
+  },
+  {
+    "file": "boot__ueventd.mt8163.rc",
+    "bytes": 1697,
+    "sha256": "f24beef659e250a6ad16b708a681fc56b1b4ea6ef354f3c0535e5272a4908496",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:ueventd.mt8163.rc"
+  },
+  {
+    "file": "boot__ueventd.rc",
+    "bytes": 4853,
+    "sha256": "1fb28b94ef8496969179f79f3e1ba510c17913f02f5b59a977aa845c4031c800",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/boot.bin#7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316:ueventd.rc"
+  },
+  {
+    "file": "system__build.prop",
+    "bytes": 7360,
+    "sha256": "d367020ccb80a0c417ef5ce442ba954ee172f9f9257a2bbf2383e42114563cb3",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-local-stock-rollback/artifacts/stock-rollback/system.img:build.prop (selected reads; existing whole-image receipt trusted)"
+  },
+  {
+    "file": "system__bin_vold",
+    "bytes": 637976,
+    "sha256": "63b2a959658cb8aeb333cb924c93ea5f970bccf918829424f458af41aa508ec4",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-local-stock-rollback/artifacts/stock-rollback/system.img:bin/vold (selected reads; existing whole-image receipt trusted)"
+  },
+  {
+    "file": "system__etc_init_vold.rc",
+    "bytes": 355,
+    "sha256": "7d837333181c2a16f5befb4f3e896df2511d344a1c31f47aaa54f195b6cd23d1",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-local-stock-rollback/artifacts/stock-rollback/system.img:etc/init/vold.rc (selected reads; existing whole-image receipt trusted)"
+  },
+  {
+    "file": "system__etc_init_vdc.rc",
+    "bytes": 546,
+    "sha256": "74e0fb97a1795f19e25ff4777d3a3bc723137fd4b89c1c3767404af8dc9fd46b",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-local-stock-rollback/artifacts/stock-rollback/system.img:etc/init/vdc.rc (selected reads; existing whole-image receipt trusted)"
+  },
+  {
+    "file": "system__bin_make_ext4fs",
+    "bytes": 10344,
+    "sha256": "b7dc3755d2cf4ea294ab65c325433150df1086e1c164c7ba2dfc22d26e5f703d",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-local-stock-rollback/artifacts/stock-rollback/system.img:bin/make_ext4fs (selected reads; existing whole-image receipt trusted)"
+  },
+  {
+    "file": "system__bin_e2fsck",
+    "bytes": 204888,
+    "sha256": "b085568d789e9de0811ea3568b425bd024ca509acbddb969bb2f4d2e39c202f8",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-local-stock-rollback/artifacts/stock-rollback/system.img:bin/e2fsck (selected reads; existing whole-image receipt trusted)"
+  },
+  {
+    "file": "system__etc_recovery-resource.dat",
+    "bytes": 843127,
+    "sha256": "6ba6aee8abcfe9dd38dd360ce97abb4b04977a44a01a1aecfed5cc3c2f2651da",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-local-stock-rollback/artifacts/stock-rollback/system.img:etc/recovery-resource.dat (selected reads; existing whole-image receipt trusted)"
+  },
+  {
+    "file": "system__bin_uncrypt",
+    "bytes": 68752,
+    "sha256": "3f7e8c8ed7272540315eaef0af405a57ac701db121dd5c842a8b04be721b2671",
+    "origin": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-local-stock-rollback/artifacts/stock-rollback/system.img:bin/uncrypt (selected reads; existing whole-image receipt trusted)"
+  },
+  {
+    "file": "oem-updater-script.txt",
+    "bytes": 3207,
+    "sha256": "0e33b61b3c561a8dac62b98e54801b5b3634277b2cdda4e787640775e9a2b5a1",
+    "origin": "pinned public OEM ZIP; selected member only, never executed"
+  }
+]

@@ -1,0 +1,81 @@
+{
+  "status": "COMPLETION_ONLY_UNKNOWN_END_LOOP_VARIANT_SERIES",
+  "normal_android_return_proven": true,
+  "candidate_p10_sha256": "0bb68dc6cee1a2589906c5e2bcedee398c12a9cde1073b4cc9c8d706807e9df6",
+  "one_recovery_dispatch": true,
+  "fresh_control": [
+    "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=actual op=clock.path path=CLOCK_MONOTONIC rc=0 errno=0 value=kernel-syscall:syscall(SYS_clock_gettime);vDSO-bypassed;control=342c9034-6b6f-4d95-aa67-9228b0904eb2;loop=pure-compute-normal-final-only"
+  ],
+  "initial_clock": [
+    "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=begin op=clock_gettime path=loop.initial rc=0 errno=0 value=-",
+    "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=end op=clock_gettime path=loop.initial rc=0 errno=0 value=0.642032768"
+  ],
+  "console": {
+    "bytes": 3170,
+    "sha256": "294b890f76879f58dcd96add39745ff80a0c1aeab98e63d4c8e35229926c3733"
+  },
+  "parsed": {
+    "status": "UNKNOWN_STOP",
+    "control_accepted": false,
+    "compute_cap_published": false,
+    "control_uuid": "342c9034-6b6f-4d95-aa67-9228b0904eb2",
+    "prefix_ids_reused": true,
+    "normal_policy_verified": true,
+    "normal_policy": "VERIFIED_SCHED_OTHER_PRIORITY0",
+    "compute_completion": "UNKNOWN",
+    "complete_after_irq": "UNKNOWN",
+    "completion_write_return": "UNKNOWN",
+    "physical_binding": {
+      "exact_full_p10": true,
+      "fresh_stock_boot_reference": "/OWNER_HOME/Documents/workspace/ideas/2026-11-08-asus-ram-completion-only-trial/evidence/recovery-entry.json",
+      "complete_console_reference": "/OWNER_HOME/Documents/workspace/ideas/2026-11-07-asus-usb-retained-log-collector/evidence/retained-trace-6190737c-1f2c-410a-a730-8b98116fe450.json"
+    },
+    "timer_observations": {
+      "alarm_marker_observed": false,
+      "alarm_status": "UNKNOWN",
+      "alarm_final_flag": null,
+      "irq_growth": "UNKNOWN",
+      "irq_records": [
+        {
+          "pos": 16,
+          "phase": "before",
+          "stage": "actual",
+          "op": "interrupts.arch_timer",
+          "path": "/proc/interrupts",
+          "rc": 0,
+          "errno": 0,
+          "value": "irq=2 counts=0 cpus=1 controller=GIC-0 hwirq=29 trigger=Level name=arch_timer"
+        },
+        {
+          "pos": 17,
+          "phase": "before",
+          "stage": "actual",
+          "op": "interrupts.arch_timer",
+          "path": "/proc/interrupts",
+          "rc": 0,
+          "errno": 0,
+          "value": "irq=3 counts=179 cpus=1 controller=GIC-0 hwirq=30 trigger=Level name=arch_timer"
+        },
+        {
+          "pos": 18,
+          "phase": "before",
+          "stage": "complete",
+          "op": "interrupts.snapshot",
+          "path": "/proc/interrupts",
+          "rc": 2,
+          "errno": 0,
+          "value": "bytes=3623 read_calls=2 lines=70 arch_found=2 emitted=2 parse_or_read_errors=0 eof=1"
+        }
+      ],
+      "interpretation": "Independent observations; absence of alarm does not mean timer failure; no elapsed-time measurement."
+    },
+    "limit": "Positive 2M+complete afterIRQ proves this compute instance and completion write returned; no prior-500k-write causality, elapsed time, rootcause, stability, timer pass or Android17 readiness. Missing afterIRQ spans write tail, proc open/read/processing/publication, not uniquely printk. Absence is UNKNOWN.",
+    "detail": "completion marker absent; publication UNKNOWN"
+  },
+  "next_boundary": "No further loop variants. Assess logging-return versus execution boundary, no automatic build.",
+  "limits": [
+    "Normalpolicy0 confirmed and initialclockreturned; missing2M marker cannotprovecompute or publicationfailure.",
+    "No afterIRQ/alarm result; no timerdeath or causalclassification.",
+    "Kernel unchanged from previous2helpers; no SYSTEM/BOOT/DATA written."
+  ]
+}

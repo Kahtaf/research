@@ -1,0 +1,780 @@
+--- a/device/asus/p00a/device.mk
++++ b/device/asus/p00a/device.mk
+@@ -83,3 +83,6 @@
+ $(call inherit-product, device/asus/p00a/input/input-mapping.mk)
+ 
+ $(call inherit-product, device/asus/p00a/sensors/sensors.mk)
++
++# Experimental retrofit contract; preserves the SDK37 framework matrices.
++PRODUCT_PACKAGES += p00a_experimental_legacy_fcm3.xml
+--- a/device/asus/p00a/manifest.xml
++++ b/device/asus/p00a/manifest.xml
+@@ -1,4 +1,5 @@
+-<manifest version="1.0" type="device">
++<manifest version="1.0" type="device" target-level="3">
++    <kernel target-level="3" />
+     <hal format="hidl">
+         <name>android.hardware.graphics.allocator</name>
+         <transport>hwbinder</transport>
+--- /dev/null
++++ b/device/asus/p00a/vintf-legacy/Android.bp
+@@ -0,0 +1,21 @@
++// Experimental P00A retrofit profile; not an Android 17 launch/CTS claim.
++package {
++    default_applicable_licenses: ["Android-Apache-2.0"],
++}
++
++kernel_config {
++    name: "p00a_kernel_config_p_4_9",
++    srcs: [
++        "p-4.9/android-base.config",
++        "p-4.9/android-base-arm.config",
++        "p-4.9/android-base-arm64.config",
++    ],
++    meta: "p-4.9/android-base-conditional.xml",
++}
++
++vintf_compatibility_matrix {
++    name: "p00a_experimental_legacy_fcm3.xml",
++    stem: "compatibility_matrix.p00a-legacy.xml",
++    srcs: ["compatibility_matrix.p00a-p.xml"],
++    kernel_configs: ["p00a_kernel_config_p_4_9"],
++}
+--- /dev/null
++++ b/device/asus/p00a/vintf-legacy/PROVENANCE.json
+@@ -0,0 +1,22 @@
++{
++  "purpose": "Experimental retrofit FCM3/P kernel contract for original API23 device on SDK37; not OEM launch history or official CTS support",
++  "kernel_configs_commit": "e92f32aef4ca28afbd3cd259e179313719940f6c",
++  "kernel_source_directory": "p/android-4.9",
++  "hardware_interfaces_commit": "f16c6d3a5741768356159f099d04bfe2219c81fe",
++  "hal_matrix_path": "compatibility_matrices/compatibility_matrix.3.xml",
++  "sha256": {
++    "android-base.config": "4060ce3beeb85ce69fb1b6904efba0c02cd00817fadfe9656be279761e58f874",
++    "android-base-arm.config": "d41fbc0214bf03074f0dd23f09233efcbb36916f0bb371dc6b5903da441e5c42",
++    "android-base-arm64.config": "6ba4f4bb1e496e0444b9b10fd352e0a73ea3bc0ed7d84cb24b0b17b052dfab95",
++    "android-base-conditional.xml": "722cf4fa5201f876d2879e1e179d79b973c11b5b7d66d824898456e8ec56f7a2"
++  },
++  "historical_hal_catalog_sha256": "9e7ac2d83e98bed55f3cd4b395e0cc627aa1ce603fcf07d4475d43fe1be81408",
++  "unmodified_files": [
++    "android-base.config",
++    "android-base-arm.config",
++    "android-base-arm64.config",
++    "android-base-conditional.xml",
++    "compatibility_matrix.p00a-p.xml"
++  ],
++  "keep_existing_sdk37_matrices": true
++}
+--- /dev/null
++++ b/device/asus/p00a/vintf-legacy/compatibility_matrix.p00a-p.xml
+@@ -0,0 +1,475 @@
++<compatibility-matrix version="1.0" type="framework" level="3">
++    <hal format="hidl" optional="false">
++        <name>android.hardware.audio</name>
++        <version>4.0</version>
++        <interface>
++            <name>IDevicesFactory</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="false">
++        <name>android.hardware.audio.effect</name>
++        <version>4.0</version>
++        <interface>
++            <name>IEffectsFactory</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.authsecret</name>
++        <version>1.0</version>
++        <interface>
++            <name>IAuthSecret</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.automotive.audiocontrol</name>
++        <version>1.0</version>
++        <interface>
++            <name>IAudioControl</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.automotive.evs</name>
++        <version>1.0</version>
++        <interface>
++            <name>IEvsEnumerator</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.automotive.vehicle</name>
++        <version>2.0</version>
++        <interface>
++            <name>IVehicle</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.biometrics.fingerprint</name>
++        <version>2.1</version>
++        <interface>
++            <name>IBiometricsFingerprint</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.bluetooth</name>
++        <version>1.0</version>
++        <interface>
++            <name>IBluetoothHci</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.bluetooth.a2dp</name>
++        <version>1.0</version>
++        <interface>
++            <name>IBluetoothAudioOffload</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.boot</name>
++        <version>1.0</version>
++        <interface>
++            <name>IBootControl</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.broadcastradio</name>
++        <version>1.0-1</version>
++        <interface>
++            <name>IBroadcastRadioFactory</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.broadcastradio</name>
++        <version>2.0</version>
++        <interface>
++            <name>IBroadcastRadio</name>
++            <regex-instance>.*</regex-instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.camera.provider</name>
++        <version>2.4</version>
++        <interface>
++            <name>ICameraProvider</name>
++            <regex-instance>[^/]+/[0-9]+</regex-instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.cas</name>
++        <version>1.0</version>
++        <interface>
++            <name>IMediaCasService</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.configstore</name>
++        <version>1.0-1</version>
++        <interface>
++            <name>ISurfaceFlingerConfigs</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.confirmationui</name>
++        <version>1.0</version>
++        <interface>
++            <name>IConfirmationUI</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.contexthub</name>
++        <version>1.0</version>
++        <interface>
++            <name>IContexthub</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.drm</name>
++        <version>1.0</version>
++        <interface>
++            <name>ICryptoFactory</name>
++            <regex-instance>.*</regex-instance>
++        </interface>
++        <interface>
++            <name>IDrmFactory</name>
++            <regex-instance>.*</regex-instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="false">
++        <name>android.hardware.drm</name>
++        <version>1.1</version>
++        <interface>
++            <name>ICryptoFactory</name>
++            <regex-instance>.*</regex-instance>
++        </interface>
++        <interface>
++            <name>IDrmFactory</name>
++            <regex-instance>.*</regex-instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.dumpstate</name>
++        <version>1.0</version>
++        <interface>
++            <name>IDumpstateDevice</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="false">
++        <name>android.hardware.gatekeeper</name>
++        <version>1.0</version>
++        <interface>
++            <name>IGatekeeper</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.gnss</name>
++        <version>1.0-1</version>
++        <interface>
++            <name>IGnss</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="false">
++        <name>android.hardware.graphics.allocator</name>
++        <version>2.0</version>
++        <interface>
++            <name>IAllocator</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="false">
++        <name>android.hardware.graphics.composer</name>
++        <version>2.1-2</version>
++        <interface>
++            <name>IComposer</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="false">
++        <name>android.hardware.graphics.mapper</name>
++        <version>2.0-1</version>
++        <interface>
++            <name>IMapper</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="false">
++        <name>android.hardware.health</name>
++        <version>2.0</version>
++        <interface>
++            <name>IHealth</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.ir</name>
++        <version>1.0</version>
++        <interface>
++            <name>IConsumerIr</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.keymaster</name>
++        <version>3.0</version>
++        <version>4.0</version>
++        <interface>
++            <name>IKeymasterDevice</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.keymaster</name>
++        <version>4.0</version>
++        <interface>
++            <name>IKeymasterDevice</name>
++            <instance>strongbox</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.light</name>
++        <version>2.0</version>
++        <interface>
++            <name>ILight</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="false">
++        <name>android.hardware.media.omx</name>
++        <version>1.0</version>
++        <interface>
++            <name>IOmx</name>
++            <instance>default</instance>
++        </interface>
++        <interface>
++            <name>IOmxStore</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.memtrack</name>
++        <version>1.0</version>
++        <interface>
++            <name>IMemtrack</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.neuralnetworks</name>
++        <version>1.0-1</version>
++        <interface>
++            <name>IDevice</name>
++            <regex-instance>.*</regex-instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.nfc</name>
++        <version>1.1</version>
++        <interface>
++            <name>INfc</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.oemlock</name>
++        <version>1.0</version>
++        <interface>
++            <name>IOemLock</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.power</name>
++        <version>1.0-3</version>
++        <interface>
++            <name>IPower</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.radio</name>
++        <!-- ref: b/123249760. 1.3 added here since 1.3 and 1.4 introduced in Q -->
++        <version>1.0-3</version>
++        <interface>
++            <name>IRadio</name>
++            <instance>slot1</instance>
++            <instance>slot2</instance>
++            <instance>slot3</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.radio</name>
++        <version>1.0-2</version>
++        <interface>
++            <name>ISap</name>
++            <instance>slot1</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.radio.config</name>
++        <version>1.0</version>
++        <interface>
++            <name>IRadioConfig</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.renderscript</name>
++        <version>1.0</version>
++        <interface>
++            <name>IDevice</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.secure_element</name>
++        <version>1.0</version>
++        <interface>
++            <name>ISecureElement</name>
++            <regex-instance>eSE[1-9][0-9]*</regex-instance>
++            <regex-instance>SIM[1-9][0-9]*</regex-instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.sensors</name>
++        <version>1.0</version>
++        <interface>
++            <name>ISensors</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.soundtrigger</name>
++        <version>2.0-1</version>
++        <interface>
++            <name>ISoundTriggerHw</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.tetheroffload.config</name>
++        <version>1.0</version>
++        <interface>
++            <name>IOffloadConfig</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.tetheroffload.control</name>
++        <version>1.0</version>
++        <interface>
++            <name>IOffloadControl</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.thermal</name>
++        <version>1.0-1</version>
++        <interface>
++            <name>IThermal</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.tv.cec</name>
++        <version>1.0</version>
++        <interface>
++            <name>IHdmiCec</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.tv.input</name>
++        <version>1.0</version>
++        <interface>
++            <name>ITvInput</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.usb</name>
++        <version>1.0-1</version>
++        <interface>
++            <name>IUsb</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.usb.gadget</name>
++        <version>1.0</version>
++        <interface>
++            <name>IUsbGadget</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.vibrator</name>
++        <version>1.0-2</version>
++        <interface>
++            <name>IVibrator</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.vr</name>
++        <version>1.0</version>
++        <interface>
++            <name>IVr</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.weaver</name>
++        <version>1.0</version>
++        <interface>
++            <name>IWeaver</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.wifi</name>
++        <version>1.0-2</version>
++        <interface>
++            <name>IWifi</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.wifi.hostapd</name>
++        <version>1.0</version>
++        <interface>
++            <name>IHostapd</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.wifi.offload</name>
++        <version>1.0</version>
++        <interface>
++            <name>IOffload</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++    <hal format="hidl" optional="true">
++        <name>android.hardware.wifi.supplicant</name>
++        <version>1.0-1</version>
++        <interface>
++            <name>ISupplicant</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
++</compatibility-matrix>
+--- /dev/null
++++ b/device/asus/p00a/vintf-legacy/p-4.9/android-base-arm.config
+@@ -0,0 +1 @@
++# CONFIG_OABI_COMPAT is not set
+--- /dev/null
++++ b/device/asus/p00a/vintf-legacy/p-4.9/android-base-arm64.config
+@@ -0,0 +1,5 @@
++#  KEEP ALPHABETICALLY SORTED
++CONFIG_ARMV8_DEPRECATED=y
++CONFIG_CP15_BARRIER_EMULATION=y
++CONFIG_SETEND_EMULATION=y
++CONFIG_SWP_EMULATION=y
+--- /dev/null
++++ b/device/asus/p00a/vintf-legacy/p-4.9/android-base-conditional.xml
+@@ -0,0 +1,31 @@
++<kernel minlts="4.9.84" />
++
++<!-- CONFIG_NETFILTER_XT_MATCH_QTAGUID || (CONFIG_NETFILTER_XT_MATCH_OWNER && BPF) -->
++<group>
++	<conditions>
++		<config>
++			<key>CONFIG_NETFILTER_XT_MATCH_QTAGUID</key>
++			<value type="bool">n</value>
++		</config>
++	</conditions>
++	<config>
++		<key>CONFIG_NETFILTER_XT_MATCH_OWNER</key>
++		<value type="bool">y</value>
++	</config>
++	<config>
++		<key>CONFIG_NET_CLS_BPF</key>
++		<value type="bool">y</value>
++	</config>
++</group>
++<group>
++	<conditions>
++		<config>
++			<key>CONFIG_NETFILTER_XT_MATCH_OWNER</key>
++			<value type="bool">n</value>
++		</config>
++	</conditions>
++	<config>
++		<key>CONFIG_NETFILTER_XT_MATCH_QTAGUID</key>
++		<value type="bool">y</value>
++	</config>
++</group>
+--- /dev/null
++++ b/device/asus/p00a/vintf-legacy/p-4.9/android-base.config
+@@ -0,0 +1,186 @@
++#  KEEP ALPHABETICALLY SORTED
++# CONFIG_DEVKMEM is not set
++# CONFIG_DEVMEM is not set
++# CONFIG_FHANDLE is not set
++# CONFIG_NFSD is not set
++# CONFIG_NFS_FS is not set
++# CONFIG_SYSVIPC is not set
++# CONFIG_USELIB is not set
++CONFIG_ADVISE_SYSCALLS=y
++CONFIG_AIO=y
++CONFIG_ANDROID=y
++CONFIG_ANDROID_BINDER_DEVICES="binder,hwbinder,vndbinder"
++CONFIG_ANDROID_BINDER_IPC=y
++CONFIG_ASHMEM=y
++CONFIG_AUDIT=y
++CONFIG_BLK_DEV_INITRD=y
++CONFIG_BLOCK=y
++CONFIG_BPF_SYSCALL=y
++CONFIG_CGROUPS=y
++CONFIG_CGROUP_BPF=y
++CONFIG_CGROUP_CPUACCT=y
++CONFIG_CGROUP_FREEZER=y
++CONFIG_CGROUP_SCHED=y
++CONFIG_CRYPTO_AES=y
++CONFIG_CRYPTO_CBC=y
++CONFIG_CRYPTO_ECB=y
++CONFIG_CRYPTO_GCM=y
++CONFIG_CRYPTO_HMAC=y
++CONFIG_CRYPTO_MD5=y
++CONFIG_CRYPTO_NULL=y
++CONFIG_CRYPTO_SHA1=y
++CONFIG_CRYPTO_SHA256=y
++CONFIG_CRYPTO_SHA512=y
++CONFIG_DEFAULT_SECURITY_SELINUX=y
++CONFIG_EMBEDDED=y
++CONFIG_EPOLL=y
++CONFIG_EVENTFD=y
++CONFIG_FUTEX=y
++CONFIG_HARDENED_USERCOPY=y
++CONFIG_HIGH_RES_TIMERS=y
++CONFIG_IKCONFIG=y
++CONFIG_IKCONFIG_PROC=y
++CONFIG_INET6_ESP=y
++CONFIG_INET6_IPCOMP=y
++CONFIG_INET6_XFRM_MODE_TRANSPORT=y
++CONFIG_INET6_XFRM_MODE_TUNNEL=y
++CONFIG_INET=y
++CONFIG_INET_DIAG_DESTROY=y
++CONFIG_INET_ESP=y
++CONFIG_INET_XFRM_MODE_TRANSPORT=y
++CONFIG_INET_XFRM_MODE_TUNNEL=y
++CONFIG_IP6_NF_FILTER=y
++CONFIG_IP6_NF_IPTABLES=y
++CONFIG_IP6_NF_MANGLE=y
++CONFIG_IP6_NF_MATCH_RPFILTER=y
++CONFIG_IP6_NF_RAW=y
++CONFIG_IP6_NF_TARGET_REJECT=y
++CONFIG_IPV6=y
++CONFIG_IPV6_MIP6=y
++CONFIG_IPV6_MULTIPLE_TABLES=y
++CONFIG_IPV6_OPTIMISTIC_DAD=y
++CONFIG_IPV6_ROUTER_PREF=y
++CONFIG_IPV6_ROUTE_INFO=y
++CONFIG_IPV6_VTI=y
++CONFIG_IP_ADVANCED_ROUTER=y
++CONFIG_IP_MULTICAST=y
++CONFIG_IP_MULTIPLE_TABLES=y
++CONFIG_IP_NF_ARPFILTER=y
++CONFIG_IP_NF_ARPTABLES=y
++CONFIG_IP_NF_ARP_MANGLE=y
++CONFIG_IP_NF_FILTER=y
++CONFIG_IP_NF_IPTABLES=y
++CONFIG_IP_NF_MANGLE=y
++CONFIG_IP_NF_MATCH_ECN=y
++CONFIG_IP_NF_MATCH_TTL=y
++CONFIG_IP_NF_NAT=y
++CONFIG_IP_NF_RAW=y
++CONFIG_IP_NF_SECURITY=y
++CONFIG_IP_NF_TARGET_MASQUERADE=y
++CONFIG_IP_NF_TARGET_NETMAP=y
++CONFIG_IP_NF_TARGET_REDIRECT=y
++CONFIG_IP_NF_TARGET_REJECT=y
++CONFIG_MAGIC_SYSRQ=y
++CONFIG_MODULES=y
++CONFIG_MODULE_UNLOAD=y
++CONFIG_MODVERSIONS=y
++CONFIG_NET=y
++CONFIG_NETDEVICES=y
++CONFIG_NETFILTER=y
++CONFIG_NETFILTER_XT_MATCH_BPF=y
++CONFIG_NETFILTER_XT_MATCH_COMMENT=y
++CONFIG_NETFILTER_XT_MATCH_CONNLIMIT=y
++CONFIG_NETFILTER_XT_MATCH_CONNMARK=y
++CONFIG_NETFILTER_XT_MATCH_CONNTRACK=y
++CONFIG_NETFILTER_XT_MATCH_HASHLIMIT=y
++CONFIG_NETFILTER_XT_MATCH_HELPER=y
++CONFIG_NETFILTER_XT_MATCH_IPRANGE=y
++CONFIG_NETFILTER_XT_MATCH_LENGTH=y
++CONFIG_NETFILTER_XT_MATCH_LIMIT=y
++CONFIG_NETFILTER_XT_MATCH_MAC=y
++CONFIG_NETFILTER_XT_MATCH_MARK=y
++CONFIG_NETFILTER_XT_MATCH_PKTTYPE=y
++CONFIG_NETFILTER_XT_MATCH_POLICY=y
++CONFIG_NETFILTER_XT_MATCH_QUOTA2=y
++CONFIG_NETFILTER_XT_MATCH_QUOTA=y
++CONFIG_NETFILTER_XT_MATCH_SOCKET=y
++CONFIG_NETFILTER_XT_MATCH_STATE=y
++CONFIG_NETFILTER_XT_MATCH_STATISTIC=y
++CONFIG_NETFILTER_XT_MATCH_STRING=y
++CONFIG_NETFILTER_XT_MATCH_TIME=y
++CONFIG_NETFILTER_XT_MATCH_U32=y
++CONFIG_NETFILTER_XT_TARGET_CLASSIFY=y
++CONFIG_NETFILTER_XT_TARGET_CONNMARK=y
++CONFIG_NETFILTER_XT_TARGET_CONNSECMARK=y
++CONFIG_NETFILTER_XT_TARGET_IDLETIMER=y
++CONFIG_NETFILTER_XT_TARGET_MARK=y
++CONFIG_NETFILTER_XT_TARGET_NFLOG=y
++CONFIG_NETFILTER_XT_TARGET_NFQUEUE=y
++CONFIG_NETFILTER_XT_TARGET_SECMARK=y
++CONFIG_NETFILTER_XT_TARGET_TCPMSS=y
++CONFIG_NETFILTER_XT_TARGET_TPROXY=y
++CONFIG_NETFILTER_XT_TARGET_TRACE=y
++CONFIG_NET_CLS_ACT=y
++CONFIG_NET_CLS_U32=y
++CONFIG_NET_EMATCH=y
++CONFIG_NET_EMATCH_U32=y
++CONFIG_NET_IPVTI=y
++CONFIG_NET_KEY=y
++CONFIG_NET_SCHED=y
++CONFIG_NET_SCH_HTB=y
++CONFIG_NF_CONNTRACK=y
++CONFIG_NF_CONNTRACK_AMANDA=y
++CONFIG_NF_CONNTRACK_EVENTS=y
++CONFIG_NF_CONNTRACK_FTP=y
++CONFIG_NF_CONNTRACK_H323=y
++CONFIG_NF_CONNTRACK_IPV4=y
++CONFIG_NF_CONNTRACK_IPV6=y
++CONFIG_NF_CONNTRACK_IRC=y
++CONFIG_NF_CONNTRACK_NETBIOS_NS=y
++CONFIG_NF_CONNTRACK_PPTP=y
++CONFIG_NF_CONNTRACK_SANE=y
++CONFIG_NF_CONNTRACK_SECMARK=y
++CONFIG_NF_CONNTRACK_TFTP=y
++CONFIG_NF_CT_NETLINK=y
++CONFIG_NF_CT_PROTO_DCCP=y
++CONFIG_NF_CT_PROTO_SCTP=y
++CONFIG_NF_CT_PROTO_UDPLITE=y
++CONFIG_NF_NAT=y
++CONFIG_NO_HZ=y
++CONFIG_PACKET=y
++CONFIG_PM_WAKELOCKS=y
++CONFIG_PPP=y
++CONFIG_PPPOLAC=y
++CONFIG_PPPOPNS=y
++CONFIG_PPP_BSDCOMP=y
++CONFIG_PPP_DEFLATE=y
++CONFIG_PPP_MPPE=y
++CONFIG_PREEMPT=y
++CONFIG_PROC_FS=y
++CONFIG_PROFILING=y
++CONFIG_RTC_CLASS=y
++CONFIG_SECCOMP=y
++CONFIG_SECCOMP_FILTER=y
++CONFIG_SECURITY=y
++CONFIG_SECURITY_NETWORK=y
++CONFIG_SECURITY_PERF_EVENTS_RESTRICT=y
++CONFIG_SECURITY_SELINUX=y
++CONFIG_SHMEM=y
++CONFIG_SIGNALFD=y
++CONFIG_STAGING=y
++CONFIG_SUSPEND=y
++CONFIG_SYNC_FILE=y
++CONFIG_SYSFS=y
++CONFIG_TIMERFD=y
++CONFIG_TUN=y
++CONFIG_UID_SYS_STATS=y
++CONFIG_UNIX=y
++CONFIG_USB_CONFIGFS=y
++CONFIG_USB_CONFIGFS_F_ACC=y
++CONFIG_USB_CONFIGFS_F_AUDIO_SRC=y
++CONFIG_USB_CONFIGFS_F_FS=y
++CONFIG_USB_CONFIGFS_F_MIDI=y
++CONFIG_USB_CONFIGFS_UEVENT=y
++CONFIG_USB_GADGET=y
++CONFIG_USB_SUPPORT=y
++CONFIG_XFRM_USER=y

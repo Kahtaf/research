@@ -1,0 +1,35 @@
+{
+  "matches": {
+    "build/soong/ui/build/config_test.go": [
+      [
+        664,
+        "\t\t// Expected directories\n\t\texpectedDirs []string\n\t}{{\n\t\tdescription:     \"flags but no directories specified\",\n\t\targs:            []string{\"showcommands\", \"-j\", \"-k\"},\n\t\texpectedNewArgs: []string{\"showcommands\", \"-j\", \"-k\"},\n\t\texpectedDirs:    []string{},\n\t}, {\n\t\tdescription:     \"flags and one directory specified\",\n\t\targs:            []string{\"snod\", \"-j\", \"dir:target1,target2\"},"
+      ],
+      [
+        665,
+        "\t\texpectedDirs []string\n\t}{{\n\t\tdescription:     \"flags but no directories specified\",\n\t\targs:            []string{\"showcommands\", \"-j\", \"-k\"},\n\t\texpectedNewArgs: []string{\"showcommands\", \"-j\", \"-k\"},\n\t\texpectedDirs:    []string{},\n\t}, {\n\t\tdescription:     \"flags and one directory specified\",\n\t\targs:            []string{\"snod\", \"-j\", \"dir:target1,target2\"},\n\t\texpectedNewArgs: []string{\"snod\", \"-j\"},"
+      ]
+    ],
+    "build/soong/ui/build/config.go": [
+      [
+        1068,
+        "\n// splitArgs iterates over the arguments list and splits into two lists: arguments and directories.\nfunc splitArgs(args []string) (newArgs []string, dirs []string) {\n\tspecialArgs := map[string]bool{\n\t\t\"showcommands\": true,\n\t\t\"snod\":         true,\n\t\t\"dist\":         true,\n\t\t\"checkbuild\":   true,\n\t}\n"
+      ],
+      [
+        1151,
+        "\nfunc (c *configImpl) parseArgs(ctx Context, args []string) {\n\tfor i := 0; i < len(args); i++ {\n\t\targ := strings.TrimSpace(args[i])\n\t\tif arg == \"showcommands\" {\n\t\t\tc.verbose = true\n\t\t} else if arg == \"--empty-ninja-file\" {\n\t\t\tc.emptyNinjaFile = true\n\t\t} else if arg == \"--skip-ninja\" {\n\t\t\tc.skipNinja = true"
+      ]
+    ],
+    "build/soong/cmd/soong_ui/main.go": [
+      [
+        574,
+        "func runMake(ctx build.Context, config build.Config, _ []string) {\n\tlogsDir := config.LogsDir()\n\tif config.IsVerbose() {\n\t\twriter := ctx.Writer\n\t\tfmt.Fprintln(writer, \"! The argument `showcommands` is no longer supported.\")\n\t\tfmt.Fprintln(writer, \"! Instead, the verbose log is always written to a compressed file in the output dir:\")\n\t\tfmt.Fprintln(writer, \"!\")\n\t\tfmt.Fprintf(writer, \"!   gzip -cd %s/verbose.log.gz | less -R\\n\", logsDir)\n\t\tfmt.Fprintln(writer, \"!\")\n\t\tfmt.Fprintln(writer, \"! Older versions are saved in verbose.log.#.gz files\")"
+      ]
+    ]
+  },
+  "pins": {
+    "build/soong/ui/build/config_test.go": "6b180ed5193321a545a995fd4fcd03e5c914eee549168c83a4950ee79487ff9d",
+    "build/soong/ui/build/config.go": "b2719ca6a5335ac78af0f37e8a5f966c52932cd9673796929c230bb5c9bb99d5",
+    "build/soong/cmd/soong_ui/main.go": "6c97d2aa3ff006de5967f0de031bfec4032cf10803f5d4974120f611628fb8bb"
+  }
+}

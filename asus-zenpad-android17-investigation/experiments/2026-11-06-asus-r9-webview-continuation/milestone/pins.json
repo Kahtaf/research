@@ -1,0 +1,8 @@
+{
+  "MILESTONE.json": "b73988f5565df5b7cf54fb49acbcc23c98b8b5b0a07027082ce9a55033c2ee44",
+  "receipts/artifact-check.json": "097e21b799315475b2ac7434c01805cf1446e0afe8084583bddc4e62d843fd46",
+  "receipts/final-source-audit.json": "4943a9ffbe4a5fefb29877186d1752246d83a89851fad73d931071c56e9b4cd9",
+  "receipts/lineage-lfs-batch.json": "45a46e4ec088e1a73cc00b884b72870a91a01daad2ad2cd83c7db2eaa594a7bf",
+  "receipts/selected-lfs-product-audit.json": "4027ee8693592333385cbde0ea7bbbe9098c71ae672414ac9787d5a8a866e733",
+  "receipts/source-origin.json": "3023056ab52b4acb946ae98935e985af7128ec7e1d12184f2a6123f2065fa3fe"
+}

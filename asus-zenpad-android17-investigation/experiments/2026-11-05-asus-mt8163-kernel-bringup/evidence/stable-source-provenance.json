@@ -1,0 +1,8 @@
+{
+  "repo": "https://github.com/amazon-oss/android_kernel_amazon_mt8163",
+  "commit": "dc63af1741072236efb511499f1f0b9dd281d694",
+  "archive_sha256": "b64ccd9545967628d4cb4b280ef11863cf04aebd414eac47fd9062a73283de91",
+  "archive_bytes": 153840209,
+  "source_entries": 64983,
+  "role": "pre-backport Linux 4.9.337 hardware baseline; Android 17 features not yet ported"
+}

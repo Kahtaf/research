@@ -1,0 +1,64 @@
+{
+  "actual_btf_header": [
+    60319,
+    1,
+    0,
+    24,
+    0,
+    1384,
+    1384,
+    5772
+  ],
+  "reference_btf_header": [
+    60319,
+    1,
+    0,
+    24,
+    0,
+    1384,
+    1384,
+    5836
+  ],
+  "type_bytes_identical": false,
+  "type_sha256": "a1a49628763742c3627d123195054c73dbf95afb4db287f4f7f8eda0bf13edd3",
+  "actual_only_strings": [
+    "hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.c"
+  ],
+  "reference_only_strings": [
+    "/srv/android/asus-linux49-power-supply-filter-20261106/snapshot/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.c"
+  ],
+  "ext_actual_header": [
+    60319,
+    1,
+    0,
+    32,
+    0,
+    20,
+    20,
+    11116,
+    11136,
+    0
+  ],
+  "ext_reference_header": [
+    60319,
+    1,
+    0,
+    32,
+    0,
+    20,
+    20,
+    11116,
+    11136,
+    0
+  ],
+  "source_path_pins": {
+    "/srv/android/lineage24/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.c": {
+      "exists": true,
+      "sha256": "71566db1d1609edded3261b5557fe1f62eea7f5387264105c8ddbec0a8f9ab84"
+    },
+    "/srv/android/asus-linux49-power-supply-filter-20261106/snapshot/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.c": {
+      "exists": true,
+      "sha256": "71566db1d1609edded3261b5557fe1f62eea7f5387264105c8ddbec0a8f9ab84"
+    }
+  }
+}

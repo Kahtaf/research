@@ -1,0 +1,32 @@
+[
+  {
+    "path": "fixture/libp00a_camera_abi_probe.so",
+    "sha256": "b9d4a22c7c09d37e21e86356118be0cccc407285b9d68818b5e871999882bea5",
+    "bytes": 10288
+  },
+  {
+    "path": "fixture/camera_abi_probe.o",
+    "sha256": "2ec14af6f190fc02f6af3a7194bc691c0e60a65a1bf5ce58fd17c51008ae15cd",
+    "bytes": 5208
+  },
+  {
+    "path": "fixture/enum_oem.o",
+    "sha256": "042da01ec95475c52559677ddb70dce016e987eb1d458d67b841e870a60b58d6",
+    "bytes": 3336
+  },
+  {
+    "path": "fixture/enum_kernel49.o",
+    "sha256": "d11fab71cc2286c1662727d376d0c0c50f886d90d23176a065ea1158f9789ec9",
+    "bytes": 3352
+  },
+  {
+    "path": "evidence/input-pins.json",
+    "sha256": "f1aaa794d3d5fff09bb5e2541540426772cbe57a750a19c3ab00be959d78de82",
+    "bytes": 21726
+  },
+  {
+    "path": "evidence/compile.json",
+    "sha256": "4e8126f48837b02ffc273d3847c2250d72e25d9986fe146c34f6c96ca2acfb2e",
+    "bytes": 19505
+  }
+]

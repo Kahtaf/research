@@ -1,0 +1,15 @@
+# Minimal-platform experiment: partial progress, experiment 3 remains open
+
+One exact recovery-only installation passed full readback, followed by one acknowledged recovery reboot. Installed full p10: `9939e802ab349dd01fe5ab9c643f2ce0d3219846e3f54513a9b1e9982146965c`.
+
+Fresh retained entry identifies the exact reduced-platform kernel/config/run. PID1 reports Linux 4.9, SCHED_OTHER policy 0 / priority 0 / nice 0, and starts the 2,000,000-iteration computation. No compute-end, timer stage, success or helper error is retained. Two generic-adc-thermal deferred-probe messages follow compute-begin. This establishes subsequent kernel logging, not that PID1's write returned, that arithmetic failed, or that the whole machine remained live. Removed consumers did not clear the observed boundary in this exposure; no exclusive cause follows.
+
+Stock returned over USB with a different verified boot ID `df901361-e9b9-4305-af24-292756b66e1e`. The origin of that return (automatic versus manual) is not established. No BOOT/SYSTEM/DATA image was written.
+
+Complete original retained capture: 16,737 bytes, SHA256 `d8875e65366c8bf6e8a7ddffe0c1d05edea5f11b2cf3210a28cd85163cdc5096`; private raw path is recorded in evidence/collection.json. The supplied strict decoder additionally refuses the known second OEM framing line, `Not Clear, old status is 32.` Original decoder refusal is preserved; no positive admission or altered raw was manufactured. Independently selected exact fresh markers remain partial, so resolving that parser framing would not yield a pass.
+
+Opus 5.5 consultation completed with confirmed model, no fallback: ../2026-11-08-asus-opus55-minimal-platform-result/OPUS-RESPONSE.md. Its next action was to inspect existing retained bytes and cached reboot information before building again. That read-only assessment was performed. Some consultant suggestions exceed the evidence: no calibrated arithmetic duration is available, later logs do not prove sustained execution, and decimal 32 cannot be mapped to RGU hardware bits without establishing which source populated the field.
+
+One cached /proc/aed/reboot-reason read produced 6,494 bytes and includes LAST PC. CPU0 numeric PC `0xffffff80082f6114` maps to this exact candidate's `__delay+0x44`; other cores' cached PCs are zero. Capture epoch and firmware latch semantics remain unproved, so this is a lead, not the proven stall location. Cached report and exact map binding are in evidence/cached-reboot-report.json and evidence/cached-pc-map.json. No live LASTPC sysfs reread occurred.
+
+Experiment sequence: 1 reporter calibration closed; 2 actual 4.9 entry/PID1 proved; 3 normal-priority RAM/timer liveness OPEN; 4 storage/recovery OPEN; 5 Android 17 physical first flash not started. This attempt ends here. No automatic new build, image variant or physical repeat. Before another experiment, assess whether the delay-loop lead can be tied to the fresh run and a single falsifiable intervention; do not resume consumer-removal or logging variants without that decision.

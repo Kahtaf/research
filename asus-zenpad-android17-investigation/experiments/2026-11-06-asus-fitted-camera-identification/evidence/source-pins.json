@@ -1,0 +1,14 @@
+{
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/imgsensor/src/mt8163/kd_sensorlist.c": {
+    "sha256": "6a5158f7b932cd0e431fa793f64d860eb6b8bf9fd70156fde639e8b4fdb399b0",
+    "copy": "kd_sensorlist.c"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/imgsensor/inc/kd_camera_feature.h": {
+    "sha256": "8678d7ee26f4f14ac458b0353494b129c1ab1317814ba8e3c1ebe95c2d847ffc",
+    "copy": "kd_camera_feature.h"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/imgsensor/inc/kd_imgsensor.h": {
+    "sha256": "a591d026637ca60919a9e1b79c724f7b54896ed674d98f82ef48c3ec9beb640c",
+    "copy": "kd_imgsensor.h"
+  }
+}

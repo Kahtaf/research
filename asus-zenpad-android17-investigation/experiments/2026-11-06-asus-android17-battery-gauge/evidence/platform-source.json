@@ -1,0 +1,26 @@
+[
+  {
+    "repository": "hardware/interfaces",
+    "revision": "a0221f11248a924532444fc7de85d41998b9fe1e",
+    "path": "health/aidl/default/Health.cpp",
+    "sha256": "9078170dc915bbba6d0be195676b039317a62230ead340807957cd078fcf770e"
+  },
+  {
+    "repository": "hardware/interfaces",
+    "revision": "a0221f11248a924532444fc7de85d41998b9fe1e",
+    "path": "health/aidl/default/include/health-impl/Health.h",
+    "sha256": "5cb21c83f4dab63e52123703892c51a7039b78e9303715623424e12126f0fa6e"
+  },
+  {
+    "repository": "system/core",
+    "revision": "65d661b1a536701e8b118be4e9728d7b5ca727c9",
+    "path": "healthd/BatteryMonitor.cpp",
+    "sha256": "54a134e69b56d32db2782a9f42ef3c30f11c08c6fdb3f7ecdc68fbff5b3701ce"
+  },
+  {
+    "repository": "frameworks/base",
+    "revision": "696a5773fa284f53429dbb6c3e5dcc96bf5bd0b3",
+    "path": "services/core/java/com/android/server/BatteryService.java",
+    "sha256": "14575e58a8782eae112bd469b588ef48322fa8813c0ef79b3f93610e4e47f161"
+  }
+]

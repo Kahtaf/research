@@ -1,0 +1,27 @@
+From 5ab69989839edfa650ed28876f2128e6ed467b9d Mon Sep 17 00:00:00 2001
+From: ASUS Android Port <asus-port@localhost>
+Date: Thu, 5 Nov 2026 19:16:18 +0000
+Subject: [PATCH] erofs: match MT8163 kstat attribute representation
+
+This baseline has kstat.attributes but no per-filesystem attributes_mask; its older statx result code clears that reserved field. Keep the supported immutable/compressed flags.
+---
+ fs/erofs/inode.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/fs/erofs/inode.c b/fs/erofs/inode.c
+index 3350ab6..294f28c 100644
+--- a/fs/erofs/inode.c
++++ b/fs/erofs/inode.c
+@@ -302,8 +302,7 @@ int erofs_getattr(const struct path *path, struct kstat *stat,
+ 		stat->attributes |= STATX_ATTR_COMPRESSED;
+ 
+ 	stat->attributes |= STATX_ATTR_IMMUTABLE;
+-	stat->attributes_mask |= (STATX_ATTR_COMPRESSED |
+-				  STATX_ATTR_IMMUTABLE);
++	/* This MT8163 kstat exposes attributes without a per-filesystem mask. */
+ 
+ 	generic_fillattr(inode, stat);
+ 	return 0;
+-- 
+2.43.0
+

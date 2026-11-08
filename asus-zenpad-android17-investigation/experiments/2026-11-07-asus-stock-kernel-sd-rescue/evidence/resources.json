@@ -1,0 +1,11 @@
+{
+  "owned_fixture": "/srv/android/asus-stock-kernel-sd-rescue-20261107",
+  "allocated_bytes": 10104832,
+  "allocation_limit_bytes": 100663296,
+  "address_space_limit_bytes": 99614720,
+  "parallel_jobs": 1,
+  "cpu_affinity": [
+    0
+  ],
+  "kernel_platform_build": false
+}

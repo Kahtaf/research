@@ -1,0 +1,142 @@
+[
+  {
+    "url": "https://chromium.googlesource.com/build/+/refs/tags/siso/v1.5.8/siso/build/step_manifest.go?format=TEXT",
+    "path": "/srv/android/asus-reviewed-build-kit/r9-fixtures/siso-source/siso_build_step_manifest.go",
+    "status": 200,
+    "sha256": "ff63e2438f2e5450c7ae6c9ca238c32f08f8c3cf88d0c42ec955bb16fbef6d9a",
+    "matching_context": [
+      {
+        "line": 16,
+        "text": "// TODO: unify cmd hash and edge hash into one hash."
+      },
+      {
+        "line": 17,
+        "text": "type stepManifest struct {"
+      },
+      {
+        "line": 18,
+        "text": "\t// hash of cmdline and rspfileContent."
+      },
+      {
+        "line": 19,
+        "text": "\tcmdHash []byte"
+      },
+      {
+        "line": 20,
+        "text": ""
+      },
+      {
+        "line": 21,
+        "text": "\t// inputs of the step."
+      },
+      {
+        "line": 22,
+        "text": "\tinputs []string"
+      },
+      {
+        "line": 23,
+        "text": "\t// outputs of the step."
+      },
+      {
+        "line": 24,
+        "text": "\toutputs []string"
+      },
+      {
+        "line": 25,
+        "text": "\t// hash of inputs/outputs/extra"
+      },
+      {
+        "line": 26,
+        "text": "\t// extra: sandbox"
+      },
+      {
+        "line": 27,
+        "text": "\tedgeHash []byte"
+      },
+      {
+        "line": 28,
+        "text": "}"
+      },
+      {
+        "line": 29,
+        "text": ""
+      },
+      {
+        "line": 30,
+        "text": "func newStepManifest(ctx context.Context, stepDef StepDef) *stepManifest {"
+      },
+      {
+        "line": 31,
+        "text": "\tinputs := stepDef.TriggerInputs(ctx)"
+      },
+      {
+        "line": 35,
+        "text": "\t\textra = append(extra, \"sandbox\")"
+      },
+      {
+        "line": 36,
+        "text": "\t}"
+      },
+      {
+        "line": 37,
+        "text": "\treturn &stepManifest{"
+      },
+      {
+        "line": 38,
+        "text": "\t\tcmdHash:  stepDef.CmdHash(),"
+      },
+      {
+        "line": 39,
+        "text": "\t\tinputs:   inputs,"
+      },
+      {
+        "line": 40,
+        "text": "\t\toutputs:  outputs,"
+      },
+      {
+        "line": 41,
+        "text": "\t\tedgeHash: calculateEdgeHash(inputs, outputs, extra),"
+      },
+      {
+        "line": 42,
+        "text": "\t}"
+      },
+      {
+        "line": 43,
+        "text": "}"
+      },
+      {
+        "line": 44,
+        "text": ""
+      },
+      {
+        "line": 45,
+        "text": "const unitSeparator = \"\\x1f\""
+      },
+      {
+        "line": 46,
+        "text": ""
+      },
+      {
+        "line": 47,
+        "text": "func calculateEdgeHash(inputs, outputs, extra []string) []byte {"
+      },
+      {
+        "line": 48,
+        "text": "\th := sha256.New()"
+      },
+      {
+        "line": 49,
+        "text": "\tfor _, fname := range inputs {"
+      },
+      {
+        "line": 50,
+        "text": "\t\tio.WriteString(h, fname)"
+      },
+      {
+        "line": 51,
+        "text": "\t\tio.WriteString(h, unitSeparator)"
+      }
+    ]
+  }
+]

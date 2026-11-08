@@ -1,0 +1,261 @@
+{
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/compatibility_matrix.202704.xml": {
+    "sha256": "c959780b61bfd9b6b3ca79bc2b81cec001b370b9d95a461ddd5df4eb703a7d3d",
+    "bytes": 23111
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/compatibility_matrix.device.xml": {
+    "sha256": "053afd6a78c16db4b49218a05f7210273260ccd7d8a452a3f896730c48f1e9b8",
+    "bytes": 681
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/compatibility_matrix.202504.xml": {
+    "sha256": "a21eba5d7ccf35458f3ca2e8205ea0be5105c4206537b4c95eb32ec4ca10d3c8",
+    "bytes": 60855
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/compatibility_matrix.202604.xml": {
+    "sha256": "2ce785af96e3a04b7b06f74c5a8461618a01dae15588d84db47119fccd67fb13",
+    "bytes": 23111
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/compatibility_matrix.8.xml": {
+    "sha256": "81effff226fab476871a04623d3286351c9f055e0ace004f13d3bc30fd68aba0",
+    "bytes": 100159
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/manifest.xml": {
+    "sha256": "03a42da380fb575cb454f88825dee08288350a6024974e3abaa4e99ffaf0a649",
+    "bytes": 1459
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/compatibility_matrix.202404.xml": {
+    "sha256": "cff153e45015e57e115c0f8fa48a777d360db356a4cca5f79c9956dd1dc265d8",
+    "bytes": 59653
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/compatibility_matrix.7.xml": {
+    "sha256": "34036c05c5b15165641d8a1b76ee2f1143fd102b315c204611cb73a8b05a92dd",
+    "bytes": 223512
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/manifest/manifest_services_android.frameworks.vibrator.xml": {
+    "sha256": "7cb3d23f37270e284f3979bb8c39316e4b3d58518cfd337d3fe5dd4718fdae85",
+    "bytes": 298
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/manifest/manifest_services_android.frameworks.location.xml": {
+    "sha256": "fd47c69a3f5298243fcfc21ff33dbf6cc24a68cd28eb219ddf75c3123323ece9",
+    "bytes": 329
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/manifest/manifest_android.frameworks.cameraservice.service.xml": {
+    "sha256": "997a729b5836499a0d4e6387a6019916070264fcf85645035e3b426b7a344d56",
+    "bytes": 549
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/manifest/manifest_services_android.frameworks.devicestate.xml": {
+    "sha256": "cc09de50d211dfc2e707ffc9148c85bb854f350c212b94ab8fb0972d254ad898",
+    "bytes": 300
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/manifest/android.system.suspend-service.xml": {
+    "sha256": "7eff4e114e33d1275dd99b0c1a5c91a04ef6f2ba84a7d1af32ad3635735371cb",
+    "bytes": 292
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/manifest/android.system.keystore2-service.xml": {
+    "sha256": "297270541e7c2d576df080fca26b0208fcc5be095a971cda7a2c15ccc52b3430",
+    "bytes": 305
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/manifest/manifest_media_c2_software.xml": {
+    "sha256": "efef93595686a610c379538578a5f42b70e27717d8d2ae3a9a4c47fb408a6cec",
+    "bytes": 545
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/manifest/android.frameworks.stats-service.xml": {
+    "sha256": "0a8c3597585cf9af2c7bdbb63307fe8b166eb353a1f61e29441d4a44c83ebacc",
+    "bytes": 302
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/manifest/android.system.net.netd-service.xml": {
+    "sha256": "341b514fec4eba4685925ac4e6734bae6061f2a4f9d0254b88ae39ee004f218f",
+    "bytes": 256
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/etc/vintf/manifest/android.system.vold-service.xml": {
+    "sha256": "a211b21a679093c11afde045b54113268af6135edfa0d70ecb806a93e5fddd93",
+    "bytes": 241
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/vendor/etc/vintf/compatibility_matrix.xml": {
+    "sha256": "3dbc1dd6ad2f9b39d4cb8a5a524b4406abeb0bdc3bcfa3f2d90ea24e5897e183",
+    "bytes": 469
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/vendor/etc/vintf/manifest.xml": {
+    "sha256": "729c614efee19e841e1498120ced7cdac9dd6cd391cada5cc1dafb103ad241f8",
+    "bytes": 1410
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/vendor/etc/vintf/manifest/ACCOUNT_REDACTED": {
+    "sha256": "dbe312649d238c79c4f1c66a1c68999b6849550f3b0ce06323cc56b3f02817c0",
+    "bytes": 339
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/vendor/etc/vintf/manifest/android.hardware.wifi.supplicant.xml": {
+    "sha256": "d8dce6d4a6f9ecd85b1d8b3bf59a545bd7ac92bd84038c81c3e3876364c9190c",
+    "bytes": 325
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/vendor/etc/vintf/manifest/lights.xml": {
+    "sha256": "9facfd491f532a4020e7f2967d61c83ecf4946a97c3c171c96df99dfeffc503a",
+    "bytes": 263
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/vendor/etc/vintf/manifest/health.xml": {
+    "sha256": "003387332ce9acc445966610bbb76abd2d634cda7e3c9363e16d97abeeb2ea6b",
+    "bytes": 264
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/product/etc/vintf/compatibility_matrix.lineage.xml": {
+    "sha256": "6f574ccb0f53d0ced955ef7c8f151a199ed3928c39ddfd945af43e6b4f8a26df",
+    "bytes": 3121
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/system_ext/etc/vintf/manifest.xml": {
+    "sha256": "f220a35e7874cd2d2103cc0b30fc12e56ecbd33e5b4708f576341e75d6b6dad6",
+    "bytes": 560
+  },
+  "/srv/android/lineage24/out/target/product/p00a/system/system_ext/etc/vintf/manifest/ACCOUNT_REDACTED": {
+    "sha256": "b0444198fcfedc428719034c6fcb926a66fa00e866ce5b857c1e2a0de47751f4",
+    "bytes": 350
+  },
+  "/srv/android/asus-r9-postbuild-validation-r2/validation/apex/apex-info-list.xml": {
+    "sha256": "4578d3c427926ac307a9bd794e0a8197eca08c122da8ebb15ad8686e9872d064",
+    "bytes": 11491
+  },
+  "/srv/android/lineage24/out/host/linux-x86/bin/checkvintf": {
+    "sha256": "f67a37ca56cc1fbb8cf5c919a69990e8493ab0a17248a9cd053ff97d7d1ba4c0",
+    "bytes": 6148224
+  },
+  "/srv/android/lineage24/device/asus/p00a/BoardConfig.mk": {
+    "sha256": "e5296e182b457ec662694e044fffd322bdc246d556783743d080c23f5e4bde55",
+    "bytes": 3500
+  },
+  "/srv/android/lineage24/device/asus/p00a/manifest.xml": {
+    "sha256": "320a21a0778bed69082a08bc457d58969352471130bf57ab241cbd71653fe0a6",
+    "bytes": 605
+  },
+  "/srv/android/lineage24/system/libvintf/VintfObject.cpp": {
+    "sha256": "400516d6679d96f102915dd7c0a14ddb0e45098b189ece42cb15136e220d04cb",
+    "bytes": 58877
+  },
+  "/srv/android/lineage24/system/libvintf/KernelInfo.cpp": {
+    "sha256": "29be0458d9cb8a772ed946e90279a98f7d4adf7981bddebb29c7b22fcd662143",
+    "bytes": 11489
+  },
+  "/srv/android/lineage24/system/libvintf/AssembleVintf.cpp": {
+    "sha256": "ca48ba1c341537d3ce19dc8c852e012572ee0c3977037636a004c844a54426de",
+    "bytes": 41208
+  },
+  "/srv/android/lineage24/system/libvintf/check_vintf.cpp": {
+    "sha256": "294fad7f990bae008cafc66e394bbe3dfe63ad69a90e471fee90bd7c366127dd",
+    "bytes": 22927
+  },
+  "/srv/android/lineage24/system/libvintf/RuntimeInfo.cpp": {
+    "sha256": "33964ca938c18ec47bb90666dd8bcefbce8c8532942ebea0caf4f20c8425ae97",
+    "bytes": 7963
+  },
+  "/srv/android/lineage24/system/libvintf/CompatibilityMatrix.cpp": {
+    "sha256": "13f43016a7540ce886ca2b281fbadd770a41e99a3df803ac2b1894c30a1264dc",
+    "bytes": 19617
+  },
+  "/srv/android/lineage24/hardware/interfaces/compatibility_matrices/build/vintf_compatibility_matrix.go": {
+    "sha256": "70c159557c868a3c4dfab72073f7c279d86fce00a0d2c87fd35bd0ab6a40b66c",
+    "bytes": 11603
+  },
+  "/srv/android/lineage24/kernel/configs/build/kernel_config.go": {
+    "sha256": "8a057bb73a3835ba20e90eca450257e6d3421f610ffd310030573f5531401409",
+    "bytes": 4754
+  },
+  "/srv/android/lineage24/kernel/configs/t/android-4.14/android-base.config": {
+    "sha256": "8a16d0ea5ac4d9ac9df4aaf0ac2c1cadfbd6db2fef01bad3b0c2ac18e69de305",
+    "bytes": 6533
+  },
+  "/srv/android/lineage24/kernel/configs/t/android-4.14/android-base-conditional.xml": {
+    "sha256": "076b1bf0f6bff22ab73be9a475be4caed3793c719611a29a20be593cfb34f051",
+    "bytes": 4589
+  },
+  "/srv/android/lineage24/system/libvintf/constants-private.h": {
+    "sha256": "adacbc32086d61199ddc61bf7c40e521c9b20351c87e404f73f51114361b7ab4",
+    "bytes": 3980
+  },
+  "/srv/android/lineage24/system/libvintf/test/AssembleVintfTest.cpp": {
+    "sha256": "55154f7aff535830ae1d298afa2a0952f688a9d45b8efd7cba13a3f4d4d990cb",
+    "bytes": 34091
+  },
+  "/srv/android/lineage24/system/libvintf/xsd/compatibilityMatrix/vts/ValidateCompatibilityMatrix.cpp": {
+    "sha256": "ab95a7bf5c896c8ef8b7951ad77da5039c6facedf31043369b0ea8b4761e1daf",
+    "bytes": 1284
+  },
+  "/srv/android/lineage24/system/libvintf/xsd/halManifest/vts/ValidateHalManifest.cpp": {
+    "sha256": "b4b6d0870c9666d56eda60f81c824506b9aaf6fbf3fd93aa4ffc406d0f6f901b",
+    "bytes": 3621
+  },
+  "/srv/android/lineage24/system/core/init/init_test.cpp": {
+    "sha256": "cbd630d22661a8d4fb915df498505b87a92b92dbdb43e9cdd6d58d383b2aab28",
+    "bytes": 32852
+  },
+  "/srv/android/lineage24/system/core/init/property_service.cpp": {
+    "sha256": "5c3c53b56705328e1d482c897df6e8ab129c4998efab620595aec717464df4be",
+    "bytes": 60476
+  },
+  "/srv/android/lineage24/system/libvintf/HalManifest.cpp": {
+    "sha256": "bb025efbd6c34c0a973c29153e4b4e4af7f5e75998e587b3c983952d4c0b9fa3",
+    "bytes": 32870
+  },
+  "/srv/android/lineage24/system/libvintf/parse_xml.cpp": {
+    "sha256": "1e2acedb6f73cb289912c8d3c4d9ce1c101c6f6ad7531b4375092695467bb2ac",
+    "bytes": 70149
+  },
+  "/srv/android/lineage24/hardware/interfaces/compatibility_matrices/Android.bp": {
+    "sha256": "648d30be0f0703b02bbc7a867b90d749df4e115ce37e09948c207ffb5bf958cb",
+    "bytes": 4758
+  },
+  "/srv/android/lineage24/kernel/configs/Android.bp": {
+    "sha256": "d93805f6f89123e673df199981e6c159672ad3c591b2742882c65e17a8036899",
+    "bytes": 1048
+  },
+  "/srv/android/lineage24/build/make/core/Makefile": {
+    "sha256": "9eb413b3ac0eea5f111698495c8ea8d9631f76f5e6f5a8fe99647ee17d071be2",
+    "bytes": 384570
+  },
+  "/srv/android/lineage24/build/make/core/board_config.mk": {
+    "sha256": "b567a3a82019449f13fdb4522216ee419d991d25039ffc5c40c67729fe030c56",
+    "bytes": 46045
+  },
+  "/srv/android/lineage24/system/libvintf/RuntimeInfo-target.cpp": {
+    "sha256": "992f55413ea575ff1159060b96da5055b168f8a21e6a806f3a79dbe94a534810",
+    "bytes": 5887
+  },
+  "/srv/android/lineage24/system/libvintf/RuntimeInfo-host.cpp": {
+    "sha256": "654ec32f3e8352f2aaa02f6c95db01c1444c441d4860ba0a8a6b6ebbb5679d77",
+    "bytes": 974
+  },
+  "/srv/android/lineage24/system/libvintf/include/vintf/CheckFlags.h": {
+    "sha256": "36b7f1f705c25cf6d58882627d6e29c6ba376c6d11ff1042ed27d4d760366bf9",
+    "bytes": 2385
+  },
+  "/srv/android/lineage24/system/libhidl/vintfdata/Android.bp": {
+    "sha256": "fa9e0b07f4e9588b9fc1221f95b4017ccdc07677a4f6ff3d089eb464f7d01f66",
+    "bytes": 1510
+  },
+  "/srv/android/lineage24/build/soong/android/vintf_data.go": {
+    "sha256": "af3a6ecd77510ea5190401eaec9b85cb042a5e54c25ddd6f0dc53e76cee84c4d",
+    "bytes": 6016
+  },
+  "/srv/android/lineage24/build/soong/android/vintf_fragment.go": {
+    "sha256": "baa2ee5ad312856ac5a25ae464632f84852f85824d7b89a759c088122a94dc1c",
+    "bytes": 3257
+  },
+  "/srv/android/lineage24/system/libvintf/assemble_vintf_main.cpp": {
+    "sha256": "32d9a49e207bc9c0096ca1e1e7d95e088482a5a39b79819e3400120b0077b6e1",
+    "bytes": 6728
+  },
+  "/srv/android/lineage24/system/libvintf/include/vintf/Level.h": {
+    "sha256": "793c5c46e7ea8955571281dbecaae15572888741cebd754170844bb2ee563db9",
+    "bytes": 2318
+  },
+  "/srv/android/lineage24/system/libvintf/MatrixKernel.cpp": {
+    "sha256": "7f96aed0d4b47bb97c4b282a92d401283bd7d660192b1f3106e5bb5fc9cd761f",
+    "bytes": 1105
+  },
+  "/srv/android/lineage24/kernel/configs/tools/Android.bp": {
+    "sha256": "24b713544e72edc9419499fb000af0c764b46091c86f1aec793e7e5d43c1ecf0",
+    "bytes": 252
+  },
+  "/srv/android/lineage24/kernel/configs/t/android-4.14/Android.bp": {
+    "sha256": "1f3932aee5a23196314a12251ddad543ad7a6a8923a9e5ed154f80677688abd1",
+    "bytes": 869
+  },
+  "/srv/android/asus-bmc156-full-kernel-r1/export-compact/artifacts/resolved.config": {
+    "sha256": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2"
+  }
+}

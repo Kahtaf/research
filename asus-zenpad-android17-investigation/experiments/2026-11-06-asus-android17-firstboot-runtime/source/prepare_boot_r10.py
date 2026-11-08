@@ -1,0 +1,10 @@
+from pathlib import Path
+import subprocess as s, shutil,json,hashlib
+R=Path('/srv/android/asus-firstboot-runtime');I=R/'inputs/boot-r10';assert not I.exists();shutil.copytree(R/'inputs/boot-r9',I,symlinks=True)
+cmd=json.loads((R/'evidence/observer-compile.json').read_text())['command'];cmd=[x.replace(str(R/'source/observer.c'),str(R/'source/observer_r3.c')).replace(str(R/'artifacts/observer'),str(R/'artifacts/observer-r3')).replace(str(R/'inputs/observer-r1/observer.d'),str(R/'evidence/observer-r3.d')) for x in cmd]
+p=s.run(cmd,capture_output=True,text=True);(R/'evidence/observer-r3-compile.json').write_text(json.dumps(dict(command=cmd,returncode=p.returncode,stdout=p.stdout,stderr=p.stderr),indent=2));assert p.returncode==0,p.stderr
+shutil.copyfile(R/'artifacts/observer-r3',I/'root/system/bin/firstboot-observer');(I/'root/system/bin/firstboot-observer').chmod(0o755)
+(I/'observer-r3-manifest.json').write_text(json.dumps(dict(source_sha256=hashlib.sha256((R/'source/observer_r3.c').read_bytes()).hexdigest(),elf_sha256=hashlib.sha256((R/'artifacts/observer-r3').read_bytes()).hexdigest(),cgroups_sha256=hashlib.sha256((I/'root/system/etc/cgroups.json').read_bytes()).hexdigest(),fixture_changes='Only read-only observations and the same allowed/denied non-readiness property tests; unchanged platform init commands'),indent=2))
+p=I/'root/system/etc/init/hw/init.rc';text=p.read_text();needle='    exec_start firstboot-observer\n';assert text.count(needle)==1;p.write_text(text.replace(needle,needle+'    write /dev/kmsg FIRSTBOOT_COLDBOOT_PROPERTY=${ro.cold_boot_done}\n'))
+script=(R/'source/run_boot.py').read_text().replace("I=R/'inputs/boot-r8'","I=R/'inputs/boot-r10'").replace('kernel-build-r5/arch/arm64/boot/Image','kernel-build-r6/arch/arm64/boot/Image');script=script.replace("for n in ['seed_exec.c','run_boot.py','prepare_boot.py']:shutil.copyfile(R/'source'/n,O/n)","for n in ['seed_exec.c','run_boot_r10.py','prepare_boot_r10.py','observer_r3.c']:shutil.copyfile(R/'source'/n,O/n)");(R/'source/run_boot_r10.py').write_text(script)
+print('boot r10 prepared')

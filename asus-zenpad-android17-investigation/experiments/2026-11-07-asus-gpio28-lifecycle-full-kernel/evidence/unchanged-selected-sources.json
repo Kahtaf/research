@@ -1,0 +1,26 @@
+{
+  "drivers/pinctrl/mediatek/pinctrl-mt8163.c": {
+    "baseline": "6878fb35e9e21831b1d734e3cb9120dd1567881dfd0074605515f3703bd25608",
+    "owned": "6878fb35e9e21831b1d734e3cb9120dd1567881dfd0074605515f3703bd25608"
+  },
+  "init/main.c": {
+    "baseline": "f7110828626521dc7a2058d5cf4da47fb7fadea1a48a47ecc71f6166a7c0a50a",
+    "owned": "f7110828626521dc7a2058d5cf4da47fb7fadea1a48a47ecc71f6166a7c0a50a"
+  },
+  "mm/vmscan.c": {
+    "baseline": "33c9d68ebf4d8dc5d8e6580b43eaabf9c8825c5cc008cc27aaea081a184e0214",
+    "owned": "33c9d68ebf4d8dc5d8e6580b43eaabf9c8825c5cc008cc27aaea081a184e0214"
+  },
+  "net/core/dev.c": {
+    "baseline": "c837efdb79e2e109d2faccfa8306ca2e0145cebf06f2b8cad5dd93a398a6ed06",
+    "owned": "c837efdb79e2e109d2faccfa8306ca2e0145cebf06f2b8cad5dd93a398a6ed06"
+  },
+  "sound/soc/mediatek/mt_soc_audio_8163/mt_soc_afe_control.c": {
+    "baseline": "ae453e0b83761d69584454f29f73fdf25aae133497e00c36e5a25f4ff2081a24",
+    "owned": "ae453e0b83761d69584454f29f73fdf25aae133497e00c36e5a25f4ff2081a24"
+  },
+  "sound/soc/mediatek/mt_soc_audio_8163/mt_soc_pcm_routing.c": {
+    "baseline": "c458de71bb3c2cccd8b0d39a4c7c6e3a75f962cc8bdda44697eacca4f30bbd3a",
+    "owned": "c458de71bb3c2cccd8b0d39a4c7c6e3a75f962cc8bdda44697eacca4f30bbd3a"
+  }
+}

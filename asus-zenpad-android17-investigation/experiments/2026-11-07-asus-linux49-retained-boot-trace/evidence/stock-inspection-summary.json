@@ -1,0 +1,74 @@
+{
+  "ram_console_check_header": {
+    "address": "0xffffffc0006951c0",
+    "image_offset": 6377920,
+    "bytes": 176,
+    "sha256": "d91a3913c3e8d43791759182df6c8835a4e94a6400072d6daeada481bc9474ce"
+  },
+  "ram_console_pstore_reserve_memory": {
+    "address": "0xffffffc000695270",
+    "image_offset": 6378096,
+    "bytes": 56,
+    "sha256": "28e709f8c4853d758f30efc4a8d9f0fe025fa402617091e3a0b63778bb180351"
+  },
+  "ram_console_binary_reserve_memory": {
+    "address": "0xffffffc0006952a8",
+    "image_offset": 6378152,
+    "bytes": 56,
+    "sha256": "0c5300b2d260fc839dfbaf2b839a02d8743d4ab65de509cbdc9dd6e49a7c43ac"
+  },
+  "ram_console_file_open": {
+    "address": "0xffffffc0006952e0",
+    "image_offset": 6378208,
+    "bytes": 36,
+    "sha256": "91cd56b08c4ecce8acdbd3d6ab221b40a578e880947f91c906b83443003caaf1"
+  },
+  "ram_console_show": {
+    "address": "0xffffffc000697190",
+    "image_offset": 6386064,
+    "bytes": 416,
+    "sha256": "e92ca41e6ea74755ace0de4e7a39ef43e4a7bd2ef910c1ec4910d5df8cc34101"
+  },
+  "ram_console_size": {
+    "address": "0xffffffc000697330",
+    "image_offset": 6386480,
+    "bytes": 16,
+    "sha256": "ab88797a3d65b6795b2ae3ea18d37db350fcdad1ef792826b04fc8b6f3bfcc0a"
+  },
+  "sram_log_save": {
+    "address": "0xffffffc000697340",
+    "image_offset": 6386496,
+    "bytes": 312,
+    "sha256": "366b2595b4fe55721b49165e78ca9e2ce7e7be506f2ec62a86e63eff2872aba5"
+  },
+  "ram_console_write": {
+    "address": "0xffffffc000697478",
+    "image_offset": 6386808,
+    "bytes": 96,
+    "sha256": "7522dce8ab18862f95481c5f84ac5c7221db64d5952b87991b658ffd17aee5be"
+  },
+  "ram_console_enable_console": {
+    "address": "0xffffffc000697638",
+    "image_offset": 6387256,
+    "bytes": 60,
+    "sha256": "52687224076bfd6b04fb8574f0ec3fd636163cc501c6a2b6995b736f8d0baa98"
+  },
+  "ram_console_file_ops": {
+    "address": "0xffffffc000b79338",
+    "image_offset": 11506488,
+    "bytes": 232,
+    "sha256": "fc97ccfef1b4dbfb42b0b59170e5901169a35fab040b3b97fb4e69b0dbc00344"
+  },
+  "ram_console_late_init": {
+    "address": "0xffffffc000f412f0",
+    "image_offset": 15471344,
+    "bytes": 96,
+    "sha256": "45f76c904d0d7519e06ba3ec6997e0fa8414c7b31b7675df2617a1c46456bf2e"
+  },
+  "ram_console_early_init": {
+    "address": "0xffffffc000f41350",
+    "image_offset": 15471440,
+    "bytes": 576,
+    "sha256": "da7a041358995511c6028e3e2daa60eb7df7a2b03af5c117edf0a3ba133fc9c8"
+  }
+}

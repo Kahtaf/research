@@ -1,0 +1,40 @@
+{
+  "experiment": 2,
+  "outcome": "DUAL_POSITIVE_STOCK_CONTROL",
+  "parser_result": {
+    "run_uuid": "3de99973-f225-47d8-9b0b-6d51a530ce40",
+    "records": [
+      {
+        "magic": 4991493976441898318,
+        "x0": 1308622848,
+        "el": 8,
+        "sctlr": 818219056,
+        "status": 65535
+      }
+    ],
+    "record_commit": true,
+    "actual_complete_fresh_OEM_tag": true,
+    "actual_tag_offsets": [
+      7130
+    ],
+    "dual_positive": true,
+    "result": "DUAL_POSITIVE_STOCK_CONTROL",
+    "limitation": "Log parser only. Parent must establish log provenance, complete capture, one stock trial and stock return. This is not 4.9 entry proof."
+  },
+  "record_hex": {
+    "magic": "0x454559535452454e",
+    "x0": "0x4e000000",
+    "el": "0x8",
+    "sctlr": "0x30c50830",
+    "status": "0xffff"
+  },
+  "stock_boot_id": "3171bac7-a7e2-4d82-8a7f-60753b4343d8",
+  "complete_log_bytes": 150604,
+  "complete_log_sha256": "dddc5e2a148947020d96104fdadc742b7b99c3e8989bb0225b4bdab24ca12733",
+  "collector_receipt": "2026-11-07-asus-usb-retained-log-collector/evidence/retained-trace-940ff616-c8e6-416a-be17-d82c5159b845.json",
+  "candidate_p10_sha256": "ed054366765198d628f62086627a753daeae645cadf1d431be0e11315a649bbe",
+  "normal_stock_return_verified": true,
+  "physical_linux49_execution_proven": false,
+  "admitted_next": "One corrected4.9buildandoneentrytrial with exactparentminimum-boundcorrection; nootherchanges.",
+  "at": "2026-11-08T00:35:09.368273+00:00"
+}

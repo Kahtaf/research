@@ -1,0 +1,92 @@
+[
+  {
+    "path": "AGENTS.md",
+    "bytes": 1008,
+    "sha256": "835cd5650b62a9ec65fc09281d5f5133374107e1793fd659b1a1a27991685acb"
+  },
+  {
+    "path": "2026-11-05-asus-boot-access-audit/sources/firmware/lk.bin",
+    "bytes": 418048,
+    "sha256": "c5b5017ee3efdf018d9b6be7db978f29365c30e60a3fb9173660fda699f7b765"
+  },
+  {
+    "path": "2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin",
+    "bytes": 16740352,
+    "sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20"
+  },
+  {
+    "path": "2026-11-05-asus-boot-access-audit/artifacts/device-backup/verify/recovery.bin",
+    "bytes": 16740352,
+    "sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20"
+  },
+  {
+    "path": "2026-11-05-asus-boot-access-audit/evidence/live-lk-official-comparison.json",
+    "bytes": 133,
+    "sha256": "a2cf2b952afec155f0a4a31c95a5ba100e9211f1bff2e261ab7132ab5c2b61d4"
+  },
+  {
+    "path": "2026-11-06-asus-lk-linux49-handoff/REPORT.md",
+    "bytes": 20753,
+    "sha256": "21c6e8516f18a67529053b49131524566a2b5a53b40b4f1cf7bfd8696ad6ec74"
+  },
+  {
+    "path": "2026-11-06-asus-lk-linux49-handoff/evidence/input-receipts.json",
+    "bytes": 3612,
+    "sha256": "159deef46d59aa7eb18f13ba52efd77b15a14badacedd2b9abc4f9105d738c0e"
+  },
+  {
+    "path": "2026-11-06-asus-stock-userdata-recovery/REPORT.md",
+    "bytes": 24643,
+    "sha256": "0fb762afed44e510202df73c2e249aad0a6cc288db5fcfb7a61ede9fb3446be3"
+  },
+  {
+    "path": "2026-11-06-asus-stock-userdata-recovery/HANDOFF.json",
+    "bytes": 2739,
+    "sha256": "435bf7cf751519463cbba7edd80495ebc077db3534dd7bc011ed2df3d9c46060"
+  },
+  {
+    "path": "2026-11-06-asus-stock-userdata-recovery/evidence/parent-contract-acceptance.json",
+    "bytes": 666,
+    "sha256": "a81df89811ba8e15cc00a5b192d8df4f74b4b390baa1c5bc78f6f2d6df28eae3"
+  },
+  {
+    "path": "2026-11-06-asus-stock-userdata-recovery/evidence/partition-map.json",
+    "bytes": 3550,
+    "sha256": "d73349a34ff176f674587c812764f3b367254450b08e8c565ffb14da726ddecb"
+  },
+  {
+    "path": "2026-11-06-asus-factory-state-preservation/evidence/parent-preservation-acceptance.json",
+    "bytes": 1135,
+    "sha256": "19dafa5bdeef6a884794d22ae83da1dab01c385fb34c263e55bee30f2c781e22"
+  },
+  {
+    "path": "2026-11-05-asus-boot-access-audit/evidence/fastboot-secure.jsonl",
+    "bytes": 1079,
+    "sha256": "a7e34b9ff17401569393c074fad545b55e0b6eb996f3c68d60849693a5946d8d"
+  },
+  {
+    "path": "2026-11-05-asus-boot-access-audit/evidence/fastboot-unlocked.jsonl",
+    "bytes": 1078,
+    "sha256": "dd1d98542d1e278eaba747405cbf1d3195b26c0815c73f571dc669764e128548"
+  },
+  {
+    "path": "2026-11-05-asus-boot-access-audit/evidence/fastboot-product.jsonl",
+    "bytes": 1116,
+    "sha256": "f40a2d09176b0ac1d2b9c0be032b360316ab80588a7fbfd984466da7c7b0f7f9"
+  },
+  {
+    "path": "2026-11-05-asus-boot-access-audit/scripts/backup_partition_usb.py",
+    "bytes": 6784,
+    "sha256": "2029d8b4c843c452b8612103d38022875a97377158aa79d9fd642cdf6956c537"
+  },
+  {
+    "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/include/linux/mmc/mmc.h",
+    "bytes": 17844,
+    "sha256": "fbfeb20cba67e2342277294b144628a08ce699c62ae0ddbb19efa25f1bf7494f"
+  },
+  {
+    "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/include/linux/mmc/core.h",
+    "bytes": 8639,
+    "sha256": "c87d85f82a19364b753d6e0acf94d972d2fdb388310af4a91a273f083ec7900e"
+  }
+]

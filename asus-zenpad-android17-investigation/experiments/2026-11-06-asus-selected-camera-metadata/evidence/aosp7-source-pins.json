@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/android-7.0.0_r1/libc/include/dlfcn.h?format=TEXT",
+    "file": "inputs/aosp7_libc_include_dlfcn.h",
+    "sha256": "0c537de84f3e7d50fb7540ed428f86e9d8fc7a8e20fb9afdad0e4effdd98b61f",
+    "qualification": "Primary upstream Android 7 linker semantics; not proof of OEM linker patches"
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bionic/+/android-7.0.0_r1/linker/linker.cpp?format=TEXT",
+    "file": "inputs/aosp7_linker_linker.cpp",
+    "sha256": "281c6d1423f2e26de90664b0d561172ec573735b1cd665e485fc80197b107446",
+    "qualification": "Primary upstream Android 7 linker semantics; not proof of OEM linker patches"
+  }
+]

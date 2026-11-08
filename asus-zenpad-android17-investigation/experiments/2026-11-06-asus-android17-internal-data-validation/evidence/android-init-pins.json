@@ -1,0 +1,40 @@
+{
+  "pins": [
+    {
+      "repository": "/srv/android/lineage24/system/core",
+      "commit": "65d661b1a536701e8b118be4e9728d7b5ca727c9",
+      "path": "libcutils/include/private/android_filesystem_config.h",
+      "copy": "/srv/android/asus-internal-data-validation/inputs/android_filesystem_config.h",
+      "sha256": "faad70383216abcf935ec76678bb5b40ca65b6396a0028a8fa6ffe9b9087eb37",
+      "command": [
+        "git",
+        "-C",
+        "/srv/android/lineage24/system/core",
+        "show",
+        "65d661b1a536701e8b118be4e9728d7b5ca727c9:libcutils/include/private/android_filesystem_config.h"
+      ]
+    },
+    {
+      "repository": "/srv/android/lineage24/system/core",
+      "commit": "65d661b1a536701e8b118be4e9728d7b5ca727c9",
+      "path": "rootdir/init.rc",
+      "copy": "/srv/android/asus-internal-data-validation/inputs/committed-android-init.rc",
+      "sha256": "fbb9c80c87f31fd728c0657f30b38c68a5c02d5e066d2003dc7a1eaecfe49b3d",
+      "command": [
+        "git",
+        "-C",
+        "/srv/android/lineage24/system/core",
+        "show",
+        "65d661b1a536701e8b118be4e9728d7b5ca727c9:rootdir/init.rc"
+      ]
+    }
+  ],
+  "aids": {
+    "root": 0,
+    "system": 1000,
+    "keystore": 1017,
+    "media_rw": 1023,
+    "misc": 9998
+  },
+  "captured_init_matches_committed_source": true
+}

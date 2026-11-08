@@ -1,0 +1,562 @@
+--- r3/scripts/build.sh
++++ r7/scripts/build.sh
+@@ -2,19 +2,20 @@
+ # Called only by the lock-owning Python supervisor; foreground and incremental.
+ set -eo pipefail
+ kit=${1:?Pinned kit path required}
+-[[ "$kit" == /srv/android/asus-reviewed-build-kit/r3 ]]
++[[ "$kit" == /srv/android/asus-reviewed-build-kit/r7 ]]
+ [[ "${REVIEWED_BUILD_LOCK_FD:-}" =~ ^[0-9]+$ ]]
+ # Prove this is the inherited lock, then verify it still holds the same inode.
+ python3 -B "$kit/scripts/check_launch.py" "$kit"
+-record=/srv/android/asus-device-product/logs/full-build-r6
++record=/srv/android/asus-device-product/logs/full-build-r7
+ cd /srv/android/lineage24
+ unset WITH_ADB_INSECURE SELINUX_IGNORE_NEVERALLOWS SOONG_ALLOW_MISSING_DEPENDENCIES ALLOW_MISSING_DEPENDENCIES
+ # Preserve actual compiler/linker command lines for the final provenance guard.
+ export NINJA_ARGS="-v"
+ source build/envsetup.sh
+ lunch lineage_p00a-trunk_staging-userdebug
+-build/soong/soong_ui.bash --dumpvars-mode --vars='TARGET_BUILD_VARIANT TARGET_DEVICE TARGET_ARCH TARGET_KERNEL_SOURCE PLATFORM_SDK_VERSION PLATFORM_VERSION_LAST_STABLE PRODUCT_SHIPPING_API_LEVEL PRODUCT_OUT PRODUCT_BUILD_BOOT_IMAGE PRODUCT_BUILD_RAMDISK_IMAGE PRODUCT_BUILD_INIT_BOOT_IMAGE PRODUCT_BUILD_RECOVERY_IMAGE PRODUCT_BUILD_SYSTEM_IMAGE PRODUCT_BUILD_VENDOR_IMAGE PRODUCT_BUILD_PRODUCT_IMAGE PRODUCT_BUILD_SYSTEM_EXT_IMAGE PRODUCT_BUILD_USERDATA_IMAGE PRODUCT_BUILD_VBMETA_IMAGE BOARD_BOOTIMAGE_PARTITION_SIZE BOARD_SYSTEMIMAGE_PARTITION_SIZE TARGET_COPY_OUT_VENDOR TARGET_COPY_OUT_PRODUCT TARGET_COPY_OUT_SYSTEM_EXT PRODUCT_SYSTEM_PROPERTIES PRODUCT_SYSTEM_EXT_PROPERTIES PRODUCT_VENDOR_PROPERTIES PRODUCT_NOT_DEBUGGABLE_IN_USERDEBUG PRODUCT_ADB_KEYS PRODUCT_PACKAGES BOARD_VNDK_VERSION PRODUCT_PRODUCT_VNDK_VERSION SOONG_CONFIG_p00a_legacy_graphics SOONG_CONFIG_libion_legacy_impl BOARD_KERNEL_CMDLINE BOARD_MKBOOTIMG_ARGS SELINUX_IGNORE_NEVERALLOWS' > "$record.vars"
++build/soong/soong_ui.bash --dumpvars-mode --vars='TARGET_BUILD_VARIANT TARGET_DEVICE TARGET_ARCH TARGET_KERNEL_SOURCE PLATFORM_SDK_VERSION PLATFORM_VERSION_LAST_STABLE PRODUCT_SHIPPING_API_LEVEL PRODUCT_OUT PRODUCT_BUILD_BOOT_IMAGE PRODUCT_BUILD_RAMDISK_IMAGE PRODUCT_BUILD_INIT_BOOT_IMAGE PRODUCT_BUILD_RECOVERY_IMAGE PRODUCT_BUILD_SYSTEM_IMAGE PRODUCT_BUILD_VENDOR_IMAGE PRODUCT_BUILD_PRODUCT_IMAGE PRODUCT_BUILD_SYSTEM_EXT_IMAGE PRODUCT_BUILD_USERDATA_IMAGE PRODUCT_BUILD_VBMETA_IMAGE BOARD_BOOTIMAGE_PARTITION_SIZE BOARD_SYSTEMIMAGE_PARTITION_SIZE TARGET_COPY_OUT_VENDOR TARGET_COPY_OUT_PRODUCT TARGET_COPY_OUT_SYSTEM_EXT PRODUCT_SYSTEM_PROPERTIES PRODUCT_SYSTEM_EXT_PROPERTIES PRODUCT_VENDOR_PROPERTIES PRODUCT_NOT_DEBUGGABLE_IN_USERDEBUG PRODUCT_ADB_KEYS PRODUCT_PACKAGES BOARD_VNDK_VERSION PRODUCT_PRODUCT_VNDK_VERSION SOONG_CONFIG_p00a_legacy_graphics SOONG_CONFIG_libion_legacy_impl BOARD_KERNEL_CMDLINE BOARD_MKBOOTIMG_ARGS SELINUX_IGNORE_NEVERALLOWS BOARD_SEPOLICY_DIRS BOARD_VENDOR_SEPOLICY_DIRS BOARD_ODM_SEPOLICY_DIRS SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS PRODUCT_PUBLIC_SEPOLICY_DIRS PRODUCT_PRIVATE_SEPOLICY_DIRS BOARD_SYSTEM_EXT_SEPOLICY_PREBUILT_DIRS BOARD_PRODUCT_SEPOLICY_PREBUILT_DIRS SEPOLICY_FREEZE_TEST_EXTRA_DIRS SEPOLICY_FREEZE_TEST_EXTRA_PREBUILT_DIRS DEVICE_MANIFEST_FILE DEVICE_FRAMEWORK_MANIFEST_FILE PRODUCT_MANIFEST_FILES SYSTEM_EXT_MANIFEST_FILES SYSTEM_EXT_HWSERVICE_FILES ODM_MANIFEST_FILES' > "$record.vars"
+ python3 -B "$kit/scripts/verify_full_images.py" vars "$record.vars"
++python3 -B "$kit/scripts/verify_config_paths.py" "$record.vars" "$kit" "$kit/attempt/product-config-paths.json"
+ # Never repeat cleaning. The prior deployed product transition has its own receipt.
+ [[ -s /srv/android/asus-device-product/logs/full-product-installclean.complete ]]
+ m -j8 host_init_verifier simg2img e2fsck debugfs checkvintf apexd_host deapexer fsck.erofs secilc checkfc property_info_checker sepolicy_test sepolicy_neverallows android.hardware.health-service.asus-p00a services adb_root com.android.adbd p00a-wmt libbtcal libbt-vendor-p00a libbluetooth_mtk_p00a android.hardware.bluetooth@1.1-service.p00a wpa_supplicant wificond netbpfload netd bpfloader vold
+--- /dev/null
++++ r7/scripts/continuation.py
+@@ -0,0 +1,141 @@
++"""Exact already-integrated r3 continuation; the sole source write is BoardConfig."""
++import datetime
++import os
++from pathlib import Path
++import re
++import shutil
++
++R3_SEAL = 'a00ea8d7c944d45e3035296c81b31a369f13bde830f88a7165b0d7542960717c'
++PRE = '0e012287927a5b8ac3733f7fcc28d5cdc0eb1d8f06e82e0ff6ad211fe2f72f90'
++POST = '9207c304761cf86afb423641534ed383e7f8dae613e64061e972d2f65832aa4d'
++LOG = 'ee061d878227210f7c2330bb36ca13f76a9daa37e354a178d733327695cfd4e0'
++
++def sensor_delta(plan):
++    from integrate import read, need, sha
++    d = read(plan['sensor_delta'])
++    need(d == dict(relative='sensors/BoardConfig.mk', before=PRE, after=POST,
++                   old_line='P00A_ACCEL_BOARD_PATH := $(call my-dir)\n',
++                   new_line='P00A_ACCEL_BOARD_PATH := device/asus/p00a/sensors\n'), 'Sensor delta selection changed')
++    before = Path(plan['sensor_origin']) / 'BoardConfig.mk'
++    after = Path(plan['sensor_postimage'])
++    need(sha(before) == PRE and sha(after) == POST, 'Sensor delta pin mismatch')
++    need(before.read_bytes().count(d['old_line'].encode()) == 1 and
++         before.read_bytes().replace(d['old_line'].encode(), d['new_line'].encode()) == after.read_bytes(),
++         'Sensor delta must be the exact one-line replacement')
++    return d
++
++def continuation_inputs(plan):
++    from integrate import need, read, sha, verify_pins, manifest
++    d = sensor_delta(plan)
++    prior = Path(plan['prior_kit'])
++    need(plan['prior_kit_seal'] == R3_SEAL == sha(prior / 'inputs/kit-pins.json'), 'r3 ancestor seal changed')
++    need(verify_pins(prior) == R3_SEAL, 'r3 ancestor file drift')
++    pins = read(plan['prior_pins'])
++    actual_attempt = manifest(plan['prior_attempt'])
++    expected_attempt = {str(Path(k).relative_to(plan['prior_attempt'])): {'sha256': v['sha256']}
++                        for k, v in pins['attempt_files'].items()}
++    need(actual_attempt == expected_attempt, 'Preserved r3 attempt changed')
++    for path, row in pins['logs'].items():
++        need(sha(path) == row['sha256'] and Path(path).stat().st_size == row['bytes'], 'Prior r5/r6 evidence changed: ' + path)
++    actual_logs = {str(p) for rev in ('r5', 'r6') for p in Path(plan['logs']).glob('full-build-' + rev + '.*')}
++    need(actual_logs == set(pins['logs']), 'Prior r5/r6 evidence file set changed')
++    old = read(plan['prior_staged_receipt']); new = read(plan['staged_receipt'])
++    expected = read(plan['prior_staged_receipt'])
++    need(expected['product_after'][d['relative']] == {'sha256': PRE}, 'r3 sensor preimage changed')
++    expected['product_after'][d['relative']] = {'sha256': POST}
++    need(new == expected, 'r7 staged receipt contains unrelated changes')
++    old_sensor = read(plan['prior_sensor_receipt']); new_sensor = read(plan['sensor_receipt'])
++    old_sensor['files']['BoardConfig.mk'] = {'sha256': POST}
++    old_sensor['board_path_adjustment'] = 'One exact reviewed assignment replaces unavailable my-dir; policy and manifest unchanged'
++    need(new_sensor == old_sensor, 'r7 sensor receipt contains unrelated changes')
++    stage_manifest = read(plan['staging_manifest'])
++    need(manifest(plan['staging']) == stage_manifest, 'r7 staging file set or bytes changed')
++    original_manifest = read(Path(plan['run_root']) / 'inputs/r3-staging-manifest.json')
++    need(manifest('/srv/android/asus-product-integration-staging/r3') == original_manifest, 'r3 staging drift')
++    expected_stage = dict(original_manifest)
++    for name in ('STAGED.json','sensor-selection.json'):
++        expected_stage[name] = {'sha256': sha(plan['staged_receipt'] if name == 'STAGED.json' else plan['sensor_receipt'])}
++    expected_stage['product-device/' + d['relative']] = {'sha256': POST}
++    need(stage_manifest == expected_stage, 'r7 staging includes unrelated delta')
++    integration = read(plan['prior_integration'])
++    need(integration == read(prior / 'attempt/integration.json'), 'Prior integration receipt mismatch')
++    need(integration['product_after'] == old['product_after'] and
++         integration['staged_receipt_sha256'] == sha(plan['prior_staged_receipt']) and
++         integration['sensor_receipt_sha256'] == sha(plan['prior_sensor_receipt']), 'Prior r3 integration provenance mismatch')
++    for key, path in [('source_patch_sha256','patch'),('source_receipt_sha256','source_receipt'),('parent_parity_receipt_sha256','parity_receipt')]:
++        need(integration[key] == sha(plan[path]), 'Inherited integration provenance changed: ' + key)
++    need(integration['kernel_sha256'] == old['product_after']['prebuilt/Image.gz-dtb']['sha256'] and
++         integration['generated_defconfig']['sha256'] == old['kernel_config_sha256'], 'Inherited physical kernel/config changed')
++    need(integration['flash_ready'] is False, 'Unexpected physical acceptance')
++    return d
++
++def terminal(plan, review=None, describe=False):
++    from integrate import need, sha, read
++    prefix = Path(plan['logs']) / 'full-build-r6'
++    paths = {n: Path(str(prefix) + '.' + n) for n in ('started','finished','exit-code','log')}
++    need(all(p.is_file() and not p.is_symlink() and p.stat().st_size for p in paths.values()), 'r6 is not an actual terminal result')
++    need(paths['exit-code'].read_text().strip() == '1', 'Unexpected r6 exit; exact failure review required')
++    start = datetime.datetime.fromisoformat(paths['started'].read_text().strip())
++    end = datetime.datetime.fromisoformat(paths['finished'].read_text().strip())
++    need(start.tzinfo and end.tzinfo and start <= end <= datetime.datetime.now(datetime.timezone.utc), 'Incoherent r6 terminal times')
++    need(end.isoformat() == '2026-11-06T22:28:00.150539+00:00', 'Unexpected r6 terminal identity')
++    need(not Path(str(prefix) + '.complete').exists(), 'r6 failed result has success marker')
++    failed = Path(plan['prior_attempt']) / 'FAILED.json'
++    need(failed.is_file() and read(failed).get('retry_allowed') is False, 'r6 lacks preserved terminal FAILED.json')
++    need(sha(paths['log']) == LOG, 'Actual r6 terminal log changed')
++    pins = read(plan['prior_pins'])
++    for group in ('logs','attempt_files'):
++        for path, row in pins[group].items():
++            need(sha(path) == row['sha256'] and Path(path).stat().st_size == row['bytes'], 'Prior preservation pin changed: ' + path)
++    need({str(p) for p in Path(plan['prior_attempt']).rglob('*') if p.is_file() or p.is_symlink()} == set(pins['attempt_files']), 'Prior attempt file set changed')
++    need({str(p) for r in ('r5','r6') for p in Path(plan['logs']).glob('full-build-' + r + '.*')} == set(pins['logs']), 'Prior evidence file set changed')
++    observed = dict(revision='r6', exit_code=1, terminal_kind='ACTUAL_BUILD_FAILURE',
++                    terminal_log_sha256=LOG, r3_kit_pins_sha256=R3_SEAL,
++                    preservation=pins, images={p.name: {'sha256':sha(p),'bytes':p.stat().st_size}
++                    for p in sorted(Path(plan['product_out']).glob('*.img'))})
++    template = dict(reviewed_by_parent=False, reason='', prior=observed)
++    if describe:
++        return dict(status='TERMINAL_FAILED_REQUIRES_PARENT_REVIEW', review_template=template)
++    need(review is not None, 'Prior r6 actually failed: explicit hash-bound parent failure acceptance required')
++    path, digest = review
++    need(Path(path).resolve().is_relative_to(Path(plan['run_root']) / 'parent-review'), 'Failure acceptance must be in own parent-review directory')
++    need(re.fullmatch('[0-9a-f]{64}', digest or '') and not Path(path).is_symlink() and sha(path) == digest, 'Parent failure acceptance pin mismatch')
++    accepted = read(path)
++    need(set(accepted) == {'reviewed_by_parent','reason','prior'} and accepted['reviewed_by_parent'] is True and
++         isinstance(accepted['reason'], str) and bool(accepted['reason'].strip()), 'r6 failure not explicitly accepted by parent')
++    need(accepted['prior'] == observed, 'Actual r6 failure changed since parent acceptance')
++    return dict(terminal_kind='FAILED_REVIEWED_FOR_NEW_REVISION', observed=observed, parent_review_sha256=digest)
++
++def preserve(plan, attempt, previous):
++    from integrate import need, read, write, item, sha, safe
++    before = attempt / 'before'; before.mkdir()
++    d = sensor_delta(plan)
++    src = safe(plan['device'],d['relative']); dst = before / 'sensor-BoardConfig.mk'
++    need(item(src) == {'sha256':PRE}, 'Sensor preimage changed before preservation')
++    shutil.copy2(src,dst)
++    need(item(dst) == item(src), 'Sensor preservation failed')
++    logs = before / 'logs'; logs.mkdir()
++    for name, row in read(plan['prior_pins'])['logs'].items():
++        source = Path(name); destination = logs / source.name
++        shutil.copy2(source,destination)
++        need(sha(destination) == row['sha256'], 'Prior log preservation failed')
++    # Never rename/remove existing product images or touch incremental cache.
++    write(attempt / 'preservation.json', dict(sensor_preimage=dict(path=str(src),backup=str(dst),sha256=PRE),
++          r6_failure=previous, prior_attempt_preserved_in_place=plan['prior_attempt'],
++          prior_preservation_pins_sha256=sha(plan['prior_pins']),cache_preserved_in_place=True))
++
++def apply(plan, attempt):
++    from integrate import need, read, write, sha, manifest, safe, copy_exact, verify_integrated
++    d = sensor_delta(plan)
++    need(manifest(plan['device']) == read(plan['prior_staged_receipt'])['product_after'], 'r3 source changed before sole write')
++    copy_exact(plan['sensor_postimage'], safe(plan['device'],d['relative']), {'sha256':POST})
++    post = verify_integrated(plan, baseline=True)
++    write(attempt / 'postimages.json', post)
++    record = read(plan['prior_integration'])
++    record.update(product_after=manifest(plan['device']),staged_receipt_sha256=sha(plan['staged_receipt']),
++                  sensor_receipt_sha256=sha(plan['sensor_receipt']),
++                  prior_integration_receipt_sha256=sha(plan['prior_integration']),sensor_delta_sha256=sha(plan['sensor_delta']),
++                  source_writes=[dict(path=str(safe(plan['device'],d['relative'])),before=PRE,after=POST)],
++                  preservation_receipt_sha256=sha(attempt/'preservation.json'),
++                  active_source_postimages_sha256=sha(attempt/'postimages.json'),prior_kit_pins_sha256=R3_SEAL,revision='r7')
++    write(attempt/'integration.json',record)
+--- r3/scripts/integrate.py
++++ r7/scripts/integrate.py
+@@ -12,6 +12,7 @@
+ import subprocess
+ import sys
+ 
++from continuation import terminal, preserve, apply, continuation_inputs
+ from r3_inputs import SENSOR_SUFFIX, sensor_selection, source_composition, platform_selection, platform_destinations, apply_platform, verify_bundle, complete_kernel
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+@@ -102,49 +103,8 @@
+         raise Refusal('LIVE_BUILD_LOCK: original full-product lock is held')
+     return lock
+ 
+-def terminal(plan, review=None, describe=False):
+-    prior = Path(plan['logs']) / 'full-build-r5'
+-    paths = {n: Path(str(prior) + '.' + n) for n in ['started', 'finished', 'exit-code', 'complete', 'log', 'images.json']}
+-    for n in ('started', 'finished', 'exit-code', 'log'):
+-        need(paths[n].is_file() and paths[n].stat().st_size, 'Unknown prior result: missing ' + n)
+-    code = paths['exit-code'].read_text().strip()
+-    need(re.fullmatch(r'\d{1,3}', code) is not None and int(code) <= 255, 'Unknown prior exit code')
+-    start = datetime.datetime.fromisoformat(paths['started'].read_text().strip())
+-    end = datetime.datetime.fromisoformat(paths['finished'].read_text().strip())
+-    need(start.tzinfo and end.tzinfo and start <= end <= datetime.datetime.now(datetime.timezone.utc), 'Incoherent prior terminal time')
+-    if code != '0':
+-        need(not paths['complete'].exists(), 'Incoherent failed prior result: success marker exists')
+-        prior_files = sorted(Path(plan['logs']).glob('full-build-r5.*'))
+-        need(all(p.is_file() and not p.is_symlink() for p in prior_files), 'Unexpected failed-result file type')
+-        observed = {'exit_code': int(code), 'files': {p.name.removeprefix('full-build-r5.'): {'sha256': sha(p), 'bytes': p.stat().st_size}
+-                    for p in prior_files},
+-                    'images': {p.name: {'sha256': sha(p), 'bytes': p.stat().st_size}
+-                               for p in sorted(Path(plan['product_out']).glob('*.img'))}}
+-        if describe:
+-            return {'status': 'TERMINAL_FAILED_REQUIRES_PARENT_REVIEW',
+-                    'review_template': {'reviewed_by_parent': False, 'reason': '', 'prior': observed}}
+-        need(review is not None, 'Prior r5 failed: explicit hash-bound parent review required; no automatic retry')
+-        path, digest = review
+-        need(Path(path).resolve().is_relative_to(Path(plan['run_root']) / 'parent-review'), 'Prior review must be in isolated parent-review directory')
+-        need(re.fullmatch(r'[0-9a-f]{64}', digest) is not None and sha(path) == digest, 'Prior review pin mismatch')
+-        accepted = read(path)
+-        need(accepted.get('reviewed_by_parent') is True and bool(accepted.get('reason', '').strip()), 'Failed prior build not explicitly reviewed')
+-        need(accepted.get('prior') == observed, 'Prior result changed since parent review')
+-        return {'terminal_kind': 'FAILED_REVIEWED_FOR_NEW_PRODUCT', 'observed': observed, 'parent_review_sha256': digest}
+-    need(review is None, 'Failure review supplied for successful r5')
+-    need(paths['complete'].is_file() and paths['images.json'].is_file(), 'Success lacks real completion/image evidence')
+-    complete = datetime.datetime.fromisoformat(paths['complete'].read_text().strip())
+-    need(start <= complete <= end, 'Incoherent complete marker')
+-    image_report = read(paths['images.json'])
+-    need(image_report.get('variables', {}).get('PLATFORM_SDK_VERSION') == '37', 'Prior image report is not SDK37')
+-    for kind in ('boot', 'system'):
+-        image = Path(plan['product_out']) / (kind + '.img')
+-        need(sha(image) == image_report[kind]['sha256'], 'Prior output/report mismatch: ' + kind)
+-    # These files are produced by the pinned actual supervisor after successful checks.
+-    return {n: {'sha256': sha(p), 'bytes': p.stat().st_size} for n, p in paths.items()}
+-
+ def revision_unused(plan):
+-    need(plan['revision'] == 'r6', 'Reviewed next revision changed')
++    need(plan['revision'] == 'r7', 'Reviewed next revision changed')
+     need(not list(Path(plan['logs']).glob('full-build-' + plan['revision'] + '.*')), 'Revision already used; never overwrite or relaunch')
+     need(not (Path(plan['run_root']) / 'attempt').exists(), 'Previous attempt exists; partial failure stops permanently')
+ 
+@@ -184,26 +144,27 @@
+     need(manifest(Path(plan['staging']) / 'platform-connectivity') == s['connectivity'], 'Candidate Connectivity manifest mismatch')
+     need(set(net['connectivity_after']) == {'bpf/loader/NetBpfLoad.cpp', 'bpf/netd/BpfHandler.cpp', 'bpf/progs/netd.c'}, 'Connectivity11 selection mismatch')
+     need(s['connectivity'] == {k: {'sha256': v} for k, v in net['connectivity_after'].items()}, 'Connectivity receipt mismatch')
+-    need(manifest(plan['device']) == s['product_before'], 'Active device preimage mismatch')
++    continuation_inputs(plan)
++    need(manifest(plan['device']) == read(plan['prior_staged_receipt'])['product_after'], 'Already-integrated r3 device preimage mismatch')
+     changes = {k for k in s['product_before'].keys() | s['product_after'].keys() if s['product_before'].get(k) != s['product_after'].get(k)}
+     inputs = input_selection(plan, s, old)
+     sensors = sensor_selection(plan, s)
+     source_composition(plan, source)
+-    platforms = platform_selection(plan)
++    platforms = platform_selection(plan, phase='after')
+     supplement_files = verify_bundle(plan)
+     need(changes == set(old['changes']) | {'BoardConfig.mk', 'prebuilt/Image.gz-dtb'} | inputs | sensors, 'Product change selection mismatch')
+     need(s['product_before'] == old['before'], 'Radio original preimages differ')
+     for rel in old['changes']:
+         if rel not in ('BoardConfig.mk', 'device.mk', 'rootdir/ueventd.rc'):
+             need(s['product_after'][rel] == old['after'][rel], 'Radio postimage differs: ' + rel)
+-    for rel, digest in net['connectivity_before'].items():
++    for rel, digest in net['connectivity_after'].items():
+         need(item(safe(plan['connectivity'], rel)) == {'sha256': digest}, 'Connectivity preimage mismatch: ' + rel)
+-    need(item(plan['wificond']) == {'sha256': plan['wificond_before']}, 'wificond preimage mismatch')
+-    need(not Path(plan['defconfig']).exists(), 'Combined defconfig already present')
++    need(item(plan['wificond']) == s['product_after']['radio/wificond.rc'], 'wificond preimage mismatch')
++    need(sha(plan['defconfig']) == s['kernel_config_sha256'], 'Already-integrated config drift')
+     need(Path(plan['kernel_link']).resolve() == Path(plan['kernel']), 'Active kernel source link changed')
+     need(sha(plan['patch']) == source['patch_sha256'], 'Patch/source receipt mismatch')
+     for rel, change in source['changes'].items():
+-        expected = {'sha256': change['before']} if change['before'] else None
++        expected = {'sha256': change['after']}
+         need(item(safe(plan['kernel'], rel)) == expected, 'Kernel preimage mismatch: ' + rel)
+         need(item(safe(plan['compiled_fixture'], rel)) == {'sha256': change['after']}, 'Compiled fixture postimage mismatch: ' + rel)
+     count = 0
+@@ -213,59 +174,15 @@
+         need(head == snapshot['head'] == source['base_commit'], 'Active kernel base changed')
+         tracked = subprocess.check_output(['git', '-C', plan['kernel'], 'ls-files', '--cached', '--others', '--exclude-standard', '-z']).decode().strip('\0').split('\0')
+         selected = {p for p in tracked if safe(plan['kernel'], p).is_file()}
+-        need(selected == set(snapshot['files']), 'Active kernel source set differs from frozen baseline')
++        need(selected == set(snapshot['files']) | set(source['changes']) | {str(Path(plan['defconfig']).relative_to(plan['kernel']))}, 'Active kernel source set differs from frozen baseline')
+         for rel, digest in snapshot['files'].items():
+-            need(item(safe(plan['kernel'], rel)) == {'sha256': digest}, 'Baseline mismatch: ' + rel)
++            need(item(safe(plan['kernel'], rel)) == {'sha256': source['changes'].get(rel, {}).get('after', digest)}, 'Integrated baseline mismatch: ' + rel)
+             count += 1
+         need(count == 61976, 'Incomplete baseline')
+         compiled_count = complete_kernel(plan)
+     return {'active_baseline_files': count, 'kernel_postimages': 276, 'radio_changes': 25,
+             'total_product_changes': len(changes), 'input_mapping_files': len(inputs), 'sensor_source_files': len(sensors), 'platform_source_files': len(platforms), 'qualified_bpf_files': supplement_files, 'complete_compiled_files': compiled_count if baseline else None, 'connectivity_files': 3, 'scoped_parity': True,
+             'full_service_chain_accepted': False, 'flash_ready': False}
+-
+-def destinations(plan):
+-    s = read(plan['staged_receipt'])
+-    source = read(plan['source_receipt'])
+-    result = [(safe(plan['kernel'], p), 'kernel/' + p) for p in source['changes']]
+-    for rel in sorted(s['product_after']):
+-        if s['product_before'].get(rel) != s['product_after'][rel]:
+-            result.append((safe(plan['device'], rel), 'product/' + rel))
+-    net = read(plan['network_receipt'])
+-    result += [(safe(plan['connectivity'], p), 'Connectivity/' + p) for p in net['connectivity_after']]
+-    return result + platform_destinations(plan) + [(Path(plan['wificond']), 'wificond.rc'), (Path(plan['defconfig']), 'combined_defconfig')]
+-
+-def preserve(plan, attempt):
+-    archive = attempt / 'before'
+-    archive.mkdir()
+-    receipt = {}
+-    for src, rel in destinations(plan):
+-        before = item(src)
+-        receipt[str(src)] = before
+-        if before:
+-            dst = archive / rel
+-            dst.parent.mkdir(parents=True, exist_ok=True)
+-            shutil.copy2(src, dst, follow_symlinks=False)
+-            need(item(dst) == before, 'Source backup failed: ' + str(src))
+-    logs = archive / 'logs'
+-    logs.mkdir()
+-    for src in sorted(Path(plan['logs']).glob('full-build-r5.*')):
+-        need(src.is_file() and not src.is_symlink(), 'Unexpected prior log type')
+-        shutil.copy2(src, logs / src.name)
+-        need(sha(src) == sha(logs / src.name), 'Log preservation mismatch')
+-    images = archive / 'images'
+-    images.mkdir()
+-    # Preserve every prior image by moving its inode on the same filesystem.
+-    # Missing output targets are recreated by the incremental build; no full copy.
+-    for src in sorted(Path(plan['product_out']).glob('*.img')):
+-        dst = images / src.name
+-        need(src.is_file() and not src.is_symlink(), 'Unexpected image type')
+-        need(src.stat().st_dev == images.stat().st_dev, 'Cross-filesystem image preservation forbidden')
+-        before = sha(src)
+-        os.rename(src, dst)
+-        need(before == sha(dst), 'Image preservation mismatch')
+-        receipt[str(src)] = {'sha256': sha(dst), 'bytes': dst.stat().st_size, 'backup': str(dst)}
+-    write(attempt / 'preservation.json', receipt)
+-    return receipt
+ 
+ def verify_integrated(plan, baseline=False):
+     s = read(plan['staged_receipt'])
+@@ -291,6 +208,10 @@
+         selected = {p for p in tracked if safe(plan['kernel'], p).is_file()}
+         allowed = set(snapshot['files']) | set(source['changes']) | {str(Path(plan['defconfig']).relative_to(plan['kernel']))}
+         need(selected == allowed, 'Integrated source set drift')
++    continuation_inputs(plan)
++    need(Path(plan['kernel_link']).resolve() == Path(plan['kernel']), 'Kernel source link drift')
++    snapshot = read(plan['snapshot'])
++    need(subprocess.check_output(['git','-C',plan['kernel'],'rev-parse','HEAD'],text=True).strip() == snapshot['head'] == source['base_commit'], 'Kernel base HEAD drift')
+     platforms = platform_selection(plan, phase='after')
+     sensor_selection(plan, s)
+     return {'platform_sources': platforms, 'source_postimages': post, 'baseline_files_verified': count,
+@@ -304,38 +225,13 @@
+     dst = Path(dst)
+     dst.parent.mkdir(parents=True, exist_ok=True)
+     # O_EXCL temp prevents reuse; failure leaves evidence and is never retried.
+-    tmp = dst.with_name(dst.name + '.reviewed-r6-tmp')
++    tmp = dst.with_name(dst.name + '.reviewed-r7-tmp')
+     with Path(src).open('rb') as f, tmp.open('xb') as out:
+         shutil.copyfileobj(f, out, 1024 * 1024)
+         out.flush()
+         os.fsync(out.fileno())
+     need(item(tmp) == expected, 'Copied bytes mismatch')
+     os.replace(tmp, dst)
+-
+-def apply(plan, attempt):
+-    subprocess.run(['git', '-C', plan['kernel'], 'apply', '--whitespace=nowarn', plan['patch']], check=True)
+-    source = read(plan['source_receipt'])
+-    for rel, change in source['changes'].items():
+-        need(item(safe(plan['kernel'], rel)) == {'sha256': change['after']}, 'Applied kernel postimage mismatch')
+-    s = read(plan['staged_receipt'])
+-    copy_exact(plan['config'], plan['defconfig'], {'sha256': s['kernel_config_sha256']})
+-    for rel in sorted(s['product_after']):
+-        if s['product_before'].get(rel) != s['product_after'][rel]:
+-            copy_exact(Path(plan['staging']) / 'product-device' / rel, safe(plan['device'], rel), s['product_after'][rel])
+-    for rel, expected in s['connectivity'].items():
+-        copy_exact(Path(plan['staging']) / 'platform-connectivity' / rel, safe(plan['connectivity'], rel), expected)
+-    copy_exact(Path(plan['staging']) / 'product-device/radio/wificond.rc', plan['wificond'], s['product_after']['radio/wificond.rc'])
+-    apply_platform(plan)
+-    write(attempt / 'postimages.json', verify_integrated(plan))
+-    record = {'kernel_sha256': s['product_after']['prebuilt/Image.gz-dtb']['sha256'],
+-              'generated_defconfig': {'path': plan['defconfig'], 'sha256': s['kernel_config_sha256']},
+-              'kernel_release': {'path': plan['kernel_release'], 'sha256': sha(plan['kernel_release'])},
+-              'platform_sources': platform_selection(plan, phase='after'), 'sensor_receipt_sha256': sha(plan['sensor_receipt']),
+-              'source_patch_sha256': sha(plan['patch']), 'source_receipt_sha256': sha(plan['source_receipt']),
+-              'parent_parity_receipt_sha256': sha(plan['parity_receipt']),
+-              'staged_receipt_sha256': sha(plan['staged_receipt']), 'product_after': manifest(plan['device']),
+-              'full_service_chain_accepted': False, 'physical_boot_verified': False, 'flash_ready': False}
+-    write(attempt / 'integration.json', record)
+ 
+ def execute(plan, root, active=False, review=None):
+     live = native_processes(plan)
+@@ -345,7 +241,6 @@
+         revision_unused(plan)
+         previous = terminal(plan, review)
+         audit = audit_inputs(plan)
+-        subprocess.run(['git', '-C', plan['kernel'], 'apply', '--check', '--whitespace=nowarn', plan['patch']], check=True)
+         need(Path(plan['clean_receipt']).is_file() and Path(plan['clean_receipt']).stat().st_size, 'Required prior clean receipt absent')
+         if not active:
+             return {'mode': 'PLAN_ONLY', 'eligible_at_check_time_only': True, 'audit': audit, 'build_started': False}
+@@ -353,12 +248,13 @@
+         attempt.mkdir()  # Exclusive one-shot claim; created only after all gates above.
+         try:
+             write(attempt / 'started.json', {'pid': os.getpid(), 'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'prior': previous})
+-            preserve(plan, attempt)
++            preserve(plan, attempt, previous)
+             # Recheck pinned inputs/preimages after potentially lengthy preservation.
+             verify_pins(root)
+             audit_inputs(plan)
+             need(not native_processes(plan), 'Build appeared before integration')
+             need(os.fstat(lock.fileno()).st_ino == Path(plan['lock']).stat().st_ino, 'Full-build lock inode changed')
++            terminal(plan, review)
+             apply(plan, attempt)
+             record = Path(plan['logs']) / ('full-build-' + plan['revision'])
+             with Path(str(record) + '.started').open('x') as f:
+--- r3/scripts/r3_inputs.py
++++ r7/scripts/r3_inputs.py
+@@ -19,6 +19,9 @@
+  for module in [b'android.hardware.sensors@1.0-service',b'android.hardware.sensors@1.0-impl']:
+   need(mk.count(module)==1,'Sensor architecture selection ambiguous');mk=mk.replace(module,module+b':64')
+  expected['sensors.mk']={'sha256':hashlib.sha256(mk).hexdigest()}
++ from continuation import sensor_delta
++ delta=sensor_delta(plan)
++ expected['BoardConfig.mk']={'sha256':delta['after']}
+  need(expected==receipt['files']==manifest(candidate/'sensors'),'Exact sensor source/ARM64 package selection mismatch')
+  lines=[l for l in (origin/'ueventd.fragment.rc').read_text().splitlines() if l and not l.startswith('#')]
+  need(len(lines)==5,'Sensor ueventd count mismatch')
+--- r3/scripts/run_tests.py
++++ r7/scripts/run_tests.py
+@@ -1,16 +1,9 @@
+-"""Serial bounded tests; refuses to create fixtures outside this isolated kit."""
++"""One-process test suite, one CPU and 1 GiB virtual memory ceiling on Linux."""
+ from pathlib import Path
+-import os
+-import resource
+-import sys
+-import unittest
+-ROOT = Path(__file__).resolve().parents[1]
+-if sys.platform == 'linux':
+-    os.sched_setaffinity(0, {min(os.sched_getaffinity(0))})
+-    resource.setrlimit(resource.RLIMIT_AS, (1024 ** 3, 1024 ** 3))
+-    os.nice(10)
+-print('Fixture limits: serial; Linux affinity=1 CPU, RLIMIT_AS=1 GiB; no compiler or build engine', flush=True)
+-suite = unittest.defaultTestLoader.discover(str(ROOT / 'tests'), pattern='test_*.py')
+-result = unittest.TextTestRunner(verbosity=2).run(suite)
+-print('maxrss:', resource.getrusage(resource.RUSAGE_SELF).ru_maxrss, flush=True)
+-sys.exit(0 if result.wasSuccessful() else 1)
++import os,resource,sys,unittest
++R=Path(__file__).resolve().parents[1]
++if hasattr(os,'sched_getaffinity'):os.sched_setaffinity(0,{min(os.sched_getaffinity(0))})
++if sys.platform=='linux':resource.setrlimit(resource.RLIMIT_AS,(1073741824,1073741824))
++os.environ.update(OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',MKL_NUM_THREADS='1')
++result=unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.discover(str(R/'tests'),pattern='test_*.py'))
++raise SystemExit(not result.wasSuccessful())
+--- r3/scripts/validate_completed_product.py
++++ r7/scripts/validate_completed_product.py
+@@ -63,6 +63,9 @@
+         write(o / ('commands-' + str(len(records)) + '.json'), records)
+         need(result.returncode == 0, 'Host check failed: ' + str(log))
+ 
++    from verify_config_paths import verify as verify_paths
++    config_paths = verify_paths(Path(str(record) + '.vars'), plan)
++    need(read(root / 'attempt/product-config-paths.json') == config_paths, 'Product configuration receipt drift')
+     values = variables(Path(str(record) + '.vars'))
+     need(values.get('SELINUX_IGNORE_NEVERALLOWS', '') in ('', 'false'), 'Neverallow checks disabled')
+     report = read(Path(str(record) + '.images.json'))
+@@ -161,7 +164,7 @@
+         if label != '/apex': command += ['--' + label[1:] + '_path', path]
+     run(command)
+     need((apex / 'apex-info-list.xml').is_file(), 'No real extracted APEX metadata')
+-    write(o / 'r3-product-provenance.json', verify_r3(plan, root, raw, b / 'debugfs', readelf, apex))
++    write(o / 'r7-product-provenance.json', verify_r3(plan, root, raw, b / 'debugfs', readelf, apex))
+     root_check = verify_root(p, apex, read(root / 'inputs/root-source-pins.json')['packages/modules/adb/root/adb_root.rc'], raw, b / 'debugfs')
+     write(o / 'root-payload.json', root_check)
+     command = [b / 'checkvintf', '--check-compat']
+@@ -190,13 +193,15 @@
+     need(sha(boot) == packaging['image_sha256'], 'Final BOOT write mismatch')
+     raw.chmod(0o444)
+     write(o / 'complete.json', {'kit_pins_sha256': seal, 'integration_receipt_sha256': sha(root / 'attempt/integration.json'),
++          'product_config_paths_sha256': sha(root / 'attempt/product-config-paths.json'),
++          'sensor_delta_sha256': sha(plan['sensor_delta']), 'prior_integration_sha256': sha(plan['prior_integration']),
+           'parent_parity_sha256': sha(plan['parity_receipt']), 'source_patch_sha256': sha(plan['patch']),
+           'source_receipt_sha256': sha(plan['source_receipt']), 'active_source_postimages_sha256': sha(o / 'source-postimages.json'), 'staged_receipt_sha256': sha(plan['staged_receipt']),
+           'raw_system': {'path': str(raw), 'bytes': raw.stat().st_size, 'sha256': sha(raw), 'all_zero_ranges_written': True, 'writer_must_materialize_all_zero_ranges': True},
+           'boot': {'path': str(boot), 'sha256': sha(boot), 'source_aosp_sha256': report['boot']['sha256']},
+           'source_system_sha256': report['system']['sha256'], 'google_signed_metadata_files': len(google['checked']), 'root_payload_receipt_sha256': sha(o / 'root-payload.json'),
+           'input_mapping_payload_sha256': sha(o / 'input-mapping-payload.json'),
+-          'r3_product_provenance_sha256': sha(o / 'r3-product-provenance.json'),
++          'r7_product_provenance_sha256': sha(o / 'r7-product-provenance.json'),
+           'google_unsigned_outputs_sha256': sha(o / 'google-unsigned-outputs.json'), 'google_total_payloads_checked': 32,
+           'kernel_sha256': sha(kernel), 'config_sha256': sha(config), 'host_tool_hashes': tool_pins,
+           'elf_init_policy_neverallows_vintf_apex_host_checks_passed': True,
+--- /dev/null
++++ r7/scripts/verify_config_paths.py
+@@ -0,0 +1,59 @@
++"""Reject source configuration paths before any native build; no Soong fallback."""
++from pathlib import Path, PurePosixPath
++import shlex
++import sys
++from integrate import need, read, sha, safe, write, manifest
++
++POLICY_VARS = (
++    'BOARD_SEPOLICY_DIRS', 'BOARD_VENDOR_SEPOLICY_DIRS', 'BOARD_ODM_SEPOLICY_DIRS',
++    'SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS', 'SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS',
++    'PRODUCT_PUBLIC_SEPOLICY_DIRS', 'PRODUCT_PRIVATE_SEPOLICY_DIRS',
++    'BOARD_SYSTEM_EXT_SEPOLICY_PREBUILT_DIRS', 'BOARD_PRODUCT_SEPOLICY_PREBUILT_DIRS',
++    'SEPOLICY_FREEZE_TEST_EXTRA_DIRS', 'SEPOLICY_FREEZE_TEST_EXTRA_PREBUILT_DIRS')
++MANIFEST_VARS = ('DEVICE_MANIFEST_FILE', 'DEVICE_FRAMEWORK_MANIFEST_FILE', 'PRODUCT_MANIFEST_FILES',
++                 'SYSTEM_EXT_MANIFEST_FILES', 'SYSTEM_EXT_HWSERVICE_FILES', 'ODM_MANIFEST_FILES')
++
++def verify(path, plan):
++    values = {}
++    for line in path.read_text().splitlines():
++        key, sep, raw = line.partition('=')
++        need(sep and key not in values, 'CONFIG_PATH_ERROR: malformed/duplicate dumpvars key: ' + key)
++        values[key] = ' '.join(shlex.split(raw)).split()
++    need(set(POLICY_VARS + MANIFEST_VARS) <= set(values), 'CONFIG_PATH_ERROR: missing requested path variable')
++    aosp = Path(plan['aosp']).resolve()
++    for key in POLICY_VARS + MANIFEST_VARS:
++        entries = values[key]
++        need(len(entries) == len(set(entries)), 'CONFIG_PATH_ERROR: duplicate path in ' + key)
++        for rel in entries:
++            p = PurePosixPath(rel)
++            need(rel and not p.is_absolute() and '..' not in p.parts and str(p) == rel and '$' not in rel and '*' not in rel,
++                 'CONFIG_PATH_ERROR: path must be canonical source-relative: ' + key + '=' + rel)
++            target = safe(aosp, rel)
++            need(target.resolve().is_relative_to(aosp), 'CONFIG_PATH_ERROR: source path escape: ' + rel)
++            need(target.is_dir() if key in POLICY_VARS else target.is_file(),
++                 'CONFIG_PATH_ERROR: missing policy directory/manifest: ' + key + '=' + rel)
++    vendor = values['BOARD_VENDOR_SEPOLICY_DIRS'] + values['BOARD_SEPOLICY_DIRS']
++    need(len(vendor) == len(set(vendor)), 'CONFIG_PATH_ERROR: duplicate effective vendor policy directory')
++    sensor = 'device/asus/p00a/sensors'
++    need(vendor.count(sensor + '/sepolicy') == 1, 'CONFIG_PATH_ERROR: missing/duplicate exact sensor policy directory')
++    need(values['DEVICE_MANIFEST_FILE'].count(sensor + '/manifest.xml') == 1,
++         'CONFIG_PATH_ERROR: missing/duplicate exact sensor DEVICE_MANIFEST_FILE')
++    expected = read(plan['staged_receipt'])['product_after']
++    policy = manifest(aosp / sensor / 'sepolicy')
++    need(policy == {p.removeprefix('sensors/sepolicy/'): row for p,row in expected.items() if p.startswith('sensors/sepolicy/')},
++         'CONFIG_PATH_ERROR: sensor policy bytes differ from reviewed source')
++    sensor_manifest = aosp / sensor / 'manifest.xml'
++    need(sha(sensor_manifest) == expected['sensors/manifest.xml']['sha256'], 'CONFIG_PATH_ERROR: sensor manifest bytes changed')
++    need(sha(aosp / sensor / 'BoardConfig.mk') == expected['sensors/BoardConfig.mk']['sha256'], 'CONFIG_PATH_ERROR: sensor BoardConfig is not r7 postimage')
++    return dict(dumpvars_sha256=sha(path),policy_dirs={k:values[k] for k in POLICY_VARS},
++                manifests={k:values[k] for k in MANIFEST_VARS}, sensor_policy=policy,
++                sensor_manifest_sha256=sha(sensor_manifest), sensor_board_sha256=sha(aosp/sensor/'BoardConfig.mk'),
++                source_configuration_paths_verified=True, native_compilation_started_by_this_check=False)
++
++if __name__ == '__main__':
++    try:
++        path, root, output = map(Path, sys.argv[1:])
++        write(output, verify(path, read(root / 'inputs/plan.json')))
++        print('Actual dumpvars: all policy directories/manifests are relative and present; exact sensor paths verified.')
++    except (RuntimeError, OSError, ValueError) as error:
++        raise SystemExit('CONFIG_PATH_ERROR before native compilation: ' + str(error))
+--- r3/scripts/verify_product_r3.py
++++ r7/scripts/verify_product_r3.py
+@@ -1,4 +1,4 @@
+-"""Real r6 compiler, link, installed ELF, sensor and BPF SYSTEM provenance.
++"""Real r7 compiler, link, installed ELF, sensor and BPF SYSTEM provenance.
+ 
+ Reads Ninja text/logs; never invokes a build engine. Qualified probe ELFs cannot
+ satisfy these gates. Completion remains host-only, with runtime checks pending.
+@@ -127,10 +127,10 @@
+     entry=entries[target]
+     need(re.fullmatch(r'[0-9a-f]{1,16}',entry['command_hash']) and int(entry['command_hash'],16)!=0,'Invalid compiler/linker command hash: '+target)
+     if fresh:
+-        need(path.stat().st_mtime>=start and entry['mtime_ns']>=int(start*10**9),'Stale r6 compiler/linker output or record: '+target)
++        need(path.stat().st_mtime>=start and entry['mtime_ns']>=int(start*10**9),'Stale r7 compiler/linker output or record: '+target)
+         lines=commands.get(target,[])
+-        need(lines and any(any(tool in cmd for tool in ('clang','rustc','ld.lld')) and (source is None or source in cmd) for cmd in lines),'Missing actual r6 compiler/linker command: '+str(source or target))
+-    return {'output':target,'sha256':sha(path),'ninja':entry,'commands':commands.get(target,[]),'fresh_r6_required':fresh}
++        need(lines and any(any(tool in cmd for tool in ('clang','rustc','ld.lld')) and (source is None or source in cmd) for cmd in lines),'Missing actual r7 compiler/linker command: '+str(source or target))
++    return {'output':target,'sha256':sha(path),'ninja':entry,'commands':commands.get(target,[]),'fresh_r7_required':fresh}
+ 
+ def verify(plan, root, raw, debugfs, readelf, apex):
+     a=Path(plan['aosp']);p=Path(plan['product_out'])

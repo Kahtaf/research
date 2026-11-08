@@ -1,0 +1,554 @@
+--- a/arch/arm64/boot/dts/mediatek/asus-p00a.dts
++++ b/arch/arm64/boot/dts/mediatek/asus-p00a.dts
+@@ -156,16 +156,12 @@
+ 			"audpmicclk-mode0",
+ 			"audpmicclk-mode1",
+ 			"audi2s1-mode0",
+-			"audi2s1-mode1",
+-			"extamp-pullhigh",
+-			"extamp-pulllow";
++			"audi2s1-mode1";
+ 	pinctrl-0 = <&aud_pins_default>;
+ 	pinctrl-1 = <&aud_pins_pmicclk_mode0>;
+ 	pinctrl-2 = <&aud_pins_pmicclk_mode1>;
+ 	pinctrl-3 = <&aud_pins_i2s1_mode0>;
+ 	pinctrl-4 = <&aud_pins_i2s1_mode1>;
+-	pinctrl-5 = <&aud_pins_extamp_high>;
+-	pinctrl-6 = <&aud_pins_extamp_low>;
+ 	status = "okay";
+ };
+ 
+@@ -495,22 +491,6 @@
+ 		};
+ 	};
+ 
+-	aud_pins_extamp_high: audexamphigh {
+-		pins_cmd_dat {
+-			pins = <MT8163_PIN_24_EINT2__FUNC_GPIO24>;
+-			slew-rate = <1>;
+-			output-high;
+-		};
+-	};
+-
+-	aud_pins_extamp_low: audexamplow {
+-		pins_cmd_dat {
+-			pins = <MT8163_PIN_24_EINT2__FUNC_GPIO24>;
+-			slew-rate = <1>;
+-			output-low;
+-		};
+-	};
+-
+ 	aud_pins_i2s1_mode0: audi2s1mode0 {
+ 		pins_cmd0_dat {
+ 			pins = <MT8163_PIN_46_EINT14__FUNC_GPIO46>;
+@@ -1203,3 +1183,13 @@
+ 	usb_dpn_sel-gpio = <&pio 24 0>;
+     status="okay";
+ };
++
++/* PUBLIC STOCK SOFTWARE CONTRACT ONLY; fitted hardware/route unqualified. */
++/ {
++	soc {
++		mt_soc_codec_name@11220000 {
++			asus,p00a-stock-speaker-gate;
++			extspkamp-gpio = <&pio 28 0>;
++		};
++	};
++};
+--- a/arch/arm64/configs/asus_p00a_defconfig
++++ b/arch/arm64/configs/asus_p00a_defconfig
+@@ -252,7 +252,8 @@
+ CONFIG_MTK_SPEAKER=y
+ CONFIG_VOICE_DSP_MICBIAS0=y
+ CONFIG_MTK_AUDIO_USE_SHARED_SRAM=y
+-CONFIG_AMP_AW8737S=y
++# CONFIG_AMP_AW8737S is not set
++CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE=y
+ CONFIG_SND_SIMPLE_CARD=y
+ CONFIG_SOUND_PRIME=y
+ CONFIG_HIDRAW=y
+--- a/sound/soc/mediatek/Kconfig
++++ b/sound/soc/mediatek/Kconfig
+@@ -225,3 +225,13 @@
+ config AMP_AW8737S
+ 	bool "Using amplifier AW8737S"
+ 	default n
++
++config ASUS_P00A_STOCK_SPEAKER_GATE
++	bool "P00A public stock speaker gate software contract (unqualified)"
++	depends on SND_SOC_MT8163 && MTK_SPEAKER && OF && GPIOLIB
++	depends on OF_GPIO && PINCTRL_MT8163
++	depends on !AMP_AW8737S && !MTK_LEGACY
++	default n
++	help
++	  Restrict this candidate to the declared P00A stock GPIO28 gate.
++	  This does not qualify the fitted component, route or physical hardware.
+--- a/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c
++++ b/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c
+@@ -101,6 +101,10 @@
+ 	}
+ 
+ 	for (i = 0; i < ARRAY_SIZE(aud_gpios); i++) {
++#ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++		if (i == GPIO_EXTAMP_HIGH || i == GPIO_EXTAMP_LOW)
++			continue;
++#endif
+ 		aud_gpios[i].gpioctrl = pinctrl_lookup_state(pinctrlaud,
+ 			aud_gpios[i].name);
+ 		if (IS_ERR(aud_gpios[i].gpioctrl)) {
+@@ -183,6 +187,9 @@
+ 
+ static int AudDrv_GPIO_EXTAMP_Set(int bEnable)
+ {
++#ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++	return -EOPNOTSUPP;
++#else
+ 	int retval = 0;
+ 
+ 	pr_debug("%s\n", __func__);
+@@ -211,6 +218,7 @@
+ 		}
+ 	}
+ 	return retval;
++#endif
+ }
+ 
+ int AudDrv_GPIO_EXTAMP_Gain_Set(int value)
+--- a/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c
++++ b/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c
+@@ -124,9 +124,15 @@
+ {
+ 	int i = 0;
+ 
+-	for (i = 0; i < AUDIO_ANALOG_DEVICE_MAX; i++)
++	for (i = 0; i < AUDIO_ANALOG_DEVICE_MAX; i++) {
++#ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++		/* Gate remains quiescent across suspend; userspace must re-enable. */
++		if (i == AUDIO_ANALOG_DEVICE_OUT_EXTSPKAMP)
++			continue;
++#endif
+ 		mCodec_data->mAudio_Ana_DevicePower[i] =
+ 		    mCodec_data->mAudio_BackUpAna_DevicePower[i];
++	}
+ }
+ 
+ static bool GetDLStatus(void)
+@@ -154,12 +160,18 @@
+ 
+ 
+ static bool mAnaSuspend;
++#ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++#include "p00a_stock_gate.h"
++#endif
+ void SetAnalogSuspend(bool bEnable)
+ {
+ 	pr_debug("%s bEnable ==%d mAnaSuspend = %d\n",
+ 		__func__, bEnable, mAnaSuspend);
+ 	if ((bEnable == true) && (mAnaSuspend == false)) {
+ 		Ana_Log_Print();
++#ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++		p00a_gate_suspend(true);
++#endif
+ 		SavePowerState();
+ 		if (mCodec_data->mAudio_Ana_DevicePower[
+ 			AUDIO_ANALOG_DEVICE_OUT_HEADSETL]
+@@ -221,6 +233,9 @@
+ 			AUDIO_ANALOG_DEVICE_OUT_SPEAKERL] = false;
+ 		}
+ 		RestorePowerState();
++#ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++		p00a_gate_suspend(false);
++#endif
+ 		Ana_Log_Print();
+ 		mAnaSuspend = false;
+ 	}
+@@ -1481,6 +1496,12 @@
+ 	return 0;
+ }
+ 
++#ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++static int Ext_Speaker_Amp_Change(bool enable)
++{
++	return p00a_gate_set(enable);
++}
++#else
+ #ifdef CONFIG_OF
+ 
+ #if defined(CONFIG_MTK_LEGACY)
+@@ -1708,33 +1729,45 @@
+ }
+ #endif
+ 
++#endif /* CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE */
++
+ static int Ext_Speaker_Amp_Get(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+ {
+-	pr_debug("%s()\n", __func__);
+-	ucontrol->value.integer.value[0] =
+-	    mCodec_data->
+-	    mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_OUT_EXTSPKAMP];
++#ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++	int ret = p00a_gate_get();
++
++	if (ret < 0)
++		return ret;
++	ucontrol->value.integer.value[0] = ret;
++#else
++	ucontrol->value.integer.value[0] = mCodec_data->
++		mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_OUT_EXTSPKAMP];
++#endif
+ 	return 0;
+ }
+ 
+ static int Ext_Speaker_Amp_Set(struct snd_kcontrol *kcontrol,
+ 	struct snd_ctl_elem_value *ucontrol)
+ {
+-	pr_debug("%s() gain = %ld\n",
+-		__func__, ucontrol->value.integer.value[0]);
++#ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++	long value = ucontrol->value.integer.value[0];
++
++	if (value != 0 && value != 1)
++		return -EINVAL;
++	return Ext_Speaker_Amp_Change(value);
++#else
+ 	if (ucontrol->value.integer.value[0]) {
+ 		Ext_Speaker_Amp_Change(true);
+ 		mCodec_data->mAudio_Ana_DevicePower[
+-		AUDIO_ANALOG_DEVICE_OUT_EXTSPKAMP]
+-		= ucontrol->value.integer.value[0];
++			AUDIO_ANALOG_DEVICE_OUT_EXTSPKAMP] = true;
+ 	} else {
+ 		mCodec_data->mAudio_Ana_DevicePower[
+-		AUDIO_ANALOG_DEVICE_OUT_EXTSPKAMP]
+-		= ucontrol->value.integer.value[0];
++			AUDIO_ANALOG_DEVICE_OUT_EXTSPKAMP] = false;
+ 		Ext_Speaker_Amp_Change(false);
+ 	}
+ 	return 0;
++#endif
+ }
+ 
+ static void Headphone_Speaker_Switch_Change(bool enable)
+@@ -3472,21 +3505,22 @@
+ 	Enable_ADC_In(false);
+ 
+ 	if (mCodec_data->
++		mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_OUT_EXTSPKAMP]
++		== true) {
++#ifndef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++		mCodec_data->
++		mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_OUT_EXTSPKAMP] = false;
++#endif
++		Ext_Speaker_Amp_Change(false);
++	}
++
++	if (mCodec_data->
+ 		mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_OUT_SPEAKERL]
+ 		== true) {
+ 		mCodec_data->
+ 		mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_OUT_SPEAKERL]
+ 		= false;
+ 		Speaker_Amp_Change(false);
+-	}
+-
+-	if (mCodec_data->
+-		mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_OUT_EXTSPKAMP]
+-		== true) {
+-		mCodec_data->
+-		mAudio_Ana_DevicePower[AUDIO_ANALOG_DEVICE_OUT_EXTSPKAMP]
+-		= false;
+-		Ext_Speaker_Amp_Change(false);
+ 	}
+ 
+ 	if (mCodec_data->
+@@ -3927,12 +3961,10 @@
+ 	mCodec_data = kzalloc(sizeof(struct mt6323_Codec_Data_Priv),
+ 		GFP_KERNEL);
+ 
+-#if 0
+ 	if (!mCodec_data) {
+ 		pr_err("Failed to allocate private data\n");
+ 		return -ENOMEM;
+ 	}
+-#endif
+ 
+ 	snd_soc_codec_set_drvdata(codec, mCodec_data);
+ 	memset((void *)mCodec_data, 0, sizeof(struct mt6323_Codec_Data_Priv));
+@@ -3945,6 +3977,15 @@
+ static int mt6323_codec_remove(struct snd_soc_codec *codec)
+ {
+ 	pr_debug("%s()\n", __func__);
++#ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++	p00a_gate_stop(codec->dev);
++	mutex_lock(&p00a_gate_lock);
++	snd_soc_codec_set_drvdata(codec, NULL);
++	kfree(mCodec_data);
++	mCodec_data = NULL;
++	mInitCodec = false;
++	mutex_unlock(&p00a_gate_lock);
++#endif
+ 	return 0;
+ }
+ 
+@@ -3984,6 +4025,12 @@
+ 
+ static int mtk_mt6323_codec_dev_probe(struct platform_device *pdev)
+ {
++#ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++	int ret = p00a_gate_probe(&pdev->dev);
++
++	if (ret)
++		return ret;
++#endif
+ 	pdev->dev.coherent_dma_mask = DMA_BIT_MASK(64);
+ 	if (pdev->dev.dma_mask == NULL)
+ 		pdev->dev.dma_mask = &pdev->dev.coherent_dma_mask;
+@@ -3998,9 +4045,19 @@
+ static int mtk_mt6323_codec_dev_remove(struct platform_device *pdev)
+ {
+ 	pr_debug("%s\n", __func__);
++#ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++	p00a_gate_stop(&pdev->dev);
++#endif
+ 	snd_soc_unregister_codec(&pdev->dev);
+ 	return 0;
+ }
++
++#ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++static void mtk_mt6323_codec_dev_shutdown(struct platform_device *pdev)
++{
++	p00a_gate_stop(&pdev->dev);
++}
++#endif
+ 
+ #ifdef CONFIG_OF
+ static const struct of_device_id mt_soc_codec_63xx_of_ids[] = {
+@@ -4010,6 +4067,7 @@
+ 	{}
+ };
+ 
++#ifndef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
+ static int  mt_soc_get_dts_config(void)
+ {
+ #ifdef CONFIG_AMP_AW8737S
+@@ -4027,6 +4085,8 @@
+ #endif
+ 	return 0;
+ }
++
++#endif /* !CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE */
+ 
+ #if 0
+ static int Auddrv_getGPIO_info(void)
+@@ -4092,6 +4152,9 @@
+ 		   },
+ 	.probe = mtk_mt6323_codec_dev_probe,
+ 	.remove = mtk_mt6323_codec_dev_remove,
++#ifdef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
++	.shutdown = mtk_mt6323_codec_dev_shutdown,
++#endif
+ };
+ 
+ #ifndef CONFIG_OF
+@@ -4116,11 +4179,13 @@
+ 	}
+ #endif
+ 
++#ifndef CONFIG_ASUS_P00A_STOCK_SPEAKER_GATE
+ 	if( mt_soc_get_dts_config() < 0 ) {
+ 		pr_err("%s: Can't get dts config !!!\n", __FUNCTION__);
+ 		return -EINVAL;
+ 	}
+ 
++#endif
+ 	ret = platform_driver_register(&mtk_codec_6323_driver);
+ 	return ret;
+ }
+--- /dev/null
++++ b/sound/soc/mediatek/mt_soc_audio_8163/p00a_stock_gate.h
+@@ -0,0 +1,183 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/* Unqualified P00A stock software contract; not fitted-amplifier evidence. */
++#ifndef P00A_STOCK_GATE_H
++#define P00A_STOCK_GATE_H
++
++#include <linux/device.h>
++#include <linux/mutex.h>
++#include <linux/of.h>
++#include <linux/gpio.h>
++#include <linux/of_gpio.h>
++
++#if !defined(CONFIG_OF) || !defined(CONFIG_OF_GPIO) || \
++	!defined(CONFIG_GPIOLIB) || !defined(CONFIG_PINCTRL_MT8163) || \
++	!defined(CONFIG_MTK_SPEAKER) || \
++	defined(CONFIG_AMP_AW8737S) || defined(CONFIG_MTK_LEGACY)
++#error "P00A stock gate requires OF/internal speaker and excludes legacy/AW"
++#endif
++
++static DEFINE_MUTEX(p00a_gate_lock);
++static struct device *p00a_gate_owner;
++static int p00a_gate_gpio = -EINVAL;
++static bool p00a_gate_on, p00a_gate_fault, p00a_gate_stopping;
++static bool p00a_gate_suspended;
++
++static void p00a_gate_cache(bool on)
++{
++	p00a_gate_on = on;
++	if (mCodec_data)
++		mCodec_data->mAudio_Ana_DevicePower[
++			AUDIO_ANALOG_DEVICE_OUT_EXTSPKAMP] = on;
++}
++
++/* Caller holds p00a_gate_lock. Direction API reports errors; setters are void. */
++static int p00a_gate_output_locked(bool on)
++{
++	int ret, off_ret;
++
++	if (!p00a_gate_owner)
++		return -ENODEV;
++	if (on && p00a_gate_stopping)
++		return -ESHUTDOWN;
++	if (on && p00a_gate_fault)
++		return -EIO;
++	if (on && p00a_gate_suspended)
++		return -EBUSY;
++	if (!p00a_gate_fault && p00a_gate_on == on)
++		return 0;
++
++	ret = gpio_direction_output(p00a_gate_gpio, on);
++	if (ret) {
++		p00a_gate_fault = true;
++		/* An error may follow a partial hardware write. Never claim On. */
++		off_ret = gpio_direction_output(p00a_gate_gpio, 0);
++		if (!off_ret)
++			p00a_gate_cache(false);
++		dev_err(p00a_gate_owner,
++			"stock gate operation failed %d; off retry %d; state faulted\n",
++			ret, off_ret);
++		return ret;
++	}
++	p00a_gate_cache(on);
++	return 1;
++}
++
++static int p00a_gate_set(bool on)
++{
++	int ret;
++
++	mutex_lock(&p00a_gate_lock);
++	ret = mCodec_data && mInitCodec ?
++		p00a_gate_output_locked(on) : -ENODEV;
++	mutex_unlock(&p00a_gate_lock);
++	return ret;
++}
++
++static int p00a_gate_get(void)
++{
++	int ret;
++
++	mutex_lock(&p00a_gate_lock);
++	ret = !p00a_gate_owner || !mCodec_data || !mInitCodec ? -ENODEV :
++		(p00a_gate_fault ? -EIO : p00a_gate_on);
++	mutex_unlock(&p00a_gate_lock);
++	return ret;
++}
++
++static int p00a_gate_suspend(bool suspend)
++{
++	int ret = 0;
++
++	mutex_lock(&p00a_gate_lock);
++	p00a_gate_suspended = suspend;
++	if (suspend)
++		ret = p00a_gate_output_locked(false);
++	mutex_unlock(&p00a_gate_lock);
++	return ret;
++}
++
++static int p00a_gate_stop(struct device *dev)
++{
++	int ret = 0;
++
++	mutex_lock(&p00a_gate_lock);
++	if (p00a_gate_owner == dev) {
++		p00a_gate_stopping = true;
++		ret = p00a_gate_output_locked(false);
++	}
++	mutex_unlock(&p00a_gate_lock);
++	return ret;
++}
++
++/* Added after the managed request: executes before the GPIO is released. */
++static void p00a_gate_release(void *data)
++{
++	struct device *dev = data;
++
++	p00a_gate_stop(dev);
++	mutex_lock(&p00a_gate_lock);
++	if (p00a_gate_owner == dev) {
++		p00a_gate_owner = NULL;
++		p00a_gate_gpio = -EINVAL;
++	}
++	mutex_unlock(&p00a_gate_lock);
++}
++
++static int p00a_gate_probe(struct device *dev)
++{
++	struct device_node *np = dev->of_node;
++	struct of_phandle_args spec;
++	enum of_gpio_flags flags = 0;
++	int ret, gpio;
++	bool valid;
++
++	if (!np || !of_machine_is_compatible("asus,p00a") ||
++	    !of_device_is_compatible(np, "mediatek,mt8163-soc-codec-63xx") ||
++	    !of_property_read_bool(np, "asus,p00a-stock-speaker-gate"))
++		return -ENODEV;
++	/* Keep the exact public stock singular binding, with no suffix fallback. */
++	if (of_find_property(np, "extspkamp-gpios", NULL))
++		return -EINVAL;
++	if (!of_find_property(np, "extspkamp-gpio", NULL))
++		return -ENOENT;
++	if (of_property_count_u32_elems(np, "extspkamp-gpio") != 3)
++		return -EINVAL;
++	ret = of_parse_phandle_with_args(np, "extspkamp-gpio", "#gpio-cells",
++					 0, &spec);
++	if (ret)
++		return ret;
++	valid = spec.args_count == 2 && spec.args[0] == 28 &&
++		spec.args[1] == 0 &&
++		of_device_is_compatible(spec.np, "mediatek,mt8163-pinctrl") &&
++		of_property_read_bool(spec.np, "gpio-controller");
++	of_node_put(spec.np);
++	if (!valid)
++		return -EINVAL;
++
++	gpio = of_get_named_gpio_flags(np, "extspkamp-gpio", 0, &flags);
++	if (gpio < 0)
++		return gpio;
++	if (!gpio_is_valid(gpio) || flags != 0)
++		return -EINVAL;
++
++	mutex_lock(&p00a_gate_lock);
++	if (p00a_gate_owner) {
++		mutex_unlock(&p00a_gate_lock);
++		return -EBUSY;
++	}
++	ret = devm_gpio_request_one(dev, gpio, GPIOF_OUT_INIT_LOW,
++				    "spkamp-en-gpio");
++	if (ret) {
++		mutex_unlock(&p00a_gate_lock);
++		return ret;
++	}
++	p00a_gate_gpio = gpio;
++	p00a_gate_owner = dev;
++	p00a_gate_on = false;
++	p00a_gate_fault = false;
++	p00a_gate_stopping = false;
++	p00a_gate_suspended = false;
++	mutex_unlock(&p00a_gate_lock);
++	return devm_add_action_or_reset(dev, p00a_gate_release, dev);
++}
++#endif

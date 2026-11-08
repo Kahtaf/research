@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-08T01:35:53.320309+00:00",
+  "fresh_trial_receipt": "evidence/recovery-entry.json",
+  "same_helper_uuid": "5fa3e2cd-430d-4bbb-8b37-1adff9bb9439",
+  "container_p10_sha256": "764aaab335c1e2192c4bc97d123ee044dada09c4798fbbfcb7b7102d66b8bd33",
+  "helper_record_count": 10,
+  "last_helper_record": "ASUS49-PREALARM run=5fa3e2cd-430d-4bbb-8b37-1adff9bb9439 stage=begin op=uname path=- rc=0 errno=0 value=-",
+  "stock_return_verified": true,
+  "stock_boot_id": "fb3c8b28-9fa3-4845-a0cd-9bebd548304e",
+  "complete_log_bytes": 32178,
+  "complete_log_sha256": "1da243ef012812cdc2f6a6c351ce3a481fd3337af87a48e9dbde6616fa997b02",
+  "requested_parameter_reached_kernel": false,
+  "observed_truncated_parameter": "printk",
+  "outcome": "INCONCLUSIVE_BOOTLOADER_TRUNCATED_LOGGING_PARAMETER",
+  "same_ten_record_cutoff": true
+}

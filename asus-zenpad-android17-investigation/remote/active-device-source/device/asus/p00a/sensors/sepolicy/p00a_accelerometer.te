@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: Apache-2.0
+# Only this accelerometer's char device, four controls and restored calibration.
+type p00a_accel_device, dev_type;
+type p00a_accel_sysfs, fs_type, sysfs_type;
+type p00a_accel_control_sysfs, fs_type, sysfs_type;
+type p00a_accel_cal_dir, file_type, data_file_type;
+type p00a_accel_cal_file, file_type, data_file_type;
+allow hal_sensors_default p00a_accel_device:chr_file { open read getattr };
+allow hal_sensors_default p00a_accel_sysfs:dir search;
+allow hal_sensors_default p00a_accel_control_sysfs:file { open write getattr };
+allow hal_sensors_default p00a_accel_cal_dir:dir { search getattr };
+allow hal_sensors_default p00a_accel_cal_file:file { open read getattr };

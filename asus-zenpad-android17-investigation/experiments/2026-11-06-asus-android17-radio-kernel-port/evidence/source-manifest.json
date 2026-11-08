@@ -1,0 +1,1782 @@
+{
+  "sourceinputs/prior-patches/0001-asus-gpl-use-vendor-firmware.patch": {
+    "sha256": "6d30afb81eec3d6cf0ca7a50d951c23d5ce1f2ceb70743b4bd723b28b644ea9a",
+    "bytes": 2778
+  },
+  "sourceinputs/prior-patches/0002-asus-gpl-bt-compat-ioctl-width.patch": {
+    "sha256": "fa5d34de711aab4aee42ed260ce20d2ad9afa20e72c28db156ae838523f026ad",
+    "bytes": 1071
+  },
+  "sourceinputs/asus-3.18/COPYING": {
+    "sha256": "af8067302947c01fd9eee72befa54c7e3ef8a48fecde7fd71277f2290b2bf0f7",
+    "bytes": 18693
+  },
+  "sourceinputs/kernel-4.9/Makefile": {
+    "sha256": "8313e47662a5a24c4f6ef112d3f8bbe24d5a069da4b6bca8383346cf2edbeccf",
+    "bytes": 64596
+  },
+  "sourceinputs/kernel-4.9/COPYING": {
+    "sha256": "af8067302947c01fd9eee72befa54c7e3ef8a48fecde7fd71277f2290b2bf0f7",
+    "bytes": 18693
+  },
+  "sourceinputs/openmttools/LICENSE": {
+    "sha256": "c3ee8171a95c407440b4729843b9696e48909aceac27383e665bbe320b119c93",
+    "bytes": 1065
+  },
+  "sourceinputs/openmttools/Makefile": {
+    "sha256": "bd5ec9911716aed7fc5ff39051047039e0ec71bbf896ed0eff9ea343f6a72590",
+    "bytes": 525
+  },
+  "sourceinputs/openmttools/README.md": {
+    "sha256": "deb40cd13e35b99daba492904a40638e29828c2773e49561bb5b93f47f18d2d4",
+    "bytes": 603
+  },
+  "sourceinputs/openmttools/mtdaemon.c": {
+    "sha256": "09c7a6d30b3259c817c8f3bcccff8b1ee1be189dd2e7e72dfe9e17b7b9f7d248",
+    "bytes": 16335
+  },
+  "sourceinputs/openmttools/mtinit.c": {
+    "sha256": "45f34757c30d036572529283da3e3882ffe50e7718fcd71718fc1289b62771d3",
+    "bytes": 6786
+  },
+  "sourceinputs/kernel-4.9/fs/read_write.c": {
+    "sha256": "45e9cbb096a55689b8092d06ce86fb4654785a7dee40e226ac0c9f2050752a79",
+    "bytes": 41923
+  },
+  "sourceinputs/kernel-4.9/arch/arm64/boot/dts/mediatek/asus-p00a.dts": {
+    "sha256": "d5b630b1a943788a3b5b1a341c9cd56e3d551c0462333f480066d693e1e9b14c",
+    "bytes": 29663
+  },
+  "sourceinputs/kernel-4.9/arch/arm64/boot/dts/mediatek/mt8163.dtsi": {
+    "sha256": "a605903380bac77de2d077e002d215e20422f4a9bf6441c9d782fef3e0c2382a",
+    "bytes": 51729
+  },
+  "sourceinputs/kernel-4.9/include/net/if_inet6.h": {
+    "sha256": "9a466bd35209f29a99145eb068609022f80b1657bbdd678aca637bacf990324d",
+    "bytes": 6202
+  },
+  "sourceinputs/kernel-4.9/include/net/cfg80211.h": {
+    "sha256": "fa488986d50b49eeb7d36acca835f7197dac1a2dad4e47b4e7beffc474ec5eca",
+    "bytes": 211919
+  },
+  "sourceinputs/kernel-4.9/include/net/genetlink.h": {
+    "sha256": "2c859e9d65d8bbc1e46dae37b74f8e7b0a243121a51d9a40ce7980d4b4e0d243",
+    "bytes": 13051
+  },
+  "sourceinputs/kernel-4.9/include/linux/timer.h": {
+    "sha256": "a8bf76ec0733a0b7601f1596f2a6e31a1e736ca0a2fd0a874f0d881e4c11f9b0",
+    "bytes": 9059
+  },
+  "sourceinputs/kernel-4.9/include/linux/inetdevice.h": {
+    "sha256": "e5da75bea3c91f3bcd168c03993ab9e805a9a0da360f719042efd5184770bafe",
+    "bytes": 7906
+  },
+  "sourceinputs/kernel-4.9/include/linux/sched.h": {
+    "sha256": "23bfdbe61befab00f17b5f2242117e031254455d77383d69f7f31379d6a78360",
+    "bytes": 108659
+  },
+  "sourceinputs/kernel-4.9/include/linux/fs.h": {
+    "sha256": "1e60ba65b5a99f2ff8adbfa7db8dc5d47df4607665794d981a2b7118c5c9c0c6",
+    "bytes": 110565
+  },
+  "sourceinputs/kernel-4.9/include/linux/netdevice.h": {
+    "sha256": "8b1c9ec17d7e93f00314a91add49def3741761deca6a012453f526ae4fedc756",
+    "bytes": 140582
+  },
+  "sourceinputs/kernel-4.9/include/linux/mmc/core.h": {
+    "sha256": "c87d85f82a19364b753d6e0acf94d972d2fdb388310af4a91a273f083ec7900e",
+    "bytes": 8639
+  },
+  "sourceinputs/kernel-4.9/include/uapi/linux/nl80211.h": {
+    "sha256": "1334695334372b870bf0fc2c26f90bf447783ec2ba811b00f151af269bd0d396",
+    "bytes": 225953
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/reset-ath79.c": {
+    "sha256": "3ab085ffc281074e8923597143f25017591482716c962efe1d958e3bd29b558e",
+    "bytes": 4089
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/Makefile": {
+    "sha256": "9414279c38078a49631bf75b9dc5d2b10f98592278ecdac7a54ae2fc49fb4b09",
+    "bytes": 613
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/reset-pistachio.c": {
+    "sha256": "0279cd8e43ea898a24034e9932da1a3ae56a1663aaf4312b6a774de857faee7a",
+    "bytes": 3717
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/Kconfig": {
+    "sha256": "fbab7ab806fa0a4ce38675e3991192c8978093d844a128c74e6f93ad3d9dc62c",
+    "bytes": 2603
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/reset-berlin.c": {
+    "sha256": "95efa189bfcc2d703e633b01a496460c62fd72061d4e0c2bf0386298f605158c",
+    "bytes": 2811
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/reset-oxnas.c": {
+    "sha256": "aefdb954326c433acd149a4adaa42772de00761529fd74435996f60919d022cd",
+    "bytes": 3327
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/reset-uniphier.c": {
+    "sha256": "a2a542e05f4b51c06425be505fa2c83326efe13540ff6690e9d9938be293cc53",
+    "bytes": 12080
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/reset-stm32.c": {
+    "sha256": "39459f6e3d67c17f0a6b9366ff64b4bdfd3b597e6c47acdd94ebc71980297337",
+    "bytes": 2694
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/core.c": {
+    "sha256": "c9c30b9204eb4603a04204118e4f368cfc3fde75869ecc61167fe64877a64b83",
+    "bytes": 10821
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/reset-meson.c": {
+    "sha256": "35b23f66ed58286ff1cc9c61b7c621ccb4ff47891a54d6839300f85c3af32649",
+    "bytes": 4665
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/reset-ti-syscon.c": {
+    "sha256": "bfea416fd937d6ad4b935dc53ff8b80b15ae31ae58ead0e240687639579ecfe4",
+    "bytes": 7312
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/reset-lpc18xx.c": {
+    "sha256": "94a8e3d99d30388fe7da7c2bfe6f8fe8a5cca64ed86e4136a4a66acd6aa607b5",
+    "bytes": 6613
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/reset-sunxi.c": {
+    "sha256": "a1afa19048aa244cd33dd8f29c46c2443fcde2377a83840c6d00dd61af580a56",
+    "bytes": 4432
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/reset-zynq.c": {
+    "sha256": "e2b90de03cce8969dcaf1c2170ab5daa6aa8f2365a95bbff53b9728a6ba183a8",
+    "bytes": 3781
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/reset-socfpga.c": {
+    "sha256": "43f33a59382eeb1eff394bd67a2326608fca223b3bc5cb627371b031c10920fc",
+    "bytes": 4116
+  },
+  "sourceinputs/kernel-4.9/drivers/watchdog/mtk_wdt.c": {
+    "sha256": "b4650c1d087bc2ef4e0e4161afc9dd54cb38901e98af16a1b2fc2e784f1d927b",
+    "bytes": 18416
+  },
+  "sourceinputs/kernel-4.9/drivers/clk/mediatek/clk-mt8163.c": {
+    "sha256": "e9c54ca7528f3dfb5761bd913b9639448715e14875ca2254e1a24a8748bfd1e6",
+    "bytes": 36074
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/hisilicon/Makefile": {
+    "sha256": "af2258fb40809ae53d6d23a8f8cc32b112611237ed2c87dd4102675993b81caa",
+    "bytes": 52
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/hisilicon/Kconfig": {
+    "sha256": "275bb289c66e3d1565a838633e26b223b537aec3a34b07785ae15975c56565a8",
+    "bytes": 166
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/hisilicon/hi6220_reset.c": {
+    "sha256": "ebab7f4895bccb37f4ae5cfa4a0cde4b508203a01fab590a6530481682c94afe",
+    "bytes": 4127
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/sti/reset-syscfg.c": {
+    "sha256": "4aab598ab33427bd8ca38008ecc18a69365000557e1614b76fd955ade3477ec4",
+    "bytes": 5090
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/sti/reset-stih416.c": {
+    "sha256": "18047941632f2299400d9d151f01535eb47cbb14bcb3aed15a7c70d0ef2124f3",
+    "bytes": 5832
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/sti/Makefile": {
+    "sha256": "096c9e442a9b26472c7b0009b63e0c2e6cf2971a94ae5ab64893b9458dd7cc7d",
+    "bytes": 191
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/sti/Kconfig": {
+    "sha256": "6ba3bddfc3f005a2723d41bb732d890769c5dd357b6f7dedbacc722c13d29672",
+    "bytes": 209
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/sti/reset-stih415.c": {
+    "sha256": "3975c9efe39dde714a7b34577d2319ff4d3697214e0c2870623f5de15a60e87c",
+    "bytes": 3955
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/sti/reset-syscfg.h": {
+    "sha256": "f0dfcca27b1d332ba87f5b2a1cb9cc48d692f97f43d3e29695098d8da07cd8e2",
+    "bytes": 2365
+  },
+  "sourceinputs/kernel-4.9/drivers/reset/sti/reset-stih407.c": {
+    "sha256": "b439cb27cac9c1d8e9dfd6d353b9cf7d3718e24fa30700b5abb2f872c9d6b0c0",
+    "bytes": 6259
+  },
+  "sourceinputs/kernel-4.9/drivers/soc/mediatek/mtk-scpsys-mt8163.c": {
+    "sha256": "5d75b17705893a353f1a1dca211550744442a1b6e67a9f3ed4b7887b548582c9",
+    "bytes": 12687
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/connectivity/Makefile": {
+    "sha256": "e305bb620c6c67ebf70d07cdb5343bc7f057f933c11d84b667f73c784111da64",
+    "bytes": 1787
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/connectivity/Kconfig": {
+    "sha256": "63db717d7182bf58737c34bfc0b1cc0b4e272bc4bdaa91e22945e78eaeb94bb9",
+    "bytes": 8887
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/btif/Makefile": {
+    "sha256": "382e39d543f94dcb4a17c77d4745d390ae77f153ad15d3cd1f43309144bc7b95",
+    "bytes": 1371
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/btif/Kconfig": {
+    "sha256": "35f9576ba99b75793152f97e7d585178e05712ba74607508ccaea3a262503bb5",
+    "bytes": 98
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/emi_mpu/Makefile": {
+    "sha256": "22c8f61d214d2fa53a65765e6a95e6c0780694c66587daa65561ec6b1b86d3b2",
+    "bytes": 45
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/emi_mpu/Kconfig": {
+    "sha256": "9020aa1befe00bf2e249c5793db6d980e081443a4131d8238f86b68c9e650379",
+    "bytes": 163
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/emi_mpu/emi_reg_rw.c": {
+    "sha256": "56a199ffc32e97c69a8cc6b77cf3e6d43e0103866fd569a2b39e168baeb8f3b0",
+    "bytes": 1913
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/emi_mpu/mt8163/emi_mpu.c": {
+    "sha256": "e4cdaeac84996f535316524ffae3af08ce03542e75245335bad0b1a87ec0f87a",
+    "bytes": 38420
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/emi_mpu/mt8163/Makefile": {
+    "sha256": "473c7455bb9b1d624ceec7e484f1f4a0679480179ed52fba72afec9a92f074ce",
+    "bytes": 489
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/btif/common/mtk_btif_exp.c": {
+    "sha256": "5db7de7b38cde76a09d08869c4035dc1bb1190566798524ad4545d913adf1395",
+    "bytes": 23358
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/btif/common/btif_plat.c": {
+    "sha256": "ad7a78ff7b1dc277a3cc02ed0da94b95c3a2557620bab272f65bd34e96158258",
+    "bytes": 39581
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/btif/common/Makefile": {
+    "sha256": "f7d9286350eed4a127200cb5fcc3828ae36ae1f5e4c84184499f60cd95af074c",
+    "bytes": 1004
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/btif/common/btif_dma_plat.c": {
+    "sha256": "87981eb03861d5ec7cee8327ef4ac7a7c14801316436f1a2222614baf1e70cb7",
+    "bytes": 47875
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/btif/common/mtk_btif.c": {
+    "sha256": "b66a417080c02b04c83ee03c62e02b7b1c060c7231d3f89e09f8022f2ab720e5",
+    "bytes": 95207
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/btif/common/inc/mtk_btif.h": {
+    "sha256": "98b200852605ccef63544187a52275489e414be2645176e70d5a789d1d13a246",
+    "bytes": 12729
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/btif/common/inc/mtk_btif_exp.h": {
+    "sha256": "1633e9ec89e5f77bec2fee9ca00bd63d8e90627ea77f383cc042fe29794cc009",
+    "bytes": 12505
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/btif/common/plat_inc/btif_priv.h": {
+    "sha256": "167c107b5d5850d007a4df57690f473256c15287391cff92d2bb4481dd5616d4",
+    "bytes": 4278
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/btif/common/plat_inc/plat_common.h": {
+    "sha256": "cb6023a9be5314dab19c7a3a91607688b15f055cd5bc10c03f77848a66a74875",
+    "bytes": 7858
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/btif/common/plat_inc/btif_dma_pub.h": {
+    "sha256": "cc87b4405eb79c5a07ba0d5090001bad21c6021271037e942a2931cbe7743aa8",
+    "bytes": 7478
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/btif/common/plat_inc/btif_pub.h": {
+    "sha256": "e9546465e81052de27c08524fb31bb3c5169d9a0603128e870a5e06bedd9d911",
+    "bytes": 8387
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/btif/common/plat_inc/btif_dma_priv.h": {
+    "sha256": "314c196d14ca96e9f2ca8eb601094cb12ca3f279bbc907978201129a0f1fa1c4",
+    "bytes": 7484
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/battery_meter.h": {
+    "sha256": "a564a5a345b8c595c9104fcb339488deda100e134e47a43fe8feaadef387b599",
+    "bytes": 8702
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_gpt.h": {
+    "sha256": "b9ef639f8b68ccd16bf8823760b8ea03105e0735ee1b2362c400d12f277724c7",
+    "bytes": 2232
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt_io.h": {
+    "sha256": "77e073d9efa8f23709104d7e83538409390ae8b85535a41bedd3ecea85a912db",
+    "bytes": 168
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_lpae.h": {
+    "sha256": "03409c075844250dd25fc66e1bc8c04c359efe2f87af9abdb7e1529842aa2c2e",
+    "bytes": 1697
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/dma.h": {
+    "sha256": "58b272e2c0684372a7a1d3372c5e0fac3d634c1dea7727576802a3dc7e73f40f",
+    "bytes": 3778
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/met_drv_udtl_null.h": {
+    "sha256": "c4c5da8356a0fb1e0e3b092bb74fd922c24b42cc9f15b9a84c0436af53754a51",
+    "bytes": 1715
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/upmu_common_sw.h": {
+    "sha256": "9e9f64ce235c8749903e5390abc0816ff787f14fbc62293d67c857fe616cbf31",
+    "bytes": 610
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_wd_api.h": {
+    "sha256": "3b57bfad7051a0286f163aefbfb0caa73bc590b5e2974aebc4aff60e4a978574",
+    "bytes": 2793
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_sys_timer.h": {
+    "sha256": "4b5ded3eaad13ab695805e293720829446c52521462d0bdc46296d92e41f84fd",
+    "bytes": 1012
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_pwm.h": {
+    "sha256": "91a4e6b14e28ab651ab730ee433b15fe83e4e63199aafb7ad6566490ba26404c",
+    "bytes": 2881
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_sysenv.h": {
+    "sha256": "3f49a72c7cd0cf585876272c9ba4989d6555b89c67b40ea2e910de71cdb32453",
+    "bytes": 2899
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/internal_charging.h": {
+    "sha256": "b04d6b5d0b41ad9db7fcacefd667e80672ec6f3ad5f5619e7a6dd12e1fdd4e16",
+    "bytes": 2368
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_boot.h": {
+    "sha256": "28c502ed5d1ac14a687cc3b0f2c4ba8a23528ec562892d014284e36e94555caa",
+    "bytes": 858
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_reboot.h": {
+    "sha256": "51e669a004052162abb46e2558bac6c9986093a4291add82eead6e4f2ab871f6",
+    "bytes": 623
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_memcfg_reserve_info.h": {
+    "sha256": "ae3095f1ea7fdcd9fbe65eaf61c03c2a43d78596d03bd1420a4103d6737c17aa",
+    "bytes": 1916
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt_chip.h": {
+    "sha256": "117bc879afcd27dcf5f51bd1edba0b47b35f2fd35a2fa48df74afe2e57feb90a",
+    "bytes": 862
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_ram_console.h": {
+    "sha256": "3f10d1866037f63c3ce1ab21d9be8dd014c164a2962e3c675319a108acd0885c",
+    "bytes": 21672
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt_gpio.h": {
+    "sha256": "49d17f1ec4b4676eb3df68617cc31fa82639750fea12f1268e3ebac45d5d6431",
+    "bytes": 4121
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_boot_reason.h": {
+    "sha256": "a8ba95929bfe10b2def53c6605ade80aebcba881279712c05db8cd2c52fe671f",
+    "bytes": 743
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/battery_meter_hal.h": {
+    "sha256": "870d005d5959a98bb638f1a81c5f058138089d3d7a87b5688276f4a47983534f",
+    "bytes": 1849
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_rtc_hal_common.h": {
+    "sha256": "4c8b6ecb0d73e76192fd20a9c6ce20ca0f081d81c52213a1f1f3f6c1433df299",
+    "bytes": 2228
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/charging.h": {
+    "sha256": "77280633a22936813dd96a1c384c681cd144b261cab49f755e03eb73195d9303",
+    "bytes": 17271
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/eas_ctrl.h": {
+    "sha256": "f7eef83f8b6ed0700b7d1cac18db96d6dc96a016e368528eef72a3b7619274fb",
+    "bytes": 855
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/charger_class.h": {
+    "sha256": "05417d364e925732e485452767f5fad888993976ecf612a738003bf059da365c",
+    "bytes": 9848
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/battery_meter_table.h": {
+    "sha256": "a59c13da106461eb3d89ec552a9c6e24a8097d46e7ebc0cf0169628e42d28bb7",
+    "bytes": 5479
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_blocktag.h": {
+    "sha256": "b9b2d45e5e271c3937b57394029c15772bf98d334a5d65e7100a9298bfb59778",
+    "bytes": 4511
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/upmu_common.h": {
+    "sha256": "721d6c3552efa04c91b602f340dc594165485ac17efd7a26cc79d56ace42f3d2",
+    "bytes": 6255
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_thermal_trace.h": {
+    "sha256": "638782177c444cb14a95820e38f5f1e7ac1e4ba1ec05fb4fa24cc21aaf2635dc",
+    "bytes": 1549
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_ccci_common.h": {
+    "sha256": "99724096a7c2332b87fc7febf1ee708af2df1b8ab1a079bceffe670720d84520",
+    "bytes": 20786
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/sync_write.h": {
+    "sha256": "b72d53e2b5626e3fd932ff1d84eaebbb1da2ac352cd7deecd4ac0c5ad5f5c08e",
+    "bytes": 2006
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt_smi.h": {
+    "sha256": "5dedde6706738e20475ae0d92b5299e66bc6b102964694b8267c3832c28df42b",
+    "bytes": 6850
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_thermal_monitor.h": {
+    "sha256": "84cb87233458eb788c3863a783f4759d2a611e4aa9a7ae19337623d9904940a0",
+    "bytes": 3696
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_charger.h": {
+    "sha256": "7e200177c53914bb86ed5d92338d740115b044de37500167b39a6bb9f5d3044f",
+    "bytes": 3151
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_cmo.h": {
+    "sha256": "e2a167b7e807b610d580e93b65f96cb6feb81c5ba6fc407e409ccd2812ec6982",
+    "bytes": 804
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_sd_misc.h": {
+    "sha256": "c797632d19b60839a00cef9e9b6bbed4153aad90edfef902d80d82b81954b805",
+    "bytes": 5075
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_meminfo.h": {
+    "sha256": "aef5bb8e11379f23ea0b84e6e848aef53f7b12b0aa63fde0bd8698caa9024f05",
+    "bytes": 3678
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_mdm_monitor.h": {
+    "sha256": "2f0ecd640af0280c8078025ad6e061a8111543c54b3aaed316c627c9ce19b056",
+    "bytes": 945
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt_lastpc.h": {
+    "sha256": "1c86215c1bc02501eda6c31a35ddb07746f3319b4d47119e1b175f5a8aff1f0f",
+    "bytes": 263
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/met_drv.h": {
+    "sha256": "2f026dd2484185e478a6f73dc06819257cd96c79abc4d226d007dd7daa4e282f",
+    "bytes": 15712
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_io_boost.h": {
+    "sha256": "33db2c4f697e10ee04869d17401e2cdeb46ea71a115df6043f80145408530bbe",
+    "bytes": 657
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_devinfo.h": {
+    "sha256": "609e4bb11233d9f00490ce2ee8d35dc8b9246863cbfa6b9cc1fd7eb535d479c5",
+    "bytes": 1361
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_secure_api.h": {
+    "sha256": "89e0268ad2ded22b5a090050155b5e6a4d9c017d45f6c9a3792c49dce7e0995c",
+    "bytes": 5996
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/rt-regmap.h": {
+    "sha256": "78d0fb714572990d30768043c75e6fbd5ca5d7d21e3a396b747edb3a12d6bdca",
+    "bytes": 7936
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_io.h": {
+    "sha256": "707d297290f2f3a1ad827c14867c3ca09d32a2a74b9be9adce8674eb1ac1c9cb",
+    "bytes": 649
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_memcfg.h": {
+    "sha256": "ec15c55b8af86eefd13f670e056fbe720ef73d45e5d21c2041b366e97bd68f7f",
+    "bytes": 1954
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_thermal_platform.h": {
+    "sha256": "8825255cb30a24421c494e3e251a98d3f2b989b2a9a403f389f63b618c3f2bf5",
+    "bytes": 3054
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_battery.h": {
+    "sha256": "ae480d8d105fa58db40e67f18046a86c85f61881f721d8a94466d34fe261e591",
+    "bytes": 2246
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/aee.h": {
+    "sha256": "3df825b2d58f5841e5dc6fd3bfd9302ebd4817c8c59bcd1ca44e04e7d4cc3d32",
+    "bytes": 10814
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_boot_common.h": {
+    "sha256": "c0409b3dc4df93bcd219c947f0bbe522f1cb741a2743bc9a8e8e1548d44857ad",
+    "bytes": 1139
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/hw_watchpoint.h": {
+    "sha256": "7b85457093a3ba6190efc363f3090bb0646d4706564ffaf9231c2396354b66a7",
+    "bytes": 1316
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/cpu_ctrl.h": {
+    "sha256": "9213b6911ad92f44a6bda34e53b96b7eb6c59f4d5d0524b736b7f9c7f043afc0",
+    "bytes": 992
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mrdump.h": {
+    "sha256": "b9bda4ce450775a8d7ca339296ee051e83f1ca39e9f736a7e9c304c74f3a9c11",
+    "bytes": 6114
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_gpu_utility.h": {
+    "sha256": "cada94194f7ddd3fb9fef13648befd67b6133ee9bffa43838783060cf9ac3f9f",
+    "bytes": 3868
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_cirq.h": {
+    "sha256": "6263345e2122ff58637b9b3388a51cd144e2992ad3061fb8baa827676a7ccc2b",
+    "bytes": 2519
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_usb2jtag.h": {
+    "sha256": "f8dd6374d1f199385c28ecd2e1fa1b11b62a28201ef55d98e5317dee88dd12b2",
+    "bytes": 606
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_smi.h": {
+    "sha256": "8e969dd0a35c8ea6aab452436ef804c9cd57ae39da16b829b960c4ea30a80c75",
+    "bytes": 7082
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_pwm_hal_pub.h": {
+    "sha256": "cd987faf148c72900a1185baa9ed9212c35191bb56463622d202e8db1bfb1d9d",
+    "bytes": 3298
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_wcn_cmb_stub.h": {
+    "sha256": "39a1dd56a639ca79dac67e1969880765a55cc9fd84ce3b25321585e4e563b03a",
+    "bytes": 6769
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_chip.h": {
+    "sha256": "8b52f35efb6b63781d8c7eb0744d333ec7ba2cc22a8f6fbded99c38e91ad7aeb",
+    "bytes": 1372
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_platform_debug.h": {
+    "sha256": "4ff5a631adcb3d5894503395e25015ac59193181085d27d618eebb12bcdeea52",
+    "bytes": 1067
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/fpsgo_common.h": {
+    "sha256": "34a38ffac9e028081549e5fa53af8e354430c996cb16fdd6f5103d961ab7d75d",
+    "bytes": 5990
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_partition.h": {
+    "sha256": "df742918ff23090e2343c0d8ac4027c096067c9d1990a905ad50ee53377fae19",
+    "bytes": 653
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt_typedefs.h": {
+    "sha256": "127fc03848dc5cb8629096d94089d54461ff7d988a28eedf2c6977dcb571b707",
+    "bytes": 6787
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/charger_type.h": {
+    "sha256": "05ece1341bcec771515c60a95e6e78e4397c1d5eb036a2b5417a538d2e656681",
+    "bytes": 1539
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_auxadc_intf.h": {
+    "sha256": "41f87bf5fbb38cd18d894647a8ed5a6df796cfcc0a8ddfbec76e4577a265a9ba",
+    "bytes": 3962
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_6306_gpio.h": {
+    "sha256": "91a4227210977bb7a4ce1e44e97466a24cd5ddc5b8261d6012500f19dd676129",
+    "bytes": 1566
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/battery_common.h": {
+    "sha256": "39621621a1e3d48368b6c7b2e081835070bf777bc003411d61fc558be8e7636e",
+    "bytes": 12125
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_rtc.h": {
+    "sha256": "1b2201cc4a5676073bc728d440fa4a6b30f53096e9baa6e4f2f36dbf9dcc8161",
+    "bytes": 3468
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mtk_sched.h": {
+    "sha256": "15fec33ac5766a9c41dc2c47e7f097f4fd40e62b1f2458e88619e23c9c693ffc",
+    "bytes": 1650
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ree_service.h": {
+    "sha256": "e7a17175bc984177ba042ff258b5a15a74e4e822f864e0554168bb40f12824d3",
+    "bytes": 2605
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_emi.h": {
+    "sha256": "e99aa2a5790682c90d9d49331f307c93c775adbc617ea94646ea16d6a138c3be",
+    "bytes": 892
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_ddp_log.h": {
+    "sha256": "c9e84453fb56b74e34de19864e2160e628ff06cb5f418cc00e48d74033cb9ae7",
+    "bytes": 1761
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_ndbg.h": {
+    "sha256": "f8853202052101872283c99abb1219b33b3c85db2b45c84b3852b35bc666e80c",
+    "bytes": 1020
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_widevine.h": {
+    "sha256": "fcbd933dae466a0f9c0e1eec81a0f496f425634664c3f3f03f05ee9071d3845d",
+    "bytes": 2459
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_securetime.h": {
+    "sha256": "d0d826abfd2ef553cd8a64e5caaaee232289fade06a9177455bbc7fb730d7478",
+    "bytes": 3271
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_icnt.h": {
+    "sha256": "2280c40ec4f69cee0dd9978097a88466538c0db10b9db27d0c2fbb64c3bb8317",
+    "bytes": 892
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_irq.h": {
+    "sha256": "935d4f91dd29b5dbdb6a7f599d23635b0359759b99a311c99348af5acf10e743",
+    "bytes": 1166
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/trustzone.h": {
+    "sha256": "0827bde42fa4f55fe225f9d1b00847fe2a8425ff195394a7ff8b50523f56b138",
+    "bytes": 5753
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_dapc.h": {
+    "sha256": "e858336f1ef331f3b4a5115d5f10218c56ca3929e6b40392c274b39cd112d9b3",
+    "bytes": 851
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_logctrl.h": {
+    "sha256": "81f6d2bfa8fcb008b3261d4e41830146afcfde0bfff29e3050cb6721326b6748",
+    "bytes": 1059
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_ddp.h": {
+    "sha256": "fdd2d7413bd359427d69390a415aa6f2b744dc693baf19547e78ac0d4a7138f0",
+    "bytes": 1977
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/tz_ddp.h": {
+    "sha256": "6a075452f067cae5d70baee67c9ac15966d7a3761b7da97f733f025ddcfb34c0",
+    "bytes": 1937
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_dcm.h": {
+    "sha256": "0f2d0099bfb8264c04107714304007833bab358dd327fd429102ecbcd733ef27",
+    "bytes": 1332
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_mem.h": {
+    "sha256": "6505cc46fb5ad662a326fb6d26168388a76ff7792195ce92ba9abbe569fed024",
+    "bytes": 1813
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_hacc.h": {
+    "sha256": "5ea3bb7c424ddacc94b8a4d26410a56b8e77bb95f9fbbe73457931a7e565f2fd",
+    "bytes": 1244
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_dbg.h": {
+    "sha256": "37afe99c4007a7305512ca07ddb34c06b434b1187e40ce97dd1978de8739ec7f",
+    "bytes": 873
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_mtee_img_prot_inf_gen.h": {
+    "sha256": "0f554a159ff9f831973439f57fd93e49e30b7abb5453528586cc17f3d34f4082",
+    "bytes": 767
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_hdcp2tx.h": {
+    "sha256": "a93631d7610365429a1abb8285a5eb3ef5aa750dbb4b6d29b8e95d00f644030e",
+    "bytes": 1723
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_modular_drm.h": {
+    "sha256": "859c9ba7bc88a180d96000d657d0b8c5dcfba023f088173071ee97988c7a0bdc",
+    "bytes": 5505
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/hdmi_ta.h": {
+    "sha256": "5656ec5efadd8ba7c941e8f783d6ecdc0a911fa59056e2445c343ecbd180fb1b",
+    "bytes": 1180
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/README": {
+    "sha256": "0329c480327f3518b01be84e7bcc8f1bc9d533c3c007b58da4836f8988ba46c6",
+    "bytes": 300
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/tz_error_strings.h": {
+    "sha256": "29d409787681b2a926969cb4ae09912a3df62626863f45bb71363ff0091ce7c5",
+    "bytes": 1901
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_pm.h": {
+    "sha256": "837cd785c881bfcf55b7bda4f25a346994835bf2981f9df0f1eb66faa01c98f4",
+    "bytes": 960
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_m4u.h": {
+    "sha256": "6185658fd3a54528ed4495bd3f8bb4a4b18591b7027ab9e10a6ab9b26ff9c16f",
+    "bytes": 2320
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_test.h": {
+    "sha256": "f19e2d1df3616eb4a92783315d3d590f1d6252dd1baed771e16c9bc05c62972b",
+    "bytes": 1288
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/keyblock.h": {
+    "sha256": "55a9058a1071fc550ec7e6fb75a72db88bdcb936dd0797c705a0bd4cf783ebd9",
+    "bytes": 2306
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_playready.h": {
+    "sha256": "0d34689a1613584f60b8f9636742a60e68dc228ccfe79d389eb0da8ab5379cd8",
+    "bytes": 6166
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_vdec.h": {
+    "sha256": "302d5770d42221f29f1d2d7226e57fdc485892a676ab05b5152ec2c9ca55ffdb",
+    "bytes": 975
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_system.h": {
+    "sha256": "58efef68c73e2941e43137f958e4259cb40e123942e8505497a39c0c59835564",
+    "bytes": 1044
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_gcpu.h": {
+    "sha256": "e6a01c0f5cc7ea20280d4a1d697ce3eb2eabb8358772e60bc373c40fbd9ffe04",
+    "bytes": 1021
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/tz_cross/ta_drmkey.h": {
+    "sha256": "3ff45735dc6e6e1cb7eb99a54d6ac2a26f5ac536f2d2c022886a6c8dcd1e57a9",
+    "bytes": 1124
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/kree/tz_trusty.h": {
+    "sha256": "f0c5306f971618599883a376e84b5dc075bf88c97b06b358410c8e9b399f02b9",
+    "bytes": 619
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/kree/tz_irq.h": {
+    "sha256": "a8e4c808313cb737ffef3e04c3699363d0d749c3afc29e65ab63961599c93f3a",
+    "bytes": 1371
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/kree/tz_mem.h": {
+    "sha256": "465e47385c214a1f61b44d7d1fea5ea7aa5d92374cf3da6fc19e627d3ef55a23",
+    "bytes": 1166
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/kree/tz_mod.h": {
+    "sha256": "7be33b94493a87fb441aaf8aff6f4e9ed0ef7c0d096232374570af7176ba4ed8",
+    "bytes": 2722
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/kree/Kbuild": {
+    "sha256": "b953aedff8c6e7f741bf4d46a15441ee9091a6ba8a918d0a774fecc6577b6adf",
+    "bytes": 22
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/kree/tz_pm.h": {
+    "sha256": "c83879118aa40cf73622fb8b4264da840d4b5be130dc74491867b8f17e73eae9",
+    "bytes": 1052
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/kree/system.h": {
+    "sha256": "461bf505c12b2f96daa9e8905f59b8b39d3889e285948e92e56fba0f70eaabc1",
+    "bytes": 2212
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/trustzone/kree/mem.h": {
+    "sha256": "ea1d073bbfac43322b9d41a350ca2c6b26a411419be87f8875be2f501b7fcb6a",
+    "bytes": 14039
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/mt_secure_api.h": {
+    "sha256": "3d670952610c86cd9e9c8a9161b52d9e77b43ca354b63e2d8e0f10f0bae49a54",
+    "bytes": 6563
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/mt_thermal.h": {
+    "sha256": "2b9c380d0c3e16ef5ee28faa425fec1a408483f1d6491d7d920b5dd3bebd8459",
+    "bytes": 13936
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/upmu_sw.h": {
+    "sha256": "3dc4d2d3defb8fa4726bd4fcfe027f66996d4cc9f947944c26ab3a9c25443ce0",
+    "bytes": 461447
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/md32_ipi.h": {
+    "sha256": "b9a6909e72bafc320c6217722be7bc0f37c7ef895184ef339de29cb5c3359f12",
+    "bytes": 1183
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/mt_freqhopping.h": {
+    "sha256": "db54cecb1296572a790825066734adc501f9cc2477e9618c112b8fb684f54d16",
+    "bytes": 4054
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/mtk_pwm_hal.h": {
+    "sha256": "5ab7ac0df04a391466f073739e204ec3350f67bc1d119644827c09e1893ba052",
+    "bytes": 3251
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/md32_helper.h": {
+    "sha256": "3b063f997cfe80a8e76163a106f5717bbda62191e4738b61533b7773f96157c1",
+    "bytes": 1130
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/mtk_battery_meter.h": {
+    "sha256": "16deb3e42d198a0a3f31a263985571d2993135514c8f03d1916904bb477f1b37",
+    "bytes": 3846
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/emi_mpu.h": {
+    "sha256": "5df0de17c9ea16312a892a9d6b8a9ee6f273ffc988bbacc97a4f8c8cc8921f59",
+    "bytes": 4959
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/wd_api.h": {
+    "sha256": "5d13f5ce33fca6a021b9bb3f0a68add2fdc5e1e074e4b1df3114af90307439f3",
+    "bytes": 2490
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/upmu_hw.h": {
+    "sha256": "edfd3fb80ac09c6086e7cfac23263289bd027e0ff07a927e6d40c160fe2c8a17",
+    "bytes": 169496
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/mtk_charging.h": {
+    "sha256": "300b43af110d4fcd451609806387df91eb323e5be04d5128c8c05bb5d5ef7b5b",
+    "bytes": 4965
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/memory_layout.h": {
+    "sha256": "f554aee45bf86b02b29ca02095e81efec20600a76987727de4f064b7e6dfed3b",
+    "bytes": 603
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/connectivity/common/wmt_build_in_adapter.h": {
+    "sha256": "f6e74d128cc961849b405ce13d098f5fe868a7d442cc99a829c0539e791074a3",
+    "bytes": 1766
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/connectivity/common/connectivity_build_in_adapter.c": {
+    "sha256": "45fa0e8b4cfd0e9189990fadb8be17c1d8a4ddf2ad3108563754171085ac7406",
+    "bytes": 11956
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/connectivity/common/wmt_build_in_adapter.c": {
+    "sha256": "7900e4d29bd95a3e1b6cf6e6eb2d4cc6e506d1d04aba20862a321ea98a2ec520",
+    "bytes": 7283
+  },
+  "sourceinputs/kernel-4.9/drivers/misc/mediatek/connectivity/common/connectivity_build_in_adapter.h": {
+    "sha256": "e6e04d21a23b65c375fa66eac52ebc2df4bf2696a8dfb455ca472d7cac5469f2",
+    "bytes": 9842
+  },
+  "sourceinputs/kernel-4.9/net/wireless/nl80211.c": {
+    "sha256": "60f3ad94026c318cd0cbd0e43613bcda23550cef47c74ac1ac12d0ce5a84d1ae",
+    "bytes": 396830
+  },
+  "sourceinputs/asus-3.18/arch/arm64/boot/dts/mt8163.dtsi": {
+    "sha256": "a635a298c57fc5cd22afd1fe9dc6f1682e4536319dd01f3a90d3aa84917af3cd",
+    "bytes": 46308
+  },
+  "sourceinputs/asus-3.18/arch/arm64/boot/dts/asus8163_tb_380_m.dts": {
+    "sha256": "78f327d470385474dc159dc657ef58eb6c23487e7df528a2141c1db84a152414",
+    "bytes": 24307
+  },
+  "sourceinputs/asus-3.18/include/net/cfg80211.h": {
+    "sha256": "881175c8e7fb862340edd92dffef0ce4e2d00a671dfe16d9e57fba71ce8289ee",
+    "bytes": 176986
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/btif/common/inc/mtk_btif_exp.h": {
+    "sha256": "1a266c46dfabdca253cbe63c971e3608d426080d1d0ab9bfd1fac2532563f471",
+    "bytes": 10635
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/include/mt-plat/mtk_wcn_cmb_stub.h": {
+    "sha256": "2563ac521e6befef87bf252d40529acb0d458b297a4b551fc1b35a23b583ecd6",
+    "bytes": 6164
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/Makefile": {
+    "sha256": "8baf548e4472f3d7215ff485011e579ce733a45ff45dbf54f6a70f79338727c4",
+    "bytes": 6130
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/mib.c": {
+    "sha256": "e99ec5b81f60d26c07453089f0aeb86b09a40493accb3c9eb4f108a623aa1978",
+    "bytes": 3955
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/wapi.c": {
+    "sha256": "f1d2f1db3c267a15c5e05652082572c8d3801b4d8135c329deeba46315f1c436",
+    "bytes": 16922
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/rlm.c": {
+    "sha256": "b35040f24f2abbfcf8836a28a1389f2537d96cb49c3156ee25a0eda3d4b2961b",
+    "bytes": 58231
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/auth.c": {
+    "sha256": "e619da9abd41bc0fa0fa80d5bebb87170d8f417cf52cb3b9fd1998f326d639aa",
+    "bytes": 42514
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/scan_fsm.c": {
+    "sha256": "8c44691156a60c587df2d9ee9d9031956d8de4932a70ec0a9ab4a01878babe0a",
+    "bytes": 68758
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_bss.c": {
+    "sha256": "32fb791c3e915c3083e82033f66f22d2781b66449430f93372b8e23042d4e02b",
+    "bytes": 2331
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_ie.c": {
+    "sha256": "ae6f9155ae407f2a30106b7bb8aeb5349d41b81267406554120b10dfb567efe8",
+    "bytes": 19327
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_state.c": {
+    "sha256": "94f647ad0f4f952aacdec5a6985d396c779f2492e4b39e83d1d873dc63b132e7",
+    "bytes": 14888
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/rate.c": {
+    "sha256": "149a7151be03cd803e2453f89f0e85e401ee890bb90e98879d0b5f24d31621bb",
+    "bytes": 16557
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/aaa_fsm.c": {
+    "sha256": "23112dee1155eb540f3198e76830e92fc020188ef2b306b6d2416d1c9ca49094",
+    "bytes": 42102
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/tdls_com.c": {
+    "sha256": "45a03283064734ada1e762f7ad76c36283af20d7ba1b427857d96a0e1f373dd8",
+    "bytes": 24906
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_rlm.c": {
+    "sha256": "c86f942cb41f9d263113cacb59904dbd3908862b196cddebca04526105609eee",
+    "bytes": 29769
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/bss.c": {
+    "sha256": "3f3d06164404a681dd98dad8d749a7b229e8b285b43876ce45720bf76670e0a2",
+    "bytes": 86492
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_scan.c": {
+    "sha256": "b157b67e4c342b850b888a7a2685b7a3707a4ae86dce4d5a3ca25d645f34f8d6",
+    "bytes": 27425
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/tdls.c": {
+    "sha256": "6cc95bb5c88d99617f6468385085e576379d7924d609ba2e5644a3d83cca33b3",
+    "bytes": 181443
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/scan.c": {
+    "sha256": "6a9b7812b8297cdd237310d1cae9f02c5c67a324f87d293535ff8fc7fc1b898f",
+    "bytes": 105276
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_func.c": {
+    "sha256": "59ef48bad301e930b31b14c9fd3fb2846cb33d3a18db434b60eb1be81834b146",
+    "bytes": 113190
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/roaming_fsm.c": {
+    "sha256": "d7ade81a729dda965ab6460bb4dbe5662813ac43ca23305ce7480b99ca94589e",
+    "bytes": 17471
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/stats.c": {
+    "sha256": "16467e47beaf5d81e7ba111051c962dbd20890036e624e5f0347752da88f6cf4",
+    "bytes": 54645
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/hem_mbox.c": {
+    "sha256": "dcc056795630fd38566e06199f239ab08cbd75c21db305a9d16f0a68f80574f9",
+    "bytes": 25693
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_rlm_obss.c": {
+    "sha256": "fd8e6edc9f6ee890e663a286462adee057afb420c710faae94db22206b346b6b",
+    "bytes": 10449
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/cnm_mem.c": {
+    "sha256": "4447d2ef5a566cc867429521964d3c170e020ab183fa03817eb1510450e6b08b",
+    "bytes": 38197
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_assoc.c": {
+    "sha256": "ea2f7e71612cb6de0141801a0c0814b39731ebed17abdc8d4810bed935045ab7",
+    "bytes": 3297
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/swcr.c": {
+    "sha256": "24865fb037d1e62faa6013d811cadb21ffa8bd47ed3e46e4897ef058b13bef7d",
+    "bytes": 37202
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/rsn.c": {
+    "sha256": "92ae251bbf226aa6451a896c01ff9187bfaeae5c0f460dbbd462ffc2e9239876",
+    "bytes": 86247
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/rlm_obss.c": {
+    "sha256": "2436630d80c8d6a614771bd34ad216f3ad370fd9d731f1ae51aa5de84d5f658b",
+    "bytes": 14298
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/rlm_protection.c": {
+    "sha256": "fbf8d54cb34ea6c9f9cb46433a49e68ac190da73d89136dc8becdda0320ff275",
+    "bytes": 3615
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/saa_fsm.c": {
+    "sha256": "57c3be7b218214e0abde4a2d0afbd14165f957c719464d4306b3418f9b2e78a5",
+    "bytes": 56667
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/hs20.c": {
+    "sha256": "909a8ee47f38caed3c0c1ef838665aed44da0dc91106389aadf7626a7a2bef4c",
+    "bytes": 16810
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/privacy.c": {
+    "sha256": "f717e997482e577f5bd4ee6d1ac35261de032515fde1d6ee4a158127594d9fe4",
+    "bytes": 31007
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_fsm.c": {
+    "sha256": "6dcfca91ed4ad061ac6796883a590610df58887b4a473cb4850dc1acad02b3df",
+    "bytes": 100275
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/wnm.c": {
+    "sha256": "260d8c0ed7cf696bd21b96bf12ff2d9b535ed2fcc3c41750dcd3bb63480a0d7d",
+    "bytes": 10180
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/ais_fsm.c": {
+    "sha256": "0d48aa1ea9183f31722793d8847b5d62498657bffb67c7edaa943f87e2768f40",
+    "bytes": 164855
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/cnm_timer.c": {
+    "sha256": "5fd2fb7213b667a3a92d87a2f875a8eb7d4084a2de3e7e3fefc1799258cddb44",
+    "bytes": 14712
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/cnm.c": {
+    "sha256": "08b704a19cf2436c6bc1ac1a2469ebf066118b70b53c282ea599d3e9a7a38569",
+    "bytes": 23345
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/sec_fsm.c": {
+    "sha256": "2eafead07be0c2fe8a99582fd7503081dd1f29e900e24b99ca7bad947e4d005f",
+    "bytes": 32736
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/rlm_domain.c": {
+    "sha256": "66105f39cbf9eaadda23a26f0768c1ab5ca41ba3a1f644812d5c351a297eeb1f",
+    "bytes": 64318
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/assoc.c": {
+    "sha256": "51af65f653d3b735da95dfeb44ad643398d7c8982dbec12fedf8241afb5c890c",
+    "bytes": 67381
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/nic/cmd_buf.c": {
+    "sha256": "69338cda214ae528beef983e759f010ba35428a29ec9baa2a0bc03c8007e93d4",
+    "bytes": 9456
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/nic/nic_rx.c": {
+    "sha256": "a2cbe59968262ec043c41eab545b9db6899bffd92d44a1850c47315151113d1e",
+    "bytes": 124284
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/nic/que_mgt.c": {
+    "sha256": "a943ad41c2b3e92d3d65fd47441c2a4ed6cfcd58142a8e39c68b55cdef4f53d0",
+    "bytes": 158833
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/nic/nic_pwr_mgt.c": {
+    "sha256": "fdb3c756c3656db5061863992f3170127126ed802e0b0cd143d07b64757a0e54",
+    "bytes": 22359
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/nic/p2p_nic.c": {
+    "sha256": "af1eebdbe482bfb4f6f9c113b1b0204091688f6e31a3dd7ec56b101cee602db9",
+    "bytes": 6755
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/nic/nic.c": {
+    "sha256": "cf021e7444ecccfee49218c020a64684fa5bf7ff716ed9f16810a47bdb706106",
+    "bytes": 133813
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/nic/nic_tx.c": {
+    "sha256": "9d74c99894ff8781edb1cb9d661e96cda0f284ae4bbd41251ea697a302286bde",
+    "bytes": 80308
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/nic/nic_cmd_event.c": {
+    "sha256": "6b1d27bfda27982b76a43779f2d3679bc0108fb64b44531efaff06ee730061ff",
+    "bytes": 53600
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/wlan_lib.h": {
+    "sha256": "a828b3c737f4a7df85e35045eed78d7f108111a0da41915c0b0340296766f995",
+    "bytes": 38395
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/debug.h": {
+    "sha256": "02079569f98b12c8075799676ad247f7ecf92e56654495cd9fdcd9d308a3e287",
+    "bytes": 14038
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/CFG_Wifi_File.h": {
+    "sha256": "d7df54e6bd007b93aba4ab59188b31c18918f3ffc53509969f27ddbb5145a953",
+    "bytes": 8310
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/pwr_mgt.h": {
+    "sha256": "102b0dd6e9f70a991d0c7a6f4b563a51f2b66f7b7c19f014716cfc2788d5f696",
+    "bytes": 5521
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/precomp.h": {
+    "sha256": "d9bb5243d9e773fa7b166d03cd70b7956673b33730f9fa9e6caad88e6ff4cbc5",
+    "bytes": 11379
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/config.h": {
+    "sha256": "2a2d1f03f0e39594cadfac3a367b5a4b10780edaee89eff282b9397318a1cafa",
+    "bytes": 59998
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/p2p_precomp.h": {
+    "sha256": "ae27c9dfb714c5625f0bf987b594ba338cf1947338bb971da57c931e2e600618",
+    "bytes": 5153
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/wlan_bow.h": {
+    "sha256": "3ece3a5e20a0e5bcb6b4b054ab5d3118962d5c894bb4a295c51b25b51ccb8437",
+    "bytes": 13069
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic_cmd_event.h": {
+    "sha256": "408957e64e2a7870aca61197f932ea028d27db2c8aed0fce6d1eac9b750dd8e5",
+    "bytes": 75632
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/wlan_p2p.h": {
+    "sha256": "6e545072c4fb1f8c4b2ff5a6a4e091247aa66524258383caf7059c241f1d65ff",
+    "bytes": 11069
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/p2p_typedef.h": {
+    "sha256": "83a29eac4a1f72b4d31c290a5a05055400ddb122c84feddaf251d32d4f2900a2",
+    "bytes": 6784
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/wlan_oid.h": {
+    "sha256": "025fe4a7ec4d54ce446e3ec6e2fb247dfc47b591819fe6665775c1dee9b15923",
+    "bytes": 60489
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/rftest.h": {
+    "sha256": "73dad245f8b3d775b66630aedc1e7d7590453340367380abc360e6d12ee755a7",
+    "bytes": 9425
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/tdls_extr.h": {
+    "sha256": "3e3da675d3bc6336013c29faba8078f061425e170c3b717551b31d40ae2c13c3",
+    "bytes": 13132
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/link.h": {
+    "sha256": "699d6c5770b4729895c2e0e4a65e774d36ec5dbacbc2af7568c77781e5add5d5",
+    "bytes": 12532
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic_init_cmd_event.h": {
+    "sha256": "04c9677fdc09f6140318f0e63de4086117bca3d86f1c1fd573c2c19628943d46",
+    "bytes": 5806
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/queue.h": {
+    "sha256": "1339c8317f0154ba6d3c6207ef43963995ab4ff109bf4ddbe9c4939ad2e00586",
+    "bytes": 6312
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/typedef.h": {
+    "sha256": "7ca8673cb2ad526d639c05a06858c70ec9587e06a644080f479f2e634ba26ad6",
+    "bytes": 9208
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/common/wlan_oid.c": {
+    "sha256": "0caa1d0ea2022fcb97080a4169e5cdc968b7625cef12bd09f86c85e57202a9a9",
+    "bytes": 390355
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/common/debug.c": {
+    "sha256": "8a362ba03c6dc5457825ab012b95a26536e19f09d612c527c6ebab6d93a258ff",
+    "bytes": 7670
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/common/wlan_lib.c": {
+    "sha256": "45938b38824858954a2642d292704aebcfcae30b2e0466e5685843cb95b36fd0",
+    "bytes": 205581
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/common/dump.c": {
+    "sha256": "acfd89998eda05bd74b40811148ea02a1857aeaaf45799ef1beb36d924571ca1",
+    "bytes": 12165
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/common/wlan_bow.c": {
+    "sha256": "dc457d380923d3ec44ff6fa6fefe1271c8ff51d4ae533c9225665651bbae2cbd",
+    "bytes": 122036
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/common/wlan_p2p.c": {
+    "sha256": "353d636b378ca7f4670b72026559166e5df82bf9d3ff258b091176dd0d3d88f3",
+    "bytes": 56902
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/version.h": {
+    "sha256": "fd04db09b6319bec5f17951c65ac07f5c3070ab2d7fd44a605cbd1d5451dd6b6",
+    "bytes": 6087
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_vendor.c": {
+    "sha256": "cbdba37ba33311226d68f7d099d93e5db2732ae2806487bea1b8bc86e958d6aa",
+    "bytes": 40541
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_p2p_init.c": {
+    "sha256": "914cf1a60064a803446e9a7e212ba1dfb504fcf43d1f48cb1efc2033d01d1648",
+    "bytes": 14663
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_kal.c": {
+    "sha256": "750290654309f904a37a255894792b6b4e12160932e44a051cf7bd9f185aaf4f",
+    "bytes": 138297
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_cfg80211.c": {
+    "sha256": "0d5703150771be7ecaa1854e5cfec475a4e6ef1be7bfa1bd9ed3c4af133e7003",
+    "bytes": 96468
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_proc.c": {
+    "sha256": "7c5f5a2a41cb00e81f0bbca4ba7be5ae7c641e13af6bcf1688fb4ce80bfb7ded",
+    "bytes": 30759
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/platform.c": {
+    "sha256": "a57436a2062cd444972d288db01f2fd60d46b2966aef68b21c5b40b14789a66b",
+    "bytes": 16694
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_p2p_kal.c": {
+    "sha256": "a1650531e5fb5de0eab20f99988efb1b6e127d819784279c07cb2676ebfd2264",
+    "bytes": 37510
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_p2p.c": {
+    "sha256": "866589aac156ae05b867a95ad95f6d52f535873009eb3757df98a7e5496612d8",
+    "bytes": 141137
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_init.c": {
+    "sha256": "884fdae2c904e218361397c912cd8ac231461421b702f3949a941d170de9e109",
+    "bytes": 113129
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_p2p_cfg80211.c": {
+    "sha256": "c79dc07f00a9bbace3f6ff15e76663b56e795df3d0238c1ae0346db70d5bd0e9",
+    "bytes": 56802
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_wext.c": {
+    "sha256": "8ea6bd9b2908ff42d8e88fa9f7ebfbe1c00ea9ab25905e72d6533267d376abfa",
+    "bytes": 129307
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_bow.c": {
+    "sha256": "5ca47df18fc767a090350eb48074fd907d19e4827db0ad917ca1dd1ac2b2d73b",
+    "bytes": 35676
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_wext_priv.c": {
+    "sha256": "10beed12ba3bbc3c6b520af578c46e004ecbfd410abbfbe8bb30f50e2253128f",
+    "bytes": 101617
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_rst.c": {
+    "sha256": "63c419323b7b09067530a51e7b694ea88b6b9b21f53fcb30c3dc4f059ccf19aa",
+    "bytes": 6762
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_wext.h": {
+    "sha256": "9481a8833f18b1948d61693274292a9e91559dc6cc1a74fa4ace21b6dc7c1898",
+    "bytes": 12788
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_os.h": {
+    "sha256": "3431ec5b9a6e476237e9d64c7bcca974b7f1f7a36ed2e0e5c47b14c14089d6e9",
+    "bytes": 41535
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_p2p_os.h": {
+    "sha256": "c728841308cfe35106a51dc8da5656c0cb97babf5e417cc3830f7378c470d3e6",
+    "bytes": 7409
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_p2p_ioctl.h": {
+    "sha256": "2728227a52ad50bd838d61e93f3a8f103b0658eaaaac549a83e814d8f5639d34",
+    "bytes": 26794
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_rst.h": {
+    "sha256": "2a01822b7dd5fa65d5522f316da2e7939397cce8218d75a5411b996a0e176df4",
+    "bytes": 4824
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_typedef.h": {
+    "sha256": "336da83a6e9adecd1cf3e71e4bbd9a2a8ff4beabf769527b447e9d534615e478",
+    "bytes": 9316
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_wext_priv.h": {
+    "sha256": "9f2bee424fb5d85376cd8442b9d572e7046fbbb753df12d5bcb34acee466d8a3",
+    "bytes": 15484
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_vendor.h": {
+    "sha256": "ef5bcc699657165b0fd6b57062dd1c06b6a278d693c32a08a6ab81eefe026f1a",
+    "bytes": 23994
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_cfg80211.h": {
+    "sha256": "6194bd426fcc7d7384ff1d3ce297deae12b5d20e7a19fed45834c5d9b0b3eaa0",
+    "bytes": 12099
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_kal.h": {
+    "sha256": "1b91c1289d10471b2984a4bd12ce449cb11ea200ce995ea1e75652abb7f959da",
+    "bytes": 57868
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_p2p_kal.h": {
+    "sha256": "a9ff93abd0d8d2f695a60af851d144e538e3a6135216a06321bb020bdf390dcb",
+    "bytes": 9226
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_sec.h": {
+    "sha256": "65c70648eac93e0bda899fb71468e7ca0e180695cf7d38819de7b937b7c4d887",
+    "bytes": 1002
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/hif/ahb/ahb.c": {
+    "sha256": "da8bb69dbcce253f56179d8c0e9a72015d91eac8c49bf47d30f02038dbdae4d9",
+    "bytes": 46389
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/hif/ahb/arm.c": {
+    "sha256": "36f47d879d70d65032358b05e090180f82c8794f0f33e72fa53b7e4edc08c6c8",
+    "bytes": 851
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/hif/ahb/include/hif_pdma.h": {
+    "sha256": "b4142e31656dd604721e1ba3b8a369a701ca18d23cbf58c3048d8ced69e34989",
+    "bytes": 4469
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/hif/ahb/include/mtk_porting.h": {
+    "sha256": "8295fd6b3058ce336109563ff8c51ea1cbb9c6acff78107d17e440618966fac8",
+    "bytes": 2370
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/hif/ahb/include/hif_gdma.h": {
+    "sha256": "9905f1812fbeaa5aca4c79ab806696e8187f0dd3a8a3006380da90c346f07631",
+    "bytes": 5135
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/hif/ahb/include/hif.h": {
+    "sha256": "1970c4cec0169d3c26337652058eb192e9a15625cec29c860b728c8b039ebe7b",
+    "bytes": 10591
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/hif/ahb/mt8163/ahb_pdma.c": {
+    "sha256": "0de59e71c36d10e197a7c828dab7cc0466a694d2b9f7d05dd24bd3b81b3bbba9",
+    "bytes": 14407
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/rlm_protection.h": {
+    "sha256": "67cb129b13f828fb6916b2f7c8988c4e8d32fb231b75a651cdbf52c38f7767fe",
+    "bytes": 3888
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/swcr.h": {
+    "sha256": "ae41e12dbb5cb2f00380da4641c6471caa390ff94256733fc1b15258a22ca769",
+    "bytes": 6245
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/rlm_obss.h": {
+    "sha256": "f1e2e453b94a64963c47d38ee81d2baf110398f0c937fada42e5171e34becb04",
+    "bytes": 5225
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/rsn.h": {
+    "sha256": "6562805aaf70f7e5bb8066047c3de8d912387b2cf77e334d682fb9ca5bda3fca",
+    "bytes": 10264
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_assoc.h": {
+    "sha256": "d8faa99c48bee05968eb06c322b057fb9f75650a15a4b8cdbb753d217ef90404",
+    "bytes": 2162
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/cnm_mem.h": {
+    "sha256": "11529fdd8c382da1a22f59be43777c1b2bf7aba8cc8d6698ab1490e2d47ab529",
+    "bytes": 41377
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_fsm.h": {
+    "sha256": "2e0a56ba61441d2856e23238be2f4a6cf891ec9bc21e35baefb2a070f6983207",
+    "bytes": 79645
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/privacy.h": {
+    "sha256": "774a9c77f180a033d6a067002171ea7aa6dc44e201482bd15963035227b1abb3",
+    "bytes": 8052
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/hs20.h": {
+    "sha256": "672dbcf3813bd5bc598154670afd6be448c42ffb3e820873bc80f7980c36b5bf",
+    "bytes": 5051
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/aa_fsm.h": {
+    "sha256": "53ca266efdbd3457feedd016796a35414610bba326529463d0fe86f6e8f598ae",
+    "bytes": 7289
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/cnm.h": {
+    "sha256": "eebd838809e7a702eb9163cadf6d5cfde0944113761a81003f7e84c9cef782ca",
+    "bytes": 8803
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/sec_fsm.h": {
+    "sha256": "c5be45bc3a3f95f9267954de96f890cf67d43688a801256e2641ad75e0711ef7",
+    "bytes": 8538
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/cnm_timer.h": {
+    "sha256": "48b61c3db0b6d77229d606a74465df15fd39b8610c12738231c0eea4741f144f",
+    "bytes": 8679
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/wnm.h": {
+    "sha256": "2f6fab2fc9dafb4ff2c9713ba8e0335f5123bee46ed49314bfcca5b02c64da3f",
+    "bytes": 3431
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/ais_fsm.h": {
+    "sha256": "a6dbca6c9ab38d5c27b25daf662f6c046851ebdae82797890d71ef76bb6a4e2b",
+    "bytes": 21187
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/bow_fsm.h": {
+    "sha256": "9aa4b7c959f97a50aa11f53677ef3511ec58d5d924482f5f172fffe3302d7c27",
+    "bytes": 5897
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/assoc.h": {
+    "sha256": "3de4c05bd53ca6c593022cf7a7a987be9777c47b3c1e7ac56b0e52d488ca6d95",
+    "bytes": 4341
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/rlm_domain.h": {
+    "sha256": "840056de5a0b3ae7cfc21f8cf8d5087521106c4c6bbc780621e73ca6fc941754",
+    "bytes": 37904
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/wlan_typedef.h": {
+    "sha256": "64348608e2a4d42e25472e81314e8dd998a1cc464ee32516b4082aeb05b9c22d",
+    "bytes": 3508
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/rlm_txpwr_init.h": {
+    "sha256": "b4713d86864e730325475e2e32a1cab6a557d6b7026e147a106bd7b90a25bf9b",
+    "bytes": 18530
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/wapi.h": {
+    "sha256": "dd867e4593380eb5e22dae064438a9563c103e4b568e8c0cfec2b463ea41214c",
+    "bytes": 3617
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/mib.h": {
+    "sha256": "065ae95a8fda30b3f066ffdca73ff980eaeafc9f4b7f52f2bcb45a9bbffc0565",
+    "bytes": 6076
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/cnm_scan.h": {
+    "sha256": "f35c92c2f6654bce6818ba574978fb78637607157b52a5d0fa6a1702b0509df0",
+    "bytes": 5347
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/rate.h": {
+    "sha256": "18f28adc750cd0d9c1d5218653ea92343c9ce06e89ebfc3b9eeadad51030ac53",
+    "bytes": 3517
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_state.h": {
+    "sha256": "1a1fefabb49f2e27e0474fcb970d7ff20553ca040f68b7b9c2116112226f7123",
+    "bytes": 1606
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_ie.h": {
+    "sha256": "3c0803f38e97f0a660ba508b981bf4fbb4a72cbabed835a2a1cea66d33815385",
+    "bytes": 5581
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_bss.h": {
+    "sha256": "76d156254235b451791d110510e5d64a8c739b1685944c3f2be9cea1035c794d",
+    "bytes": 2112
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/rlm.h": {
+    "sha256": "94fb6d0c48645b03b269a16407f550a447bd51d11e0b7f6c156306573d07d3bc",
+    "bytes": 12739
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/auth.h": {
+    "sha256": "a23cf0de35b6f5435bb43dfbc23c9fe536f2df75c6e3e291c164b1e671c64a25",
+    "bytes": 4758
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_scan.h": {
+    "sha256": "12db873b24377b6fdc60c04b1cbfb4bf5f6ce2cec6f2f88d16aff0d4929476f3",
+    "bytes": 3079
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/bss.h": {
+    "sha256": "b07b4714f183b200cb21b0c7801cdb71f905db1beaced90202870e5d6d5070eb",
+    "bytes": 9933
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_rlm.h": {
+    "sha256": "7cbc341c8d07d91a057893ebcf2c426c52faf16f634a56b7a07ae6d59e3f4563",
+    "bytes": 2802
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_rlm_obss.h": {
+    "sha256": "a99e0bb2c978fb3ae8ad06e0964caf9aa86c4216725f60d2135807351b6a548d",
+    "bytes": 2466
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/hem_mbox.h": {
+    "sha256": "f1b886dc2cdda6f045fd5d9011236c647f28cef1709f9cb8bc1fe268f12b2665",
+    "bytes": 15433
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/stats.h": {
+    "sha256": "89a1cf7c5b0cffd266575964ea73d67b447ba54411e420420a65a3630aba7b47",
+    "bytes": 11672
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/roaming_fsm.h": {
+    "sha256": "94892750636a558548696b9d5394f4b361fc7a13019831d4d2224cd977ea9042",
+    "bytes": 5898
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_func.h": {
+    "sha256": "ef89878bb34f9c72c95b387a859c81082dea51ef46886a4479fec228e126a679",
+    "bytes": 6053
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/tdls.h": {
+    "sha256": "666184ea032c3455b3badb439596435867461db6451551f70c1dbfa63c1de994",
+    "bytes": 7843
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/scan.h": {
+    "sha256": "4d0cc56657f6b94d7cfd33adba8f8bdd5086a458ee3f846c8423e0a5f1499ae8",
+    "bytes": 33798
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/hal.h": {
+    "sha256": "19fdc4f7fd4b8229451ceaabbf170973a8663a880527a7ec5390a755452fbcda",
+    "bytes": 18925
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/p2p_nic.h": {
+    "sha256": "73b9011961e6916b3118f2119f906baec0432a532409f3ff3876e6032aef9532",
+    "bytes": 2285
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/nic_tx.h": {
+    "sha256": "9adcbe718133835e6c923208460544de624d2c1490ef6ae04afaca4f22d397cd",
+    "bytes": 24961
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/adapter.h": {
+    "sha256": "82b8ff462935da45587064df7f4db8b2ed3820b5b685ef8e9c761bbdf2c4ae8d",
+    "bytes": 48568
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/wlan_def.h": {
+    "sha256": "5287f47f0f4217b4945c2a8dc936d2d043145c56a8b558f59e9b6ab31aa26245",
+    "bytes": 36848
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/nic.h": {
+    "sha256": "5a4b74dac75f3a9a0908a1d0b0df38992b6245f3407d2c8aff81bbb3ade72c68",
+    "bytes": 19699
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/hif_rx.h": {
+    "sha256": "8fee57a8b659b6af22bb8b2aeeb8aed55dfb03a7d0c399d0ab4d7659128e925f",
+    "bytes": 8118
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/nic_rx.h": {
+    "sha256": "dd4d9c6dbfd90bc7e011bf6e5e2cfc63cacd59b4370f8aa3b788ebdd2aef767a",
+    "bytes": 15479
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/cmd_buf.h": {
+    "sha256": "4f3e8176b366f8c3a99b029603917f2e6d9013597abf5d254bc82dfd10506f4c",
+    "bytes": 5354
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/mtreg.h": {
+    "sha256": "62ef27e9e1d3d19bb7e499ec68c62f4e97bac7be11e534d01847d9b37d17bc75",
+    "bytes": 8606
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/hif_tx.h": {
+    "sha256": "fdb375611df5297a9a4a63484fdbf2afd287593deed233369a907c909ef509fa",
+    "bytes": 8199
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/p2p_mac.h": {
+    "sha256": "9add146e0c3b7ab96d34e0cc25fe4831c12d8ab4951c187b508cf2914dae076f",
+    "bytes": 8510
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/que_mgt.h": {
+    "sha256": "2d6042d12eec8bcb5e3a9a021ea79c97a416e5712d4c7b53186b2b2a80a90b53",
+    "bytes": 32343
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/bow.h": {
+    "sha256": "940722fc31f483c5ed4930c4a0fc66bef4390a168881bbb34042f76caff95def",
+    "bytes": 10520
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/mac.h": {
+    "sha256": "06398fbbc84a7c86ed32959cde65e3fa723e88200b6387d269e4938c2d15ce25",
+    "bytes": 99952
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/p2p_cmd_buf.h": {
+    "sha256": "fa84e8969c382e592a4e1bf49440d0526bae92b342f6e2a06d71f9687aa7c620",
+    "bytes": 3024
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/p2p_nic_cmd_event.h": {
+    "sha256": "9834615621df23555f554bb3e5686eeeb7bcd2ad8cf07d228b8c5a73b61294d5",
+    "bytes": 2664
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/p2p.h": {
+    "sha256": "92d813dc89e328b4053c4a687407cd461fed6b1909dbcb83fb6cdf66e3627ad7",
+    "bytes": 6250
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/Makefile": {
+    "sha256": "03ab1cd8e5238e6e78d9746c0617490554a011d23563021bfaa0acdb437ba7e0",
+    "bytes": 2015
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/wmt_detect_pwr.c": {
+    "sha256": "3fdb9ce34532ff5bbe2df11cdc26e923ec4dd2e857f4ea0fabb4f1718a7606d3",
+    "bytes": 9277
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/wmt_gpio.h": {
+    "sha256": "e54cf44201aba36fa489913fc8dfb5bbbb430030f9fbc1f88a958e22e2cc2f65",
+    "bytes": 3310
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/mtk_wcn_stub_alps.c": {
+    "sha256": "93c99922714b2430c5da7196e9f6689549ec03920532f82d979ec3e729ce5407",
+    "bytes": 18267
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/sdio_detect.c": {
+    "sha256": "c20f2f88540ba4eca3225babc632a7d9d2850b06766050fb05d78b9bce738fa3",
+    "bytes": 7332
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/Makefile": {
+    "sha256": "da9acebcc8bf971429abd2fa5527a89b3f9f74b2e2035207198298d766e32b37",
+    "bytes": 1236
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/wmt_detect.h": {
+    "sha256": "4403b3cda81bf904bbc61ea8729a4e82f7486bcebd30122cac916af06615d49d",
+    "bytes": 3940
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/wmt_stp_exp.h": {
+    "sha256": "270893fd8501060a119377924d087edbc6e704e80c88ad3260bd69383a5b4e8c",
+    "bytes": 20159
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/wmt_detect_pwr.h": {
+    "sha256": "f9be833546aac427c235ffa10660b7024181b75515a36b85b36ae7ffa88ae0c2",
+    "bytes": 1047
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/wmt_gpio.c": {
+    "sha256": "b346e3b8e03d3198d2a830c15351ed4c9e9cd063c1f059fb2628e20348cd6508",
+    "bytes": 9164
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/wmt_detect.c": {
+    "sha256": "637fc33b97772f2bf6dc0fd4733aedad7b559f6c515db27c441f9d276df0dfe9",
+    "bytes": 9149
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/sdio_detect.h": {
+    "sha256": "bbff7d6837128a791f119f54d92bdeaadeffd8ff7ae71af1f139cc960017bb1b",
+    "bytes": 1359
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/wmt_stp_exp.c": {
+    "sha256": "193e16bf6b50bf18c0bdaac8c2e5df5e3e08642b7ff47989c60f03477fd4bee2",
+    "bytes": 13369
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/drv_init/conn_drv_init.c": {
+    "sha256": "01a19e83933b7e46030b25a0ff3c8fe15d5db9a51196003a1d63e6a757828f43",
+    "bytes": 2248
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/drv_init/Makefile": {
+    "sha256": "e2188a463d05477d38b07bf5a82099c43c9bf8f1c42c7512f0494c6ab7b1a8d6",
+    "bytes": 712
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/drv_init/gps_drv_init.c": {
+    "sha256": "86542221e015f61e79c2b521d440d8e170bd07c497fc0aedfba098d7ea6cb831",
+    "bytes": 1078
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/drv_init/wlan_drv_init.c": {
+    "sha256": "92bea150715ef09d2661d427dd33a1a3c290acf6123106add093c1028ebcacad",
+    "bytes": 1867
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/drv_init/fm_drv_init.c": {
+    "sha256": "99150a2308e2be9eb962cc4cf029d693efb870aa9c1a4eed5d6ac06de5ac021c",
+    "bytes": 948
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/drv_init/bluetooth_drv_init.c": {
+    "sha256": "7e901486b6c46e3d48f97b8421b03edcec011e52f11205d602a87d799ff8c44e",
+    "bytes": 1098
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/drv_init/common_drv_init.c": {
+    "sha256": "97d4a030cd15f56edd777e1d520fd63646a6410d7b261a0955279d0463b5d429",
+    "bytes": 2877
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/drv_init/ant_drv_init.c": {
+    "sha256": "3e66e41242e48029af956b9741ee453a7bad2b19781e31076090c1d60e17d8a6",
+    "bytes": 1114
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/drv_init/inc/common_drv_init.h": {
+    "sha256": "25bbb0d12002ed67787769a020419db7e605acf433f4158ceafd29521ce5c179",
+    "bytes": 1063
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/drv_init/inc/bluetooth_drv_init.h": {
+    "sha256": "e34ed7bccbb1e6d0d7fab72f843fd51a80ead56ffe2174430401df835588c13d",
+    "bytes": 777
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/drv_init/inc/fm_drv_init.h": {
+    "sha256": "b408d5ccdbfd8e72f62c6a369e17a5283a52b58151ff16d67df91d0797f8fb7f",
+    "bytes": 777
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/drv_init/inc/ant_drv_init.h": {
+    "sha256": "0f0af122d7225bc45a4b38f7b04d8a0e74c8f66dfd8f88d83aa0487df5d529df",
+    "bytes": 760
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/drv_init/inc/conn_drv_init.h": {
+    "sha256": "26ad92c3ea1cfb34e2943a569c2f11b7e0bf12728f71f98d2fa7a50f2b42a82c",
+    "bytes": 741
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/drv_init/inc/wlan_drv_init.h": {
+    "sha256": "d76e421a46e017147c6311d7524d11fb78cc72d10e6fd3cb858ee0c9b17bb0b8",
+    "bytes": 905
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/common_detect/drv_init/inc/gps_drv_init.h": {
+    "sha256": "0c9163123478552f86955f4cca50ed9003e3440b3f30d867117889af34ed5df3",
+    "bytes": 759
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/wmt_core.c": {
+    "sha256": "0ac2b5a1e0991df70d266f2910bf41169ed88e20607723faf88519c789963f29",
+    "bytes": 77287
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/dbg_core.c": {
+    "sha256": "6d27e4b4a5010751684115c688786a947b074236ad75e8165a59635cf9164a21",
+    "bytes": 612
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/Makefile": {
+    "sha256": "26b9554048eda737e7ec6d6c712e874c972efb64e18f2d3b02a7523c5772615d",
+    "bytes": 472
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/wmt_lib.c": {
+    "sha256": "56e654c8c2be945a2b237bee49d835a8a145323b8c11bd8d7c30aacaa2508e0b",
+    "bytes": 49201
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/btm_core.c": {
+    "sha256": "6a9f86f6217e79800ef1283ae6a3135d5a40c276569ba8f86af00f22467a5205",
+    "bytes": 34413
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/stp_core.c": {
+    "sha256": "7bbf3f394f41bee6dc2c4a6324f8db11974d9d7c6f75820b81e48565a39ae1df",
+    "bytes": 104150
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/wmt_conf.c": {
+    "sha256": "309cc53a19893a9cfe22e214ac65e473111eb6e54e0af15f445fa94200ddc450",
+    "bytes": 13615
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/psm_core.c": {
+    "sha256": "f1a1e6e6703db58e15c1e420b8fdc094822aad25053b6f9e07d6916f7f1c7b74",
+    "bytes": 55026
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/wmt_ic_soc.c": {
+    "sha256": "02ee849a2c9ab6a08ecc8fcbffd36e97c3ce6f6735527ccf425ef1bf44137d2c",
+    "bytes": 80531
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/wmt_ctrl.c": {
+    "sha256": "0f3df1a33ebb922216f502467a85cb017cce12b078869663122ac398f4d2b338",
+    "bytes": 30137
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/wmt_func.c": {
+    "sha256": "0eec93fe65c8b971b1cdb9dded0d61b8140c48ecc4b4c5968d05b52e4eef8155",
+    "bytes": 19275
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/include/wmt.h": {
+    "sha256": "189d255c27980e27b4abaf81c1492d5c6bcd52ed836945eae90b312d24485df8",
+    "bytes": 696
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/include/wmt_exp.h": {
+    "sha256": "ceccfa2dc13a18247f7299d34f6be95569bfd87c765edf3b2a09723ec14c9651",
+    "bytes": 10790
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/include/wmt_plat.h": {
+    "sha256": "e01cc514c752b9be641566c8ba9e32a3eaaf498ea43419749e9dce08d232e375",
+    "bytes": 9092
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/include/stp_exp.h": {
+    "sha256": "f219bd5c3a1392e6459a8f5456faf4e15e498be8a415e893c74378725c5d10e6",
+    "bytes": 9106
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/mt8163/Makefile": {
+    "sha256": "97c49db9837384b4a6b6b3458577a3860243aaf50e988a4887f4da360aa0586b",
+    "bytes": 673
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/mt8163/mtk_wcn_consys_hw.c": {
+    "sha256": "8911b92bbf08d6f8c184ad928c2fddd462bf07f48473d07075387a95dc11beb9",
+    "bytes": 42561
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/mt8163/wmt_plat_alps.c": {
+    "sha256": "f8887e80683723e7c3dbe3f4496364d38cafab144ec0322276a8055a070f5770",
+    "bytes": 29411
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/Makefile": {
+    "sha256": "c6b70e34ce05b07d04dd147abb1a5c952648aaf096c39d3afa56aa9f4f4bf6b5",
+    "bytes": 65
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/wmt_exp.c": {
+    "sha256": "d8fa04992c7e4ad21a3dc21289c9b745c40f83fa5678600318e79142b287005b",
+    "bytes": 17196
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/stp_btif.c": {
+    "sha256": "5beb0ccefc14d9b4bcf53d661951e5083c6c080ff1dbff39df00c4b5c7fe3c9e",
+    "bytes": 7430
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/Makefile": {
+    "sha256": "161ed4ec44504f875074758bcf0cf6f0c2902b33a5a38a4f43e0b69e61f53430",
+    "bytes": 507
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/stp_dbg.c": {
+    "sha256": "882964d578c627f3b0f94b1dc67d9bb80446c25f4e0349ea5ede2b72fb23b3a6",
+    "bytes": 57384
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/stp_exp.c": {
+    "sha256": "f6a52ad61e8b198f7f1152d6cb34bc9cb092cc8effadf488ce96945ba0a29601",
+    "bytes": 8076
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/wmt_dev.c": {
+    "sha256": "0d7d5ac5e867c1e55108388de18a03686a1ae1f4bf89f582937029d1246d023f",
+    "bytes": 67070
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/include/osal_typedef.h": {
+    "sha256": "446dfa7b20ffbcd65848aa005eb16f14e4f5c3f28f30cf28386a3db06965ed06",
+    "bytes": 2496
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/include/wmt_idc.h": {
+    "sha256": "126fa0bd34acf00e24c1154aacc1382aa20c5f49e6efef38015809eebdb20d36",
+    "bytes": 3099
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/include/bgw_desense.h": {
+    "sha256": "4af9d478ca68bb3b7b26c30d679c279d0b8cda1f548fabeefb853d4589e99527",
+    "bytes": 1613
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/include/osal.h": {
+    "sha256": "3fdb0a957c2a62645ae739b2f1c8df0f7f23a892b35fe1f8a9ff11d134901d49",
+    "bytes": 12250
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/wmt_idc.c": {
+    "sha256": "f73bc4df7c02e581cdac43cde26af9b10a92db3d324d472119ea955816ea9e53",
+    "bytes": 8706
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/bgw_desense.c": {
+    "sha256": "ce69de23b3273b65681a326815036fb5678b3f733cd4224370dacc4eb4e80e22",
+    "bytes": 3880
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/Makefile": {
+    "sha256": "997058aed92fcc9675e114dadb6a1b47e7dc1ac619746040964a802f3a0be638",
+    "bytes": 733
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/wmt_chrdev_wifi.c": {
+    "sha256": "559def0351c7ed77c9129903d25aa3aea7485d58446516dc2a6acf43d5ba088f",
+    "bytes": 17904
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/osal.c": {
+    "sha256": "9ff3d67458c75268e0fd0ac52979f8804f1dc66d01e539714d4762024a66d67f",
+    "bytes": 26145
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/stp_chrdev_ant.c": {
+    "sha256": "78e6dceddf2f38a55dfb1f7e720793819779dccd8c3a6cb905baf490f504879d",
+    "bytes": 19909
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/stp_chrdev_bt.c": {
+    "sha256": "e534a99d3f895b8cc00991aa1b45fe4f7cf832384e62b4c23f6cf2dbac00957d",
+    "bytes": 12673
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/include/wmt_dev.h": {
+    "sha256": "9dd87d53abaa7f89236b33410c86cf11b4226697ea16315ca84b5a2011f0e523",
+    "bytes": 2178
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/include/stp_btif.h": {
+    "sha256": "001b4a0467e76c05d07f79e5a49b3dd52501b8612c29ffb33c74057c657ee373",
+    "bytes": 1363
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/include/stp_dbg.h": {
+    "sha256": "7363d467624d0cd445bd64541d823fb838f882b238fce1982042477bcb625191",
+    "bytes": 8652
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/mt8163/include/mtk_wcn_consys_hw.h": {
+    "sha256": "7a2ddf9d42c589ab55526b0d095e59da44434a0cdd40a884fbf3aceb510c6c89",
+    "bytes": 10608
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/include/psm_core.h": {
+    "sha256": "43a3cca3bfe466854302c1fde7e2a28d436fb54c5cc35aa6bb777988cf7afeec",
+    "bytes": 9028
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/include/wmt_ctrl.h": {
+    "sha256": "5aa06917d4735ab91c340a069a9fa2ff3b2424da2de42c716820cecbecb185a8",
+    "bytes": 4540
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/include/wmt_func.h": {
+    "sha256": "abf2ebadb70795131026c4f6f4d958b0a5e5cbcd7e6c4a0a4d9b401b55334567",
+    "bytes": 4382
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/include/wmt_ic.h": {
+    "sha256": "f748cd6e13a8c055e0d93f4a1ff4ef6fc3787432edd44f1d7be45ffe1809de97",
+    "bytes": 4454
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/include/stp_wmt.h": {
+    "sha256": "3d8b0c9b76955d994232bc930eacd11a0d4917c31176f1c20a5f8064fc0ada89",
+    "bytes": 3199
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/include/wmt_core.h": {
+    "sha256": "e2d92fa6cccb6d10d6e4d1ebcf0e9e52b124e2c03b796ae313a8aab812501ae1",
+    "bytes": 12413
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/include/dbg_core.h": {
+    "sha256": "1cda89d19d4333b96409b1ea7220989596fbd6b604a374c7141343664bad0ef7",
+    "bytes": 2778
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/include/btm_core.h": {
+    "sha256": "992660b4941fdd29eec33a9abd2d1041b27d7ed4d5909134345cd11d200dd9d8",
+    "bytes": 4944
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/include/wmt_lib.h": {
+    "sha256": "2d5aa40a92bb93809286c15c6dfdebbcd09cc225449749e81349343c38e1c84b",
+    "bytes": 10888
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/include/wmt_conf.h": {
+    "sha256": "6fa30d7d61d065759e595cb9f8080838bb469ed0d0943ba17e6f9c3811a5227f",
+    "bytes": 3004
+  },
+  "sourceinputs/asus-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/include/stp_core.h": {
+    "sha256": "bcb02f28d50a58bb681fe2d26c3d3228863702e3d44420beba01b289ac229de0",
+    "bytes": 20038
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "README.md": "9aca48e85debc460f71831f62400365732178bec82824fe35f6ed1076b4a72ad",
+  "inputs/fixed-r8-metadata.json": "9e9acfdb84c52aacddc02aeb63247c2ec4a5bd02686320579db6df2508aa816b",
+  "inputs/profile-r8.json": "0653ea2adce0db622c4308f723540b3e05a18b73c035e5b01b047ae2e640ebeb",
+  "inputs/public-source-paths.json": "f8970c086353c9563744b273af24a5ae67346ede00dd290be734f106e349a17c",
+  "inputs/selector.json": "120d1e91be5bbc8c481faffbb8e6e7601c2cf3e321e986df44652a47927c7ab5",
+  "manifest.schema.json": "0c0de879e6a0cd9248bab180b8c87d6735a292ed4c0c28c6d6eb51efc4365755",
+  "source/capture.py": "544cea05e6b5c607cbcb28a8f799e2ba4ec6e8640f6bf537ea9c5ce75cb02e47",
+  "source/elf.py": "8c2bb8ba274b10a053930f91aeab2519a235ddccee70223b22bb1df041c768a2",
+  "source/gates.py": "5427dd04553706956f8f3757dfbb767d8cb84f468ec78386cdad60838b60e8b1",
+  "source/graph.py": "99c32726364b897119901192d9681b29d92838ed748685a2e1c7a4c76da63f84",
+  "source/packages.py": "a9022414944d4d18093c939980ddf083d8b5d169c243a23e61a446e38c098c59",
+  "source/run_tests.py": "1e27c1f41f76eab34c00badc73c8bbdcdb89b7afa62a477a900f40f473031fa4",
+  "source/safeio.py": "79116db5e12b8fd8c6db921c67bf7f05deeeb41c21594fbec9b77ca481d3269a",
+  "source/upload.py": "1f240b301f1cc267f0bccf8838499e7ced8e1e4916775739b575e986500d0000",
+  "tests/test_capture.py": "fd173005d8080ff94fa37020c95bd5cba812dee88506d4dee9574bddb8f90ba6"
+}

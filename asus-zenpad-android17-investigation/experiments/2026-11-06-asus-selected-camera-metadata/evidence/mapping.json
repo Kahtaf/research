@@ -1,0 +1,2293 @@
+{
+  "question": "Selected OV5670/OV2680 OEM HAL3 static/default-request contract",
+  "conclusion": "No complete supported HAL3 contract supplied by inspected stock dispatch. Sensor-specific constructors absent; COMMON selects HAL1; default requests fail. Hardware feasibility is not disproved.",
+  "paths": [
+    {
+      "width": 32,
+      "sensor": "OV5670",
+      "kernel_slot": 1,
+      "role_from_oem_enum": "main",
+      "cached_selected_driver": "ov5670mipiraw",
+      "source_model_id": "0x5670",
+      "id_qualification": "OEM source and ELF registry constants, not a fresh physical numerical chip-ID read",
+      "lookup_name": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "logical_camera_id": null,
+      "facing_qualified": false,
+      "static_lookup_order": [
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "LENS",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "LENS",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "SENSOR",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "SENSOR",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "TUNING_3A",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "TUNING_3A",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "FLASHLIGHT",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "FLASHLIGHT",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "SCALER",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "SCALER",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "FEATURE",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "FEATURE",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "CAMERA",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_COMMON",
+          "origin_in_scanned_default_scope": "/vendor/lib/libcam.metadataprovider.so",
+          "family": "DEVICE",
+          "category": "CAMERA",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "REQUEST",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "REQUEST",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "LENS",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "LENS",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "SENSOR",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "SENSOR",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "TUNING_3A",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "TUNING_3A",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "FLASHLIGHT",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "FLASHLIGHT",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "SCALER",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "SCALER",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "FEATURE",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "FEATURE",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "CAMERA",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "CAMERA",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "REQUEST",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "REQUEST",
+          "fallback": true
+        }
+      ],
+      "halsensor_lookup_order": [
+        "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_LENS_COMMON",
+        "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_SENSOR_COMMON",
+        "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_TUNING_3A_COMMON",
+        "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_FLASHLIGHT_COMMON",
+        "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_SCALER_COMMON",
+        "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_FEATURE_COMMON",
+        "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_CAMERA_COMMON",
+        "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_REQUEST_COMMON",
+        "constructCustStaticMetadata_PROJECT_LENS_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_LENS_COMMON",
+        "constructCustStaticMetadata_PROJECT_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_SENSOR_COMMON",
+        "constructCustStaticMetadata_PROJECT_TUNING_3A_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_TUNING_3A_COMMON",
+        "constructCustStaticMetadata_PROJECT_FLASHLIGHT_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_FLASHLIGHT_COMMON",
+        "constructCustStaticMetadata_PROJECT_SCALER_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_SCALER_COMMON",
+        "constructCustStaticMetadata_PROJECT_FEATURE_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_FEATURE_COMMON",
+        "constructCustStaticMetadata_PROJECT_CAMERA_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_CAMERA_COMMON",
+        "constructCustStaticMetadata_PROJECT_REQUEST_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_REQUEST_COMMON"
+      ],
+      "halsensor_scope": "dlopen(libcam.halsensor.so, 2), handle dependency search; selected and COMMON symbols absent there",
+      "request_lookup_order": [
+        {
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin": null
+        },
+        {
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "origin": null
+        }
+      ],
+      "request_missing_status": -2,
+      "templates_attempted_by_onCreate": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "actual_missing_path_stops_at": 1,
+      "common_device_version": "0x100",
+      "selected_hal3_contract": "NOT_SUPPLIED_BY_INSPECTED_STOCK_MACHINERY",
+      "sensor_specific_metadata_constructors_present": false
+    },
+    {
+      "width": 32,
+      "sensor": "OV2680",
+      "kernel_slot": 2,
+      "role_from_oem_enum": "sub",
+      "cached_selected_driver": "ov2680mipiraw",
+      "source_model_id": "0x2680",
+      "id_qualification": "OEM source and ELF registry constants, not a fresh physical numerical chip-ID read",
+      "lookup_name": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "logical_camera_id": null,
+      "facing_qualified": false,
+      "static_lookup_order": [
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "LENS",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "LENS",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "SENSOR",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "SENSOR",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "TUNING_3A",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "TUNING_3A",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "FLASHLIGHT",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "FLASHLIGHT",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "SCALER",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "SCALER",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "FEATURE",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "FEATURE",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "CAMERA",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_COMMON",
+          "origin_in_scanned_default_scope": "/vendor/lib/libcam.metadataprovider.so",
+          "family": "DEVICE",
+          "category": "CAMERA",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "REQUEST",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "REQUEST",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "LENS",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "LENS",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "SENSOR",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "SENSOR",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "TUNING_3A",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "TUNING_3A",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "FLASHLIGHT",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "FLASHLIGHT",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "SCALER",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "SCALER",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "FEATURE",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "FEATURE",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "CAMERA",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "CAMERA",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "REQUEST",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "REQUEST",
+          "fallback": true
+        }
+      ],
+      "halsensor_lookup_order": [
+        "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_LENS_COMMON",
+        "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_SENSOR_COMMON",
+        "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_TUNING_3A_COMMON",
+        "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_FLASHLIGHT_COMMON",
+        "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_SCALER_COMMON",
+        "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_FEATURE_COMMON",
+        "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_CAMERA_COMMON",
+        "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_REQUEST_COMMON",
+        "constructCustStaticMetadata_PROJECT_LENS_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_LENS_COMMON",
+        "constructCustStaticMetadata_PROJECT_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_SENSOR_COMMON",
+        "constructCustStaticMetadata_PROJECT_TUNING_3A_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_TUNING_3A_COMMON",
+        "constructCustStaticMetadata_PROJECT_FLASHLIGHT_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_FLASHLIGHT_COMMON",
+        "constructCustStaticMetadata_PROJECT_SCALER_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_SCALER_COMMON",
+        "constructCustStaticMetadata_PROJECT_FEATURE_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_FEATURE_COMMON",
+        "constructCustStaticMetadata_PROJECT_CAMERA_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_CAMERA_COMMON",
+        "constructCustStaticMetadata_PROJECT_REQUEST_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_REQUEST_COMMON"
+      ],
+      "halsensor_scope": "dlopen(libcam.halsensor.so, 2), handle dependency search; selected and COMMON symbols absent there",
+      "request_lookup_order": [
+        {
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin": null
+        },
+        {
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "origin": null
+        }
+      ],
+      "request_missing_status": -2,
+      "templates_attempted_by_onCreate": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "actual_missing_path_stops_at": 1,
+      "common_device_version": "0x100",
+      "selected_hal3_contract": "NOT_SUPPLIED_BY_INSPECTED_STOCK_MACHINERY",
+      "sensor_specific_metadata_constructors_present": false
+    },
+    {
+      "width": 64,
+      "sensor": "OV5670",
+      "kernel_slot": 1,
+      "role_from_oem_enum": "main",
+      "cached_selected_driver": "ov5670mipiraw",
+      "source_model_id": "0x5670",
+      "id_qualification": "OEM source and ELF registry constants, not a fresh physical numerical chip-ID read",
+      "lookup_name": "SENSOR_DRVNAME_OV5670_MIPI_RAW",
+      "logical_camera_id": null,
+      "facing_qualified": false,
+      "static_lookup_order": [
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "LENS",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "LENS",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "SENSOR",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "SENSOR",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "TUNING_3A",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "TUNING_3A",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "FLASHLIGHT",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "FLASHLIGHT",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "SCALER",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "SCALER",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "FEATURE",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "FEATURE",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "CAMERA",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_COMMON",
+          "origin_in_scanned_default_scope": "/vendor/lib64/libcam.metadataprovider.so",
+          "family": "DEVICE",
+          "category": "CAMERA",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "REQUEST",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "REQUEST",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "LENS",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "LENS",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "SENSOR",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "SENSOR",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "TUNING_3A",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "TUNING_3A",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "FLASHLIGHT",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "FLASHLIGHT",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "SCALER",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "SCALER",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "FEATURE",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "FEATURE",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "CAMERA",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "CAMERA",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "REQUEST",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "REQUEST",
+          "fallback": true
+        }
+      ],
+      "halsensor_lookup_order": [
+        "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_LENS_COMMON",
+        "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_SENSOR_COMMON",
+        "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_TUNING_3A_COMMON",
+        "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_FLASHLIGHT_COMMON",
+        "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_SCALER_COMMON",
+        "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_FEATURE_COMMON",
+        "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_CAMERA_COMMON",
+        "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_REQUEST_COMMON",
+        "constructCustStaticMetadata_PROJECT_LENS_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_LENS_COMMON",
+        "constructCustStaticMetadata_PROJECT_SENSOR_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_SENSOR_COMMON",
+        "constructCustStaticMetadata_PROJECT_TUNING_3A_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_TUNING_3A_COMMON",
+        "constructCustStaticMetadata_PROJECT_FLASHLIGHT_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_FLASHLIGHT_COMMON",
+        "constructCustStaticMetadata_PROJECT_SCALER_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_SCALER_COMMON",
+        "constructCustStaticMetadata_PROJECT_FEATURE_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_FEATURE_COMMON",
+        "constructCustStaticMetadata_PROJECT_CAMERA_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_CAMERA_COMMON",
+        "constructCustStaticMetadata_PROJECT_REQUEST_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_REQUEST_COMMON"
+      ],
+      "halsensor_scope": "dlopen(libcam.halsensor.so, 2), handle dependency search; selected and COMMON symbols absent there",
+      "request_lookup_order": [
+        {
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5670_MIPI_RAW",
+          "origin": null
+        },
+        {
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "origin": null
+        }
+      ],
+      "request_missing_status": -2,
+      "templates_attempted_by_onCreate": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "actual_missing_path_stops_at": 1,
+      "common_device_version": "0x100",
+      "selected_hal3_contract": "NOT_SUPPLIED_BY_INSPECTED_STOCK_MACHINERY",
+      "sensor_specific_metadata_constructors_present": false
+    },
+    {
+      "width": 64,
+      "sensor": "OV2680",
+      "kernel_slot": 2,
+      "role_from_oem_enum": "sub",
+      "cached_selected_driver": "ov2680mipiraw",
+      "source_model_id": "0x2680",
+      "id_qualification": "OEM source and ELF registry constants, not a fresh physical numerical chip-ID read",
+      "lookup_name": "SENSOR_DRVNAME_OV2680_MIPI_RAW",
+      "logical_camera_id": null,
+      "facing_qualified": false,
+      "static_lookup_order": [
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "LENS",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_LENS_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "LENS",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "SENSOR",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "SENSOR",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "TUNING_3A",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "TUNING_3A",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "FLASHLIGHT",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "FLASHLIGHT",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "SCALER",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_SCALER_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "SCALER",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "FEATURE",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "FEATURE",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "CAMERA",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_COMMON",
+          "origin_in_scanned_default_scope": "/vendor/lib64/libcam.metadataprovider.so",
+          "family": "DEVICE",
+          "category": "CAMERA",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "REQUEST",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "DEVICE",
+          "category": "REQUEST",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "LENS",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_LENS_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "LENS",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "SENSOR",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_SENSOR_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "SENSOR",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "TUNING_3A",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_TUNING_3A_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "TUNING_3A",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "FLASHLIGHT",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_FLASHLIGHT_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "FLASHLIGHT",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "SCALER",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_SCALER_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "SCALER",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "FEATURE",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_FEATURE_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "FEATURE",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "CAMERA",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_CAMERA_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "CAMERA",
+          "fallback": true
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "REQUEST",
+          "fallback": false
+        },
+        {
+          "symbol": "constructCustStaticMetadata_PROJECT_REQUEST_COMMON",
+          "origin_in_scanned_default_scope": null,
+          "family": "PROJECT",
+          "category": "REQUEST",
+          "fallback": true
+        }
+      ],
+      "halsensor_lookup_order": [
+        "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_LENS_COMMON",
+        "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_SENSOR_COMMON",
+        "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_TUNING_3A_COMMON",
+        "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_FLASHLIGHT_COMMON",
+        "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_SCALER_COMMON",
+        "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_FEATURE_COMMON",
+        "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_CAMERA_COMMON",
+        "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_DEVICE_REQUEST_COMMON",
+        "constructCustStaticMetadata_PROJECT_LENS_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_LENS_COMMON",
+        "constructCustStaticMetadata_PROJECT_SENSOR_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_SENSOR_COMMON",
+        "constructCustStaticMetadata_PROJECT_TUNING_3A_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_TUNING_3A_COMMON",
+        "constructCustStaticMetadata_PROJECT_FLASHLIGHT_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_FLASHLIGHT_COMMON",
+        "constructCustStaticMetadata_PROJECT_SCALER_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_SCALER_COMMON",
+        "constructCustStaticMetadata_PROJECT_FEATURE_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_FEATURE_COMMON",
+        "constructCustStaticMetadata_PROJECT_CAMERA_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_CAMERA_COMMON",
+        "constructCustStaticMetadata_PROJECT_REQUEST_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+        "constructCustStaticMetadata_PROJECT_REQUEST_COMMON"
+      ],
+      "halsensor_scope": "dlopen(libcam.halsensor.so, 2), handle dependency search; selected and COMMON symbols absent there",
+      "request_lookup_order": [
+        {
+          "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV2680_MIPI_RAW",
+          "origin": null
+        },
+        {
+          "symbol": "constructCustRequestMetadata_COMMON",
+          "origin": null
+        }
+      ],
+      "request_missing_status": -2,
+      "templates_attempted_by_onCreate": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "actual_missing_path_stops_at": 1,
+      "common_device_version": "0x100",
+      "selected_hal3_contract": "NOT_SUPPLIED_BY_INSPECTED_STOCK_MACHINERY",
+      "sensor_specific_metadata_constructors_present": false
+    }
+  ],
+  "functions": {
+    "lib_libcam.metadataprovider.so": [
+      {
+        "symbol": "_ZN7android17NSTemplateRequest15TemplateRequest27impConstructRequestMetadataERN5NSCam9IMetadataEi",
+        "address": "0x24500",
+        "entry": "0x24501",
+        "size": 216
+      },
+      {
+        "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x11b8c",
+        "entry": "0x11b8d",
+        "size": 15268
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x6b1c",
+        "entry": "0x6b1d",
+        "size": 5352
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV5648_MIPI_RAW_TRULY",
+        "address": "0x59f8",
+        "entry": "0x59f9",
+        "size": 3564
+      },
+      {
+        "symbol": "_ZN7android17NSTemplateRequest15TemplateRequest7getDataEi",
+        "address": "0x26ed4",
+        "entry": "0x26ed5",
+        "size": 76
+      },
+      {
+        "symbol": "_ZN7android17NSTemplateRequest15TemplateRequest8onCreateEi",
+        "address": "0x26da8",
+        "entry": "0x26da9",
+        "size": 300
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x8004",
+        "entry": "0x8005",
+        "size": 4548
+      },
+      {
+        "symbol": "_ZNK7android18NSMetadataProvider16MetadataProvider16getDeviceVersionEv",
+        "address": "0xee70",
+        "entry": "0xee71",
+        "size": 24
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0x9b68",
+        "entry": "0x9b69",
+        "size": 4840
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_COMMON",
+        "address": "0x91c8",
+        "entry": "0x91c9",
+        "size": 1960
+      },
+      {
+        "symbol": "_ZN7android18NSMetadataProvider16MetadataProvider23constructStaticMetadataENS_2spIN5NSCam18IMetadataConverterEEERP15camera_metadataRNS3_9IMetadataE",
+        "address": "0xea38",
+        "entry": "0xea39",
+        "size": 464
+      },
+      {
+        "symbol": "_ZN7android18NSMetadataProvider16MetadataProvider26impConstructStaticMetadataERN5NSCam9IMetadataE",
+        "address": "0xe8f4",
+        "entry": "0xe8f5",
+        "size": 324
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_SP2518_YUV",
+        "address": "0xbff8",
+        "entry": "0xbff9",
+        "size": 420
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorINS_16key_value_pair_tIiP15camera_metadataEEE12do_constructEPvj",
+        "address": "0xe86c",
+        "entry": "0xe86d",
+        "size": 2
+      },
+      {
+        "symbol": "_ZN7android18NSMetadataProvider16MetadataProviderC1Ei",
+        "address": "0xee10",
+        "entry": "0xee11",
+        "size": 96
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0x99c4",
+        "entry": "0x99c5",
+        "size": 420
+      },
+      {
+        "symbol": "_ZN7android17NSTemplateRequest15TemplateRequest41impConstructRequestMetadata_by_SymbolNameERKNS_7String8ERN5NSCam9IMetadataEi",
+        "address": "0x2447c",
+        "entry": "0x2447d",
+        "size": 132
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_SP2518_YUV",
+        "address": "0xc19c",
+        "entry": "0xc19d",
+        "size": 5352
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorINS_16key_value_pair_tIiN5NSCam9IMetadataEEEE12do_constructEPvj",
+        "address": "0x27174",
+        "entry": "0x27175",
+        "size": 20
+      },
+      {
+        "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0x1ce0c",
+        "entry": "0x1ce0d",
+        "size": 15160
+      },
+      {
+        "symbol": "_ZN7android17NSTemplateRequest15TemplateRequest24constructRequestMetadataEiRP15camera_metadataRN5NSCam9IMetadataE",
+        "address": "0x245d8",
+        "entry": "0x245d9",
+        "size": 276
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x48d4",
+        "entry": "0x48d5",
+        "size": 3564
+      },
+      {
+        "symbol": "_ZN5NSCam16ITemplateRequest11getInstanceEi",
+        "address": "0x26f84",
+        "entry": "0x26f85",
+        "size": 30
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorINS_16key_value_pair_tIiNS_2spIN5NSCam17IMetadataProviderEEEEEE12do_constructEPvj",
+        "address": "0x11a6c",
+        "entry": "0x11a6d",
+        "size": 16
+      },
+      {
+        "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_SP2518_YUV",
+        "address": "0x20944",
+        "entry": "0x20945",
+        "size": 15160
+      },
+      {
+        "symbol": "_ZN7android18NSMetadataProvider16MetadataProvider40impConstructStaticMetadata_by_SymbolNameERKNS_7String8ERN5NSCam9IMetadataE",
+        "address": "0xe870",
+        "entry": "0xe871",
+        "size": 132
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x67e4",
+        "entry": "0x67e5",
+        "size": 404
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x6978",
+        "entry": "0x6979",
+        "size": 420
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x4730",
+        "entry": "0x4731",
+        "size": 420
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV5648_MIPI_RAW_TRULY",
+        "address": "0x56c0",
+        "entry": "0x56c1",
+        "size": 420
+      },
+      {
+        "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x192d4",
+        "entry": "0x192d5",
+        "size": 15160
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV5648_MIPI_RAW_TRULY",
+        "address": "0x5864",
+        "entry": "0x5865",
+        "size": 404
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_SP2518_YUV",
+        "address": "0xd684",
+        "entry": "0xd685",
+        "size": 4584
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0xae50",
+        "entry": "0xae51",
+        "size": 4520
+      },
+      {
+        "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5648_MIPI_RAW_TRULY",
+        "address": "0x15730",
+        "entry": "0x15731",
+        "size": 15268
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorINS_16key_value_pair_tIiNS_2spIN5NSCam16ITemplateRequestEEEEEE12do_constructEPvj",
+        "address": "0x11a6c",
+        "entry": "0x11a6d",
+        "size": 16
+      }
+    ],
+    "lib_libcam.halsensor.so": [
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x1690c",
+        "entry": "0x1690d",
+        "size": 936
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x16cb4",
+        "entry": "0x16cb5",
+        "size": 308
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_SP2518YUV",
+        "address": "0x1d390",
+        "entry": "0x1d391",
+        "size": 904
+      },
+      {
+        "symbol": "_ZN5NSCam11NSHalSensor13HalSensorList19buildSensorMetadataEv",
+        "address": "0xf234",
+        "entry": "0xf235",
+        "size": 1792
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0x1abbc",
+        "entry": "0x1abbd",
+        "size": 3720
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorIjE12do_constructEPvj",
+        "address": "0xfd04",
+        "entry": "0xfd05",
+        "size": 2
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorINS_16key_value_pair_tIjNS_2spIN5NSCam11NSHalSensor9HalSensor7PerDataEEEEEE12do_constructEPvj",
+        "address": "0xdd30",
+        "entry": "0xdd31",
+        "size": 16
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x181b0",
+        "entry": "0x181b1",
+        "size": 936
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0x1cb3c",
+        "entry": "0x1cb3d",
+        "size": 920
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0x1ba50",
+        "entry": "0x1ba51",
+        "size": 4332
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x18068",
+        "entry": "0x18069",
+        "size": 328
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0x1ced4",
+        "entry": "0x1ced5",
+        "size": 308
+      },
+      {
+        "symbol": "_ZNK7android6VectorIN5NSCam11NSHalSensor13HalSensorList8EnumInfoEE12do_constructEPvj",
+        "address": "0xe4f4",
+        "entry": "0xe4f5",
+        "size": 30
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_SP2518_YUV",
+        "address": "0x1d860",
+        "entry": "0x1d861",
+        "size": 4252
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x16320",
+        "entry": "0x16321",
+        "size": 1516
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_SP2518YUV",
+        "address": "0x1faf0",
+        "entry": "0x1faf1",
+        "size": 936
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0x1d008",
+        "entry": "0x1d009",
+        "size": 904
+      },
+      {
+        "symbol": "_ZNK5NSCam11NSHalSensor13HalSensorList15buildStaticInfoERKNS0_4InfoERNS_9IMetadataE",
+        "address": "0xde50",
+        "entry": "0xde51",
+        "size": 328
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x17ce0",
+        "entry": "0x17ce1",
+        "size": 904
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x18558",
+        "entry": "0x18559",
+        "size": 4556
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x19ab0",
+        "entry": "0x19ab1",
+        "size": 4364
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_SP2518_YUV",
+        "address": "0x1d718",
+        "entry": "0x1d719",
+        "size": 328
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x16de8",
+        "entry": "0x16de9",
+        "size": 3832
+      },
+      {
+        "symbol": "_ZNK5NSCam11NSHalSensor13HalSensorList15queryStaticInfoEj",
+        "address": "0xe1e0",
+        "entry": "0xe1e1",
+        "size": 104
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_SP2518_YUV",
+        "address": "0x1e8fc",
+        "entry": "0x1e8fd",
+        "size": 4596
+      },
+      {
+        "symbol": "_ZNK5NSCam11NSHalSensor13HalSensorList15queryDriverNameEj",
+        "address": "0xe248",
+        "entry": "0xe249",
+        "size": 104
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x19724",
+        "entry": "0x19725",
+        "size": 904
+      }
+    ],
+    "lib_libcam.hal3a.v3.dng.so": [
+      {
+        "symbol": "_ZNK6NS3Av310DngInfoImp17getStaticMetadataEv",
+        "address": "0x1398",
+        "entry": "0x1399",
+        "size": 820
+      }
+    ],
+    "lib_libcam.metadata.so": [
+      {
+        "symbol": "_ZNK7android6VectorIN5NSCam9IMetadata6MemoryEE12do_constructEPvj",
+        "address": "0xa12c",
+        "entry": "0xa12d",
+        "size": 40
+      },
+      {
+        "symbol": "_ZN5NSCam9IMetadataC1Ev",
+        "address": "0x97c0",
+        "entry": "0x97c1",
+        "size": 36
+      },
+      {
+        "symbol": "_ZNK7android6VectorIN5NSCam5MRectEE12do_constructEPvj",
+        "address": "0x9f30",
+        "entry": "0x9f31",
+        "size": 16
+      },
+      {
+        "symbol": "_ZNK7android6VectorIfE12do_constructEPvj",
+        "address": "0x9d00",
+        "entry": "0x9d01",
+        "size": 2
+      },
+      {
+        "symbol": "_ZNK7android6VectorIiE12do_constructEPvj",
+        "address": "0x9d00",
+        "entry": "0x9d01",
+        "size": 2
+      },
+      {
+        "symbol": "_ZNK7android6VectorIdE12do_constructEPvj",
+        "address": "0x9d00",
+        "entry": "0x9d01",
+        "size": 2
+      },
+      {
+        "symbol": "_ZNK7android6VectorIN5NSCam9IMetadataEE12do_constructEPvj",
+        "address": "0x9fb0",
+        "entry": "0x9fb1",
+        "size": 44
+      },
+      {
+        "symbol": "_ZNK7android6VectorIN5NSCam9MRationalEE12do_constructEPvj",
+        "address": "0x9e60",
+        "entry": "0x9e61",
+        "size": 16
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorINS_16key_value_pair_tIjN5NSCam9IMetadata6IEntryEEEE12do_constructEPvj",
+        "address": "0x9b40",
+        "entry": "0x9b41",
+        "size": 48
+      },
+      {
+        "symbol": "_ZNK7android6VectorIhE12do_constructEPvj",
+        "address": "0x9d00",
+        "entry": "0x9d01",
+        "size": 2
+      },
+      {
+        "symbol": "_ZN5NSCam9IMetadata11ImplementorC1Ev",
+        "address": "0x9380",
+        "entry": "0x9381",
+        "size": 100
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorINS_16key_value_pair_tIjNS_2spI7TagInfoEEEEE12do_constructEPvj",
+        "address": "0xdac8",
+        "entry": "0xdac9",
+        "size": 16
+      },
+      {
+        "symbol": "_ZNK7android6VectorIN5NSCam6MPointEE12do_constructEPvj",
+        "address": "0x9ed0",
+        "entry": "0x9ed1",
+        "size": 14
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorINS_16key_value_pair_tIjjEEE12do_constructEPvj",
+        "address": "0x9d00",
+        "entry": "0x9d01",
+        "size": 2
+      },
+      {
+        "symbol": "_ZNK7android6VectorIN5NSCam5MSizeEE12do_constructEPvj",
+        "address": "0x9ed0",
+        "entry": "0x9ed1",
+        "size": 14
+      },
+      {
+        "symbol": "_ZNK7android6VectorIxE12do_constructEPvj",
+        "address": "0x9d00",
+        "entry": "0x9d01",
+        "size": 2
+      }
+    ],
+    "lib64_libcam.metadataprovider.so": [
+      {
+        "symbol": "_ZN7android17NSTemplateRequest15TemplateRequest27impConstructRequestMetadataERN5NSCam9IMetadataEi",
+        "address": "0x2a36c",
+        "entry": "0x2a36c",
+        "size": 300
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorINS_16key_value_pair_tIiNS_2spIN5NSCam16ITemplateRequestEEEEEE12do_constructEPvm",
+        "address": "0x16694",
+        "entry": "0x16694",
+        "size": 92
+      },
+      {
+        "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x168f4",
+        "entry": "0x168f4",
+        "size": 16128
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x84f8",
+        "entry": "0x84f8",
+        "size": 6008
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV5648_MIPI_RAW_TRULY",
+        "address": "0x701c",
+        "entry": "0x701c",
+        "size": 4332
+      },
+      {
+        "symbol": "_ZN7android17NSTemplateRequest15TemplateRequest7getDataEi",
+        "address": "0x2e0c0",
+        "entry": "0x2e0c0",
+        "size": 112
+      },
+      {
+        "symbol": "_ZN7android17NSTemplateRequest15TemplateRequest8onCreateEi",
+        "address": "0x2dee0",
+        "entry": "0x2dee0",
+        "size": 480
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x9c70",
+        "entry": "0x9c70",
+        "size": 6044
+      },
+      {
+        "symbol": "_ZNK7android18NSMetadataProvider16MetadataProvider16getDeviceVersionEv",
+        "address": "0x126d0",
+        "entry": "0x126d0",
+        "size": 48
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0xbf58",
+        "entry": "0xbf58",
+        "size": 5556
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_COMMON",
+        "address": "0xb40c",
+        "entry": "0xb40c",
+        "size": 2364
+      },
+      {
+        "symbol": "_ZN7android18NSMetadataProvider16MetadataProvider23constructStaticMetadataENS_2spIN5NSCam18IMetadataConverterEEERP15camera_metadataRNS3_9IMetadataE",
+        "address": "0x12064",
+        "entry": "0x12064",
+        "size": 652
+      },
+      {
+        "symbol": "_ZN7android18NSMetadataProvider16MetadataProvider26impConstructStaticMetadataERN5NSCam9IMetadataE",
+        "address": "0x11e98",
+        "entry": "0x11e98",
+        "size": 460
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_SP2518_YUV",
+        "address": "0xec80",
+        "entry": "0xec80",
+        "size": 528
+      },
+      {
+        "symbol": "_ZN7android18NSMetadataProvider16MetadataProviderC1Ei",
+        "address": "0x12638",
+        "entry": "0x12638",
+        "size": 152
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorINS_16key_value_pair_tIiP15camera_metadataEEE12do_constructEPvm",
+        "address": "0x11dcc",
+        "entry": "0x11dcc",
+        "size": 4
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0xbd48",
+        "entry": "0xbd48",
+        "size": 528
+      },
+      {
+        "symbol": "_ZN7android17NSTemplateRequest15TemplateRequest41impConstructRequestMetadata_by_SymbolNameERKNS_7String8ERN5NSCam9IMetadataEi",
+        "address": "0x2a2a4",
+        "entry": "0x2a2a4",
+        "size": 200
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_SP2518_YUV",
+        "address": "0xee90",
+        "entry": "0xee90",
+        "size": 6008
+      },
+      {
+        "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0x22584",
+        "entry": "0x22584",
+        "size": 16016
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorINS_16key_value_pair_tIiN5NSCam9IMetadataEEEE12do_constructEPvm",
+        "address": "0x2e4d4",
+        "entry": "0x2e4d4",
+        "size": 56
+      },
+      {
+        "symbol": "_ZN7android17NSTemplateRequest15TemplateRequest24constructRequestMetadataEiRP15camera_metadataRN5NSCam9IMetadataE",
+        "address": "0x2a498",
+        "entry": "0x2a498",
+        "size": 14624
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SCALER_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x5b40",
+        "entry": "0x5b40",
+        "size": 4332
+      },
+      {
+        "symbol": "_ZN5NSCam16ITemplateRequest11getInstanceEi",
+        "address": "0x2e1c4",
+        "entry": "0x2e1c4",
+        "size": 232
+      },
+      {
+        "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_SP2518_YUV",
+        "address": "0x26414",
+        "entry": "0x26414",
+        "size": 16016
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorINS_16key_value_pair_tIiNS_2spIN5NSCam17IMetadataProviderEEEEEE12do_constructEPvm",
+        "address": "0x16694",
+        "entry": "0x16694",
+        "size": 92
+      },
+      {
+        "symbol": "_ZN7android18NSMetadataProvider16MetadataProvider40impConstructStaticMetadata_by_SymbolNameERKNS_7String8ERN5NSCam9IMetadataE",
+        "address": "0x11dd0",
+        "entry": "0x11dd0",
+        "size": 200
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x8108",
+        "entry": "0x8108",
+        "size": 480
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x82e8",
+        "entry": "0x82e8",
+        "size": 528
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x5930",
+        "entry": "0x5930",
+        "size": 528
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FEATURE_SENSOR_DRVNAME_OV5648_MIPI_RAW_TRULY",
+        "address": "0x6c2c",
+        "entry": "0x6c2c",
+        "size": 528
+      },
+      {
+        "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x1e6f4",
+        "entry": "0x1e6f4",
+        "size": 16016
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_OV5648_MIPI_RAW_TRULY",
+        "address": "0x6e3c",
+        "entry": "0x6e3c",
+        "size": 480
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_SP2518_YUV",
+        "address": "0x10608",
+        "entry": "0x10608",
+        "size": 6084
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_REQUEST_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0xd50c",
+        "entry": "0xd50c",
+        "size": 6004
+      },
+      {
+        "symbol": "constructCustRequestMetadata_SENSOR_DRVNAME_OV5648_MIPI_RAW_TRULY",
+        "address": "0x1a7f4",
+        "entry": "0x1a7f4",
+        "size": 16128
+      }
+    ],
+    "lib64_libcam.halsensor.so": [
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x1be7c",
+        "entry": "0x1be7c",
+        "size": 1128
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x1c2e4",
+        "entry": "0x1c2e4",
+        "size": 416
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_SP2518YUV",
+        "address": "0x23bcc",
+        "entry": "0x23bcc",
+        "size": 1124
+      },
+      {
+        "symbol": "_ZN5NSCam11NSHalSensor13HalSensorList19buildSensorMetadataEv",
+        "address": "0x12558",
+        "entry": "0x12558",
+        "size": 2368
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0x20d0c",
+        "entry": "0x20d0c",
+        "size": 4348
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorIjE12do_constructEPvm",
+        "address": "0x13444",
+        "entry": "0x13444",
+        "size": 4
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorINS_16key_value_pair_tIjNS_2spIN5NSCam11NSHalSensor9HalSensor7PerDataEEEEEE12do_constructEPvm",
+        "address": "0x10488",
+        "entry": "0x10488",
+        "size": 92
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x1dbf4",
+        "entry": "0x1dbf4",
+        "size": 1128
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0x23170",
+        "entry": "0x23170",
+        "size": 1116
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0x21e08",
+        "entry": "0x21e08",
+        "size": 4968
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x1da3c",
+        "entry": "0x1da3c",
+        "size": 440
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0x235cc",
+        "entry": "0x235cc",
+        "size": 412
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_SP2518_YUV",
+        "address": "0x241e8",
+        "entry": "0x241e8",
+        "size": 4904
+      },
+      {
+        "symbol": "_ZNK7android6VectorIN5NSCam11NSHalSensor13HalSensorList8EnumInfoEE12do_constructEPvm",
+        "address": "0x111f4",
+        "entry": "0x111f4",
+        "size": 64
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x1b788",
+        "entry": "0x1b788",
+        "size": 1780
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_LENS_SENSOR_DRVNAME_SP2518YUV",
+        "address": "0x26a04",
+        "entry": "0x26a04",
+        "size": 1128
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_GC2355_MIPI_RAW",
+        "address": "0x23768",
+        "entry": "0x23768",
+        "size": 1124
+      },
+      {
+        "symbol": "_ZNK5NSCam11NSHalSensor13HalSensorList15buildStaticInfoERKNS0_4InfoERNS_9IMetadataE",
+        "address": "0x106e8",
+        "entry": "0x106e8",
+        "size": 452
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x1d5d8",
+        "entry": "0x1d5d8",
+        "size": 1124
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x1e05c",
+        "entry": "0x1e05c",
+        "size": 5312
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_SENSOR_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x1f980",
+        "entry": "0x1f980",
+        "size": 5004
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_FLASHLIGHT_SENSOR_DRVNAME_SP2518_YUV",
+        "address": "0x24030",
+        "entry": "0x24030",
+        "size": 440
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_OV5648_MIPI_RAW",
+        "address": "0x1c484",
+        "entry": "0x1c484",
+        "size": 4436
+      },
+      {
+        "symbol": "_ZNK5NSCam11NSHalSensor13HalSensorList15queryStaticInfoEj",
+        "address": "0x10ca0",
+        "entry": "0x10ca0",
+        "size": 160
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_TUNING_3A_SENSOR_DRVNAME_SP2518_YUV",
+        "address": "0x25510",
+        "entry": "0x25510",
+        "size": 5364
+      },
+      {
+        "symbol": "_ZNK5NSCam11NSHalSensor13HalSensorList15queryDriverNameEj",
+        "address": "0x10d40",
+        "entry": "0x10d40",
+        "size": 160
+      },
+      {
+        "symbol": "constructCustStaticMetadata_DEVICE_CAMERA_SENSOR_DRVNAME_IMX219_MIPI_RAW",
+        "address": "0x1f51c",
+        "entry": "0x1f51c",
+        "size": 1124
+      }
+    ],
+    "lib64_libcam.hal3a.v3.dng.so": [
+      {
+        "symbol": "_ZNK6NS3Av310DngInfoImp17getStaticMetadataEv",
+        "address": "0x16d8",
+        "entry": "0x16d8",
+        "size": 2040
+      }
+    ],
+    "lib64_libcam.metadata.so": [
+      {
+        "symbol": "_ZNK7android6VectorIN5NSCam9IMetadata6MemoryEE12do_constructEPvm",
+        "address": "0xe7bc",
+        "entry": "0xe7bc",
+        "size": 84
+      },
+      {
+        "symbol": "_ZN5NSCam9IMetadataC1Ev",
+        "address": "0xd2cc",
+        "entry": "0xd2cc",
+        "size": 208
+      },
+      {
+        "symbol": "_ZNK7android6VectorIN5NSCam5MRectEE12do_constructEPvm",
+        "address": "0xe1fc",
+        "entry": "0xe1fc",
+        "size": 40
+      },
+      {
+        "symbol": "_ZNK7android6VectorIfE12do_constructEPvm",
+        "address": "0xde60",
+        "entry": "0xde60",
+        "size": 4
+      },
+      {
+        "symbol": "_ZNK7android6VectorIiE12do_constructEPvm",
+        "address": "0xde60",
+        "entry": "0xde60",
+        "size": 4
+      },
+      {
+        "symbol": "_ZNK7android6VectorIdE12do_constructEPvm",
+        "address": "0xde60",
+        "entry": "0xde60",
+        "size": 4
+      },
+      {
+        "symbol": "_ZNK7android6VectorIN5NSCam9IMetadataEE12do_constructEPvm",
+        "address": "0xe2b8",
+        "entry": "0xe2b8",
+        "size": 244
+      },
+      {
+        "symbol": "_ZNK7android6VectorIN5NSCam9MRationalEE12do_constructEPvm",
+        "address": "0xe048",
+        "entry": "0xe048",
+        "size": 100
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorINS_16key_value_pair_tIjN5NSCam9IMetadata6IEntryEEEE12do_constructEPvm",
+        "address": "0xdb00",
+        "entry": "0xdb00",
+        "size": 108
+      },
+      {
+        "symbol": "_ZNK7android6VectorIhE12do_constructEPvm",
+        "address": "0xde60",
+        "entry": "0xde60",
+        "size": 4
+      },
+      {
+        "symbol": "_ZN5NSCam9IMetadata11ImplementorC1Ev",
+        "address": "0xca98",
+        "entry": "0xca98",
+        "size": 164
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorINS_16key_value_pair_tIjNS_2spI7TagInfoEEEEE12do_constructEPvm",
+        "address": "0x13624",
+        "entry": "0x13624",
+        "size": 92
+      },
+      {
+        "symbol": "_ZNK7android6VectorIlE12do_constructEPvm",
+        "address": "0xde60",
+        "entry": "0xde60",
+        "size": 4
+      },
+      {
+        "symbol": "_ZNK7android6VectorIN5NSCam6MPointEE12do_constructEPvm",
+        "address": "0xe128",
+        "entry": "0xe128",
+        "size": 92
+      },
+      {
+        "symbol": "_ZNK7android12SortedVectorINS_16key_value_pair_tIjjEEE12do_constructEPvm",
+        "address": "0xde60",
+        "entry": "0xde60",
+        "size": 4
+      },
+      {
+        "symbol": "_ZNK7android6VectorIN5NSCam5MSizeEE12do_constructEPvm",
+        "address": "0xe128",
+        "entry": "0xe128",
+        "size": 92
+      }
+    ]
+  },
+  "required_entries": [
+    {
+      "sdk37_tag": "ANDROID_INFO_SUPPORTED_HARDWARE_LEVEL",
+      "value": "0x150000",
+      "status": "COMMON supplies an unqualified generic value",
+      "requirement": "Minimum contract candidates, capability/hardware-level dependent where applicable; not a complete CTS list"
+    },
+    {
+      "sdk37_tag": "ANDROID_REQUEST_AVAILABLE_CAPABILITIES",
+      "value": "0xc000c",
+      "status": "selected usable contract absent/unqualified",
+      "requirement": "Minimum contract candidates, capability/hardware-level dependent where applicable; not a complete CTS list"
+    },
+    {
+      "sdk37_tag": "ANDROID_REQUEST_AVAILABLE_REQUEST_KEYS",
+      "value": "0xc000d",
+      "status": "selected usable contract absent/unqualified",
+      "requirement": "Minimum contract candidates, capability/hardware-level dependent where applicable; not a complete CTS list"
+    },
+    {
+      "sdk37_tag": "ANDROID_REQUEST_AVAILABLE_RESULT_KEYS",
+      "value": "0xc000e",
+      "status": "selected usable contract absent/unqualified",
+      "requirement": "Minimum contract candidates, capability/hardware-level dependent where applicable; not a complete CTS list"
+    },
+    {
+      "sdk37_tag": "ANDROID_REQUEST_AVAILABLE_CHARACTERISTICS_KEYS",
+      "value": "0xc000f",
+      "status": "selected usable contract absent/unqualified",
+      "requirement": "Minimum contract candidates, capability/hardware-level dependent where applicable; not a complete CTS list"
+    },
+    {
+      "sdk37_tag": "ANDROID_SCALER_AVAILABLE_STREAM_CONFIGURATIONS",
+      "value": "0xd000a",
+      "status": "selected usable contract absent/unqualified",
+      "requirement": "Minimum contract candidates, capability/hardware-level dependent where applicable; not a complete CTS list"
+    },
+    {
+      "sdk37_tag": "ANDROID_SCALER_AVAILABLE_MIN_FRAME_DURATIONS",
+      "value": "0xd000b",
+      "status": "selected usable contract absent/unqualified",
+      "requirement": "Minimum contract candidates, capability/hardware-level dependent where applicable; not a complete CTS list"
+    },
+    {
+      "sdk37_tag": "ANDROID_SCALER_AVAILABLE_STALL_DURATIONS",
+      "value": "0xd000c",
+      "status": "selected usable contract absent/unqualified",
+      "requirement": "Minimum contract candidates, capability/hardware-level dependent where applicable; not a complete CTS list"
+    },
+    {
+      "sdk37_tag": "ANDROID_CONTROL_AE_AVAILABLE_TARGET_FPS_RANGES",
+      "value": "0x10014",
+      "status": "selected usable contract absent/unqualified",
+      "requirement": "Minimum contract candidates, capability/hardware-level dependent where applicable; not a complete CTS list"
+    },
+    {
+      "sdk37_tag": "ANDROID_SENSOR_INFO_ACTIVE_ARRAY_SIZE",
+      "value": "0xf0000",
+      "status": "selected usable contract absent/unqualified",
+      "requirement": "Minimum contract candidates, capability/hardware-level dependent where applicable; not a complete CTS list"
+    },
+    {
+      "sdk37_tag": "ANDROID_SENSOR_INFO_PIXEL_ARRAY_SIZE",
+      "value": "0xf0006",
+      "status": "selected usable contract absent/unqualified",
+      "requirement": "Minimum contract candidates, capability/hardware-level dependent where applicable; not a complete CTS list"
+    },
+    {
+      "sdk37_tag": "ANDROID_SENSOR_INFO_PHYSICAL_SIZE",
+      "value": "0xf0005",
+      "status": "selected usable contract absent/unqualified",
+      "requirement": "Minimum contract candidates, capability/hardware-level dependent where applicable; not a complete CTS list"
+    },
+    {
+      "sdk37_tag": "ANDROID_SENSOR_INFO_EXPOSURE_TIME_RANGE",
+      "value": "0xf0003",
+      "status": "selected usable contract absent/unqualified",
+      "requirement": "Minimum contract candidates, capability/hardware-level dependent where applicable; not a complete CTS list"
+    },
+    {
+      "sdk37_tag": "ANDROID_SENSOR_ORIENTATION",
+      "value": "0xe000e",
+      "status": "COMMON supplies an unqualified generic value",
+      "requirement": "Minimum contract candidates, capability/hardware-level dependent where applicable; not a complete CTS list"
+    },
+    {
+      "sdk37_tag": "ANDROID_LENS_FACING",
+      "value": "0x80005",
+      "status": "COMMON supplies an unqualified generic value",
+      "requirement": "Minimum contract candidates, capability/hardware-level dependent where applicable; not a complete CTS list"
+    },
+    {
+      "sdk37_tag": "ANDROID_JPEG_MAX_SIZE",
+      "value": "0x70008",
+      "status": "selected usable contract absent/unqualified",
+      "requirement": "Minimum contract candidates, capability/hardware-level dependent where applicable; not a complete CTS list"
+    }
+  ],
+  "scope": {
+    "stock_elfs_scanned": 292,
+    "unresolved_needed": [
+      "lib64/libjpeggifcodec.so"
+    ],
+    "runtime_injected_namespace_qualified": false
+  },
+  "dynamic_sources": {
+    "IHalSensorList_queryStaticInfo": "EnumInfo metadata built through handle-scoped constructors; missing paths still return true with empty metadata",
+    "gSensorMetadata": "Separate driver-populated global with sensor facts/scenario package; no merge into selected EnumInfo on traced buildStaticInfo path",
+    "DngInfo": "NVRAM-backed illuminants/matrices only; constructor/read not run; cannot provide request/stream/capability contract",
+    "IMetadata_default": "Empty entry-vector container, not selected-sensor defaults",
+    "request_updateData": "After successful constructor only; derives crop from static active array, not a missing-template fallback"
+  },
+  "independent_unresolved": [
+    "GraphicBuffer OEM 136 vs SDK37 1784-byte ARM32 layout",
+    "PropertyMap old KeyedVector ABI",
+    "19 external closure symbols from prior audit",
+    "native/compat ioctl translations",
+    "real pipeline/frame/hardware qualification"
+  ],
+  "first_ram_kernel_probe_blocked_by_this": false,
+  "fixture_cases": {
+    "arm32": 107,
+    "arm64": 68
+  },
+  "next_boundary": "Isolated source metadata contract for exact OV5670/OV2680 modes and MT8163 ISP/control pipeline, with provenance for every stream/timing/control and truthful templates; no product enable/version override until it and hardware are qualified"
+}

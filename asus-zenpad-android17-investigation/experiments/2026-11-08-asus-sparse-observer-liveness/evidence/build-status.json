@@ -1,0 +1,27 @@
+{
+  "status": "complete",
+  "started": "2026-11-08T10:16:11.295451+00:00",
+  "max_jobs": 8,
+  "compile_attempts": 1,
+  "rlimit_as": [
+    -1,
+    -1
+  ],
+  "build_timeout": null,
+  "command": [
+    "make",
+    "-C",
+    "/srv/android/asus-sparse-observer-liveness-20261108-e6799dac/kernel",
+    "O=/srv/android/asus-sparse-observer-liveness-20261108-e6799dac/out",
+    "ARCH=arm64",
+    "CROSS_COMPILE=aarch64-linux-gnu-",
+    "HOSTCC=gcc",
+    "HOSTCXX=g++",
+    "LOCALVERSION=-g717bb3c9e13c-dirty",
+    "-j8",
+    "Image.gz-dtb"
+  ],
+  "compile_exit": 0,
+  "exit": 0,
+  "finished": "2026-11-08T10:20:00.390921+00:00"
+}

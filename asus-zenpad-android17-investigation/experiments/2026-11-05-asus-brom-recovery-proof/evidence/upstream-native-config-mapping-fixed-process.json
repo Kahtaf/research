@@ -1,0 +1,19 @@
+{
+  "returncode": -15,
+  "timeout": true,
+  "command": [
+    "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-brom-recovery-proof/.venv/bin/python",
+    "-u",
+    "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-brom-recovery-proof/sources/mtkclient/mtk.py",
+    "gettargetconfig",
+    "--skipwdt",
+    "--vid",
+    "0x0e8d",
+    "--pid",
+    "0x2000",
+    "--debugmode"
+  ],
+  "source_pin": "118a000a83ea31c4f427fe5225abfe964546e05e",
+  "log": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-brom-recovery-proof/evidence/upstream-native-config-mapping-fixed-raw.log",
+  "intent": "Read configuration only; watchdog init skipped; no payload, DA, write, unlock or erase command"
+}

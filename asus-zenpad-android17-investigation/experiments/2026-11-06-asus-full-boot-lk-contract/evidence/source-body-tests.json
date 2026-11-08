@@ -1,0 +1,99 @@
+{
+  "method": "Exact source bodies; host filesystem/property/bootconfig/DT and platform I/O stubs; not Android runtime",
+  "extracted": [
+    {
+      "source": "aosp/system/fs/fs_mgr/libfstab/boot_config.cpp",
+      "source_sha256": "b302ddc844fb6eb46f905c69a0e67d1067f7524c34db3d9b722f44b5927e20c8",
+      "first_line": 111,
+      "last_line": 141,
+      "extracted_sha256": "b413218724e6c1449124261dac212fc50c33a85ab9c92e33bfe139a62081ed4e"
+    },
+    {
+      "source": "aosp/system/fs/fs_mgr/libfstab/boot_config.cpp",
+      "source_sha256": "b302ddc844fb6eb46f905c69a0e67d1067f7524c34db3d9b722f44b5927e20c8",
+      "first_line": 143,
+      "last_line": 153,
+      "extracted_sha256": "4ff89e01b9cae56e32078af5d6e0916b46913be60c7423ad0d27074192787b13"
+    },
+    {
+      "source": "aosp/system/fs/fs_mgr/libfstab/boot_config.cpp",
+      "source_sha256": "b302ddc844fb6eb46f905c69a0e67d1067f7524c34db3d9b722f44b5927e20c8",
+      "first_line": 173,
+      "last_line": 205,
+      "extracted_sha256": "2e16447cd025f90d0097a0fe6ae22f70e2431a88716b833f75281c1f572fab90"
+    },
+    {
+      "source": "aosp/system/fs/fs_mgr/libfstab/fstab.cpp",
+      "source_sha256": "2667f00763b474e55d658920e25923d17ec6c38eafa4243f33ad1924349338b5",
+      "first_line": 470,
+      "last_line": 492,
+      "extracted_sha256": "674ef25c3c517a27ba4d4b1927a1bea04f881421f8e1d8027ac197ba1938f872"
+    },
+    {
+      "source": "aosp/system/fs/fs_mgr/libfstab/fstab.cpp",
+      "source_sha256": "2667f00763b474e55d658920e25923d17ec6c38eafa4243f33ad1924349338b5",
+      "first_line": 812,
+      "last_line": 860,
+      "extracted_sha256": "6c9bfa9cc16341db2d66b68f9c18bd61a73617b61e0e0dda3961b785bced543e"
+    },
+    {
+      "source": "aosp/system/core/init/selinux.cpp",
+      "source_sha256": "fe0c79ed657ff7cffbde0026cebd0f741b2b5703dbd092d2e19b2df52b5a139e",
+      "first_line": 103,
+      "last_line": 112,
+      "extracted_sha256": "97555266b2edafc441bfa5bbc56cac4d02f21ba29bad70de1e7918da6cef97ba"
+    },
+    {
+      "source": "aosp/system/core/init/selinux.cpp",
+      "source_sha256": "fe0c79ed657ff7cffbde0026cebd0f741b2b5703dbd092d2e19b2df52b5a139e",
+      "first_line": 114,
+      "last_line": 119,
+      "extracted_sha256": "474c02b9404a1a6ba750f926b6cd7e786839f7582265d4b16dc69ae5c710325a"
+    },
+    {
+      "source": "kernel/security/selinux/hooks.c",
+      "source_sha256": "37e17317112d813dbb85884ba7edad0ab8bce64d59b590d90c8ca1be65a40e91",
+      "first_line": 104,
+      "last_line": 110,
+      "extracted_sha256": "217c378f362d3b5cf21e01e396f8680d9b4c6384493c3188c65bfd428954c97a"
+    }
+  ],
+  "results": [
+    {
+      "allow_permissive": 0,
+      "exit_code": 0,
+      "stdout": "PASS 14 source-body checks; ALLOW_PERMISSIVE_SELINUX=0; I/O and platform dependencies are host stubs\n",
+      "compiler_command": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DALLOW_PERMISSIVE_SELINUX=0",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-boot-lk-contract/tests/generated/sdk37-source-bodies.cpp",
+        "-o",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-boot-lk-contract/tests/generated/sdk37-source-test-0"
+      ]
+    },
+    {
+      "allow_permissive": 1,
+      "exit_code": 0,
+      "stdout": "PASS 14 source-body checks; ALLOW_PERMISSIVE_SELINUX=1; I/O and platform dependencies are host stubs\n",
+      "compiler_command": [
+        "/usr/bin/clang++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-DALLOW_PERMISSIVE_SELINUX=1",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-boot-lk-contract/tests/generated/sdk37-source-bodies.cpp",
+        "-o",
+        "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-boot-lk-contract/tests/generated/sdk37-source-test-1"
+      ]
+    }
+  ]
+}

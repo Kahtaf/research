@@ -1,0 +1,17 @@
+[
+  {
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/power/mt8163/bq25896.c",
+    "file": "bq25896.c",
+    "sha256": "ee1678e6ebcb080f42b3962bb7d259231cf723ca0cff803039721c46120f5d62"
+  },
+  {
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/power/mt8163/bq25896.h",
+    "file": "bq25896.h",
+    "sha256": "b3330c76fbf555ffc23a6245697c12169ee283befb73ce22ecebabf54e414bed"
+  },
+  {
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/power/mt8163/charging_hw_bq25896.c",
+    "file": "charging_hw_bq25896.c",
+    "sha256": "52463726d4745535f95c427da70977d204e88ff34ca44a172b07821c1ade38aa"
+  }
+]

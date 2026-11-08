@@ -1,0 +1,124 @@
+--- a/contents/namespace/systemdefault.cc
++++ b/contents/namespace/systemdefault.cc
+@@ -106,7 +106,12 @@
+   }
+ 
+   ns.AddRequires(ctx.GetSystemRequireLibs());
+-  ns.AddProvides(ctx.GetSystemProvideLibs());
++  // The legacy vendor default shares core search paths, but BuildVendorSection
++  // also creates the system namespace, which owns the SYSTEM provider records.
++  if (!(ctx.IsDefaultConfig() && ctx.IsVendorSection() &&
++        modules::IsP00aLegacyGraphics())) {
++    ns.AddProvides(ctx.GetSystemProvideLibs());
++  }
+   return ns;
+ }
+ 
+--- /dev/null
++++ b/contents/tests/configuration/namespace_ownership_test.cc
+@@ -0,0 +1,105 @@
++// SPDX-License-Identifier: Apache-2.0
++#include <gtest/gtest.h>
++#include "linkerconfig/baseconfig.h"
++#include "linkerconfig/namespacebuilder.h"
++#include "linkerconfig/sectionbuilder.h"
++#include "mockenv.h"
++using namespace android::linkerconfig::contents;
++using namespace android::linkerconfig::modules;
++using android::linkerconfig::proto::LinkerConfig;
++class NamespaceOwnership : public ::testing::Test {
++ protected:
++  void SetUp() override {
++    MockGenericVariables();
++    Variables::AddValue("ro.product.first_api_level", "23");
++    Variables::AddValue("ro.vndk.version", "");
++    Variables::AddValue("ro.product.vndk.version", "");
++  }
++  void TearDown() override {
++    Variables::AddValue("ro.product.first_api_level", "");
++    MockGenericVariables();
++  }
++  static LinkerConfig SystemConfig() {
++    LinkerConfig p;
++    p.add_providelibs("heapprofd_client_api.so");
++    p.add_providelibs("liblog.so");
++    p.add_requirelibs("libandroidicu.so");
++    return p;
++  }
++};
++#ifdef P00A_LEGACY_GRAPHICS
++TEST_F(NamespaceOwnership, LegacyVendorHasOneSystemProviderOwner) {
++  Context ctx; ctx.SetSystemConfig(SystemConfig());
++  auto section = BuildVendorSection(ctx);
++  auto* vendor = section.GetNamespace("default");
++  auto* system = section.GetNamespace("system");
++  ASSERT_NE(vendor, nullptr); ASSERT_NE(system, nullptr);
++  EXPECT_TRUE(vendor->GetProvides().empty());
++  EXPECT_EQ(system->GetProvides(), (std::set<std::string>{"heapprofd_client_api.so", "liblog.so"}));
++  EXPECT_EQ(vendor->GetRequires(), system->GetRequires());
++  EXPECT_EQ(vendor->GetRequires(), (std::set<std::string>{"libandroidicu.so"}));
++  EXPECT_EQ(vendor->SearchPaths(), (std::vector<std::string>{"/system/${LIB}", "system_ext/${LIB}", "/vendor/${LIB}", "/vendor/${LIB}/hw"}));
++  ConfigWriter writer; vendor->WriteConfig(writer);
++  EXPECT_NE(writer.ToString().find("namespace.default.isolated = true"), std::string::npos);
++}
++TEST_F(NamespaceOwnership, MissingSystemProvidersStillGeneratesLegacyVendor) {
++  Context ctx;
++  auto section=BuildVendorSection(ctx);
++  ASSERT_NE(section.GetNamespace("default"), nullptr);
++  EXPECT_TRUE(section.GetNamespace("default")->GetProvides().empty());
++  EXPECT_TRUE(section.GetNamespace("system")->GetProvides().empty());
++  EXPECT_EQ(section.GetNamespace("default")->SearchPaths().front(), "/system/${LIB}");
++}
++TEST_F(NamespaceOwnership, SystemAndUnrestrictedStillOwnSystemProviders) {
++  Context ctx; ctx.SetSystemConfig(SystemConfig());
++  for (auto kind : {SectionType::System, SectionType::Unrestricted, SectionType::Product}) {
++    ctx.SetCurrentSection(kind);
++    EXPECT_EQ(BuildSystemDefaultNamespace(ctx).GetProvides(), (std::set<std::string>{"heapprofd_client_api.so", "liblog.so"}));
++  }
++}
++TEST_F(NamespaceOwnership, ApexRecoveryAndLegacyConfigProvidersAreUnchanged) {
++  Context ctx; ctx.SetSystemConfig(SystemConfig()); ctx.SetCurrentSection(SectionType::Vendor);
++  for (auto type : {LinkerConfigType::ApexBinary, LinkerConfigType::Recovery, LinkerConfigType::Legacy}) {
++    ctx.SetCurrentLinkerConfigType(type);
++    EXPECT_EQ(BuildSystemDefaultNamespace(ctx).GetProvides(), (std::set<std::string>{"heapprofd_client_api.so", "liblog.so"}));
++    EXPECT_EQ(BuildVendorDefaultNamespace(ctx).SearchPaths().front(), "/odm/${LIB}");
++  }
++}
++#endif
++TEST_F(NamespaceOwnership, NonLegacyDefaultRetainsVendorProviderOwnership) {
++  for (const char* api : {"", "0", "bad", "26", "37"}) {
++    Variables::AddValue("ro.product.first_api_level", api);
++    Context ctx; ctx.SetSystemConfig(SystemConfig());
++    LinkerConfig p; p.add_providelibs("libvendorowned.so"); ctx.SetVendorConfig(p);
++    auto section=BuildVendorSection(ctx);
++    EXPECT_EQ(section.GetNamespace("default")->GetProvides(), (std::set<std::string>{"libvendorowned.so"}));
++    EXPECT_EQ(section.GetNamespace("system")->GetProvides(), (std::set<std::string>{"heapprofd_client_api.so", "liblog.so"}));
++  }
++}
++TEST_F(NamespaceOwnership, DuplicateProviderGuardIsStillFatal) {
++  EXPECT_DEATH({
++    Context ctx;
++    std::vector<Namespace> ns;
++    ns.emplace_back("a"); ns.emplace_back("b");
++    ns[0].AddProvides(std::vector<std::string>{"duplicate.so"});
++    ns[1].AddProvides(std::vector<std::string>{"duplicate.so"});
++    Section section("guard",std::move(ns)); section.Resolve(ctx,{});
++  }, "duplicate: duplicate.so is provided by a and b");
++}
++TEST_F(NamespaceOwnership, StrictMissingDependencyGuardIsStillFatal) {
++  EXPECT_DEATH({
++    Context ctx; ctx.SetStrictMode(true);
++    std::vector<Namespace> ns; ns.emplace_back("a");
++    ns[0].AddRequires(std::vector<std::string>{"missing.so"});
++    Section section("guard",std::move(ns)); section.Resolve(ctx,{});
++  }, "not found: missing.so is required by a");
++}
++#ifndef P00A_LEGACY_GRAPHICS
++TEST_F(NamespaceOwnership, NoProductOptInKeepsSystemAndVendorOwners) {
++  Context ctx; ctx.SetSystemConfig(SystemConfig());
++  auto section=BuildVendorSection(ctx);
++  EXPECT_EQ(section.GetNamespace("default")->SearchPaths().front(), "/odm/${LIB}");
++  EXPECT_TRUE(section.GetNamespace("default")->GetProvides().empty());
++  EXPECT_EQ(section.GetNamespace("system")->GetProvides().size(), 2u);
++}
++#endif

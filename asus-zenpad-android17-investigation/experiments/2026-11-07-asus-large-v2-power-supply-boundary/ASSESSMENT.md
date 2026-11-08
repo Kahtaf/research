@@ -1,0 +1,7 @@
+# Parent decision
+
+Adopt one observational phase ladder inside the named power_supply_changed_work path, no skip/behavior change. Large model exactselection verified; no tools/target/build access.
+
+Refinements: hook generic power_supply_get_property in power_supply_core.c instead of show_property in sysfs; this covers LED and uevent reads at the actual common driver callback dispatch. Keep whole next unit in core.c plus existing recorder/declarations/identity. Bracket class external_power_changed callbacks only where already invoked. Main body brackets class iteration, LEDs, notifier and kobject_uevent; no sysfs/uevent-core expansion yet. Fixed latest body-stage and property identities plus small bounded event ring suffice, not128impossibly40byte records. Use bounded string reads with actual NUL length; never blindly memcpy16bytes from short names. Admit legitimate atomic/IRQoff callback contexts without sleeping/new blockinglock; no lock or IRQmask across originalcallback. Oldest overwritten pair is finite horizon limitation, not loss; loss/torn/ambiguous target remains UNKNOWN and stops. All selected original operations/return paths preserved.
+
+Missing postcall narrows dispatch-through-return; checkpoint publication timing/ordinarypreemption remains part of boundary. No permanent hang/rootcause/bodyentry inference from a pre-call record. No synthetic battery values, thermal/charging disable or enable, PMIC change, clock/scheduler fix. Onebuild/onephysicalrun then interpret.

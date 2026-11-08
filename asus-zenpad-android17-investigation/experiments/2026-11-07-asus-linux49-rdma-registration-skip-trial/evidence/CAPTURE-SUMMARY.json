@@ -1,0 +1,67 @@
+{
+  "capture_rows": [
+    {
+      "slot": 0,
+      "kind": 0,
+      "entries": 395,
+      "complete": 395,
+      "enter": 349952,
+      "exit": 349952,
+      "stage": 4,
+      "parent": 0,
+      "seq_enter": 302,
+      "seq_last": 302,
+      "raw": 0,
+      "function_symbol": "posix_ktime_get_ts+16",
+      "pc_symbol": null
+    },
+    {
+      "slot": 0,
+      "kind": 1,
+      "entries": 396,
+      "complete": 396,
+      "enter": 350224,
+      "exit": 350224,
+      "stage": 4,
+      "parent": 349952,
+      "seq_enter": 0,
+      "seq_last": 0,
+      "raw": 176234377,
+      "function_symbol": "arch_counter_get_cntvct+0",
+      "pc_symbol": null
+    },
+    {
+      "slot": 1,
+      "kind": 1,
+      "entries": 401,
+      "complete": 401,
+      "enter": 351505,
+      "exit": 351505,
+      "stage": 4,
+      "parent": 350497,
+      "seq_enter": 0,
+      "seq_last": 0,
+      "raw": 176234774,
+      "function_symbol": "arch_counter_get_cntvct+0",
+      "pc_symbol": null
+    },
+    {
+      "slot": 1,
+      "kind": 2,
+      "entries": 181,
+      "complete": 181,
+      "enter": 350497,
+      "exit": 350497,
+      "stage": 4,
+      "parent": 0,
+      "seq_enter": 0,
+      "seq_last": 0,
+      "raw": 0,
+      "function_symbol": "hrtimer_interrupt+0",
+      "pc_symbol": "_raw_spin_unlock_irqrestore+16"
+    }
+  ],
+  "cached_lastpc_symbol": "asus_p00a_pmic_adc+340",
+  "cached_lastpc_epoch": "UNESTABLISHED",
+  "system_map_uncompressed_sha256": "eedbfbdcee192b2a2ed281f8225bda7cac066bfed5dee704976c1a4a44098959"
+}

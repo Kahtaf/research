@@ -1,0 +1,11 @@
+{
+  "status": "failed",
+  "helper_compiles": 1,
+  "kernel_builds": 0,
+  "rlimit_as": [
+    -1,
+    -1
+  ],
+  "walltime_cap": null,
+  "error": "AssertionError((['cp', '-a', '--reflink=always', '/srv/android/asus-sparse-watchdog-observation-20261108-e0b1a1ba/kernel', '/srv/android/asus-pid1-fifo-loop-control-20261108-f53fadc2/kernel'], 1, 'copy-kernel.log'))"
+}

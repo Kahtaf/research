@@ -1,0 +1,32 @@
+{
+  "attempt_started_sha256": "c13e2e0fbccb204ce1aa166c45f089b2f0b27eafa058ce204487bf9c75572df0",
+  "exit_code": 0,
+  "files": {
+    ".ninja_log": {
+      "bytes": 15,
+      "sha256": "5b82b794db4d570773bc84bd089effa542b2017965cf316478f4f14f72930c14"
+    },
+    "siso_localexec": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "siso_metadata.json": {
+      "bytes": 601,
+      "sha256": "98ba2d44694f7846e7e6bb36d85da3dec1fd3131856e900fcbe5f8efd54f0a4b"
+    },
+    "siso_metrics.json": {
+      "bytes": 69,
+      "sha256": "a91f7291b0b1586baab0b45a32ad8c1b5b0acdecedfa7b94eb99d5872f0e42a5"
+    },
+    "siso_output": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "verbose.log.gz": {
+      "bytes": 6231,
+      "sha256": "5ab8429d64e96b19cc8db3aaf75f31490bd77f4086a6aa484a8112050cfe93bd"
+    }
+  },
+  "integration_sha256": "d994e8d5be27cd7dcb5d9962c6f3b19773a9fea7da7a6b404447ea52c6d1b45b",
+  "phase": "host_init_verifier"
+}

@@ -1,0 +1,242 @@
+From 5ae1915fde1a778be406151efdd0ad81eb9a5968 Mon Sep 17 00:00:00 2001
+From: Daniel Borkmann <ACCOUNT_REDACTED>
+Date: Fri, 13 Jan 2017 23:38:15 +0100
+Subject: [PATCH] UPSTREAM: bpf: rework prog_digest into prog_tag
+
+Commit 7bd509e311f4 ("bpf: add prog_digest and expose it via
+fdinfo/netlink") was recently discussed, partially due to
+admittedly suboptimal name of "prog_digest" in combination
+with sha1 hash usage, thus inevitably and rightfully concerns
+about its security in terms of collision resistance were
+raised with regards to use-cases.
+
+The intended use cases are for debugging resp. introspection
+only for providing a stable "tag" over the instruction sequence
+that both kernel and user space can calculate independently.
+It's not usable at all for making a security relevant decision.
+So collisions where two different instruction sequences generate
+the same tag can happen, but ideally at a rather low rate. The
+"tag" will be dumped in hex and is short enough to introspect
+in tracepoints or kallsyms output along with other data such
+as stack trace, etc. Thus, this patch performs a rename into
+prog_tag and truncates the tag to a short output (64 bits) to
+make it obvious it's not collision-free.
+
+Should in future a hash or facility be needed with a security
+relevant focus, then we can think about requirements, constraints,
+etc that would fit to that situation. For now, rework the exposed
+parts for the current use cases as long as nothing has been
+released yet. Tested on x86_64 and s390x.
+
+Fixes: 7bd509e311f4 ("bpf: add prog_digest and expose it via fdinfo/netlink")
+Signed-off-by: Daniel Borkmann <ACCOUNT_REDACTED>
+Acked-by: Alexei Starovoitov <ACCOUNT_REDACTED>
+Cc: Andy Lutomirski <ACCOUNT_REDACTED>
+Signed-off-by: David S. Miller <ACCOUNT_REDACTED>
+(cherry picked from commit 8f994f56cb6307443e815b4241209b7ccaafd0e2)
+---
+ include/linux/bpf.h                |  2 +-
+ include/linux/filter.h             |  6 ++++--
+ include/uapi/linux/pkt_cls.h       |  2 +-
+ include/uapi/linux/tc_act/tc_bpf.h |  2 +-
+ kernel/bpf/core.c                  | 14 ++++++++------
+ kernel/bpf/syscall.c               |  8 ++++----
+ kernel/bpf/verifier.c              |  2 +-
+ net/sched/act_bpf.c                |  5 ++---
+ net/sched/cls_bpf.c                |  4 ++--
+ 9 files changed, 24 insertions(+), 21 deletions(-)
+
+diff --git a/include/linux/bpf.h b/include/linux/bpf.h
+index a079a3448f..aea8c189d5 100644
+--- a/include/linux/bpf.h
++++ b/include/linux/bpf.h
+@@ -232,7 +232,7 @@ u64 bpf_tail_call(u64 ctx, u64 r2, u64 index, u64 r4, u64 r5);
+ u64 bpf_get_stackid(u64 r1, u64 r2, u64 r3, u64 r4, u64 r5);
+ 
+ bool bpf_prog_array_compatible(struct bpf_array *array, const struct bpf_prog *fp);
+-int bpf_prog_calc_digest(struct bpf_prog *fp);
++int bpf_prog_calc_tag(struct bpf_prog *fp);
+ 
+ const struct bpf_func_proto *bpf_get_trace_printk_proto(void);
+ 
+diff --git a/include/linux/filter.h b/include/linux/filter.h
+index 2aa0b544b9..0e8e0a0586 100644
+--- a/include/linux/filter.h
++++ b/include/linux/filter.h
+@@ -57,6 +57,8 @@ struct bpf_prog_aux;
+ /* BPF program can access up to 512 bytes of stack space. */
+ #define MAX_BPF_STACK	512
+ 
++#define BPF_TAG_SIZE	8
++
+ /* Helper macros for filter block array initializers. */
+ 
+ /* ALU ops on registers, bpf_add|sub|...: dst_reg += src_reg */
+@@ -408,7 +410,7 @@ struct bpf_prog {
+ 	kmemcheck_bitfield_end(meta);
+ 	enum bpf_prog_type	type;		/* Type of BPF program */
+ 	u32			len;		/* Number of filter blocks */
+-	u32			digest[SHA_DIGEST_WORDS]; /* Program digest */
++	u8			tag[BPF_TAG_SIZE];
+ 	struct bpf_prog_aux	*aux;		/* Auxiliary fields */
+ 	struct sock_fprog_kern	*orig_prog;	/* Original BPF program */
+ 	unsigned int		(*bpf_func)(const void *ctx,
+@@ -519,7 +521,7 @@ static inline u32 bpf_prog_insn_size(const struct bpf_prog *prog)
+ 	return prog->len * sizeof(struct bpf_insn);
+ }
+ 
+-static inline u32 bpf_prog_digest_scratch_size(const struct bpf_prog *prog)
++static inline u32 bpf_prog_tag_scratch_size(const struct bpf_prog *prog)
+ {
+ 	return round_up(bpf_prog_insn_size(prog) +
+ 			sizeof(__be64) + 1, SHA_MESSAGE_BYTES);
+diff --git a/include/uapi/linux/pkt_cls.h b/include/uapi/linux/pkt_cls.h
+index 2b8c8e71bf..edc7d812fd 100644
+--- a/include/uapi/linux/pkt_cls.h
++++ b/include/uapi/linux/pkt_cls.h
+@@ -397,7 +397,7 @@ enum {
+ 	TCA_BPF_NAME,
+ 	TCA_BPF_FLAGS,
+ 	TCA_BPF_FLAGS_GEN,
+-	TCA_BPF_DIGEST,
++	TCA_BPF_TAG,
+ 	__TCA_BPF_MAX,
+ };
+ 
+diff --git a/include/uapi/linux/tc_act/tc_bpf.h b/include/uapi/linux/tc_act/tc_bpf.h
+index a6b88a6f7f..975b50dc8d 100644
+--- a/include/uapi/linux/tc_act/tc_bpf.h
++++ b/include/uapi/linux/tc_act/tc_bpf.h
+@@ -27,7 +27,7 @@ enum {
+ 	TCA_ACT_BPF_FD,
+ 	TCA_ACT_BPF_NAME,
+ 	TCA_ACT_BPF_PAD,
+-	TCA_ACT_BPF_DIGEST,
++	TCA_ACT_BPF_TAG,
+ 	__TCA_ACT_BPF_MAX,
+ };
+ #define TCA_ACT_BPF_MAX (__TCA_ACT_BPF_MAX - 1)
+diff --git a/kernel/bpf/core.c b/kernel/bpf/core.c
+index bc6a2d0c44..6dd1f9a717 100644
+--- a/kernel/bpf/core.c
++++ b/kernel/bpf/core.c
+@@ -146,10 +146,11 @@ void __bpf_prog_free(struct bpf_prog *fp)
+ 	vfree(fp);
+ }
+ 
+-int bpf_prog_calc_digest(struct bpf_prog *fp)
++int bpf_prog_calc_tag(struct bpf_prog *fp)
+ {
+ 	const u32 bits_offset = SHA_MESSAGE_BYTES - sizeof(__be64);
+-	u32 raw_size = bpf_prog_digest_scratch_size(fp);
++	u32 raw_size = bpf_prog_tag_scratch_size(fp);
++	u32 digest[SHA_DIGEST_WORDS];
+ 	u32 ws[SHA_WORKSPACE_WORDS];
+ 	u32 i, bsize, psize, blocks;
+ 	struct bpf_insn *dst;
+@@ -162,7 +163,7 @@ int bpf_prog_calc_digest(struct bpf_prog *fp)
+ 	if (!raw)
+ 		return -ENOMEM;
+ 
+-	sha_init(fp->digest);
++	sha_init(digest);
+ 	memset(ws, 0, sizeof(ws));
+ 
+ 	/* We need to take out the map fd for the digest calculation
+@@ -204,13 +205,14 @@ int bpf_prog_calc_digest(struct bpf_prog *fp)
+ 	*bits = cpu_to_be64((psize - 1) << 3);
+ 
+ 	while (blocks--) {
+-		sha_transform(fp->digest, todo, ws);
++		sha_transform(digest, todo, ws);
+ 		todo += SHA_MESSAGE_BYTES;
+ 	}
+ 
+-	result = (__force __be32 *)fp->digest;
++	result = (__force __be32 *)digest;
+ 	for (i = 0; i < SHA_DIGEST_WORDS; i++)
+-		result[i] = cpu_to_be32(fp->digest[i]);
++		result[i] = cpu_to_be32(digest[i]);
++	memcpy(fp->tag, result, sizeof(fp->tag));
+ 
+ 	vfree(raw);
+ 	return 0;
+diff --git a/kernel/bpf/syscall.c b/kernel/bpf/syscall.c
+index 3726a61927..5270eb13e8 100644
+--- a/kernel/bpf/syscall.c
++++ b/kernel/bpf/syscall.c
+@@ -738,17 +738,17 @@ static int bpf_prog_release(struct inode *inode, struct file *filp)
+ static void bpf_prog_show_fdinfo(struct seq_file *m, struct file *filp)
+ {
+ 	const struct bpf_prog *prog = filp->private_data;
+-	char prog_digest[sizeof(prog->digest) * 2 + 1] = { };
++	char prog_tag[sizeof(prog->tag) * 2 + 1] = { };
+ 
+-	bin2hex(prog_digest, prog->digest, sizeof(prog->digest));
++	bin2hex(prog_tag, prog->tag, sizeof(prog->tag));
+ 	seq_printf(m,
+ 		   "prog_type:\t%u\n"
+ 		   "prog_jited:\t%u\n"
+-		   "prog_digest:\t%s\n"
++		   "prog_tag:\t%s\n"
+ 		   "memlock:\t%llu\n",
+ 		   prog->type,
+ 		   prog->jited,
+-		   prog_digest,
++		   prog_tag,
+ 		   prog->pages * 1ULL << PAGE_SHIFT);
+ }
+ #endif
+diff --git a/kernel/bpf/verifier.c b/kernel/bpf/verifier.c
+index 27830004a1..4291e6694e 100644
+--- a/kernel/bpf/verifier.c
++++ b/kernel/bpf/verifier.c
+@@ -3216,7 +3216,7 @@ static int replace_map_fd_with_map_ptr(struct bpf_verifier_env *env)
+ 	int insn_cnt = env->prog->len;
+ 	int i, j, err;
+ 
+-	err = bpf_prog_calc_digest(env->prog);
++	err = bpf_prog_calc_tag(env->prog);
+ 	if (err)
+ 		return err;
+ 
+diff --git a/net/sched/act_bpf.c b/net/sched/act_bpf.c
+index ff3652e882..7389675c7b 100644
+--- a/net/sched/act_bpf.c
++++ b/net/sched/act_bpf.c
+@@ -123,12 +123,11 @@ static int tcf_bpf_dump_ebpf_info(const struct tcf_bpf *prog,
+ 	    nla_put_string(skb, TCA_ACT_BPF_NAME, prog->bpf_name))
+ 		return -EMSGSIZE;
+ 
+-	nla = nla_reserve(skb, TCA_ACT_BPF_DIGEST,
+-			  sizeof(prog->filter->digest));
++	nla = nla_reserve(skb, TCA_ACT_BPF_TAG, sizeof(prog->filter->tag));
+ 	if (nla == NULL)
+ 		return -EMSGSIZE;
+ 
+-	memcpy(nla_data(nla), prog->filter->digest, nla_len(nla));
++	memcpy(nla_data(nla), prog->filter->tag, nla_len(nla));
+ 
+ 	return 0;
+ }
+diff --git a/net/sched/cls_bpf.c b/net/sched/cls_bpf.c
+index fffd5e8027..ae8b009932 100644
+--- a/net/sched/cls_bpf.c
++++ b/net/sched/cls_bpf.c
+@@ -557,11 +557,11 @@ static int cls_bpf_dump_ebpf_info(const struct cls_bpf_prog *prog,
+ 	    nla_put_string(skb, TCA_BPF_NAME, prog->bpf_name))
+ 		return -EMSGSIZE;
+ 
+-	nla = nla_reserve(skb, TCA_BPF_DIGEST, sizeof(prog->filter->digest));
++	nla = nla_reserve(skb, TCA_BPF_TAG, sizeof(prog->filter->tag));
+ 	if (nla == NULL)
+ 		return -EMSGSIZE;
+ 
+-	memcpy(nla_data(nla), prog->filter->digest, nla_len(nla));
++	memcpy(nla_data(nla), prog->filter->tag, nla_len(nla));
+ 
+ 	return 0;
+ }
+-- 
+2.43.0
+

@@ -1,0 +1,1 @@
+{"exit": 0, "attempts": 1, "command": ["aarch64-linux-gnu-gcc", "-static", "-Os", "-std=gnu11", "-Wall", "-Wextra", "-Werror", "-fno-ident", "-I/srv/android/asus-minimal-platform-build-20261108/helper", "-o", "/srv/android/asus-minimal-platform-build-20261108/helper/init", "/srv/android/asus-minimal-platform-build-20261108/helper/ram_pid1.c"]}

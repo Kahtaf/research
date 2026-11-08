@@ -1,0 +1,58 @@
+from pathlib import Path
+import os,resource,subprocess,re,json,hashlib
+os.sched_setaffinity(0,{min(os.sched_getaffinity(0))});resource.setrlimit(resource.RLIMIT_AS,(1024**3,1024**3))
+r=Path('/srv/android/asus-camera-arm32-route');b=Path('/srv/android/lineage24');img='/srv/android/asus-stock-system-backup/20261106T172146Z-89fc7700813aad85/system.img'
+def cmd(a):return subprocess.run(list(map(str,a)),text=True,capture_output=True,check=True,timeout=30).stdout
+listing=cmd(['debugfs','-R','ls -p /vendor/lib',img])
+available={l.split('/')[5]:int(l.split('/')[6]) for l in listing.splitlines() if len(l.split('/'))>6 and l.split('/')[6].isdigit()}
+system_listing=cmd(['debugfs','-R','ls -p /lib',img])
+system_available={l.split('/')[5]:int(l.split('/')[6]) for l in system_listing.splitlines() if len(l.split('/'))>6 and l.split('/')[6].isdigit()}
+public_system={n for n in system_available if n.startswith('libarcsoft') or n in {'libcameraap.so','libmpbase.so'}}
+for n in public_system:available[n]=system_available[n]
+def stock_path(n):return ('/lib/' if n in public_system else '/vendor/lib/')+n
+def elf(p):
+ d=cmd(['readelf','--dyn-syms','-dW',p]);needed=re.findall(r'Shared library: \[(.*?)\]',d);defined=set();undefined=set()
+ for l in d.splitlines():
+  m=re.match(r'\s+\d+:\s+\w+\s+\d+\s+.+?\s+(GLOBAL|WEAK)\s+\w+\s+(\S+)\s+(\S+)',l)
+  if m:
+   binding,index,name=m.groups();name=name.split('@')[0]
+   if index=='UND':
+    if binding=='GLOBAL':undefined.add(name)
+   else:defined.add(name)
+ return needed,defined,undefined
+queue=['hw/camera.mt8163.so','libcam_platform.so','libcam.device1.so','libcam.device3.so'];seen={};defs={};total=0;leaves=set()
+while queue:
+ n=queue.pop(0)
+ if n in seen:continue
+ assert len(seen)<85
+ p=r/'public'/('lib_'+n.replace('/','_'))
+ if p.exists():data=p.read_bytes()
+ else:
+  assert available.get(n,0)<24*1024**2, (n,available.get(n,0))
+  data=subprocess.run(['debugfs','-R','cat '+stock_path(n),img],capture_output=True,check=True).stdout
+ assert data.startswith(b'\x7fELF')
+ total+=len(data);assert total<64*1024**2
+ temp=r/'inspect-temp.so';temp.write_bytes(data)
+ needed,d,u=elf(temp);temp.unlink();defs[n]=d
+ seen[n]={'path':stock_path(n),'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),'needed':needed,'undefined':sorted(u)}
+ for child in needed:
+  if child in available:queue.append(child)
+  else:leaves.add(child)
+# Include SDK37 real, already-built core providers, no Ninja or build graph evaluation.
+projects={'libc':'bionic/libc/libc','libm':'bionic/libm/libm','libdl':'bionic/libdl/libdl','libc++':'prebuilts/clang/host/linux-x86/libc++','libbinder':'frameworks/native/libs/binder/libbinder','libui':'frameworks/native/libs/ui/libui','libgui':'frameworks/native/libs/gui/libgui','libcamera_client':'frameworks/av/camera/libcamera_client','libcamera_metadata':'system/media/camera/libcamera_metadata','liblog':'system/logging/liblog/liblog','libhardware':'hardware/libhardware/libhardware','libion':'system/memory/libion/libion','libjpeg':'external/libjpeg-turbo/libjpeg','libmedia':'frameworks/av/media/libmedia/libmedia','libexpat':'external/expat/libexpat','libz':'external/zlib/libz','libstdc++':'bionic/libc/libstdc++','libGLESv2':'frameworks/native/opengl/libs/libGLESv2','libEGL':'frameworks/native/opengl/libs/libEGL','libGLESv1_CM':'frameworks/native/opengl/libs/libGLESv1_CM'}
+projects['libandroid']='frameworks/base/native/android/libandroid'
+projects['libsensor']='frameworks/native/libs/sensor/libsensor'
+projects.update({'libnetutils':'system/core/libnetutils/libnetutils','libselinux':'external/selinux/libselinux/libselinux','libnativehelper':'libnativehelper/libnativehelper','libfs_mgr':'system/core/fs_mgr/libfs_mgr','libutilscallstack':'system/core/libutils/libutilscallstack'})
+for n in ['libcutils','libutils','libsync']:projects[n]='system/core/'+n+'/'+n
+modern={};exports=set().union(*defs.values());found={}
+for leaf in sorted(leaves|{'libutilscallstack.so','libsensor.so'}):
+ mod=leaf.removesuffix('.so');base=b/'out/soong/.intermediates'/projects.get(mod,'NO_PATH')
+ candidates=[base/v/leaf for v in ['android_arm_armv8-a_cortex-a53_shared','android_arm_armv8-a_cortex-a53_shared_cfi','android_vendor_arm_armv8-a_cortex-a53_shared']]
+ p=next((x for x in candidates if x.is_file()),None)
+ if p is None:
+  modern[leaf]={'missing':True,'candidates':[str(x) for x in candidates]};continue
+ dest=r/'sdk37-libs'/leaf;dest.parent.mkdir(exist_ok=True);data=dest.read_bytes() if dest.exists() else p.read_bytes();dest.write_bytes(data)
+ needed,d,u=elf(dest);exports.update(d);found[leaf]=d
+ modern[leaf]={'source':str(p),'sha256':hashlib.sha256(data).hexdigest(),'bytes':len(data),'exports':len(d)}
+for n,row in seen.items():row['unresolved_against_vendor_union_and_found_sdk37']=sorted(set(row['undefined'])-exports)
+print(json.dumps({'architecture':'ARM32','method':'DT_NEEDED vendor closure plus explicitly seeded dlopen platform and device factories. Unresolved set is optimistic union, not namespace/version/C++ layout validation. Missing modern providers remain unresolved. Dynamic dlopen names outside explicit seeds not complete.','vendor_total_bytes_read':total,'vendor_libraries':seen,'modern_providers':modern},indent=2))

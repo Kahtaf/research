@@ -1,0 +1,7 @@
+{
+  "after": "9207c304761cf86afb423641534ed383e7f8dae613e64061e972d2f65832aa4d",
+  "before": "0e012287927a5b8ac3733f7fcc28d5cdc0eb1d8f06e82e0ff6ad211fe2f72f90",
+  "new_line": "P00A_ACCEL_BOARD_PATH := device/asus/p00a/sensors\n",
+  "old_line": "P00A_ACCEL_BOARD_PATH := $(call my-dir)\n",
+  "relative": "sensors/BoardConfig.mk"
+}

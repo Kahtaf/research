@@ -1,0 +1,7 @@
+from pathlib import Path
+import difflib,json,hashlib
+R=Path('/srv/android/asus-network-runtime');p=R/'kernel/net/core/filter.c';old=p.read_text();a=old.index('BPF_CALL_5(bpf_skb_load_bytes_relative');b=old.index('\nstatic const struct bpf_func_proto bpf_skb_load_bytes_relative_proto',a);new=old[a:b]
+new=new.replace('u8 *net = skb_network_header(skb);\n\tu8 *mac = skb_mac_header(skb);\n\tu8 *ptr;', 'u8 *start, *ptr;').replace('offset > 0xffff || len > (end - mac)','offset > 0xffff').replace('ptr = mac + offset;', 'if (unlikely(!skb_mac_header_was_set(skb)))\n\t\t\tgoto err_clear;\n\t\tstart = skb_mac_header(skb);').replace('ptr = net + offset;', 'start = skb_network_header(skb);').replace('if (likely(ptr >= mac && ptr + len <= end))', 'ptr = start + offset;\n\n\tif (likely(ptr + len <= end))')
+s=old[:a]+new+old[b:];assert s!=old;p.write_text(s)
+(R/'patches/04-relative-net-without-mac.patch').write_text(''.join(difflib.unified_diff(old.splitlines(True),s.splitlines(True),fromfile='a/net/core/filter.c',tofile='b/net/core/filter.c')))
+(R/'evidence/relative-egress-fix.json').write_text(json.dumps(dict(upstream_commit='0f5d82f187e1beda3fe7295dfc500af266a5bd80',url='https://github.com/torvalds/linux/commit/0f5d82f187e1beda3fe7295dfc500af266a5bd80',reason='The donor helper rejects NET reads when outgoing skb lacks a MAC header. Response-only drop tests did not expose the outbound leak; require EPERM for egress deny.',file_sha256=hashlib.sha256(s.encode()).hexdigest()),indent=2)+'\n')

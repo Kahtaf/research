@@ -1,0 +1,193 @@
+[
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/build-r4/arch/arm64/boot/Image",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/kernel",
+    "sha256": "113c4f19c736b949626c62bbf68cf23c9e3c5a821ec6ab031a5684cdcba14431",
+    "bytes": 5109768
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/handoff-r1/evidence/payload-manifest.json",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/payload-manifest.json",
+    "sha256": "4aec305998eb5793598181f0ec31a48045a8ac44380b66ce04c125effeeac3f9",
+    "bytes": 7286
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/handoff-r1/source/guest_init.c",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/guest_init.baseline.c",
+    "sha256": "20feb8143d12b1bd4356f092d4b4f8e6c44daad5ef62b41c48a9b2b845e66085",
+    "bytes": 8670
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/handoff-r1/source/analyze_materials.py",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/analyze_materials.py",
+    "sha256": "bd891a15048dfedbbd77ec09d633fe3b7ecd89632cc43e817f127148f16a56ee",
+    "bytes": 1157
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/adbd.apex",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/adbd.apex",
+    "sha256": "bab495f2bb19fa3b301e2c307d975f4e5f59df5bc27955a8141f3b3b32e6870d",
+    "bytes": 7786496
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/google.apex",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/google.apex",
+    "sha256": "fd56d1e45eb46c9a56253129242231c0d47555e568870ae39c1317ca818efa4c",
+    "bytes": 146501632
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/bin/libc-smoke",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/bin/libc-smoke",
+    "sha256": "8e8c18d6980f761c7c1e267e60377c9296580a450b7150c2df20f4d111350142",
+    "bytes": 10208
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/bin/toybox",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/bin/toybox",
+    "sha256": "328d184717ceb269a16ab309703994f4454bb4422e18d622589d11390c9a1059",
+    "bytes": 578432
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/bin/linker64",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/bin/linker64",
+    "sha256": "036ef935bb0df714306d6b629b885a921772d95112b305fae3e90c2c46b61e5e",
+    "bytes": 2392016
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libc.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/libc.so",
+    "sha256": "151cc98631ea0621083d98704fed429c75514884ed16c55e91840da3b8d91a2a",
+    "bytes": 1258616
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libdl.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/libdl.so",
+    "sha256": "f074638d52d74bea9ee0add172f776f95025ad2268a28a7cb817ded90f6eb4bd",
+    "bytes": 13976
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/liblog.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/liblog.so",
+    "sha256": "3fdf6471b1193fb21e2bbe81fda62e05a8633e1712bbe12fd35e544ed74ec57f",
+    "bytes": 65664
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libz.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/libz.so",
+    "sha256": "32577b44840769f3589ef7975680cb6732752354d5209ce4d118c96a35922d09",
+    "bytes": 105768
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libbase.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/libbase.so",
+    "sha256": "edbe49ff252b65dfaa8ff23cfdfa565f3f77aafac3e9ef82398776f1add1e129",
+    "bytes": 193952
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libdl_android.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/libdl_android.so",
+    "sha256": "9644f29ce35b0d1454e18c97a66071bf1713eb49ca45cddf30d2751cafe4d2dd",
+    "bytes": 10168
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libutils.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/libutils.so",
+    "sha256": "d2f70c971b5b3b5b8a17ff899deadab16fc9d0fd68511354ce16ac489160ce3c",
+    "bytes": 135952
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libpcre2.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/libpcre2.so",
+    "sha256": "ce4ea36d280157590bddda4e000929c2cb085a3ad69da1631b977e5a8f5cdaef",
+    "bytes": 375848
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libapexsupport.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/libapexsupport.so",
+    "sha256": "d668d0aba4fca88058abb5f803aa971e3520226a2363d8a40b701bfb2b2820a4",
+    "bytes": 161632
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libselinux.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/libselinux.so",
+    "sha256": "cded71dfd271c6bbe8a38b396762edc7a2555c40313b2a056dafd2abc410f250",
+    "bytes": 110864
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libpackagelistparser.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/libpackagelistparser.so",
+    "sha256": "e85899aeef24ee81c975a0a19244248876751e57c7f918f8c209c7d92d0cf832",
+    "bytes": 14784
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libcutils.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/libcutils.so",
+    "sha256": "9ed4cd5c59ca17c3f041cccbf27909a7e3a217b66def421f46987e1eb06de7a4",
+    "bytes": 93768
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libcrypto.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/libcrypto.so",
+    "sha256": "196236b81704bd3c90b40cdc18b5a7c835b82d3687ac888338a9890bcf739dce",
+    "bytes": 1802368
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libm.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/libm.so",
+    "sha256": "8e2e84d5196c3502c2bbeb1d2378002772bd8b145d2d27ba078114a5ceeb00bd",
+    "bytes": 232592
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libvndksupport.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/libvndksupport.so",
+    "sha256": "17714da69f47facc04fc88591c3f648481bf68ad1941d3d4eb29b2bf1f8fe151",
+    "bytes": 14560
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libbinder.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/libbinder.so",
+    "sha256": "b431dce6d5d0c8cc2b4a8d32b09532c9abf94b1ebaf93d71d245cb1a8274e68a",
+    "bytes": 969560
+  },
+  {
+    "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libc++.so",
+    "copy": "/srv/android/asus-internal-data-validation/inputs/root/system/lib64/libc++.so",
+    "sha256": "cb118e98c74d3454858921123b9b51ba13df9cad7dfa141dd892c453661a4d78",
+    "bytes": 1152760
+  },
+  {
+    "tool": "mke2fs",
+    "path": "/usr/sbin/mke2fs",
+    "sha256": "07cd24ce58a410cc9cee93c55ae5ac95986df016c5907dc7a49b55389bd41ed2"
+  },
+  {
+    "tool": "e2fsck",
+    "path": "/usr/sbin/e2fsck",
+    "sha256": "c69c6315f602d389821b3a1dab1308618616259400f2cf5d997243c4a83c284c"
+  },
+  {
+    "tool": "dumpe2fs",
+    "path": "/usr/sbin/dumpe2fs",
+    "sha256": "a4546512b79b3dcbfa50ea68208a935f6e9c5abe1178014c0414e27ab7702862"
+  },
+  {
+    "tool": "debugfs",
+    "path": "/usr/sbin/debugfs",
+    "sha256": "1e83118cc9582afcad2711fbb7f40f56668adccb386d988cb6d9ad5c2d001049"
+  },
+  {
+    "tool": "qemu-system-aarch64",
+    "path": "/usr/bin/qemu-system-aarch64",
+    "sha256": "b511b60cc31479b71dfdd589e6c981ae37b20ef0e75adc5a57bb0d6737e9b30c"
+  },
+  {
+    "tool": "aarch64-linux-gnu-gcc",
+    "path": "/usr/bin/aarch64-linux-gnu-gcc",
+    "sha256": "cd90adc7801f4595267f61a5d25bd3a0c6beb2f9f1f107ab919a97a12972dc9a"
+  },
+  {
+    "tool": "sha256sum",
+    "path": "/usr/bin/sha256sum",
+    "sha256": "4d2db56c867e5324e0084c9e897f6360d37517de77ac96f2bd31494223d69a60"
+  }
+]

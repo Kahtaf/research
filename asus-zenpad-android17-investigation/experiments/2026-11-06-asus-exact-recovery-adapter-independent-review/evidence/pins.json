@@ -1,0 +1,11 @@
+{
+  "files": {
+    "profile.json": "661d93cbc012d839429bb1b87431fb83b5f646833ee59d307e0e60461b7cda6f",
+    "source/adapter.py": "3f52fcadb8417aafa1235391ae2bc27a8ebc149541caaf953ae6c5201073ffc2",
+    "source/engine.py": "630c4aaadbb418dc0af1f5a00628b3ec16117bb165707b4d18794c124464a681",
+    "source/root_dispatch.py": "38c8030193f32084b6549bf81f6e1d2f9428fb516a6853295eb1adb4208407bc",
+    "source/preserved.json": "80475bab124d355255ce10d4224ffc89ac20b61ddc440d88303f5fa47638ba8c"
+  },
+  "sha256": "5f20aece6bfa3ede3e937766ff390e6a575cbbc97759cbe52a3f8a09b68f5a72",
+  "copied_input_count": 16
+}

@@ -1,0 +1,110 @@
+From accea65b1c21eda2d7a82c1aad2617f9b3b6585c Mon Sep 17 00:00:00 2001
+From: Martin KaFai Lau <ACCOUNT_REDACTED>
+Date: Mon, 5 Jun 2017 12:15:51 -0700
+Subject: [PATCH] BACKPORT: bpf: Add jited_len to struct bpf_prog
+
+Add jited_len to struct bpf_prog.  It will be
+useful for the struct bpf_prog_info which will
+be added in the later patch.
+
+Signed-off-by: Martin KaFai Lau <ACCOUNT_REDACTED>
+Acked-by: Alexei Starovoitov <ACCOUNT_REDACTED>
+Acked-by: Daniel Borkmann <ACCOUNT_REDACTED>
+Signed-off-by: David S. Miller <ACCOUNT_REDACTED>
+(cherry picked from commit 17ef5740f61b616b6bed5b28fb7a81c0ae536900)
+---
+ arch/arm64/net/bpf_jit_comp.c     |  1 +
+ arch/powerpc/net/bpf_jit_comp64.c |  1 +
+ arch/s390/net/bpf_jit_comp.c      | 12 +++++-------
+ arch/sparc/net/bpf_jit_comp_64.c  |  1 +
+ arch/x86/net/bpf_jit_comp.c       |  1 +
+ include/linux/filter.h            |  1 +
+ 6 files changed, 10 insertions(+), 7 deletions(-)
+
+diff --git a/arch/arm64/net/bpf_jit_comp.c b/arch/arm64/net/bpf_jit_comp.c
+index 33ff83b5f9..dec047c18a 100644
+--- a/arch/arm64/net/bpf_jit_comp.c
++++ b/arch/arm64/net/bpf_jit_comp.c
+@@ -898,6 +898,7 @@ struct bpf_prog *bpf_int_jit_compile(struct bpf_prog *prog)
+ 	bpf_jit_binary_lock_ro(header);
+ 	prog->bpf_func = (void *)ctx.image;
+ 	prog->jited = 1;
++	prog->jited_len = image_size;
+ 
+ out_off:
+ 	kfree(ctx.offset);
+diff --git a/arch/powerpc/net/bpf_jit_comp64.c b/arch/powerpc/net/bpf_jit_comp64.c
+index 2f48eda64f..26728b8e0b 100644
+--- a/arch/powerpc/net/bpf_jit_comp64.c
++++ b/arch/powerpc/net/bpf_jit_comp64.c
+@@ -1061,6 +1061,7 @@ struct bpf_prog *bpf_int_jit_compile(struct bpf_prog *fp)
+ 
+ 	fp->bpf_func = (void *)image;
+ 	fp->jited = 1;
++	fp->jited_len = alloclen;
+ 
+ 	bpf_flush_icache(bpf_hdr, (u8 *)bpf_hdr + (bpf_hdr->pages * PAGE_SIZE));
+ 
+diff --git a/arch/s390/net/bpf_jit_comp.c b/arch/s390/net/bpf_jit_comp.c
+index eb05727900..3193c2b89c 100644
+--- a/arch/s390/net/bpf_jit_comp.c
++++ b/arch/s390/net/bpf_jit_comp.c
+@@ -1389,14 +1389,12 @@ struct bpf_prog *bpf_int_jit_compile(struct bpf_prog *fp)
+ 	}
+ 	if (bpf_jit_enable > 1) {
+ 		bpf_jit_dump(fp->len, jit.size, pass, jit.prg_buf);
+-		if (jit.prg_buf)
+-			print_fn_code(jit.prg_buf, jit.size_prg);
+-	}
+-	if (jit.prg_buf) {
+-		bpf_jit_binary_lock_ro(header);
+-		fp->bpf_func = (void *) jit.prg_buf;
+-		fp->jited = 1;
++		print_fn_code(jit.prg_buf, jit.size_prg);
+ 	}
++	bpf_jit_binary_lock_ro(header);
++	fp->bpf_func = (void *) jit.prg_buf;
++	fp->jited = 1;
++	fp->jited_len = jit.size;
+ free_addrs:
+ 	kfree(jit.addrs);
+ out:
+diff --git a/arch/sparc/net/bpf_jit_comp_64.c b/arch/sparc/net/bpf_jit_comp_64.c
+index 81bf6c93ea..20fea0a926 100644
+--- a/arch/sparc/net/bpf_jit_comp_64.c
++++ b/arch/sparc/net/bpf_jit_comp_64.c
+@@ -1318,6 +1318,7 @@ struct bpf_prog *bpf_int_jit_compile(struct bpf_prog *prog)
+ 
+ 	prog->bpf_func = (void *)ctx.image;
+ 	prog->jited = 1;
++	prog->jited_len = image_size;
+ 
+ out_off:
+ 	kfree(ctx.offset);
+diff --git a/arch/x86/net/bpf_jit_comp.c b/arch/x86/net/bpf_jit_comp.c
+index 852b781045..2a8c66bc29 100644
+--- a/arch/x86/net/bpf_jit_comp.c
++++ b/arch/x86/net/bpf_jit_comp.c
+@@ -1186,6 +1186,7 @@ struct bpf_prog *bpf_int_jit_compile(struct bpf_prog *prog)
+ 		bpf_jit_binary_lock_ro(header);
+ 		prog->bpf_func = (void *)image;
+ 		prog->jited = 1;
++		prog->jited_len = proglen;
+ 	} else {
+ 		prog = orig_prog;
+ 	}
+diff --git a/include/linux/filter.h b/include/linux/filter.h
+index 8f0109abbb..ee22f914e6 100644
+--- a/include/linux/filter.h
++++ b/include/linux/filter.h
+@@ -429,6 +429,7 @@ struct bpf_prog {
+ 	kmemcheck_bitfield_end(meta);
+ 	enum bpf_prog_type	type;		/* Type of BPF program */
+ 	u32			len;		/* Number of filter blocks */
++	u32			jited_len;	/* Size of jited insns in bytes */
+ 	u8			tag[BPF_TAG_SIZE];
+ 	struct bpf_prog_aux	*aux;		/* Auxiliary fields */
+ 	struct sock_fprog_kern	*orig_prog;	/* Original BPF program */
+-- 
+2.43.0
+

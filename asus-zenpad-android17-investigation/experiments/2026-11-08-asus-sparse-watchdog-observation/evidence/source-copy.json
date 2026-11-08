@@ -1,0 +1,24 @@
+{
+  "base": "/srv/android/asus-sparse-observer-liveness-20261108-e6799dac",
+  "owned": "/srv/android/asus-sparse-watchdog-observation-20261108-e0b1a1ba",
+  "method": "cp -a --reflink=auto kernel AND out; independent inodes",
+  "scoped_source_pins": {
+    "drivers/watchdog/mtk_wdt.c": {
+      "before": "d215d7e458eed74b98e0d165d753db4a41712051a0f6a258616b45761cff1320",
+      "after": "8df02a36af110bf283fed5e5372b0a52085e437325bb97b5f2dc3fcd12fd0e4f"
+    },
+    "include/linux/asus_retained_trace.h": {
+      "before": "3ea8d22e66069543ab4073b7e9b2907fec85ff0a5fcdba0015ec9acb4d4c9a3e",
+      "after": "5cb0f6bd9b06bfbe2a4b0ddb924680faf6e151b10c271489f22e2deb437147ae"
+    },
+    "arch/arm64/kernel/asus_retained_trace.c": {
+      "before": "628317a7b1a1ed096ffd053db4f0dd0332d849071d769fc6ef689020c0330a00",
+      "after": "30dea5891a66613f587c7775841f27854d4ffd4a9fe43ab3ed6f01b4289cdc1e"
+    },
+    "arch/arm64/kernel/asus_entry_tag.h": {
+      "before": "78ac0405ff8003f589d23ad385b4644b4322a12e041554863f3c2f6fb171984a",
+      "after": "09e7324a8f5b436a909680e073081960f6168fea06523d974b450ee66fa1d5da"
+    }
+  },
+  "full_tree_rehash": false
+}

@@ -1,0 +1,22 @@
+--- a/arch/arm64/kernel/asus_entry_text.S
++++ b/arch/arm64/kernel/asus_entry_text.S
+@@ -695,7 +695,7 @@
+ 	cbz x12, .Laet_linux
+ 	mov x14, x11
+ .Laet_linux:
+-	cmp x14, #0x200
++	cmp x14, #0x40
+ 	b.lo .Laet_done
+ 	cmp x8, x14
+ 	b.hi .Laet_done
+--- a/arch/arm64/kernel/asus_retained_trace.c
++++ b/arch/arm64/kernel/asus_retained_trace.c
+@@ -171,7 +171,7 @@
+ 	if (h->sig != TRACE_SIG ||
+ 	    pl_end != h->off_lpl || lk_end != h->off_llk ||
+ 	    lk_end > linux_off ||
+-	    linux_off < 512 || linux_off > TRACE_SIZE - TRACE_RR_SIZE ||
++	    linux_off < sizeof(*h) || linux_off > TRACE_SIZE - TRACE_RR_SIZE ||
+ 	    (u64)h->off_lpl + ALIGN((u64)h->sz_pl, 64) > linux_off ||
+ 	    console_off >= TRACE_SIZE)
+ 		goto unmap;

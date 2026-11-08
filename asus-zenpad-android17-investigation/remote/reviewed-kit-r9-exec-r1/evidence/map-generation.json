@@ -1,0 +1,11 @@
+{
+  "prior_outputs": 38,
+  "qualified_baseline_outputs": 23,
+  "bpf_rows": 26,
+  "source_module_groups": 34,
+  "native_state_records": 61,
+  "lineage_map_sha256": "3731b0bc98ed8a6c68358bed121d30bbe90aeb5b903dae94aeed37f1ac0eefbe",
+  "bpf_matrix_sha256": "aaec55e00095a25c9f15e07fe7d8e257ad420125b8fe5ad5e6ff441e7bcf15ce",
+  "current_native_validation": false,
+  "active_source_changed": false
+}

@@ -1,0 +1,665 @@
+{
+  "scope_facts": {
+    "trace": {
+      "files_scanned": 39,
+      "hits": [
+        {
+          "path": "kernel/trace/trace_kprobe.c",
+          "line": 1211,
+          "text": "\n/*\n * called by perf_trace_init() or __ftrace_set_clr_event() under event_mutex.\n *\n * kprobe_trace_self_tests_init() does enable_trace_probe/disable_trace_probe\n * lockless, but we can't race with this __init function."
+        },
+        {
+          "path": "kernel/trace/trace_functions.c",
+          "line": 314,
+          "text": "\n\tif (on)\n\t\ttracing_on();\n\telse\n\t\ttracing_off();\n"
+        },
+        {
+          "path": "kernel/trace/trace_functions.c",
+          "line": 346,
+          "text": "\t\treturn;\n\n\ttracing_on();\n}\n\nstatic void"
+        },
+        {
+          "path": "kernel/trace/ring_buffer.c",
+          "line": 527,
+          "text": " * @buffer: buffer to wait on\n * @cpu: the cpu buffer to wait on\n * @full: wait until a full page is available, if @cpu != RING_BUFFER_ALL_CPUS\n *\n * If @cpu == RING_BUFFER_ALL_CPUS then the task will wake up as soon\n * as data is added to any of the @buffer's cpu buffers. Otherwise"
+        },
+        {
+          "path": "kernel/trace/ring_buffer.c",
+          "line": 529,
+          "text": " * @full: wait until a full page is available, if @cpu != RING_BUFFER_ALL_CPUS\n *\n * If @cpu == RING_BUFFER_ALL_CPUS then the task will wake up as soon\n * as data is added to any of the @buffer's cpu buffers. Otherwise\n * it will wait for data to be added to a specific cpu buffer.\n */"
+        },
+        {
+          "path": "kernel/trace/ring_buffer.c",
+          "line": 545,
+          "text": "\t * caller on the appropriate wait queue.\n\t */\n\tif (cpu == RING_BUFFER_ALL_CPUS) {\n\t\twork = &buffer->irq_work;\n\t\t/* Full only makes sense on per cpu reads */\n\t\tfull = false;"
+        },
+        {
+          "path": "kernel/trace/ring_buffer.c",
+          "line": 593,
+          "text": "\t\t}\n\n\t\tif (cpu == RING_BUFFER_ALL_CPUS && !ring_buffer_empty(buffer))\n\t\t\tbreak;\n\n\t\tif (cpu != RING_BUFFER_ALL_CPUS &&"
+        },
+        {
+          "path": "kernel/trace/ring_buffer.c",
+          "line": 596,
+          "text": "\t\t\tbreak;\n\n\t\tif (cpu != RING_BUFFER_ALL_CPUS &&\n\t\t    !ring_buffer_empty_cpu(buffer, cpu)) {\n\t\t\tunsigned long flags;\n\t\t\tbool pagebusy;"
+        },
+        {
+          "path": "kernel/trace/ring_buffer.c",
+          "line": 630,
+          "text": " * @poll_table: The poll descriptor\n *\n * If @cpu == RING_BUFFER_ALL_CPUS then the task will wake up as soon\n * as data is added to any of the @buffer's cpu buffers. Otherwise\n * it will wait for data to be added to a specific cpu buffer.\n *"
+        },
+        {
+          "path": "kernel/trace/ring_buffer.c",
+          "line": 643,
+          "text": "\tstruct rb_irq_work *work;\n\n\tif (cpu == RING_BUFFER_ALL_CPUS)\n\t\twork = &buffer->irq_work;\n\telse {\n\t\tif (!cpumask_test_cpu(cpu, buffer->cpumask))"
+        },
+        {
+          "path": "kernel/trace/ring_buffer.c",
+          "line": 670,
+          "text": "\tsmp_mb();\n\n\tif ((cpu == RING_BUFFER_ALL_CPUS && !ring_buffer_empty(buffer)) ||\n\t    (cpu != RING_BUFFER_ALL_CPUS && !ring_buffer_empty_cpu(buffer, cpu)))\n\t\treturn POLLIN | POLLRDNORM;\n\treturn 0;"
+        },
+        {
+          "path": "kernel/trace/ring_buffer.c",
+          "line": 671,
+          "text": "\n\tif ((cpu == RING_BUFFER_ALL_CPUS && !ring_buffer_empty(buffer)) ||\n\t    (cpu != RING_BUFFER_ALL_CPUS && !ring_buffer_empty_cpu(buffer, cpu)))\n\t\treturn POLLIN | POLLRDNORM;\n\treturn 0;\n}"
+        },
+        {
+          "path": "kernel/trace/ring_buffer.c",
+          "line": 1665,
+          "text": "\n\t/* Make sure the requested buffer exists */\n\tif (cpu_id != RING_BUFFER_ALL_CPUS &&\n\t    !cpumask_test_cpu(cpu_id, buffer->cpumask))\n\t\treturn 0;\n"
+        },
+        {
+          "path": "kernel/trace/ring_buffer.c",
+          "line": 1688,
+          "text": "\tmutex_lock(&buffer->mutex);\n\n\tif (cpu_id == RING_BUFFER_ALL_CPUS) {\n\t\t/* calculate the pages to update */\n\t\tfor_each_buffer_cpu(buffer, cpu) {\n\t\t\tcpu_buffer = buffer->buffers[cpu];"
+        },
+        {
+          "path": "kernel/trace/ring_buffer.c",
+          "line": 2795,
+          "text": "\trb_start_commit(cpu_buffer);\n\n#ifdef CONFIG_RING_BUFFER_ALLOW_SWAP\n\t/*\n\t * Due to the ability to swap a cpu buffer from a buffer\n\t * it is possible it was swapped before we committed."
+        },
+        {
+          "path": "kernel/trace/ring_buffer.c",
+          "line": 4444,
+          "text": "EXPORT_SYMBOL_GPL(ring_buffer_empty_cpu);\n\n#ifdef CONFIG_RING_BUFFER_ALLOW_SWAP\n/**\n * ring_buffer_swap_cpu - swap a CPU buffer between two ring buffers\n * @buffer_a: One buffer to swap with"
+        },
+        {
+          "path": "kernel/trace/ring_buffer.c",
+          "line": 4517,
+          "text": "}\nEXPORT_SYMBOL_GPL(ring_buffer_swap_cpu);\n#endif /* CONFIG_RING_BUFFER_ALLOW_SWAP */\n\n/**\n * ring_buffer_alloc_read_page - allocate a page to read from buffer"
+        },
+        {
+          "path": "kernel/trace/ring_buffer.c",
+          "line": 4828,
+          "text": "#endif\n\n#ifdef CONFIG_RING_BUFFER_STARTUP_TEST\n/*\n * This is a basic integrity check of the ring buffer.\n * Late in the boot cycle this test will run when configured in."
+        },
+        {
+          "path": "kernel/trace/ring_buffer.c",
+          "line": 5143,
+          "text": "\nlate_initcall(test_ringbuffer);\n#endif /* CONFIG_RING_BUFFER_STARTUP_TEST */"
+        },
+        {
+          "path": "kernel/trace/trace_selftest.c",
+          "line": 52,
+          "text": " failed:\n\t/* disable tracing */\n\ttracing_disabled = 1;\n\tprintk(KERN_CONT \".. corrupted trace buffer .. \");\n\treturn -1;\n}"
+        },
+        {
+          "path": "kernel/trace/trace_selftest.c",
+          "line": 85,
+          "text": "\t\t\tbreak;\n\t}\n\ttracing_on();\n\tarch_spin_unlock(&buf->tr->max_lock);\n\tlocal_irq_restore(flags);\n"
+        },
+        {
+          "path": "kernel/trace/trace_selftest.c",
+          "line": 387,
+          "text": "\n\tftrace_enabled = 1;\n\ttracing_start();\n\n\t/* we should only have one item */\n\tif (!ret && count != 1) {"
+        },
+        {
+          "path": "kernel/trace/trace_selftest.c",
+          "line": 692,
+          "text": "\tftrace_enabled = 1;\n\ttrace->reset(tr);\n\ttracing_start();\n\n\tif (!ret && !count) {\n\t\tprintk(KERN_CONT \".. no entries found ..\");"
+        },
+        {
+          "path": "kernel/trace/trace_selftest.c",
+          "line": 739,
+          "text": "\t\t\tftrace_dump(DUMP_ALL);\n\t\t\t/* ftrace_dump() disables tracing */\n\t\t\ttracing_on();\n\t\t}\n\t\treturn 0;\n\t}"
+        },
+        {
+          "path": "kernel/trace/trace_selftest.c",
+          "line": 795,
+          "text": "\n\ttrace->reset(tr);\n\ttracing_start();\n\n\tif (!ret && !count) {\n\t\tprintk(KERN_CONT \".. no entries found ..\");"
+        },
+        {
+          "path": "kernel/trace/trace_selftest.c",
+          "line": 851,
+          "text": "\t\tret = trace_test_buffer(&tr->max_buffer, &count);\n\ttrace->reset(tr);\n\ttracing_start();\n\n\tif (!ret && !count) {\n\t\tprintk(KERN_CONT \".. no entries found ..\");"
+        },
+        {
+          "path": "kernel/trace/trace_selftest.c",
+          "line": 913,
+          "text": "\t\tret = trace_test_buffer(&tr->max_buffer, &count);\n\ttrace->reset(tr);\n\ttracing_start();\n\n\tif (!ret && !count) {\n\t\tprintk(KERN_CONT \".. no entries found ..\");"
+        },
+        {
+          "path": "kernel/trace/trace_selftest.c",
+          "line": 991,
+          "text": "\t/* do the test by disabling interrupts first this time */\n\ttr->max_latency = 0;\n\ttracing_start();\n\ttrace->start(tr);\n\n\tpreempt_disable();"
+        },
+        {
+          "path": "kernel/trace/trace_selftest.c",
+          "line": 1018,
+          "text": "\nout:\n\ttracing_start();\nout_no_start:\n\ttrace->reset(tr);\n\ttr->max_latency = save_max;"
+        },
+        {
+          "path": "kernel/trace/trace_selftest.c",
+          "line": 1141,
+          "text": "\n\ttrace->reset(tr);\n\ttracing_start();\n\n\ttr->max_latency = save_max;\n"
+        },
+        {
+          "path": "kernel/trace/trace_selftest.c",
+          "line": 1178,
+          "text": "\tret = trace_test_buffer(&tr->trace_buffer, &count);\n\ttrace->reset(tr);\n\ttracing_start();\n\n\tif (!ret && !count) {\n\t\tprintk(KERN_CONT \".. no entries found ..\");"
+        },
+        {
+          "path": "kernel/trace/trace_selftest.c",
+          "line": 1210,
+          "text": "\tret = trace_test_buffer(&tr->trace_buffer, &count);\n\ttrace->reset(tr);\n\ttracing_start();\n\n\tif (!ret && !count) {\n\t\tprintk(KERN_CONT \".. no entries found ..\");"
+        },
+        {
+          "path": "kernel/trace/trace_events_trigger.c",
+          "line": 936,
+          "text": "\t\treturn;\n\n\ttracing_on();\n}\n\nstatic void"
+        },
+        {
+          "path": "kernel/trace/trace_events_trigger.c",
+          "line": 951,
+          "text": "\t\t(data->count)--;\n\n\ttracing_on();\n}\n\nstatic void"
+        },
+        {
+          "path": "kernel/trace/trace_events.c",
+          "line": 735,
+          "text": "\n/*\n * __ftrace_set_clr_event(NULL, NULL, NULL, set) will set/unset all events.\n */\nstatic int\n__ftrace_set_clr_event_nolock(struct trace_array *tr, const char *match,"
+        },
+        {
+          "path": "kernel/trace/trace_events.c",
+          "line": 776,
+          "text": "}\n\nstatic int __ftrace_set_clr_event(struct trace_array *tr, const char *match,\n\t\t\t\t  const char *sub, const char *event, int set)\n{\n\tint ret;"
+        },
+        {
+          "path": "kernel/trace/trace_events.c",
+          "line": 788,
+          "text": "}\n\nstatic int ftrace_set_clr_event(struct trace_array *tr, char *buf, int set)\n{\n\tchar *event = NULL, *sub = NULL, *match;\n\tint ret;"
+        },
+        {
+          "path": "kernel/trace/trace_events.c",
+          "line": 819,
+          "text": "\t}\n\n\tret = __ftrace_set_clr_event(tr, match, sub, event, set);\n\n\t/* Put back the colon to allow this to be called again */\n\tif (buf)"
+        },
+        {
+          "path": "kernel/trace/trace_events.c",
+          "line": 840,
+          "text": " * registered events.\n */\nint trace_set_clr_event(const char *system, const char *event, int set)\n{\n\tstruct trace_array *tr = top_trace_array();\n"
+        },
+        {
+          "path": "kernel/trace/trace_events.c",
+          "line": 847,
+          "text": "\t\treturn -ENODEV;\n\n\treturn __ftrace_set_clr_event(tr, NULL, system, event, set);\n}\nEXPORT_SYMBOL_GPL(trace_set_clr_event);\n"
+        },
+        {
+          "path": "kernel/trace/trace_events.c",
+          "line": 883,
+          "text": "\t\tparser.buffer[parser.idx] = 0;\n\n\t\tret = ftrace_set_clr_event(tr, parser.buffer + !set, set);\n\t\tif (ret)\n\t\t\tgoto out_put;\n\t}"
+        },
+        {
+          "path": "kernel/trace/trace_events.c",
+          "line": 1166,
+          "text": "\t\tname = system->name;\n\n\tret = __ftrace_set_clr_event(dir->tr, NULL, name, NULL, val);\n\tif (ret)\n\t\tgoto out;\n"
+        },
+        {
+          "path": "kernel/trace/trace_events.c",
+          "line": 2791,
+          "text": "\n/*\n * For early boot up, the top trace array requires to have\n * a list of events that can be enabled. This must be done before\n * the filesystem is set up in order to allow events to be traced\n * early."
+        },
+        {
+          "path": "kernel/trace/trace_events.c",
+          "line": 2994,
+          "text": "\t\t\t/* Restarting syscalls requires that we stop them first */\n\t\t\tif (disable_first)\n\t\t\t\tftrace_set_clr_event(tr, token, 0);\n\n\t\t\tret = ftrace_set_clr_event(tr, token, 1);\n\t\t\tif (ret)"
+        },
+        {
+          "path": "kernel/trace/trace_events.c",
+          "line": 2996,
+          "text": "\t\t\t\tftrace_set_clr_event(tr, token, 0);\n\n\t\t\tret = ftrace_set_clr_event(tr, token, 1);\n\t\t\tif (ret)\n\t\t\t\tpr_warn(\"Failed to enable trace event: %s\\n\", token);\n\t\t}"
+        },
+        {
+          "path": "kernel/trace/trace_events.c",
+          "line": 3240,
+          "text": "\t\tpr_info(\"Testing event system %s: \", system->name);\n\n\t\tret = __ftrace_set_clr_event(tr, NULL, system->name, NULL, 1);\n\t\tif (WARN_ON_ONCE(ret)) {\n\t\t\tpr_warn(\"error enabling system %s\\n\",\n\t\t\t\tsystem->name);"
+        },
+        {
+          "path": "kernel/trace/trace_events.c",
+          "line": 3249,
+          "text": "\t\tevent_test_stuff();\n\n\t\tret = __ftrace_set_clr_event(tr, NULL, system->name, NULL, 0);\n\t\tif (WARN_ON_ONCE(ret)) {\n\t\t\tpr_warn(\"error disabling system %s\\n\",\n\t\t\t\tsystem->name);"
+        },
+        {
+          "path": "kernel/trace/trace_events.c",
+          "line": 3264,
+          "text": "\tpr_info(\"Testing all events: \");\n\n\tret = __ftrace_set_clr_event(tr, NULL, NULL, NULL, 1);\n\tif (WARN_ON_ONCE(ret)) {\n\t\tpr_warn(\"error enabling all events\\n\");\n\t\treturn;"
+        },
+        {
+          "path": "kernel/trace/trace_events.c",
+          "line": 3273,
+          "text": "\n\t/* reset sysname */\n\tret = __ftrace_set_clr_event(tr, NULL, NULL, NULL, 0);\n\tif (WARN_ON_ONCE(ret)) {\n\t\tpr_warn(\"error disabling all events\\n\");\n\t\treturn;"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 96,
+          "text": " * this back to zero.\n */\nstatic int tracing_disabled = 1;\n\ncpumask_var_t __read_mostly\ttracing_buffer_mask;\n"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 157,
+          "text": "#endif /* CONFIG_TRACE_ENUM_MAP_FILE */\n\nstatic int tracing_set_tracer(struct trace_array *tr, const char *buf);\n\n#define MAX_TRACER_SIZE\t\t100\nstatic char bootup_tracer_buf[MAX_TRACER_SIZE] __initdata;"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 160,
+          "text": "\n#define MAX_TRACER_SIZE\t\t100\nstatic char bootup_tracer_buf[MAX_TRACER_SIZE] __initdata;\nstatic char *default_bootup_tracer;\n\nstatic bool allocate_snapshot;"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 161,
+          "text": "#define MAX_TRACER_SIZE\t\t100\nstatic char bootup_tracer_buf[MAX_TRACER_SIZE] __initdata;\nstatic char *default_bootup_tracer;\n\nstatic bool allocate_snapshot;\n"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 167,
+          "text": "static int __init set_cmdline_ftrace(char *str)\n{\n\tstrlcpy(bootup_tracer_buf, str, MAX_TRACER_SIZE);\n\tdefault_bootup_tracer = bootup_tracer_buf;\n\t/* We are using ftrace early, expand it */\n\tring_buffer_expanded = true;"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 168,
+          "text": "{\n\tstrlcpy(bootup_tracer_buf, str, MAX_TRACER_SIZE);\n\tdefault_bootup_tracer = bootup_tracer_buf;\n\t/* We are using ftrace early, expand it */\n\tring_buffer_expanded = true;\n\treturn 1;"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 224,
+          "text": "{\n\tstrlcpy(trace_boot_clock_buf, str, MAX_TRACER_SIZE);\n\ttrace_boot_clock = trace_boot_clock_buf;\n\treturn 0;\n}\n__setup(\"trace_clock=\", set_trace_boot_clock);"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 630,
+          "text": " * boot time and run time configurable.\n */\n#define TRACE_BUF_SIZE_DEFAULT\t1441792UL /* 16384 * 88 (sizeof(entry)) */\n\nstatic unsigned long\t\ttrace_buf_size = TRACE_BUF_SIZE_DEFAULT;\n"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 632,
+          "text": "#define TRACE_BUF_SIZE_DEFAULT\t1441792UL /* 16384 * 88 (sizeof(entry)) */\n\nstatic unsigned long\t\ttrace_buf_size = TRACE_BUF_SIZE_DEFAULT;\n\n/* trace_types holds a link list of available tracers. */\nstatic struct tracer\t\t*trace_types __read_mostly;"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 670,
+          "text": "static inline void trace_access_lock(int cpu)\n{\n\tif (cpu == RING_BUFFER_ALL_CPUS) {\n\t\t/* gain it for accessing the whole ring buffer. */\n\t\tdown_write(&all_cpu_access_lock);\n\t} else {"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 676,
+          "text": "\t\t/* gain it for accessing a cpu ring buffer. */\n\n\t\t/* Firstly block other trace_access_lock(RING_BUFFER_ALL_CPUS). */\n\t\tdown_read(&all_cpu_access_lock);\n\n\t\t/* Secondly block other access to this @cpu ring buffer. */"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 686,
+          "text": "static inline void trace_access_unlock(int cpu)\n{\n\tif (cpu == RING_BUFFER_ALL_CPUS) {\n\t\tup_write(&all_cpu_access_lock);\n\t} else {\n\t\tmutex_unlock(&per_cpu(cpu_access_lock, cpu));"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 748,
+          "text": "#endif\n\nstatic void tracer_tracing_on(struct trace_array *tr)\n{\n\tif (tr->trace_buffer.buffer)\n\t\tring_buffer_record_on(tr->trace_buffer.buffer);"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 771,
+          "text": " * disabled with tracing_off.\n */\nvoid tracing_on(void)\n{\n\ttracer_tracing_on(&global_trace);\n}"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 773,
+          "text": "void tracing_on(void)\n{\n\ttracer_tracing_on(&global_trace);\n}\nEXPORT_SYMBOL_GPL(tracing_on);\n"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 927,
+          "text": "\t\t/* allocate spare buffer */\n\t\tret = resize_buffer_duplicate_size(&tr->max_buffer,\n\t\t\t\t   &tr->trace_buffer, RING_BUFFER_ALL_CPUS);\n\t\tif (ret < 0)\n\t\t\treturn ret;\n"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 944,
+          "text": "\t * we want preserve it.\n\t */\n\tring_buffer_resize(tr->max_buffer.buffer, 1, RING_BUFFER_ALL_CPUS);\n\tset_buffer_entries(&tr->max_buffer, 1);\n\ttracing_reset_online_cpus(&tr->max_buffer);\n\ttr->allocated_snapshot = false;"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 1085,
+          "text": "\t * ensure we have at least 4096 bytes of buffer.\n\t */\n\ttrace_buf_size = max(4096UL, buf_size);\n\treturn 1;\n}\n__setup(\"trace_buf_size=\", set_buf_size);"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 1088,
+          "text": "\treturn 1;\n}\n__setup(\"trace_buf_size=\", set_buf_size);\n\nstatic int __init set_tracing_thresh(char *str)\n{"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 1431,
+          "text": "\t\tif (ring_buffer_expanded)\n\t\t\tring_buffer_resize(tr->max_buffer.buffer, trace_buf_size,\n\t\t\t\t\t   RING_BUFFER_ALL_CPUS);\n\t\ttr->allocated_snapshot = true;\n\t}\n#endif"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 1457,
+          "text": "\t\tif (ring_buffer_expanded)\n\t\t\tring_buffer_resize(tr->max_buffer.buffer, 1,\n\t\t\t\t\t   RING_BUFFER_ALL_CPUS);\n\t}\n#endif\n"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 1540,
+          "text": "\tmutex_unlock(&trace_types_lock);\n\n\tif (ret || !default_bootup_tracer)\n\t\tgoto out_unlock;\n\n\tif (strncmp(default_bootup_tracer, type->name, MAX_TRACER_SIZE))"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 1543,
+          "text": "\t\tgoto out_unlock;\n\n\tif (strncmp(default_bootup_tracer, type->name, MAX_TRACER_SIZE))\n\t\tgoto out_unlock;\n\n\tprintk(KERN_INFO \"Starting tracer '%s'\\n\", type->name);"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 1548,
+          "text": "\tprintk(KERN_INFO \"Starting tracer '%s'\\n\", type->name);\n\t/* Do we want this tracer to start on bootup? */\n\ttracing_set_tracer(&global_trace, type->name);\n\tdefault_bootup_tracer = NULL;\n\n\tapply_trace_boot_options();"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 1549,
+          "text": "\t/* Do we want this tracer to start on bootup? */\n\ttracing_set_tracer(&global_trace, type->name);\n\tdefault_bootup_tracer = NULL;\n\n\tapply_trace_boot_options();\n"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 1701,
+          "text": " * this will start the tracer back up.\n */\nvoid tracing_start(void)\n{\n\tstruct ring_buffer *buffer;\n\tunsigned long flags;"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 1748,
+          "text": "\t/* If global, we need to also start the max tracer */\n\tif (tr->flags & TRACE_ARRAY_FL_GLOBAL)\n\t\treturn tracing_start();\n\n\traw_spin_lock_irqsave(&tr->start_lock, flags);\n"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 2723,
+          "text": "\t * all cpu and peek directly.\n\t */\n\tif (cpu_file > RING_BUFFER_ALL_CPUS) {\n\t\tif (ring_buffer_empty_cpu(buffer, cpu_file))\n\t\t\treturn NULL;\n\t\tent = peek_next_entry(iter, cpu_file, ent_ts, missing_events);"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 2882,
+          "text": "\t\titer->idx = -1;\n\n\t\tif (cpu_file == RING_BUFFER_ALL_CPUS) {\n\t\t\tfor_each_tracing_cpu(cpu)\n\t\t\t\ttracing_iter_reset(iter, cpu);\n\t\t} else"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 3216,
+          "text": "\n\t/* If we are looking at one CPU buffer, only check that one */\n\tif (iter->cpu_file != RING_BUFFER_ALL_CPUS) {\n\t\tcpu = iter->cpu_file;\n\t\tbuf_iter = trace_buffer_iter(iter, cpu);\n\t\tif (buf_iter) {"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 3360,
+          "text": "{\n\tseq_puts(m, \"# echo 0 > snapshot : Invalid for per_cpu snapshot file.\\n\");\n#ifdef CONFIG_RING_BUFFER_ALLOW_SWAP\n\tseq_puts(m, \"# echo 1 > snapshot : Allocates snapshot buffer, if not already allocated.\\n\"\n\t\t    \"#                      Takes a snapshot of the main buffer for this cpu.\\n\");\n#else"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 3380,
+          "text": "\n\tseq_puts(m, \"# Snapshot commands:\\n\");\n\tif (iter->cpu_file == RING_BUFFER_ALL_CPUS)\n\t\tshow_snapshot_main_help(m);\n\telse\n\t\tshow_snapshot_percpu_help(m);"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 3442,
+          "text": "\tif (inode->i_cdev) /* See trace_create_cpu_file() */\n\t\treturn (long)inode->i_cdev - 1;\n\treturn RING_BUFFER_ALL_CPUS;\n}\n\nstatic const struct seq_operations tracer_seq_ops = {"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 3515,
+          "text": "\t\ttracing_stop_tr(tr);\n\n\tif (iter->cpu_file == RING_BUFFER_ALL_CPUS) {\n\t\tfor_each_tracing_cpu(cpu) {\n\t\t\titer->buffer_iter[cpu] =\n\t\t\t\tring_buffer_read_prepare(iter->trace_buffer->buffer,"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 3659,
+          "text": "#endif\n\n\t\tif (cpu == RING_BUFFER_ALL_CPUS)\n\t\t\ttracing_reset_online_cpus(trace_buf);\n\t\telse\n\t\t\ttracing_reset(trace_buf, cpu);"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 4794,
+          "text": "\tint cpu, ret = 0;\n\n\tif (cpu_id == RING_BUFFER_ALL_CPUS) {\n\t\tfor_each_tracing_cpu(cpu) {\n\t\t\tret = ring_buffer_resize(trace_buf->buffer,\n\t\t\t\t per_cpu_ptr(size_buf->data, cpu)->entries, cpu);"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 4860,
+          "text": "\t\t\t */\n\t\t\tWARN_ON(1);\n\t\t\ttracing_disabled = 1;\n\t\t}\n\t\treturn ret;\n\t}"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 4865,
+          "text": "\t}\n\n\tif (cpu == RING_BUFFER_ALL_CPUS)\n\t\tset_buffer_entries(&tr->max_buffer, size);\n\telse\n\t\tper_cpu_ptr(tr->max_buffer.data, cpu)->entries = size;"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 4873,
+          "text": "#endif /* CONFIG_TRACER_MAX_TRACE */\n\n\tif (cpu == RING_BUFFER_ALL_CPUS)\n\t\tset_buffer_entries(&tr->trace_buffer, size);\n\telse\n\t\tper_cpu_ptr(tr->trace_buffer.data, cpu)->entries = size;"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 4888,
+          "text": "\tmutex_lock(&trace_types_lock);\n\n\tif (cpu_id != RING_BUFFER_ALL_CPUS) {\n\t\t/* make sure, this cpu is enabled in the mask */\n\t\tif (!cpumask_test_cpu(cpu_id, tracing_buffer_mask)) {\n\t\t\tret = -EINVAL;"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 4924,
+          "text": "\tif (!ring_buffer_expanded)\n\t\tret = __tracing_resize_ring_buffer(&global_trace, trace_buf_size,\n\t\t\t\t\t\tRING_BUFFER_ALL_CPUS);\n\tmutex_unlock(&trace_types_lock);\n\n\treturn ret;"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 4967,
+          "text": "}\n\nstatic int tracing_set_tracer(struct trace_array *tr, const char *buf)\n{\n\tstruct tracer *t;\n#ifdef CONFIG_TRACER_MAX_TRACE"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 4979,
+          "text": "\tif (!ring_buffer_expanded) {\n\t\tret = __tracing_resize_ring_buffer(tr, trace_buf_size,\n\t\t\t\t\t\tRING_BUFFER_ALL_CPUS);\n\t\tif (ret < 0)\n\t\t\tgoto out;\n\t\tret = 0;"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 5081,
+          "text": "\t\tbuf[i] = 0;\n\n\terr = tracing_set_tracer(tr, buf);\n\tif (err)\n\t\treturn err;\n"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 5593,
+          "text": "\tmutex_lock(&trace_types_lock);\n\n\tif (cpu == RING_BUFFER_ALL_CPUS) {\n\t\tint cpu, buf_size_same;\n\t\tunsigned long size;\n"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 5703,
+          "text": "\t\ttracer_tracing_off(tr);\n\t/* resize the ring buffer to 0 */\n\ttracing_resize_ring_buffer(tr, 0, RING_BUFFER_ALL_CPUS);\n\n\ttrace_array_put(tr);\n"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 5984,
+          "text": "\tswitch (val) {\n\tcase 0:\n\t\tif (iter->cpu_file != RING_BUFFER_ALL_CPUS) {\n\t\t\tret = -EINVAL;\n\t\t\tbreak;\n\t\t}"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 5993,
+          "text": "\tcase 1:\n/* Only allow per-cpu swap if the ring buffer supports it */\n#ifndef CONFIG_RING_BUFFER_ALLOW_SWAP\n\t\tif (iter->cpu_file != RING_BUFFER_ALL_CPUS) {\n\t\t\tret = -EINVAL;\n\t\t\tbreak;"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 5994,
+          "text": "/* Only allow per-cpu swap if the ring buffer supports it */\n#ifndef CONFIG_RING_BUFFER_ALLOW_SWAP\n\t\tif (iter->cpu_file != RING_BUFFER_ALL_CPUS) {\n\t\t\tret = -EINVAL;\n\t\t\tbreak;\n\t\t}"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 6010,
+          "text": "\t\tlocal_irq_disable();\n\t\t/* Now, we're going to swap */\n\t\tif (iter->cpu_file == RING_BUFFER_ALL_CPUS)\n\t\t\tupdate_max_tr(tr, current, smp_processor_id());\n\t\telse\n\t\t\tupdate_max_tr_single(tr, current, iter->cpu_file);"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 6018,
+          "text": "\tdefault:\n\t\tif (tr->allocated_snapshot) {\n\t\t\tif (iter->cpu_file == RING_BUFFER_ALL_CPUS)\n\t\t\t\ttracing_reset_online_cpus(&tr->max_buffer);\n\t\t\telse\n\t\t\t\ttracing_reset(&tr->max_buffer, iter->cpu_file);"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 7115,
+          "text": "\t\t\tval = 0; /* do nothing */\n\t\t} else if (val) {\n\t\t\ttracer_tracing_on(tr);\n\t\t\tif (tr->current_trace->start)\n\t\t\t\ttr->current_trace->start(tr);\n\t\t} else {"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 7722,
+          "text": "\titer->tr = &global_trace;\n\titer->trace = iter->tr->current_trace;\n\titer->cpu_file = RING_BUFFER_ALL_CPUS;\n\titer->trace_buffer = &global_trace.trace_buffer;\n\n\tif (iter->trace && iter->trace->open)"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 7779,
+          "text": "\tswitch (oops_dump_mode) {\n\tcase DUMP_ALL:\n\t\titer.cpu_file = RING_BUFFER_ALL_CPUS;\n\t\tbreak;\n\tcase DUMP_ORIG:\n\t\titer.cpu_file = raw_smp_processor_id();"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 7788,
+          "text": "\tdefault:\n\t\tprintk(KERN_TRACE \"Bad dumping mode, switching to all CPUs dump\\n\");\n\t\titer.cpu_file = RING_BUFFER_ALL_CPUS;\n\t}\n\n\tprintk(KERN_TRACE \"Dumping ftrace buffer:\\n\");"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 7905,
+          "text": "\t * register_tracer() might reference current_trace, so it\n\t * needs to be set before we register anything. This is\n\t * just a bootstrap of current_trace anyway.\n\t */\n\tglobal_trace.current_trace = &nop_trace;\n"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 7918,
+          "text": "\n\t/* All seems OK, enable tracing */\n\ttracing_disabled = 0;\n\n\tatomic_notifier_chain_register(&panic_notifier_list,\n\t\t\t\t       &trace_panic_notifier);"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 7961,
+          "text": "}\n\n__init static int clear_boot_tracer(void)\n{\n\t/*\n\t * The default tracer at boot buffer is an init section."
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 7966,
+          "text": "\t * The default tracer at boot buffer is an init section.\n\t * This function is called in lateinit. If we did not\n\t * find the boot tracer, then clear it out, to prevent\n\t * later registration from accessing the buffer that is\n\t * about to be freed.\n\t */"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 7970,
+          "text": "\t * about to be freed.\n\t */\n\tif (!default_bootup_tracer)\n\t\treturn 0;\n\n\tprintk(KERN_INFO \"ftrace bootup tracer '%s' not registered.\\n\","
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 7973,
+          "text": "\t\treturn 0;\n\n\tprintk(KERN_INFO \"ftrace bootup tracer '%s' not registered.\\n\",\n\t       default_bootup_tracer);\n\tdefault_bootup_tracer = NULL;\n"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 7974,
+          "text": "\n\tprintk(KERN_INFO \"ftrace bootup tracer '%s' not registered.\\n\",\n\t       default_bootup_tracer);\n\tdefault_bootup_tracer = NULL;\n\n\treturn 0;"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 7975,
+          "text": "\tprintk(KERN_INFO \"ftrace bootup tracer '%s' not registered.\\n\",\n\t       default_bootup_tracer);\n\tdefault_bootup_tracer = NULL;\n\n\treturn 0;\n}"
+        },
+        {
+          "path": "kernel/trace/trace.c",
+          "line": 7981,
+          "text": "\nfs_initcall(tracer_init_tracefs);\nlate_initcall_sync(clear_boot_tracer);"
+        },
+        {
+          "path": "kernel/trace/trace_kdb.c",
+          "line": 46,
+          "text": "\titer.iter_flags |= TRACE_FILE_LAT_FMT;\n\n\tif (cpu_file == RING_BUFFER_ALL_CPUS) {\n\t\tfor_each_tracing_cpu(cpu) {\n\t\t\titer.buffer_iter[cpu] =\n\t\t\tring_buffer_read_prepare(iter.trace_buffer->buffer,"
+        },
+        {
+          "path": "kernel/trace/trace_kdb.c",
+          "line": 123,
+          "text": "\t\t\treturn KDB_BADINT;\n\t} else {\n\t\tcpu_file = RING_BUFFER_ALL_CPUS;\n\t}\n\n\tkdb_trap_printk++;"
+        }
+      ]
+    },
+    "MET": {
+      "files_scanned": 1,
+      "hits": [
+        {
+          "path": "drivers/misc/mediatek/met_drv/met_api.c",
+          "line": 88,
+          "text": "EXPORT_SYMBOL(met_tag_uninit);\n\nint met_tag_start(unsigned int class_id, const char *name)\n{\n\tif (met_ext_api.met_tag_start)\n\t\treturn met_ext_api.met_tag_start(class_id, name);"
+        },
+        {
+          "path": "drivers/misc/mediatek/met_drv/met_api.c",
+          "line": 91,
+          "text": "{\n\tif (met_ext_api.met_tag_start)\n\t\treturn met_ext_api.met_tag_start(class_id, name);\n\treturn 0;\n}\nEXPORT_SYMBOL(met_tag_start);"
+        },
+        {
+          "path": "drivers/misc/mediatek/met_drv/met_api.c",
+          "line": 104,
+          "text": "EXPORT_SYMBOL(met_tag_end);\n\nint met_tag_async_start(unsigned int class_id,\n\t\t\tconst char *name,\n\t\t\tunsigned int cookie)\n{"
+        },
+        {
+          "path": "drivers/misc/mediatek/met_drv/met_api.c",
+          "line": 109,
+          "text": "{\n\tif (met_ext_api.met_tag_async_start)\n\t\treturn met_ext_api.met_tag_async_start(class_id, name, cookie);\n\treturn 0;\n}\nEXPORT_SYMBOL(met_tag_async_start);"
+        },
+        {
+          "path": "drivers/misc/mediatek/met_drv/met_api.c",
+          "line": 256,
+          "text": "EXPORT_SYMBOL(met_cpu_frequency);\n\nvoid met_tracing_record_cmdline(struct task_struct *tsk)\n{\n\ttracing_record_cmdline(tsk);\n}"
+        },
+        {
+          "path": "drivers/misc/mediatek/met_drv/met_api.c",
+          "line": 258,
+          "text": "void met_tracing_record_cmdline(struct task_struct *tsk)\n{\n\ttracing_record_cmdline(tsk);\n}\nEXPORT_SYMBOL(met_tracing_record_cmdline);\n"
+        },
+        {
+          "path": "drivers/misc/mediatek/met_drv/met_api.c",
+          "line": 260,
+          "text": "\ttracing_record_cmdline(tsk);\n}\nEXPORT_SYMBOL(met_tracing_record_cmdline);\n\nvoid met_set_kptr_restrict(int value)\n{"
+        }
+      ]
+    },
+    "init": {
+      "files_scanned": 1,
+      "hits": [
+        {
+          "path": "init/main.c",
+          "line": 66,
+          "text": "#include <linux/idr.h>\n#include <linux/kgdb.h>\n#include <linux/ftrace.h>\n#include <linux/async.h>\n#include <linux/kmemcheck.h>\n#include <linux/sfi.h>"
+        },
+        {
+          "path": "init/main.c",
+          "line": 73,
+          "text": "#include <linux/slab.h>\n#include <linux/perf_event.h>\n#include <linux/ptrace.h>\n#include <linux/blkdev.h>\n#include <linux/elevator.h>\n#include <linux/sched_clock.h>"
+        },
+        {
+          "path": "init/main.c",
+          "line": 77,
+          "text": "#include <linux/elevator.h>\n#include <linux/sched_clock.h>\n#include <linux/context_tracking.h>\n#include <linux/random.h>\n#include <linux/list.h>\n#include <linux/integrity.h>"
+        },
+        {
+          "path": "init/main.c",
+          "line": 562,
+          "text": "\trcu_init();\n\n\t/* trace_printk() and trace points may be used after this */\n\ttrace_init();\n\n\tcontext_tracking_init();"
+        },
+        {
+          "path": "init/main.c",
+          "line": 563,
+          "text": "\n\t/* trace_printk() and trace points may be used after this */\n\ttrace_init();\n\n\tcontext_tracking_init();\n\tradix_tree_init();"
+        },
+        {
+          "path": "init/main.c",
+          "line": 565,
+          "text": "\ttrace_init();\n\n\tcontext_tracking_init();\n\tradix_tree_init();\n\t/* init some links before init_ISA_irqs() */\n\tearly_irq_init();"
+        },
+        {
+          "path": "init/main.c",
+          "line": 675,
+          "text": "\t}\n\n\tftrace_init();\n\n\t/* Do the rest non-__init'ed, we're now alive */\n\trest_init();"
+        }
+      ]
+    }
+  },
+  "source_config_sha256": "6f8abd4290b19aad386770200825d3065e74fd8fb311d4b1b20c7af2cc621dc6"
+}

@@ -1,0 +1,33 @@
+{
+  "started_utc": "2026-11-07T15:15:07.103290+00:00",
+  "command": [
+    "make",
+    "-C",
+    "/srv/android/asus-android-runtime-network-parity-20261107/kernel",
+    "O=/srv/android/asus-android-runtime-network-parity-20261107/build",
+    "ARCH=arm64",
+    "CROSS_COMPILE=aarch64-linux-gnu-",
+    "-j8",
+    "Image"
+  ],
+  "compile_invocations": 1,
+  "rlimit_as_added": false,
+  "config_before": "c2ea1277e1574da39d1d55d31bde7bda439ab624561ad3c6a6f4730e38f57834",
+  "owned_make_pid": 1942,
+  "returncode": 0,
+  "finished_utc": "2026-11-07T15:16:10.402340+00:00",
+  "elapsed_wall_seconds": 63.29885288599985,
+  "config_after": "c2ea1277e1574da39d1d55d31bde7bda439ab624561ad3c6a6f4730e38f57834",
+  "five_postimages_after": {
+    "include/uapi/linux/bpf.h": "5df820b95a96cef06c9e67b9fab9cbb5ad46b7e62b76a9d69db6af269c5eeb07",
+    "kernel/bpf/syscall.c": "739b2804cb256f7666496cabe9924567d9964a65dcc13e0a979c4c6c47ab63ac",
+    "kernel/bpf/Makefile": "ab33f64caba9dbf5d1bbd13fdfc6d8d2cbac5fac944a2fb7daa65dd990aff5e3",
+    "kernel/bpf/lpm_trie.c": "fb2023411dd320b2959722f1a0a1d44243e0c360cf585a9ef385618c5dbf8fa9",
+    "net/core/filter.c": "b4fc1f6bf7801417772128db04dffb3657fc01fc0e151079fef4c70b9e1669b8"
+  },
+  "full_config_preserved": true,
+  "exact_five_postimages": true,
+  "image_sha256": "aaa35347bd751c3e79eac78608f1a37d5a5cc1c34429773c257b91bb17e4bf47",
+  "image_bytes": 5785608,
+  "genuine_build_success": true
+}

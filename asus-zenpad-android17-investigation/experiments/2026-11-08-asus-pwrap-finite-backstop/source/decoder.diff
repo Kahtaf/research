@@ -1,0 +1,38 @@
+--- frozen/decode_boundary.py
++++ finite/decode_boundary.py
+@@ -3,6 +3,8 @@
+ import argparse,json,re
+ R=Path(__file__).resolve().parents[1]
+ I=json.loads((R/'evidence/identity.json').read_text())
++PWRAP='ASUS49-PWRAP run='+I['kernel_uuid']+' v=1 '
++BUDGET=re.compile(re.escape(PWRAP)+r'EXHAUST start=(0|[1-9][0-9]{0,19}) last=(0|[1-9][0-9]{0,19}) iterations=16777216 wait=([012]) ready=([01]) rc=(0|-110)')
+ PREFIX='ASUS49-KMSG run='+I['kernel_uuid']+' v=1 '
+ HELPER='ASUS49-SYSCLOCK run='+I['helper_uuid']
+ CLOCK_PATH='kernel-syscall:syscall(SYS_clock_gettime);vDSO-bypassed;control='+I['control_uuid']+';loop=pure-compute-normal-final-only'
+@@ -16,7 +18,8 @@
+  p=json.loads((R/'evidence/packaging-receipt.json').read_text())
+  bound=installed_full_sha256==p['full_p10']['sha256'] and bool(fresh_boot_reference and fresh_boot_reference.strip() and complete_console_reference and complete_console_reference.strip())
+  result=dict(status='UNKNOWN_STOP',integrity='UNKNOWN',physical_binding=dict(exact_full_p10=installed_full_sha256==p['full_p10']['sha256'],fresh_stock_boot_reference=fresh_boot_reference,complete_console_reference=complete_console_reference,parent_attestations_only=True),calibration=dict(initial_clock_begin='UNKNOWN',initial_clock='UNKNOWN',normal_policy='UNKNOWN',frozen_control='UNKNOWN'),observed_boundaries=[],signal_handler_writes=[],limit=LIMIT)
+- pairs=[];active=None;nextseq=1;errors=[];mode=False;alarm_count=0
++ pairs=[];active=None;nextseq=1;errors=[];mode=False;alarm_count=0;budget_records=[]
++ result['pwrap_backstop']=dict(status='NOT_OBSERVED_UNKNOWN',records=budget_records,limit='Only captured samples; iterations are not elapsed time. Missing or undrained record cannot exclude poll/counter/read/delay nonprogress. Exhaustion plus later sustained normal progress supports this intervention, not hardware cause.')
+  def fail(s):
+   if s not in errors:errors.append(s)
+  if installed_full_sha256 is not None and installed_full_sha256!=p['full_p10']['sha256']:fail('wrong installed full-p10 binding')
+@@ -29,6 +32,16 @@
+   if line.startswith('ASUS49-MODE'):
+    if line!=I['mode'] or active is not None:fail('wrong mode/order')
+    mode=line==I['mode'];continue
++  if 'ASUS49-PWRAP' in line:
++   m=BUDGET.fullmatch(line)
++   if not m or not mode or budget_records:
++    fail('unknown/stale/malformed/duplicate pwrap budget record');continue
++   start,last,wait,ready,rc=map(int,m.groups())
++   if max(start,last)>2**64-1 or rc!=(0 if ready else -110):
++    fail('pwrap field range/result mismatch');continue
++   budget_records.append(dict(line=pos,start_ns=start,last_existing_clock_ns=last,iterations=16777216,wait_id=wait,wait_name={0:'other/unknown',1:'idle',2:'WFVLDCLR'}[wait],final_ready=bool(ready),returned_result=rc,captured_sample_delta_ns=last-start,last_sample_below_original_start=last<start,wall_time_from_iterations=False))
++   result['pwrap_backstop']['status']='EXHAUSTION_RECORD_CAPTURED'
++   continue
+   if 'ASUS49-KMSG' in line:
+    m=BOUND.fullmatch(line)
+    if not m or not mode:

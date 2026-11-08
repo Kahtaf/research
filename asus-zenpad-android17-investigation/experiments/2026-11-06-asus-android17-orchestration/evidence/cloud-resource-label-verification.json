@@ -1,0 +1,56 @@
+{
+  "utc": "2026-11-07T03:47:17.083542+00:00",
+  "scope": "Read-only live gcloud description of the three known temporary builder resources",
+  "project": "PROJECT_REDACTED",
+  "resources": [
+    {
+      "kind": "instance",
+      "name": "PROJECT_REDACTED",
+      "zone": "us-central1-a",
+      "status": "RUNNING",
+      "labels": {
+        "created-by": "codex",
+        "experiment": "asus-p00a-android17",
+        "expires": "2026-11-12",
+        "owner": "kahtaf",
+        "purpose": "rom-build",
+        "created": "2026-11-05"
+      },
+      "describe_exit": 0
+    },
+    {
+      "kind": "disk",
+      "name": "PROJECT_REDACTED",
+      "zone": "us-central1-a",
+      "status": "READY",
+      "labels": {
+        "created-by": "codex",
+        "experiment": "asus-p00a-android17",
+        "expires": "2026-11-12",
+        "owner": "kahtaf",
+        "purpose": "rom-build",
+        "created": "2026-11-05"
+      },
+      "describe_exit": 0
+    },
+    {
+      "kind": "address",
+      "name": "PROJECT_REDACTED",
+      "region": "us-central1",
+      "status": "IN_USE",
+      "labels": {
+        "created-by": "codex",
+        "experiment": "asus-p00a-android17",
+        "expires": "2026-11-12",
+        "owner": "kahtaf",
+        "purpose": "rom-build",
+        "created": "2026-11-06"
+      },
+      "describe_exit": 0
+    }
+  ],
+  "all_three_experiment_labels_verified": true,
+  "mutation_performed": false,
+  "lifecycle_action_performed": false,
+  "running_builds_or_processes_polled": false
+}

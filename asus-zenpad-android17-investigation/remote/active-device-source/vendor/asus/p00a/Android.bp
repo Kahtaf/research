@@ -1,0 +1,421 @@
+// Generated for private ASUS Android 17 bring-up; firmware license unchanged.
+package {
+    default_applicable_licenses: ["p00a_vendor_graphics_license"],
+}
+license {
+    name: "p00a_vendor_graphics_license",
+    visibility: [":__subpackages__"],
+    license_kinds: ["legacy_proprietary"],
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_gralloc_mt8163",
+    stem: "gralloc.mt8163",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "both",
+    strip: { none: true },
+    relative_install_path: "hw",
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/hw/gralloc.mt8163.so"],
+            shared_libs: ["libhardware", "liblog", "libcutils", "libGLESv1_CM", "libion", "libutils", "p00a_legacy_libgralloc_extra", "p00a_legacy_libion_mtk", "libc++", "libdl#impl", "libc#impl", "libm#impl", "libutilscallstack", "libp00a_legacy_memory"],
+        },
+        arm64: {
+            srcs: ["proprietary/lib64/hw/gralloc.mt8163.so"],
+            shared_libs: ["libhardware", "liblog", "libcutils", "libGLESv1_CM", "libion", "libutils", "p00a_legacy_libgralloc_extra", "p00a_legacy_libion_mtk", "libc++", "libdl#impl", "libc#impl", "libm#impl", "libutilscallstack", "libp00a_legacy_memory"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libGLES_mali",
+    stem: "libGLES_mali",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "both",
+    strip: { none: true },
+    relative_install_path: "egl",
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/egl/libGLES_mali.so"],
+            shared_libs: ["libz", "libdl#impl", "libhardware", "libui", "libutils", "libcutils", "libbinder", "liblog", "libc++", "p00a_legacy_libged", "p00a_legacy_libgpu_aux", "p00a_legacy_libgralloc_extra", "libc#impl", "libm#impl", "libutilscallstack"],
+        },
+        arm64: {
+            srcs: ["proprietary/lib64/egl/libGLES_mali.so"],
+            shared_libs: ["libz", "libdl#impl", "libhardware", "libui", "libutils", "libcutils", "libbinder", "liblog", "libc++", "p00a_legacy_libged", "p00a_legacy_libgpu_aux", "p00a_legacy_libgralloc_extra", "libc#impl", "libm#impl", "libutilscallstack"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libbwc",
+    stem: "libbwc",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "both",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libbwc.so"],
+            shared_libs: ["libcutils", "liblog", "libnetutils", "libutils", "libbinder", "libc++", "libdl#impl", "libc#impl", "libm#impl"],
+        },
+        arm64: {
+            srcs: ["proprietary/lib64/libbwc.so"],
+            shared_libs: ["libcutils", "liblog", "libnetutils", "libutils", "libbinder", "libc++", "libdl#impl", "libc#impl", "libm#impl"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libdpframework",
+    stem: "libdpframework",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "both",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libdpframework.so"],
+            shared_libs: ["libutils", "libion", "p00a_legacy_libm4u", "libcutils", "libsync#impl", "p00a_legacy_libion_mtk", "libdl#impl", "libbinder", "p00a_legacy_libpqservice", "p00a_legacy_libpq_prot", "p00a_legacy_libvcodecdrv", "libc++", "libc#impl", "libm#impl", "liblog"],
+        },
+        arm64: {
+            srcs: ["proprietary/lib64/libdpframework.so"],
+            shared_libs: ["libutils", "libion", "p00a_legacy_libm4u", "libcutils", "libsync#impl", "p00a_legacy_libion_mtk", "libdl#impl", "libbinder", "p00a_legacy_libpqservice", "p00a_legacy_libpq_prot", "p00a_legacy_libvcodecdrv", "libc++", "libc#impl", "libm#impl", "liblog"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libged",
+    stem: "libged",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "both",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libged.so"],
+            shared_libs: ["libbinder", "libcutils", "libdl#impl", "libsync#impl", "libutils", "libc++", "libc#impl", "libm#impl", "liblog"],
+        },
+        arm64: {
+            srcs: ["proprietary/lib64/libged.so"],
+            shared_libs: ["libbinder", "libcutils", "libdl#impl", "libsync#impl", "libutils", "libc++", "libc#impl", "libm#impl", "liblog"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libgpu_aux",
+    stem: "libgpu_aux",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "both",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libgpu_aux.so"],
+            shared_libs: ["p00a_legacy_libdpframework", "liblog", "libutils", "libcutils", "libhardware", "p00a_legacy_libgralloc_extra", "libc++", "libdl#impl", "libc#impl", "libm#impl"],
+        },
+        arm64: {
+            srcs: ["proprietary/lib64/libgpu_aux.so"],
+            shared_libs: ["p00a_legacy_libdpframework", "liblog", "libutils", "libcutils", "libhardware", "p00a_legacy_libgralloc_extra", "libc++", "libdl#impl", "libc#impl", "libm#impl"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libgralloc_extra",
+    stem: "libgralloc_extra",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "both",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libgralloc_extra.so"],
+            shared_libs: ["libhardware", "libcutils", "libutils", "libion", "p00a_legacy_libion_mtk", "p00a_legacy_libged", "libc++", "libdl#impl", "libc#impl", "libm#impl", "liblog"],
+        },
+        arm64: {
+            srcs: ["proprietary/lib64/libgralloc_extra.so"],
+            shared_libs: ["libhardware", "libcutils", "libutils", "libion", "p00a_legacy_libion_mtk", "p00a_legacy_libged", "libc++", "libdl#impl", "libc#impl", "libm#impl", "liblog"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libhevce_sb_ca7_android",
+    stem: "libhevce_sb.ca7.android",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "32",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libhevce_sb.ca7.android.so"],
+            shared_libs: ["libcutils", "liblog", "p00a_legacy_libvcodec_oal", "p00a_legacy_libvcodec_utility", "libc#impl", "libstdc++", "libm#impl"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libion_mtk",
+    stem: "libion_mtk",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "both",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libion_mtk.so"],
+            shared_libs: ["libion", "liblog", "libdl#impl", "libc++", "libc#impl", "libm#impl"],
+        },
+        arm64: {
+            srcs: ["proprietary/lib64/libion_mtk.so"],
+            shared_libs: ["libion", "liblog", "libdl#impl", "libc++", "libc#impl", "libm#impl"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libm4u",
+    stem: "libm4u",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "both",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libm4u.so"],
+            shared_libs: ["libcutils", "liblog", "libc++", "libdl#impl", "libc#impl", "libm#impl"],
+        },
+        arm64: {
+            srcs: ["proprietary/lib64/libm4u.so"],
+            shared_libs: ["libcutils", "liblog", "libc++", "libdl#impl", "libc#impl", "libm#impl"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libmp4enc_sa_ca7",
+    stem: "libmp4enc_sa.ca7",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "32",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libmp4enc_sa.ca7.so"],
+            shared_libs: ["libcutils", "liblog", "p00a_legacy_libvcodec_utility", "p00a_legacy_libvcodec_oal", "libc#impl", "libstdc++", "libm#impl"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libmtk_drvb",
+    stem: "libmtk_drvb",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "both",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libmtk_drvb.so"],
+            shared_libs: ["libcutils", "libutils", "libc++", "libdl#impl", "libc#impl", "libm#impl", "liblog"],
+        },
+        arm64: {
+            srcs: ["proprietary/lib64/libmtk_drvb.so"],
+            shared_libs: ["libcutils", "libutils", "libc++", "libdl#impl", "libc#impl", "libm#impl", "liblog"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libpq_prot",
+    stem: "libpq_prot",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "both",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libpq_prot.so"],
+            shared_libs: ["libutils", "libcutils", "libdl#impl", "libc++", "libc#impl", "libm#impl", "liblog"],
+        },
+        arm64: {
+            srcs: ["proprietary/lib64/libpq_prot.so"],
+            shared_libs: ["libutils", "libcutils", "libdl#impl", "libc++", "libc#impl", "libm#impl", "liblog"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libpqservice",
+    stem: "libpqservice",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "both",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libpqservice.so"],
+            shared_libs: ["libutils", "libcutils", "libdl#impl", "libbinder", "p00a_legacy_libpq_prot", "libc++", "libc#impl", "libm#impl", "liblog"],
+        },
+        arm64: {
+            srcs: ["proprietary/lib64/libpqservice.so"],
+            shared_libs: ["libutils", "libcutils", "libdl#impl", "libbinder", "p00a_legacy_libpq_prot", "libc++", "libc#impl", "libm#impl", "liblog"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libvc1dec_sa_ca7",
+    stem: "libvc1dec_sa.ca7",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "32",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libvc1dec_sa.ca7.so"],
+            shared_libs: ["libcutils", "liblog", "p00a_legacy_libvcodec_oal", "p00a_legacy_libvcodec_utility", "libc#impl", "libstdc++", "libm#impl"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libvcodec_oal",
+    stem: "libvcodec_oal",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "32",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libvcodec_oal.so"],
+            shared_libs: ["libc#impl", "libstdc++", "libm#impl"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libvcodec_utility",
+    stem: "libvcodec_utility",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "both",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libvcodec_utility.so"],
+            shared_libs: ["libcutils", "p00a_legacy_libbwc", "p00a_legacy_libm4u", "libion", "p00a_legacy_libion_mtk", "libdl#impl", "p00a_legacy_libmtk_drvb", "libc++", "libc#impl", "libm#impl", "liblog"],
+        },
+        arm64: {
+            srcs: ["proprietary/lib64/libvcodec_utility.so"],
+            shared_libs: ["libcutils", "p00a_legacy_libbwc", "p00a_legacy_libm4u", "libion", "p00a_legacy_libion_mtk", "libdl#impl", "p00a_legacy_libmtk_drvb", "libc++", "libc#impl", "libm#impl", "liblog"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libvcodecdrv",
+    stem: "libvcodecdrv",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "both",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libvcodecdrv.so"],
+            shared_libs: ["libcutils", "libdl#impl", "liblog", "p00a_legacy_libvcodec_utility", "p00a_legacy_libvcodec_oal", "p00a_legacy_libmp4enc_sa_ca7", "p00a_legacy_libvp8dec_sa_ca7", "p00a_legacy_libvc1dec_sa_ca7", "p00a_legacy_libvp8enc_sa_ca7", "p00a_legacy_libhevce_sb_ca7_android", "p00a_legacy_libmtk_drvb", "libc++", "libc#impl", "libm#impl"],
+        },
+        arm64: {
+            srcs: ["proprietary/lib64/libvcodecdrv.so"],
+            shared_libs: ["libcutils", "libdl#impl", "liblog", "p00a_legacy_libvcodec_utility", "p00a_legacy_libmtk_drvb", "libc++", "libc#impl", "libm#impl"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libvp8dec_sa_ca7",
+    stem: "libvp8dec_sa.ca7",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "32",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libvp8dec_sa.ca7.so"],
+            shared_libs: ["libcutils", "liblog", "p00a_legacy_libvcodec_oal", "libc#impl", "libstdc++", "libm#impl"],
+        },
+    },
+}
+cc_prebuilt_library_shared {
+    name: "p00a_legacy_libvp8enc_sa_ca7",
+    stem: "libvp8enc_sa.ca7",
+    // Pre-Treble private core ABI; strict ELF validation remains enabled.
+    check_elf_files: true,
+    stl: "none",
+    system_shared_libs: [],
+    allow_undefined_symbols: false,
+    compile_multilib: "32",
+    strip: { none: true },
+    arch: {
+        arm: {
+            srcs: ["proprietary/lib/libvp8enc_sa.ca7.so"],
+            shared_libs: ["libcutils", "libutils", "liblog", "p00a_legacy_libvcodec_oal", "p00a_legacy_libvcodec_utility", "libc#impl", "libstdc++", "libm#impl"],
+        },
+    },
+}
+install_symlink {
+    name: "p00a_legacy_egl_path_32",
+    vendor: true,
+    installed_location: "lib/egl/libGLES_mali.so",
+    symlink_target: "/system/lib/egl/libGLES_mali.so",
+    required: ["p00a_legacy_libGLES_mali"],
+}
+install_symlink {
+    name: "p00a_legacy_egl_path_64",
+    vendor: true,
+    installed_location: "lib64/egl/libGLES_mali.so",
+    symlink_target: "/system/lib64/egl/libGLES_mali.so",
+    required: ["p00a_legacy_libGLES_mali"],
+}

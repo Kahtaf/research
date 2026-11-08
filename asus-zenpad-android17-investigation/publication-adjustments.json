@@ -1,0 +1,35 @@
+{
+  "experiments/2026-11-06-asus-linux49-vintf-port/evidence/semantic-source-detail.json": {
+    "prior_export_sha256": "139cd152791d40a9f0fd05712f25d9fc526d964f6f3b7857f19db75457e13768",
+    "reason": "remove encoded full fetched source; preserve decoded hashes and metadata",
+    "fields": [
+      "/system/libvintf/RuntimeInfo-target.cpp/base64",
+      "/system/libvintf/RuntimeInfo-host.cpp/base64",
+      "/system/libvintf/include/vintf/CheckFlags.h/base64",
+      "/system/libhidl/vintfdata/Android.bp/base64"
+    ]
+  },
+  "experiments/2026-11-07-asus-linux49-power-supply-phase-capture/evidence/context-source.json": {
+    "prior_export_sha256": "7ae0d654e8777a5e4bf1d22ba121b6f0293a5acbb0ce836e7e2d3eed8f9c577b",
+    "reason": "remove encoded full fetched source; preserve decoded hashes and metadata",
+    "fields": [
+      "/include/linux/preempt.h/data",
+      "/include/linux/hardirq.h/data"
+    ]
+  },
+  "experiments/2026-11-07-asus-wifi-adb-apk/HANDOFF.md": {
+    "prior_export_sha256": "bdc65078c5262fbca9d8cf950a55c8db0f4a5f2c2b76a3f2257832951805ad25",
+    "reason": "public operational address redaction",
+    "additional_address_redactions": 1
+  },
+  "experiments/2026-11-07-asus-tablet-local-wifi-setup/public/setup.sh": {
+    "prior_export_sha256": "053b7ab9c35e393ca6ec5c0816a01005be6b86745a5df30dd59e742ede7732a4",
+    "reason": "public operational address redaction",
+    "additional_address_redactions": 1
+  },
+  "experiments/2026-11-05-asus-p00a-power-port/infrastructure/resources.json": {
+    "prior_export_sha256": "df7307ea55fb28a769db37c97f582286db278957ab394055eeaba32c6781a090",
+    "reason": "public operational address redaction",
+    "additional_address_redactions": 1
+  }
+}

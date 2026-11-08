@@ -1,0 +1,22 @@
+{
+  "2026-11-07-asus-linux49-scheduler-switch-trial/evidence/RESULT.json": {
+    "bytes": 6462,
+    "sha256": "e42f56dcaed19e4d933257401c546fa2bdaf1d1127673715a8861346842cb190"
+  },
+  "2026-11-07-asus-linux49-scheduler-switch-capture/README.md": {
+    "bytes": 8322,
+    "sha256": "80df5e791b3133ede278f4fa8ed5d760bf056a102e9a34d6fd7318fcb4c024ff"
+  },
+  "2026-11-07-asus-linux49-scheduler-switch-capture/evidence/handoff.json": {
+    "bytes": 9671,
+    "sha256": "4bcc63669f63968040b42ce06d1a183ea64f1526cb4221ef294dc6d89b2acf43"
+  },
+  "2026-11-07-asus-linux49-scheduler-switch-capture/source/changes.patch": {
+    "bytes": 8544,
+    "sha256": "392a8de95a48bf681a50e50705854b9874fd141786ef9f6f322bfe2e9572951c"
+  },
+  "2026-11-06-asus-product-input-build-kit/scripts/remote.py": {
+    "bytes": 545,
+    "sha256": "c22884576a780cbb1ddf5e1b02f0b6e9d6eb5c25f8d9bc82fb077543f05cf4ab"
+  }
+}

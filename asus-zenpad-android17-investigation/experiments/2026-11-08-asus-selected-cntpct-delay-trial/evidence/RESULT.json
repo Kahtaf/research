@@ -1,0 +1,132 @@
+{
+  "at": "2026-11-08T06:46:50.612849+00:00",
+  "uuid": "2ac3b1e4-9ca7-4480-aad7-422c260a45fa",
+  "status": "FINITE_DELAY_CAPTURE",
+  "previous_statuses": {
+    "pmic": "FINITE_PMIC_CAPTURE",
+    "power": "FINITE_POWER_CAPTURE",
+    "work": "FINITE_WORK_CAPTURE",
+    "switch": "FINITE_SWITCH_CAPTURE",
+    "clock": "COMPLETE_CAPTURE_ROWS"
+  },
+  "target": {
+    "status": "JOINED_FINITE_DELAY",
+    "pid": 119,
+    "pmic_token": 123,
+    "property_token": 89,
+    "body_token": 61,
+    "sample": 2,
+    "generation": 3,
+    "state": "MATCHED_PMIC_POST",
+    "stages": [
+      0,
+      1,
+      2,
+      3,
+      6
+    ],
+    "selected_read_domain": 1,
+    "current_physical_access_observed": true,
+    "requested_cycles": 3900,
+    "interpretation": "FINITE_BOUNDARY_ONLY"
+  },
+  "calculation": {
+    "generation": 3,
+    "xloops": 1288500,
+    "lpj": 52000,
+    "HZ": 250,
+    "product": 16750500000000,
+    "cycles": 3900
+  },
+  "milestones": [
+    {
+      "generation": 3,
+      "stage": 0,
+      "iteration": 0,
+      "counter": 0,
+      "cycles": 3900,
+      "preempt": 0,
+      "context": 4,
+      "pid": 119
+    },
+    {
+      "generation": 3,
+      "stage": 1,
+      "iteration": 0,
+      "counter": 176646576,
+      "cycles": 3900,
+      "preempt": 0,
+      "context": 4,
+      "pid": 119
+    },
+    {
+      "generation": 3,
+      "stage": 2,
+      "iteration": 1,
+      "counter": 176646616,
+      "cycles": 3900,
+      "preempt": 0,
+      "context": 4,
+      "pid": 119
+    },
+    {
+      "generation": 3,
+      "stage": 3,
+      "iteration": 256,
+      "counter": 176646717,
+      "cycles": 3900,
+      "preempt": 0,
+      "context": 4,
+      "pid": 119
+    },
+    {
+      "generation": 3,
+      "stage": 6,
+      "iteration": 14262,
+      "counter": 176650476,
+      "cycles": 3900,
+      "preempt": 0,
+      "context": 4,
+      "pid": 119
+    }
+  ],
+  "latest_pmic_target": {
+    "status": "JOINED_FINITE_PMIC_STAGE",
+    "pid": 119,
+    "work_token": 67,
+    "body_token": 61,
+    "property_token": 89,
+    "property": "POWER_SUPPLY_PROP_batt_vol",
+    "supply": "battery",
+    "pmic_token": 123,
+    "parent_token": 0,
+    "source_function": "asus_p00a_pmic_adc",
+    "channel": 6,
+    "samples": 5,
+    "sample": 2,
+    "poll": 0,
+    "stage": "POLL_READ_PRE",
+    "code": 40,
+    "return_status": null,
+    "interval": "existing poll pmic_read_interface dispatch through post publication",
+    "interpretation": "FINITE_BOUNDARY_ONLY_PARENT_INTERPRETATION"
+  },
+  "last_helper_record": "ASUS49-SYSCLOCK run=f0c3c82c-d639-4d8a-90f2-155fd4224ceb phase=observe stage=end op=clock_gettime path=loop.initial rc=0 errno=0 value=0.651987999",
+  "ADC_return_observed": false,
+  "PID1_loop_completion_observed": false,
+  "new_stock_boot_id": "0250e261-46ce-4bec-a4a2-20e9684d5559",
+  "normal_stock_return_verified": true,
+  "normal_OS_partitions_changed": false,
+  "full_console_sha256": "a814a699dbf51966d0948832e502f27440018bbd001b93c21af3fb390fef7d84",
+  "reboot_time_estimate": {
+    "stock_boot_id": "0250e261-46ce-4bec-a4a2-20e9684d5559",
+    "stock_uptime_seconds": 239.97,
+    "host_UTC_before": "2026-11-08T06:45:21.083151+00:00",
+    "host_UTC_after": "2026-11-08T06:45:21.155519+00:00",
+    "RPC_halfspan_seconds": 0.036184,
+    "stock_kernel_start_estimate_UTC": "2026-11-08T06:41:21.149335+00:00",
+    "dispatch_to_stock_kernel_start_estimate_seconds": 32.92307,
+    "includes": "Recovery reboot, firmware handoffs, candidate exposure, reset and stock handoff; NOT candidate-only uptime; assumes current stock uptime rate and hostwallclock stable"
+  },
+  "conclusion": "Selectedphysicalcounteraccess/loopreturnandmatchedPMICpostproven forsample2(index2), whichbaselinethirdsamplehadalsocompleted. LatestboundarynowfollowingPMICpollreadsample2; noADCreturn/PID1loopcompletion. ThisisNOTproofofvirtualcounterrootcause. Changedlowlevelboundary+similar~0.65kernelage+32.923sdispatch-to-stockstartrequirespremisereviewbeforeanotherlocalfix."
+}

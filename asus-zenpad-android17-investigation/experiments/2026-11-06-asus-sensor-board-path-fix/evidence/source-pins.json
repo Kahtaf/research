@@ -1,0 +1,6 @@
+{
+  "pre_sha256": "0e012287927a5b8ac3733f7fcc28d5cdc0eb1d8f06e82e0ff6ad211fe2f72f90",
+  "post_sha256": "9207c304761cf86afb423641534ed383e7f8dae613e64061e972d2f65832aa4d",
+  "scope": "One explicit device-tree path; no policy or manifest content changes.",
+  "applied_to_active_source": false
+}

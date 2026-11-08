@@ -1,0 +1,38 @@
+{
+  "source_sha256": "550dc7514d5bf95ca49440ef3dcc110f1e4594e99e9414f28ed3e287207312c6",
+  "base_source_sha256": "d6cf66e19d1f2638941b0f14b0a3428db74b6867bf1761c3491d14188db8e4ad",
+  "exact_declared_source_delta": true,
+  "all_other_functions_unchanged": true,
+  "unchanged_functions": [
+    "event",
+    "begin",
+    "end",
+    "park",
+    "alarm_handler",
+    "finish",
+    "names",
+    "metadata",
+    "mmc_snapshot",
+    "number",
+    "timer_snapshot",
+    "main"
+  ],
+  "clock_calls": "initial clock_sample and every observe iteration use monotonic_clock -> syscall(SYS_clock_gettime,CLOCK_MONOTONIC,t)",
+  "errno_return_behavior": "syscall returns 0 or -1/errno; original caller capture/restoration unchanged",
+  "one_clock_path_marker": true,
+  "handler_one_write_preserved": true,
+  "no_handler_reboot": true,
+  "one_normal_reboot": true,
+  "interrupt_bounds": {
+    "bytes": 32768,
+    "read_calls": 8,
+    "lines": 256,
+    "arch_lines": 8,
+    "cpu_counters": 16
+  },
+  "loop_bounds": {
+    "iterations": 2000000,
+    "counter_delta_ns": 1500000000
+  },
+  "parser_delta": "add exact bounded GIC-0 controller; numeric fields, privacy, optional Level/Edge and read bounds unchanged"
+}

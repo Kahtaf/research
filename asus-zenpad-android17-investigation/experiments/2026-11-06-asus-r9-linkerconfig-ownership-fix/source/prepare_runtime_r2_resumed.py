@@ -1,0 +1,50 @@
+from pathlib import Path
+import os,json,stat,gzip,hashlib,struct,subprocess as s,shutil,resource
+R=Path('/srv/android/asus-r9-linkerconfig-ownership-fix-20261106');G=Path('/srv/android/asus-genuine-service-runtime');OLD=Path('/srv/android/asus-r9-actual-early-runtime-20261106');I=R/'inputs/runtime-r2';I.mkdir(exist_ok=True);E=R/'evidence';os.environ['TMPDIR']=str(R/'tmp');os.sched_setaffinity(0,{min(os.sched_getaffinity(0))});resource.setrlimit(resource.RLIMIT_AS,(4*1024**3,4*1024**3));resource.setrlimit(resource.RLIMIT_CORE,(0,0));admit=json.loads((E/'root-enabled-admission.json').read_text());raw=Path(admit['raw_identity']['path']);assert raw.stat().st_ino==admit['raw_identity']['inode'];commands=[]
+def run(cmd,env=None):
+ p=s.run([str(x) for x in cmd],capture_output=True,text=True,env=env,timeout=60);commands.append(dict(command=[str(x) for x in cmd],rc=p.returncode,stdout=p.stdout,stderr=p.stderr));(E/'runtime-r2-prepare-commands.json').write_text(json.dumps(commands,indent=2));assert p.returncode==0,p.stderr;return p
+for rel,h in [('inputs/kernel-r7/Image','95a62a8bccd3085d682a89b6c74c7afd0961cebd1e3137b256229849920b549b'),('inputs/kernel-r7/config','c2ea1277e1574da39d1d55d31bde7bda439ab624561ad3c6a6f4730e38f57834'),('run-boot-r9/seed-exec','eddd78f4558e38ba1a1b5f2d9a8420111859e70a1d9c0d3b9cd837a4207ecf60')]:assert hashlib.sha256((G/rel).read_bytes()).hexdigest()==h
+ram=(OLD/'inputs/actual-ramdisk.cpio.gz').read_bytes();assert hashlib.sha256(ram).hexdigest()=='95f5c2a8aded2e081e30e72ebd37322a24aa895bbe7e334c79c1381bcd3fe240';b=gzip.decompress(ram);pos=0;entries=[]
+while True:
+ head=b[pos:pos+110];f=[int(head[6+8*i:14+8*i],16) for i in range(13)];n=b[pos+110:pos+110+f[11]-1].decode();pos=(pos+110+f[11]+3)//4*4;v=b[pos:pos+f[6]];pos=(pos+f[6]+3)//4*4
+ if n=='TRAILER!!!':break
+ entries.append((n,f,v))
+assert len(entries)==14
+actualinit=next(v for n,f,v in entries if n=='init');assert hashlib.sha256(actualinit).hexdigest()=='b2abeeb7dc01d884536dd38ebccd835a8589187a979cf84e51d78131ce800ed4'
+def mapfstab(b):
+ for a,z in [(b'/dev/block/platform/soc/11230000.mmc/by-name/system',b'/dev/block/vdb'),(b'/dev/block/platform/soc/11230000.mmc/by-name/userdata',b'/dev/block/vda')]:assert b.count(a)==1;b=b.replace(a,z)
+ return b
+(I/'vendor.fstab').write_bytes(mapfstab((R/'inputs/root-enabled-vendor.fstab').read_bytes()))
+core=(R/'inputs/root-enabled-init.rc').read_text();needle='    exec_start apexd-bootstrap\n';assert core.count(needle)==1;line='    mount none /system/etc/actual-runtime-bin /apex/com.android.runtime/bin bind\n';(I/'init.rc').write_text(core.replace(needle,needle+line));candidate=R/'work/native/arm64-generator.stripped';assert hashlib.sha256(candidate.read_bytes()).hexdigest()=='cb03a693acab8781ffa9ee4ccaca3ecd4967bd985ff87db3a23af14e5357c573';shutil.copyfile(candidate,I/'candidate')
+# Narrow retained observer: no property writes; additionally retain public diagnostics on fresh DATA.
+obs=(OLD/'source/observer.c').read_text();assert '__system_property_set' not in obs
+start=obs.index('int main(void){setvbuf(stdout,NULL,_IONBF,0);for(int i=0;i<18;i++)');obs=obs[:start]+'''int main(void){setvbuf(stdout,NULL,_IONBF,0);int report=-1;for(int i=0;i<18;i++){if(report<0){report=open("/data/local/tmp/actual-runtime-report.txt",O_WRONLY|O_APPEND|O_CLOEXEC);if(report>=0){dup2(report,1);dup2(report,2);puts("PUBLIC_REPORT_DATA_CAPTURE_BEGIN");}}printf("ACTUAL_RUNTIME_SAMPLE index=%d\\n",i);sample();if(report>=0 && i%2==0){pid_t p=fork();if(p==0){alarm(4);execl("/system/bin/logcat","logcat","-b","all","-d","-v","threadtime","-t","256","-s","keystore2:V","keystore:V","hwservicemanager:V","android.hardware.keymaster@4.0-service:V","linker:V","libc:F","vold:E","*:S",NULL);_exit(127);}if(p>0){int status=0;waitpid(p,&status,0);printf("PUBLIC_LOGCAT_STATUS value=%d\\n",status);}p=fork();if(p==0){alarm(4);execl("/system/bin/lshal","lshal","--neat","--types=b",NULL);_exit(127);}if(p>0){int status=0;waitpid(p,&status,0);printf("PUBLIC_LSHAL_STATUS value=%d\\n",status);}}sleep(5);}return 0;}\n''';obs=obs.replace('#include <signal.h>','#include <signal.h>\n#include <sys/wait.h>\n#include <sys/xattr.h>');obs=obs.replace('sleep(5);}', 'if(report>=0)fsync(report);sleep(5);}')
+obs=obs.replace('const char*paths[]={', 'const char*paths[]={\"/sys/class/block/vda/ro\",\"/sys/class/block/vdb/ro\",')
+obs=obs.replace('DIR *proc=opendir', 'char node_label[256]={0};ssize_t node_len=getxattr(\"/dev/block/vda\",\"security.selinux\",node_label,255);printf(\"DATA_NODE_CONTEXT bytes=%zd errno=%d value=%s\\n\",node_len,errno,node_label);struct stat node_stat;int node_rc=stat(\"/dev/block/vda\",&node_stat);printf(\"DATA_NODE_DAC rc=%d mode=%o uid=%u gid=%u\\n\",node_rc,node_rc?0:node_stat.st_mode,node_rc?0:node_stat.st_uid,node_rc?0:node_stat.st_gid);DIR *proc=opendir')
+(R/'source/runtime_observer.c').write_text(obs)
+cmd=json.loads((G/'evidence/observer-compile.json').read_text())['command'];cmd=[x.replace(str(G/'source/observer.c'),str(R/'source/runtime_observer.c')).replace(str(G/'inputs/observer-r1/observer.d'),str(E/'runtime-observer.d')).replace(str(G/'inputs/boot-r2/root/system/bin/firstboot-observer'),str(I/'observer')) for x in cmd];run(cmd)
+(I/'vendor.contexts').write_bytes((R/'inputs/root-enabled-vendor.contexts').read_bytes()+b'\n/dev/block/vda    u:object_r:userdata_block_device:s0\n')
+(I/'observer.rc').write_text('service actual-runtime-observer /system/bin/actual-runtime-observer\n    class core\n    user shell\n    group shell log readproc\n    seclabel u:r:shell:s0\n    disabled\n    oneshot\n    stdio_to_kmsg\n\non early-init\n    start actual-runtime-observer\n')
+run(['aarch64-linux-gnu-gcc','-static','-O2','-Wall','-Wextra','-Werror',R/'source/runtime_patcher_r2.c','-o',I/'patcher'])
+def ent(n,v,mode):return n,[1,mode,0,0,1,0,len(v),0,0,0,0,len(n)+1,0],v
+def cpio(rows):
+ a=bytearray()
+ for n,f,v in rows+[ent('TRAILER!!!',b'',0)]:
+  f=f.copy();nb=n.encode()+b'\0';f[6]=len(v);f[11]=len(nb);a+=b'070701'+''.join(f'{x:08x}' for x in f).encode()+nb;a+=b'\0'*(-len(a)%4);a+=v;a+=b'\0'*(-len(a)%4)
+ return gzip.compress(a,mtime=0)
+prep=[ent(n,(I/file).read_bytes(),0o100755 if n=='init' else 0o100644) for n,file in [('init','patcher'),('vendor.fstab','vendor.fstab'),('init.rc','init.rc'),('candidate','candidate'),('observer','observer'),('observer.rc','observer.rc')]];prep += [ent('runtime-bin',b'',0o40755),ent('vendor.contexts',(I/'vendor.contexts').read_bytes(),0o100644)]
+for name in ['linker','linker64','crash_dump32','crash_dump64','linkerconfig']:
+ value=(I/'candidate').read_bytes() if name=='linkerconfig' else (R/'inputs/runtime-bin-preserved'/name).read_bytes();prep.append(ent('runtime-bin/'+name,value,0o100644))
+(I/'patch-initramfs.cpio.gz').write_bytes(cpio(prep));new=[]
+for n,f,v in entries:
+ if n=='init':v=(G/'run-boot-r9/seed-exec').read_bytes()
+ if n=='fstab.mt8163':v=mapfstab(v)
+ new.append((n,f,v))
+new += [ent('first-stage-init',actualinit,0o100750),ent('entropy.seed',os.urandom(64),0o100400)];(I/'runtime-initramfs.cpio.gz').write_bytes(cpio(new));os.chmod(I/'runtime-initramfs.cpio.gz',0o400)
+c=65536;size=3753902080;back=str(raw).encode();l1=(size+c*(c//8)-1)//(c*(c//8))
+with (I/'system.qcow2').open('xb') as f:f.write(struct.pack('>IIQIIQIIQQIIQ',0x514649fb,2,72,len(back),16,size,0,l1,3*c,c,1,0,0)+back);f.seek(c);f.write(struct.pack('>Q',2*c));f.seek(2*c);f.write(struct.pack('>4H',1,1,1,1));f.truncate(4*c)
+# Fresh legacy DATA. No original userdata/private content is read.
+data=I/'data.ext4';data.touch(exist_ok=False);os.truncate(data,512*1024**2);run(['mke2fs','-F','-t','ext4','-b','4096','-I','256','-O','none,has_journal,ext_attr,resize_inode,dir_index,filetype,extent,sparse_super,large_file,uninit_bg,dir_nlink,extra_isize','-E','lazy_itable_init=0,lazy_journal_init=0',data]);(I/'empty-report').write_text('');(I/'shell-label').write_bytes(b'u:object_r:shell_data_file:s0\0');(I/'root-data-label').write_bytes(b'u:object_r:system_data_root_file:s0\0');(I/'system-data-label').write_bytes(b'u:object_r:system_data_file:s0\0');debug=Path('/srv/android/asus-full-system-observer-preparation-20261106/immutable/bin/debugfs');env=os.environ.copy();env['LD_LIBRARY_PATH']=str(debug.parents[1]/'lib64')
+commands_text=[f'ea_set -f {I}/root-data-label / security.selinux','mkdir /local','mkdir /local/tmp','set_inode_field /local mode 040751','set_inode_field /local uid 0','set_inode_field /local gid 2000','set_inode_field /local/tmp mode 040771','set_inode_field /local/tmp uid 2000','set_inode_field /local/tmp gid 2000',f'ea_set -f {I}/system-data-label /local security.selinux',f'ea_set -f {I}/shell-label /local/tmp security.selinux',f'write {I}/empty-report /local/tmp/actual-runtime-report.txt','set_inode_field /local/tmp/actual-runtime-report.txt mode 0100600','set_inode_field /local/tmp/actual-runtime-report.txt uid 2000','set_inode_field /local/tmp/actual-runtime-report.txt gid 2000',f'ea_set -f {I}/shell-label /local/tmp/actual-runtime-report.txt security.selinux','stat /local/tmp/actual-runtime-report.txt','ea_list /local/tmp/actual-runtime-report.txt'];(I/'data-prepare.debugfs').write_text('\n'.join(commands_text)+'\n');run([debug,'-w','-f',I/'data-prepare.debugfs',data],env=env)
+d=dict(modified=['system/vendor/etc/fstab.mt8163','system/etc/init/hw/init.rc','system/vendor/etc/selinux/vendor_file_contexts'],added=['system/bin/linkerconfig','system/bin/actual-runtime-observer','system/etc/init/actual-runtime-observer.rc'],core_init_added_line=line,APEX_signatures_or_payloads_modified=False,candidate_bind_is_explicit_test_adaptation=True,candidate_sha256=hashlib.sha256(candidate.read_bytes()).hexdigest(),policy_and_properties_unchanged=True,readiness_setters=False,seed_fresh=True,seed_values_or_hashes_published=False,report_path='/data/local/tmp/actual-runtime-report.txt',report_mode='0600',report_uid=2000,report_gid=2000,report_selinux='u:object_r:shell_data_file:s0')
+(E/'runtime-r2-adaptations.json').write_text(json.dumps(d,indent=2));print(json.dumps(d,indent=2))

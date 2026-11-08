@@ -1,0 +1,56 @@
+{
+  "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader": {
+    "sha256": "1d4c5429a7edadf848e8ff1128a73054411ea67a23422927a9bb215e0eb0c880",
+    "elf_class": 64,
+    "little_endian": true,
+    "e_machine": 183,
+    "build_ids": [
+      "63cdfb2c003f9943f8f4a3fba948ad3e"
+    ]
+  },
+  "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader": {
+    "sha256": "b6a9888e623a44cea98ead533c304225d6ef2e63237ee1769857087cfb1f2737",
+    "elf_class": 64,
+    "little_endian": true,
+    "e_machine": 183,
+    "build_ids": [
+      "63cdfb2c003f9943f8f4a3fba948ad3e"
+    ]
+  },
+  "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold": {
+    "sha256": "18daecc22adf923e2ac1c9a4401357238c314704360b89df301e00bf5e8baee2",
+    "elf_class": 64,
+    "little_endian": true,
+    "e_machine": 183,
+    "build_ids": [
+      "7c5a0475a606d617bc7362de7ba4911c"
+    ]
+  },
+  "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/vold": {
+    "sha256": "74b1e39da028cb71505681ba648bc1f51b640d6cd47f018d5a26c202aca662b7",
+    "elf_class": 64,
+    "little_endian": true,
+    "e_machine": 183,
+    "build_ids": [
+      "7c5a0475a606d617bc7362de7ba4911c"
+    ]
+  },
+  "out/target/product/p00a/system/bin/bpfloader": {
+    "sha256": "b6a9888e623a44cea98ead533c304225d6ef2e63237ee1769857087cfb1f2737",
+    "elf_class": 64,
+    "little_endian": true,
+    "e_machine": 183,
+    "build_ids": [
+      "63cdfb2c003f9943f8f4a3fba948ad3e"
+    ]
+  },
+  "out/target/product/p00a/system/bin/vold": {
+    "sha256": "74b1e39da028cb71505681ba648bc1f51b640d6cd47f018d5a26c202aca662b7",
+    "elf_class": 64,
+    "little_endian": true,
+    "e_machine": 183,
+    "build_ids": [
+      "7c5a0475a606d617bc7362de7ba4911c"
+    ]
+  }
+}

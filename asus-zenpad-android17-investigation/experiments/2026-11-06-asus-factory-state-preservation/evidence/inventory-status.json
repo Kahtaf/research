@@ -1,0 +1,11 @@
+{
+  "utc": "2026-11-06T19:41:21.226986+00:00",
+  "inventory_exit": 127,
+  "present_root_count": 4,
+  "absent_candidate_count": 6,
+  "symlink_root_count": 0,
+  "private_output_bytes": 1074,
+  "factory_preservation_complete": false,
+  "partition_writes": false,
+  "calibration_uploaded": false
+}

@@ -1,0 +1,1017 @@
+{
+  "tests": 29,
+  "failures": 15,
+  "errors": 0,
+  "failures_detail": [
+    {
+      "case": "review_control_journal_expiry (__main__.Review.review_control_journal_expiry)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/review/adversarial.py\", line 117, in review_control_journal_expiry\n    self.assertEqual(self.ops(),[1], 'reconciliation sent after control journal guard expired')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [1, 2, 3, 4, 4, 4, 5, 9] != [1]\n\nFirst list contains 7 additional elements.\nFirst extra element 1:\n2\n\n- [1, 2, 3, 4, 4, 4, 5, 9]\n+ [1] : reconciliation sent after control journal guard expired\n"
+    },
+    {
+      "case": "review_parent_contract_armed_type_refused (__main__.Review.review_parent_contract_armed_type_refused)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/review/adversarial.py\", line 303, in review_parent_contract_armed_type_refused\n    self.assertEqual(self.parent_calls,[],'truthy nonboolean armed field reaches production flow')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['features', 'rescue-v1'] != []\n\nFirst list contains 2 additional elements.\nFirst extra element 0:\n'features'\n\n- ['features', 'rescue-v1']\n+ [] : truthy nonboolean armed field reaches production flow\n"
+    },
+    {
+      "case": "review_parent_final_fsync_expiry (__main__.Review.review_parent_final_fsync_expiry)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/review/adversarial.py\", line 374, in review_parent_final_fsync_expiry\n    self.assertIsNotNone(error,'parent returned success after final fsync exhausted phase')\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: unexpectedly None : parent returned success after final fsync exhausted phase\n"
+    },
+    {
+      "case": "review_parent_preflight_receipt_expiry (__main__.Review.review_parent_preflight_receipt_expiry)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/review/adversarial.py\", line 352, in review_parent_preflight_receipt_expiry\n    self.assertEqual(self.parent_calls,[],'features/target opened after preflight receipt guard expired')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: ['features', 'rescue-v1'] != []\n\nFirst list contains 2 additional elements.\nFirst extra element 0:\n'features'\n\n- ['features', 'rescue-v1']\n+ [] : features/target opened after preflight receipt guard expired\n"
+    },
+    {
+      "case": "review_parent_readback_two_replies_share_message_budget (__main__.Review.review_parent_readback_two_replies_share_message_budget)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/review/adversarial.py\", line 280, in review_parent_readback_two_replies_share_message_budget\n    self.assertIsNotNone(error,'two reply frames refresh one request deadline and exceed .20s total')\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: unexpectedly None : two reply frames refresh one request deadline and exceed .20s total\n"
+    },
+    {
+      "case": "review_parent_reconciliation_fsync_expiry (__main__.Review.review_parent_reconciliation_fsync_expiry)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/review/adversarial.py\", line 343, in review_parent_reconciliation_fsync_expiry\n    self.assertNotIn(3,self.ops(),'production adapter sent BEGIN after reconciliation expiry')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 3 unexpectedly found in [1, 2, 3, 4, 4, 4, 5, 9] : production adapter sent BEGIN after reconciliation expiry\n"
+    },
+    {
+      "case": "review_parent_stderr_flush_failure_unknown (__main__.Review.review_parent_stderr_flush_failure_unknown)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/review/adversarial.py\", line 390, in review_parent_stderr_flush_failure_unknown\n    self.assertEqual(self.fd.outcome,'UNKNOWN','stderr publication error leaves verified outcome')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'VERIFIED_COMMIT_RECEIPT' != 'UNKNOWN'\n- VERIFIED_COMMIT_RECEIPT\n+ UNKNOWN\n : stderr publication error leaves verified outcome\n"
+    },
+    {
+      "case": "review_parent_target_cleanup_failure_unknown (__main__.Review.review_parent_target_cleanup_failure_unknown)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/review/adversarial.py\", line 402, in review_parent_target_cleanup_failure_unknown\n    self.assertEqual(self.fd.outcome,'UNKNOWN','target cleanup exception leaves verified outcome')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'VERIFIED_COMMIT_RECEIPT' != 'UNKNOWN'\n- VERIFIED_COMMIT_RECEIPT\n+ UNKNOWN\n : target cleanup exception leaves verified outcome\n"
+    },
+    {
+      "case": "review_receipt_fsync_expiry_direct_api (__main__.Review.review_receipt_fsync_expiry_direct_api)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/review/adversarial.py\", line 134, in review_receipt_fsync_expiry_direct_api\n    self.assertEqual(self.fd.outcome,'UNKNOWN','success published after whole-image phase expired in receipt fsync')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'VERIFIED_COMMIT_RECEIPT' != 'UNKNOWN'\n- VERIFIED_COMMIT_RECEIPT\n+ UNKNOWN\n : success published after whole-image phase expired in receipt fsync\n"
+    },
+    {
+      "case": "review_receipt_short_write_unknown (__main__.Review.review_receipt_short_write_unknown)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/review/adversarial.py\", line 168, in review_receipt_short_write_unknown\n    self.assertEqual(self.fd.outcome,'UNKNOWN','short receipt write fsynced and treated as success')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'VERIFIED_COMMIT_RECEIPT' != 'UNKNOWN'\n- VERIFIED_COMMIT_RECEIPT\n+ UNKNOWN\n : short receipt write fsynced and treated as success\n"
+    },
+    {
+      "case": "review_reconciliation_fsync_expiry (__main__.Review.review_reconciliation_fsync_expiry)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/review/adversarial.py\", line 102, in review_reconciliation_fsync_expiry\n    self.assertNotIn(3,self.ops(), 'BEGIN sent after reconciliation journal fsync exhausted phase')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 3 unexpectedly found in [1, 2, 3, 4, 4, 4, 5, 9] : BEGIN sent after reconciliation journal fsync exhausted phase\n"
+    },
+    {
+      "case": "review_source_cannot_move_to_new_phase_after_unobserved_expiry (__main__.Review.review_source_cannot_move_to_new_phase_after_unobserved_expiry)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/review/adversarial.py\", line 220, in review_source_cannot_move_to_new_phase_after_unobserved_expiry\n    self.assertIsNotNone(error,'expired source resurrected by replacing its phase')\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: unexpectedly None : expired source resurrected by replacing its phase\n"
+    },
+    {
+      "case": "review_source_cleanup_failure_direct_api (__main__.Review.review_source_cleanup_failure_direct_api)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/review/adversarial.py\", line 181, in review_source_cleanup_failure_direct_api\n    self.assertEqual(late_error,'PoisonedSession','further TARGET status accepted after source cleanup failed')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None != 'PoisonedSession' : further TARGET status accepted after source cleanup failed\n"
+    },
+    {
+      "case": "review_source_reap_failure_retains_ownership (__main__.Review.review_source_reap_failure_retains_ownership)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/review/adversarial.py\", line 334, in review_source_reap_failure_retains_ownership\n    self.assertIs(self.s.process,proc,'source dropped sole production child reference before successful reap')\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None is not <Popen: returncode: None args: ['/opt/homebrew/opt/python@3.13/bin/python3.1...> : source dropped sole production child reference before successful reap\n"
+    },
+    {
+      "case": "review_transfer_final_guard_expiry (__main__.Review.review_transfer_final_guard_expiry)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/review/adversarial.py\", line 126, in review_transfer_final_guard_expiry\n    self.assertNotIn(5,self.ops(), 'whole hash and commit sent after final transfer guard expired')\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 5 unexpectedly found in [1, 2, 3, 4, 4, 4, 5, 9] : whole hash and commit sent after final transfer guard expired\n"
+    }
+  ],
+  "wall_seconds": 5.384020416007843,
+  "parent_cpu_seconds": 0.7437349999999999,
+  "child_cpu_seconds": 1.956793,
+  "parent_maxrss": 163692544,
+  "child_maxrss": 44367872,
+  "children_created": 58,
+  "max_live_children": 2,
+  "all_children_reaped": true,
+  "memory_limit_error": "ValueError('current limit exceeds maximum limit')",
+  "observations": [
+    {
+      "expired_phase": "control",
+      "deadline_reached": true,
+      "case": "review_control_journal_expiry",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": false,
+        "closed": false,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "case": "review_explicit_inverse_success_preserves_opcode_order",
+      "target_ops": [
+        1,
+        8,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": false,
+        "closed": false,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "transfer",
+      "deadline_reached": true,
+      "case": "review_guard_expiry_mid_chunk_no_more_target",
+      "target_ops": [
+        1,
+        2,
+        3
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "ValueError: reviewed session contract hash required",
+      "parent_journal": "",
+      "case": "review_parent_bad_contract_pin_no_child",
+      "target_ops": [],
+      "source_ops": [],
+      "parent_calls": [],
+      "session": null,
+      "children_created": 0,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "ValueError: budget policy pin",
+      "parent_journal": "",
+      "case": "review_parent_bad_policy_pin_no_child",
+      "target_ops": [],
+      "source_ops": [],
+      "parent_calls": [],
+      "session": null,
+      "children_created": 0,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "ValueError: explicit hash-pinned ADB binary required",
+      "parent_journal": "",
+      "case": "review_parent_bad_transport_pin_no_child",
+      "target_ops": [],
+      "source_ops": [],
+      "parent_calls": [],
+      "session": null,
+      "children_created": 0,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": null,
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/evidence/qa-owned-ub6vkujv/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"e1f1bd03345883184caf9ad4f9e975924f8fedacf509b4a7b99912a3a4d76879\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\"}\n",
+      "case": "review_parent_contract_armed_type_refused",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "whole_image_hash",
+      "deadline_reached": true,
+      "parent_error": null,
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/evidence/qa-owned-ictel3ru/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\"}\n",
+      "case": "review_parent_final_fsync_expiry",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: REVIEW parent final fsync failed",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/evidence/qa-owned-ejr01zk1/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\"}\n{\"outcome\": \"UNKNOWN\", \"automatic_retry\": false, \"next\": \"prove idle and explicitly reconcile actual chunks; no offset resume\"}\n",
+      "case": "review_parent_final_fsync_failure_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "ValueError: explicit positive finite budget required",
+      "parent_journal": "",
+      "case": "review_parent_invalid_budget_values_no_child",
+      "target_ops": [],
+      "source_ops": [],
+      "parent_calls": [],
+      "session": null,
+      "children_created": 0,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "DeadlineExpired: whole_image_hash: absolute message budget expired",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/evidence/qa-owned-w9o6bclm/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n{\"outcome\": \"UNKNOWN\", \"automatic_retry\": false, \"next\": \"prove idle and explicitly reconcile actual chunks; no offset resume\"}\n",
+      "case": "review_parent_lost_commit_no_further_requests",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "ValueError: manifest pin",
+      "parent_journal": "",
+      "case": "review_parent_manifest_contract_binding_no_child",
+      "target_ops": [],
+      "source_ops": [],
+      "parent_calls": [],
+      "session": null,
+      "children_created": 0,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "DeadlineExpired: transfer: absolute message budget expired",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/evidence/qa-owned-f_bv2dxu/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n{\"outcome\": \"UNKNOWN\", \"automatic_retry\": false, \"next\": \"prove idle and explicitly reconcile actual chunks; no offset resume\"}\n",
+      "case": "review_parent_mid_source_stall_no_further_requests",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: REVIEW after partial target request",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/evidence/qa-owned-nxe9dsiw/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n{\"outcome\": \"UNKNOWN\", \"automatic_retry\": false, \"next\": \"prove idle and explicitly reconcile actual chunks; no offset resume\"}\n",
+      "case": "review_parent_partial_transport_write_unknown",
+      "target_ops": [
+        1,
+        2,
+        3
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "source_preflight",
+      "deadline_reached": true,
+      "parent_error": null,
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/evidence/qa-owned-br8g46gl/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\"}\n",
+      "case": "review_parent_preflight_receipt_expiry",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": null,
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/evidence/qa-owned-akjfcnty/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"chunk_sha256\": \"dafdc2648feb18c731a8da15261c8c33b659721c421f92c2c33fa85b0727a045\", \"bytes\": 19, \"whole_backup_claim\": false}\n",
+      "case": "review_parent_readback_two_replies_share_message_budget",
+      "target_ops": [
+        6
+      ],
+      "source_ops": [],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNOBSERVED",
+        "possible_partition_modification": false
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "reconciliation",
+      "deadline_reached": true,
+      "parent_error": null,
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/evidence/qa-owned-nxt60_a0/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\"}\n",
+      "case": "review_parent_reconciliation_fsync_expiry",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: REVIEW stderr flush failed",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/evidence/qa-owned-prmo8a36/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\"}\n",
+      "case": "review_parent_stderr_flush_failure_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: REVIEW target cleanup failed after actual reap",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-bounded-host-io-review/evidence/qa-owned-btr7xux0/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\"}\n",
+      "case": "review_parent_target_cleanup_failure_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "whole_image_hash",
+      "deadline_reached": true,
+      "case": "review_receipt_fsync_expiry_direct_api",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": false,
+        "closed": false,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "case": "review_receipt_fsync_failure_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "case": "review_receipt_short_write_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": false,
+        "closed": false,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "case": "review_receipt_write_failure_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "reconciliation",
+      "deadline_reached": true,
+      "error": null,
+      "case": "review_reconciliation_fsync_expiry",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": false,
+        "closed": false,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "case": "review_same_source_and_target_reuse_refused",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "source-old",
+      "deadline_reached": true,
+      "error": null,
+      "case": "review_source_cannot_move_to_new_phase_after_unobserved_expiry",
+      "target_ops": [],
+      "source_ops": [
+        1,
+        4,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": false,
+        "closed": false,
+        "outcome": "UNOBSERVED",
+        "possible_partition_modification": false
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "outcome_immediately_after_cleanup_error": "VERIFIED_COMMIT_RECEIPT",
+      "status_after_cleanup_error": "fake idle",
+      "status_after_cleanup_error_exception": null,
+      "case": "review_source_cleanup_failure_direct_api",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9,
+        1
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": false,
+        "closed": false,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "source_process_reference_retained": false,
+      "source_child_still_live_before_supervisor_cleanup": true,
+      "case": "review_source_reap_failure_retains_ownership",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": false,
+        "closed": false,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "expired_phase": "transfer",
+      "deadline_reached": true,
+      "case": "review_transfer_final_guard_expiry",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": false,
+        "closed": false,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    }
+  ]
+}

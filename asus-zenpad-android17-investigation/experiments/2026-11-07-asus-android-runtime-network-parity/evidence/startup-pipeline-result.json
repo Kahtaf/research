@@ -1,0 +1,47 @@
+{
+  "started_utc": "2026-11-07T15:17:01.530380+00:00",
+  "stages": [
+    {
+      "name": "admit",
+      "args": [],
+      "exit": 0
+    },
+    {
+      "name": "corroborate_boot",
+      "args": [],
+      "exit": 0
+    },
+    {
+      "name": "prepare",
+      "args": [],
+      "exit": 0
+    },
+    {
+      "name": "execute",
+      "args": [
+        "patch"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "verify_cow",
+      "args": [],
+      "exit": 0
+    },
+    {
+      "name": "execute",
+      "args": [
+        "runtime"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "extract",
+      "args": [],
+      "exit": 0
+    }
+  ],
+  "actual_os_boots": 1,
+  "pipeline_completed": true,
+  "finished_utc": "2026-11-07T15:23:45.162728+00:00"
+}

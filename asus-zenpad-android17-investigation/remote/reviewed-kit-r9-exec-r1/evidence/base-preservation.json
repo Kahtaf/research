@@ -1,0 +1,66 @@
+{
+  "blocked_r9_seal": "7850aa14d465cfa7cb061ed6cde5fe23c28041a5b4f5e9f7fd8c7d4d62956b5c",
+  "blocked_r9_files_verified": 184,
+  "method_sha256": "202562e1b98a0d9de47f9896b755be10957984c7812d1b9268d3052201cee3ad",
+  "new_kit": "/srv/android/asus-reviewed-build-kit/r9-exec-r1",
+  "active_source_changed": false,
+  "build/blueprint/context.go": [
+    {
+      "line": 25,
+      "text": "\t\"hash/fnv\""
+    },
+    {
+      "line": 5258,
+      "text": "func (c *Context) WriteBuildFile(w StringWriterWriter, shardNinja bool, ninjaFileName string) error {"
+    },
+    {
+      "line": 5298,
+      "text": "\t\tif err = c.writeAllModuleActions(nw, shardNinja, ninjaFileName); err != nil {"
+    },
+    {
+      "line": 5542,
+      "text": "func GetNinjaShardFiles(ninjaFile string) []string {"
+    },
+    {
+      "line": 5548,
+      "text": "\tninjaShardCnt := 10"
+    },
+    {
+      "line": 5549,
+      "text": "\tfileNames := make([]string, ninjaShardCnt)"
+    },
+    {
+      "line": 5551,
+      "text": "\tfor i := 0; i < ninjaShardCnt; i++ {"
+    },
+    {
+      "line": 5557,
+      "text": "func (c *Context) writeAllModuleActions(nw *ninjaWriter, shardNinja bool, ninjaFileName string) error {"
+    },
+    {
+      "line": 5597,
+      "text": "\tif shardNinja {"
+    },
+    {
+      "line": 5600,
+      "text": "\t\tfiles := GetNinjaShardFiles(ninjaFileName)"
+    },
+    {
+      "line": 5601,
+      "text": "\t\tshardedModules := proptools.ShardByCount(modules, len(files))"
+    },
+    {
+      "line": 5602,
+      "text": "\t\tfor i, batchModules := range shardedModules {"
+    },
+    {
+      "line": 5609,
+      "text": "\t\t\t\t\terrorCh <- fmt.Errorf(\"error opening Ninja file shard: %s\", err)"
+    },
+    {
+      "line": 5928,
+      "text": "\thasher := fnv.New64a()"
+    }
+  ],
+  "build/blueprint/ninja_writer.go": []
+}

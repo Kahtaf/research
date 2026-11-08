@@ -1,0 +1,95 @@
+{
+  "utc": "2026-11-06T18:52:47.633923+00:00",
+  "manifest": "d6790e2efde8ddb11102f561b5c58129660be09d41f1bbfb66402f3865ef13dd",
+  "files": {
+    "include/uapi/linux/bpf.h": {
+      "baseline_sha256": "0acaebd9f2d05a8854ac4ef2315b2058f3f64dc61bd89fd918ca80b89aeddd05",
+      "tested_sha256": "5df820b95a96cef06c9e67b9fab9cbb5ad46b7e62b76a9d69db6af269c5eeb07"
+    },
+    "kernel/bpf/syscall.c": {
+      "baseline_sha256": "4633a05b44be09da4394c42ec4b13ba7173e5a3ffc693ca523b28e4b1bd4d09d",
+      "tested_sha256": "739b2804cb256f7666496cabe9924567d9964a65dcc13e0a979c4c6c47ab63ac"
+    },
+    "kernel/bpf/Makefile": {
+      "baseline_sha256": "1bb0955b7a4e228af836149441ee2257d80533423b365e6bab007897c7055c98",
+      "tested_sha256": "ab33f64caba9dbf5d1bbd13fdfc6d8d2cbac5fac944a2fb7daa65dd990aff5e3"
+    },
+    "kernel/bpf/lpm_trie.c": {
+      "baseline_sha256": null,
+      "tested_sha256": "fb2023411dd320b2959722f1a0a1d44243e0c360cf585a9ef385618c5dbf8fa9"
+    },
+    "net/core/filter.c": {
+      "baseline_sha256": "e2cf9265a249356213bfd0780ce4fbacde814505407875095de9b01bfb40971a",
+      "tested_sha256": "b4fc1f6bf7801417772128db04dffb3657fc01fc0e151079fef4c70b9e1669b8"
+    }
+  },
+  "patches": [
+    {
+      "patch": "01-map-info.patch",
+      "sha256": "5e82ab00bbd7ec00b1e210acf4093d9e7b5dd948e27789d39ba9b62c53803bfc",
+      "returncode": 0,
+      "stdout": "patching file include/uapi/linux/bpf.h\npatching file kernel/bpf/syscall.c\n",
+      "stderr": ""
+    },
+    {
+      "patch": "02-lpm-trie.patch",
+      "sha256": "0fae4d3df1e59ebaa754f19c14593c2aae1dbcd865e85657d792a35a39e22932",
+      "returncode": 0,
+      "stdout": "patching file kernel/bpf/lpm_trie.c\npatching file include/uapi/linux/bpf.h\npatching file kernel/bpf/Makefile\n",
+      "stderr": ""
+    },
+    {
+      "patch": "03-skb-relative-load.patch",
+      "sha256": "bb7026d68d718688a57f4a0e78c01c3c5c9ab8f378341b31a3c01ef48336c14e",
+      "returncode": 0,
+      "stdout": "patching file net/core/filter.c\npatching file include/uapi/linux/bpf.h\n",
+      "stderr": ""
+    },
+    {
+      "patch": "04-relative-net-without-mac.patch",
+      "sha256": "2c5c4eb0e386b740120626f9e92f2fa5f722cefa41b95f866250d418094d20ad",
+      "returncode": 0,
+      "stdout": "patching file net/core/filter.c\n",
+      "stderr": ""
+    }
+  ],
+  "firstboot_preserved": [
+    {
+      "path": "arch/arm64/configs/asus_p00a_defconfig",
+      "before_sha256": "364ee3bbda2f7c8a2bf16508fff9da1a070de012ceecfb13209086240aaedde2",
+      "after_sha256": "ae86c367dd8919e3fb55a18209a2075330f49c2b6e83b40226a38c832fd7e01d"
+    },
+    {
+      "path": "include/linux/cgroup-defs.h",
+      "before_sha256": "633242d25cc0f96ea85836701491f0c6c336959ad1fbef135d0acf8cfb8aa86c",
+      "after_sha256": "103224c734758278b0bc28d60395aee984f475a9f06cd9651d013ba41cd7b75a"
+    },
+    {
+      "path": "kernel/cgroup.c",
+      "before_sha256": "cec00ed21374e7e44d88974fe3593da64ebc990a25afae082ece4df3815867d1",
+      "after_sha256": "23e0535c2f3137fadc5823d1e2de2dd0f8172d7557ad6f6f2dc1f9ca0cab9c35"
+    },
+    {
+      "path": "kernel/cpuset.c",
+      "before_sha256": "9d7ca32d63e04fd6aadd0d2afcf42baf6001ee7d020f19c79cfafb2707ff3015",
+      "after_sha256": "f565fe8dee38428021e4ec2606e79349ce0421694603bb07cb16fc9c2b4d7ce2"
+    }
+  ],
+  "connectivity": {
+    "bpf/loader/NetBpfLoad.cpp": {
+      "baseline_sha256": "49548c50cea266cbbbedee318374179d202cb59cd2e22e612276047890c129a3",
+      "tested_sha256": "8e88bba6fb7f6eec0e71e3825fe13862d8c347d1d9fafd5de6e76428c316eac9"
+    },
+    "bpf/netd/BpfHandler.cpp": {
+      "baseline_sha256": "ed2538a9eed9a59b76d2dec2ac62070dea2d98020cafacd940edbc146851b617",
+      "tested_sha256": "cd2c5c6ac46ada7c7078d837f327db31c01470c1a85332c207f2cea855bc826a"
+    },
+    "bpf/progs/netd.c": {
+      "baseline_sha256": "7dc4fa02952c0268737dc9aad20a0571b55df255f878506a4db91c1d962713b6",
+      "tested_sha256": "0ecc7f0895df51ccfa2316115a148fd1fbc6c5a3797607035f51a889911571d1"
+    }
+  },
+  "active_aosp_modified": false,
+  "virtual_config_copied": false,
+  "patch12_applied": false
+}

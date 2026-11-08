@@ -1,0 +1,92 @@
+{
+  "candidate": {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-stock-only-ram-rescue-build/artifacts/candidate/UNAPPROVED-STOCK-ONLY.img",
+    "bytes": 10412032,
+    "sha256": "5a61d3d65a7ba6b29745a965d9911ab4483c951a0327339839a0541bcb9ab30f",
+    "header_fields": {
+      "kernel_size": 7472341,
+      "kernel_address": 1074266112,
+      "ramdisk_size": 2936068,
+      "ramdisk_address": 1140850688,
+      "second_size": 0,
+      "second_address": 1089470464,
+      "tags_address": 1308622848,
+      "page_size": 2048,
+      "dt_size": 0,
+      "unused": 234881318
+    },
+    "name": "1533787388",
+    "cmdline": "androidboot.selinux=enforcing bootopt=64S3,32N2,64N2 build_version=3",
+    "boot_id_valid": true,
+    "kernel_sha256": "b0e5d48bf2889b418dda0fc867f70e42e27a0aeb0a0a3d37539d9a7435430880",
+    "kernel_payload_sha256": "a3e696ebbb222a331c8ba19da306eac709a771089b086baf0d208cb1221c4a4b",
+    "kernel_first128": "1f8b0800000000000203ec5b7b705465963ff7dece83244093ee3c0c91ee4e7485e0ae8c2499041873d341075f5518a266756ae9a479edc45a095002863537105d7732bbc50d3d320bd6d0498843f7385b594d06dad5492788a38b3b6a328d8e5ba51d18540cb305e1958b90dedfb9b79b3c7c8cb3fb07fb477f555fddfe5ee7",
+    "kernel_gzip": {
+      "compressed_bytes": 7409347,
+      "expanded_bytes": 16963568,
+      "expanded_sha256": "db90ee7fff379f35ac2b0aafb11a6abee7b2c283b57d352c40ae7c6d7c35eb2a",
+      "appended_bytes": 62482,
+      "arm64_header": "1000001400000000000008000000000000502b0100000000000000000000000000000000000000000000000000000000000000000000000041524d6400000000"
+    },
+    "ramdisk_offset": 7475200,
+    "ramdisk_payload_bytes": 2935556,
+    "ramdisk_wrapper": "8816885804cb2c005245434f56455259000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffff",
+    "declared_end": 10412032,
+    "trailing_bytes": 0,
+    "trailing_nonzero": false,
+    "kernel_config": null,
+    "range": {
+      "ramdisk_start": "0x44000000",
+      "ramdisk_end": "0x442ccd04",
+      "kernel_load_start": "0x40080000",
+      "kernel_load_end": "0x407a04d5"
+    }
+  },
+  "stock": {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin",
+    "bytes": 16740352,
+    "sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20",
+    "header_fields": {
+      "kernel_size": 7472341,
+      "kernel_address": 1074266112,
+      "ramdisk_size": 3984054,
+      "ramdisk_address": 1140850688,
+      "second_size": 0,
+      "second_address": 1089470464,
+      "tags_address": 1308622848,
+      "page_size": 2048,
+      "dt_size": 0,
+      "unused": 234881318
+    },
+    "name": "1533787388",
+    "cmdline": "androidboot.selinux=permissive bootopt=64S3,32N2,64N2 build_version=3",
+    "boot_id_valid": true,
+    "kernel_sha256": "b0e5d48bf2889b418dda0fc867f70e42e27a0aeb0a0a3d37539d9a7435430880",
+    "kernel_payload_sha256": "a3e696ebbb222a331c8ba19da306eac709a771089b086baf0d208cb1221c4a4b",
+    "kernel_first128": "1f8b0800000000000203ec5b7b705465963ff7dece83244093ee3c0c91ee4e7485e0ae8c2499041873d341075f5518a266756ae9a479edc45a095002863537105d7732bbc50d3d320bd6d0498843f7385b594d06dad5492788a38b3b6a328d8e5ba51d18540cb305e1958b90dedfb9b79b3c7c8cb3fb07fb477f555fddfe5ee7",
+    "kernel_gzip": {
+      "compressed_bytes": 7409347,
+      "expanded_bytes": 16963568,
+      "expanded_sha256": "db90ee7fff379f35ac2b0aafb11a6abee7b2c283b57d352c40ae7c6d7c35eb2a",
+      "appended_bytes": 62482,
+      "arm64_header": "1000001400000000000008000000000000502b0100000000000000000000000000000000000000000000000000000000000000000000000041524d6400000000"
+    },
+    "ramdisk_offset": 7475200,
+    "ramdisk_payload_bytes": 3983542,
+    "ramdisk_wrapper": "88168858b6c83c005245434f56455259000000000000000000000000000000000000000000000000ffffffffffffffffffffffffffffffffffffffffffffffff",
+    "declared_end": 11460608,
+    "trailing_bytes": 5279744,
+    "trailing_nonzero": true,
+    "kernel_config": null,
+    "range": {
+      "ramdisk_start": "0x44000000",
+      "ramdisk_end": "0x443ccab6",
+      "kernel_load_start": "0x40080000",
+      "kernel_load_end": "0x407a04d5"
+    }
+  },
+  "full_p10": {
+    "bytes": 16740352,
+    "sha256": "3f99c785cca60bf56c2505711e2d26b72623daf28180515d44c5ba2abf03a44a"
+  }
+}

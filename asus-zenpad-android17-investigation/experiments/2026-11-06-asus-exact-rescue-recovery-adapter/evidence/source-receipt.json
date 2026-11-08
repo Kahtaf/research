@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "kind": "implementation receipt; not independent review or physical approval",
+  "code": {
+    "files": {
+      "profile.json": "661d93cbc012d839429bb1b87431fb83b5f646833ee59d307e0e60461b7cda6f",
+      "source/adapter.py": "3f52fcadb8417aafa1235391ae2bc27a8ebc149541caaf953ae6c5201073ffc2",
+      "source/engine.py": "630c4aaadbb418dc0af1f5a00628b3ec16117bb165707b4d18794c124464a681",
+      "source/root_dispatch.py": "38c8030193f32084b6549bf81f6e1d2f9428fb516a6853295eb1adb4208407bc",
+      "source/preserved.json": "80475bab124d355255ce10d4224ffc89ac20b61ddc440d88303f5fa47638ba8c"
+    },
+    "sha256": "5f20aece6bfa3ede3e937766ff390e6a575cbbc97759cbe52a3f8a09b68f5a72"
+  },
+  "profile_sha256": "661d93cbc012d839429bb1b87431fb83b5f646833ee59d307e0e60461b7cda6f",
+  "engine_sha256": "630c4aaadbb418dc0af1f5a00628b3ec16117bb165707b4d18794c124464a681",
+  "preserved_manifest_sha256": "80475bab124d355255ce10d4224ffc89ac20b61ddc440d88303f5fa47638ba8c",
+  "exact_input_pins": {
+    "2026-11-06-asus-recovery-control-wifi/source/recovery_control.py": "34ed0079e7f9ca3b4edcab5d108fe29d330a653781c4ec5d67b8ca421daac0ab",
+    "2026-11-06-asus-linux49-r3-transport/source/probe_transport.py": "0cfedd7176860fefc16f04927429b98448ae9e92bbdf086371e54c9ef6b10ef1",
+    "2026-11-06-asus-linux49-r3-transport/source/recovery_control.py": "3e896a0e844f4cca4014d7df57386d75389e7f18c601b41ede28e4f3f5ba6767",
+    "2026-11-06-asus-linux49-r3-transport/source/observer.py": "01ce966e7fc269e69d7468d824646cb1b123c20c01708e5b5aebc3e2bb849dd8",
+    "2026-11-06-asus-stock-helper-dispatch-fix/source/service/root_dispatch.py": "771ff66017eac906e807b8be2b722a5b3f47d3df0cb6323488ef9902464c685a",
+    "2026-11-06-asus-wifi-device-access/scripts/root_shell_wifi.py": "684bbe346488dfd0e7dfce741b7547021f019d3749235e6208eb1c9766395f34",
+    "2026-11-05-asus-root-hardware-validation/sources/mtk-su-mirror-b": "328632e853ff6427af9f35cb83a91d9e960f35d01188ee66d46ae9c7ce7c7827",
+    "2026-11-06-asus-stock-rescue-deployment-plan/README.md": "8445f79542fc90d0952b50c81ba6fac3eb17646f00029f1ce99038ff3d0d8ac8",
+    "2026-11-06-asus-stock-rescue-deployment-plan/evidence/transport-gap.json": "1cbabb8c6ea3052da5f233dc4c18a59d79116a9e480d66127ae036d932daf149",
+    "2026-11-06-asus-stock-only-ram-rescue-build/HANDOFF.md": "ddb1ead2056c2371331d1610f4841626d5d4e6429e307a113fc11c5a33b2e828",
+    "2026-11-06-asus-stock-only-ram-rescue-build/artifacts/candidate/session-contract.UNAPPROVED.json": "12e11dc82a7b6a49542f13f5f752beaec438a3080080668b85f129f19b3aa18c",
+    "2026-11-06-asus-stock-only-ram-rescue-build/artifacts/candidate/UNAPPROVED-STOCK-ONLY.img": "5a61d3d65a7ba6b29745a965d9911ab4483c951a0327339839a0541bcb9ab30f",
+    "2026-11-06-asus-stock-only-ram-rescue-independent-review/HANDOFF.md": "138b212d5baf8aeaf61e31ce08f32c79ae45d6ff551ddd382b63c164c746f682",
+    "2026-11-06-asus-stock-only-ram-rescue-independent-review/REPORT.md": "77badd7695514700f15bf9b881bc948d54b0ec2888004027458e50ec2ecede0b",
+    "2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20",
+    "2026-11-05-asus-boot-access-audit/artifacts/device-backup/verify/recovery.bin": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20"
+  },
+  "original_inputs_unchanged": true,
+  "original_input_count": 16,
+  "device_contacted": false,
+  "subprocess_device_operations": 0,
+  "builds": 0,
+  "network_operations": 0,
+  "physical_GO": false,
+  "hardware_ready": false
+}

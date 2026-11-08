@@ -1,0 +1,62 @@
+[
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-stock-only-ram-rescue-build/artifacts/candidate/UNAPPROVED-STOCK-ONLY.img",
+    "bytes": 10412032,
+    "sha256": "5a61d3d65a7ba6b29745a965d9911ab4483c951a0327339839a0541bcb9ab30f"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-stock-only-ram-rescue-build/artifacts/base-kernel",
+    "bytes": 7472341,
+    "sha256": "b0e5d48bf2889b418dda0fc867f70e42e27a0aeb0a0a3d37539d9a7435430880"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin",
+    "bytes": 16740352,
+    "sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-stock-only-ram-rescue-build/source/file_contexts.py",
+    "bytes": 1657,
+    "sha256": "012a4f0a71f49772a12e537721b5aca3e5de1b201b2dc5aaa07a26e07cdb650c"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-android17-target-rescue/source/proxy.c",
+    "bytes": 1623,
+    "sha256": "3dacecfd307ef567146c55c988ae20296a7cfe987c16cc160677208a38af1d27"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-android17-target-rescue/source/common.h",
+    "bytes": 2773,
+    "sha256": "90fe60e79b3cc3932dab7e824bc803bb18ba086ea079beca8298c34ccf2a53c3"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-android17-target-rescue/inputs/init-main.cpp",
+    "bytes": 23146,
+    "sha256": "7108b9930e11b3895804b51ceb21ee5dcc0f6580648acf64a3a3e1921f7ac0f1"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-android17-target-rescue/inputs/init-service.cpp",
+    "bytes": 26521,
+    "sha256": "ab69b1a164ca43476bffbf34539b1c83992c0b2102e6619cf84afdaf5e43030b"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/init/initramfs.c",
+    "bytes": 14440,
+    "sha256": "a77d1e0373384e8ab78bd2cd26ae27b97364881a5326f91d30a16bb161022d2e"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/arch/arm64/mm/init.c",
+    "bytes": 10380,
+    "sha256": "8879a6346bd490e77c23727b90c6db8d2d4f378aa9f0ff327095c1a3910fca5f"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/usb/gadget/android.c",
+    "bytes": 75133,
+    "sha256": "d5a81c3672d0d771dfb76fef6af54702e3c81cf3609f114249df42c5b12eac35"
+  },
+  {
+    "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/scripts/kallsyms.c",
+    "bytes": 16982,
+    "sha256": "663f2d89e6a6f69812f9238462d4f3d6a0b16176d15c3cf7e2dec62af6a7e8de"
+  }
+]

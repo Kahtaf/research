@@ -1,0 +1,22 @@
+{
+  "2026-11-06-asus-android17-build-continuation/artifacts/probe-r2/UNTESTED-combined-linux49-ram-probe.img": {
+    "bytes": 8880128,
+    "sha256": "48bb6efa1620cb380037e53b53cfa560e38cd23b95211c8634616ce94fd6ce48"
+  },
+  "2026-11-06-asus-android17-build-continuation/artifacts/Image.gz-dtb-combined-r1": {
+    "bytes": 7696186,
+    "sha256": "d4094bcff6c763af7f1c01ccd3d612a988f96de13f78b492b808cc76c0ac929f"
+  },
+  "2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin": {
+    "bytes": 16740352,
+    "sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20"
+  },
+  "2026-11-05-asus-boot-access-audit/artifacts/device-backup/verify/recovery.bin": {
+    "bytes": 16740352,
+    "sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20"
+  },
+  "2026-11-06-asus-android17-os-rescue/artifacts/candidate-final/UNTESTED-stock-control.img": {
+    "bytes": 8654848,
+    "sha256": "7d74dfcaf4b2793453906799d721bfd95a401c564f6698b1c646e18bee918ea5"
+  }
+}

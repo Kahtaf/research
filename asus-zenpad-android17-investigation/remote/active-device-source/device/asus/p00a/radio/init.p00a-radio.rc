@@ -1,0 +1,78 @@
+# Opt in only after the parent validates the local calibration and policy.
+# No radio is powered by kernel boot, loader registration, or daemon readiness.
+on init
+    setprop vendor.p00a.radio.loaded 0
+    setprop vendor.p00a.wmt.ready 0
+    setprop vendor.p00a.wifi.ready 0
+    setprop vendor.p00a.btcal Unavailable
+
+on post-fs-data
+    # Parent restores whole existing factory containers here before opt-in.
+    # Directory setup and metadata only; no record creation or calibration writes.
+    mkdir /data/vendor/p00a 0751 root root
+    mkdir /data/vendor/p00a/nvram 0751 root root
+    mkdir /data/vendor/p00a/nvram/APCFG 0751 root root
+    mkdir /data/vendor/p00a/nvram/APCFG/APRDEB 0751 root root
+    restorecon_recursive /data/vendor/p00a
+    chown root bluetooth /data/vendor/p00a/nvram/APCFG/APRDEB/BT_Addr
+    chmod 0640 /data/vendor/p00a/nvram/APCFG/APRDEB/BT_Addr
+    chown root wifi /data/vendor/p00a/nvram/APCFG/APRDEB/WIFI
+    chmod 0640 /data/vendor/p00a/nvram/APCFG/APRDEB/WIFI
+    mkdir /data/vendor/bluetooth/p00a 0750 root bluetooth
+    restorecon_recursive /data/vendor/bluetooth/p00a
+
+on property:ro.persistent_properties.ready=true && property:persist.vendor.p00a.radio.enable=1
+    start p00a-radio-load
+
+on property:ro.persistent_properties.ready=true && property:persist.vendor.p00a.bluetooth.enable=1
+    start p00a-radio-load
+
+service p00a-radio-load /vendor/bin/p00a-wmt --load
+    class core
+    user root
+    group root
+    disabled
+    oneshot
+
+on property:vendor.p00a.radio.loaded=1
+    start p00a-wmt
+
+service p00a-wmt /vendor/bin/p00a-wmt --serve
+    class core
+    user system
+    group system wifi
+    socket p00a_wmt_ready stream 0660 system wifi
+    disabled
+    onrestart setprop vendor.p00a.wmt.ready 0
+    onrestart setprop vendor.p00a.wifi.ready 0
+    onrestart stop wificond
+
+on property:vendor.p00a.wmt.ready=1 && property:persist.vendor.p00a.radio.enable=1
+    start p00a-wifi-on
+
+service p00a-wifi-on /vendor/bin/p00a-wmt --wifi-on
+    class core
+    user root
+    group root wifi
+    disabled
+    oneshot
+
+on property:vendor.p00a.wifi.ready=1
+    start wificond
+
+
+on property:vendor.p00a.wmt.ready=1 && property:persist.vendor.p00a.bluetooth.enable=1
+    start p00a-bt-prepare
+
+service p00a-bt-prepare /vendor/bin/p00a-wmt --bt-prepare
+    class core
+    user root
+    group root bluetooth
+    disabled
+    oneshot
+
+on property:vendor.p00a.btcal=Ready && property:persist.vendor.p00a.bluetooth.enable=1
+    chown bluetooth bluetooth /data/vendor/bluetooth/p00a/bdaddr
+    chmod 0600 /data/vendor/bluetooth/p00a/bdaddr
+    restorecon /data/vendor/bluetooth/p00a/bdaddr
+    start vendor.bluetooth-p00a

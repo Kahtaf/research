@@ -1,0 +1,9 @@
+{
+  "status": "ready",
+  "source_copy": "cp -a; selected independent inodes verified",
+  "full_tree_rehash": false,
+  "config_sha256": "708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1",
+  "source_edits": [
+    "drivers/watchdog/mtk_wdt.c"
+  ]
+}

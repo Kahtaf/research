@@ -1,0 +1,68 @@
+{
+  "full_log_remote": "/srv/android/asus-early-retained-kernel-probe-20261107/evidence/Image.gz-dtb.log",
+  "full_log_bytes": 151591,
+  "full_log_sha256": "72ab01596e84c1199a7923427c76848778852fc8ddf0ed33a283cd65b0a7e411",
+  "warning_lines": [
+    "/srv/android/asus-early-retained-kernel-probe-20261107/kernel/arch/arm64/kernel/process.c:186:24: warning: format \u2018%p\u2019 expects argument of type \u2018void *\u2019, but argument 3 has type \u2018long unsigned int\u2019 [-Wformat=]",
+    "/srv/android/asus-early-retained-kernel-probe-20261107/kernel/kernel/extable.c:44:59: warning: comparison between two arrays [-Warray-compare]",
+    "/srv/android/asus-early-retained-kernel-probe-20261107/kernel/include/linux/list.h:62:20: warning: storing the address of local variable \u2018waiter\u2019 in \u2018*(struct list_head *)((char *)sem + 8).prev\u2019 [-Wdangling-pointer=]",
+    "/srv/android/asus-early-retained-kernel-probe-20261107/kernel/include/linux/list.h:62:20: warning: storing the address of local variable \u2018waiter\u2019 in \u2018*(struct list_head *)((char *)sem + 8).prev\u2019 [-Wdangling-pointer=]",
+    "/srv/android/asus-early-retained-kernel-probe-20261107/kernel/include/linux/list.h:62:20: warning: storing the address of local variable \u2018waiter\u2019 in \u2018*(struct list_head *)((char *)sem + 8).prev\u2019 [-Wdangling-pointer=]",
+    "/srv/android/asus-early-retained-kernel-probe-20261107/kernel/include/linux/list.h:62:20: warning: storing the address of local variable \u2018waiter\u2019 in \u2018*(struct list_head *)((char *)sem + 8).prev\u2019 [-Wdangling-pointer=]",
+    "/srv/android/asus-early-retained-kernel-probe-20261107/kernel/kernel/sched/core.c:7921:30: warning: the comparison will always evaluate as \u2018false\u2019 for the address of \u2018cpu_isolated_map\u2019 will never be NULL [-Waddress]",
+    "/srv/android/asus-early-retained-kernel-probe-20261107/kernel/lib/dynamic_debug.c:987:31: warning: comparison between two arrays [-Warray-compare]",
+    "/srv/android/asus-early-retained-kernel-probe-20261107/kernel/kernel/profile.c:337:27: warning: the comparison will always evaluate as \u2018true\u2019 for the address of \u2018prof_cpu_mask\u2019 will never be NULL [-Waddress]",
+    "/srv/android/asus-early-retained-kernel-probe-20261107/kernel/kernel/profile.c:374:27: warning: the comparison will always evaluate as \u2018true\u2019 for the address of \u2018prof_cpu_mask\u2019 will never be NULL [-Waddress]",
+    "/srv/android/asus-early-retained-kernel-probe-20261107/kernel/kernel/profile.c:404:47: warning: the comparison will always evaluate as \u2018true\u2019 for the address of \u2018prof_cpu_mask\u2019 will never be NULL [-Waddress]",
+    "/srv/android/asus-early-retained-kernel-probe-20261107/kernel/include/linux/fscrypt.h:41:5: warning: \"__FS_HAS_ENCRYPTION\" is not defined, evaluates to 0 [-Wundef]",
+    "<command-line>: warning: format \u2018%d\u2019 expects argument of type \u2018int\u2019, but argument 6 has type \u2018long unsigned int\u2019 [-Wformat=]",
+    "<command-line>: warning: format \u2018%d\u2019 expects argument of type \u2018int\u2019, but argument 6 has type \u2018long unsigned int\u2019 [-Wformat=]",
+    "<command-line>: warning: format \u2018%d\u2019 expects argument of type \u2018int\u2019, but argument 6 has type \u2018long unsigned int\u2019 [-Wformat=]",
+    "<command-line>: warning: format \u2018%d\u2019 expects argument of type \u2018int\u2019, but argument 6 has type \u2018long unsigned int\u2019 [-Wformat=]",
+    "/srv/android/asus-early-retained-kernel-probe-20261107/kernel/drivers/net/wireguard/crypto/zinc/blake2s/blake2s.c:254:14: warning: \u2018selftest_run\u2019 reading 8 bytes from a region of size 0 [-Wstringop-overread]",
+    "/srv/android/asus-early-retained-kernel-probe-20261107/kernel/drivers/net/wireguard/crypto/zinc/curve25519/curve25519.c:92:14: warning: \u2018selftest_run\u2019 reading 8 bytes from a region of size 0 [-Wstringop-overread]",
+    "aarch64-linux-gnu-ld: warning: -z norelro ignored",
+    "aarch64-linux-gnu-ld: warning: .tmp_vmlinux1 has a LOAD segment with RWX permissions",
+    "aarch64-linux-gnu-ld: warning: -z norelro ignored",
+    "aarch64-linux-gnu-ld: warning: .tmp_vmlinux2 has a LOAD segment with RWX permissions",
+    "aarch64-linux-gnu-ld: warning: -z norelro ignored",
+    "aarch64-linux-gnu-ld: warning: vmlinux has a LOAD segment with RWX permissions"
+  ],
+  "warning_count": 24,
+  "error_count": 0,
+  "tail": [
+    "  CHK     include/generated/compile.h",
+    "aarch64-linux-gnu-ld: warning: -z norelro ignored",
+    "aarch64-linux-gnu-ld: warning: .tmp_vmlinux1 has a LOAD segment with RWX permissions",
+    "  KSYM    .tmp_kallsyms1.o",
+    "aarch64-linux-gnu-ld: warning: -z norelro ignored",
+    "aarch64-linux-gnu-ld: warning: .tmp_vmlinux2 has a LOAD segment with RWX permissions",
+    "  KSYM    .tmp_kallsyms2.o",
+    "  LD      vmlinux",
+    "aarch64-linux-gnu-ld: warning: -z norelro ignored",
+    "aarch64-linux-gnu-ld: warning: vmlinux has a LOAD segment with RWX permissions",
+    "  SORTEX  vmlinux",
+    "  SYSMAP  System.map",
+    "  OBJCOPY arch/arm64/boot/Image",
+    "  DTC     arch/arm64/boot/dts/mediatek/asus-p00a.dtb",
+    "  GZIP    arch/arm64/boot/Image.gz",
+    "  CAT     arch/arm64/boot/Image.gz-dtb",
+    "make[1]: Leaving directory '/srv/android/asus-early-retained-kernel-probe-20261107/out'",
+    "make: Leaving directory '/srv/android/asus-early-retained-kernel-probe-20261107/kernel'"
+  ],
+  "selected_linked_symbols": {
+    "asus_retained_trace_early_init": [
+      "ffffff8008f05bc8 T asus_retained_trace_early_init"
+    ],
+    "asus_retained_trace_init": [
+      "ffffff8008f05be0 T asus_retained_trace_init"
+    ],
+    "asus_retained_trace_write": [
+      "ffffff8008092df0 T asus_retained_trace_write"
+    ],
+    "mtk_timer_init": [
+      "ffffff8008f4320c t mtk_timer_init"
+    ]
+  },
+  "complete_compile_exit": 0
+}

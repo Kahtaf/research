@@ -1,0 +1,12 @@
+{
+  "resolved.config": "26c59e0afa3f6438fafea4b5379b898c9b1fcaf05adf1d7e14db93b2e976bd13",
+  "sound/soc/mediatek/Kconfig": "7b2a904e9535307536eddd5fb4661f060b3f60920fd3fe31bb941680a99d7bac",
+  "sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.h": "c89532131c85afed3b944b0cf421475ffc1515790ae3a23662def80799c39c72",
+  "sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c": "939e840a897cd71c74f714b565b68da0445297dac8137ea6ca61d054f82f79d9",
+  "sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c": "6b07488b81f6b4e3f40dfa07126001a39cf42650585abd74a3860023afd8b69a",
+  "sound/soc/mediatek/mt_soc_audio_8163/mt_soc_pcm_routing.c": "c458de71bb3c2cccd8b0d39a4c7c6e3a75f962cc8bdda44697eacca4f30bbd3a",
+  "sound/soc/mediatek/mt_soc_audio_8163/p00a_stock_gate.h": "2a1e8e0a79051ba46255f287c5ebda9b5432cb6c0b9f31b5cee644ac6c52c9b0",
+  "sound/soc/mediatek/mt_soc_audio_8163/codec_state_controls.h": "33d54e6193b267a58441908dc7bcde6766031bfb215134729215fd50b6dc7519",
+  "arch/arm64/configs/asus_p00a_defconfig": "da68ffb7ca7b1a84a43fa26d612869154afdd365fc82c7066fb8f0eb683ea9f1",
+  "arch/arm64/boot/dts/mediatek/asus-p00a.dts": "61660c82984338fe681d6a4d6afc35cac1a4bc6a54f2ad1f602c6322d8c9ee07"
+}

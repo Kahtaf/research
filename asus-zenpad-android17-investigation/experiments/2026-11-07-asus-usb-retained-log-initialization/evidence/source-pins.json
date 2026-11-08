@@ -1,0 +1,17 @@
+{
+  "inputs": [
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-07-asus-early-retained-kernel-probe/source/final/arch/arm64/kernel/asus_retained_trace.c",
+      "sha256": "15c4e2069326c7e2ecd2679240983913fc51122f5149be215e4707cb76de0a64"
+    },
+    {
+      "path": "/OWNER_HOME/Documents/workspace/ideas/2026-11-07-asus-early-reset-isolation/source/stock-3.18/drivers/misc/mediatek/ram_console/mtk_ram_console.c",
+      "sha256": "c966a4508bff43f31a551103b7c5a9cfad4b11164c069b7d30ba9c09199e86b2"
+    }
+  ],
+  "output": {
+    "path": "2026-11-07-asus-usb-retained-log-initialization/source/arch/arm64/kernel/asus_retained_trace.c",
+    "sha256": "8373baa301650d2bf3befe547df11a3079e22c51aec8a207de64eae0f1bb3348"
+  },
+  "patch_sha256": "9d9790f13e837ab7569a706e790d99c372d69c3700e8767811723c0bdd0718fa"
+}

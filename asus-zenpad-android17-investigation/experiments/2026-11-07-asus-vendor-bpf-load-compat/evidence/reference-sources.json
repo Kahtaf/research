@@ -1,0 +1,18 @@
+{
+  "kernel-syscall.c": {
+    "origin": "/srv/android/asus-vendor-bpf-load-compat-20261107/kernel/kernel/bpf/syscall.c",
+    "sha256": "739b2804cb256f7666496cabe9924567d9964a65dcc13e0a979c4c6c47ab63ac"
+  },
+  "kernel-bpf.h": {
+    "origin": "/srv/android/asus-vendor-bpf-load-compat-20261107/kernel/include/uapi/linux/bpf.h",
+    "sha256": "5df820b95a96cef06c9e67b9fab9cbb5ad46b7e62b76a9d69db6af269c5eeb07"
+  },
+  "KernelUtils.h": {
+    "origin": "/srv/android/lineage24/packages/modules/Connectivity/bpf/headers/include/bpf/KernelUtils.h",
+    "sha256": "cdaaaaaed2ee1b89ae950f653e329218a228815276f07395b148dd9a99d06957"
+  },
+  "NetBpfLoad.cpp": {
+    "origin": "/srv/android/lineage24/packages/modules/Connectivity/bpf/loader/NetBpfLoad.cpp",
+    "sha256": "8e88bba6fb7f6eec0e71e3825fe13862d8c347d1d9fafd5de6e76428c316eac9"
+  }
+}

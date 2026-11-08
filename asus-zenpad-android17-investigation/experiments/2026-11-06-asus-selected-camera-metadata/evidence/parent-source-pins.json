@@ -1,0 +1,17 @@
+[
+  {
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-fitted-camera-identification/evidence/identification.json",
+    "destination": "inputs/identification.json",
+    "sha256": "49208d5d2be99e616215a8f3b65d774053504f6c6dbb3a84296b8503561ecd88"
+  },
+  {
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-fitted-camera-identification/inputs/kd_imgsensor.h",
+    "destination": "inputs/kd_imgsensor.h",
+    "sha256": "a591d026637ca60919a9e1b79c724f7b54896ed674d98f82ef48c3ec9beb640c"
+  },
+  {
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-fitted-camera-identification/inputs/kd_camera_feature.h",
+    "destination": "inputs/kd_camera_feature.h",
+    "sha256": "8678d7ee26f4f14ac458b0353494b129c1ab1317814ba8e3c1ebe95c2d847ffc"
+  }
+]

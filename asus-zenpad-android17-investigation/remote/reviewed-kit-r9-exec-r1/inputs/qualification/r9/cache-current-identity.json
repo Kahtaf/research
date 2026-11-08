@@ -1,0 +1,254 @@
+{
+  "first_phase_selected_outputs": [
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/VendorVoldNativeService.o",
+      "sha256": "c89b5fd45dbca46e091588d5500dd1487cf348b0eb3364ce86d33c638081f719",
+      "bytes": 222000,
+      "ninja": [
+        "20227",
+        "22753",
+        "1794007844250455054",
+        "68736737ce82a489"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/PublicVolume.o",
+      "sha256": "88ef0d802e89e3c90946beb171dab0e79faa4713d291f58648c0e4a4b31253ba",
+      "bytes": 314088,
+      "ninja": [
+        "20272",
+        "23497",
+        "1794007844994910744",
+        "1ab3fb4f98888761"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/EmulatedVolume.o",
+      "sha256": "01c57f2b40960715f942ffd75796997e94a29e98af3cb3ea252f9d660bee0e7e",
+      "bytes": 365116,
+      "ninja": [
+        "20251",
+        "23969",
+        "1794007845466231379",
+        "1231168a04db54cb"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/Utils.o",
+      "sha256": "a7cae38c82cd27ed27c7d195f14752a063a3a9797bca2b7d131e1ae877395567",
+      "bytes": 1002008,
+      "ninja": [
+        "20473",
+        "25137",
+        "1794007846635004685",
+        "573518268f9a1e65"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/VoldUtil.o",
+      "sha256": "38bb6ceed286faaf81533308374e4bf7a0546dbd864fd1a33cabcdb53a0fe3a0",
+      "bytes": 230436,
+      "ninja": [
+        "22971",
+        "25421",
+        "1794007846918073822",
+        "01a398f88b7a6bb3"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/VolumeManager.o",
+      "sha256": "84b4b6ea50c0b71a9e6e41f4f63fb4174e6bdcbb0cc22882195a04b4389d4c03",
+      "bytes": 1038632,
+      "ninja": [
+        "20224",
+        "26403",
+        "1794007847900641680",
+        "b98e9d697f2551d1"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/MetadataCrypt.o",
+      "sha256": "d54640294a41022b0e05838b26d913db1ad95068a31e6da195f2f43fcf6dc506",
+      "bytes": 510256,
+      "ninja": [
+        "20307",
+        "27380",
+        "1794007848878014899",
+        "376d0abfad5d0e5b"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/WriteBooster.o",
+      "sha256": "e6d53845b503023917b79123d292300a209fb32487037b8529695ddad642c5f2",
+      "bytes": 368456,
+      "ninja": [
+        "25127",
+        "29093",
+        "1794007850590711278",
+        "e1eb58a869d0deb1"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader",
+      "sha256": "1d4c5429a7edadf848e8ff1128a73054411ea67a23422927a9bb215e0eb0c880",
+      "bytes": 298552,
+      "ninja": [
+        "25401",
+        "30570",
+        "1794007852067286981",
+        "67826fc8b082dd13"
+      ],
+      "build_id": [
+        "63cdfb2c003f9943f8f4a3fba948ad3e"
+      ],
+      "installed_pin": {
+        "path": "system/bin/bpfloader",
+        "sha256": "b6a9888e623a44cea98ead533c304225d6ef2e63237ee1769857087cfb1f2737",
+        "bytes": 83008
+      },
+      "installed_build_id": [
+        "63cdfb2c003f9943f8f4a3fba948ad3e"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/Benchmark.o",
+      "sha256": "b99135e0a09662c6241f30989138e4ef58e3755cb9d872c23fa559350e13e5e1",
+      "bytes": 1832692,
+      "ninja": [
+        "20379",
+        "30941",
+        "1794007852438927017",
+        "58ec1501b9b24df7"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/VoldNativeService.o",
+      "sha256": "fd1d7acb2d53e6d96eb4f1168bc625822feb7939d9df6c4b8b7c7a05aea1deda",
+      "bytes": 909728,
+      "ninja": [
+        "23826",
+        "32529",
+        "1794007854026754548",
+        "7f2b527370c3cdcb"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/NvmeDeviceUtils.o",
+      "sha256": "573f883917dc5728f9c180a1128c35ccb88fb3ea025018ffcd1e0e9f68592203",
+      "bytes": 119904,
+      "ninja": [
+        "30569",
+        "33926",
+        "1794007855423197731",
+        "addbd0622f8ec5c9"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/KeyUtil.o",
+      "sha256": "5e88e4e3382bb514914974e91fa1d9a79a2ef848071db59cecfa92a6845d7f08",
+      "bytes": 929216,
+      "ninja": [
+        "32511",
+        "40387",
+        "1794007861884679445",
+        "0c3c89a7184b8f1b"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/KeyStorage.o",
+      "sha256": "30e5d711a7e7c2da57608f1a321b66da606647153c685fd8d6d3d7ea67e4838d",
+      "bytes": 1269844,
+      "ninja": [
+        "35788",
+        "44110",
+        "1794007865607291681",
+        "d03b8c954a630fde"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/libvold.a",
+      "sha256": "b1483ca16634e3186cde09966868c059cef592f6079a3b3fec7acc370397e48a",
+      "bytes": 19158070,
+      "ninja": [
+        "44175",
+        "44610",
+        "1794007866107609835",
+        "2604fa8b78dbde86"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/obj/system/vold/main.o",
+      "sha256": "1537c945e351154d7ba5e2a77f4031ddfcd96674657daa47dc0a9b90e14416cf",
+      "bytes": 338304,
+      "ninja": [
+        "60277",
+        "65688",
+        "1794007887185932817",
+        "b9b1984e72a0aac9"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader",
+      "sha256": "b6a9888e623a44cea98ead533c304225d6ef2e63237ee1769857087cfb1f2737",
+      "bytes": 83008,
+      "ninja": [
+        "76009",
+        "76106",
+        "1794007897603540114",
+        "85cbd9230a675136"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader.clippy",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "ninja": [
+        "85520",
+        "86720",
+        "1794007908217968798",
+        "aa21462dbe348fd7"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold",
+      "sha256": "18daecc22adf923e2ac1c9a4401357238c314704360b89df301e00bf5e8baee2",
+      "bytes": 5143552,
+      "ninja": [
+        "76670",
+        "89474",
+        "1794007910971403106",
+        "85aa1dc74b19b2ce"
+      ],
+      "build_id": [
+        "7c5a0475a606d617bc7362de7ba4911c"
+      ],
+      "installed_pin": {
+        "path": "system/bin/vold",
+        "sha256": "74b1e39da028cb71505681ba648bc1f51b640d6cd47f018d5a26c202aca662b7",
+        "bytes": 1049704
+      },
+      "installed_build_id": [
+        "7c5a0475a606d617bc7362de7ba4911c"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/vold",
+      "sha256": "74b1e39da028cb71505681ba648bc1f51b640d6cd47f018d5a26c202aca662b7",
+      "bytes": 1049704,
+      "ninja": [
+        "89481",
+        "89694",
+        "1794007911191831174",
+        "83334525a05eb259"
+      ]
+    }
+  ],
+  "first_phase_receipt_sha256": "0e06bbee948f7413eaa0b54f6be95d8374750c0ece2646526864733ea6204660",
+  "source_pins": {
+    "system/bpf/loader/bpfloader.rs": "babbccf603e600a2b77f5c71cbf6b1b978f72c176fd33bfab610ff2ba8956250",
+    "system/vold/model/PublicVolume.cpp": "c5147ca901fb1c4678b34c6727e63eb325e1ad21de2cdcbcb19b8cf9af1d49c9"
+  },
+  "current_observation_only": true,
+  "execution_time_dependency_identity_proven": false,
+  "current_ninja_entries_for_these_outputs": []
+}

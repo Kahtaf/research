@@ -1,0 +1,62 @@
+[
+  {
+    "source": "2026-11-05-asus-latest-android-feasibility/sources/stock-firmware/ramdisk/init.rc",
+    "copy": "inputs/stock-init.rc",
+    "bytes": 24430,
+    "sha256": "4bcf2f965fb8bdce152952447539f4a7442d6b1076ad23548fbafa525d2c4f96"
+  },
+  {
+    "source": "2026-11-05-asus-latest-android-feasibility/sources/stock-firmware/ramdisk/init.mt8163.rc",
+    "copy": "inputs/stock-init.mt8163.rc",
+    "bytes": 59241,
+    "sha256": "da9a1f687a8e4826e3ceb5f0ed39a6e263c1c82d44ed6ad09eae3502e4edc290"
+  },
+  {
+    "source": "2026-11-05-asus-latest-android-feasibility/sources/stock-firmware/ramdisk/default.prop",
+    "copy": "inputs/stock-default.prop",
+    "bytes": 1598,
+    "sha256": "b9c8086b245a1915295b3602e557c033a71b6ca3c7abbc9f2c19a36a5433684c"
+  },
+  {
+    "source": "2026-11-06-asus-android17-os-rescue/evidence/stock-fstab.mt8163",
+    "copy": "inputs/stock-fstab.mt8163",
+    "bytes": 2187,
+    "sha256": "9f22f786ac2fdbaa10d0d40a7f2a962a3c7008cd22c8c54d4c4454232a6bf46c"
+  },
+  {
+    "source": "2026-11-06-asus-android17-os-rescue/evidence/stock-etc_recovery.fstab",
+    "copy": "inputs/stock-recovery.fstab",
+    "bytes": 2187,
+    "sha256": "9f22f786ac2fdbaa10d0d40a7f2a962a3c7008cd22c8c54d4c4454232a6bf46c"
+  },
+  {
+    "source": "2026-11-06-asus-android17-os-rescue/source/reference/cryptfs.c",
+    "copy": "inputs/reference-cryptfs.c",
+    "bytes": 124153,
+    "sha256": "54c3ef3fe61fd35c98d21555d1699ba721dcb1f5b91a96a41101d77c6cad20b4"
+  },
+  {
+    "source": "2026-11-06-asus-android17-os-rescue/source/reference/roots.cpp",
+    "copy": "inputs/reference-roots.cpp",
+    "bytes": 9590,
+    "sha256": "c79775c678c44acc2855a4042e99b2ea5b077da87da219e9eb312795383476ac"
+  },
+  {
+    "source": "2026-11-06-asus-android17-os-rescue/source/reference/recovery.cpp",
+    "copy": "inputs/reference-recovery.cpp",
+    "bytes": 55864,
+    "sha256": "aeb0f5f6ed5419b894eb68169bc138b33eeb5d5f66ba3c4c90fb925122e3fc66"
+  },
+  {
+    "source": "2026-11-06-asus-android17-os-rescue/source/reference/provenance.json",
+    "copy": "inputs/reference-provenance.json",
+    "bytes": 675,
+    "sha256": "f4f2fe9972a716d8f4e7a364840e5faa7f35b71492cda5450a2982cc5416d372"
+  },
+  {
+    "source": "2026-11-06-asus-android17-os-rescue/evidence/stock-sbin_recovery",
+    "bytes": 1459224,
+    "sha256": "24e3cca9acc9f59947358cb739b1082c9926181623ad075b3a986eba62f40fc7",
+    "copied": false
+  }
+]

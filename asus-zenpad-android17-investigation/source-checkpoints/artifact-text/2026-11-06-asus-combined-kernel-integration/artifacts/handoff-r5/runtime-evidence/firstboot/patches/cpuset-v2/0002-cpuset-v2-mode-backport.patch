@@ -1,0 +1,145 @@
+--- a/include/linux/cgroup-defs.h
++++ b/include/linux/cgroup-defs.h
+@@ -68,6 +68,8 @@
+ enum {
+ 	CGRP_ROOT_NOPREFIX	= (1 << 1), /* mounted subsystems have no named prefix */
+ 	CGRP_ROOT_XATTR		= (1 << 2), /* supports extended attributes */
++	/* Enable cpuset v2 behavior on a v1 hierarchy. */
++	CGRP_ROOT_CPUSET_V2_MODE = (1 << 4),
+ };
+ 
+ /* cftype->flags */
+--- a/kernel/cgroup.c
++++ b/kernel/cgroup.c
+@@ -1675,6 +1675,8 @@
+ 		seq_puts(seq, ",noprefix");
+ 	if (root->flags & CGRP_ROOT_XATTR)
+ 		seq_puts(seq, ",xattr");
++	if (root->flags & CGRP_ROOT_CPUSET_V2_MODE)
++		seq_puts(seq, ",cpuset_v2_mode");
+ 
+ 	spin_lock(&release_agent_path_lock);
+ 	if (strlen(root->release_agent_path))
+@@ -1737,6 +1739,10 @@
+ 		}
+ 		if (!strcmp(token, "clone_children")) {
+ 			opts->cpuset_clone_children = true;
++			continue;
++		}
++		if (!strcmp(token, "cpuset_v2_mode")) {
++			opts->flags |= CGRP_ROOT_CPUSET_V2_MODE;
+ 			continue;
+ 		}
+ 		if (!strcmp(token, "xattr")) {
+--- a/kernel/cpuset.c
++++ b/kernel/cpuset.c
+@@ -298,6 +298,16 @@
+ 
+ static DECLARE_WAIT_QUEUE_HEAD(cpuset_attach_wq);
+ 
++/* Cached at bind time; do not dereference a potentially stale root here. */
++static bool cpuset_v2_mode;
++
++static inline bool is_in_v2_mode(void)
++{
++	return cgroup_subsys_on_dfl(cpuset_cgrp_subsys) ||
++	       READ_ONCE(cpuset_v2_mode);
++}
++
++
+ /*
+  * This is ugly, but preserves the userspace API for existing cpuset
+  * users. If someone tries to mount the "cpuset" filesystem, we
+@@ -488,7 +498,7 @@
+ 
+ 	/* On legacy hiearchy, we must be a subset of our parent cpuset. */
+ 	ret = -EACCES;
+-	if (!cgroup_subsys_on_dfl(cpuset_cgrp_subsys) &&
++	if (!is_in_v2_mode() &&
+ 	    !is_cpuset_subset(trial, par))
+ 		goto out;
+ 
+@@ -903,7 +913,7 @@
+ 		 * If it becomes empty, inherit the effective mask of the
+ 		 * parent, which is guaranteed to have some CPUs.
+ 		 */
+-		if (cgroup_subsys_on_dfl(cpuset_cgrp_subsys) &&
++		if (is_in_v2_mode() &&
+ 		    cpumask_empty(new_cpus))
+ 			cpumask_copy(new_cpus, parent->effective_cpus);
+ 
+@@ -921,7 +931,7 @@
+ 		cpumask_copy(cp->effective_cpus, new_cpus);
+ 		spin_unlock_irq(&callback_lock);
+ 
+-		WARN_ON(!cgroup_subsys_on_dfl(cpuset_cgrp_subsys) &&
++		WARN_ON(!is_in_v2_mode() &&
+ 			!cpumask_equal(cp->cpus_allowed, cp->effective_cpus));
+ 
+ 		update_tasks_cpumask(cp);
+@@ -1174,7 +1184,7 @@
+ 		 * If it becomes empty, inherit the effective mask of the
+ 		 * parent, which is guaranteed to have some MEMs.
+ 		 */
+-		if (cgroup_subsys_on_dfl(cpuset_cgrp_subsys) &&
++		if (is_in_v2_mode() &&
+ 		    nodes_empty(*new_mems))
+ 			*new_mems = parent->effective_mems;
+ 
+@@ -1192,7 +1202,7 @@
+ 		cp->effective_mems = *new_mems;
+ 		spin_unlock_irq(&callback_lock);
+ 
+-		WARN_ON(!cgroup_subsys_on_dfl(cpuset_cgrp_subsys) &&
++		WARN_ON(!is_in_v2_mode() &&
+ 			!nodes_equal(cp->mems_allowed, cp->effective_mems));
+ 
+ 		update_tasks_nodemask(cp);
+@@ -1483,7 +1493,7 @@
+ 
+ 	/* allow moving tasks into an empty cpuset if on default hierarchy */
+ 	ret = -ENOSPC;
+-	if (!cgroup_subsys_on_dfl(cpuset_cgrp_subsys) &&
++	if (!is_in_v2_mode() &&
+ 	    (cpumask_empty(cs->cpus_allowed) || nodes_empty(cs->mems_allowed)))
+ 		goto out_unlock;
+ 
+@@ -2007,7 +2017,7 @@
+ 	cpuset_inc();
+ 
+ 	spin_lock_irq(&callback_lock);
+-	if (cgroup_subsys_on_dfl(cpuset_cgrp_subsys)) {
++	if (is_in_v2_mode()) {
+ 		cpumask_copy(cs->effective_cpus, parent->effective_cpus);
+ 		cs->effective_mems = parent->effective_mems;
+ 	}
+@@ -2086,7 +2096,10 @@
+ 	mutex_lock(&cpuset_mutex);
+ 	spin_lock_irq(&callback_lock);
+ 
+-	if (cgroup_subsys_on_dfl(cpuset_cgrp_subsys)) {
++	WRITE_ONCE(cpuset_v2_mode,
++		   !!(cpuset_cgrp_subsys.root->flags & CGRP_ROOT_CPUSET_V2_MODE));
++
++	if (is_in_v2_mode()) {
+ 		cpumask_copy(top_cpuset.cpus_allowed, cpu_possible_mask);
+ 		top_cpuset.mems_allowed = node_possible_map;
+ 	} else {
+@@ -2286,7 +2299,7 @@
+ 	cpus_updated = !cpumask_equal(&new_cpus, cs->effective_cpus);
+ 	mems_updated = !nodes_equal(new_mems, cs->effective_mems);
+ 
+-	if (cgroup_subsys_on_dfl(cpuset_cgrp_subsys))
++	if (is_in_v2_mode())
+ 		hotplug_update_tasks(cs, &new_cpus, &new_mems,
+ 				     cpus_updated, mems_updated);
+ 	else
+@@ -2324,7 +2337,7 @@
+ 	static cpumask_t new_cpus;
+ 	static nodemask_t new_mems;
+ 	bool cpus_updated, mems_updated;
+-	bool on_dfl = cgroup_subsys_on_dfl(cpuset_cgrp_subsys);
++	bool on_dfl = is_in_v2_mode();
+ 
+ 	mutex_lock(&cpuset_mutex);
+ 

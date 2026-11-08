@@ -1,0 +1,27 @@
+{
+  "artifact_bytes": 260835655,
+  "artifact_path": "/srv/android/asus-product-integration-staging/r9/webview.apk",
+  "artifact_sha256": "1d2f61832b2596b0046cb82cf3634609ea866098d097a83fac27c35272ac726a",
+  "bpf_matrix_sha256": "7ccdfe6610ecd741db1351cabc6dbff37139775a2651d8417b3f4bf25bb73c7a",
+  "integration": false,
+  "kit": "/srv/android/asus-reviewed-build-kit/r9-exec-r1",
+  "kit_pins_sha256": "744fa117bba0e4ba9895af792ddc71f1cbe99196cb752593e560064ef8d41e69",
+  "lineage_map_sha256": "3731b0bc98ed8a6c68358bed121d30bbe90aeb5b903dae94aeed37f1ac0eefbe",
+  "linux_tests_passed": 54,
+  "native_build": false,
+  "parent_conditional_bpf_sha256": "a4b790a756d92d2d656e0d45fe80dca9839bb0a381d58b647266fd11ddf379ec",
+  "parent_kit_approved": false,
+  "parent_method_sha256": "202562e1b98a0d9de47f9896b755be10957984c7812d1b9268d3052201cee3ad",
+  "physical_go": false,
+  "pinned_files": 193,
+  "prior_r8_execution_outputs": 38,
+  "qualified_baseline_bpf_outputs": 23,
+  "revision": "r9",
+  "runtime_bpf_acceptance_conditional": true,
+  "selected_bpf_objects": 26,
+  "source_delta_paths": [
+    "external/chromium-webview/prebuilt/arm64/webview.apk"
+  ],
+  "status": "SEALED_PREPARATION_FOR_PARENT_KIT_REVIEW",
+  "utc": "2026-11-07T01:37:33.624878+00:00"
+}

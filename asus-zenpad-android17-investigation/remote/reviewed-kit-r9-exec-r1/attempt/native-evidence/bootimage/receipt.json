@@ -1,0 +1,32 @@
+{
+  "attempt_started_sha256": "c13e2e0fbccb204ce1aa166c45f089b2f0b27eafa058ce204487bf9c75572df0",
+  "exit_code": 0,
+  "files": {
+    ".ninja_log": {
+      "bytes": 2506114,
+      "sha256": "1560e09b62225d8f5c2615fd1a67e4d2a4eb47727a27a0cca84989a7ce45d5fc"
+    },
+    "siso_localexec": {
+      "bytes": 6994008,
+      "sha256": "69c4582a5dcf2de450d6acb488ac496a92c76cd54546646b78ec2556e8d4d303"
+    },
+    "siso_metadata.json": {
+      "bytes": 159,
+      "sha256": "f7bd221efe71b9a5b24a72f5aa105d22522e542eb82313ac1d8c8c0462b7552e"
+    },
+    "siso_metrics.json": {
+      "bytes": 9276747,
+      "sha256": "c6aaaa5c2baa01a599d07f7d40c768e1b423476cdcc1cb9482b10a976e985e18"
+    },
+    "siso_output": {
+      "bytes": 1414528,
+      "sha256": "ba24f451ff824a967616b26665d1bfaaf7496ffe2ce6b7d0090e5c0e604ac99d"
+    },
+    "verbose.log.gz": {
+      "bytes": 5815693,
+      "sha256": "d27108eb1a15954dc951f9fe95ccf6208efca5590f7fece54010d63c39e29ac7"
+    }
+  },
+  "integration_sha256": "d994e8d5be27cd7dcb5d9962c6f3b19773a9fea7da7a6b404447ea52c6d1b45b",
+  "phase": "bootimage"
+}

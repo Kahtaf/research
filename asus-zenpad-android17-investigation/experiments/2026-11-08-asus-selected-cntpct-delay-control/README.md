@@ -1,0 +1,19 @@
+# Selected CNTPCT delay read-route control
+
+Question: does a raw physical read route allow the strictly selected battery voltage PMIC delay exposure to complete?
+
+Status: **one candidate built and packaged; STOP**. UUID `2ac3b1e4-9ca7-4480-aad7-422c260a45fa`. Parent owns one physical trial and eventual Power fallback. Worker contacted no device and ran no installer execute.
+
+- [Candidate](artifacts/candidate.img): 7991296 bytes; SHA256 `0d8099be7c7707580e29a461a1446b1c8863e9ed58de571741c910e4833827ca`.
+- [Full p10](artifacts/candidate.p10.raw): SHA256 `a30aabe163d8a934752fac00944b0cb3515d19c3614805fdfe2bbe60e4ea5b4f`. Expected current full p10 `9f827d45ac155d8e2f025e630666896fb3b6eb6744752266969f8d03b3c4089e` is parent supplied.
+- [Handoff and exact commands](evidence/handoff.json), [all artifact hashes](artifacts/SHA256SUMS), [genuine System.map.gz](artifacts/System.map.gz), [uncompressed map pins](evidence/System.map-uncompressed.json). vmlinux/out stay on VM.
+- [Actual linked route proof](evidence/route-proof.md), [disassembly](evidence/delay-loop.disasm), [source diff](source/changes.patch), [source pre/post](evidence/prepost.json), [preservation](evidence/preservation.json).
+- [A49DL2 protocol](protocol.md), [decoder](scripts/decode_delay.py), [offline symbolizer](scripts/symbolize_delay.py), [focused controls](evidence/controls.json), [decoder controls](evidence/decoder-controls.json), [one isolated PLAN](evidence/plan-isolation-receipt.json).
+
+One `make -j8 Image.gz-dtb` passed without compiler corrections. Three kernel files changed. Only a nonzero strictly joined cookie uses inline raw CNTPCT for start and every condition read, each with the original single ISB. It bypasses virtual OOL regardless of key; cookie0 retains original get_cycles direct/OOL. The source loop/arithmetic/capture order restores byte-exact by reversing two call substitutions. A49DL2 adds selected_read_domain in the same2560 bytes; header tail168, every other offset unchanged. All five old decoders/layouts remain exact. Strict generation, identity, publication, loss and refusal semantics remain.
+
+Exact base `/srv/android/asus-arm64-delay-loop-observation-20261108-f3da846c/{kernel,out}` was independently copied using `cp -a --reflink=auto`; scoped base hashes/inodes/nested repositories remain preserved. Config `708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1`, whole wrapped helper ramdisk, compiled/runtime DT, args, initrd bounds/load maps, PMIC operations/hooks and RDMA diagnostics remain. Charging DT permission remains absent. Installer execute/Transport/Guard/adapters are byte-exact; adb0755. Only package hashes/profile/length/current-preimage append change. The isolated PLAN truthfully substituted public readers only in memory; private dependencies were not validated and delivered guards remain intact.
+
+VM ID8549823276971553556 is verified **TERMINATED**; owned SSH master closed; remote.py SHA unchanged. A pre-copy orchestration path error was preserved and corrected before copy/build; no extra candidate or compile.
+
+Continuation: parent uses the exact commands for one physical trial, keeps numeric pointers/complete console private until offline genuine-map verification, verifies full p10/readback and normal stock return, and retains eventual Power fallback. Completed first selected physical read proves current access only. Selected return, ADC POST, and RAM PID1 completion are separate checks. Missing start/return is UNKNOWN finite boundary. Positive supports the read-route hypothesis with timing perturbation possible; no mechanism/shipping/global-health claim. Advancing then missing return does not exonerate later reads; stable repeated reads do not prove a global counter stop. UNKNOWN STOP; consult Large before another guess. No automatic retry/next variant/fullOS GO.

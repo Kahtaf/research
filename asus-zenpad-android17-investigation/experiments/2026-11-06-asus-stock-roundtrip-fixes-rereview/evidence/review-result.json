@@ -1,0 +1,41 @@
+{
+  "completed_at_utc": "2026-11-06T20:31:30.847735+00:00",
+  "review_status": "CHANGES_REQUIRED",
+  "findings": [
+    {
+      "id": "R1",
+      "severity": "P1",
+      "title": "Nested root helper starts mutating ADB requests after expiry"
+    },
+    {
+      "id": "R2",
+      "severity": "P2",
+      "title": "Unexpected entry shapes normalized into known service failure"
+    },
+    {
+      "id": "R3",
+      "severity": "P2",
+      "title": "Non-expiry pre-entry inverse exceptions omit modified-state flag"
+    }
+  ],
+  "old_findings": {
+    "missing_awk": "resolved",
+    "closed_or_killed_entry": "specific defects resolved; exact-shape residual R2",
+    "expiry_dispatch": "outer boundaries resolved; nested helper residual R1"
+  },
+  "baseline_tests": 65,
+  "parent_regression_tests": 11,
+  "parent_shell_groups": 5,
+  "parent_shell_vectors": 53,
+  "review_adversarial_methods": 6,
+  "review_shell_vectors": 21,
+  "firmware_stub_cases": 7,
+  "live_approval": false,
+  "device_contacted": false,
+  "network_operations": false,
+  "cloud_operations": false,
+  "private_payload_access": false,
+  "production_modified": false,
+  "source_pins": "provenance.json",
+  "report": "../REPORT.md"
+}

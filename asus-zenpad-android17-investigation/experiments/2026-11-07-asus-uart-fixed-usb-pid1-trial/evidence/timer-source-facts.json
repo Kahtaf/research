@@ -1,0 +1,10 @@
+{
+  "candidate_timer_nodes": {
+    "/timer": {
+      "compatible": "arm,armv8-timer|",
+      "interrupts": "000000010000000d00000f08000000010000000e00000f08000000010000000b00000f08000000010000000a00000f08",
+      "clock-frequency": 13000000
+    }
+  },
+  "stock_captured_timer_lines": []
+}

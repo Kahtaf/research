@@ -1,0 +1,27 @@
+{
+  "command": [
+    "make",
+    "-C",
+    "/srv/android/asus-global-delay-budget-20261108/kernel",
+    "O=/srv/android/asus-global-delay-budget-20261108/out",
+    "ARCH=arm64",
+    "CROSS_COMPILE=aarch64-linux-gnu-",
+    "HOSTCC=gcc",
+    "HOSTCXX=g++",
+    "LOCALVERSION=-minplat",
+    "-j8",
+    "Image.gz-dtb"
+  ],
+  "kernel_invocations": 1,
+  "helper_invocations": 0,
+  "max_jobs": 8,
+  "timeout": null,
+  "rlimit_as": [
+    -1,
+    -1
+  ],
+  "started": "2026-11-08T15:59:10.348036+00:00",
+  "exit": 0,
+  "finished": "2026-11-08T16:00:23.837671+00:00",
+  "config_sha256": "01d6729f825798899e21192e6c33f96a80b47ccbedd5dc6cab10f78c1f9c7f31"
+}

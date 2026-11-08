@@ -1,0 +1,44 @@
+{
+  "status": "STAGED_ONLY_NO_BUILD_NO_ACTIVE_INTEGRATION",
+  "minimum_first_fatal_patch": [
+    "01-map-info.patch"
+  ],
+  "minimum_config_delta": {},
+  "first_fatal_pre": {
+    "include/uapi/linux/bpf.h": "0acaebd9f2d05a8854ac4ef2315b2058f3f64dc61bd89fd918ca80b89aeddd05",
+    "kernel/bpf/syscall.c": "4633a05b44be09da4394c42ec4b13ba7173e5a3ffc693ca523b28e4b1bd4d09d"
+  },
+  "first_fatal_post": {
+    "include/uapi/linux/bpf.h": "2f7849e4d5d0908b47f1cf965628bee3572953c70bfabd606691d5df9c35a228",
+    "kernel/bpf/syscall.c": "739b2804cb256f7666496cabe9924567d9964a65dcc13e0a979c4c6c47ab63ac"
+  },
+  "qualified_follow_on_order": [
+    "01-map-info.patch",
+    "02-lpm-trie.patch",
+    "03-skb-relative-load.patch",
+    "04-relative-net-without-mac.patch"
+  ],
+  "combined_pre": {
+    "include/uapi/linux/bpf.h": "0acaebd9f2d05a8854ac4ef2315b2058f3f64dc61bd89fd918ca80b89aeddd05",
+    "kernel/bpf/syscall.c": "4633a05b44be09da4394c42ec4b13ba7173e5a3ffc693ca523b28e4b1bd4d09d",
+    "kernel/bpf/Makefile": "1bb0955b7a4e228af836149441ee2257d80533423b365e6bab007897c7055c98",
+    "kernel/bpf/lpm_trie.c": null,
+    "net/core/filter.c": "e2cf9265a249356213bfd0780ce4fbacde814505407875095de9b01bfb40971a"
+  },
+  "combined_post": {
+    "include/uapi/linux/bpf.h": "5df820b95a96cef06c9e67b9fab9cbb5ad46b7e62b76a9d69db6af269c5eeb07",
+    "kernel/bpf/syscall.c": "739b2804cb256f7666496cabe9924567d9964a65dcc13e0a979c4c6c47ab63ac",
+    "kernel/bpf/Makefile": "ab33f64caba9dbf5d1bbd13fdfc6d8d2cbac5fac944a2fb7daa65dd990aff5e3",
+    "kernel/bpf/lpm_trie.c": "fb2023411dd320b2959722f1a0a1d44243e0c360cf585a9ef385618c5dbf8fa9",
+    "net/core/filter.c": "b4fc1f6bf7801417772128db04dffb3657fc01fc0e151079fef4c70b9e1669b8"
+  },
+  "patch_sha256": {
+    "01-map-info.patch": "5e82ab00bbd7ec00b1e210acf4093d9e7b5dd948e27789d39ba9b62c53803bfc",
+    "02-lpm-trie.patch": "0fae4d3df1e59ebaa754f19c14593c2aae1dbcd865e85657d792a35a39e22932",
+    "03-skb-relative-load.patch": "bb7026d68d718688a57f4a0e78c01c3c5c9ab8f378341b31a3c01ef48336c14e",
+    "04-relative-net-without-mac.patch": "2c5c4eb0e386b740120626f9e92f2fa5f722cefa41b95f866250d418094d20ad"
+  },
+  "preserve_android_config_sha256": "c2ea1277e1574da39d1d55d31bde7bda439ab624561ad3c6a6f4730e38f57834",
+  "do_not_drop_in_network_Image": "f48955e15b0210d0b14c9d8036b6655e353a02c9e46ae5fc015b252b9bd8eac6",
+  "reason": "Qualified network config has CPUSETS=n, BLK_CGROUP=n, INOTIFY_USER=n; selected actual Android fixture requires these enabled. No new config option is needed for map-info itself."
+}

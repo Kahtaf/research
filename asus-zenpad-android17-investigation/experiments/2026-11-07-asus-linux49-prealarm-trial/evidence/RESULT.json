@@ -1,0 +1,14 @@
+{
+  "outcome": "OBSERVATIONS_COLLECTED",
+  "fresh_PID1_uuid": "5fa3e2cd-430d-4bbb-8b37-1adff9bb9439",
+  "fresh_record_count": 10,
+  "last_fresh_line": "ASUS49-PREALARM run=5fa3e2cd-430d-4bbb-8b37-1adff9bb9439 stage=begin op=uname path=- rc=0 errno=0 value=-",
+  "complete_console_bytes": 32126,
+  "complete_console_sha256": "9cce77a22cabc2873c7bd3546d086ffa90988c36875cc154a6f4ea8af9535875",
+  "stock_return_verified": true,
+  "new_stock_boot_id": "51993505-5ea8-4c54-baaa-cf850870692c",
+  "OS_partitions_changed": false,
+  "at": "2026-11-08T01:29:28.386502+00:00",
+  "last_log_is_not_execution_stop_proof": true,
+  "logging_confounder": "The helper writes through one /dev/kmsg fd. Linux4.9 defaults to burst10/5HZ, discarding later writes while returning their full byte counts. Both runs have exactly10helper records. No timer/uname hang established."
+}

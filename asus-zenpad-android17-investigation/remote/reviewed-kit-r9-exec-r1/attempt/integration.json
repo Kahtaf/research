@@ -1,0 +1,322 @@
+{
+  "active_source_postimages_sha256": "abe36f09851fb8f6f847adb6cdce75886478eca628697e6bbf9e8684067615b3",
+  "flash_ready": false,
+  "full_service_chain_accepted": false,
+  "generated_defconfig": {
+    "path": "/srv/android/asus-android17/kernel-bpf-fd/arch/arm64/configs/asus_p00a_combined_defconfig",
+    "sha256": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2"
+  },
+  "kernel_release": {
+    "path": "/srv/android/asus-product-integration-staging/r3/kernel-source/kernel.release",
+    "sha256": "fb34c058c3e2b66607e2332f108e1f7880d0c89ec5160c4d5c62e8b3626d2681"
+  },
+  "kernel_sha256": "e9cde06e85e752aec0433ea37fa926c31b4f7a72cd55453762ec6870e5bb5bf1",
+  "parent_parity_receipt_sha256": "bfa6a78c97f02a6b7a57551b588938a3b3c1f0759a6d7d7c34439fbe19acc7fa",
+  "physical_boot_verified": false,
+  "platform_sources": {
+    "platform_bpf": {
+      "files": {
+        "loader/bpfloader.rs": {
+          "after": "babbccf603e600a2b77f5c71cbf6b1b978f72c176fd33bfab610ff2ba8956250",
+          "before": "1548dffa03b5091bbb9b7cfcce92495ee2167f417e90b431117cf31ea77b4bd2"
+        }
+      },
+      "patch_sha256": "2ffaf6c9349c06394d8d5e2e4e2bd70104725a2665f644dc0f1ae4f07988d502",
+      "receipt_sha256": "8b184eed60a6f05e38b58397444ecf58b42fd0812aa5815aeefdba1ae8aea9d0"
+    },
+    "vold": {
+      "files": {
+        "model/PublicVolume.cpp": {
+          "after": "c5147ca901fb1c4678b34c6727e63eb325e1ad21de2cdcbcb19b8cf9af1d49c9",
+          "before": "0e17fccedefabb20e2d8650252af8c765af68378a1d853e0fbaa6a8bd1ea67fd"
+        }
+      },
+      "patch_sha256": "98e923b851c0de58d4ca7787628f2fb4ea6471fd1cf2a36fe44c6482061168af",
+      "receipt_sha256": "6f5c38b3b2b47d38c385e13342cb260319c8b3d3442ab00f3002fd07731c2f18"
+    }
+  },
+  "preservation_receipt_sha256": "510c988fba6f297b92df750cc1ba69c902c152511efb4bd1a9af42c168ffd4a6",
+  "prior_integration_receipt_sha256": "eb3bea76da122ed3218821acdd5c72a1e20f5cf5cf1c9c485587399ebc095b03",
+  "prior_kit_pins_sha256": "f55aedf8ac9d2a513e3663230db0b9d802e72b5df512fc0db6b3714331a7efa4",
+  "product_after": {
+    ".gitignore": {
+      "sha256": "49c1cf173640685a3420bf5fd28fe2fc123cae33fe5ccd5188ccd35f2b0724bb"
+    },
+    "AndroidProducts.mk": {
+      "sha256": "cdb5956b666781fe4aea266d740bb3b0b4490e322e39045f3a734a15b9533fb5"
+    },
+    "BoardConfig.mk": {
+      "sha256": "e5296e182b457ec662694e044fffd322bdc246d556783743d080c23f5e4bde55"
+    },
+    "connectivity/Android.bp": {
+      "sha256": "874867af1cf5be1a0efede35edc0b16eb325f7703734b135d5bfe7e0641e0478"
+    },
+    "connectivity/BoardConfig-connectivity.mk": {
+      "sha256": "514e9d8f3df93c4e77fc8c3a7c5aad4454cfce39abd3be1445129037bbf18790"
+    },
+    "connectivity/LICENSE": {
+      "sha256": "9d52e7f0ffa795eab79530ff5b79c19bfb9587b6e507133ecb8ef7df35a1d85d"
+    },
+    "connectivity/bluetooth/bluetooth_hci.cc": {
+      "sha256": "52b1d481de36399f105399d1a1e52a4c144d589e3b083ee9e6dbece81acabd65"
+    },
+    "connectivity/bluetooth/bluetooth_hci.h": {
+      "sha256": "5d872764788bcb34cb03f13056984b8621446174c4b3f9fd46a5ffa181e3334e"
+    },
+    "connectivity/bluetooth/service.cpp": {
+      "sha256": "c2ca6a4ea9ea2cf9d7c2ab392667a3debf31ed19f0e3559c9abaad81771839da"
+    },
+    "connectivity/configs/init.p00a-connectivity.rc": {
+      "sha256": "b6d70c73fa2f40e639e48b6795ce876fc9b60ba6fdd66aae0afbc9e95a0687dc"
+    },
+    "connectivity/configs/ueventd.connectivity.rc.fragment": {
+      "sha256": "619e017663cf9050e2c3687d0a273bc5cbf9020cc59ae40c37d8b59272faa82c"
+    },
+    "connectivity/configs/wmt-services.rc.template": {
+      "sha256": "4cdc79af6cffa5d20af3ffae14a7a226a270216f6d0db0375dcc9dbd456ed9ea"
+    },
+    "connectivity/configs/wpa_supplicant_overlay.conf": {
+      "sha256": "0ba357cb34cad64aea192e8f25eb76e50e9477f82f14cf9d049a7a6a28c1b530"
+    },
+    "connectivity/connectivity-base.mk": {
+      "sha256": "ebab89d3834ad493a9a4ddd3d6d36d4a623cca4a46e20f9ee0aadea86eb57ad1"
+    },
+    "connectivity/firmware/ROMv2_lm_patch_1_0_hdr.bin": {
+      "sha256": "8fc3167a62f44e120f736641e6170cb279d76f383f64ae04af28156ea357e4b0"
+    },
+    "connectivity/firmware/ROMv2_lm_patch_1_1_hdr.bin": {
+      "sha256": "cfa3b9b9a5a2945b9b1b64f51bad9a3b62dc7a6b4d2c5074b4c0cb2ec28e64ee"
+    },
+    "connectivity/firmware/WIFI_RAM_CODE_8163": {
+      "sha256": "aa73e4fb17720b388308525e903188d53f3eb228843872b006348d14cf30bb84"
+    },
+    "connectivity/firmware/WMT_SOC.cfg": {
+      "sha256": "f4a59b622a4e0c1470e475ce33f3edae43b27f1fbdeba54dc7cf07503d132880"
+    },
+    "connectivity/overlay/Android.bp": {
+      "sha256": "fcbd50b86e05ef158d603c4cbdf93d67eb4ecb93d418a79c796f091202de0852"
+    },
+    "connectivity/overlay/AndroidManifest.xml": {
+      "sha256": "e87a71eb62962ac6efaf8b3df080c6deec1cb976213a7092ba7cf563f22bab81"
+    },
+    "connectivity/overlay/res/values/config.xml": {
+      "sha256": "5e3e0b73b83093838a22562846f9d11831192691fb417d2e32fa1dc18c56cda0"
+    },
+    "connectivity/src/connectivity_check.c": {
+      "sha256": "ac10f0d36ed3389e2a618b303642b093475dd6bae1ab3c70dbc2621c0e82787f"
+    },
+    "connectivity/src/driver_cmd_p00a.c": {
+      "sha256": "b43ef55923de00f5ce9f087640f5b8b962d86baa2b9d865fcb852e0ae21a16e1"
+    },
+    "connectivity/wifi-sta-trial.mk": {
+      "sha256": "d6f3a78b06679e1504f716fabe8373a2e22f800274426e05a6a59f56e10feaf6"
+    },
+    "device.mk": {
+      "sha256": "788d0a4a0bebf492886651d8fb3ef3020654c063e704231c5baa282281c6fc14"
+    },
+    "firstboot/firstboot-services.mk": {
+      "sha256": "cfe8977de72153719574e032d5982a254ad0d3a30fcacae1b853aea395c01318"
+    },
+    "firstboot/manifest-keymaster.xml": {
+      "sha256": "ec774f43bec1bc41011b433e7eccdbe8a8ed359db5e2031669ef8cb7d709c9ab"
+    },
+    "health/Android.bp": {
+      "sha256": "ca1a90d0b86c932d6f2b510b6cf58a435dc8f580384eaaa28e63a41f289953a0"
+    },
+    "health/BatterySnapshot.cpp": {
+      "sha256": "e64f2f2422ed712a3cad42d832c95a292404f2f95c8274486de4534ba05f20f6"
+    },
+    "health/BatterySnapshot.h": {
+      "sha256": "4f9ca3103bbc671f2e2dc6fd32aadebce371957f2561e44952b211391df60512"
+    },
+    "health/Health.cpp": {
+      "sha256": "f10e64cd1392bd79722fb31bbd1e5f8f18baab5e406a61fa574566912b832e0c"
+    },
+    "health/health.rc": {
+      "sha256": "4163ad5c291e2804d94c13561ef68fc6972bea5961bb004a542bfa3f4607e770"
+    },
+    "health/health.xml": {
+      "sha256": "5492e2b7c3954aa6b6362762f6c499da3652cfb81690977570edb222f7185616"
+    },
+    "input/Goodix_Capacitive_TouchScreen.idc": {
+      "sha256": "ff9c53351559ea415c5bbb2aafd3472bbedd6f264646903d20189e41da2d8a55"
+    },
+    "input/input-mapping.mk": {
+      "sha256": "6ec0030412932f6dcef9795aa9d708425661ff2368282b6b4536e03f743c1a75"
+    },
+    "input/mtk-kpd.kl": {
+      "sha256": "a940764c7807d582cb04cadeb3140566d6472353cf27a31a52a2e7aefcb0a942"
+    },
+    "lights/Android.bp": {
+      "sha256": "5c8ffbfe3f28004e3f6aefb08b6d58b6691e29d745850c6aab63322ebbfee551"
+    },
+    "lights/Lights.cpp": {
+      "sha256": "2c7d5457e9f1e7dc3eb685119b222cafc764105e38a11396dfc7fe37ff3c781d"
+    },
+    "lights/README.md": {
+      "sha256": "ab3630b5d3eb14114372901d207d7e5e2ebec213c4ba27b23b62fd8336fe3b5c"
+    },
+    "lights/legacy_memory.cpp": {
+      "sha256": "a1f7b02908d5b8dd4fb6ca955c47dc8815a5f975ce8df9db1e5c7bbb5aef712c"
+    },
+    "lights/lights.rc": {
+      "sha256": "e9f46620b680ce021cad0310f9ae761b8c0b468282ae0f86fab965049913d6eb"
+    },
+    "lights/lights.xml": {
+      "sha256": "202fd854aaa7d849d900c16501a30cd626b46a9b306415d4c0c13c36dacd85d2"
+    },
+    "lineage_p00a.mk": {
+      "sha256": "dd3627b979a099af8450068035a42bcd878f587e4b11c9800182bef0f7de452d"
+    },
+    "manifest.xml": {
+      "sha256": "320a21a0778bed69082a08bc457d58969352471130bf57ab241cbd71653fe0a6"
+    },
+    "prebuilt/Image.gz-dtb": {
+      "sha256": "e9cde06e85e752aec0433ea37fa926c31b4f7a72cd55453762ec6870e5bb5bf1"
+    },
+    "prebuilt/debug-adb-public-key": {
+      "symlink": "/srv/android/asus-device-product/debug-adb-public-key"
+    },
+    "radio/Android.bp": {
+      "sha256": "d97fb63e5f2b46e652ab7f86599af69084d7bdf705700523434c3f97ecdff31c"
+    },
+    "radio/LICENSE": {
+      "sha256": "c3ee8171a95c407440b4729843b9696e48909aceac27383e665bbe320b119c93"
+    },
+    "radio/NOTICE-ASUS-BLOBS": {
+      "sha256": "2b94c132f3dab0502fd94bca44774207e0a548ec5cba55790fb320366ab019ce"
+    },
+    "radio/bluetooth-p00a.rc": {
+      "sha256": "a6e25a3d192d2719f4acd1eef67ec3e9f2a83917619c792d616f130060e7de2b"
+    },
+    "radio/bluetooth.mk": {
+      "sha256": "4f1b274f8f142eacf452131c9d92edeedb627d5e6d81e5729d7c17c1b3264179"
+    },
+    "radio/bluetooth/libbluetooth_mtk.so": {
+      "sha256": "c2f517ef11d3fe0d31197af295b50447afb9146706f1caaa18d0147063224348"
+    },
+    "radio/bluetooth/libbt-vendor.so": {
+      "sha256": "e3d3b4aa01c9faded40791ce61f536ed830db9dffd66a0b11258fc67b969f27a"
+    },
+    "radio/init.p00a-radio.rc": {
+      "sha256": "67ebf4f61d77dbc3c05b71b040eb58f5c3fa04f26a7a22b8ca25308de0d13337"
+    },
+    "radio/manifest-bluetooth.xml": {
+      "sha256": "4366c669e84f31074665e35a94c80c95a440cc60845870decc33684a8d69ef4a"
+    },
+    "radio/radio.mk": {
+      "sha256": "a9d7376b4fe4566777822ee85a8d83a1cd36845d4de849f6643aa0bef39b4661"
+    },
+    "radio/sepolicy/file_contexts": {
+      "sha256": "978b4784e72f18110b0c5e274500cfb590d14912cb20e6991342e24e195869e7"
+    },
+    "radio/sepolicy/p00a_radio.te": {
+      "sha256": "e665bbb1395812a8e20b0e0e5a5c36f016314e0f297b0e841df0d5d990d9744a"
+    },
+    "radio/sepolicy/property_contexts": {
+      "sha256": "479736a24dc80977e7b475d13f2c8d46f0a0bdf5105c71e82775e6f7a2734f72"
+    },
+    "radio/src/bt_record.c": {
+      "sha256": "0b2c4c77d486a686eefaa0812e7ce9df77169b35693436b6879d31bb708b528d"
+    },
+    "radio/src/bt_record.h": {
+      "sha256": "482f8d71a35266b8c11ac2dd96eda6f45ed926e983dd237b886667ff48fc7f4f"
+    },
+    "radio/src/p00a_wmt.c": {
+      "sha256": "3a7cd5cfde9a4c26d8caac053de3bc114c4a4fe636cf233b375fcc9697e89d9c"
+    },
+    "radio/src/wmt_protocol.c": {
+      "sha256": "9c055927109dfebf87adddb849d7547153db8116ff93cdec92ee6960b2e34615"
+    },
+    "radio/src/wmt_protocol.h": {
+      "sha256": "94ecf3ec3b8149d9bfe9c05a3b79fdd8b632285ce39da523ad0e8b6f665260a0"
+    },
+    "radio/tests/bt_record_test.c": {
+      "sha256": "9301f4828e7f2e2fa8010ac6c6c6eec11c41cf815d580c525c781580310ce5dd"
+    },
+    "radio/tests/protocol_test.c": {
+      "sha256": "e5383f2f1d64b6736f9e822ae0050293914f436d4c63787e7e43d0366da03969"
+    },
+    "radio/ueventd.radio.rc.fragment": {
+      "sha256": "42e2bc2162f804b25b9968495657bb1d8b44e07abc57ebabe6d0208356d7cc65"
+    },
+    "radio/wificond.rc": {
+      "sha256": "4e2ecde075f30eb834421850d39bafd1777044a54971ad2abf64c5bcc6d1e980"
+    },
+    "rootdir/Android.mk": {
+      "sha256": "1edd888c5ceb76892b568bcb000887779b43e51b2d43989e4bb2f73897620e9f"
+    },
+    "rootdir/fstab.mt8163": {
+      "sha256": "04179d23e76be8755f6452319e05cc89f2438b51fcc539cb76695c9c65c57e75"
+    },
+    "rootdir/init.mt8163.rc": {
+      "sha256": "7e89915e62d927601d15a832c802efd902f81cc27a48026554e6a159a19b72df"
+    },
+    "rootdir/init.mt8163.usb.rc": {
+      "sha256": "c535e164b26b012b0e2fc963ccca4f5c86ed313060d856601ca49d3e90d5a6f3"
+    },
+    "rootdir/ueventd.rc": {
+      "sha256": "27357623ffefae44db3678a44f5aaf28c9c4ae2c65ca1b699078c18924271936"
+    },
+    "sensors/Android.bp": {
+      "sha256": "f1fab55f9dea964aaeeb13d271f75eebb9d9c6e8ae86bb9d06d5c6ba44a2d035"
+    },
+    "sensors/BoardConfig.mk": {
+      "sha256": "9207c304761cf86afb423641534ed383e7f8dae613e64061e972d2f65832aa4d"
+    },
+    "sensors/accel_protocol.c": {
+      "sha256": "35d4dc5163b65894acfaaac36555334a8948c4d084d1958c77c6ae33fe1fe8a8"
+    },
+    "sensors/accel_protocol.h": {
+      "sha256": "1e51b0be70bdaf77d00e143810af88f117749f8dcfd8c46cdf325db729df77f2"
+    },
+    "sensors/init.p00a-accelerometer.rc": {
+      "sha256": "5e1652e4437f3fe04285a64453cf75a0edfdcca00708cd2af08e256c1ed3c712"
+    },
+    "sensors/manifest.xml": {
+      "sha256": "051ea959884e25bc75009ceddd19c8f689bae989f9973e36a0032ab8cdf32c22"
+    },
+    "sensors/sensors.c": {
+      "sha256": "767b8f8e8b232bb3f82c464926e10425e604f04570c2ac0c7a02c5ff77f0fd22"
+    },
+    "sensors/sensors.mk": {
+      "sha256": "a0f3546101ee0f6e82e6bf832a711bc28f9d1b7d6b66dba22dace3f20a5cf73d"
+    },
+    "sensors/sepolicy/file_contexts": {
+      "sha256": "2f39279a5a2f1a22b0cadcf5a85c682f3c522744a9840c18ce91e9aa32a2d034"
+    },
+    "sensors/sepolicy/genfs_contexts": {
+      "sha256": "ac05b23dd0fdfb9b7bd2dd83401d4ab461efd96bf2ab6da87ad471423564b23d"
+    },
+    "sensors/sepolicy/p00a_accelerometer.te": {
+      "sha256": "54bc1962f05ffa1987bf01d5cfa89f1b5c752120890bed1eef36c877165f6a47"
+    },
+    "sensors/ueventd.fragment.rc": {
+      "sha256": "507fd039f06a16145545030df90af0723c6e14d54679560603b216a94154b728"
+    },
+    "sepolicy/vendor/file_contexts": {
+      "sha256": "f7d5656f54655442056e607a620b3bcd37d8818f1f3b9116bbbb190212241f42"
+    },
+    "sepolicy/vendor/genfs_contexts": {
+      "sha256": "85204eae919e223f80393220bacd1e2447ede4eb85babbcdc5aad66f07864aaa"
+    },
+    "sepolicy/vendor/hal_light_default.te": {
+      "sha256": "11be40d06a4d99c87aaa2e97f663c34ae4ac8eeba6e8abde260df28f36da8ce2"
+    }
+  },
+  "r8_delta_sha256": "7e624126e0d6897f7fce85c129087f57427019225276013a5131695f7eafce65",
+  "r9_delta_sha256": "cdd13caa85e9e67c3604c9d09d88df40d6af600d694a784292ab145763018052",
+  "revision": "r9",
+  "sensor_delta_sha256": "e4d818d5f71871daf857142aa99977b5703f690bb0f58a0533eff73e33326709",
+  "sensor_receipt_sha256": "60835f48f77a126a79b5903d845ebc81cd48c340f74ea32308f5bfc7b0b5f6e1",
+  "source_patch_sha256": "e5b162f002753df8c8f3ba7e58939de38b2b5cab6361f51de7f68a1fb20dc893",
+  "source_receipt_sha256": "9f2a12b3a93ee35d1f703f9d13055fe7e00c1a69db8711557de09c7e268cbb01",
+  "source_writes": [
+    {
+      "after": "1d2f61832b2596b0046cb82cf3634609ea866098d097a83fac27c35272ac726a",
+      "before": "a7b12c1895a3b354a91997fffe0e383a88e5b0e0d4371f8fdc090c71f62aade7",
+      "path": "/srv/android/lineage24/external/chromium-webview/prebuilt/arm64/webview.apk"
+    }
+  ],
+  "staged_receipt_sha256": "b1934112039c3f84f2f2801a73595c36c31f150be580664486fd194e49f0875e"
+}

@@ -1,0 +1,8 @@
+{
+  "2026-11-06-asus-root-enabled-incremental/evidence/final-report.json": "646a04a78b83853144eb4b42a935c6d407619f0d0031b5c0db476f4193b7803a",
+  "2026-11-06-asus-r9-executable-continuation/inputs/parent-bpf-changed-output-conditional-acceptance.json": "a4b790a756d92d2d656e0d45fe80dca9839bb0a381d58b647266fd11ddf379ec",
+  "2026-11-06-asus-android17-network-runtime/artifacts/handoff-r1/manifest.json": "d6790e2efde8ddb11102f561b5c58129660be09d41f1bbfb66402f3865ef13dd",
+  "2026-11-06-asus-android17-network-runtime/artifacts/handoff-r1/evidence/network-source-equivalence.json": "97609a2e6af12a10445c305cf6f6ae1013877065876fb301ca4bc6500c7d781d",
+  "2026-11-06-asus-android17-network-runtime/artifacts/handoff-r1/evidence/network-config-equivalence.json": "016af85501a36f6a9c79bfb69f9a01097f2af0f5f34c7908c3443c6ac8432ac3",
+  "2026-11-06-asus-sdk37-platform-bpf-startup/artifacts/supplement-qualified-r2/manifest.json": "cdf539022affce9641cbe91da18e9323fb48322ad6443240c30d9bbf7f8a3fe2"
+}

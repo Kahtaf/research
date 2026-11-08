@@ -1,0 +1,16 @@
+{
+  "qemu_exit": 0,
+  "elapsed_seconds": 0.46642648499982897,
+  "timeout": false,
+  "expected_missing_info_reproduced": true,
+  "public_lines": [
+    "ARRAY_CREATE fd=3 errno=0 type=2 key=4 value=4 entries=31 flags=0",
+    "ARRAY_CRUD update=0 lookup=0 equal=1",
+    "MAP_INFO field=0 rc=-1 errno=22",
+    "MAP_INFO field=1 rc=-1 errno=22",
+    "MAP_INFO field=2 rc=-1 errno=22",
+    "MAP_INFO field=3 rc=-1 errno=22",
+    "MAP_INFO field=4 rc=-1 errno=22",
+    "REPLAY_DONE expected_missing_info_reproduced=1"
+  ]
+}

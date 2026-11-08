@@ -1,0 +1,19 @@
+{
+  "run-r3-actual_serial_hash": true,
+  "run-r3-actual_complete": true,
+  "run-r4-metadata-crud_serial_hash": true,
+  "run-r4-metadata-crud_complete": true,
+  "run-r2-mandatory-malformed_serial_hash": true,
+  "run-r2-mandatory-malformed_complete": true,
+  "maps31": true,
+  "handler": true,
+  "policy10": true,
+  "network60": true,
+  "local_prefix4_EPERM_before_TX": true,
+  "malformed_actual_rejection": true,
+  "wholechain_failure_preserved": true,
+  "exact_final_inputs": true,
+  "frozen_receipts_identical": true,
+  "fixture_source_binary_reproduction": true,
+  "allocation_within_512MiB": true
+}

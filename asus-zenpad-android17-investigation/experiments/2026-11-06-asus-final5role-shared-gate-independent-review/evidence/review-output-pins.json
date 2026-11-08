@@ -1,0 +1,42 @@
+{
+  "README.md": {
+    "bytes": 1150,
+    "sha256": "fc75dde9bb602248a2b0145787f47fc58f7b13303c498f094644c5eca496b263"
+  },
+  "REPORT.md": {
+    "bytes": 15321,
+    "sha256": "c21c345524150514fe734fb96213f479b7c1ba54375718e1c47f1b9d334e36fd"
+  },
+  "scripts/extend_harness.py": {
+    "bytes": 6574,
+    "sha256": "6655a097c96aba5da0b19598065ffd0484cc6f09194b8ac235efcbe7d2a2c108"
+  },
+  "scripts/freeze.py": {
+    "bytes": 3171,
+    "sha256": "42fa2613170dd04a8f37f0f7498863edd59b941c4d584878cf6b214cf85ed000"
+  },
+  "scripts/run_adversarial.py": {
+    "bytes": 7221,
+    "sha256": "ea667d87cbaf56fcc07c8416c7e67a879aec93a2c99a8551f578fb7cfda4d3be"
+  },
+  "scripts/run_tests.py": {
+    "bytes": 24492,
+    "sha256": "c61391ccd6f963d533b631293f2968b4187e39d04bc3182b720968c0e7dfb157"
+  },
+  "scripts/verify_preservation.py": {
+    "bytes": 4457,
+    "sha256": "82fc9e2bddbeceadc14ba02e77d348ebb223ce5d01692b00716f6b6e3aaa971a"
+  },
+  "evidence/pin-verification.json": {
+    "bytes": 1558,
+    "sha256": "9d297297dbbc62c0f836f8983acd41ac64fea168b451b334e27766c69ec786e1"
+  },
+  "evidence/review-input-before.json": {
+    "bytes": 200206,
+    "sha256": "da8b1d315eb4ab3c6980987bdbc77ad53b8c0e372f8e4112be6c3dc2506bbc9e"
+  },
+  "evidence/review-input-after.json": {
+    "bytes": 200206,
+    "sha256": "da8b1d315eb4ab3c6980987bdbc77ad53b8c0e372f8e4112be6c3dc2506bbc9e"
+  }
+}

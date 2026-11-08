@@ -1,0 +1,39 @@
+--- a/loader/bpfloader.rs
++++ b/loader/bpfloader.rs
+@@ -205,6 +205,8 @@
+     critical: bool,
+     // If this is true, maps and programs in the bpf object file are not loaded.
+     skip_on_user: bool,
++    // Minimum actual kernel version for this optional feature/test object.
++    min_kver: u32,
+     // If this is true, the file is allowed to be missing.
+     allow_missing: bool,
+     maps: &'static [MapDesc],
+@@ -230,6 +232,7 @@
+     critical: false,
+     skip_on_user: false,
+     allow_missing: false,
++    min_kver: KVER_NONE,
+     maps: &[],
+     progs: &[],
+ };
+@@ -330,6 +333,8 @@
+     },
+     BpfFileDesc {
+         filename: "/system/etc/bpf/bpfRingbufProg.bpf",
++        // A debug-only ring-buffer self-test; ring buffers were added in 5.8.
++        min_kver: kver(5, 8, 0),
+         critical: true,
+         skip_on_user: true,
+         maps: &[MapDesc::new(GID_ROOT, PERM_GRW, "test_ringbuf")],
+@@ -560,6 +565,10 @@
+ 
+ fn libbpf_worker(file_desc: &BpfFileDesc) -> Result<(), anyhow::Error> {
+     info!("Loading {}", file_desc.filename);
++    if kernel_version()? < file_desc.min_kver {
++        info!("Skip {} below its kernel minimum", file_desc.filename);
++        return Ok(());
++    }
+     if file_desc.skip_on_user && is_user_build()? {
+         info!("Skip loading {} on user build", file_desc.filename);
+         return Ok(());

@@ -1,0 +1,5 @@
+runtime_resource_overlay {
+    name: "P00aWifiBringupOverlay",
+    vendor: true,
+    sdk_version: "current",
+}

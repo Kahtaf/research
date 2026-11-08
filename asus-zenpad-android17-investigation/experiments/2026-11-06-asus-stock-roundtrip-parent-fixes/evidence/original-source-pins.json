@@ -1,0 +1,8 @@
+{
+  "source/service/controller.py": "72a246f4a01597eb6e846562b38b04ed01a412a85f2c7b70e1f4d18cbe253c8d",
+  "source/service/fixed.py": "1d555291e5e21f30a45b2947b0f19dc3f165b73d3d9272dd8c6285360d52af7f",
+  "source/service/observer.py": "db39847cbf81eaff77636fb5cde46e413d667dc64c24e30e689d292be38c7443",
+  "source/service/transport.py": "a883c779ff892041aec9598b2ae47ac69d04c3ba33e26b221aca1cf15219fe7f",
+  "tests/service/test_faults.py": "37e4a01476735db9c1e1c3c416d77765f29660c37945ffeba168f00d7819cb24",
+  "tests/service/test_firmware.py": "ce78cc1156a5068f67ed8df1989660550122cdba409851ddd94373c7daacd740"
+}

@@ -1,0 +1,21 @@
+// Experimental P00A retrofit profile; not an Android 17 launch/CTS claim.
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+kernel_config {
+    name: "p00a_kernel_config_p_4_9",
+    srcs: [
+        "p-4.9/android-base.config",
+        "p-4.9/android-base-arm.config",
+        "p-4.9/android-base-arm64.config",
+    ],
+    meta: "p-4.9/android-base-conditional.xml",
+}
+
+vintf_compatibility_matrix {
+    name: "p00a_experimental_legacy_fcm3.xml",
+    stem: "compatibility_matrix.p00a-legacy.xml",
+    srcs: ["compatibility_matrix.p00a-p.xml"],
+    kernel_configs: ["p00a_kernel_config_p_4_9"],
+}

@@ -1,0 +1,19 @@
+# Parent handoff: separate original STOCK-only rescue
+
+**Complete offline; STOCK-ONLY/UNAPPROVED. No device operation or arming occurred.** Independent review and all physical decisions remain with the parent. No offline implementation blocker remains.
+
+- Candidate: `artifacts/candidate/UNAPPROVED-STOCK-ONLY.img`, 10,412,032 bytes, SHA256 `5a61d3d65a7ba6b29745a965d9911ab4483c951a0327339839a0541bcb9ab30f`.
+- Full padded p10: `/srv/android/2026-11-06-asus-stock-only-ram-rescue-build/artifacts/candidate/UNAPPROVED-STOCK-ONLY.p10.raw`, 16,740,352 bytes, SHA256 `3f99c785cca60bf56c2505711e2d26b72623daf28180515d44c5ba2abf03a44a`. It remains on the VM.
+- Actual manifest: two original SYSTEM/BOOT roles, SHA256 `605cdec038dafe3dddabfe92b8bd6cd189734f740230dfc362d02a43421e4e47`. This target is not zero-record. Terminal helper scope remains fixed original p10 only; no new Android17/userdata/five-role profile.
+- Exact corrected host: `source/host.py`, SHA256 `2d6acd11f5b46585bec820188463e4ecb863ec19a6f106a83320f14c24c479d9`. Generated host binds the new full image/helper. `ARMED=False`, `TIMING_QUALIFIED=False`, `execute_approved=false`, `physical_GO=false`. No live execute command/profile is provided.
+- Evidence: 129 behavior cases plus seven host regression methods; 72 policy/context checks, including 29 compiled lookups; actual static ARM64 compilation; complete byte reproduction; exact stock kernel/init/authadbd and unchanged policy/contexts; actual two-member ARM64 guest extraction with a test-only observer, no disks/network/USB.
+
+Read [REPORT.md](REPORT.md), [HANDOFF.json](HANDOFF.json), [PROTOCOL.md](PROTOCOL.md), [BUILD.md](BUILD.md), [unapproved session contract](artifacts/candidate/session-contract.UNAPPROVED.json), inventories and `evidence/`. The admission harness uses actual full-geometry manifest bytes and unchanged helper entry/parser but models authority and stops before partition reads. Memory/socket tests are not hardware write or domain-transition qualification. Guest kernel is an existing compatible fixture kernel, not the delivered stock kernel.
+
+The previous zero-record image remains SHA `94e6747bc5998d7e5cf58a33280d362bb0dd97c14941c7fae6625117cc53ef91`; its full p10 remains `e3df64342477816bc9aa2c8bb44cb61adf7a0f910d2d016c339c3250ff8457e3`. All 117 local and 37 remote pinned prior inputs are unchanged. Full images/payload copy are VM-only for this spike; compact Mac artifact can be checked with `python3 -B scripts/verify_compact.py`. That script makes no connection.
+
+The parent's successful live publication return is the only accepted host completion. On-disk schema2 outcome remains UNKNOWN/publication_accepted=false, with separate device_outcome. Replay cannot accept lost completion. All original-pair proofs, full p10 scans, identity/descriptor checks and no-retry/terminal UNKNOWN behavior are retained.
+
+Parent continuation is independent exact-build review, then separately authorized read-only physical and timing commissioning with elapsed/source/byte-count/thermal/battery/repeat evidence and justified margins. Current 180/15-per-chunk/60/120-second phase limits under hard600 are provisional, not measured or sufficient. Any qualification requires a later reviewed evidence-bound revision, not toggling flags. Then only explicit parent authorization may qualify the whole fixed p10 restore and direct original recovery/OEM reset sequence. Authenticated proxy, UID/domain, real aliases/labels/CID/GPT/geometry/swap/mounts/holders/exclusivity and eMMC durability remain physical gates. Device availability was not probed. Full OS flash and first Linux4.9 probe remain unqualified.
+
+Retain terminal UNKNOWN after any publication/return loss, timeout or I/O uncertainty. Do not retry/reconnect/restart/reboot/reset based on a visible receipt or later stock observation. All private preservation receipts were adopted without opening private contents.

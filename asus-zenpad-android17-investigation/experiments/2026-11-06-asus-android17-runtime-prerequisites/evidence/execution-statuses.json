@@ -1,0 +1,9 @@
+{
+  "kernel_build_r1": 0,
+  "kernel_build_r2": 0,
+  "run_r1": "compile exit 1 captured compile.txt; no QEMU launched",
+  "run_r2": "QEMU 0; guest failures 5; runner 1",
+  "run_r3": "QEMU 0; guest failures 0; original hash parser runner 1; corrected reanalysis all 68 match",
+  "run_r4": "QEMU 0; guest failures 0; runner exit 0 observed by SSH caller",
+  "no_other_build_or_physical_operations": true
+}

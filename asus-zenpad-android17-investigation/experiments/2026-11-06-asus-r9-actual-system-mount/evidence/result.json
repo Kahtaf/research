@@ -1,0 +1,85 @@
+{
+  "scope": "PARENT_ADMITTED_NARROW_ACTUAL_SYSTEM_FS_ONLY",
+  "qemu_exit": 0,
+  "timed_out": false,
+  "elapsed_seconds": 3.7512885679971077,
+  "guest_pass": true,
+  "arm32_liblog_expected_sha256_match": true,
+  "header": {
+    "header_gate_pass": true,
+    "actual_kernel_mount_required": true,
+    "path": "/srv/android/asus-r9-postbuild-validation-r2/validation/system-partition.raw",
+    "file_bytes": 3753902080,
+    "expanded_bytes": 3753902080,
+    "filesystem_bytes": 3753902080,
+    "partition_bytes": 3753902080,
+    "block_bytes": 4096,
+    "inode_bytes": 256,
+    "feature_masks": {
+      "compat": "0x28",
+      "incompat": "0x42",
+      "ro_compat": "0x7b"
+    },
+    "superblock_sha256": "0f06eb7ae5145fd6cd4741c3d8b681ed19fb9fa79a5bdc3fbfff885605bacbdc",
+    "full_image_rehashed": false,
+    "format": "raw"
+  },
+  "before": {
+    "dev": 2049,
+    "inode": 27263347,
+    "bytes": 3753902080,
+    "mtime_ns": 1794019280920581777,
+    "ctime_ns": 1794019538990926800,
+    "mode": "0o444"
+  },
+  "after_mount": {
+    "dev": 2049,
+    "inode": 27263347,
+    "bytes": 3753902080,
+    "mtime_ns": 1794019280920581777,
+    "ctime_ns": 1794019538990926800,
+    "mode": "0o444"
+  },
+  "after_hash": {
+    "dev": 2049,
+    "inode": 27263347,
+    "bytes": 3753902080,
+    "mtime_ns": 1794019280920581777,
+    "ctime_ns": 1794019538990926800,
+    "mode": "0o444"
+  },
+  "identities_unchanged": true,
+  "parent_supplied_sha256": "baa69560ace09a478c902077d8ff926d7a079ecb9b9f1632e4c330169b243798",
+  "after_sha256": "baa69560ace09a478c902077d8ff926d7a079ecb9b9f1632e4c330169b243798",
+  "full_raw_hash_count": 1,
+  "source_hash_matches_parent": true,
+  "kernel_sha256": "c59e030cdfc3e752eeddbbf62d091ae9760c94d5fbf780a22824e004ec872080",
+  "config_sha256": "0426746d90db074dd026ae5d383e1cde27d587020699d5dc9af4faac0b54489f",
+  "retained_inputs_verified_count": 2368,
+  "ext4_source_parity_count": 41,
+  "generated": {
+    "reader.c": "505c9089e743fa8d39c2031789677c79ef340c08e70f7ecee816d9e33105c0a7",
+    "sha256.h": "21461ce6550921e7a903cb29cab9ce0733a8aa9a25909f0cc2a411673ae67ea1",
+    "init": "42d4dc31daa728ee0ca9aa0eae42566b838dc86028142c58d29d1369416b731c",
+    "reader.cpio.gz": "6752d83eac1915d0b8809f2ffed9a74f645711c8aa9274092e0677bcbea80e37",
+    "check_system_header.py": "fe5cb6a6b1bc099f19c19b80ededca5062b5a230fbccfa51c8edeb0e94333974"
+  },
+  "limits": {
+    "guest_mib": 384,
+    "guest_vcpus": 1,
+    "guest_nic": false,
+    "host_cpus": 1,
+    "process_memory_bytes": 1073741824,
+    "process_cpu_seconds": 60,
+    "qemu_wall_seconds": 75,
+    "remote_wall_seconds": 90
+  },
+  "owned_output_bytes": 1440682,
+  "production_image_accepted": false,
+  "full_android_runtime_proven": false,
+  "physical_GO": false,
+  "flash_ready": false,
+  "original_r9_overall_exit": 1,
+  "original_r9_actual_ro_debuggable": 0,
+  "filesystem_readable_on_virtual_4_9": true
+}

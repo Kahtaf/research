@@ -1,0 +1,59 @@
+{
+  "status": "OBSERVED_100_PAIRED_WRITE_BOUNDARIES_FINAL_COMPLETION_UNKNOWN",
+  "candidate_p10_sha256": "d07c38333018f7b9cde03ac87bec79928ee934bdbf29332fa55841f7d5157310",
+  "normal_android_return_proven": true,
+  "one_recovery_dispatch": true,
+  "console": {
+    "bytes": 19290,
+    "sha256": "3c645b459a898aca76607fdb38adc35815a7d3b4e8bcd6a5f4ae035d387102db"
+  },
+  "calibration": {
+    "initial_clock_begin": "TRIPLE_OBSERVED",
+    "initial_clock": "TRIPLE_OBSERVED",
+    "normal_policy": "TRIPLE_OBSERVED_POLICY0_PRIORITY0",
+    "frozen_control": "TRIPLE_OBSERVED_REUSED_HELPER_CONTROL"
+  },
+  "pair_count": 100,
+  "all_sequences1to100_contiguous_and_normal_rc": true,
+  "last_boundary": {
+    "seq": 100,
+    "input_length": 176,
+    "WENT": true,
+    "LOG": true,
+    "WRET": true,
+    "rc": 176,
+    "later_PID1_write_entry": null,
+    "signal_handler": "MAIN_FLOW_LOG",
+    "span": "WRET_REACHED_BEFORE_C_RETURN",
+    "helper_LOG": "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=actual op=sched.original path=pid0 rc=0 errno=0 value=getparam_rc=0 getparam_errno=0 priority=0"
+  },
+  "previous_boundary": {
+    "seq": 99,
+    "input_length": 150,
+    "WENT": true,
+    "LOG": true,
+    "WRET": true,
+    "rc": 150,
+    "later_PID1_write_entry": 100,
+    "signal_handler": "MAIN_FLOW_LOG",
+    "span": "WRET_REACHED_BEFORE_C_RETURN",
+    "helper_LOG": "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=end op=clock_gettime path=loop.initial rc=0 errno=0 value=0.642444769"
+  },
+  "parser_status": "UNKNOWN_STOP",
+  "parser_integrity": "UNKNOWN",
+  "parser_errors": [
+    "fresh exact entry must be first console line"
+  ],
+  "container_framing": {
+    "stock_header_matches_reference_source": true,
+    "stock_preceding_line_count": 2,
+    "raw_preserved": true,
+    "no_filtering_or_replay_performed": true
+  },
+  "limits": [
+    "WRET is a pre-C-return point; IRQrestore/preemption/syscallexit and userspace execution remain after it.",
+    "Existing parser rejects OEM/proc prefix before uniqueentry; full raw and unchanged parser output preserved; no formal decoder acceptance claimed.",
+    "No2M/afterIRQ/alarm marker; missingnextwrite cannot proveexecutionloss or exonerateallreporting.",
+    "No automaticfix/retry/storageadvance; BOOT/SYSTEM/DATA untouched."
+  ]
+}

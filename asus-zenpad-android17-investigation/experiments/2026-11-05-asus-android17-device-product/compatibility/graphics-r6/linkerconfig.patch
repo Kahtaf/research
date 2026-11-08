@@ -1,0 +1,198 @@
+--- a/Android.bp
++++ b/Android.bp
+@@ -20,7 +20,10 @@
+ 
+ cc_defaults {
+     name: "linkerconfig_defaults",
+-    cflags: [
++    cflags: select(soong_config_variable("p00a", "legacy_graphics"), {
++        true: ["-DP00A_LEGACY_GRAPHICS"],
++        default: [],
++    }) + [
+         "-Wall",
+         "-Werror",
+         "-Wextra",
+--- a/modules/environment.cc
++++ b/modules/environment.cc
+@@ -17,12 +17,26 @@
+ #include "linkerconfig/environment.h"
+ 
+ #include <unistd.h>
++#include <android-base/parseint.h>
+ 
+ #include "linkerconfig/variables.h"
+ 
+ namespace android {
+ namespace linkerconfig {
+ namespace modules {
++
++bool IsP00aLegacyGraphics() {
++#ifdef P00A_LEGACY_GRAPHICS
++  unsigned int first_api = 0;
++  return android::base::ParseUint(
++             Variables::GetValue("ro.product.first_api_level").value_or(""),
++             &first_api) &&
++         first_api > 0 && first_api < 26 &&
++         !IsVendorVndkVersionDefined() && !IsProductVndkVersionDefined();
++#else
++  return false;
++#endif
++}
+ 
+ bool IsVndkLiteDevice() {
+   return Variables::GetValue("ro.vndk.lite").value_or("") == "true";
+--- a/modules/include/linkerconfig/environment.h
++++ b/modules/include/linkerconfig/environment.h
+@@ -19,6 +19,7 @@
+ namespace android {
+ namespace linkerconfig {
+ namespace modules {
++bool IsP00aLegacyGraphics();
+ bool IsVndkLiteDevice();
+ bool IsVndkInSystemNamespace();
+ std::string GetVendorVndkVersion();
+--- a/contents/namespace/sphal.cc
++++ b/contents/namespace/sphal.cc
+@@ -36,6 +36,16 @@
+ namespace linkerconfig {
+ namespace contents {
+ Namespace BuildSphalNamespace([[maybe_unused]] const Context& ctx) {
++  if (ctx.IsDefaultConfig() &&
++      (ctx.IsSystemSection() || ctx.IsUnrestrictedSection()) &&
++      modules::IsP00aLegacyGraphics()) {
++    // Forward HAL loads to the core namespace, sharing Binder and C++ state.
++    // Keep this namespace isolated, visible, and without its own search paths.
++    Namespace ns("sphal", /*is_isolated=*/true, /*is_visible=*/true);
++    ns.GetLink(ctx.GetSystemNamespaceName()).AllowAllSharedLibs();
++    return ns;
++  }
++
+   // Visible to allow use with android_dlopen_ext, and with
+   // android_link_namespaces in libnativeloader.
+   Namespace ns("sphal",
+--- a/contents/namespace/systemdefault.cc
++++ b/contents/namespace/systemdefault.cc
+@@ -95,6 +95,16 @@
+ 
+   SetupSystemPermittedPaths(&ns);
+ 
++  if (ctx.IsDefaultConfig() && modules::IsP00aLegacyGraphics()) {
++    // Pre-Treble graphics use one core ABI. Core paths stay first, with vendor
++    // paths retained for the current HIDL passthrough adapters and EGL alias.
++    ns.AddSearchPath("/vendor/${LIB}");
++    ns.AddSearchPath("/vendor/${LIB}/hw");
++    ns.AddPermittedPath("/system/${LIB}/egl");
++    ns.AddPermittedPath("/vendor/${LIB}");
++    ns.AddPermittedPath("/system/vendor/${LIB}");
++  }
++
+   ns.AddRequires(ctx.GetSystemRequireLibs());
+   ns.AddProvides(ctx.GetSystemProvideLibs());
+   return ns;
+--- a/contents/namespace/vendordefault.cc
++++ b/contents/namespace/vendordefault.cc
+@@ -33,6 +33,11 @@
+ namespace linkerconfig {
+ namespace contents {
+ Namespace BuildVendorDefaultNamespace(const Context& ctx) {
++  if (ctx.IsDefaultConfig() && modules::IsP00aLegacyGraphics()) {
++    // The legacy product has no VNDK contract. Vendor services must use the
++    // same core Binder/libutils ABI as its system-installed gralloc closure.
++    return BuildSystemDefaultNamespace(ctx);
++  }
+   return BuildVendorNamespace(ctx, "default");
+ }
+ 
+--- /dev/null
++++ b/contents/tests/configuration/p00a_legacy_graphics_test.cc
+@@ -0,0 +1,90 @@
++// SPDX-License-Identifier: Apache-2.0
++#include <algorithm>
++#include <iostream>
++
++#include <gtest/gtest.h>
++#include "linkerconfig/apex.h"
++#include "mockenv.h"
++#include "linkerconfig/baseconfig.h"
++#include "linkerconfig/configwriter.h"
++#include "linkerconfig/environment.h"
++#include "linkerconfig/namespacebuilder.h"
++
++using namespace android::linkerconfig::contents;
++using namespace android::linkerconfig::modules;
++
++class P00aLegacyGraphics : public ::testing::Test {
++ protected:
++  void SetUp() override {
++    MockGenericVariables();
++    Variables::AddValue("ro.product.first_api_level", "23");
++    Variables::AddValue("ro.vndk.version", "");
++    Variables::AddValue("ro.product.vndk.version", "");
++  }
++  void TearDown() override {
++    Variables::AddValue("ro.product.first_api_level", "");
++    MockGenericVariables();
++  }
++};
++
++TEST_F(P00aLegacyGraphics, RejectsMissingMalformedAndModernApi) {
++  for (const auto* api : {"", "0", "-1", "garbage", "26", "37"}) {
++    Variables::AddValue("ro.product.first_api_level", api);
++    EXPECT_FALSE(IsP00aLegacyGraphics()) << api;
++    Context ctx;
++    auto ns = BuildSystemDefaultNamespace(ctx);
++    EXPECT_EQ(ns.SearchPaths().size(), 2u);
++    auto sphal = BuildSphalNamespace(ctx);
++    EXPECT_FALSE(sphal.SearchPaths().empty());
++  }
++}
++
++TEST_F(P00aLegacyGraphics, RejectsVndkProducts) {
++  Variables::AddValue("ro.vndk.version", "29");
++  EXPECT_FALSE(IsP00aLegacyGraphics());
++  Variables::AddValue("ro.vndk.version", "");
++  Variables::AddValue("ro.product.vndk.version", "29");
++  EXPECT_FALSE(IsP00aLegacyGraphics());
++}
++
++#ifdef P00A_LEGACY_GRAPHICS
++TEST_F(P00aLegacyGraphics, CoreAbiIsSharedAndNamespacesStayIsolated) {
++  ASSERT_TRUE(IsP00aLegacyGraphics());
++  Context ctx;
++  auto system = BuildSystemDefaultNamespace(ctx);
++  ASSERT_EQ(system.SearchPaths().size(), 4u);
++  EXPECT_EQ(system.SearchPaths().front(), "/system/${LIB}");
++  ConfigWriter system_writer;
++  system.WriteConfig(system_writer);
++  EXPECT_NE(system_writer.ToString().find("namespace.default.isolated = true"), std::string::npos);
++  auto sphal = BuildSphalNamespace(ctx);
++  EXPECT_TRUE(sphal.IsVisible());
++  EXPECT_TRUE(sphal.SearchPaths().empty());
++  ASSERT_EQ(sphal.Links().size(), 1u);
++  EXPECT_EQ(sphal.Links().front().To(), "default");
++  EXPECT_TRUE(sphal.Links().front().IsAllSharedLibsAllowed());
++  ctx.SetCurrentSection(SectionType::Vendor);
++  auto vendor = BuildVendorDefaultNamespace(ctx);
++  EXPECT_EQ(vendor.SearchPaths(), system.SearchPaths());
++  auto config = CreateBaseConfiguration(ctx);
++  ConfigWriter writer;
++  config.WriteConfig(writer);
++  std::cout << "P00A_GENERATED_CONFIG_BEGIN\n" << writer.ToString()
++            << "P00A_GENERATED_CONFIG_END\n";
++}
++
++TEST_F(P00aLegacyGraphics, DoesNotChangeApexOrRecoveryNamespaces) {
++  Context ctx;
++  for (auto type : {LinkerConfigType::ApexBinary, LinkerConfigType::Recovery}) {
++    ctx.SetCurrentLinkerConfigType(type);
++    auto system = BuildSystemDefaultNamespace(ctx);
++    EXPECT_EQ(system.SearchPaths().size(), 2u);
++    auto vendor = BuildVendorDefaultNamespace(ctx);
++    EXPECT_EQ(vendor.SearchPaths().front(), "/odm/${LIB}");
++  }
++}
++#else
++TEST_F(P00aLegacyGraphics, NoCompatibilityWithoutProductOptIn) {
++  EXPECT_FALSE(IsP00aLegacyGraphics());
++}
++#endif

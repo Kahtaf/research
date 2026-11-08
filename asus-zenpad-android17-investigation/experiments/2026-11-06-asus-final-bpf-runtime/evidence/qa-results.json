@@ -1,0 +1,17 @@
+{
+  "original_local_pins_unchanged": true,
+  "raw_unchanged_before_capture_after_capture_after_runtime": true,
+  "all_26_objects_bound": true,
+  "three_changed_objects_bound": true,
+  "actual_serial_hash_valid": true,
+  "actual_guest_completed": true,
+  "actual_no_property_seed": true,
+  "mandatory-malformed_serial_hash_valid": true,
+  "mandatory-malformed_guest_completed": true,
+  "mandatory-malformed_no_property_seed": true,
+  "owned_allocation_within_1GiB": true,
+  "platform_loader_completed_host_row_match": true,
+  "apex_loader_final_installed_byte_binding": true,
+  "remote_qualified_kernel_matches_requested": true,
+  "remote_qualified_config_matches_requested": true
+}

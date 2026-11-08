@@ -1,0 +1,149 @@
+[
+  {
+    "method": "Landroid/os/IRecoverySystem$Stub;-><init>()V",
+    "file": "inputs/framework__arm64__boot-framework.oat.dex1",
+    "code_item_offset": "0x4e799c",
+    "code_header_and_insns_bytes": 36,
+    "sha256": "efb95a4abf61568bde97e131fbd6135621ddebfac72226989102967ba4f233ce"
+  },
+  {
+    "method": "Landroid/os/IRecoverySystem$Stub;->asInterface(Landroid/os/IBinder;)Landroid/os/IRecoverySystem;",
+    "file": "inputs/framework__arm64__boot-framework.oat.dex1",
+    "code_item_offset": "0x4e79c0",
+    "code_header_and_insns_bytes": 68,
+    "sha256": "ead5d54f2f22773fc6bcd03273500dd63b9979d3632d2c4533bad3d0737516ee"
+  },
+  {
+    "method": "Landroid/os/IRecoverySystem$Stub;->asBinder()Landroid/os/IBinder;",
+    "file": "inputs/framework__arm64__boot-framework.oat.dex1",
+    "code_item_offset": "0x4e7a04",
+    "code_header_and_insns_bytes": 18,
+    "sha256": "2b7b5dc0fa9372f29029a99cee574b8e938a30d75dd2a60286e20430114f1789"
+  },
+  {
+    "method": "Landroid/os/IRecoverySystem$Stub;->onTransact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z",
+    "file": "inputs/framework__arm64__boot-framework.oat.dex1",
+    "code_item_offset": "0x4e7a18",
+    "code_header_and_insns_bytes": 240,
+    "sha256": "85e6b8f659cdaf44097fdf0ddb4bd1caf1e10489078865a2a0dc2cddcdf47ced"
+  },
+  {
+    "method": "Landroid/os/IRecoverySystem$Stub$Proxy;->clearBcb()Z",
+    "file": "inputs/framework__arm64__boot-framework.oat.dex1",
+    "code_item_offset": "0x4e77ec",
+    "code_header_and_insns_bytes": 112,
+    "sha256": "9cc16ad61bf912586c45a22dff176c8474545b5be9179f6b6d964691163c932d"
+  },
+  {
+    "method": "Landroid/os/IRecoverySystem$Stub$Proxy;->getInterfaceDescriptor()Ljava/lang/String;",
+    "file": "inputs/framework__arm64__boot-framework.oat.dex1",
+    "code_item_offset": "0x4e7868",
+    "code_header_and_insns_bytes": 24,
+    "sha256": "8c89f1bfe005e491878dcd938638df15b6f4bf8c9a77f94ec68cab812a8c9be9"
+  },
+  {
+    "method": "Landroid/app/ContextImpl;->enforce(Ljava/lang/String;IZILjava/lang/String;)V",
+    "file": "inputs/framework__arm64__boot-framework.oat.dex1",
+    "code_item_offset": "0x21425c",
+    "code_header_and_insns_bytes": 256,
+    "sha256": "26d1e6b4786656a9913ae0a331e7f14ed5d5e6045d82aabdeffb9672e6348483"
+  },
+  {
+    "method": "Landroid/app/ContextImpl;->checkCallingOrSelfPermission(Ljava/lang/String;)I",
+    "file": "inputs/framework__arm64__boot-framework.oat.dex1",
+    "code_item_offset": "0x214fc8",
+    "code_header_and_insns_bytes": 64,
+    "sha256": "ed2e9ff2a495746fa147520af61de81e58ab12db8426de8516491ef08ef8ba46"
+  },
+  {
+    "method": "Landroid/app/ContextImpl;->checkPermission(Ljava/lang/String;II)I",
+    "file": "inputs/framework__arm64__boot-framework.oat.dex1",
+    "code_item_offset": "0x2150c0",
+    "code_header_and_insns_bytes": 68,
+    "sha256": "440d9c8c1e2bb3df0e82ec5a7d7e60747ae1e3c77df17076d7725396feab464c"
+  },
+  {
+    "method": "Landroid/app/ContextImpl;->checkPermission(Ljava/lang/String;IILandroid/os/IBinder;)I",
+    "file": "inputs/framework__arm64__boot-framework.oat.dex1",
+    "code_item_offset": "0x215114",
+    "code_header_and_insns_bytes": 68,
+    "sha256": "1950018531f3eba738dfd63dacf8bafe24576949b8627d81e92fe4ebe163ca54"
+  },
+  {
+    "method": "Landroid/app/ContextImpl;->enforceCallingOrSelfPermission(Ljava/lang/String;Ljava/lang/String;)V",
+    "file": "inputs/framework__arm64__boot-framework.oat.dex1",
+    "code_item_offset": "0x2156c8",
+    "code_header_and_insns_bytes": 48,
+    "sha256": "38d3b75ef20c33bafd56158bc0a716b2e7c022cafbc1f53f50041842f53e6644"
+  },
+  {
+    "method": "Landroid/app/ActivityManager;->checkComponentPermission(Ljava/lang/String;IIZ)I",
+    "file": "inputs/framework__arm64__boot-framework.oat.dex1",
+    "code_item_offset": "0x1da03c",
+    "code_header_and_insns_bytes": 116,
+    "sha256": "8732922cee1b39802fa24be7c25836c4f83283cb0ddcff08ce0020e670a7d956"
+  },
+  {
+    "method": "Landroid/os/UserHandle;->getAppId(I)I",
+    "file": "inputs/framework__arm64__boot-framework.oat.dex1",
+    "code_item_offset": "0x4fe818",
+    "code_header_and_insns_bytes": 28,
+    "sha256": "ce96d5aef04b1a47d64d24135a11d2a8493f5d9efeba241cdcce0ea72ca38e1f"
+  },
+  {
+    "method": "Lcom/android/server/RecoverySystemService;->-get0(Lcom/android/server/RecoverySystemService;)Landroid/content/Context;",
+    "file": "inputs/framework__oat__arm64__services.odex.dex1",
+    "code_item_offset": "0x186928",
+    "code_header_and_insns_bytes": 22,
+    "sha256": "4a3230701b0d252b1400bac93fa0d10925953d50163212a6d0867e79dc6eac51"
+  },
+  {
+    "method": "Lcom/android/server/RecoverySystemService;-><init>(Landroid/content/Context;)V",
+    "file": "inputs/framework__oat__arm64__services.odex.dex1",
+    "code_item_offset": "0x186940",
+    "code_header_and_insns_bytes": 28,
+    "sha256": "d2f603b2ddf860db61f070452db7fb71baca4f121b45fd0fac97bb9022e542d6"
+  },
+  {
+    "method": "Lcom/android/server/RecoverySystemService;->onStart()V",
+    "file": "inputs/framework__oat__arm64__services.odex.dex1",
+    "code_item_offset": "0x18695c",
+    "code_header_and_insns_bytes": 42,
+    "sha256": "6fafc87ca000f8f90e89556e8811edd1891bac2d7d4768d98e9d2fe53d39d4ab"
+  },
+  {
+    "method": "Lcom/android/server/RecoverySystemService$BinderService;->connectService()Landroid/net/LocalSocket;",
+    "file": "inputs/framework__oat__arm64__services.odex.dex1",
+    "code_item_offset": "0x186274",
+    "code_header_and_insns_bytes": 134,
+    "sha256": "ce9f6f4fdea369ef1ec37c088684b09783973847b0c5b55f9ef17faa5512eaa5"
+  },
+  {
+    "method": "Lcom/android/server/RecoverySystemService$BinderService;->setupOrClearBcb(ZLjava/lang/String;)Z",
+    "file": "inputs/framework__oat__arm64__services.odex.dex1",
+    "code_item_offset": "0x186318",
+    "code_header_and_insns_bytes": 480,
+    "sha256": "18381c128783c62c91820e5d03e88677183fa205a9a91b26e01bfac23aa3eecb"
+  },
+  {
+    "method": "Lcom/android/server/RecoverySystemService$BinderService;->clearBcb()Z",
+    "file": "inputs/framework__oat__arm64__services.odex.dex1",
+    "code_item_offset": "0x18653c",
+    "code_header_and_insns_bytes": 30,
+    "sha256": "09be6348edfc8f333ca81ea20de250f80d764e62b71b2c87be6179d8227fc6f5"
+  },
+  {
+    "method": "Lcom/android/server/am/ActivityManagerService;->checkComponentPermission(Ljava/lang/String;IIIZ)I",
+    "file": "inputs/framework__oat__arm64__services.odex.dex1",
+    "code_item_offset": "0x1e6694",
+    "code_header_and_insns_bytes": 420,
+    "sha256": "3eae2faad19a03010326b308725e65be625bc84ceada51583eb8514f8562d9a4"
+  },
+  {
+    "method": "Lcom/android/server/am/ActivityManagerService;->checkPermission(Ljava/lang/String;II)I",
+    "file": "inputs/framework__oat__arm64__services.odex.dex1",
+    "code_item_offset": "0x1e7544",
+    "code_header_and_insns_bytes": 124,
+    "sha256": "84e246467e72a187ae882877222e760e7219f539b5753bf48a2c505ef73a1095"
+  }
+]

@@ -1,0 +1,62 @@
+{
+  "2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/recovery.bin": {
+    "bytes": 16740352,
+    "sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20"
+  },
+  "2026-11-05-asus-boot-access-audit/artifacts/device-backup/verify/recovery.bin": {
+    "bytes": 16740352,
+    "sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20"
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/artifacts/candidate/UNAPPROVED-STOCK-ONLY.img": {
+    "bytes": 10412032,
+    "sha256": "5a61d3d65a7ba6b29745a965d9911ab4483c951a0327339839a0541bcb9ab30f"
+  },
+  "2026-11-06-asus-minimal-ram-usb-probe/artifacts/candidate.img": {
+    "bytes": 7759872,
+    "sha256": "535ad86471739967c0e68c058787cf2e5ac6bd844765b75d4bb576200a01d40e"
+  },
+  "2026-11-05-asus-boot-access-audit/sources/firmware/lk.bin": {
+    "bytes": 418048,
+    "sha256": "c5b5017ee3efdf018d9b6be7db978f29365c30e60a3fb9173660fda699f7b765"
+  },
+  "2026-11-05-asus-boot-access-audit/artifacts/device-backup/initial/lk.bin": {
+    "bytes": 524288,
+    "sha256": "65b7783ea392334f530fe43a341415abf9a2b00358bd73697f940f5df287f348"
+  },
+  "2026-11-05-asus-boot-access-audit/artifacts/device-backup/verify/lk.bin": {
+    "bytes": 524288,
+    "sha256": "65b7783ea392334f530fe43a341415abf9a2b00358bd73697f940f5df287f348"
+  },
+  "2026-11-06-asus-full-boot-lk-contract/evidence/reachable-disassembly.txt": {
+    "bytes": 211982,
+    "sha256": "362531606f3c16cfa304555bb491d16835e1af4161ecab26ceab9719150dbd35"
+  },
+  "2026-11-06-asus-lk-linux49-handoff/evidence/handoff-disassembly.txt": {
+    "bytes": 248732,
+    "sha256": "2c3d845b662e49c3c327a8d18cf2fcc5dfab14c0ab5debeb37117158f9f76973"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/arch/arm64/mm/init.c": {
+    "bytes": 10380,
+    "sha256": "8879a6346bd490e77c23727b90c6db8d2d4f378aa9f0ff327095c1a3910fca5f"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/arch/arm64/kernel/setup.c": {
+    "bytes": 14190,
+    "sha256": "def0e4708960d1ce17f1c6013e0a6ed1b65ed6b99a940be108ee5a49cfdba73b"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/of/fdt.c": {
+    "bytes": 29552,
+    "sha256": "7caed70098605074a7152356694e69d8d1617534d3da0728bcd8e6e1e5824c5a"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/init/main.c": {
+    "bytes": 30141,
+    "sha256": "f2d1657d42687e2b26ca41fbea082b8d80770be969fc79afe3279c364f224ca2"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/init/initramfs.c": {
+    "bytes": 14440,
+    "sha256": "a77d1e0373384e8ab78bd2cd26ae27b97364881a5326f91d30a16bb161022d2e"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/lib/decompress_inflate.c": {
+    "bytes": 3880,
+    "sha256": "9f331b6c2e8d7aa51762feada4e4e6ce7cbd764c81616929c973c82822f0205f"
+  }
+}

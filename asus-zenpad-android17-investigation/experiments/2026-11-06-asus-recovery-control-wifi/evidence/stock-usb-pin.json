@@ -1,0 +1,13 @@
+{
+  "stock_serial": "DEVICE_SERIAL_REDACTED",
+  "stock_fingerprint": "asus/WW_P00A/P00A_2:7.0/NRD90M/WW_P00A-V5.3.20-20180809:user/release-keys",
+  "stock_device": "P00A_2",
+  "stock_model": "P00A",
+  "stock_product": "WW_P00A",
+  "usb": "17895424X",
+  "observed_transport_id": "19",
+  "checked_at": "2026-11-06T17:00:03.779890+00:00",
+  "secure_adb": "1",
+  "boot_complete": "1",
+  "selinux": "Enforcing"
+}

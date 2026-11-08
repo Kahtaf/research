@@ -1,0 +1,78 @@
+{
+  "README.md": {
+    "bytes": 1057,
+    "sha256": "ca571446891b89a20108e0da14c6a2127ccca6d602cf181a2f35f6e0b72e42b2"
+  },
+  "REPORT.md": {
+    "bytes": 7739,
+    "sha256": "252d70dac871b53d69ed87ff66f078260d1e18f7f8fb4b9e8088733e3686f033"
+  },
+  "evidence/compile.log": {
+    "bytes": 1521,
+    "sha256": "d411735acb17704d62f63b463b6187295ddc90643147b1f0929e046488c35fc5"
+  },
+  "evidence/inspection.json": {
+    "bytes": 2981,
+    "sha256": "f794079d4b4b2c64cabb1252e6b0b36e08732d5c4c39b3b8d378beb45ed595d6"
+  },
+  "evidence/observed-metadata.json": {
+    "bytes": 6056,
+    "sha256": "a17e0277d4f109729c7e4fe28d1c031253c48d193034ce0883424115df882dc0"
+  },
+  "evidence/qemu-argv.json": {
+    "bytes": 946,
+    "sha256": "11fad082a4beb52ec4641843babeb9486cd144ffa13ec1341518ec046a6cf1d2"
+  },
+  "evidence/result.json": {
+    "bytes": 2877,
+    "sha256": "65aba888dc3f2080972ccbdef55eaedfd9f212f7689b88d25d9a60d8c3d2c548"
+  },
+  "evidence/runtime.json": {
+    "bytes": 432481,
+    "sha256": "647c4bff9a1cd5951bddd6f595895af661272f3d4f7a20688a2e78b92902bbfa"
+  },
+  "evidence/seal.json": {
+    "bytes": 2339,
+    "sha256": "d52d4a8c1beddd473b92d097e88d55d35ecebc6b67254ec587043da0047f0e6c"
+  },
+  "evidence/serial.log": {
+    "bytes": 12037,
+    "sha256": "0c01b385f8b5962d172039d583cb54872799c01ba3ae02bc0b0ccd566315f045"
+  },
+  "evidence/verification.json": {
+    "bytes": 188,
+    "sha256": "3e2ea218da8e382b96ee068106ca6fc752130e9da502223f976945724ae25dca"
+  },
+  "evidence/verified-inputs.json": {
+    "bytes": 385179,
+    "sha256": "175d63e6d818b4d7df8a1874da8135ea70a8f03897b96fe562c4f9d90abf9bd8"
+  },
+  "scripts/inspect_remote.py": {
+    "bytes": 1420,
+    "sha256": "9cf32e992649fb8b81d0f799c82e9820e2173ea11c6aad4970a0134f135c6953"
+  },
+  "scripts/runtime_remote.py": {
+    "bytes": 27995,
+    "sha256": "f5438999902fddd43ba6383f569cb5095be2107b6316239e9f1dfd424a051002"
+  },
+  "scripts/runtime_template.py": {
+    "bytes": 7707,
+    "sha256": "80d73881c5f196c394ec22a09342f7d76c72474caac8a09eb90dc60ed409b024"
+  },
+  "scripts/seal_remote.py": {
+    "bytes": 1703,
+    "sha256": "53427ad53f626103081d1a3289a81a1c01c9b4a5d930c17e6c1db7c74c5cb0d3"
+  },
+  "scripts/ssh_run.py": {
+    "bytes": 434,
+    "sha256": "cfa174fd170f4d578ff394dccdb9f92981258db529f7b00a1fb15cba6cc376ef"
+  },
+  "source/reader.c": {
+    "bytes": 5549,
+    "sha256": "505c9089e743fa8d39c2031789677c79ef340c08e70f7ecee816d9e33105c0a7"
+  },
+  "source/sha256.h": {
+    "bytes": 2544,
+    "sha256": "21461ce6550921e7a903cb29cab9ce0733a8aa9a25909f0cc2a411673ae67ea1"
+  }
+}

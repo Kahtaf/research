@@ -1,0 +1,26 @@
+[
+  {
+    "argv": [
+      "/srv/android/lineage24/out/host/linux-x86/bin/host_init_verifier",
+      "--out_system=/srv/android/lineage24/out/target/product/p00a/system",
+      "-p",
+      "/srv/android/lineage24/out/target/product/p00a/system/etc/passwd",
+      "--property-contexts=/srv/android/lineage24/out/target/product/p00a/system/etc/selinux/plat_property_contexts",
+      "--out_vendor=/srv/android/lineage24/out/target/product/p00a/system/vendor",
+      "-p",
+      "/srv/android/lineage24/out/target/product/p00a/system/vendor/etc/passwd",
+      "--property-contexts=/srv/android/lineage24/out/target/product/p00a/system/vendor/etc/selinux/vendor_property_contexts",
+      "--out_product=/srv/android/lineage24/out/target/product/p00a/system/product",
+      "-p",
+      "/srv/android/lineage24/out/target/product/p00a/system/product/etc/passwd",
+      "--property-contexts=/srv/android/lineage24/out/target/product/p00a/system/product/etc/selinux/product_property_contexts",
+      "--out_system_ext=/srv/android/lineage24/out/target/product/p00a/system/system_ext",
+      "-p",
+      "/srv/android/lineage24/out/target/product/p00a/system/system_ext/etc/passwd",
+      "--property-contexts=/srv/android/lineage24/out/target/product/p00a/system/system_ext/etc/selinux/system_ext_property_contexts"
+    ],
+    "exit": 0,
+    "log": "/srv/android/asus-reviewed-build-kit/r9-exec-r1/attempt/validation/command-0.log",
+    "sha256": "f0b2b536e1365c9a2de26511330b8f698c4e7c63532456b185327bfa55522c51"
+  }
+]

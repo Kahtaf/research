@@ -1,0 +1,24 @@
+--- stock-kernel-sd-control/source/install.py
++++ source/install.py
+@@ -13,9 +13,9 @@
+ a,b=w.a,w.b
+ require=b.require
+ IMAGE=ROOT/'artifacts/candidate.img'
+-IMAGE_SHA='eccfc87f28169bee14d0675f6ad31335f832ab25db46b013b03a06109b0df13d'
+-FULL_SHA='4b564d404bc13b20ba44790733a37010fe0677bfced235de2b334c3bff08fa19'
+-INSTALL_PREIMAGES=(*a.INSTALL_PREIMAGES,a.FULL_SHA,'78005304291706fe2ad2affa185467c89464dc2f3216f97d572a29a1e058afa9','7161898f7858c5eb2887a4589fce5a62d4b2d556e1413e36e4e53c3cd8431b09')
++IMAGE_SHA='253a1cc0ab2e4119a8c77357c78fe6bec66f0fb13cba08a3488d6d3d9994ea13'
++FULL_SHA='631cebb6df7be4b08edb713c976799ac60b4552e2caa3d4f1ea15b11a37610b9'
++INSTALL_PREIMAGES=(*a.INSTALL_PREIMAGES,a.FULL_SHA,'78005304291706fe2ad2affa185467c89464dc2f3216f97d572a29a1e058afa9','7161898f7858c5eb2887a4589fce5a62d4b2d556e1413e36e4e53c3cd8431b09','4b564d404bc13b20ba44790733a37010fe0677bfced235de2b334c3bff08fa19')
+ SELF=Path(__file__)
+ SELF_SHA=sha(SELF.read_bytes())
+ LEGACY_PINS={p:sha(p.read_bytes()) for p in (ROOT/'source/adb',ROOT/'source/legacy_adb.py')}
+@@ -56,7 +56,7 @@
+  a.check_sources()
+  stock,_=b.local_inputs()
+  image=a.read(IMAGE)
+- require(len(image)==7798784 and sha(image)==IMAGE_SHA,'Exact SD candidate required')
++ require(len(image)==8044544 and sha(image)==IMAGE_SHA,'Exact SD candidate required')
+  full=image+bytes(b.SIZE-len(image))
+  require(sha(full)==FULL_SHA,'Full padded recovery hash mismatch')
+  p,s=b.unpack_image(image),b.unpack_image(stock)

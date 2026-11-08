@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: Apache-2.0
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_binary {
+    name: "android.hardware.health-service.asus-p00a",
+    vendor: true,
+    relative_install_path: "hw",
+    defaults: ["libhealth_aidl_impl_user"],
+    static_libs: ["libhealth_aidl_impl"],
+    srcs: ["Health.cpp", "BatterySnapshot.cpp"],
+    init_rc: ["health.rc"],
+    vintf_fragments: ["health.xml"],
+    // Suppress the generic charger binary; this candidate has no charger mode.
+    overrides: ["charger"],
+}

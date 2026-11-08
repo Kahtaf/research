@@ -1,0 +1,14 @@
+{
+  "platform": "macOS-26.7.2-arm64-arm-64bit-Mach-O",
+  "serial_host_commands": true,
+  "make_jobs": 1,
+  "affinity_supported": false,
+  "hard_affinity_claimed": false,
+  "hard_memory_quota_claimed": false,
+  "cpu_limit_seconds_per_leaf_process": 60,
+  "query_suite_cpu_and_wall_seconds_per_query": 10,
+  "peak_observed_child_rss_bytes": 79462400,
+  "memory_limit_probe_receipt": "resource-limit-probes.json",
+  "initial_reviewer_lock_timeout_retained": true,
+  "commands_logged": 193
+}

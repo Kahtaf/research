@@ -1,0 +1,27 @@
+[
+  {
+    "original": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/lcm/z380m_kd_rm68200g01/Makefile",
+    "target": "drivers/misc/mediatek/lcm/z380m_kd_rm68200g01/Makefile",
+    "sha256": "abbc45f0331ca23b14aeb71138afa05e5a6347dc6e8f3ffd88b0425cb3f28427"
+  },
+  {
+    "original": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/lcm/z380m_kd_rm68200g01/z380m_kd_rm68200g01.c",
+    "target": "drivers/misc/mediatek/lcm/z380m_kd_rm68200g01/z380m_kd_rm68200g01.c",
+    "sha256": "3c3bf2f4d8125df9d424300f4c8700e58a10c56addb9ee0710bfd1cd85fb4471"
+  },
+  {
+    "original": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/arch/arm64/boot/dts/asus8163_tb_380_m-Z380M.dts",
+    "target": "arch/arm64/boot/dts/mediatek/asus-p00a.dts",
+    "sha256": "90cbeb776795fcff85a148f74d5b741aeb0463f52e9b1fd14006f1360a194bbf"
+  },
+  {
+    "original": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/arch/arm64/boot/dts/asus8163_tb_380_m_bat_setting.dtsi",
+    "target": "arch/arm64/boot/dts/mediatek/asus8163_tb_380_m_bat_setting.dtsi",
+    "sha256": "8ed8a02f230aaa6250e3c168604dff0df76c81d5dd3000c593d63bcc8d14fc26"
+  },
+  {
+    "original": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/include/dt-bindings/soc/mt8163-md32.h",
+    "target": "include/dt-bindings/soc/mt8163-md32.h",
+    "sha256": "f8f9a975584448d4122d51ff47c79fa28b54101a131f7d1d7a47f6745b2a0a1c"
+  }
+]

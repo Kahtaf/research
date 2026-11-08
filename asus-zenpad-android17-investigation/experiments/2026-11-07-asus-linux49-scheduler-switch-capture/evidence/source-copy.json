@@ -1,0 +1,24 @@
+{
+  "base": "/srv/android/asus-linux49-rdma-registration-skip-20261107-d140b2bf",
+  "owned": "/srv/android/asus-linux49-scheduler-switch-capture-20261107-3d26cc95",
+  "method": "cp -a --reflink=auto kernel AND out; independent inodes",
+  "scoped_source_pins": {
+    "kernel/sched/core.c": {
+      "before": "3cad73ecbfea3329dd553f1affce529a2eb34e5ed3826662c417673c6dedb883",
+      "after": "2bb1af2c2e97102e853516c6d6322bae70bff69e2db6f2d62e6b816f800fb875"
+    },
+    "arch/arm64/kernel/asus_retained_trace.c": {
+      "before": "55cac3b4714ee35a8365ca37678f797f54903ac80ae7c8bfcf41ca5b38d72849",
+      "after": "429acf38afae690e74a0d8f4a51b18836ad0bb51cd230f3b88e0ccaeacccfc87"
+    },
+    "include/linux/asus_retained_trace.h": {
+      "before": "8922d8a5a9fd716c242889fc8d863f9f71fc1c7cd72bf920a81d8c90b3c6f25d",
+      "after": "d85d948587407ccb6c0c7ef0cf72c8efbdd904cd64e40531382cde4166905f4e"
+    },
+    "arch/arm64/kernel/asus_entry_tag.h": {
+      "before": "2d87e25d84daa61447c82568ac19c8a44df7ee2bc7d281a93da6113630f40826",
+      "after": "3b64c0bc989b1622506ee160a1f3f8d1e6ad049e8ca53bce81ae56be65ecb28e"
+    }
+  },
+  "full_tree_rehash": false
+}

@@ -1,0 +1,8 @@
+{
+  "before_bootstrap_and_full": "SIGABRT exact actual duplicate-provider error",
+  "after_bootstrap_and_full": "exit0 genuine CreateBaseConfiguration and per-APEX configuration generation",
+  "bootstrap_apex_records": 4,
+  "full_apex_records": 39,
+  "system_provide_records": 41,
+  "harness_scope": "Only actual metadata loading and file-output driver; original Context, all contents/namespace/section/configuration builders, resolver, duplicate/missing guards and writer are genuine selected native objects. No APEX activation/trust claim."
+}

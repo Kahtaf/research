@@ -1,0 +1,7 @@
+{
+  "scripts/validator.py": "61b1a7821656bc8bda705a7ecc3ce3b33c4c5fd89ec3a9ac11a6485cf67b545c",
+  "scripts/native_adapter.py": "b5ebc9607d83bcc406e4e1b58dc83ab9f01bce783801f782b5b8635230bf2c68",
+  "scripts/postbuild.py": "0ded0ae3da6789041249efa104783bdf2fc50f4ded2f0c528e7f7e06689b41b5",
+  "scripts/supervisor.py": "4af09da646993fa5adc680ebdebabcca4d4a47805970c32fed58277845c5be80",
+  "inputs/expected-config-paths.json": "dcee4bb97a5eef3e5b5060014ac7a235277b6f4d768650caac54d2f57ec34f24"
+}

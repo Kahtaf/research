@@ -1,0 +1,49 @@
+{
+  "utc": "2026-11-06T22:11:42.701857+00:00",
+  "log": {
+    "path": "/srv/android/asus-device-product/logs/full-build-r5.log",
+    "bytes": 22563352,
+    "sha256": "4f317efdc2a8583190ca275084ccf976632573fe32a5c57e274d04d10e7570b2",
+    "failure_summary_lines": [
+      "FAILED: out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/PublicVolume.o",
+      "FAILED: ninja:",
+      "5h25m32.93s Build Failure: 122347 done, 1 failed, 30783 remaining - 6.26/s",
+      "1 steps failed: exit=1"
+    ],
+    "compiler_errors": [
+      "system/vold/model/PublicVolume.cpp:73:14: error: no member named 'replace' in namespace 'std'"
+    ]
+  },
+  "markers": {
+    "full-build-r5.started": {
+      "exists": true,
+      "bytes": 26,
+      "sha256": "4e3bc24f179c505824a545f73b3f9215fc55146f1db6e3b0be39a922d8fa5cee",
+      "text": "2026-11-06T15:37:39+00:00\n"
+    },
+    "full-build-r5.finished": {
+      "exists": true,
+      "bytes": 26,
+      "sha256": "28fe7f126dce2c10f71e6c2ac6b46de3db0d1e211b25be55599fd750084aaf49",
+      "text": "2026-11-06T21:15:32+00:00\n"
+    },
+    "full-build-r5.exit-code": {
+      "exists": true,
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "text": "1\n"
+    },
+    "full-build-r5.complete": {
+      "exists": false,
+      "bytes": null,
+      "sha256": null,
+      "text": null
+    },
+    "full-build-r5.images.json": {
+      "exists": false,
+      "bytes": null,
+      "sha256": null,
+      "text": null
+    }
+  }
+}

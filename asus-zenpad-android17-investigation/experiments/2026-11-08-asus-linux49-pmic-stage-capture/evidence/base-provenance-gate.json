@@ -1,0 +1,78 @@
+{
+  "status": "PASS_BEFORE_EDIT_PROVENANCE_GATE",
+  "at": "2026-11-08T05:25:38.856164+00:00",
+  "C_reference_comparison": {
+    "drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc": {
+      "reference_sha256": "78396990fbffd1d1459fa939ff91f658b77cf57d1ea507417e51963caa4c93e1",
+      "actual_sha256": "78396990fbffd1d1459fa939ff91f658b77cf57d1ea507417e51963caa4c93e1",
+      "whole_file_identical": true,
+      "functions": {
+        "p00a_pmic_result": {
+          "reference_actual_C_byte_identical": true,
+          "sha256": "56e7e2a618e308578927d875696dc74f38ca9f7fcddc8d120ecfa351b7b2c7ff"
+        },
+        "p00a_pmic_prepare_adc": {
+          "reference_actual_C_byte_identical": true,
+          "sha256": "cc24604ae5b8020d10eb85ba039de08c96e2b13830bffccd3442142a35b082c6"
+        },
+        "asus_p00a_pmic_present": {
+          "reference_actual_C_byte_identical": true,
+          "sha256": "18dd32a413eed639c31c819fc395a744666415658a6d92ae4f675f90268a8be1"
+        },
+        "asus_p00a_pmic_adc": {
+          "reference_actual_C_byte_identical": true,
+          "sha256": "5f8aa4b71e9c7f51d431a3d147aa93d7ba16ab70251d915266f3c1e9f9b14f63"
+        }
+      }
+    },
+    "drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c": {
+      "reference_sha256": "03e05c11d4c08f9f2cb030bc05ea94b3c5310c6c1d0905d470181dcf9e4f800e",
+      "actual_sha256": "03e05c11d4c08f9f2cb030bc05ea94b3c5310c6c1d0905d470181dcf9e4f800e",
+      "whole_file_identical": true,
+      "functions": {
+        "p00a_measurement_get_property": {
+          "reference_actual_C_byte_identical": true,
+          "sha256": "1111cff6a444c3bc51a7995781351ad24a0dea638781ed65d1e4d25717839c8a"
+        },
+        "asus_p00a_battery_get_property": {
+          "reference_actual_C_byte_identical": true,
+          "sha256": "0dea4e7fc41dd967d4684cf143d3761d85150288939c83f3174f2ac41d0b7efc"
+        }
+      }
+    },
+    "drivers/misc/mediatek/power/mt8163/pmic_mt6323.c": {
+      "reference_sha256": "be1932abf3164ed2e2fe64b524878def16d7bdfc3f149e162095390c7232af19",
+      "actual_sha256": "be1932abf3164ed2e2fe64b524878def16d7bdfc3f149e162095390c7232af19",
+      "whole_file_identical": true,
+      "functions": {
+        "pmic_read_interface": {
+          "reference_actual_C_byte_identical": true,
+          "sha256": "62ea24f87d0d0855a8a9aba5fb19050bd825f20e2c22971eec220e83aa6ad120"
+        },
+        "pmic_read_interface_nolock": {
+          "reference_actual_C_byte_identical": true,
+          "sha256": "84ba9c0546b2bd5c6ecd77c0528c7a4b06cdcd2a88b5de9fef5f527e3eeb4a25"
+        },
+        "pmic_config_interface": {
+          "reference_actual_C_byte_identical": true,
+          "sha256": "9fc8c3137b9d522451ad94a01216b67485e9f50eee6af2c0b8166a29636930e4"
+        },
+        "pmic_config_interface_nolock": {
+          "reference_actual_C_byte_identical": true,
+          "sha256": "9da48c332b6266c231f1661f0c99a5863055341d819f103ce0521ca0bef4fede"
+        }
+      }
+    }
+  },
+  "source_ELF_comparison": "scoped linked call flow, never C-vs-ELF bytes",
+  "include_compile_provenance": "actual out/source, compiler .cmd includes, built-in object and vmlinux link commands saved",
+  "linked_order": "battery_get_property -> asus_p00a_battery_get_property (measurement helper inlined); enum66 -> present -> conditional adc(channel6,samples5); ADC awake -> mutex -> inlined prepare spin/read/config/unlock/sleep bounded100 -> VBUF -> trigger0/1 -> udelay300 -> read/sleep bounded100 per sample -> calculation -> mutex unlock -> relax -> int status",
+  "benign_differences": [
+    "static measurement and prepare helpers inlined; no standalone symbols",
+    "nolock read helpers inline to regmap_read, preserving existing error-only printk paths",
+    "compiler duplicates error unlock blocks and transforms bounded counter to countdown",
+    "config PREEMPT/SMP supports four CPUs but admitted runtime nr_cpu_ids must be one, as prior captures"
+  ],
+  "invalidating_path_discrepancy": false,
+  "root_cause_inferred": false
+}

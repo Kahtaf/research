@@ -1,0 +1,163 @@
+--- a/drivers/power/supply/power_supply_core.c
++++ b/drivers/power/supply/power_supply_core.c
+@@ -85,6 +85,7 @@
+ 	unsigned long flags;
+ 	struct asus_ps_capture capture;
+ 	int capture_ret;
++	bool battery_uevent_armed;
+ 	struct power_supply *psy = container_of(work, struct power_supply,
+ 						changed_work);
+ 
+@@ -119,7 +120,9 @@
+ 				PSY_EVENT_PROP_CHANGED, psy);
+ 		asus_capture_ps_step(&capture, 11, 0, (u32)capture_ret);
+ 		asus_capture_ps_step(&capture, 12, 0, U64_MAX);
++		battery_uevent_armed = asus_battery_uevent_begin(psy);
+ 		capture_ret = kobject_uevent(&psy->dev.kobj, KOBJ_CHANGE);
++		asus_battery_uevent_publish(battery_uevent_armed, capture_ret);
+ 		asus_capture_ps_step(&capture, 13, 0, (u32)capture_ret);
+ 		asus_capture_ps_step(&capture, 14, 0, U64_MAX);
+ 		spin_lock_irqsave(&psy->changed_lock, flags);
+--- a/drivers/power/supply/power_supply_sysfs.c
++++ b/drivers/power/supply/power_supply_sysfs.c
+@@ -11,6 +11,11 @@
+  *  You may use this code as per GPL version 2
+  */
+ 
++#include <linux/asus_retained_trace.h>
++#include <linux/atomic.h>
++#include <linux/preempt.h>
++#include <linux/sched.h>
++#include "../../../arch/arm64/kernel/asus_entry_tag.h"
+ #include <linux/ctype.h>
+ #include <linux/device.h>
+ #include <linux/power_supply.h>
+@@ -302,6 +307,67 @@
+ 	return ret;
+ }
+ 
++/* One worker call owns this diagnostic slot. Registration-time omissions
++ * still count, but cannot be mistaken for the scoped KOBJ_CHANGE call.
++ * States: 0 unused, 1 preparing, 2 armed, 3 first hit writing,
++ * 4 first hit release-published, 5 publication claimed (no retry).
++ * The numeric owner is internal only; no addresses or names are recorded.
++ */
++static atomic_t battery_uevent_omissions = ATOMIC_INIT(0);
++static struct {
++	u32 before, first;
++	pid_t owner;
++} battery_uevent_skip;
++static int battery_uevent_state;
++
++bool noinline notrace asus_battery_uevent_begin(struct power_supply *psy)
++{
++	if (strcmp(psy->desc->name, "battery") ||
++	    cmpxchg(&battery_uevent_state, 0, 1) != 0)
++		return false;
++	battery_uevent_skip.owner = task_pid_nr(current);
++	battery_uevent_skip.before = (u32)atomic_read(&battery_uevent_omissions);
++	smp_store_release(&battery_uevent_state, 2);
++	return true;
++}
++
++static void battery_uevent_omitted(void)
++{
++	u32 count = (u32)atomic_inc_return(&battery_uevent_omissions);
++
++	if (smp_load_acquire(&battery_uevent_state) != 2 ||
++	    battery_uevent_skip.owner != task_pid_nr(current) ||
++	    cmpxchg(&battery_uevent_state, 2, 3) != 2)
++		return;
++	battery_uevent_skip.first = count;
++	smp_store_release(&battery_uevent_state, 4);
++}
++
++/* Only the owning worker calls this after its actual kobject_uevent return,
++ * before the original changed_lock reacquisition. Claim before context checks
++ * so a refused writer is not retried. An undrained/refused record is UNKNOWN.
++ */
++void noinline notrace asus_battery_uevent_publish(bool armed, int result)
++{
++	char line[192];
++	u32 after;
++	unsigned int n;
++
++	if (!armed || smp_load_acquire(&battery_uevent_state) != 4 ||
++	    battery_uevent_skip.owner != task_pid_nr(current) ||
++	    cmpxchg(&battery_uevent_state, 4, 5) != 4)
++		return;
++	after = (u32)atomic_read(&battery_uevent_omissions);
++	if (!in_task() || in_atomic() || irqs_disabled() ||
++	    battery_uevent_skip.first <= battery_uevent_skip.before ||
++	    battery_uevent_skip.first > after)
++		return;
++	n = scnprintf(line, sizeof(line), ASUS_BATTERY_UEVENT_PREFIX
++		"SKIP first=%u before=%u after=%u same_task=1 uevent_rc=%d",
++		battery_uevent_skip.first, battery_uevent_skip.before, after, result);
++	asus_retained_trace_write(line, n);
++}
++
+ int power_supply_uevent(struct device *dev, struct kobj_uevent_env *env)
+ {
+ 	struct power_supply *psy = dev_get_drvdata(dev);
+@@ -317,6 +383,11 @@
+ 	ret = add_uevent_var(env, "POWER_SUPPLY_NAME=%s", psy->desc->name);
+ 	if (ret)
+ 		return ret;
++
++	if (!strcmp(psy->desc->name, "battery")) {
++		battery_uevent_omitted();
++		return 0;
++	}
+ 
+ 	prop_buf = (char *)get_zeroed_page(GFP_KERNEL);
+ 	if (!prop_buf)
+--- a/include/linux/asus_retained_trace.h
++++ b/include/linux/asus_retained_trace.h
+@@ -5,6 +5,10 @@
+ #include <linux/types.h>
+ #include <linux/string.h>
+ struct task_struct;
++struct power_supply;
++/* One scoped battery uevent omission record, not a property drain. */
++bool asus_battery_uevent_begin(struct power_supply *psy);
++void asus_battery_uevent_publish(bool armed, int result);
+ /* Built-in pwrap diagnostic; caller must have returned from the ADC path. */
+ #ifdef CONFIG_MTK_PMIC_WRAP
+ void asus_pwrap_backstop_publish(void);
+--- a/arch/arm64/kernel/asus_retained_trace.c
++++ b/arch/arm64/kernel/asus_retained_trace.c
+@@ -1347,6 +1347,9 @@
+      SAME("06 time_init returned"))
+   return true;
+ #undef SAME
++ if (sparse_prefix(text, len, ASUS_BATTERY_UEVENT_PREFIX,
++                   sizeof(ASUS_BATTERY_UEVENT_PREFIX) - 1))
++  return true;
+  if (sparse_prefix(text, len, ASUS_PWRAP_PREFIX,
+                    sizeof(ASUS_PWRAP_PREFIX) - 1))
+   return true;
+--- a/arch/arm64/kernel/asus_entry_tag.h
++++ b/arch/arm64/kernel/asus_entry_tag.h
+@@ -1,13 +1,15 @@
+-#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=09abbded-4301-486b-8945-b8748248f2d2 stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=e55f7efe0b074ca96c66526b2923b68c173d6b26c9c7ed007379af5b65762ecb cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
++#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=493581ca-5125-4f85-9f15-c0fe2ea6a1c7 stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=e55f7efe0b074ca96c66526b2923b68c173d6b26c9c7ed007379af5b65762ecb cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
+ #define ASUS_ENTRY_TAG_LEN 340
+ 
+-#define ASUS_CAPTURE_TAG "A49CAP1 uuid=09abbded-4301-486b-8945-b8748248f2d2 rows=15 row=384 fields=17 header=192"
++#define ASUS_CAPTURE_TAG "A49CAP1 uuid=493581ca-5125-4f85-9f15-c0fe2ea6a1c7 rows=15 row=384 fields=17 header=192"
+ 
+ #define ASUS_SPARSE_PROFILE 1
+-#define ASUS_SPARSE_MODE "ASUS49-MODE run=09abbded-4301-486b-8945-b8748248f2d2 profile=pwrap-finite-v1 format=1 poll_budget=16777216 pid1_write_budget=768 hot=disabled ordinary_printk=filtered delay=original-virtual"
++#define ASUS_SPARSE_MODE "ASUS49-MODE run=493581ca-5125-4f85-9f15-c0fe2ea6a1c7 profile=battery-uevent-omit-v1 format=1 poll_budget=16777216 pid1_write_budget=768 hot=disabled ordinary_printk=filtered delay=original-virtual"
+ 
+-#define ASUS_SPARSE_WDT_PREFIX "ASUS49-WDT run=09abbded-4301-486b-8945-b8748248f2d2 "
++#define ASUS_SPARSE_WDT_PREFIX "ASUS49-WDT run=493581ca-5125-4f85-9f15-c0fe2ea6a1c7 "
+ 
+-#define ASUS_DEVKMSG_PREFIX "ASUS49-KMSG run=09abbded-4301-486b-8945-b8748248f2d2 v=1 "
++#define ASUS_DEVKMSG_PREFIX "ASUS49-KMSG run=493581ca-5125-4f85-9f15-c0fe2ea6a1c7 v=1 "
+ 
+-#define ASUS_PWRAP_PREFIX "ASUS49-PWRAP run=09abbded-4301-486b-8945-b8748248f2d2 v=1 "
++#define ASUS_PWRAP_PREFIX "ASUS49-PWRAP run=493581ca-5125-4f85-9f15-c0fe2ea6a1c7 v=1 "
++
++#define ASUS_BATTERY_UEVENT_PREFIX "ASUS49-BUEV run=493581ca-5125-4f85-9f15-c0fe2ea6a1c7 v=1 "

@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "meaning": "Offline experiment results verified; ASUS final link remains blocked and no ASUS boot image exists",
+  "control_kernel_link": "passed",
+  "asus_final_link": "failed",
+  "unresolved_symbols": [
+    "chargin_hw_init_done",
+    "chr_control_interface"
+  ],
+  "compiled_asus_driver_symbols": [
+    "z380m_kd_rm68200g01_lcm_drv",
+    "goodix_ts_probe"
+  ],
+  "live_dt_properties": 2075,
+  "wiring_checks": 13,
+  "patch_replay_files": 18,
+  "artifacts": [
+    {
+      "path": "STATUS.md",
+      "bytes": 9842,
+      "sha256": "430557265b9fb4a397b39f998b290469f3e255a2083e47a2d8e2d8673ebc76a2"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1384,
+      "sha256": "0dd6da78e87a39aab07b369648bf7b06b41a4fe8ce3245b85ca4838c68f2abab"
+    },
+    {
+      "path": "DRIVER-MATRIX.md",
+      "bytes": 4143,
+      "sha256": "1692717ee4f79e010206ccd150bccddf5ff4801478955c15ca04fe1b0c397238"
+    },
+    {
+      "path": "patches/0001-build-compatibility.patch",
+      "bytes": 4270,
+      "sha256": "604c4f341264ca2546cf7c125e11896d0b799c60a1aecf739bb7828be650df3f"
+    },
+    {
+      "path": "patches/0002-asus-board-panel-touch.patch",
+      "bytes": 75126,
+      "sha256": "51909d5dc88d87bd0906d49a0422e58a43a428cb796c6dea78930e7f4129848a"
+    },
+    {
+      "path": "artifacts/asus-p00a-COMPILE-ONLY.dtb",
+      "bytes": 61942,
+      "sha256": "c351a0088d1915274a0108a5d74265b1ab4d860ba5c5a62ae577002cc58a73c5"
+    }
+  ]
+}

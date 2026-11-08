@@ -1,0 +1,290 @@
+[
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "README.md",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/README.md",
+    "sha256": "d7ebf83e35a0633e557f762a64c3ec7beef3cce399cf122571b4bb62a540a083",
+    "bytes": 13832
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "UPSTREAM.md",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/UPSTREAM.md",
+    "sha256": "2bc6a6ba8d1b82e1313352e2a08387bcaa6fab3d96c2f5343dddfdc12a51e08d",
+    "bytes": 10945
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "local_manifests/24/bluetooth-disabled-commands.xml",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/local_manifests/24/bluetooth-disabled-commands.xml",
+    "sha256": "299aae9f790fe743d816a8fcb3ccbb6224a0eb950296d4244c9516dfa0afe2dc",
+    "bytes": 1054
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "local_manifests/24/caf-sdm845.xml",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/local_manifests/24/caf-sdm845.xml",
+    "sha256": "d85ecf4a06c2ee2707f49ed5f8cabe666a473c4ef6ed66c8ec57ce81ca0ebb97",
+    "bytes": 4061
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "local_manifests/24/compat-audiosystem.xml",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/local_manifests/24/compat-audiosystem.xml",
+    "sha256": "41d153eb836c98250cf684b9b6bd2cb7719fefb5d3e1d8f79df42cbc9a7eab7d",
+    "bytes": 3716
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "local_manifests/24/gcc-arm32.xml",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/local_manifests/24/gcc-arm32.xml",
+    "sha256": "2b17730be395cbc95b40dcb386d0259e40ef945bb85270e0ddcccc809f06a9e5",
+    "bytes": 1253
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "local_manifests/24/gts4lv-common.xml",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/local_manifests/24/gts4lv-common.xml",
+    "sha256": "d8730394ed53923a75f1d3cf230c8141616d37917d3384e81c5b845b4dcebffd",
+    "bytes": 2005
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "local_manifests/24/gts4lv.xml",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/local_manifests/24/gts4lv.xml",
+    "sha256": "6f214089eb397b3ede77f2957d89a2c33a6a546a2c4dc731695d0793450524c1",
+    "bytes": 1095
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "local_manifests/24/gts4lvwifi.xml",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/local_manifests/24/gts4lvwifi.xml",
+    "sha256": "7b9ee4b6b411368e67301bf02f00332a6a61c8ca455a6f7c6ddc97ddf7303e6d",
+    "bytes": 765
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "local_manifests/24/launcher3-navbar.xml",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/local_manifests/24/launcher3-navbar.xml",
+    "sha256": "26fd6504760591fe13244b890b8f9b4891997d3ddbcef067cdd07e37ebdbf3b7",
+    "bytes": 804
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "local_manifests/24/sepolicy-icmp.xml",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/local_manifests/24/sepolicy-icmp.xml",
+    "sha256": "67f5f70760fe6158f78bdc5ec42d2bcf05224e73bddfb5ad29d93ac59b731ca1",
+    "bytes": 3198
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "local_manifests/24/system-core-keyring.xml",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/local_manifests/24/system-core-keyring.xml",
+    "sha256": "07bd7fc1b6d45d953991925482712f6d69cf2ade24664b413444523f5974c589",
+    "bytes": 1194
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "local_manifests/24/vold-keyring.xml",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/local_manifests/24/vold-keyring.xml",
+    "sha256": "74c35b178e467275f0d697d4eb905bbaeb812d37d212e7c8420be7e6544833ce",
+    "bytes": 1133
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "local_manifests/bluetooth-disabled-commands.xml",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/local_manifests/bluetooth-disabled-commands.xml",
+    "sha256": "58bd7a8aaa404a7eafcc461a95d24d72ed69486430e658b51652a1f32ced5028",
+    "bytes": 1054
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "local_manifests/gts4lv-common.xml",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/local_manifests/gts4lv-common.xml",
+    "sha256": "77d0292ea4f3d753fa56d9ab3c010ea21a39b45eec459b4d7fcbf4963cc2f2bd",
+    "bytes": 1602
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "local_manifests/gts4lv.xml",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/local_manifests/gts4lv.xml",
+    "sha256": "88a68ece7848fe8ebc0f0fe58ad3d65706dde47ed44d3d8760e57204c64cb650",
+    "bytes": 503
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "local_manifests/gts4lvwifi.xml",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/local_manifests/gts4lvwifi.xml",
+    "sha256": "5dfa6f768b181ad291fa9d5ba9e326abbea20fb7d5378e48407bc0ef8bafebe6",
+    "bytes": 505
+  },
+  {
+    "repo": "anton-scholten/lineageos-galaxy-tab-s5e",
+    "sha": "a3f069b003c490373cd6f3d5317e4dcda2ab881e",
+    "path": "local_manifests/launcher3-navbar.xml",
+    "url": "https://raw.githubusercontent.com/anton-scholten/lineageos-galaxy-tab-s5e/a3f069b003c490373cd6f3d5317e4dcda2ab881e/local_manifests/launcher3-navbar.xml",
+    "sha256": "6fdfce29da62d92b5d084cc027fd062047db2b039ff7724b1efc363e8dea7c15",
+    "bytes": 804
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "README.md",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/README.md",
+    "sha256": "9cad7f7ec7d6cb922ed3cb99cc0f39ad766acce882acdf5684af6741d18e32c7",
+    "bytes": 8000
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "build.sh",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/build.sh",
+    "sha256": "5626d9853ea6f40db2d3231eb004e6e497a7f00bc8915217a042bff0fb36ff1e",
+    "bytes": 5765
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "manifests/dandelion.xml",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/manifests/dandelion.xml",
+    "sha256": "b5454a425b86afe7ae4b1d02c8ac4cf03f34a4862862ff477927cf18748af908",
+    "bytes": 673
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "manifests/tested-revisions.xml",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/manifests/tested-revisions.xml",
+    "sha256": "bdaf7f4d1c95dbdd66f64bbd06c4c2dbbb6cea651b1a3c916eb0c6d9b48f647f",
+    "bytes": 309057
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "patches/bionic/0001-arc4random-fall-back-to-pid-fork-detection-on-4.9.patch",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/patches/bionic/0001-arc4random-fall-back-to-pid-fork-detection-on-4.9.patch",
+    "sha256": "77658715db690e784256956126ce079c6783a4cbf869d76d955a30f027da847c",
+    "bytes": 2277
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "patches/build/make/0001-releasetools-tolerate-missing-vendor-partition.patch",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/patches/build/make/0001-releasetools-tolerate-missing-vendor-partition.patch",
+    "sha256": "1fb1ed286c0d392bcf88bbd908f20e23e39ac5f9c35731444cb85960309cd1be",
+    "bytes": 957
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "patches/build/soong/0001-soong_build-soft-20G-heap-limit.patch",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/patches/build/soong/0001-soong_build-soft-20G-heap-limit.patch",
+    "sha256": "1b4953c153a8b48e9ab77e38607487bb8d2db97b72d888c3f4edee6523bfe3ad",
+    "bytes": 1209
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "patches/device/xiaomi/dandelion/0001-dandelion-forward-port-to-Evolution-X-Android-17.patch",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/patches/device/xiaomi/dandelion/0001-dandelion-forward-port-to-Evolution-X-Android-17.patch",
+    "sha256": "26cad9eb77ef0d54f9d4b5d62ad0bc8d3211e926cb4f4a308b1f0e78d29c4714",
+    "bytes": 35976
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "patches/frameworks/av/0001-libaudiohal-restore-HIDL-audio-HAL-5.0-client.patch",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/patches/frameworks/av/0001-libaudiohal-restore-HIDL-audio-HAL-5.0-client.patch",
+    "sha256": "2c5fa5e27c0d64faf5434a30562b6870e73249dc8a760cc51801c38658288286",
+    "bytes": 2671
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "patches/frameworks/base/0001-HintManagerService-handle-missing-AIDL-PowerHAL.patch",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/patches/frameworks/base/0001-HintManagerService-handle-missing-AIDL-PowerHAL.patch",
+    "sha256": "0d0e3fc9e2d9d097ec9066b192195a497a2f946463e98df0314976548f5c3b26",
+    "bytes": 1649
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "patches/frameworks/base/0002-AxSpoofManager-keep-real-device-identity-without-GMS.patch",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/patches/frameworks/base/0002-AxSpoofManager-keep-real-device-identity-without-GMS.patch",
+    "sha256": "6e576fa78fcc52092452e9ab1a3ad9071f12051debe7397a7eda8ae1c1d43718",
+    "bytes": 2060
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "patches/packages/modules/Bluetooth/0001-hci-tolerate-failing-status-for-erroneous-data-reporting.patch",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/patches/packages/modules/Bluetooth/0001-hci-tolerate-failing-status-for-erroneous-data-reporting.patch",
+    "sha256": "4912f3fd932053a274de8031710df0ba95f4bce67ed6f1287d84c0180b390ccd",
+    "bytes": 2188
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "patches/packages/modules/Connectivity/0001-bpf-netd-connectivity-support-legacy-4.9-kernels.patch",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/patches/packages/modules/Connectivity/0001-bpf-netd-connectivity-support-legacy-4.9-kernels.patch",
+    "sha256": "a5feb48739a953bdf194fed51cdc7b6ef895ef50c3688c37d8a274129271c435",
+    "bytes": 14260
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "patches/packages/modules/vndk/0001-add-com.android.vndk.v29-APEX.patch",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/patches/packages/modules/vndk/0001-add-com.android.vndk.v29-APEX.patch",
+    "sha256": "42c40354170ee533cb489dcff8d121a9b95e6d2fcd2cffc2c7ad41dbbb4b19d5",
+    "bytes": 661
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "patches/system/core/0001-ueventd-import-legacy-vendor-ueventd.rc.patch",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/patches/system/core/0001-ueventd-import-legacy-vendor-ueventd.rc.patch",
+    "sha256": "30225881e2975867d88cdb6d2c501432f4da3ba486fab9da9ef203dc988c56f3",
+    "bytes": 753
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "patches/system/linkerconfig/0001-linkerconfig-default-VNDK-vars-to-empty.patch",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/patches/system/linkerconfig/0001-linkerconfig-default-VNDK-vars-to-empty.patch",
+    "sha256": "ae7805b027aff4f926033bc2b2e09c1d75a72496d0bffa10095fcb905a0e75d2",
+    "bytes": 6924
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "patches/system/sepolicy/0001-sepolicy-restore-29.0-and-30.0-compat-mappings.patch",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/patches/system/sepolicy/0001-sepolicy-restore-29.0-and-30.0-compat-mappings.patch",
+    "sha256": "d251d9d67d91bcde81a43d16a1f47820e90c6cfb9e3a75fcb109c8daf0cc6260",
+    "bytes": 260488
+  },
+  {
+    "repo": "qcom-toolbox/EVOLUTION-X-DANDELION-17",
+    "sha": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+    "path": "patches/vendor/gms/0001-TurboAdapter-skip-on-32-bit-arm.patch",
+    "url": "https://raw.githubusercontent.com/qcom-toolbox/EVOLUTION-X-DANDELION-17/75f316ebd586d93e98fb912a273a33e8845dc3d7/patches/vendor/gms/0001-TurboAdapter-skip-on-32-bit-arm.patch",
+    "sha256": "208e39513d5ef6881a406bb30cb5b627b5aa66d010b77fa2ede5c6899d409cf5",
+    "bytes": 1025
+  }
+]

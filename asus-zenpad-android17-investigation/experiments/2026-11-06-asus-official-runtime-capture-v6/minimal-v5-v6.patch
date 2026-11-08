@@ -1,0 +1,118 @@
+--- v5/source/capture.py
++++ v6/source/capture.py
+@@ -551,7 +551,7 @@
+         os.sched_setaffinity(0,{min(os.sched_getaffinity(0))})
+         resource.setrlimit(resource.RLIMIT_AS,(1024**3,1024**3))
+         resource.setrlimit(resource.RLIMIT_CPU,(900,900))
+-        need(str(HERE.parent)==str(PREFIX/'preparation-v5'),'PREFIX','execute deployed sealed preparation only')
++        need(str(HERE.parent)==str(PREFIX/'preparation-v6'),'PREFIX','execute deployed sealed preparation only')
+         tool_pins=load_bytes((HERE.parent/'tool-pins.json').read_bytes())
+         for rel,digest in tool_pins.items():
+             need(sha((HERE.parent/relative(rel)).read_bytes())==digest,'TOOL_DRIFT',rel)
+--- v5/source/graph.py
++++ v6/source/graph.py
+@@ -124,7 +124,7 @@
+     def edge(self, target):
+         relative(target)
+         rows=self.rows('edge',target)
+-        need(rows and len(rows)<20 and len({raw for _,_,raw in rows})==1,'GRAPH_UNKNOWN','edge '+target)
++        need(len(rows)==1,'GRAPH_UNKNOWN','ambiguous/missing edge '+target)
+         self.record('edge',target,*rows[0])
+         return self.scopes.edge(target,rows[0])
+ 
+--- v5/source/ninja.py
++++ v6/source/ninja.py
+@@ -91,7 +91,7 @@
+             need(file in self.context,'GRAPH_SCOPE',file)
+             if self.context[file][0]==scope and (cutoff is None or self.key(file,line)<cutoff):rows.append((file,line,raw))
+         return rows
+-    def global_value(self,name,file,cutoff=None,stack=()):
++    def file_binding(self,name,file,cutoff=None,stack=(),own_only=False):
+         need(len(name)<=4096,'GRAPH_VARIABLE','variable-name length')
+         self.lookups.add((name,file))
+         need(len(self.lookups)<=65536,'GRAPH_VARIABLE','lookup-context budget')
+@@ -101,14 +101,17 @@
+             if rows:
+                 record=max(rows,key=lambda r:self.key(r[0],r[1]));rf,line,raw=record;key=(rf,line)
+                 self.graph.record('variable',name,*record)
+-                if key in self.cache:return self.cache[key]
++                if key in self.cache:return True,self.cache[key]
+                 need(len(stack)<30 and key not in stack,'GRAPH_VARIABLE','binding depth/cycle')
+                 value=logical(raw)[0].partition('=')[2].lstrip(' ')
+                 result=evaluate(value,lambda n:self.global_value(n,rf,self.key(rf,line),stack+(key,)))
+                 self.cache_bytes+=len(result.encode());need(self.cache_bytes<=16*1024**2,'GRAPH_VARIABLE','binding cache')
+-                self.cache[key]=result;return result
++                self.cache[key]=result;return True,result
++            if own_only:break
+             scope=self.parents[scope]
+-        return ''
++        return False,''
++    def global_value(self,name,file,cutoff=None,stack=()):
++        return self.file_binding(name,file,cutoff,stack)[1]
+     def rule(self,name,file,line):
+         scope=self.context[file][0];cutoff=self.key(file,line)
+         while scope is not None:
+@@ -125,7 +128,9 @@
+         rule=rest[0];raw_rule=None if rule=='phony' else self.rule(rule,file,line)
+         # Ninja evaluates each build binding against the enclosing file env,
+         # not the other build-local bindings, at parse time.
+-        local={k:evaluate(v,lambda n:self.global_value(n,file,self.key(file,line))) for k,v in bindings(lines[1:]).items()}
++        local_spec=bindings(lines[1:])
++        has_build_environment=bool(local_spec)
++        local={k:evaluate(v,lambda n:self.global_value(n,file,self.key(file,line))) for k,v in local_spec.items()}
+         def path_value(text):
+             value=evaluate(text,lambda n:local[n] if n in local else self.global_value(n,file,self.key(file,line)))
+             need(value and not any(c.isspace() for c in value),'GRAPH_SYNTAX','empty/whitespace path')
+@@ -143,15 +148,40 @@
+         need(not (set(rb)-RULE_FIELDS),'GRAPH_RULE','unknown rule binding')
+         need(raw_rule is None or bool(rb.get('command')),'GRAPH_RULE','missing command')
+         need(('rspfile' in rb)==('rspfile_content' in rb),'GRAPH_RULE','rspfile pair')
+-        special={'in':' '.join(shell_path(d['path']) for d in deps if d['kind']=='explicit'),'in_newline':'\n'.join(shell_path(d['path']) for d in deps if d['kind']=='explicit'),'out':' '.join(shell_path(p) for p in explicit_outputs)}
+-        def lookup(name,stack=()):
+-            if name in special:return special[name]
+-            if name in local:return local[name]
+-            if name in rb:
+-                need(len(stack)<30 and name not in stack,'GRAPH_VARIABLE','rule binding cycle/depth: '+name)
+-                return evaluate(rb[name],lambda n:lookup(n,stack+(name,)))
+-            value=self.global_value(name,file)
+-            if not value:undefined.add(name)
+-            return value
+-        expanded={k:lookup(k) for k in rb}
+-        return {'output':target,'rule':rule,'outputs':outputs,'dependencies':deps,'raw':raw,'raw_rule':raw_rule,'expanded_rule':None if raw_rule is None else 'rule '+rule+'\n'+''.join('  '+k+' = '+v+'\n' for k,v in expanded.items()),'command':expanded.get('command'),'rule_bindings':expanded,'undefined_or_empty_variables':sorted(undefined),'scope':self.context[file][0]}
++        def effective(name, *, cutoff=None, shell_escape=True):
++            paths=lambda values,sep:sep.join(shell_path(p) if shell_escape else p for p in values)
++            special={'in':paths([d['path'] for d in deps if d['kind']=='explicit'],' '),
++                     'in_newline':paths([d['path'] for d in deps if d['kind']=='explicit'],'\n'),
++                     'out':paths(explicit_outputs,' ')}
++            origins={}
++            def lookup(key,stack=()):
++                if key in special:
++                    origins[key]='builtin';return special[key]
++                if has_build_environment:
++                    if key in local:
++                        origins[key]='build-own';return local[key]
++                else:
++                    present,value=self.file_binding(key,file,cutoff,own_only=True)
++                    if present:
++                        origins[key]='file-own';return value
++                if key in rb:
++                    need(len(stack)<30 and key not in stack,'GRAPH_VARIABLE','rule binding cycle/depth: '+key)
++                    origins[key]='rule'
++                    return evaluate(rb[key],lambda n:lookup(n,stack+(key,)))
++                present,value=self.file_binding(key,file,cutoff)
++                origins[key]='enclosing-file' if present else 'undefined'
++                if not value:undefined.add(key)
++                return value
++            return lookup(name),origins
++        # ParseEdge resolves unescaped dyndep while parsing, before later file
++        # assignments can mutate the reused environment. Never open its payload.
++        dyndep,dyndep_origins=effective('dyndep',cutoff=self.key(file,line),shell_escape=False)
++        need(not dyndep,'GRAPH_DYNDEP','nonempty effective dyndep is unsupported: '+target)
++        expanded={};binding_origins={}
++        for name in sorted(RULE_FIELDS):
++            if name=='dyndep':
++                expanded[name]=dyndep;binding_origins[name]=dyndep_origins.get(name,'undefined')
++            else:
++                expanded[name],origins=effective(name)
++                binding_origins[name]=origins.get(name,'undefined')
++        return {'output':target,'rule':rule,'outputs':outputs,'dependencies':deps,'raw':raw,'raw_rule':raw_rule,'expanded_rule':None if raw_rule is None else 'rule '+rule+'\n'+''.join('  '+k+' = '+v+'\n' for k,v in expanded.items()),'command':expanded.get('command'),'rule_bindings':expanded,'undefined_or_empty_variables':sorted(undefined),'scope':self.context[file][0],'has_build_environment':has_build_environment,'effective_binding_sources':binding_origins,'dyndep_evaluation':'parse-time-unescaped','command_evaluation':'final-environment'}

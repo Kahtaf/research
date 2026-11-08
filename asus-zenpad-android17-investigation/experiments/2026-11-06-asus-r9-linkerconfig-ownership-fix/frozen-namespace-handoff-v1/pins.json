@@ -1,0 +1,40 @@
+{
+  "status": "FROZEN_NAMESPACE_SOURCE_HANDOFF_READY",
+  "source_project": "system/linkerconfig",
+  "source_preimage_sha256": "2f0851395a0bbdf3c54f0f59b7d9e76894274f493e6ae73e40783905b610d34f",
+  "source_postimage_sha256": "e2aa65d9382f2f0e5c7600e5312046e4236ec2b7b1e108fa5cc12bd7d911f3c8",
+  "new_test_preimage": "absent",
+  "new_test_postimage_sha256": "00b8df1c513b2819c85a7ab30b4483decbda077d8af6170840ddeee5e007b85e",
+  "files": {
+    "namespace.patch": {
+      "bytes": 5837,
+      "sha256": "d7c6088b233ebb0d893e46816768d11798609c499a8b64337ccf98843bb4abcc"
+    },
+    "systemdefault.cc": {
+      "bytes": 4093,
+      "sha256": "e2aa65d9382f2f0e5c7600e5312046e4236ec2b7b1e108fa5cc12bd7d911f3c8"
+    },
+    "namespace_ownership_test.cc": {
+      "bytes": 5092,
+      "sha256": "00b8df1c513b2819c85a7ab30b4483decbda077d8af6170840ddeee5e007b85e"
+    },
+    "host-tests.json": {
+      "bytes": 177,
+      "sha256": "8d0794e39352968bd1902a411e9ecec7810c57a7ba1e7ad9e4ad14fbdc06897d"
+    },
+    "nonlegacy-tests.json": {
+      "bytes": 3107,
+      "sha256": "35b552c1fbebe2b5136aedf76cc019fc70dc94e7d377ecf1676bd6d5f2d56de4"
+    },
+    "actual-generation-result.json": {
+      "bytes": 544,
+      "sha256": "375e402870712808c0461811630a0013fbd28da890280264adbd4d83d959fda4"
+    },
+    "REPORT.md": {
+      "bytes": 4095,
+      "sha256": "a5139b9a288cfe13bf9751a6e95a358e479da892e630ff49da9b0c8802dc813c"
+    }
+  },
+  "native_build_authority": "parent only",
+  "later_runtime_results_must_not_modify_this_handoff": true
+}

@@ -1,0 +1,29 @@
+--- 2026-11-08-asus-normal-ram-compute-control/init.c
++++ 2026-11-08-asus-ram-compute-completion-only/init.c
+@@ -17,7 +17,7 @@
+ #include <unistd.h>
+ 
+ #define RUN_ID "ef56ad88-6904-4452-90a1-3744beaa3c78"
+-#define CONTROL_ID "03f2153c-4faf-41ba-9f66-bcd8d4b1aa9f"
++#define CONTROL_ID "342c9034-6b6f-4d95-aa67-9228b0904eb2"
+ #define TAG "ASUS49-SYSCLOCK run=" RUN_ID
+ #define NODE "/primitive-kmsg"
+ #define MAX_LOGS 768
+@@ -164,16 +164,12 @@
+  while(iterations<UINT32_C(2000000)){
+   iterations++;
+   checksum=(checksum*UINT32_C(1664525)+UINT32_C(1013904223))^iterations;
+-  if(iterations==500000||iterations==1000000||iterations==1500000){
+-   char progress[96];snprintf(progress,sizeof(progress),"iterations=%u checksum=%08x",(unsigned)iterations,(unsigned)checksum);
+-   event("actual","runnable.progress","CLOCK_MONOTONIC",0,0,progress);
+-  }
+  }
+  char v[160];snprintf(v,sizeof(v),"control=" CONTROL_ID " iterations=%u checksum=%08x reason=compute-cap",(unsigned)iterations,(unsigned)checksum);
+  event("complete","runnable.loop","CLOCK_MONOTONIC",0,0,v);
+ }
+ static __attribute__((noinline)) int observe(void){
+- event("actual","clock.path","CLOCK_MONOTONIC",0,0,"kernel-syscall:syscall(SYS_clock_gettime);vDSO-bypassed;control=" CONTROL_ID ";loop=pure-compute-normal");
++ event("actual","clock.path","CLOCK_MONOTONIC",0,0,"kernel-syscall:syscall(SYS_clock_gettime);vDSO-bypassed;control=" CONTROL_ID ";loop=pure-compute-normal-final-only");
+  struct timespec initial={0,0};
+  if(clock_sample("loop.initial",&initial))return -1;
+  struct sched_param original={.sched_priority=-1};

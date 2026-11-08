@@ -1,0 +1,24 @@
+{
+  "base": "/srv/android/asus-linux49-active-work-capture-20261107-8e5c5d4d",
+  "owned": "/srv/android/asus-linux49-work-dispatch-capture-20261107-b4702f9a",
+  "method": "cp -a --reflink=auto kernel AND out; independent inodes",
+  "scoped_source_pins": {
+    "kernel/workqueue.c": {
+      "before": "68cac7be7b9130b43d1620b758a24419daf913b5ba1c6566907f310f5bc54ab5",
+      "after": "3fb24d48d5b68fc7a84d564f3de71e98383ee8eb274e1a9c55d8862a8d3c9f2a"
+    },
+    "arch/arm64/kernel/asus_retained_trace.c": {
+      "before": "40be697aeb81f2f331089e55afb55a2dc62c2b43b6fe5e397948bc19b084c3d2",
+      "after": "7fdf69eb464cc424f8fff6e43bbefb2c4209da0cb95af04fb7ac7136f72901c3"
+    },
+    "include/linux/asus_retained_trace.h": {
+      "before": "bbe073fb605cbdac2fcdfc6c7ecc23565d4be47d61b88f04240cc618f4b56371",
+      "after": "984a388d7208c356bc4db4e8e87f522cc81f7e3c044c8fffee421bb6c865ea78"
+    },
+    "arch/arm64/kernel/asus_entry_tag.h": {
+      "before": "9af32cb97b0fe829779a1958f0933fe61332eb03e19fd0bacae0673a9da6338b",
+      "after": "13bd3a64cc090e1e49acde9819ad314fbad866f0e6535dfb78682445c5f7b21a"
+    }
+  },
+  "full_tree_rehash": false
+}

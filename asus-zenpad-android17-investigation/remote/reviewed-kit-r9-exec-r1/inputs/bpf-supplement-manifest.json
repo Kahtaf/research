@@ -1,0 +1,1128 @@
+{
+  "schema": 1,
+  "kind": "offline SDK37 platform BPF startup supplement; parent integration input only",
+  "created_utc": "2026-11-06T21:21:56Z",
+  "owned_remote": "/srv/android/asus-sdk37-platform-bpf-startup-20261106",
+  "core_handoff_manifest_sha256": "d6790e2efde8ddb11102f561b5c58129660be09d41f1bbfb66402f3865ef13dd",
+  "patch": {
+    "path": "patches/12-platform-ringbuf-selftest-minimum.patch",
+    "sha256": "2ffaf6c9349c06394d8d5e2e4e2bd70104725a2665f644dc0f1ae4f07988d502",
+    "bytes": 1353,
+    "apply_root": "system/bpf",
+    "strip": 1,
+    "fuzz": 0
+  },
+  "changes": {
+    "system/bpf/loader/bpfloader.rs": {
+      "before": "1548dffa03b5091bbb9b7cfcce92495ee2167f417e90b431117cf31ea77b4bd2",
+      "after": "babbccf603e600a2b77f5c71cbf6b1b978f72c176fd33bfab610ff2ba8956250"
+    }
+  },
+  "test_elf_sha256": "e0e4fd37a3c2e8bada79bed899924d34025da9f07c0809f7cc528fff7fb604d7",
+  "test_kernel_sha256": "f48955e15b0210d0b14c9d8036b6655e353a02c9e46ae5fc015b252b9bd8eac6",
+  "test_config_sha256": "8323724c579329c40f33aa15531320e2fdefc7e8d190703d56a555eac890ba01",
+  "new_kernel_config_requirements": [],
+  "build": {
+    "exit": 0,
+    "unstripped_sha256": "a3929c672cf1249be3f275f82c966acfd892842268b3ff10456899d53f454ca5",
+    "elf_sha256": "e0e4fd37a3c2e8bada79bed899924d34025da9f07c0809f7cc528fff7fb604d7",
+    "source_sha256": "babbccf603e600a2b77f5c71cbf6b1b978f72c176fd33bfab610ff2ba8956250",
+    "prior_elf_sha256": "b0dba2920372836fe9971bdd3ad6a341a25d8af23ce207ac46cc1118fc80484d",
+    "frozen_inputs_unchanged": true,
+    "finish_time": 1793999397.452968
+  },
+  "qualification": {
+    "preimage_reproduces_ringbuf_einval_abort": true,
+    "postimage_reaches_actual_setproperty_125": true,
+    "mandatory_corrupt_netd_rejected_exit_134": true,
+    "pre_post_fixture_input_delta": [
+      "entropy.seed",
+      "system/bin/bpfloader"
+    ],
+    "all_selected_platform_objects_captured": true,
+    "selected_platform_count": 11,
+    "missing_selected_outputs": [
+      {
+        "install_path": "system/vendor/etc/bpf/filterPowerSupplyEvents.o",
+        "selected_by": ".installable_files",
+        "system_image_dependency": true,
+        "system_image_file_list": true,
+        "graph_output_chain": [
+          "out/target/product/p00a/system/vendor/etc/bpf/filterPowerSupplyEvents.o",
+          "out/target/product/p00a/obj/ETC/filterPowerSupplyEvents.o_filterPowerSupplyEvents.o_intermediates/filterPowerSupplyEvents.o",
+          "out/soong/.intermediates/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.o/android_vendor_common/obj/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.o"
+        ],
+        "available_outputs": {},
+        "missing": true
+      }
+    ],
+    "runtime_pin_count": 68,
+    "resources": {
+      "preimage": {
+        "rss_kib": 183240,
+        "rlimit_as_bytes": 1073741824,
+        "guest_ram_mib": 384,
+        "cpu_affinity": [
+          0
+        ]
+      },
+      "postimage": {
+        "rss_kib": 183972,
+        "rlimit_as_bytes": 1073741824,
+        "guest_ram_mib": 384,
+        "cpu_affinity": [
+          0
+        ]
+      },
+      "mandatory_negative": {
+        "rss_kib": 123948,
+        "rlimit_as_bytes": 1073741824,
+        "guest_ram_mib": 384,
+        "cpu_affinity": [
+          0
+        ]
+      }
+    },
+    "active_system_bpf_preimage_unchanged": "1548dffa03b5091bbb9b7cfcce92495ee2167f417e90b431117cf31ea77b4bd2",
+    "system_bpf_git_head": "1787201ef62581ee5532fdb1e5b0cbc3fb137dab",
+    "no_new_kernel_config_requirement": true,
+    "full_platform_features_qualified": false,
+    "service_readiness_qualified": false,
+    "physical_go": false,
+    "authoritative_selection": "evidence/selection-v2.json",
+    "selection_reaudit": "evidence/selection-v2-audit.json"
+  },
+  "authoritative_selection": "evidence/selection-v2.json",
+  "reproduce": {
+    "dependency_snapshot": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/snapshot",
+    "dependency_pins": "evidence/frozen-inputs.json",
+    "compiler_pins": "evidence/toolchain-pins.json",
+    "command": "build/command.json",
+    "logs": "runtime/",
+    "runtime_full_closure": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/runtime-root-r2",
+    "large_inputs_remote_only": [
+      "frozen Rust dependency closure",
+      "qualified virtual Image",
+      "runtime shared libraries",
+      "initramfs archives"
+    ],
+    "not_a_product_binary_dropin": true
+  },
+  "gates": {
+    "missing_selected_vendor_object": "system/vendor/etc/bpf/filterPowerSupplyEvents.o",
+    "actual_property_service_exit": 125,
+    "all_optional_platform_features": false,
+    "supported_kernel_5_8_plus_runtime_tested": false,
+    "cross_profile_policy": "inherited unqualified; not expanded in this startup supplement",
+    "physical_go": false,
+    "full_os_ready": false,
+    "ram_probe_blocker": false
+  },
+  "files": {
+    "patches/12-platform-ringbuf-selftest-minimum.patch": {
+      "sha256": "2ffaf6c9349c06394d8d5e2e4e2bd70104725a2665f644dc0f1ae4f07988d502",
+      "bytes": 1353,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/artifacts/12-platform-ringbuf-selftest-minimum.patch"
+    },
+    "preimage/system/bpf/loader/bpfloader.rs": {
+      "sha256": "1548dffa03b5091bbb9b7cfcce92495ee2167f417e90b431117cf31ea77b4bd2",
+      "bytes": 29355,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/artifacts/preimage/system/bpf/loader/bpfloader.rs"
+    },
+    "postimage/system/bpf/loader/bpfloader.rs": {
+      "sha256": "babbccf603e600a2b77f5c71cbf6b1b978f72c176fd33bfab610ff2ba8956250",
+      "bytes": 29735,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/artifacts/postimage/system/bpf/loader/bpfloader.rs"
+    },
+    "elf/bpfloader-postimage": {
+      "sha256": "e0e4fd37a3c2e8bada79bed899924d34025da9f07c0809f7cc528fff7fb604d7",
+      "bytes": 123712,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/artifacts/bpfloader-postimage"
+    },
+    "elf/bpfloader-preimage": {
+      "sha256": "7ec39e0021e04868ba67717f524b840d84f8d641304c18c498a5467e2a782013",
+      "bytes": 83128,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/prior/inputs/platform-bpfloader"
+    },
+    "elf/bpfloader-prior-r16": {
+      "sha256": "b0dba2920372836fe9971bdd3ad6a341a25d8af23ce207ac46cc1118fc80484d",
+      "bytes": 123712,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/prior/artifacts/bpfloader-legacy"
+    },
+    "runtime/fixture-init-r2": {
+      "sha256": "1eedca32fa6f1973dd9a3d1883e174f03a37e761a14ba29454942340a3ade3ba",
+      "bytes": 707888,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/artifacts/fixture-init-r2"
+    },
+    "runtime/fixture_init_r2.c": {
+      "sha256": "fca2e3731787e301dde9d46df7696eea808ffeaa9088ffed1d453e5110858fee",
+      "bytes": 4760,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/source/fixture_init_r2.c"
+    },
+    "runtime/run_owned_r2.py": {
+      "sha256": "f711484a8482d1064180969bf1a06c640da7a580047e61a94b4d68262a641c1f",
+      "bytes": 3531,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/source/run_owned_r2.py"
+    },
+    "core-reference/network.config": {
+      "sha256": "8323724c579329c40f33aa15531320e2fdefc7e8d190703d56a555eac890ba01",
+      "bytes": 66021,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/prior/handoff-r1/network.config"
+    },
+    "core-reference/physical-baseline.config": {
+      "sha256": "0a79503b82ed5980a3b3e0ffb288cdadc49abb67969221960c1295cd7bae03df",
+      "bytes": 126217,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/prior/handoff-r1/physical-baseline.config"
+    },
+    "core-reference/manifest.json": {
+      "sha256": "d6790e2efde8ddb11102f561b5c58129660be09d41f1bbfb66402f3865ef13dd",
+      "bytes": 9779,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/prior/handoff-r1/manifest.json"
+    },
+    "build/command.json": {
+      "sha256": "1c9bf089cd0e9b8d98dbfe4051880f30e235c7c832d614dfb69b427150a8a3b5",
+      "bytes": 14598,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/build/postimage/command.json"
+    },
+    "build/bpfloader.clang.rsp": {
+      "sha256": "13922c2f8e908d31a8bf02927706d2bd714f9f2fbf4d56b05f4e3df83cdb7db6",
+      "bytes": 2484,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/build/postimage/bpfloader.clang.rsp"
+    },
+    "build/build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/build/postimage/build.log"
+    },
+    "build/build.exit": {
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/build/postimage/build.exit"
+    },
+    "build/strip.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/build/postimage/strip.log"
+    },
+    "build/file-access.strace": {
+      "sha256": "6ba62ac3bd36d938bfe1def07a8826280c7806c734332c03090261b0fbef0ac1",
+      "bytes": 515517,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/build/postimage/file-access.strace"
+    },
+    "prior-build/command.json": {
+      "sha256": "ff799fc3f4d5b138847a2d908f6debf643802604ceefd4d21b74e72b88e40699",
+      "bytes": 14394,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/prior/platform-build-legacy/command.json"
+    },
+    "prior-build/build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/prior/platform-build-legacy/build.log"
+    },
+    "prior-build/bpfloader.clang.rsp": {
+      "sha256": "13922c2f8e908d31a8bf02927706d2bd714f9f2fbf4d56b05f4e3df83cdb7db6",
+      "bytes": 2484,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/prior/platform-build-legacy/bpfloader.clang.rsp"
+    },
+    "prior-build/platform-rust-command.txt": {
+      "sha256": "9acc0b50e1173cd228019f84e667433c65fc8538d26d3e6a5d85706fa05f59e7",
+      "bytes": 12701,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/prior/evidence/platform-rust-command.txt"
+    },
+    "prior-runs/run-r15/serial.log": {
+      "sha256": "7427506b61ff0d377ba1b6017aa702514197ff4c25fb54fd88581110deb978e7",
+      "bytes": 69963,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/prior/run-r15/serial.log"
+    },
+    "prior-runs/run-r15/inputs.json": {
+      "sha256": "4f389de556372e3d3b423caeb54a3af799be1846cc56b9b7908747503ad998a7",
+      "bytes": 7573,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/prior/run-r15/inputs.json"
+    },
+    "prior-runs/run-r15/result.json": {
+      "sha256": "9f92f25bba1db79537f8b4d7f0bdc7970de8cdc01196ca223688f850dcbcebb5",
+      "bytes": 242,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/prior/run-r15/result.json"
+    },
+    "prior-runs/run-r16/serial.log": {
+      "sha256": "c6fca4d6dc913863bdc246c00403cd06fca3362a202a2479df2c8e723b571d7a",
+      "bytes": 71342,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/prior/run-r16/serial.log"
+    },
+    "prior-runs/run-r16/inputs.json": {
+      "sha256": "4b3ed124e4dc8de39950a4ba593a1a331014c5028b38fca34949d05dc1ec9d0f",
+      "bytes": 7573,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/prior/run-r16/inputs.json"
+    },
+    "prior-runs/run-r16/result.json": {
+      "sha256": "9f92f25bba1db79537f8b4d7f0bdc7970de8cdc01196ca223688f850dcbcebb5",
+      "bytes": 242,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/prior/run-r16/result.json"
+    },
+    "runtime/run-preimage/serial.log": {
+      "sha256": "7d640df12fc07dd3220fdfd787c2ca4435b04055705f804f0823e2d2fecdb280",
+      "bytes": 2461,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-preimage/serial.log"
+    },
+    "runtime/run-preimage/result.json": {
+      "sha256": "1baf298ab7161765903f3acb24a0ab06976973582e9c720613b8d6b236a47108",
+      "bytes": 318,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-preimage/result.json"
+    },
+    "runtime/run-preimage/inputs.json": {
+      "sha256": "5e8c2ed0da81006ad9cf524b5d74f5a124d087e75269fe5c264bfac19344cb66",
+      "bytes": 9170,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-preimage/inputs.json"
+    },
+    "runtime/run-preimage/command.json": {
+      "sha256": "b87bb1c5304625401312b1a2d72cce40b945feeecf5fe4f131d18d1f3ae44d72",
+      "bytes": 925,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-preimage/command.json"
+    },
+    "runtime/run-preimage/host-resources.txt": {
+      "sha256": "bffc6016d3c653228b84bd1c88c132f10317b41dccbddececd0a2ec9a29291a4",
+      "bytes": 1149,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-preimage/host-resources.txt"
+    },
+    "runtime/run-preimage-r2/serial.log": {
+      "sha256": "596b407e8c56c30212dba8a66081b00678b4e8025c50da980c422ee55672179f",
+      "bytes": 92072,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-preimage-r2/serial.log"
+    },
+    "runtime/run-preimage-r2/result.json": {
+      "sha256": "17dfb668cc3e7c928c445116d63dfe6b1316b0d0e94224875a092e79f181d164",
+      "bytes": 317,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-preimage-r2/result.json"
+    },
+    "runtime/run-preimage-r2/inputs.json": {
+      "sha256": "f1693126a6f0fb27ca5dd01e04e064605585468f69232f99b4b34d1ed7b79fdf",
+      "bytes": 9170,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-preimage-r2/inputs.json"
+    },
+    "runtime/run-preimage-r2/command.json": {
+      "sha256": "e2500aec31970ca261bcb6e03e1a73ce353fb54b8999428f5574290c67a3172a",
+      "bytes": 928,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-preimage-r2/command.json"
+    },
+    "runtime/run-preimage-r2/host-resources.txt": {
+      "sha256": "67b0d2534728ddab78ecceec160b43da67bc00d6a2315633f0768897076ed9f4",
+      "bytes": 1149,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-preimage-r2/host-resources.txt"
+    },
+    "runtime/run-postimage-r2/serial.log": {
+      "sha256": "ee4176fa39c9ece62ed559d26bf2eb295fe507d015812a1b523f7a9e20383deb",
+      "bytes": 95786,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-postimage-r2/serial.log"
+    },
+    "runtime/run-postimage-r2/result.json": {
+      "sha256": "fe84223870720676bce79d311e820471d52f0e759cdb1c78b4373af3b322879f",
+      "bytes": 317,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-postimage-r2/result.json"
+    },
+    "runtime/run-postimage-r2/inputs.json": {
+      "sha256": "e8e4d9c30e7747dc932ed5d72f4522e79bbaca6db55fb1546075fb746f812565",
+      "bytes": 9170,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-postimage-r2/inputs.json"
+    },
+    "runtime/run-postimage-r2/command.json": {
+      "sha256": "d86653231e48e8d11757c1b9557c21defb0f2b2133ac38d14df1975de7f01b5d",
+      "bytes": 929,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-postimage-r2/command.json"
+    },
+    "runtime/run-postimage-r2/host-resources.txt": {
+      "sha256": "7fbb7ad7f7332627326c6dd30814796664d4a4512eb80d2ed44ec0fbe24400aa",
+      "bytes": 1149,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-postimage-r2/host-resources.txt"
+    },
+    "runtime/run-mandatory-negative-r2/serial.log": {
+      "sha256": "4b2fc81de2f64b84a5f001105725a835d36b6d8b1c5c9d9cb04888de48f5613a",
+      "bytes": 40355,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-mandatory-negative-r2/serial.log"
+    },
+    "runtime/run-mandatory-negative-r2/result.json": {
+      "sha256": "9da92d871f7afa4632a9bb8077137f21c10490697f1b296e24e8d9d6f1c8873d",
+      "bytes": 328,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-mandatory-negative-r2/result.json"
+    },
+    "runtime/run-mandatory-negative-r2/inputs.json": {
+      "sha256": "4a6cb218cd8364ce8d4988ae4fc7433b7b86bd7a564ef0e81029603407119958",
+      "bytes": 9170,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-mandatory-negative-r2/inputs.json"
+    },
+    "runtime/run-mandatory-negative-r2/command.json": {
+      "sha256": "49d0b7dd8ca3b08ee5b76454bfe1f7e656c4380ded0f11b80445f7e3fe55da71",
+      "bytes": 938,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-mandatory-negative-r2/command.json"
+    },
+    "runtime/run-mandatory-negative-r2/host-resources.txt": {
+      "sha256": "760d8393e7fc1c35778845dd00270824825ded71676b74c9415b6f9c9f9caadc",
+      "bytes": 1157,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/run-mandatory-negative-r2/host-resources.txt"
+    },
+    "evidence/selection-v2-audit.json": {
+      "sha256": "8100bf4ef42400679876eec763a4a26294301a4353ac31fddf77274c8b429251",
+      "bytes": 838,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/selection-v2-audit.json"
+    },
+    "evidence/build-result.json": {
+      "sha256": "6165c605109152f0920cb8fa318d07c090015df77654ec15076918dbcc1bcf03",
+      "bytes": 439,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/build-result.json"
+    },
+    "evidence/fixture-compile.log": {
+      "sha256": "84305c72fb877ed8601d7a07c44ede8a936eba4059bb9c3c805217c379fccdf2",
+      "bytes": 902,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/fixture-compile.log"
+    },
+    "evidence/fixture-compile-r2.log": {
+      "sha256": "bade9f64510c366ae9a417f4c7cd4d3db1d10fb13a95ba4a9e8b7021e99d902a",
+      "bytes": 911,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/fixture-compile-r2.log"
+    },
+    "evidence/qualification.json": {
+      "sha256": "a385542fc3c5b242781f21228a95929f63b45c5e4dbf469bf7ce52e995a1fb73",
+      "bytes": 1743,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/qualification.json"
+    },
+    "evidence/uprobe-loader.json": {
+      "sha256": "8969157fdb75ff5c1a38ee31d504946086ec63cebe775773c57dac873d54aa74",
+      "bytes": 1341,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/uprobe-loader.json"
+    },
+    "evidence/build-access-audit.json": {
+      "sha256": "6c27728adfa2d1708b31866ed23de336e45ccfcac654da8725255818f072b29a",
+      "bytes": 202,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/build-access-audit.json"
+    },
+    "evidence/actual-preimage-elf-binding.json": {
+      "sha256": "5a5bdde115b9c06231924daed856367515e8c4ac3648cf20b627f16ea177d885",
+      "bytes": 726,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/actual-preimage-elf-binding.json"
+    },
+    "evidence/selected-graph-edges-v2.json": {
+      "sha256": "352c0c93d28afb12ff742db8b80fdb821b333e18d10bbaf0f5307f6da3fb544c",
+      "bytes": 15784,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/selected-graph-edges-v2.json"
+    },
+    "evidence/prior-postimage-elf.txt": {
+      "sha256": "0f911c4a24535d4befa0d18926c2f05826b21fd3e8f22f09d7dcbdef2f557aa1",
+      "bytes": 6240,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/prior-postimage-elf.txt"
+    },
+    "evidence/fixture-compile.json": {
+      "sha256": "644571476e977ffafe196125496dc6b84ab0d318c766f4cd990d51e7ffddb4ed",
+      "bytes": 494,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/fixture-compile.json"
+    },
+    "evidence/object-runtime-status.json": {
+      "sha256": "2464c5af246764d74bfce0f0ab851b29a7550482aa90c1b3e5b1237cd3f2ce70",
+      "bytes": 6891,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-runtime-status.json"
+    },
+    "evidence/runtime-capture.json": {
+      "sha256": "5acc3964621326ed240423b27699fbdd2c24de4590825585c7675e54702c728d",
+      "bytes": 23234,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/runtime-capture.json"
+    },
+    "evidence/graph-pins.json": {
+      "sha256": "63598936a27cbf9410e0fdbf4e19f26d95615055109d3f21a52626c6bc9afaac",
+      "bytes": 149,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/graph-pins.json"
+    },
+    "evidence/qualification-v2.json": {
+      "sha256": "a4e30213ca5d0875a127e9d88d3af9582bbb3283465e5c0a055c9ff164afc6e3",
+      "bytes": 2069,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/qualification-v2.json"
+    },
+    "evidence/selection.json": {
+      "sha256": "9bf328ee07a1a743bea314906c9f242ad52a5e09bbc935a48c4290a5366ff54b",
+      "bytes": 40678,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/selection.json"
+    },
+    "evidence/graph-pins-v2.json": {
+      "sha256": "63598936a27cbf9410e0fdbf4e19f26d95615055109d3f21a52626c6bc9afaac",
+      "bytes": 149,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/graph-pins-v2.json"
+    },
+    "evidence/preimage-elf.txt": {
+      "sha256": "5d4d03cee1ba66d85d9b7852682a23a0df16d6aed53e1f6ae6975106615c2f4e",
+      "bytes": 6258,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/preimage-elf.txt"
+    },
+    "evidence/selection-v2.json": {
+      "sha256": "cec5f5151274b0a228f0482a0053bd91771840f3e752fefa97c9c2e804d5457c",
+      "bytes": 41242,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/selection-v2.json"
+    },
+    "evidence/postimage-elf.txt": {
+      "sha256": "ecc4125c5f2ae4385a6d20d90f6defcba14f408856267dd839508f62935c1cc5",
+      "bytes": 6240,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/postimage-elf.txt"
+    },
+    "evidence/frozen-inputs.json": {
+      "sha256": "d9309b5293ec26ea1dc336307da2864ddf1a47b74bbadbfab0d066b727f8fc42",
+      "bytes": 45056,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/frozen-inputs.json"
+    },
+    "evidence/fixture-compile-r2.json": {
+      "sha256": "ce8af3bf95c6e9a15e49701dd3b4d7434d84d8ce87bcc255b629c161c3d0a4d3",
+      "bytes": 500,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/fixture-compile-r2.json"
+    },
+    "evidence/toolchain-pins.json": {
+      "sha256": "bbe714769727206e18964174f38de1fd5a1aad04fccc72a30ddb95d9d6ae0e4b",
+      "bytes": 4674,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/toolchain-pins.json"
+    },
+    "evidence/patch-apply.log": {
+      "sha256": "50ed4c9a9726deaa968f1fdd6aba740476c951be8c03e75e6a009fad37621495",
+      "bytes": 34,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/patch-apply.log"
+    },
+    "evidence/runtime-pins.txt": {
+      "sha256": "1309641076fcf3fe8a6322da296dbbd3df60d0b707b8b2a2e6473fb695e5d89d",
+      "bytes": 10034,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/runtime-pins.txt"
+    },
+    "evidence/connectivity-object-equivalence.json": {
+      "sha256": "6d68088679c25c4dde6454ce4284a98c4a6835b29a13c1037230e5e130e4f120",
+      "bytes": 1153,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/connectivity-object-equivalence.json"
+    },
+    "evidence/selected-graph-edges.json": {
+      "sha256": "4bb81124bdc20ae1bc8499a48e2c81cd0d13b572765c3bcdf86d0ff990311e75",
+      "bytes": 15193,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/selected-graph-edges.json"
+    },
+    "evidence/object-metadata-v2/apex__com.android.tethering__etc__bpf__mainline__test.o.txt": {
+      "sha256": "e5441893d67191d3238c38aab90960ce41de5da776c6532e1ac79c6822324d1a",
+      "bytes": 7922,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/apex__com.android.tethering__etc__bpf__mainline__test.o.txt"
+    },
+    "evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__DisruptiveApp.o.txt": {
+      "sha256": "faf7770353103fa6eb9a95f12e5d432cbc7e5fa1a0c327e797887e7aed1c1470",
+      "bytes": 29587,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__DisruptiveApp.o.txt"
+    },
+    "evidence/object-metadata-v2/system__etc__bpf__gpuMem.bpf.txt": {
+      "sha256": "2c9c436452ca02eee366c8c5771bb97cbd217c78e72e2cca195e99d2a4f90354",
+      "bytes": 4644,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/system__etc__bpf__gpuMem.bpf.txt"
+    },
+    "evidence/object-metadata-v2/system__etc__bpf__kernelWakelockDurationTest.bpf.txt": {
+      "sha256": "079a78f56cb09bc319030ddaf39885e3da31c785dbb8b3038c1a1ab632824d9b",
+      "bytes": 5660,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/system__etc__bpf__kernelWakelockDurationTest.bpf.txt"
+    },
+    "evidence/object-metadata-v2/system__etc__bpf__gpuWork.bpf.txt": {
+      "sha256": "b6921298f5233974e89b1ab38880f03acbb382138322204e3dd99c0e361301b6",
+      "bytes": 4769,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/system__etc__bpf__gpuWork.bpf.txt"
+    },
+    "evidence/object-metadata-v2/apex__com.android.tethering__etc__bpf__mainline__dscpPolicy.o.txt": {
+      "sha256": "0f93c260ed2095657a8b0bc6edc41224e6c318e24decdd6aa2d11ae5bb43bf30",
+      "bytes": 29479,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/apex__com.android.tethering__etc__bpf__mainline__dscpPolicy.o.txt"
+    },
+    "evidence/object-metadata-v2/ACCOUNT_REDACTED": {
+      "sha256": "75c640e33a069d7fedc8d6183e26d594248cae37f6badf3b1c377ce57328ba5b",
+      "bytes": 675786,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/ACCOUNT_REDACTED"
+    },
+    "evidence/object-metadata-v2/system__etc__bpf__cputimeinstate__timeInState.bpf.txt": {
+      "sha256": "6befe25e791b4a31a7e39fc0b25891e976106919b6e80782a25974b290247d03",
+      "bytes": 14854,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/system__etc__bpf__cputimeinstate__timeInState.bpf.txt"
+    },
+    "evidence/object-metadata-v2/system__etc__bpf__kernelWakelockDuration.bpf.txt": {
+      "sha256": "f19a97ac5705974f7f65f55fde3fee257bcfa965921976d9c7e4728ed0fb398a",
+      "bytes": 5652,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/system__etc__bpf__kernelWakelockDuration.bpf.txt"
+    },
+    "evidence/object-metadata-v2/system__etc__bpf__memevents__bpfMemEvents.bpf.txt": {
+      "sha256": "eb14a2ebfcb55dc028d985f232fed67803a50e417213ef15642376443fed04d2",
+      "bytes": 9432,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/system__etc__bpf__memevents__bpfMemEvents.bpf.txt"
+    },
+    "evidence/object-metadata-v2/apex__com.android.tethering__etc__bpf__mainline__netd.o.txt": {
+      "sha256": "8e7b3979030c871c867c73ba3b20fb4f3bab7e84451bd19614448ee6d6fa65d7",
+      "bytes": 754975,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/apex__com.android.tethering__etc__bpf__mainline__netd.o.txt"
+    },
+    "evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__ArtTest.o.txt": {
+      "sha256": "174b278037f3a054b47183ad09610e0ac6834dee475ec54c5ce7934a9072738d",
+      "bytes": 18832,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__ArtTest.o.txt"
+    },
+    "evidence/object-metadata-v2/system__etc__bpf__fuseMedia.bpf.txt": {
+      "sha256": "787ecadeaa00cf41f44edc3495f88a8a9fec3b5c78ddaf7797c8b536b2c921aa",
+      "bytes": 4253,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/system__etc__bpf__fuseMedia.bpf.txt"
+    },
+    "evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__ProcessManagement.o.txt": {
+      "sha256": "21eb1bbbd3c4e8b1b6a3d3d81a636c22b021bdc1a6cb38becda3399b22f358f7",
+      "bytes": 28610,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__ProcessManagement.o.txt"
+    },
+    "evidence/object-metadata-v2/apex__com.android.tethering__etc__bpf__mainline__clatd.o.txt": {
+      "sha256": "011bca42324a83558c719e7a5d856c22f71839b40dac298d2267bb42b4c4af55",
+      "bytes": 53508,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/apex__com.android.tethering__etc__bpf__mainline__clatd.o.txt"
+    },
+    "evidence/object-metadata-v2/system__etc__bpf__lock_contention__bpfLockContention.bpf.txt": {
+      "sha256": "d893429c5ee6f6ae913ad18d300431d4b9b7af775d123d73041fb0ea2ba867f9",
+      "bytes": 11545,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/system__etc__bpf__lock_contention__bpfLockContention.bpf.txt"
+    },
+    "evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__GenericInstrumentation.o.txt": {
+      "sha256": "5b6c49a2865750ec0a7c8889937509dfff4390ec185e128ca978fce5c0df5bb4",
+      "bytes": 21066,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__GenericInstrumentation.o.txt"
+    },
+    "evidence/object-metadata-v2/apex__com.android.tethering__etc__bpf__mainline__offload.o.txt": {
+      "sha256": "704ec0c0d5e7e64cd55e4315c56c9fcc215524a6f152e5cbd860c8c85fd64a05",
+      "bytes": 761711,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/apex__com.android.tethering__etc__bpf__mainline__offload.o.txt"
+    },
+    "evidence/object-metadata-v2/ACCOUNT_REDACTED": {
+      "sha256": "42be708a4c134e2b5d25ce07365711ba4265aa58da5678fcd491bcf75740eae6",
+      "bytes": 26407,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/ACCOUNT_REDACTED"
+    },
+    "evidence/object-metadata-v2/system__etc__bpf__bpfRingbufProg.bpf.txt": {
+      "sha256": "b850333a663e87416373cf044aa3bfb59ac93154dde4fe4daaede4e02e86999e",
+      "bytes": 4040,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/system__etc__bpf__bpfRingbufProg.bpf.txt"
+    },
+    "evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__Accessibility.o.txt": {
+      "sha256": "58e34c2a36a8281215318dae6eee4247fa7ea21257178d8196bfdaa45eb529e9",
+      "bytes": 16794,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__Accessibility.o.txt"
+    },
+    "evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__Binder.o.txt": {
+      "sha256": "9a35390b9a35342005544c154e3cfee9c4c5a8abc88788e0a654bec6c2c6a8ec",
+      "bytes": 15959,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__Binder.o.txt"
+    },
+    "evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__BitmapAllocation.o.txt": {
+      "sha256": "89fe6d6d5785825e669c0e061746c0f1442e0df0dc1d8e073c87b33861f96cfb",
+      "bytes": 31119,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__BitmapAllocation.o.txt"
+    },
+    "evidence/object-metadata-v2/system__etc__bpf__memevents__bpfMemEventsTest.bpf.txt": {
+      "sha256": "b390de7a744c0c132002f87c81800cae8a375883bdf34286a4ca747259e49b48",
+      "bytes": 9465,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/system__etc__bpf__memevents__bpfMemEventsTest.bpf.txt"
+    },
+    "evidence/object-metadata-v2/system__etc__bpf__dmabuf__dmabufIter.bpf.txt": {
+      "sha256": "4b8602c9f25acec56c2a073536048428cc0a15a9163111876acb7e384d106c58",
+      "bytes": 4111,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata-v2/system__etc__bpf__dmabuf__dmabufIter.bpf.txt"
+    },
+    "evidence/object-metadata/apex__com.android.tethering__etc__bpf__mainline__test.o.txt": {
+      "sha256": "e5441893d67191d3238c38aab90960ce41de5da776c6532e1ac79c6822324d1a",
+      "bytes": 7922,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/apex__com.android.tethering__etc__bpf__mainline__test.o.txt"
+    },
+    "evidence/object-metadata/apex__com.android.uprobestats__etc__bpf__uprobestats__DisruptiveApp.o.txt": {
+      "sha256": "faf7770353103fa6eb9a95f12e5d432cbc7e5fa1a0c327e797887e7aed1c1470",
+      "bytes": 29587,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/apex__com.android.uprobestats__etc__bpf__uprobestats__DisruptiveApp.o.txt"
+    },
+    "evidence/object-metadata/system__etc__bpf__gpuMem.bpf.txt": {
+      "sha256": "2c9c436452ca02eee366c8c5771bb97cbd217c78e72e2cca195e99d2a4f90354",
+      "bytes": 4644,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/system__etc__bpf__gpuMem.bpf.txt"
+    },
+    "evidence/object-metadata/system__etc__bpf__kernelWakelockDurationTest.bpf.txt": {
+      "sha256": "079a78f56cb09bc319030ddaf39885e3da31c785dbb8b3038c1a1ab632824d9b",
+      "bytes": 5660,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/system__etc__bpf__kernelWakelockDurationTest.bpf.txt"
+    },
+    "evidence/object-metadata/system__etc__bpf__gpuWork.bpf.txt": {
+      "sha256": "b6921298f5233974e89b1ab38880f03acbb382138322204e3dd99c0e361301b6",
+      "bytes": 4769,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/system__etc__bpf__gpuWork.bpf.txt"
+    },
+    "evidence/object-metadata/apex__com.android.tethering__etc__bpf__mainline__dscpPolicy.o.txt": {
+      "sha256": "0f93c260ed2095657a8b0bc6edc41224e6c318e24decdd6aa2d11ae5bb43bf30",
+      "bytes": 29479,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/apex__com.android.tethering__etc__bpf__mainline__dscpPolicy.o.txt"
+    },
+    "evidence/object-metadata/ACCOUNT_REDACTED": {
+      "sha256": "75c640e33a069d7fedc8d6183e26d594248cae37f6badf3b1c377ce57328ba5b",
+      "bytes": 675786,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/ACCOUNT_REDACTED"
+    },
+    "evidence/object-metadata/system__etc__bpf__cputimeinstate__timeInState.bpf.txt": {
+      "sha256": "6befe25e791b4a31a7e39fc0b25891e976106919b6e80782a25974b290247d03",
+      "bytes": 14854,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/system__etc__bpf__cputimeinstate__timeInState.bpf.txt"
+    },
+    "evidence/object-metadata/system__etc__bpf__kernelWakelockDuration.bpf.txt": {
+      "sha256": "f19a97ac5705974f7f65f55fde3fee257bcfa965921976d9c7e4728ed0fb398a",
+      "bytes": 5652,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/system__etc__bpf__kernelWakelockDuration.bpf.txt"
+    },
+    "evidence/object-metadata/system__etc__bpf__memevents__bpfMemEvents.bpf.txt": {
+      "sha256": "eb14a2ebfcb55dc028d985f232fed67803a50e417213ef15642376443fed04d2",
+      "bytes": 9432,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/system__etc__bpf__memevents__bpfMemEvents.bpf.txt"
+    },
+    "evidence/object-metadata/apex__com.android.tethering__etc__bpf__mainline__netd.o.txt": {
+      "sha256": "8e7b3979030c871c867c73ba3b20fb4f3bab7e84451bd19614448ee6d6fa65d7",
+      "bytes": 754975,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/apex__com.android.tethering__etc__bpf__mainline__netd.o.txt"
+    },
+    "evidence/object-metadata/apex__com.android.uprobestats__etc__bpf__uprobestats__ArtTest.o.txt": {
+      "sha256": "174b278037f3a054b47183ad09610e0ac6834dee475ec54c5ce7934a9072738d",
+      "bytes": 18832,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/apex__com.android.uprobestats__etc__bpf__uprobestats__ArtTest.o.txt"
+    },
+    "evidence/object-metadata/system__etc__bpf__fuseMedia.bpf.txt": {
+      "sha256": "787ecadeaa00cf41f44edc3495f88a8a9fec3b5c78ddaf7797c8b536b2c921aa",
+      "bytes": 4253,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/system__etc__bpf__fuseMedia.bpf.txt"
+    },
+    "evidence/object-metadata/apex__com.android.uprobestats__etc__bpf__uprobestats__ProcessManagement.o.txt": {
+      "sha256": "21eb1bbbd3c4e8b1b6a3d3d81a636c22b021bdc1a6cb38becda3399b22f358f7",
+      "bytes": 28610,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/apex__com.android.uprobestats__etc__bpf__uprobestats__ProcessManagement.o.txt"
+    },
+    "evidence/object-metadata/apex__com.android.tethering__etc__bpf__mainline__clatd.o.txt": {
+      "sha256": "011bca42324a83558c719e7a5d856c22f71839b40dac298d2267bb42b4c4af55",
+      "bytes": 53508,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/apex__com.android.tethering__etc__bpf__mainline__clatd.o.txt"
+    },
+    "evidence/object-metadata/system__etc__bpf__lock_contention__bpfLockContention.bpf.txt": {
+      "sha256": "d893429c5ee6f6ae913ad18d300431d4b9b7af775d123d73041fb0ea2ba867f9",
+      "bytes": 11545,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/system__etc__bpf__lock_contention__bpfLockContention.bpf.txt"
+    },
+    "evidence/object-metadata/apex__com.android.uprobestats__etc__bpf__uprobestats__GenericInstrumentation.o.txt": {
+      "sha256": "5b6c49a2865750ec0a7c8889937509dfff4390ec185e128ca978fce5c0df5bb4",
+      "bytes": 21066,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/apex__com.android.uprobestats__etc__bpf__uprobestats__GenericInstrumentation.o.txt"
+    },
+    "evidence/object-metadata/apex__com.android.tethering__etc__bpf__mainline__offload.o.txt": {
+      "sha256": "704ec0c0d5e7e64cd55e4315c56c9fcc215524a6f152e5cbd860c8c85fd64a05",
+      "bytes": 761711,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/apex__com.android.tethering__etc__bpf__mainline__offload.o.txt"
+    },
+    "evidence/object-metadata/ACCOUNT_REDACTED": {
+      "sha256": "42be708a4c134e2b5d25ce07365711ba4265aa58da5678fcd491bcf75740eae6",
+      "bytes": 26407,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/ACCOUNT_REDACTED"
+    },
+    "evidence/object-metadata/system__etc__bpf__bpfRingbufProg.bpf.txt": {
+      "sha256": "b850333a663e87416373cf044aa3bfb59ac93154dde4fe4daaede4e02e86999e",
+      "bytes": 4040,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/system__etc__bpf__bpfRingbufProg.bpf.txt"
+    },
+    "evidence/object-metadata/apex__com.android.uprobestats__etc__bpf__uprobestats__Accessibility.o.txt": {
+      "sha256": "58e34c2a36a8281215318dae6eee4247fa7ea21257178d8196bfdaa45eb529e9",
+      "bytes": 16794,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/apex__com.android.uprobestats__etc__bpf__uprobestats__Accessibility.o.txt"
+    },
+    "evidence/object-metadata/apex__com.android.uprobestats__etc__bpf__uprobestats__Binder.o.txt": {
+      "sha256": "9a35390b9a35342005544c154e3cfee9c4c5a8abc88788e0a654bec6c2c6a8ec",
+      "bytes": 15959,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/apex__com.android.uprobestats__etc__bpf__uprobestats__Binder.o.txt"
+    },
+    "evidence/object-metadata/apex__com.android.uprobestats__etc__bpf__uprobestats__BitmapAllocation.o.txt": {
+      "sha256": "89fe6d6d5785825e669c0e061746c0f1442e0df0dc1d8e073c87b33861f96cfb",
+      "bytes": 31119,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/apex__com.android.uprobestats__etc__bpf__uprobestats__BitmapAllocation.o.txt"
+    },
+    "evidence/object-metadata/system__etc__bpf__memevents__bpfMemEventsTest.bpf.txt": {
+      "sha256": "b390de7a744c0c132002f87c81800cae8a375883bdf34286a4ca747259e49b48",
+      "bytes": 9465,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/system__etc__bpf__memevents__bpfMemEventsTest.bpf.txt"
+    },
+    "evidence/object-metadata/system__etc__bpf__dmabuf__dmabufIter.bpf.txt": {
+      "sha256": "4b8602c9f25acec56c2a073536048428cc0a15a9163111876acb7e384d106c58",
+      "bytes": 4111,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/evidence/object-metadata/system__etc__bpf__dmabuf__dmabufIter.bpf.txt"
+    },
+    "objects/system/etc/bpf/gpuWork.bpf": {
+      "sha256": "7341cd61278b82ffa7b71dca5515beba0f23c0df2d9bfc2102efc89ac69a1589",
+      "bytes": 6280,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/system/etc/bpf/gpuWork.bpf"
+    },
+    "objects/system/etc/bpf/kernelWakelockDurationTest.bpf": {
+      "sha256": "60fd24dd02e99b3b8822532efbf4a0e35b48edf0e0d2583f25692979a8996d85",
+      "bytes": 6456,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/system/etc/bpf/kernelWakelockDurationTest.bpf"
+    },
+    "objects/system/etc/bpf/bpfRingbufProg.bpf": {
+      "sha256": "a2270aa14c453ab4e674d68f5a4ee3d3e6a8e9b7ea3aec3f20818157763fd2e1",
+      "bytes": 2320,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/system/etc/bpf/bpfRingbufProg.bpf"
+    },
+    "objects/system/etc/bpf/fuseMedia.bpf": {
+      "sha256": "c07777878428e20d5a2a275d9a7b2ad6acc27deb1c17dc678b35add1ae12de3c",
+      "bytes": 3784,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/system/etc/bpf/fuseMedia.bpf"
+    },
+    "objects/system/etc/bpf/gpuMem.bpf": {
+      "sha256": "d049f06c108d94796599acc548a9fbab5ba367580d384457b5109520a2447af6",
+      "bytes": 3240,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/system/etc/bpf/gpuMem.bpf"
+    },
+    "objects/system/etc/bpf/kernelWakelockDuration.bpf": {
+      "sha256": "cddf598d1e0cee1d09e6bd60ff7445707a9494a6851aae04a062765eee1f8155",
+      "bytes": 6400,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/system/etc/bpf/kernelWakelockDuration.bpf"
+    },
+    "objects/system/etc/bpf/cputimeinstate/timeInState.bpf": {
+      "sha256": "eb0ab840dfab5b7ca1ade55a406a3b9c6ee04b090c546885003e0db01559499c",
+      "bytes": 27040,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/system/etc/bpf/cputimeinstate/timeInState.bpf"
+    },
+    "objects/system/etc/bpf/memevents/bpfMemEvents.bpf": {
+      "sha256": "715e9f610f93e1e8d221829aaf1437be884def6c24916264218a9c01e6174af2",
+      "bytes": 10392,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/system/etc/bpf/memevents/bpfMemEvents.bpf"
+    },
+    "objects/system/etc/bpf/memevents/bpfMemEventsTest.bpf": {
+      "sha256": "f2504b7e3d9e7096f9d8fe9d33607d4600c91bac8002e7127062dc7bf3d99361",
+      "bytes": 12400,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/system/etc/bpf/memevents/bpfMemEventsTest.bpf"
+    },
+    "objects/system/etc/bpf/lock_contention/bpfLockContention.bpf": {
+      "sha256": "d8dcb9976034f9d73eee5bf469597fc210122872df74ad86425f781c7627b4f0",
+      "bytes": 41744,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/system/etc/bpf/lock_contention/bpfLockContention.bpf"
+    },
+    "objects/system/etc/bpf/dmabuf/dmabufIter.bpf": {
+      "sha256": "98d4e13f178b9f638925f0c8ac28720083f0cf33781b2e63a4723529b6184c3c",
+      "bytes": 19352,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/system/etc/bpf/dmabuf/dmabufIter.bpf"
+    },
+    "objects/apex/com.android.uprobestats/etc/bpf/uprobestats/BitmapAllocation.o": {
+      "sha256": "6bb65dca2829818a523bc9c2bb11b0cc81342c6b9714addb6561dad31b161203",
+      "bytes": 19928,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/apex/com.android.uprobestats/etc/bpf/uprobestats/BitmapAllocation.o"
+    },
+    "objects/apex/com.android.uprobestats/etc/bpf/uprobestats/GenericInstrumentation.o": {
+      "sha256": "25286e9955609372dd92caf5429e64054345e95461379f9c05f0217e5dcd6442",
+      "bytes": 13256,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/apex/com.android.uprobestats/etc/bpf/uprobestats/GenericInstrumentation.o"
+    },
+    "objects/apex/com.android.uprobestats/etc/bpf/uprobestats/Binder.o": {
+      "sha256": "b86ce3426e2d059b9c324ba4c076a5ba0ceef65942f0b7b098b3ede8a498a205",
+      "bytes": 14656,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/apex/com.android.uprobestats/etc/bpf/uprobestats/Binder.o"
+    },
+    "objects/apex/com.android.uprobestats/etc/bpf/uprobestats/Accessibility.o": {
+      "sha256": "8b5a531f440df04ef84a37859c2b303950d7df040d9dbadd2b3f9c41b1229b64",
+      "bytes": 12856,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/apex/com.android.uprobestats/etc/bpf/uprobestats/Accessibility.o"
+    },
+    "objects/apex/com.android.uprobestats/etc/bpf/uprobestats/ArtTest.o": {
+      "sha256": "ddc3eede78f7bf527e4bd5855779bdd254d0c3479da51da6441b135c9b19c774",
+      "bytes": 13240,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/apex/com.android.uprobestats/etc/bpf/uprobestats/ArtTest.o"
+    },
+    "objects/apex/com.android.uprobestats/etc/bpf/uprobestats/DisruptiveApp.o": {
+      "sha256": "a4e3df676b6c92a0379d081db913d30edc8004bcbee2eb7337a0f640bf1e30e1",
+      "bytes": 20168,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/apex/com.android.uprobestats/etc/bpf/uprobestats/DisruptiveApp.o"
+    },
+    "objects/apex/com.android.uprobestats/etc/bpf/uprobestats/ProcessManagement.o": {
+      "sha256": "e9e48d2436a4c9ed7b02bfd23ab868b43dec5db2a30123980c8d59d0f1930718",
+      "bytes": 18328,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/apex/com.android.uprobestats/etc/bpf/uprobestats/ProcessManagement.o"
+    },
+    "objects/apex/com.android.tethering/etc/bpf/mainline/dscpPolicy.o": {
+      "sha256": "418b9b09c96ed964bc408bff5df8f31e9fd5057d7f2bb56c3704c62c2ebdadec",
+      "bytes": 26512,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/apex/com.android.tethering/etc/bpf/mainline/dscpPolicy.o"
+    },
+    "objects/apex/com.android.tethering/etc/bpf/mainline/test.o": {
+      "sha256": "0985e51706df066b83e6a56bc5545896853605e1437ac5d7f76c144e3c0d01d4",
+      "bytes": 8416,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/apex/com.android.tethering/etc/bpf/mainline/test.o"
+    },
+    "objects/apex/com.android.tethering/etc/bpf/mainline/dscpPolicy@funcs.o": {
+      "sha256": "b976cc2577ca47fc7ad5486a37f54cb29175dd5dad79379c1d3c0427e72bd3dd",
+      "bytes": 25848,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/apex/com.android.tethering/etc/bpf/mainline/dscpPolicy@funcs.o"
+    },
+    "objects/apex/com.android.tethering/etc/bpf/mainline/netd@funcs.o": {
+      "sha256": "052b61b53320dc2a94b9cf97323bc7a3bb3732b8a918ef4dd355e0cf591fd3b5",
+      "bytes": 434176,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/apex/com.android.tethering/etc/bpf/mainline/netd@funcs.o"
+    },
+    "objects/apex/com.android.tethering/etc/bpf/mainline/netd.o": {
+      "sha256": "c5232afa1ae316a42008983b99aec58332a073dd95a57a63a6033fe96763c2bc",
+      "bytes": 476832,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/apex/com.android.tethering/etc/bpf/mainline/netd.o"
+    },
+    "objects/apex/com.android.tethering/etc/bpf/mainline/offload.o": {
+      "sha256": "4ed894d5ae7d49caf9cb54b22d010eb7a7672fc68e634ed1163d28cb7bfd3198",
+      "bytes": 368096,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/apex/com.android.tethering/etc/bpf/mainline/offload.o"
+    },
+    "objects/apex/com.android.tethering/etc/bpf/mainline/clatd.o": {
+      "sha256": "c25e367c588591df982b9ee131cca58cccd5e9728bdf2ff0ab6ee3c3ed4ca63c",
+      "bytes": 43968,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/selected-root/apex/com.android.tethering/etc/bpf/mainline/clatd.o"
+    },
+    "object-source/system/bpfprogs/dmabufIter.c": {
+      "sha256": "de584083b1e2250ab3efe4d683f9190477d3ec5ec7e32543892d587ce7d4b1fd",
+      "bytes": 1484,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/system/bpfprogs/dmabufIter.c"
+    },
+    "object-source/system/bpfprogs/cyclePerUid.c": {
+      "sha256": "92c9dd60378ad4749a2e985a088ec311db2f9c6736e946008b104cccf4a248c6",
+      "bytes": 4815,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/system/bpfprogs/cyclePerUid.c"
+    },
+    "object-source/system/bpfprogs/fuseMedia.c": {
+      "sha256": "e42b2880351cf6b9ed064e89aecc1f48d9920942b3e8a53985a8bb9cf3a4b9ca",
+      "bytes": 2014,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/system/bpfprogs/fuseMedia.c"
+    },
+    "object-source/system/bpfprogs/timeInState.c": {
+      "sha256": "e6a8d2b2ffe0704c42d2999a4426aa9fc9d71114581ce3041473f58486911361",
+      "bytes": 11966,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/system/bpfprogs/timeInState.c"
+    },
+    "object-source/system/bpfprogs/Android.bp": {
+      "sha256": "bc9326317c17e2890f8dfc4503a7d5a6895d03a26f90a882191e147a4b555bb9",
+      "bytes": 2652,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/system/bpfprogs/Android.bp"
+    },
+    "object-source/system/bpfprogs/kernelwakelockduration/kernelWakelockDuration.c": {
+      "sha256": "c9a773ba494ec06f361950cdd7abb60677e80664aced5abbfc708cf0e9aa38e4",
+      "bytes": 6493,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/system/bpfprogs/kernelwakelockduration/kernelWakelockDuration.c"
+    },
+    "object-source/system/bpfprogs/kernelwakelockduration/Android.bp": {
+      "sha256": "b77ec484571e89286fcf117ed70f5a88e5b24700849b5cd6e69eb04efcc164f6",
+      "bytes": 2242,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/system/bpfprogs/kernelwakelockduration/Android.bp"
+    },
+    "object-source/system/bpfprogs/locks/bpfLockContention.c": {
+      "sha256": "6586e2bec79a3f7820efb427ce37c3f8d60e7ff6be00309fd35ab1fac35b0d33",
+      "bytes": 4220,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/system/bpfprogs/locks/bpfLockContention.c"
+    },
+    "object-source/system/bpfprogs/locks/Android.bp": {
+      "sha256": "9931fdaef734007adb7944c4f651fed015d8bb0494e8a42d91cd147d0446b859",
+      "bytes": 1060,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/system/bpfprogs/locks/Android.bp"
+    },
+    "object-source/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEventsTest.c": {
+      "sha256": "66c31f479ad320a142e4611e0c579ee3646dd6671808024dd9a3a91f6e637085",
+      "bytes": 6602,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEventsTest.c"
+    },
+    "object-source/system/memory/libmeminfo/libmemevents/bpfprogs/Android.bp": {
+      "sha256": "24b0a71eb8074f8f07490fd9bbf37b8957ba3ae89fd9ca72f5893a52d1541f85",
+      "bytes": 1022,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/system/memory/libmeminfo/libmemevents/bpfprogs/Android.bp"
+    },
+    "object-source/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEvents.c": {
+      "sha256": "0ae9e314c7db7b47e41f0762be5879959d1a57ac3a28d261c4a38218fb0cd4df",
+      "bytes": 5320,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEvents.c"
+    },
+    "object-source/system/bpf/progs/Android.bp": {
+      "sha256": "4f0e5b539e037be3a2c7af5c3279e2978fced1851e348e1617367e2b36c3db38",
+      "bytes": 1129,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/system/bpf/progs/Android.bp"
+    },
+    "object-source/system/bpf/progs/bpfRingbufProg.c": {
+      "sha256": "42337f99c981fc1be75a0457c7667cec4eed8f271deaf0896daecde11928e7e8",
+      "bytes": 1655,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/system/bpf/progs/bpfRingbufProg.c"
+    },
+    "object-source/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.c": {
+      "sha256": "371ca11052920914dffddccfc1c143f0a4ca253bb51fa3ecd5f2c2c9ebd2df2f",
+      "bytes": 3371,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.c"
+    },
+    "object-source/hardware/interfaces/health/utils/libhealthloop/Android.bp": {
+      "sha256": "e9edb97f8ff039534b5a35e5260789d3ef63a54c93ecbd8ecc218c861c86532c",
+      "bytes": 2807,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/hardware/interfaces/health/utils/libhealthloop/Android.bp"
+    },
+    "object-source/packages/modules/Connectivity/bpf/progs/dscpPolicy.c": {
+      "sha256": "99e39aae52c97a3c29b0870c2f527f535dbece7e5b52666cd3d666071dbc1093",
+      "bytes": 11654,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/Connectivity/bpf/progs/dscpPolicy.c"
+    },
+    "object-source/packages/modules/Connectivity/bpf/progs/offload.c": {
+      "sha256": "cbf6be74b6908ae2f1c4fe0cfafd93851d9a19f8df0a732e7cae91823df117e0",
+      "bytes": 37514,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/Connectivity/bpf/progs/offload.c"
+    },
+    "object-source/packages/modules/Connectivity/bpf/progs/test.c": {
+      "sha256": "bc843be0badb31d255e731e3d539845b98884f93330ab6de759b2f52480584dd",
+      "bytes": 1741,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/Connectivity/bpf/progs/test.c"
+    },
+    "object-source/packages/modules/Connectivity/bpf/progs/dscpPolicy@funcs.c": {
+      "sha256": "99e39aae52c97a3c29b0870c2f527f535dbece7e5b52666cd3d666071dbc1093",
+      "bytes": 11654,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/Connectivity/bpf/progs/dscpPolicy@funcs.c"
+    },
+    "object-source/packages/modules/Connectivity/bpf/progs/netd.c": {
+      "sha256": "7dc4fa02952c0268737dc9aad20a0571b55df255f878506a4db91c1d962713b6",
+      "bytes": 64606,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/Connectivity/bpf/progs/netd.c"
+    },
+    "object-source/packages/modules/Connectivity/bpf/progs/netd@funcs.c": {
+      "sha256": "7dc4fa02952c0268737dc9aad20a0571b55df255f878506a4db91c1d962713b6",
+      "bytes": 64606,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/Connectivity/bpf/progs/netd@funcs.c"
+    },
+    "object-source/packages/modules/Connectivity/bpf/progs/clatd.c": {
+      "sha256": "b82ac3df4f1a6322709d20909c7d8aec13d3a38b1443440ae445dbbdcabd43cf",
+      "bytes": 18692,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/Connectivity/bpf/progs/clatd.c"
+    },
+    "object-source/packages/modules/Connectivity/bpf/progs/Android.bp": {
+      "sha256": "f80307f087746f3b7ec82c807cc1d587244e7463609407d3cc42498b4f944898",
+      "bytes": 3933,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/Connectivity/bpf/progs/Android.bp"
+    },
+    "object-source/packages/modules/UprobeStats/bpf_progs/Accessibility.c": {
+      "sha256": "2244409a8f852e81edc00f9c7836257389b41bd022912705f1cb33f614dc27a7",
+      "bytes": 3750,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/UprobeStats/bpf_progs/Accessibility.c"
+    },
+    "object-source/packages/modules/UprobeStats/bpf_progs/ArtTest.c": {
+      "sha256": "4dd34c4f02da8d098e6622992b9dc13ebaf6d3a8fa5533b21943874f8a08aa43",
+      "bytes": 5810,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/UprobeStats/bpf_progs/ArtTest.c"
+    },
+    "object-source/packages/modules/UprobeStats/bpf_progs/Binder.c": {
+      "sha256": "c92856fd21938c008622b990400d9835ad92458efcce36d2baf6db4433339dd0",
+      "bytes": 2576,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/UprobeStats/bpf_progs/Binder.c"
+    },
+    "object-source/packages/modules/UprobeStats/bpf_progs/ProcessManagement.c": {
+      "sha256": "21e33fb01de7979ed4a4f0fb7483002240c234f99c357fde7a9536f0576bd709",
+      "bytes": 5141,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/UprobeStats/bpf_progs/ProcessManagement.c"
+    },
+    "object-source/packages/modules/UprobeStats/bpf_progs/Android.bp": {
+      "sha256": "d9461c1cf369a45353ded0dd0451fe0b4e31f7055d686b1b55631c9ba94482f4",
+      "bytes": 1330,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/UprobeStats/bpf_progs/Android.bp"
+    },
+    "object-source/packages/modules/UprobeStats/bpf_progs/GenericInstrumentation.c": {
+      "sha256": "e93886fe3c4695bb543bc019b529fd175ca3b0e79ba0442d4341265d8028ea91",
+      "bytes": 4223,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/UprobeStats/bpf_progs/GenericInstrumentation.c"
+    },
+    "object-source/packages/modules/UprobeStats/bpf_progs/DisruptiveApp.c": {
+      "sha256": "806e6bccea8f86e28b61ca976627a95fd97a68353e6ea96b78fbc3cef40cd1ae",
+      "bytes": 6090,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/UprobeStats/bpf_progs/DisruptiveApp.c"
+    },
+    "object-source/packages/modules/UprobeStats/bpf_progs/BitmapAllocation.c": {
+      "sha256": "a27e35682470d79efbb72f080fdb51c067e3fc48787766fd3182bc0aea0756d5",
+      "bytes": 6313,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/UprobeStats/bpf_progs/BitmapAllocation.c"
+    },
+    "object-source/packages/modules/UprobeStats/bpfloader/UprobeStatsBpfLoad.cpp": {
+      "sha256": "daac4afe2ef2f619ebba175be3e680e1655630bd10e8add5182013dc8167c2fc",
+      "bytes": 31679,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/UprobeStats/bpfloader/UprobeStatsBpfLoad.cpp"
+    },
+    "object-source/packages/modules/UprobeStats/bpfloader/Android.bp": {
+      "sha256": "79b8e5e0042563867f9a1042d04d740ee2d7fb7d754f814082c4091a40eec3bd",
+      "bytes": 522,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/packages/modules/UprobeStats/bpfloader/Android.bp"
+    },
+    "object-source/frameworks/native/services/gpuservice/bpfprogs/gpuMem.c": {
+      "sha256": "775034169a9a4f7ceebb66a2f0a2cb9cd67f6eae3fde43afccd33cd2164fbfa0",
+      "bytes": 2526,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/frameworks/native/services/gpuservice/bpfprogs/gpuMem.c"
+    },
+    "object-source/frameworks/native/services/gpuservice/bpfprogs/Android.bp": {
+      "sha256": "3fe00dbb95d960530b6efa239dbe2c21631fe9d98a642f795f2cc98a3f5b51b2",
+      "bytes": 1071,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/frameworks/native/services/gpuservice/bpfprogs/Android.bp"
+    },
+    "object-source/frameworks/native/services/gpuservice/gpuwork/bpfprogs/Android.bp": {
+      "sha256": "e0d8f98d8a5944025a703bfe905b7b2eb4322cc487eee5c39621d3e3654ae9cf",
+      "bytes": 899,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/frameworks/native/services/gpuservice/gpuwork/bpfprogs/Android.bp"
+    },
+    "object-source/frameworks/native/services/gpuservice/gpuwork/bpfprogs/gpuWork.c": {
+      "sha256": "e6a5b3cfb0b83d9277f4ca6f7a1d3ba02b529e422c45d10a2d37563cc203de3b",
+      "bytes": 13961,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/object-source/frameworks/native/services/gpuservice/gpuwork/bpfprogs/gpuWork.c"
+    },
+    "runtime-executables/system/bin/network_loader": {
+      "sha256": "8b2e2b1708de900f74df418377155432c06234fdc412c8e08e981c8e2f9e71b9",
+      "bytes": 85816,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/runtime-root-r2/system/bin/network_loader"
+    },
+    "runtime-executables/system/bin/seed_properties": {
+      "sha256": "1e941057fa38fe73929f55a26f7717bcdd393b1ccde0477d09bf7aaa5fd85a8e",
+      "bytes": 10592,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/runtime-root-r2/system/bin/seed_properties"
+    },
+    "runtime-executables/apex/com.android.uprobestats/bin/uprobestatsbpfload": {
+      "sha256": "cb760bc6af0d665f6059a7c4460ddce2501c76d42cbc2c3292769e408279f377",
+      "bytes": 65248,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/runtime-root-r2/apex/com.android.uprobestats/bin/uprobestatsbpfload"
+    },
+    "runtime-executables/apex/com.android.tethering/etc/bpf/mainline/netd.o": {
+      "sha256": "25ccea3b8043240238381ee19d950ebc51629f06688b3a1af9d97e8a6e11ad6f",
+      "bytes": 475424,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/runtime-root-r2/apex/com.android.tethering/etc/bpf/mainline/netd.o"
+    },
+    "actual-source/system/bpf/loader/Android.bp": {
+      "sha256": "9ca7f9fddf4bf322e0e9eab632bdc8f013173510cc6233a48456b121bcd3a22a",
+      "bytes": 3145,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/actual/system/bpf/loader/Android.bp"
+    },
+    "actual-source/system/bpf/loader/Loader.cpp": {
+      "sha256": "4795e5bb1d46187f1aa858ba0703185ff9309dcd6d4fa97f2860b12b357f93b7",
+      "bytes": 20190,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/actual/system/bpf/loader/Loader.cpp"
+    },
+    "actual-source/system/bpfprogs/Android.bp": {
+      "sha256": "bc9326317c17e2890f8dfc4503a7d5a6895d03a26f90a882191e147a4b555bb9",
+      "bytes": 2652,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/actual/system/bpfprogs/Android.bp"
+    },
+    "actual-source/system/bpfprogs/progs.aconfig": {
+      "sha256": "5673e278b8e7d1c004520eee16b1f57b1e0ab547c4a9e549b483a48286584b8d",
+      "bytes": 551,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/actual/system/bpfprogs/progs.aconfig"
+    },
+    "actual-source/seed_properties.cpp": {
+      "sha256": "92bce41e3e99b9a7e0aee8b59c7ff6ae3a1c5782de636d9cb02654852d78e6c3",
+      "bytes": 851,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/prior/source/seed_properties.cpp"
+    },
+    "report.md": {
+      "sha256": "19ceaa357b69f33bcbf7c2c60bd693bd812937f0a1c1a4631430911747c3f929",
+      "bytes": 10211,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/handoff-docs/report.md"
+    },
+    "PARENT-KIT-DELTA.md": {
+      "sha256": "478e549943f825b6792f90e98f26d29497de25d7b1b5150d22f036e4b778c075",
+      "bytes": 4031,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/handoff-docs/PARENT-KIT-DELTA.md"
+    },
+    "parent-kit-delta.json": {
+      "sha256": "034fb695adec936a1a77e64b288ee3a6d5996c5477493cb7e5e0667688d56b70",
+      "bytes": 1491,
+      "source": "/srv/android/asus-sdk37-platform-bpf-startup-20261106/inputs/handoff-docs/parent-kit-delta.json"
+    },
+    "evidence/parent-job-state-final.txt": {
+      "sha256": "a85466b608f9e2e876848ecc714e4b1d09d6460e6a59cb85c3b54966bd38cd69",
+      "bytes": 51,
+      "source": "native ps at packaging"
+    }
+  }
+}

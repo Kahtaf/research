@@ -1,0 +1,13 @@
+diff --git a/wificond.rc b/wificond.rc
+index 346ed9d..3be5fa0 100644
+--- a/wificond.rc
++++ b/wificond.rc
+@@ -1,5 +1,8 @@
++# Replace system/connectivity/wificond/wificond.rc with this version at build.
++# Based on fefad78738af9d9753bb0acbafcf458691f8627c. Do not install a duplicate.
+ service wificond /system_ext/bin/wificond
+     class main
+     user wifi
+     group wifi net_raw net_admin
+     capabilities NET_RAW NET_ADMIN
++    disabled

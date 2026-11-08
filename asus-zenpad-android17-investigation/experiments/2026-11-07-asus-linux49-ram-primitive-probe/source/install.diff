@@ -1,0 +1,33 @@
+--- calibrated-entry-build/source/install.py
++++ ram-primitive-probe/source/install.py
+@@ -13,9 +13,9 @@
+ a,b=w.a,w.b
+ require=b.require
+ IMAGE=ROOT/'artifacts/candidate.img'
+-IMAGE_SHA='5bb560da27a4fb564e369d886a639889a78f73b27fb5fb5a26f78a97be093530'
+-FULL_SHA='c89bedfba2bd8550580f394bb4774018523855b622851d563a56975746f99bb5'
+-INSTALL_PREIMAGES=(*a.INSTALL_PREIMAGES,a.FULL_SHA,'78005304291706fe2ad2affa185467c89464dc2f3216f97d572a29a1e058afa9','7161898f7858c5eb2887a4589fce5a62d4b2d556e1413e36e4e53c3cd8431b09','4b564d404bc13b20ba44790733a37010fe0677bfced235de2b334c3bff08fa19','631cebb6df7be4b08edb713c976799ac60b4552e2caa3d4f1ea15b11a37610b9','5c8926304eaf38bbe9e2d5e8750c89cda025ce376c0103d3589f416e213cb453','a0e4856da4138dd401461add3104005fca67cf495da1a605c02392244dd757f8','c9d4506c90fa12f6a77a5e34368312307903eb9e0c04d47d5461f2e455b062e3','4fb2f280ba90e9e1487b3728056a67ccd4883f918cc81a1145c100a3eb999a26','e965b75979e02e5514418e706f42b7874e4f72d72754864e5af0959646d2c9b0','c1fe664108ee8e2ef24edc9f0b3249589dc227f0ee8502b63e224930ee7fa541','81bc90ed8f8c25a291c8ffca205de94a0188b5cbab37379b3f667ad1ac42ba2d','039c5a52d9ac04fd515c2081c455066057d1503d6979fc81a5b2c70712bc7dba','a647247d220a0a33fc23ee125744847b836f20908539d9f150054aa20f1ce20d','80270c24e310b5dd2a8e1e9e21b35a2f3d39c87dc2db25271d97b7d85da733eb','ed054366765198d628f62086627a753daeae645cadf1d431be0e11315a649bbe')
++IMAGE_SHA='4dee477b7d1fc77ee8f04a2608a0805b199a82acf5ade23d8e447f54c4812343'
++FULL_SHA='8e002fd9f9b7797470fd03d94da44c0f3479c6fdfefe00b8ecd1136bc53534fb'
++INSTALL_PREIMAGES=(*a.INSTALL_PREIMAGES,a.FULL_SHA,'78005304291706fe2ad2affa185467c89464dc2f3216f97d572a29a1e058afa9','7161898f7858c5eb2887a4589fce5a62d4b2d556e1413e36e4e53c3cd8431b09','4b564d404bc13b20ba44790733a37010fe0677bfced235de2b334c3bff08fa19','631cebb6df7be4b08edb713c976799ac60b4552e2caa3d4f1ea15b11a37610b9','5c8926304eaf38bbe9e2d5e8750c89cda025ce376c0103d3589f416e213cb453','a0e4856da4138dd401461add3104005fca67cf495da1a605c02392244dd757f8','c9d4506c90fa12f6a77a5e34368312307903eb9e0c04d47d5461f2e455b062e3','4fb2f280ba90e9e1487b3728056a67ccd4883f918cc81a1145c100a3eb999a26','e965b75979e02e5514418e706f42b7874e4f72d72754864e5af0959646d2c9b0','c1fe664108ee8e2ef24edc9f0b3249589dc227f0ee8502b63e224930ee7fa541','81bc90ed8f8c25a291c8ffca205de94a0188b5cbab37379b3f667ad1ac42ba2d','039c5a52d9ac04fd515c2081c455066057d1503d6979fc81a5b2c70712bc7dba','a647247d220a0a33fc23ee125744847b836f20908539d9f150054aa20f1ce20d','80270c24e310b5dd2a8e1e9e21b35a2f3d39c87dc2db25271d97b7d85da733eb','ed054366765198d628f62086627a753daeae645cadf1d431be0e11315a649bbe','c89bedfba2bd8550580f394bb4774018523855b622851d563a56975746f99bb5')
+ SELF=Path(__file__)
+ SELF_SHA=sha(SELF.read_bytes())
+ LEGACY_PINS={p:sha(p.read_bytes()) for p in (ROOT/'source/adb',ROOT/'source/legacy_adb.py')}
+@@ -27,7 +27,7 @@
+ class Journal(b.Journal):
+  def __init__(self,directory,run):
+   self.directory=directory
+-  self.state=dict(schema=1,mode='EXECUTE',run_id=run,profile='exact-linux49-calibrated-entry-23cdb057-r3',
++  self.state=dict(schema=1,mode='EXECUTE',run_id=run,profile='exact-linux49-ram-primitive-b388b428-r1',
+    candidate_sha256=IMAGE_SHA,full_p10_sha256=FULL_SHA,target=b.BLOCK,
+    events=[],write_dispatches=[],outcome='preparing',partition_status='not_observed',
+    restore_verified=False,cleanup='not_attempted',physical_kernel_boot_proven=False,
+@@ -56,7 +56,7 @@
+  a.check_sources()
+  stock,_=b.local_inputs()
+  image=a.read(IMAGE)
+- require(len(image)==7976960 and sha(image)==IMAGE_SHA,'Exact SD candidate required')
++ require(len(image)==7972864 and sha(image)==IMAGE_SHA,'Exact SD candidate required')
+  full=image+bytes(b.SIZE-len(image))
+  require(sha(full)==FULL_SHA,'Full padded recovery hash mismatch')
+  p,s=b.unpack_image(image),b.unpack_image(stock)

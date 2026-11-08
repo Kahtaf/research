@@ -1,0 +1,17 @@
+[
+  {
+    "path": "/system/etc/init/aconfigd.rc",
+    "bytes": 1214,
+    "sha256": "78d6bb311aa7126384da4b59780d4a87d9b321c4fd211d04e1339fbd8975447b"
+  },
+  {
+    "path": "/system/etc/init/odsign.rc",
+    "bytes": 517,
+    "sha256": "050034426570b9e084accefd20e69d636e3fe9cf4d043e75ca067b467d4e36e5"
+  },
+  {
+    "path": "/system/vendor/etc/init/hw/init.mt8163.rc",
+    "bytes": 936,
+    "sha256": "7e89915e62d927601d15a832c802efd902f81cc27a48026554e6a159a19b72df"
+  }
+]

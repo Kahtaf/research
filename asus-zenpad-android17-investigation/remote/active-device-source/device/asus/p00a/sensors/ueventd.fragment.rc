@@ -1,0 +1,6 @@
+# Merge these exact rules into the future device's existing ueventd.rc.
+/dev/m_acc_misc 0400 system system
+/sys/devices/virtual/sensor/m_acc_misc accactive 0600 system system
+/sys/devices/virtual/sensor/m_acc_misc accbatch 0600 system system
+/sys/devices/virtual/sensor/m_acc_misc accflush 0600 system system
+/sys/devices/virtual/sensor/m_acc_misc acccali 0600 system system

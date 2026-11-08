@@ -1,0 +1,11 @@
+--- a/scripts/verify_root_payload.py
++++ b/scripts/verify_root_payload.py
+@@ -32,7 +32,7 @@
+     observed = {key: [] for key in expected}
+     props = []
+     for rel in ['system/build.prop', 'system/etc/prop.default', 'root/prop.default',
+-                'system/system_ext/build.prop', 'system/product/build.prop',
++                'system/system_ext/etc/build.prop', 'system/product/etc/build.prop',
+                 'system/vendor/build.prop', 'system/vendor/default.prop']:
+         path = product / rel
+         if not path.is_file(): continue

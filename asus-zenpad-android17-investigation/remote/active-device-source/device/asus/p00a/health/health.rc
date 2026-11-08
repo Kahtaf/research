@@ -1,0 +1,6 @@
+service vendor.health-p00a /vendor/bin/hw/android.hardware.health-service.asus-p00a
+    class hal
+    user system
+    group system
+    capabilities WAKE_ALARM BLOCK_SUSPEND
+    file /dev/kmsg w

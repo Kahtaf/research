@@ -1,0 +1,281 @@
+{
+  "strict_qa_passed": true,
+  "scope": "FIXTURE_ONLY",
+  "cases": {
+    "positive": {
+      "path": "/srv/android/asus-full-system-observer-preparation-20261106/fixture/owner/strict-r2/positive/admission.json",
+      "sha256": "f0961d57ca05ad34232033004753cde807bf298ca413258f238a0460d033ee74"
+    },
+    "wrong-hash": {
+      "path": "/srv/android/asus-full-system-observer-preparation-20261106/fixture/owner/strict-r2/wrong-hash/admission.json",
+      "sha256": "72a0c5d909ee5f52833bbb60888658c40b9fde58464fc5e54afce5b4f21d2b7d"
+    },
+    "wrong-metadata": {
+      "path": "/srv/android/asus-full-system-observer-preparation-20261106/fixture/owner/strict-r2/wrong-metadata/admission.json",
+      "sha256": "8272b582acbced3e9eb341bccddef60996422d6914fee2bde513e2b7d37b3877"
+    }
+  },
+  "runs": [
+    {
+      "case": "positive",
+      "generation": "/srv/android/asus-full-system-observer-preparation-20261106/runs/strict-positive/generation.json",
+      "result": {
+        "scope": "FIXTURE_ONLY",
+        "filesystem_observer_passed": true,
+        "production_image_accepted": false,
+        "qemu": {
+          "exit": 0,
+          "timed_out": false
+        },
+        "observer_results": [
+          [
+            "0",
+            "FIXTURE_ONLY"
+          ]
+        ],
+        "observer_actual_exits": [
+          [
+            "0",
+            "FIXTURE_ONLY"
+          ]
+        ],
+        "host_before": {
+          "/srv/android/asus-full-system-observer-preparation-20261106/fixture/system.raw": {
+            "dev": 2049,
+            "ino": 26741954,
+            "bytes": 33554432,
+            "mode": 292,
+            "mtime_ns": 1794010236763515284,
+            "ctime_ns": 1794010236772515261
+          }
+        },
+        "host_after": {
+          "/srv/android/asus-full-system-observer-preparation-20261106/fixture/system.raw": {
+            "dev": 2049,
+            "ino": 26741954,
+            "bytes": 33554432,
+            "mode": 292,
+            "mtime_ns": 1794010236763515284,
+            "ctime_ns": 1794010236772515261
+          }
+        },
+        "identities_unchanged": true,
+        "kernel_errors": false,
+        "whole_images_rehashed": false,
+        "admission_sha256": "f0961d57ca05ad34232033004753cde807bf298ca413258f238a0460d033ee74",
+        "expectations_sha256": "bb381d8be0585e382d05284577b3a97c64c27f3825936cb244a7f3aaaf656b31",
+        "limits": {
+          "host_cpus": 1,
+          "process_as_bytes": 1073741824,
+          "process_cpu_seconds": 60,
+          "wall_seconds": 90,
+          "guest_mib": 384,
+          "guest_vcpus": 1,
+          "nic": false
+        },
+        "final_host_e2fsck_separate_required": true,
+        "physical_GO": false,
+        "flash_ready": false
+      }
+    },
+    {
+      "case": "wrong-hash",
+      "generation": "/srv/android/asus-full-system-observer-preparation-20261106/runs/strict-wrong-hash/generation.json",
+      "result": {
+        "scope": "FIXTURE_ONLY",
+        "filesystem_observer_passed": false,
+        "production_image_accepted": false,
+        "qemu": {
+          "exit": 0,
+          "timed_out": false
+        },
+        "observer_results": [
+          [
+            "1",
+            "FIXTURE_ONLY"
+          ]
+        ],
+        "observer_actual_exits": [
+          [
+            "1",
+            "FIXTURE_ONLY"
+          ]
+        ],
+        "host_before": {
+          "/srv/android/asus-full-system-observer-preparation-20261106/fixture/system.raw": {
+            "dev": 2049,
+            "ino": 26741954,
+            "bytes": 33554432,
+            "mode": 292,
+            "mtime_ns": 1794010236763515284,
+            "ctime_ns": 1794010236772515261
+          }
+        },
+        "host_after": {
+          "/srv/android/asus-full-system-observer-preparation-20261106/fixture/system.raw": {
+            "dev": 2049,
+            "ino": 26741954,
+            "bytes": 33554432,
+            "mode": 292,
+            "mtime_ns": 1794010236763515284,
+            "ctime_ns": 1794010236772515261
+          }
+        },
+        "identities_unchanged": true,
+        "kernel_errors": false,
+        "whole_images_rehashed": false,
+        "admission_sha256": "72a0c5d909ee5f52833bbb60888658c40b9fde58464fc5e54afce5b4f21d2b7d",
+        "expectations_sha256": "d7920a4c27c762da0353c6dd3e02295e5b8755279234129c8e8885d51a988654",
+        "limits": {
+          "host_cpus": 1,
+          "process_as_bytes": 1073741824,
+          "process_cpu_seconds": 60,
+          "wall_seconds": 90,
+          "guest_mib": 384,
+          "guest_vcpus": 1,
+          "nic": false
+        },
+        "final_host_e2fsck_separate_required": true,
+        "physical_GO": false,
+        "flash_ready": false
+      }
+    },
+    {
+      "case": "wrong-metadata",
+      "generation": "/srv/android/asus-full-system-observer-preparation-20261106/runs/strict-wrong-metadata/generation.json",
+      "result": {
+        "scope": "FIXTURE_ONLY",
+        "filesystem_observer_passed": false,
+        "production_image_accepted": false,
+        "qemu": {
+          "exit": 0,
+          "timed_out": false
+        },
+        "observer_results": [
+          [
+            "1",
+            "FIXTURE_ONLY"
+          ]
+        ],
+        "observer_actual_exits": [
+          [
+            "1",
+            "FIXTURE_ONLY"
+          ]
+        ],
+        "host_before": {
+          "/srv/android/asus-full-system-observer-preparation-20261106/fixture/system.raw": {
+            "dev": 2049,
+            "ino": 26741954,
+            "bytes": 33554432,
+            "mode": 292,
+            "mtime_ns": 1794010236763515284,
+            "ctime_ns": 1794010236772515261
+          }
+        },
+        "host_after": {
+          "/srv/android/asus-full-system-observer-preparation-20261106/fixture/system.raw": {
+            "dev": 2049,
+            "ino": 26741954,
+            "bytes": 33554432,
+            "mode": 292,
+            "mtime_ns": 1794010236763515284,
+            "ctime_ns": 1794010236772515261
+          }
+        },
+        "identities_unchanged": true,
+        "kernel_errors": false,
+        "whole_images_rehashed": false,
+        "admission_sha256": "8272b582acbced3e9eb341bccddef60996422d6914fee2bde513e2b7d37b3877",
+        "expectations_sha256": "7b9dcbe2a806e2d19fade74c25b64c4a5220ef40edce0fb38ffa1f54653ecc0a",
+        "limits": {
+          "host_cpus": 1,
+          "process_as_bytes": 1073741824,
+          "process_cpu_seconds": 60,
+          "wall_seconds": 90,
+          "guest_mib": 384,
+          "guest_vcpus": 1,
+          "nic": false
+        },
+        "final_host_e2fsck_separate_required": true,
+        "physical_GO": false,
+        "flash_ready": false
+      }
+    }
+  ],
+  "parser_rejections": [
+    {
+      "case": "production_rejects_fixture",
+      "rejected": true,
+      "error": "Fixture/unrecognized admission cannot enter production"
+    },
+    {
+      "case": "missing_hash",
+      "rejected": true,
+      "error": "Missing/unknown fields: content records"
+    },
+    {
+      "case": "arbitrary_path",
+      "rejected": true,
+      "error": "Unapproved/duplicate public target"
+    },
+    {
+      "case": "missing_final_mode",
+      "rejected": true,
+      "error": "Resolved metadata values differ from execution receipt"
+    },
+    {
+      "case": "missing_resolution",
+      "rejected": true,
+      "error": "Missing exact source-resolution execution receipt"
+    },
+    {
+      "case": "resolution_value_mismatch",
+      "rejected": true,
+      "error": "Resolved metadata values differ from execution receipt"
+    },
+    {
+      "case": "mixed_source_group",
+      "rejected": true,
+      "error": "Content/metadata is not bound to this complete/source group"
+    },
+    {
+      "case": "retagged_fixture_cannot_promote",
+      "rejected": true,
+      "error": "Missing/unknown fields: terminal receipt"
+    },
+    {
+      "case": "wrong_external_admission_pin",
+      "rejected": true,
+      "error": "Pinned receipt/source mismatch or changed input: /srv/android/asus-full-system-observer-preparation-20261106/fixture/owner/strict-r2/positive/admission.json"
+    }
+  ],
+  "production_cli_refusals": [
+    {
+      "mode": "PLAN_ONLY",
+      "terminal": {
+        "exit": 2,
+        "timed_out": false
+      },
+      "output_created": false
+    },
+    {
+      "mode": "GENERATE",
+      "terminal": {
+        "exit": 2,
+        "timed_out": false
+      },
+      "output_created": false
+    },
+    {
+      "mode": "EXECUTE",
+      "terminal": {
+        "exit": 2,
+        "timed_out": false
+      },
+      "output_created": false
+    }
+  ],
+  "actual_product_read_or_mounted": false,
+  "physical_GO": false
+}

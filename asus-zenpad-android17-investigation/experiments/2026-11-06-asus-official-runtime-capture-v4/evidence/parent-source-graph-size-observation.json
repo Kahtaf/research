@@ -1,0 +1,19 @@
+{
+  "graphs": {
+    "out/build-lineage_p00a.ninja": {
+      "exists": true,
+      "bytes": 1550844208
+    },
+    "out/soong/build.lineage_p00a.ninja": {
+      "exists": true,
+      "bytes": 520066043
+    },
+    "out/combined-lineage_p00a.ninja": {
+      "exists": true,
+      "bytes": 174
+    }
+  },
+  "root_metadata_candidates": [
+    ".repo"
+  ]
+}

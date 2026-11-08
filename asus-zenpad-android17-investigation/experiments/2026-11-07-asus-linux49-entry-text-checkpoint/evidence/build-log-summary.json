@@ -1,0 +1,31 @@
+{
+  "bytes": 151651,
+  "sha256": "8d00e7c8bc5e1f241f9e43e8ac7065af34bd92ba66a13703299971898711ac03",
+  "tail": [
+    "  LD      drivers/misc/mediatek/video/built-in.o",
+    "  LD      drivers/misc/mediatek/built-in.o",
+    "  LD      drivers/misc/built-in.o",
+    "  LD      drivers/built-in.o",
+    "  GEN     .version",
+    "  LD      vmlinux.o",
+    "  MODPOST vmlinux.o",
+    "  CHK     include/generated/compile.h",
+    "aarch64-linux-gnu-ld: warning: -z norelro ignored",
+    "aarch64-linux-gnu-ld: warning: .tmp_vmlinux1 has a LOAD segment with RWX permissions",
+    "  KSYM    .tmp_kallsyms1.o",
+    "aarch64-linux-gnu-ld: warning: -z norelro ignored",
+    "aarch64-linux-gnu-ld: warning: .tmp_vmlinux2 has a LOAD segment with RWX permissions",
+    "  KSYM    .tmp_kallsyms2.o",
+    "  LD      vmlinux",
+    "aarch64-linux-gnu-ld: warning: -z norelro ignored",
+    "aarch64-linux-gnu-ld: warning: vmlinux has a LOAD segment with RWX permissions",
+    "  SORTEX  vmlinux",
+    "  SYSMAP  System.map",
+    "  OBJCOPY arch/arm64/boot/Image",
+    "  DTC     arch/arm64/boot/dts/mediatek/asus-p00a.dtb",
+    "  GZIP    arch/arm64/boot/Image.gz",
+    "  CAT     arch/arm64/boot/Image.gz-dtb",
+    "make[1]: Leaving directory '/srv/android/asus-linux49-entry-text-checkpoint-20261107/out'",
+    "make: Leaving directory '/srv/android/asus-linux49-entry-text-checkpoint-20261107/kernel'"
+  ]
+}

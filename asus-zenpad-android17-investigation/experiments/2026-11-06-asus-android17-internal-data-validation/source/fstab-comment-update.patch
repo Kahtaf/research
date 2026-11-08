@@ -1,0 +1,13 @@
+--- a/rootdir/fstab.mt8163
++++ b/rootdir/fstab.mt8163
+@@ -1,8 +1,8 @@
+ # Header-0 ramdisk, no super/vendor/product partitions on this tablet.
+ /dev/block/platform/soc/11230000.mmc/by-name/system /system ext4 ro wait,first_stage_mount
+ 
+-# Original userdata is FDE encrypted. This does not decrypt or format it.
+-# A separate data migration decision and backup are required before hardware boot.
++# Clean internal p26: provision the reviewed complete A17DATA raw image first.
++# Keep the 4.9 soc alias; no FDE/FBE, target autoformat, resize or p20 mount.
+ /dev/block/platform/soc/11230000.mmc/by-name/userdata /data ext4 noatime,nosuid,nodev,noauto_da_alloc,errors=remount-ro wait,check,latemount
+ 
+ # 512 MiB logical swap, bounded even if pages do not compress. No backing file,

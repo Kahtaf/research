@@ -1,0 +1,65 @@
+{
+  "revision": "717bb3c9e13ce573cfdd2dda856debd27a0fa17f",
+  "files": {
+    "drivers/input/keyboard/mediatek/mt8163/hal_kpd.c": {
+      "bytes": 9407,
+      "sha256": "edfc1384e9b2d3142494e884f31457fe0a6e27036f9c51409ba133788d810ce9",
+      "local_match": true
+    },
+    "drivers/input/keyboard/mediatek/kpd.c": {
+      "bytes": 13535,
+      "sha256": "39d7719c45be0608f4cf0b611eee362f0dc6ba214de57fea7207333fb8ebce21",
+      "local_match": true
+    },
+    "drivers/input/keyboard/mediatek/Kconfig": {
+      "bytes": 2411,
+      "sha256": "a27796e231c735cbd33a049bd09320e62da957529905057427e93e416e0324fe",
+      "local_match": true
+    },
+    "drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/upmu_sw.h": {
+      "bytes": 461447,
+      "sha256": "3dc4d2d3defb8fa4726bd4fcfe027f66996d4cc9f947944c26ab3a9c25443ce0",
+      "local_match": true
+    },
+    "drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/upmu_hw.h": {
+      "bytes": 169496,
+      "sha256": "edfd3fb80ac09c6086e7cfac23263289bd027e0ff07a927e6d40c160fe2c8a17",
+      "local_match": true
+    },
+    "drivers/misc/mediatek/power/mt8163/pmic_mt6323.c": {
+      "bytes": 51666,
+      "sha256": "941e88517eaf8c455425e10f62034465db01e9205e082a356f269a46b9cb1305",
+      "local_match": true
+    },
+    "drivers/watchdog/mtk_wdt.c": {
+      "bytes": 18416,
+      "sha256": "b4650c1d087bc2ef4e0e4161afc9dd54cb38901e98af16a1b2fc2e784f1d927b",
+      "local_match": true
+    },
+    "drivers/misc/mediatek/usb20/mt8163/usb20.c": {
+      "bytes": 42294,
+      "sha256": "cbca157a6801c3d04647f64ea82dab5887315dde3dccd1b4b698884c76a7bc57",
+      "local_match": true
+    },
+    "arch/arm64/boot/dts/mediatek/mt8163.dtsi": {
+      "bytes": 51729,
+      "sha256": "a605903380bac77de2d077e002d215e20422f4a9bf6441c9d782fef3e0c2382a",
+      "local_match": true
+    },
+    "arch/arm64/boot/dts/mediatek/asus-p00a.dts": {
+      "bytes": 29663,
+      "sha256": "d5b630b1a943788a3b5b1a341c9cd56e3d551c0462333f480066d693e1e9b14c",
+      "local_match": true
+    },
+    "arch/arm64/kernel/process.c": {
+      "bytes": 11967,
+      "sha256": "83c5443d277e1226c129e23a67ab006eabb293af87f64cd615605fd0ebacb2bb",
+      "local_match": true
+    },
+    "drivers/firmware/psci.c": {
+      "bytes": 17037,
+      "sha256": "142416b4d183500269fc8fa3adfb78183ac889be29cdd9f9eee4fdae8fd4b781",
+      "local_match": true
+    }
+  }
+}

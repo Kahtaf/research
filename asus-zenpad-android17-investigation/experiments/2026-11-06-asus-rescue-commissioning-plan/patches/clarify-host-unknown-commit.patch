@@ -1,0 +1,12 @@
+--- a/source/rescue.c
++++ b/source/rescue.c
+@@ -137,7 +137,8 @@
+ if(injected("ack")||frame_out(c,0x84,ack,8))break;continue;}
+ if(op==5&&n==0&&state==WRITING){Image*m=&images[index];if(next!=m->count||flush(fd)||fd_hash(fd,m->size,h)||memcmp(h,m->full,32)||identity()||recovery_ok()||validate_fd(fd,geom(m->part)))break;
+ if(close(fd)){fd=-1;break;}fd=-1;if(journal(index,"VERIFIED"))break;
+-/* Even a lost final acknowledgement leaves mutation frozen until a new reconciliation. */
++/* A failed final send leaves mutation frozen. A host without a verified commit
++ * receipt must treat the outcome as unknown even if later STATUS is IDLE. */
+ if(frame_out(c,0x85,h,32))break;state=VERIFIED;continue;}
+ if(op==9&&n==32&&state==VERIFIED&&!memcmp(wire,images[index].full,32)){
+ if(identity()||recovery_ok()||frame_out(c,0x89,wire,32))break;frozen=0;uncertain_image=-1;rc=0;goto done;}

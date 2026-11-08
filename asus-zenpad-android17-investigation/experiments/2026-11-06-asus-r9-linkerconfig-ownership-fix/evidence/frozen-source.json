@@ -1,0 +1,27 @@
+{
+  "upstream_commit": "f6b4bd983b909a907cf7e9fae8a6365d827638b6",
+  "archive_sha256": "2fa074d4d9690da77271853aaada63fb123148e3d2aa0f4bd4b7a0ffc6bbbcff",
+  "patches": [
+    {
+      "patch": "/srv/android/asus-r9-linkerconfig-ownership-fix-20261106/inputs/compatibility/system-linkerconfig-applied.diff",
+      "rc": 0,
+      "stdout": "patching file contents/namespace/productdefault.cc\npatching file contents/namespace/vendordefault.cc\npatching file contents/namespace/vndk.cc\npatching file contents/namespace/vndkinsystem.cc\npatching file contents/section/apexdefault.cc\npatching file contents/section/sectionbuilder.cc\n",
+      "stderr": ""
+    },
+    {
+      "patch": "/srv/android/asus-r9-linkerconfig-ownership-fix-20261106/inputs/graphics-r6/linkerconfig.patch",
+      "rc": 0,
+      "stdout": "patching file Android.bp\npatching file modules/environment.cc\npatching file modules/include/linkerconfig/environment.h\npatching file contents/namespace/sphal.cc\npatching file contents/namespace/systemdefault.cc\npatching file contents/namespace/vendordefault.cc\npatching file contents/tests/configuration/p00a_legacy_graphics_test.cc\n",
+      "stderr": ""
+    }
+  ],
+  "graphics_r6_postimages_verified": {
+    "Android.bp": "57277b30858348bd378016568f0883b5da1acbf17b09599c42c872e31ad2817f",
+    "modules/environment.cc": "5b54f7fe5f556d76ceff41d292a0e0dc237c9aa116fe2de5b47e1987ed178030",
+    "modules/include/linkerconfig/environment.h": "cf77175924724ab87dfe986bf49fe0866069119359410788efeb690178912ca3",
+    "contents/namespace/sphal.cc": "97538b36b3a541e8aac2206ddacf7ec4188fc3eb459f6df94bd906a4b1210c79",
+    "contents/namespace/systemdefault.cc": "2f0851395a0bbdf3c54f0f59b7d9e76894274f493e6ae73e40783905b610d34f",
+    "contents/namespace/vendordefault.cc": "4f26fc3e7df85c1028c1923ab715b2043efa5585e731f7c25b6c8c894e1ecbdc",
+    "contents/tests/configuration/p00a_legacy_graphics_test.cc": "93de86c9f37862940619692528d366e83c7a71f40dae7be6162800af794d1792"
+  }
+}

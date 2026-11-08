@@ -1,0 +1,37 @@
+{
+  "utc": "2026-11-06T20:08:20.383470+00:00",
+  "review_complete": true,
+  "device_contacted": false,
+  "implementation_edited": false,
+  "real_review_flags_remain_false": true,
+  "all_reviewed_contract_pins_unchanged": true,
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P1",
+      "summary": "Mandatory awk absent on observed stock Android",
+      "source": "transport.py:194-210",
+      "evidence": "parent-shell-observation.json"
+    },
+    {
+      "id": "R2",
+      "priority": "P1",
+      "summary": "Returned ADB transport errors/signals classified as completed entry, permitting forbidden TCP/inverse",
+      "source": "transport.py:51-60",
+      "evidence": "entry-error-boundaries.json"
+    },
+    {
+      "id": "R3",
+      "priority": "P1",
+      "summary": "Mutation dispatch can cross authorization/review expiry inside writer phases",
+      "source": "controller.py:94-112,135-149; transport.py:61-101",
+      "evidence": "expiry-boundaries.json"
+    }
+  ],
+  "baseline_host_tests_passed": 65,
+  "baseline_loss_boundaries": 30,
+  "fresh_elf_cases_passed": 7,
+  "fresh_policy_checks_passed": 3,
+  "physical_go_issued": false,
+  "handoff": "HANDOFF.md"
+}

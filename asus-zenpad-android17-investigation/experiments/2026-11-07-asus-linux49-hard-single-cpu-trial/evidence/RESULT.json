@@ -1,0 +1,29 @@
+{
+  "at": "2026-11-08T02:37:15.247683+00:00",
+  "record_count": 99,
+  "nr_cpus1_reached_kernel": true,
+  "maxcpus1_reached_kernel": false,
+  "before_timer_records": [
+    "ASUS49-SYSCLOCK run=f0c3c82c-d639-4d8a-90f2-155fd4224ceb phase=before stage=actual op=interrupts.arch_timer path=/proc/interrupts rc=0 errno=0 value=irq=2 counts=0 cpus=1 controller=GIC-0 hwirq=29 trigger=Level name=arch_timer",
+    "ASUS49-SYSCLOCK run=f0c3c82c-d639-4d8a-90f2-155fd4224ceb phase=before stage=actual op=interrupts.arch_timer path=/proc/interrupts rc=0 errno=0 value=irq=3 counts=178 cpus=1 controller=GIC-0 hwirq=30 trigger=Level name=arch_timer"
+  ],
+  "loop_results": [],
+  "alarm_records": [],
+  "completion": [],
+  "last_record": "ASUS49-SYSCLOCK run=f0c3c82c-d639-4d8a-90f2-155fd4224ceb phase=observe stage=end op=clock_gettime path=loop.initial rc=0 errno=0 value=0.641996461",
+  "normal_stock_return_verified": true,
+  "new_stock_boot_id": "7e60a7bc-8eaa-4d65-8992-3d0c43089818",
+  "complete_console_bytes": 42392,
+  "complete_console_sha256": "77f300433b395310c9b108eb66f744ca70393a5022935b24dce8605e3be8a4d6",
+  "normal_OS_partitions_changed": false,
+  "outcome": "HARD_SINGLE_CPU_CONFIRMED_LOOP_STILL_UNFINISHED",
+  "confirmed_online_cpu_count": 1,
+  "confirmed_kernel_core_clipping": true,
+  "accepted_before_PPI30_count": 178,
+  "loop_completed": false,
+  "after_snapshot_observed": false,
+  "alarm_handler_observed": false,
+  "initial_monotonic": "0.641996461",
+  "interpretation": "A second online CPU and userspace vDSO are unnecessary to reproduce. Timer servicing exists before the unfinished loop. Counter progress and exact stopped kernel boundary remain unknown.",
+  "next_scope": "One bounded retained kernel capture around monotonic read, nested counter read and timer event callback; no more guessed boot flags."
+}

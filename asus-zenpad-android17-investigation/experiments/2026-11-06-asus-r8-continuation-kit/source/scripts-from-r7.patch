@@ -1,0 +1,537 @@
+--- r7/scripts/build.sh
++++ r8/scripts/build.sh
+@@ -2,11 +2,11 @@
+ # Called only by the lock-owning Python supervisor; foreground and incremental.
+ set -eo pipefail
+ kit=${1:?Pinned kit path required}
+-[[ "$kit" == /srv/android/asus-reviewed-build-kit/r7 ]]
++[[ "$kit" == /srv/android/asus-reviewed-build-kit/r8 ]]
+ [[ "${REVIEWED_BUILD_LOCK_FD:-}" =~ ^[0-9]+$ ]]
+ # Prove this is the inherited lock, then verify it still holds the same inode.
+ python3 -B "$kit/scripts/check_launch.py" "$kit"
+-record=/srv/android/asus-device-product/logs/full-build-r7
++record=/srv/android/asus-device-product/logs/full-build-r8
+ cd /srv/android/lineage24
+ unset WITH_ADB_INSECURE SELINUX_IGNORE_NEVERALLOWS SOONG_ALLOW_MISSING_DEPENDENCIES ALLOW_MISSING_DEPENDENCIES
+ # Preserve actual compiler/linker command lines for the final provenance guard.
+@@ -16,12 +16,20 @@
+ build/soong/soong_ui.bash --dumpvars-mode --vars='TARGET_BUILD_VARIANT TARGET_DEVICE TARGET_ARCH TARGET_KERNEL_SOURCE PLATFORM_SDK_VERSION PLATFORM_VERSION_LAST_STABLE PRODUCT_SHIPPING_API_LEVEL PRODUCT_OUT PRODUCT_BUILD_BOOT_IMAGE PRODUCT_BUILD_RAMDISK_IMAGE PRODUCT_BUILD_INIT_BOOT_IMAGE PRODUCT_BUILD_RECOVERY_IMAGE PRODUCT_BUILD_SYSTEM_IMAGE PRODUCT_BUILD_VENDOR_IMAGE PRODUCT_BUILD_PRODUCT_IMAGE PRODUCT_BUILD_SYSTEM_EXT_IMAGE PRODUCT_BUILD_USERDATA_IMAGE PRODUCT_BUILD_VBMETA_IMAGE BOARD_BOOTIMAGE_PARTITION_SIZE BOARD_SYSTEMIMAGE_PARTITION_SIZE TARGET_COPY_OUT_VENDOR TARGET_COPY_OUT_PRODUCT TARGET_COPY_OUT_SYSTEM_EXT PRODUCT_SYSTEM_PROPERTIES PRODUCT_SYSTEM_EXT_PROPERTIES PRODUCT_VENDOR_PROPERTIES PRODUCT_NOT_DEBUGGABLE_IN_USERDEBUG PRODUCT_ADB_KEYS PRODUCT_PACKAGES BOARD_VNDK_VERSION PRODUCT_PRODUCT_VNDK_VERSION SOONG_CONFIG_p00a_legacy_graphics SOONG_CONFIG_libion_legacy_impl BOARD_KERNEL_CMDLINE BOARD_MKBOOTIMG_ARGS SELINUX_IGNORE_NEVERALLOWS BOARD_SEPOLICY_DIRS BOARD_VENDOR_SEPOLICY_DIRS BOARD_ODM_SEPOLICY_DIRS SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS PRODUCT_PUBLIC_SEPOLICY_DIRS PRODUCT_PRIVATE_SEPOLICY_DIRS BOARD_SYSTEM_EXT_SEPOLICY_PREBUILT_DIRS BOARD_PRODUCT_SEPOLICY_PREBUILT_DIRS SEPOLICY_FREEZE_TEST_EXTRA_DIRS SEPOLICY_FREEZE_TEST_EXTRA_PREBUILT_DIRS DEVICE_MANIFEST_FILE DEVICE_FRAMEWORK_MANIFEST_FILE PRODUCT_MANIFEST_FILES SYSTEM_EXT_MANIFEST_FILES SYSTEM_EXT_HWSERVICE_FILES ODM_MANIFEST_FILES' > "$record.vars"
+ python3 -B "$kit/scripts/verify_full_images.py" vars "$record.vars"
+ python3 -B "$kit/scripts/verify_config_paths.py" "$record.vars" "$kit" "$kit/attempt/product-config-paths.json"
++# Each m call rotates Soong logs. Freeze the authentic native evidence before
++# another invocation, including on failure; never replay commands from this log.
++run_m() {
++    local phase_rc=0
++    m -j8 "$@" || phase_rc=$?
++    python3 -B "$kit/scripts/capture_build_evidence.py" "$kit" "$1" "$phase_rc"
++    return "$phase_rc"
++}
+ # Never repeat cleaning. The prior deployed product transition has its own receipt.
+ [[ -s /srv/android/asus-device-product/logs/full-product-installclean.complete ]]
+-m -j8 host_init_verifier simg2img e2fsck debugfs checkvintf apexd_host deapexer fsck.erofs secilc checkfc property_info_checker sepolicy_test sepolicy_neverallows android.hardware.health-service.asus-p00a services adb_root com.android.adbd p00a-wmt libbtcal libbt-vendor-p00a libbluetooth_mtk_p00a android.hardware.bluetooth@1.1-service.p00a wpa_supplicant wificond netbpfload netd bpfloader vold
++run_m host_init_verifier simg2img e2fsck debugfs checkvintf apexd_host deapexer fsck.erofs secilc checkfc sefcontext_compile property_info_checker sepolicy_test sepolicy_neverallows android.hardware.health-service.asus-p00a services adb_root com.android.adbd p00a-wmt libbtcal libbt-vendor-p00a libbluetooth_mtk_p00a android.hardware.bluetooth@1.1-service.p00a wpa_supplicant wificond netbpfload netd bpfloader vold
+ for script in device/asus/p00a/rootdir/init.mt8163.rc device/asus/p00a/rootdir/init.mt8163.usb.rc device/asus/p00a/health/health.rc device/asus/p00a/connectivity/configs/init.p00a-connectivity.rc device/asus/p00a/radio/init.p00a-radio.rc device/asus/p00a/radio/bluetooth-p00a.rc system/connectivity/wificond/wificond.rc device/asus/p00a/sensors/init.p00a-accelerometer.rc hardware/interfaces/sensors/1.0/default/ACCOUNT_REDACTED; do
+     out/host/linux-x86/bin/host_init_verifier "$script"
+ done
+-m -j8 bootimage systemimage
++run_m bootimage systemimage
+ python3 -B "$kit/scripts/verify_full_images.py" images "$record.vars" "$record.images.json" "$kit/attempt/integration.json"
+ python3 -B "$kit/scripts/validate_completed_product.py" "$kit"
+--- r7/scripts/capture_build_evidence.py
++++ r8/scripts/capture_build_evidence.py
+@@ -0,0 +1,22 @@
++"""Freeze authentic per-invocation logs before Soong rotation; never execute them."""
++from pathlib import Path
++import re
++import shutil
++import sys
++from integrate import need, read, write, sha
++
++def capture(root,phase,code):
++    plan=read(root/'inputs/plan.json');need(re.fullmatch('[A-Za-z0-9_.-]+',phase),'Unsafe phase')
++    out=root/'attempt/native-evidence'/phase;out.mkdir(parents=True)
++    a=Path(plan['aosp']);files={}
++    for name in ['verbose.log.gz','.ninja_log','siso_metrics.json','siso_metadata.json','siso_localexec','siso_output','siso_failed_commands.sh']:
++        p=a/'out'/name
++        if p.is_file():
++            dst=out/name
++            with p.open('rb') as src,dst.open('xb') as f:shutil.copyfileobj(src,f,1048576)
++            need(sha(dst)==sha(p),'Native log changed while capturing: '+name)
++            files[name]=dict(sha256=sha(dst),bytes=dst.stat().st_size)
++    need({'verbose.log.gz','.ninja_log'}<=set(files),'Actual native evidence channel missing')
++    write(out/'receipt.json',dict(phase=phase,exit_code=code,files=files,attempt_started_sha256=sha(root/'attempt/started.json'),integration_sha256=sha(root/'attempt/integration.json')))
++
++if __name__=='__main__':capture(Path(sys.argv[1]),sys.argv[2],int(sys.argv[3]))
+--- r7/scripts/compiler_channel.py
++++ r8/scripts/compiler_channel.py
+@@ -0,0 +1,39 @@
++"""Only completed Soong action records, joined to actual Ninja output entries."""
++import gzip
++from pathlib import Path
++import re
++import shlex
++from integrate import need,read,sha
++
++def commands_for(root,targets,entries=None):
++    commands={};receipts=[]
++    folders=sorted((root/'attempt/native-evidence').glob('*'))
++    need(folders,'Missing frozen native invocation logs')
++    for folder in folders:
++        r=read(folder/'receipt.json')
++        need(r['attempt_started_sha256']==sha(root/'attempt/started.json') and r['integration_sha256']==sha(root/'attempt/integration.json'),'Native evidence attempt binding drift')
++        for name,row in r['files'].items():
++            p=folder/name
++            need(p.is_file() and sha(p)==row['sha256'] and p.stat().st_size==row['bytes'],'Frozen native evidence changed')
++        path=folder/'verbose.log.gz';finished=[]
++        with gzip.open(path,'rt',errors='strict') as f:
++            for line in f:
++                match=re.match(r'^\[\d+/\d+\] (.+)\n?$',line)
++                if match:
++                    finished.append(match.group(1).rstrip('\n'))
++                elif line.startswith('FAILED: ') and finished:
++                    finished.pop()
++        from verify_product_r3 import log_entries
++        phase_entries=log_entries(folder/'.ninja_log',targets) if entries is not None else {}
++        for command in finished:
++            if not any(t in command for t in ('clang','rustc','ld.lld')):continue
++            words=shlex.split(command)
++            # The command must produce this exact output, rather than merely use
++            # it as a linker dependency or print it in a pending-work summary.
++            outputs={words[i+1] for i,w in enumerate(words[:-1]) if w=='-o'}
++            for target in outputs & targets:
++                if entries is not None:
++                    if target not in phase_entries or phase_entries[target]!=entries.get(target):continue
++                commands.setdefault(target,[]).append(command)
++        receipts.append(dict(path=str(folder/'receipt.json'),sha256=sha(folder/'receipt.json')))
++    return commands,receipts
+--- r7/scripts/continuation.py
++++ r8/scripts/continuation.py
+@@ -1,141 +1,114 @@
+-"""Exact already-integrated r3 continuation; the sole source write is BoardConfig."""
++"""Incremental r8: exact terminal r7, two source writes, no baseline replay."""
+ import datetime
+-import os
+ from pathlib import Path
+ import re
+ import shutil
++from ancestor_continuation import sensor_delta
+ 
+-R3_SEAL = 'a00ea8d7c944d45e3035296c81b31a369f13bde830f88a7165b0d7542960717c'
+-PRE = '0e012287927a5b8ac3733f7fcc28d5cdc0eb1d8f06e82e0ff6ad211fe2f72f90'
+-POST = '9207c304761cf86afb423641534ed383e7f8dae613e64061e972d2f65832aa4d'
+-LOG = 'ee061d878227210f7c2330bb36ca13f76a9daa37e354a178d733327695cfd4e0'
++R7_SEAL='9287a07d243a9d70abefa0102de160d88af712a574c7fab6032ce9b36920f617'
++LOG='e18314db5121a830f0f000f8c40616e2377312a804e22e477ae20030472bdc61'
++END='2026-11-06T23:02:58.864381+00:00'
++WPA='connectivity/src/driver_cmd_p00a.c'
++CONTEXT='sepolicy/vendor/file_contexts'
++INCLUDES=b'#include "includes.h"\n#include "common.h"\n#include "driver_nl80211.h"\n#include "linux_ioctl.h"\n'
++BOUNDARY=(b'/* Upstream disabled-feature inline stubs have unused parameters. Keep the\n'
++          b' * exception at this include boundary; adapter code retains -Wextra -Werror. */\n'
++          b'#pragma clang diagnostic push\n#pragma clang diagnostic ignored "-Wunused-parameter"\n'+INCLUDES+
++          b'#pragma clang diagnostic pop\n')
++ZRAM=b'/dev/block/zram0    u:object_r:swap_block_device:s0\n'
+ 
+-def sensor_delta(plan):
+-    from integrate import read, need, sha
+-    d = read(plan['sensor_delta'])
+-    need(d == dict(relative='sensors/BoardConfig.mk', before=PRE, after=POST,
+-                   old_line='P00A_ACCEL_BOARD_PATH := $(call my-dir)\n',
+-                   new_line='P00A_ACCEL_BOARD_PATH := device/asus/p00a/sensors\n'), 'Sensor delta selection changed')
+-    before = Path(plan['sensor_origin']) / 'BoardConfig.mk'
+-    after = Path(plan['sensor_postimage'])
+-    need(sha(before) == PRE and sha(after) == POST, 'Sensor delta pin mismatch')
+-    need(before.read_bytes().count(d['old_line'].encode()) == 1 and
+-         before.read_bytes().replace(d['old_line'].encode(), d['new_line'].encode()) == after.read_bytes(),
+-         'Sensor delta must be the exact one-line replacement')
+-    return d
++def deltas(plan):
++    from integrate import need,read,sha
++    candidate=Path(plan['run_root'])/'inputs/lmkd-functional/vendor-file-contexts.additions'
++    entries=[l for l in candidate.read_bytes().splitlines(keepends=True) if l.strip() and not l.lstrip().startswith(b'#')]
++    need(entries==[ZRAM], 'Memory handoff context selection changed')
++    rows=read(plan['r8_delta'])
++    need(set(rows)=={WPA,CONTEXT},'r8 must contain exactly WPA source and zRAM context deltas')
++    for rel,row in rows.items():
++        before=Path(plan['run_root'])/'inputs/r8-preimages'/rel
++        after=Path(plan['staging'])/'product-device'/rel
++        need(set(row)=={'before','after'} and sha(before)==row['before'] and sha(after)==row['after'],'r8 delta pins mismatch: '+rel)
++        b=before.read_bytes()
++        if rel==WPA:
++            need(b.count(INCLUDES)==1 and after.read_bytes()==b.replace(INCLUDES,BOUNDARY),'WPA must change only the upstream include diagnostic boundary')
++        else:
++            need(b.endswith(b'\n') and b'/dev/block/zram0' not in b and after.read_bytes()==b+ZRAM,'zRAM must add only the exact swap_block_device context')
++    return rows
+ 
+ def continuation_inputs(plan):
+-    from integrate import need, read, sha, verify_pins, manifest
+-    d = sensor_delta(plan)
+-    prior = Path(plan['prior_kit'])
+-    need(plan['prior_kit_seal'] == R3_SEAL == sha(prior / 'inputs/kit-pins.json'), 'r3 ancestor seal changed')
+-    need(verify_pins(prior) == R3_SEAL, 'r3 ancestor file drift')
+-    pins = read(plan['prior_pins'])
+-    actual_attempt = manifest(plan['prior_attempt'])
+-    expected_attempt = {str(Path(k).relative_to(plan['prior_attempt'])): {'sha256': v['sha256']}
+-                        for k, v in pins['attempt_files'].items()}
+-    need(actual_attempt == expected_attempt, 'Preserved r3 attempt changed')
+-    for path, row in pins['logs'].items():
+-        need(sha(path) == row['sha256'] and Path(path).stat().st_size == row['bytes'], 'Prior r5/r6 evidence changed: ' + path)
+-    actual_logs = {str(p) for rev in ('r5', 'r6') for p in Path(plan['logs']).glob('full-build-' + rev + '.*')}
+-    need(actual_logs == set(pins['logs']), 'Prior r5/r6 evidence file set changed')
+-    old = read(plan['prior_staged_receipt']); new = read(plan['staged_receipt'])
+-    expected = read(plan['prior_staged_receipt'])
+-    need(expected['product_after'][d['relative']] == {'sha256': PRE}, 'r3 sensor preimage changed')
+-    expected['product_after'][d['relative']] = {'sha256': POST}
+-    need(new == expected, 'r7 staged receipt contains unrelated changes')
+-    old_sensor = read(plan['prior_sensor_receipt']); new_sensor = read(plan['sensor_receipt'])
+-    old_sensor['files']['BoardConfig.mk'] = {'sha256': POST}
+-    old_sensor['board_path_adjustment'] = 'One exact reviewed assignment replaces unavailable my-dir; policy and manifest unchanged'
+-    need(new_sensor == old_sensor, 'r7 sensor receipt contains unrelated changes')
+-    stage_manifest = read(plan['staging_manifest'])
+-    need(manifest(plan['staging']) == stage_manifest, 'r7 staging file set or bytes changed')
+-    original_manifest = read(Path(plan['run_root']) / 'inputs/r3-staging-manifest.json')
+-    need(manifest('/srv/android/asus-product-integration-staging/r3') == original_manifest, 'r3 staging drift')
+-    expected_stage = dict(original_manifest)
+-    for name in ('STAGED.json','sensor-selection.json'):
+-        expected_stage[name] = {'sha256': sha(plan['staged_receipt'] if name == 'STAGED.json' else plan['sensor_receipt'])}
+-    expected_stage['product-device/' + d['relative']] = {'sha256': POST}
+-    need(stage_manifest == expected_stage, 'r7 staging includes unrelated delta')
+-    integration = read(plan['prior_integration'])
+-    need(integration == read(prior / 'attempt/integration.json'), 'Prior integration receipt mismatch')
+-    need(integration['product_after'] == old['product_after'] and
+-         integration['staged_receipt_sha256'] == sha(plan['prior_staged_receipt']) and
+-         integration['sensor_receipt_sha256'] == sha(plan['prior_sensor_receipt']), 'Prior r3 integration provenance mismatch')
+-    for key, path in [('source_patch_sha256','patch'),('source_receipt_sha256','source_receipt'),('parent_parity_receipt_sha256','parity_receipt')]:
+-        need(integration[key] == sha(plan[path]), 'Inherited integration provenance changed: ' + key)
+-    need(integration['kernel_sha256'] == old['product_after']['prebuilt/Image.gz-dtb']['sha256'] and
+-         integration['generated_defconfig']['sha256'] == old['kernel_config_sha256'], 'Inherited physical kernel/config changed')
+-    need(integration['flash_ready'] is False, 'Unexpected physical acceptance')
+-    return d
++    from integrate import need,read,sha,verify_pins,manifest
++    from ancestor_continuation import continuation_inputs as ancestor
++    prior=Path(plan['r7_kit'])
++    need(verify_pins(prior)==R7_SEAL,'r7 kit drift')
++    ancestor(read(prior/'inputs/plan.json'))
++    rows=deltas(plan)
++    pins=read(plan['r7_preservation'])
++    for group in ['attempt_files','logs','frozen_evidence']:
++        for p,row in pins[group].items():
++            need(Path(p).is_file() and not Path(p).is_symlink() and sha(p)==row['sha256'] and Path(p).stat().st_size==row['bytes'],'r7 preserved evidence drift: '+p)
++    need({str(p) for p in (prior/'attempt').rglob('*') if p.is_file() or p.is_symlink()}==set(pins['attempt_files']),'r7 attempt file set drift')
++    need({str(p) for p in Path(plan['logs']).glob('full-build-r7.*')}==set(pins['logs']),'r7 log file set drift')
++    need(read(plan['r7_integration'])==read(prior/'attempt/integration.json'),'r7 integration receipt drift')
++    expected=read(plan['r7_staged_receipt'])
++    need(expected==read(prior/'inputs/STAGED.json'),'r7 staged receipt drift')
++    for rel,row in rows.items():
++        need(expected['product_after'][rel]=={'sha256':row['before']},'r7 source preimage drift')
++        expected['product_after'][rel]={'sha256':row['after']}
++    need(read(plan['staged_receipt'])==expected,'r8 staged receipt has unrelated changes')
++    old_manifest=read(plan['r7_staging_manifest']);expected_stage=dict(old_manifest)
++    for rel,row in rows.items():expected_stage['product-device/'+rel]={'sha256':row['after']}
++    expected_stage['STAGED.json']={'sha256':sha(plan['staged_receipt'])}
++    need(manifest(plan['staging'])==read(plan['staging_manifest'])==expected_stage,'r8 staging has unrelated changes')
++    need(read(plan['sensor_receipt'])==read(prior/'inputs/sensor-selection.json'),'Sensor source selection changed')
++    need(read(plan['r7_integration'])['product_after']==read(plan['r7_staged_receipt'])['product_after'],'r7 integration/source mismatch')
++    return rows
+ 
+-def terminal(plan, review=None, describe=False):
+-    from integrate import need, sha, read
+-    prefix = Path(plan['logs']) / 'full-build-r6'
+-    paths = {n: Path(str(prefix) + '.' + n) for n in ('started','finished','exit-code','log')}
+-    need(all(p.is_file() and not p.is_symlink() and p.stat().st_size for p in paths.values()), 'r6 is not an actual terminal result')
+-    need(paths['exit-code'].read_text().strip() == '1', 'Unexpected r6 exit; exact failure review required')
+-    start = datetime.datetime.fromisoformat(paths['started'].read_text().strip())
+-    end = datetime.datetime.fromisoformat(paths['finished'].read_text().strip())
+-    need(start.tzinfo and end.tzinfo and start <= end <= datetime.datetime.now(datetime.timezone.utc), 'Incoherent r6 terminal times')
+-    need(end.isoformat() == '2026-11-06T22:28:00.150539+00:00', 'Unexpected r6 terminal identity')
+-    need(not Path(str(prefix) + '.complete').exists(), 'r6 failed result has success marker')
+-    failed = Path(plan['prior_attempt']) / 'FAILED.json'
+-    need(failed.is_file() and read(failed).get('retry_allowed') is False, 'r6 lacks preserved terminal FAILED.json')
+-    need(sha(paths['log']) == LOG, 'Actual r6 terminal log changed')
+-    pins = read(plan['prior_pins'])
+-    for group in ('logs','attempt_files'):
+-        for path, row in pins[group].items():
+-            need(sha(path) == row['sha256'] and Path(path).stat().st_size == row['bytes'], 'Prior preservation pin changed: ' + path)
+-    need({str(p) for p in Path(plan['prior_attempt']).rglob('*') if p.is_file() or p.is_symlink()} == set(pins['attempt_files']), 'Prior attempt file set changed')
+-    need({str(p) for r in ('r5','r6') for p in Path(plan['logs']).glob('full-build-' + r + '.*')} == set(pins['logs']), 'Prior evidence file set changed')
+-    observed = dict(revision='r6', exit_code=1, terminal_kind='ACTUAL_BUILD_FAILURE',
+-                    terminal_log_sha256=LOG, r3_kit_pins_sha256=R3_SEAL,
+-                    preservation=pins, images={p.name: {'sha256':sha(p),'bytes':p.stat().st_size}
+-                    for p in sorted(Path(plan['product_out']).glob('*.img'))})
+-    template = dict(reviewed_by_parent=False, reason='', prior=observed)
+-    if describe:
+-        return dict(status='TERMINAL_FAILED_REQUIRES_PARENT_REVIEW', review_template=template)
+-    need(review is not None, 'Prior r6 actually failed: explicit hash-bound parent failure acceptance required')
+-    path, digest = review
+-    need(Path(path).resolve().is_relative_to(Path(plan['run_root']) / 'parent-review'), 'Failure acceptance must be in own parent-review directory')
+-    need(re.fullmatch('[0-9a-f]{64}', digest or '') and not Path(path).is_symlink() and sha(path) == digest, 'Parent failure acceptance pin mismatch')
+-    accepted = read(path)
+-    need(set(accepted) == {'reviewed_by_parent','reason','prior'} and accepted['reviewed_by_parent'] is True and
+-         isinstance(accepted['reason'], str) and bool(accepted['reason'].strip()), 'r6 failure not explicitly accepted by parent')
+-    need(accepted['prior'] == observed, 'Actual r6 failure changed since parent acceptance')
+-    return dict(terminal_kind='FAILED_REVIEWED_FOR_NEW_REVISION', observed=observed, parent_review_sha256=digest)
++def terminal(plan,review=None,describe=False):
++    from integrate import need,sha,read
++    prefix=Path(plan['logs'])/'full-build-r7'
++    paths={n:Path(str(prefix)+'.'+n) for n in ['started','finished','exit-code','log']}
++    need(all(p.is_file() and not p.is_symlink() and p.stat().st_size for p in paths.values()),'r7 lacks actual terminal records')
++    need(paths['exit-code'].read_text().strip()=='1' and not Path(str(prefix)+'.complete').exists(),'Unexpected r7 result')
++    start=datetime.datetime.fromisoformat(paths['started'].read_text().strip());end=datetime.datetime.fromisoformat(paths['finished'].read_text().strip())
++    need(start.tzinfo and end.tzinfo and start<=end<=datetime.datetime.now(datetime.timezone.utc) and end.isoformat()==END,'r7 terminal identity changed')
++    need(sha(paths['log'])==LOG,'r7 terminal log changed')
++    failed=Path(plan['r7_kit'])/'attempt/FAILED.json'
++    need(failed.is_file() and read(failed).get('retry_allowed') is False,'Preserve actual r7 FAILED.json')
++    pins=read(plan['r7_preservation'])
++    for group in ['attempt_files','logs','frozen_evidence']:
++        for p,row in pins[group].items():
++            need(sha(p)==row['sha256'] and Path(p).stat().st_size==row['bytes'],'r7 terminal preservation drift: '+p)
++    need({str(p) for p in (Path(plan['r7_kit'])/'attempt').rglob('*') if p.is_file() or p.is_symlink()}==set(pins['attempt_files']),'r7 attempt file set drift')
++    need({str(p) for p in Path(plan['logs']).glob('full-build-r7.*')}==set(pins['logs']),'r7 evidence file set drift')
++    observed=dict(revision='r7',exit_code=1,terminal_kind='ACTUAL_BUILD_FAILURE',finished=END,terminal_log_sha256=LOG,r7_kit_pins_sha256=R7_SEAL,preservation=pins,
++        images={p.name:dict(sha256=sha(p),bytes=p.stat().st_size) for p in sorted(Path(plan['product_out']).glob('*.img'))})
++    if describe:return dict(status='TERMINAL_FAILED_REQUIRES_PARENT_REVIEW',review_template=dict(reviewed_by_parent=False,reason='',prior=observed))
++    need(review is not None,'Actual terminal r7 requires hash-bound parent failure acceptance')
++    path,digest=review
++    need(Path(path).resolve().is_relative_to(Path(plan['run_root'])/'parent-review'),'Parent acceptance must be under own parent-review')
++    need(re.fullmatch('[0-9a-f]{64}',digest or '') and not Path(path).is_symlink() and sha(path)==digest,'Parent acceptance hash mismatch')
++    accepted=read(path)
++    need(set(accepted)=={'reviewed_by_parent','reason','prior'} and accepted['reviewed_by_parent'] is True and isinstance(accepted['reason'],str) and accepted['reason'].strip(),'r7 failure not accepted by parent')
++    need(accepted['prior']==observed,'r7 evidence changed since parent review')
++    return dict(terminal_kind='FAILED_REVIEWED_FOR_NEW_REVISION',observed=observed,parent_review_sha256=digest)
+ 
+-def preserve(plan, attempt, previous):
+-    from integrate import need, read, write, item, sha, safe
+-    before = attempt / 'before'; before.mkdir()
+-    d = sensor_delta(plan)
+-    src = safe(plan['device'],d['relative']); dst = before / 'sensor-BoardConfig.mk'
+-    need(item(src) == {'sha256':PRE}, 'Sensor preimage changed before preservation')
+-    shutil.copy2(src,dst)
+-    need(item(dst) == item(src), 'Sensor preservation failed')
+-    logs = before / 'logs'; logs.mkdir()
+-    for name, row in read(plan['prior_pins'])['logs'].items():
+-        source = Path(name); destination = logs / source.name
+-        shutil.copy2(source,destination)
+-        need(sha(destination) == row['sha256'], 'Prior log preservation failed')
+-    # Never rename/remove existing product images or touch incremental cache.
+-    write(attempt / 'preservation.json', dict(sensor_preimage=dict(path=str(src),backup=str(dst),sha256=PRE),
+-          r6_failure=previous, prior_attempt_preserved_in_place=plan['prior_attempt'],
+-          prior_preservation_pins_sha256=sha(plan['prior_pins']),cache_preserved_in_place=True))
++def preserve(plan,attempt,previous):
++    from integrate import need,write,item,sha,safe,read
++    before=attempt/'before';before.mkdir();backups={}
++    for rel,row in deltas(plan).items():
++        src=safe(plan['device'],rel);dst=before/rel;dst.parent.mkdir(parents=True,exist_ok=True)
++        need(item(src)=={'sha256':row['before']},'r8 preimage drift before preservation')
++        shutil.copy2(src,dst);need(item(dst)==item(src),'Source preservation mismatch');backups[rel]=dict(path=str(src),backup=str(dst),sha256=row['before'])
++    logs=before/'logs';logs.mkdir()
++    for p,row in read(plan['r7_preservation'])['logs'].items():
++        dst=logs/Path(p).name;shutil.copy2(p,dst);need(sha(dst)==row['sha256'],'r7 log preservation mismatch')
++    write(attempt/'preservation.json',dict(source_preimages=backups,r7_failure=previous,prior_attempts_preserved_in_place=[plan['prior_attempt'],str(Path(plan['r7_kit'])/'attempt')],prior_preservation_pins_sha256=sha(plan['r7_preservation']),cache_and_images_preserved_in_place=True))
+ 
+-def apply(plan, attempt):
+-    from integrate import need, read, write, sha, manifest, safe, copy_exact, verify_integrated
+-    d = sensor_delta(plan)
+-    need(manifest(plan['device']) == read(plan['prior_staged_receipt'])['product_after'], 'r3 source changed before sole write')
+-    copy_exact(plan['sensor_postimage'], safe(plan['device'],d['relative']), {'sha256':POST})
+-    post = verify_integrated(plan, baseline=True)
+-    write(attempt / 'postimages.json', post)
+-    record = read(plan['prior_integration'])
+-    record.update(product_after=manifest(plan['device']),staged_receipt_sha256=sha(plan['staged_receipt']),
+-                  sensor_receipt_sha256=sha(plan['sensor_receipt']),
+-                  prior_integration_receipt_sha256=sha(plan['prior_integration']),sensor_delta_sha256=sha(plan['sensor_delta']),
+-                  source_writes=[dict(path=str(safe(plan['device'],d['relative'])),before=PRE,after=POST)],
+-                  preservation_receipt_sha256=sha(attempt/'preservation.json'),
+-                  active_source_postimages_sha256=sha(attempt/'postimages.json'),prior_kit_pins_sha256=R3_SEAL,revision='r7')
++def apply(plan,attempt):
++    from integrate import need,read,write,sha,manifest,safe,copy_exact,verify_integrated
++    rows=deltas(plan)
++    need(manifest(plan['device'])==read(plan['r7_staged_receipt'])['product_after'],'Already-integrated r7 preimage changed')
++    for rel,row in rows.items():copy_exact(safe(Path(plan['staging'])/'product-device',rel),safe(plan['device'],rel),{'sha256':row['after']})
++    write(attempt/'postimages.json',verify_integrated(plan,baseline=True))
++    record=read(plan['r7_integration']);record.update(product_after=manifest(plan['device']),staged_receipt_sha256=sha(plan['staged_receipt']),sensor_receipt_sha256=sha(plan['sensor_receipt']),prior_integration_receipt_sha256=sha(plan['r7_integration']),r8_delta_sha256=sha(plan['r8_delta']),sensor_delta_sha256=sha(plan['sensor_delta']),source_writes=[dict(path=str(safe(plan['device'],r)),**v) for r,v in rows.items()],preservation_receipt_sha256=sha(attempt/'preservation.json'),active_source_postimages_sha256=sha(attempt/'postimages.json'),prior_kit_pins_sha256=R7_SEAL,revision='r8')
+     write(attempt/'integration.json',record)
+--- r7/scripts/integrate.py
++++ r8/scripts/integrate.py
+@@ -104,7 +104,7 @@
+     return lock
+ 
+ def revision_unused(plan):
+-    need(plan['revision'] == 'r7', 'Reviewed next revision changed')
++    need(plan['revision'] == 'r8', 'Reviewed next revision changed')
+     need(not list(Path(plan['logs']).glob('full-build-' + plan['revision'] + '.*')), 'Revision already used; never overwrite or relaunch')
+     need(not (Path(plan['run_root']) / 'attempt').exists(), 'Previous attempt exists; partial failure stops permanently')
+ 
+@@ -145,17 +145,17 @@
+     need(set(net['connectivity_after']) == {'bpf/loader/NetBpfLoad.cpp', 'bpf/netd/BpfHandler.cpp', 'bpf/progs/netd.c'}, 'Connectivity11 selection mismatch')
+     need(s['connectivity'] == {k: {'sha256': v} for k, v in net['connectivity_after'].items()}, 'Connectivity receipt mismatch')
+     continuation_inputs(plan)
+-    need(manifest(plan['device']) == read(plan['prior_staged_receipt'])['product_after'], 'Already-integrated r3 device preimage mismatch')
++    need(manifest(plan['device']) == read(plan['r7_staged_receipt'])['product_after'], 'Already-integrated r7 device preimage mismatch')
+     changes = {k for k in s['product_before'].keys() | s['product_after'].keys() if s['product_before'].get(k) != s['product_after'].get(k)}
+     inputs = input_selection(plan, s, old)
+     sensors = sensor_selection(plan, s)
+     source_composition(plan, source)
+     platforms = platform_selection(plan, phase='after')
+     supplement_files = verify_bundle(plan)
+-    need(changes == set(old['changes']) | {'BoardConfig.mk', 'prebuilt/Image.gz-dtb'} | inputs | sensors, 'Product change selection mismatch')
++    need(changes == set(old['changes']) | {'BoardConfig.mk', 'prebuilt/Image.gz-dtb'} | inputs | sensors | {'connectivity/src/driver_cmd_p00a.c', 'sepolicy/vendor/file_contexts'}, 'Product change selection mismatch')
+     need(s['product_before'] == old['before'], 'Radio original preimages differ')
+     for rel in old['changes']:
+-        if rel not in ('BoardConfig.mk', 'device.mk', 'rootdir/ueventd.rc'):
++        if rel not in ('BoardConfig.mk', 'device.mk', 'rootdir/ueventd.rc', 'connectivity/src/driver_cmd_p00a.c', 'sepolicy/vendor/file_contexts'):
+             need(s['product_after'][rel] == old['after'][rel], 'Radio postimage differs: ' + rel)
+     for rel, digest in net['connectivity_after'].items():
+         need(item(safe(plan['connectivity'], rel)) == {'sha256': digest}, 'Connectivity preimage mismatch: ' + rel)
+@@ -225,7 +225,7 @@
+     dst = Path(dst)
+     dst.parent.mkdir(parents=True, exist_ok=True)
+     # O_EXCL temp prevents reuse; failure leaves evidence and is never retried.
+-    tmp = dst.with_name(dst.name + '.reviewed-r7-tmp')
++    tmp = dst.with_name(dst.name + '.reviewed-r8-tmp')
+     with Path(src).open('rb') as f, tmp.open('xb') as out:
+         shutil.copyfileobj(f, out, 1024 * 1024)
+         out.flush()
+--- r7/scripts/validate_completed_product.py
++++ r8/scripts/validate_completed_product.py
+@@ -70,6 +70,10 @@
+     need(values.get('SELINUX_IGNORE_NEVERALLOWS', '') in ('', 'false'), 'Neverallow checks disabled')
+     report = read(Path(str(record) + '.images.json'))
+     integration = read(root / 'attempt/integration.json')
++    from continuation import deltas, R7_SEAL
++    reviewed_deltas = deltas(plan)
++    need(integration.get('revision') == 'r8' and integration.get('prior_kit_pins_sha256') == R7_SEAL and integration.get('prior_integration_receipt_sha256') == sha(plan['r7_integration']) and integration.get('r8_delta_sha256') == sha(plan['r8_delta']), 'r8 integration lineage mismatch')
++    need(integration['source_writes'] == [dict(path=str(Path(plan['device']) / r), **v) for r,v in reviewed_deltas.items()], 'r8 source-write receipt differs from the exact two deltas')
+     staged = read(plan['staged_receipt'])
+     need(manifest(plan['device']) == staged['product_after'], 'Integrated product drift')
+     for path, expected in plan['external_pins'].items():
+@@ -125,6 +129,8 @@
+     need(all(f.is_file() for f in cil), 'Missing installed CIL inputs')
+     policy = o / 'policy.bin'
+     run([b / 'secilc', '-m', '-M', 'true', '-G', '-c', '30', *cil, '-o', policy, '-f', o / 'generated-contexts'])
++    from verify_zram_context import verify as verify_zram
++    write(o / 'zram-context.json', verify_zram(partition, policy, b / 'sefcontext_compile', o / 'zram-context'))
+     properties = []
+     for label, path in partition.items():
+         prefix = 'plat' if label == 'system' else label
+@@ -146,6 +152,8 @@
+     if sparse:
+         expanded.unlink()  # Disposable conversion only; original images/logs preserved.
+     run([b / 'e2fsck', '-f', '-n', raw])
++    from verify_product_r3 import installed
++    write(o / 'zram-context-system-bytes.json', installed(p, 'system/vendor/etc/selinux/vendor_file_contexts', raw, b / 'debugfs', sha(partition['vendor'] / 'etc/selinux/vendor_file_contexts')))
+     google = verify_google(read(root / 'inputs/google-inline-source-manifest.json'), p, raw, b / 'debugfs')
+     need(len(google['checked']) == 30 and len(google['unsigned_build_transformed_inputs']) == 2, 'Google payload coverage incomplete')
+     write(o / 'google-signed-bytes.json', google)
+@@ -164,7 +172,7 @@
+         if label != '/apex': command += ['--' + label[1:] + '_path', path]
+     run(command)
+     need((apex / 'apex-info-list.xml').is_file(), 'No real extracted APEX metadata')
+-    write(o / 'r7-product-provenance.json', verify_r3(plan, root, raw, b / 'debugfs', readelf, apex))
++    write(o / 'r8-product-provenance.json', verify_r3(plan, root, raw, b / 'debugfs', readelf, apex))
+     root_check = verify_root(p, apex, read(root / 'inputs/root-source-pins.json')['packages/modules/adb/root/adb_root.rc'], raw, b / 'debugfs')
+     write(o / 'root-payload.json', root_check)
+     command = [b / 'checkvintf', '--check-compat']
+@@ -194,14 +202,15 @@
+     raw.chmod(0o444)
+     write(o / 'complete.json', {'kit_pins_sha256': seal, 'integration_receipt_sha256': sha(root / 'attempt/integration.json'),
+           'product_config_paths_sha256': sha(root / 'attempt/product-config-paths.json'),
+-          'sensor_delta_sha256': sha(plan['sensor_delta']), 'prior_integration_sha256': sha(plan['prior_integration']),
++          'r8_delta_sha256': sha(plan['r8_delta']), 'sensor_delta_sha256': sha(plan['sensor_delta']), 'prior_integration_sha256': sha(plan['r7_integration']),
+           'parent_parity_sha256': sha(plan['parity_receipt']), 'source_patch_sha256': sha(plan['patch']),
+           'source_receipt_sha256': sha(plan['source_receipt']), 'active_source_postimages_sha256': sha(o / 'source-postimages.json'), 'staged_receipt_sha256': sha(plan['staged_receipt']),
+           'raw_system': {'path': str(raw), 'bytes': raw.stat().st_size, 'sha256': sha(raw), 'all_zero_ranges_written': True, 'writer_must_materialize_all_zero_ranges': True},
+           'boot': {'path': str(boot), 'sha256': sha(boot), 'source_aosp_sha256': report['boot']['sha256']},
+           'source_system_sha256': report['system']['sha256'], 'google_signed_metadata_files': len(google['checked']), 'root_payload_receipt_sha256': sha(o / 'root-payload.json'),
+           'input_mapping_payload_sha256': sha(o / 'input-mapping-payload.json'),
+-          'r7_product_provenance_sha256': sha(o / 'r7-product-provenance.json'),
++          'zram_context_sha256': sha(o / 'zram-context.json'), 'zram_context_system_bytes_sha256': sha(o / 'zram-context-system-bytes.json'),
++          'r8_product_provenance_sha256': sha(o / 'r8-product-provenance.json'),
+           'google_unsigned_outputs_sha256': sha(o / 'google-unsigned-outputs.json'), 'google_total_payloads_checked': 32,
+           'kernel_sha256': sha(kernel), 'config_sha256': sha(config), 'host_tool_hashes': tool_pins,
+           'elf_init_policy_neverallows_vintf_apex_host_checks_passed': True,
+--- r7/scripts/verify_product_r3.py
++++ r8/scripts/verify_product_r3.py
+@@ -1,4 +1,4 @@
+-"""Real r7 compiler, link, installed ELF, sensor and BPF SYSTEM provenance.
++"""Real r8 compiler, link, installed ELF, sensor and BPF SYSTEM provenance.
+ 
+ Reads Ninja text/logs; never invokes a build engine. Qualified probe ELFs cannot
+ satisfy these gates. Completion remains host-only, with runtime checks pending.
+@@ -127,10 +127,10 @@
+     entry=entries[target]
+     need(re.fullmatch(r'[0-9a-f]{1,16}',entry['command_hash']) and int(entry['command_hash'],16)!=0,'Invalid compiler/linker command hash: '+target)
+     if fresh:
+-        need(path.stat().st_mtime>=start and entry['mtime_ns']>=int(start*10**9),'Stale r7 compiler/linker output or record: '+target)
++        need(path.stat().st_mtime>=start and entry['mtime_ns']>=int(start*10**9),'Stale r8 compiler/linker output or record: '+target)
+         lines=commands.get(target,[])
+-        need(lines and any(any(tool in cmd for tool in ('clang','rustc','ld.lld')) and (source is None or source in cmd) for cmd in lines),'Missing actual r7 compiler/linker command: '+str(source or target))
+-    return {'output':target,'sha256':sha(path),'ninja':entry,'commands':commands.get(target,[]),'fresh_r7_required':fresh}
++        need(lines and any(any(tool in cmd for tool in ('clang','rustc','ld.lld')) and (source is None or source in cmd) for cmd in lines),'Missing actual r8 compiler/linker command: '+str(source or target))
++    return {'output':target,'sha256':sha(path),'ninja':entry,'commands':commands.get(target,[]),'fresh_r8_required':fresh}
+ 
+ def verify(plan, root, raw, debugfs, readelf, apex):
+     a=Path(plan['aosp']);p=Path(plan['product_out'])
+@@ -149,11 +149,8 @@
+     logs=log_entries(a/'out/.ninja_log',targets)
+     # Actual verbose build commands are retained separately from fixture receipts.
+     full_log=Path(plan['logs'])/('full-build-'+plan['revision']+'.log')
+-    commands={}
+-    for line in full_log.open(errors='replace'):
+-        if not any(tool in line for tool in ('clang','rustc','ld.lld')) or not any(module in line for module,_ in BINARIES.values()) and 'system/vold/libvold/' not in line and not any(t in line for t in bpf_outputs):continue
+-        for target in targets:
+-            if target in line:commands.setdefault(target,[]).append(line.rstrip())
++    from compiler_channel import commands_for
++    commands,channel_receipts=commands_for(root,targets,logs)
+     toolchains={}
+     for lines in commands.values():
+         for command in lines:
+@@ -227,4 +224,4 @@
+     need(len(sensor)==1 and sensor[0].findtext('transport')=='hwbinder' and sensor[0].findtext('version')=='1.0','Wrong final sensor VINTF instance')
+     need(sensor[0].findtext('interface/name')=='ISensors' and sensor[0].findtext('interface/instance')=='default','Wrong sensor interface instance')
+     checked.append(installed(p,'system/vendor/etc/vintf/manifest.xml',raw,debugfs))
+-    return {'payloads':checked,'apex_archives':apex_archives,'compiler_outputs':compilers,'link_outputs':links,'actual_build_graph':provenance,'build_log_sha256':sha(full_log),'toolchain_sha256':toolchains,'fixture_binary_installed':False,'sensor_runtime_verified':False,'platform_bpf_property_service_verified':False,'flash_ready':False}
++    return {'payloads':checked,'apex_archives':apex_archives,'compiler_outputs':compilers,'link_outputs':links,'actual_build_graph':provenance,'build_log_sha256':sha(full_log),'toolchain_sha256':toolchains,'native_command_channel_receipts':channel_receipts,'prior_r7_execution_accepted':[],'fixture_binary_installed':False,'sensor_runtime_verified':False,'platform_bpf_property_service_verified':False,'flash_ready':False}
+--- r7/scripts/verify_zram_context.py
++++ r8/scripts/verify_zram_context.py
+@@ -0,0 +1,41 @@
++"""Validate exact final zRAM label using real merged contexts and compiled policy."""
++import ctypes
++import ctypes.util
++from pathlib import Path
++import stat
++import subprocess
++from integrate import need,sha
++
++EXPECTED='u:object_r:swap_block_device:s0'
++
++def lookup(contexts,path,mode):
++    lib=ctypes.CDLL(ctypes.util.find_library('selinux') or 'libselinux.so.1',use_errno=True)
++    class Opt(ctypes.Structure):_fields_=[('type',ctypes.c_int),('value',ctypes.c_char_p)]
++    # SELABEL_CTX_FILE=0, SELABEL_OPT_PATH=3.
++    lib.selabel_open.argtypes=[ctypes.c_uint,ctypes.POINTER(Opt),ctypes.c_uint];lib.selabel_open.restype=ctypes.c_void_p
++    lib.selabel_lookup_raw.argtypes=[ctypes.c_void_p,ctypes.POINTER(ctypes.c_char_p),ctypes.c_char_p,ctypes.c_int]
++    lib.selabel_close.argtypes=[ctypes.c_void_p];lib.freecon.argtypes=[ctypes.c_char_p]
++    opts=(Opt*1)(Opt(3,str(contexts).encode()));handle=lib.selabel_open(0,opts,1)
++    need(bool(handle),'Genuine libselinux context open failed')
++    context=ctypes.c_char_p()
++    try:
++        need(lib.selabel_lookup_raw(handle,ctypes.byref(context),path.encode(),mode)==0,'Genuine SELinux lookup failed: '+path)
++        result=context.value.decode();lib.freecon(context);return result
++    finally:lib.selabel_close(handle)
++
++def verify(partition,policy,tool,output):
++    output.mkdir();contexts=[]
++    vendor=partition['vendor']/'etc/selinux/vendor_file_contexts'
++    entries=[l.split() for l in vendor.read_text().splitlines() if l.strip() and not l.lstrip().startswith('#')]
++    need([x for x in entries if x[0]=='/dev/block/zram0']==[['/dev/block/zram0',EXPECTED]],'Final vendor contexts lack exact reviewed zRAM entry')
++    for label,base in partition.items():
++        prefix='plat' if label=='system' else label
++        contexts.append(base/('etc/selinux/'+prefix+'_file_contexts'))
++    combined=output/'merged_file_contexts';combined.write_bytes(b'\n'.join(p.read_bytes() for p in contexts)+b'\n')
++    args=[str(tool),'-p',str(policy),'-o',str(output/'merged_file_contexts.bin'),str(combined)]
++    r=subprocess.run(args,capture_output=True,text=True)
++    (output/'compile.log').write_text(r.stdout+r.stderr)
++    need(r.returncode==0,'Merged contexts invalid against real compiled policy')
++    value=lookup(combined,'/dev/block/zram0',stat.S_IFBLK)
++    need(value==EXPECTED,'Actual selected zRAM context differs: '+value)
++    return dict(selected_context=value,policy_sha256=sha(policy),context_inputs={str(p):sha(p) for p in contexts},merged_contexts_sha256=sha(combined),context_compiler_sha256=sha(tool),argv=args,exit_code=r.returncode,allow_or_permissive_changes=False,physical_activation_verified=False)

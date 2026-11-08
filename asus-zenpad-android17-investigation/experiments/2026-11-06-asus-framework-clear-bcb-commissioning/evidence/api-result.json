@@ -1,0 +1,15 @@
+{
+  "utc": "2026-11-06T21:46:32.256773+00:00",
+  "outcome": "API_TRUE_NEEDS_READBACK",
+  "possibly_submitted": true,
+  "review_sha256": "28a5b04e432cbb4ac20a8b29e17e9d0db612eb2dfb23c8c887e37c4e3fef9732",
+  "body_sha256": "b284fa794c005cf69073db212426376eda4b3d66bd669b452bac1bbb46bcc885",
+  "retry": false,
+  "reboot": false,
+  "elapsed_seconds": 2.6382202920503914,
+  "helper_exit": 0,
+  "stdout": "ASUS_FRAMEWORK_BCB_BEGIN\nResult: Parcel(00000000 00000001   '........')\nASUS_FRAMEWORK_BCB_END\n\n",
+  "stderr": "/OWNER_HOME/Documents/workspace/ideas/2026-11-05-asus-root-hardware-validation/sources/mtk-su-mirror-b: 1 file pushed, 0 skipped. 755.3 MB/s (65144 bytes in 0.000s)\n",
+  "framework_reply": true,
+  "call_return_observed": true
+}

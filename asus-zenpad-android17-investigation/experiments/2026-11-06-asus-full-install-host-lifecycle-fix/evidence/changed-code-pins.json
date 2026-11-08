@@ -1,0 +1,51 @@
+[
+  {
+    "path": "source/bounded_client.py",
+    "before_sha256": "b64b6c5ed72077008509366c4300e7d8a5d94e8511e12cc5c10fabd59d342c39",
+    "after_sha256": "9b737ad9bc52dcab627e7067a0b86e2c9d3b508f50cee3014bff121150b80606",
+    "added_lines": 2,
+    "deleted_lines": 2
+  },
+  {
+    "path": "source/bounded_io.py",
+    "before_sha256": "46eba9cd40c7cde56ad8b0781c052c0b6c23f8c82f14a34d7cc8c67181dcd5d7",
+    "after_sha256": "047e0d3c952aeea7827f08b23e58ecc682efeb2780bef49de7bfae6936b6e2b1",
+    "added_lines": 59,
+    "deleted_lines": 23
+  },
+  {
+    "path": "source/journal.py",
+    "before_sha256": "870c991b9b2d01887b535199ec7e724261cf558b72fa8b2988f328d76ad13d49",
+    "after_sha256": "9154ff8b461f1e1c5be0c7ac1705fcbc06beefbff394ae1e0d7d3e1dfbf8b683",
+    "added_lines": 12,
+    "deleted_lines": 1
+  },
+  {
+    "path": "source/parent_remote.py",
+    "before_sha256": "20896740a02181fd78142038e12a9a4a64bdac42ccef9cc46036a917ea71deda",
+    "after_sha256": "e98bddea37d52e864b02c7015c5649d88b009623af532ede52c3ee71ce0fd023",
+    "added_lines": 102,
+    "deleted_lines": 54
+  },
+  {
+    "path": "source/source_client.py",
+    "before_sha256": "ccb8b3139b56df82e6d67a0b2a24cafc4af776f541bc9d51afea3e686f02d19b",
+    "after_sha256": "a620a009ecbb724b4a4c2be9313b191b5d1912ea1c353185fc4896fd0fe84927",
+    "added_lines": 60,
+    "deleted_lines": 37
+  },
+  {
+    "path": "source/sources.py",
+    "before_sha256": "ab4871bda4f54d1b2c8052b952f8aea5212940c6477e6691ae3a901f3977958c",
+    "after_sha256": "547acec94e0b64c15f5c103badc120c00f6c27624264c601e244bc97a4aee51b",
+    "added_lines": 6,
+    "deleted_lines": 1
+  },
+  {
+    "path": "source/verify_handoff.py",
+    "before_sha256": "2d9e7a21ad18da36c02ea2a5391bbef26a33e76bbf55a17ba29997e751322512",
+    "after_sha256": "4bbf38280eb15c1a50b2b068a8882d55c04f6245e28810b5fa6fac7f241ec563",
+    "added_lines": 34,
+    "deleted_lines": 34
+  }
+]

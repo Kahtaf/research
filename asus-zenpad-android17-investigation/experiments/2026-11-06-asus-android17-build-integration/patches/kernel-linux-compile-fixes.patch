@@ -1,0 +1,84 @@
+--- a/drivers/misc/mediatek/include/mt-plat/battery_meter.h
++++ b/drivers/misc/mediatek/include/mt-plat/battery_meter.h
+@@ -26,7 +26,9 @@
+ #define ID_VOLT_END (-1)
+ #endif
+ 
++#ifndef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
+ #define CUST_CAPACITY_OCV2CV_TRANSFORM
++#endif
+ /* ============================================================ */
+ /* ENUM */
+ /* ============================================================ */
+--- a/drivers/misc/mediatek/thermal/mt8163/mtk_ts_battery.c
++++ b/drivers/misc/mediatek/thermal/mt8163/mtk_ts_battery.c
+@@ -68,7 +68,9 @@
+  * curr_temp < polling_trip_temp1, use interval*polling_factor1
+  * else, use interval*polling_factor2
+  */
++#ifndef CONFIG_ASUS_P00A_MAIN_BATTERY_SOC
+ static int polling_trip_temp_high = 50000;
++#endif
+ static int polling_trip_temp1 = 40000;
+ static int polling_trip_temp2 = 20000;
+ static int polling_factor1 = 5000;
+--- a/drivers/power/supply/mediatek/battery/asus_p00a_soc.inc
++++ b/drivers/power/supply/mediatek/battery/asus_p00a_soc.inc
+@@ -9,7 +9,7 @@
+  * are used unchanged apart from repeated-point/endpoint safety fixes.
+  *
+  * Only this transaction may advance the board model. No RTC/UI percentage,
+- * charger programmed current, cover gauge or assumed sleep current is input.
++ * charger programmed model_current, cover gauge or assumed sleep model_current is input.
+  * The boot seed uses ASUS's measured-VBAT fallback, not an unqualified PMIC
+  * wakeup latch. This is an OAM estimate, not a measured coulomb counter.
+  */
+@@ -184,7 +184,7 @@
+ static int p00a_oam_step(struct asus_p00a_battery_sample *sample, s64 now)
+ {
+ 	s64 delta_ms = now - p00a_oam.last_ms;
+-	s64 current, car, dod;
++	s64 model_current, car, dod;
+ 	int delta, qmax, ocv, resistance;
+ 
+ 	if (!p00a_oam.initialized)
+@@ -198,9 +198,9 @@
+ 	if (qmax <= 0 || p00a_oam.r2 <= 0)
+ 		return -ERANGE;
+ 	/* Exact ASUS OAM D2 recurrence, widened before arithmetic. */
+-	current = div_s64((s64)(p00a_oam.ocv2 - sample->voltage_mv) * 10000,
++	model_current = div_s64((s64)(p00a_oam.ocv2 - sample->voltage_mv) * 10000,
+ 			 p00a_oam.r2);
+-	car = p00a_oam.car2 + div_s64(current * delta, 3600);
++	car = p00a_oam.car2 + div_s64(model_current * delta, 3600);
+ 	/* Bound the accumulator before multiplication even on multi-year uptime. */
+ 	if (car > INT_MAX || car < -INT_MAX)
+ 		return -ERANGE;
+--- a/drivers/power/supply/mediatek/battery/battery_meter.c
++++ b/drivers/power/supply/mediatek/battery/battery_meter.c
+@@ -670,6 +670,7 @@
+ }
+ #endif
+ 
++#ifdef CONFIG_MTK_MULTI_BAT_PROFILE_SUPPORT
+ static void __batt_meter_parse_multi_battery_data(
+ 	struct device_node *np, int bat_id)
+ {
+@@ -794,6 +795,7 @@
+ 	__batt_meter_parse_node(np, dtsbuf,
+ 		&batt_meter_cust_data.q_max_neg_10_h_current);
+ }
++#endif
+ 
+ int __batt_meter_init_cust_data_from_dt(void)
+ {
+@@ -3345,7 +3347,9 @@
+ 
+ signed int battery_meter_get_battery_temperature(void)
+ {
++#ifdef CONFIG_MTK_BATTERY_LIFETIME_DATA_SUPPORT
+ 	signed int batt_temp = 0;
++#endif
+ 
+ 	if (!init_done)
+ 		return BAT_INIT_TEMP;

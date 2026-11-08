@@ -1,0 +1,278 @@
+{
+  "2026-11-06-asus-ram-original-recovery-restorer/HANDOFF.json": {
+    "sha256": "430c4c8f598096e530dcb7f99db6a5ec33609fb7c4b86a7593f61f0daddae5fd",
+    "bytes": 3646
+  },
+  "2026-11-06-asus-ram-original-recovery-restorer/PROTOCOL.md": {
+    "sha256": "d7c6f90f34435750a5697994a6c2c45c96463aef45b1d8e6fb69a61f66187f44",
+    "bytes": 2913
+  },
+  "2026-11-06-asus-ram-original-recovery-restorer/REPORT.md": {
+    "sha256": "1afb3a0eee4568b90d08b9230508779e0e67161f2f42bdd07c67c32ed2908052",
+    "bytes": 13804
+  },
+  "2026-11-06-asus-ram-original-recovery-restorer/SOURCE_PINS.json": {
+    "sha256": "a2e1c4a595a13239f3797ccd4a30367d730229e486cf9013816c99c11430fbe1",
+    "bytes": 5810
+  },
+  "2026-11-06-asus-ram-original-recovery-restorer/source/handoff.h": {
+    "sha256": "7281fcf20343f8e6fbd95fa70c73b0c753f42f91e7230fc84014f02ee68af908",
+    "bytes": 735
+  },
+  "2026-11-06-asus-ram-original-recovery-restorer/source/p10_restore.c": {
+    "sha256": "cddda42708f1444b7d773d57cb7e750a8a34d32e7a78b2c791a096a0a420b943",
+    "bytes": 6615
+  },
+  "2026-11-06-asus-ram-original-recovery-restorer/source/prior_container.h": {
+    "sha256": "ef0b9c351e4ffb33e0d9159c192a479ec426b1d332f27f9000598d0cf8160df4",
+    "bytes": 2998
+  },
+  "2026-11-06-asus-ram-original-recovery-restorer/source/stock_binding.h": {
+    "sha256": "e85c82f2357850cd438766fb775033e9f0d52aa25a4f387db0ce61e51c86c140",
+    "bytes": 213
+  },
+  "2026-11-06-asus-ram-restorer-host-contract-fix/HANDOFF.md": {
+    "sha256": "bba040bb7cae23090aee66d1991ad86008d0722322054ef5ea2479c37acde2cd",
+    "bytes": 4842
+  },
+  "2026-11-06-asus-ram-restorer-host-contract-fix/evidence/parent-result.json": {
+    "sha256": "60c3184a5d4b3ad06351fef20449a842f17d972ecdf6ac03caea20ca01932d6c",
+    "bytes": 1291
+  },
+  "2026-11-06-asus-ram-restorer-host-contract-fix/source/generated_host_binding.py": {
+    "sha256": "ad07c65143a15699012716ecc8d78606ea2a18aa870ae2d9d288ea1e316cec67",
+    "bytes": 173
+  },
+  "2026-11-06-asus-ram-restorer-host-contract-fix/source/host.py": {
+    "sha256": "2d6acd11f5b46585bec820188463e4ecb863ec19a6f106a83320f14c24c479d9",
+    "bytes": 5715
+  },
+  "2026-11-06-asus-rescue-remote-source/HANDOFF.json": {
+    "sha256": "01aec9117d8d6ce4f0dbbe81a2976df8ff6d99772582327212bf978d73ed9b68",
+    "bytes": 645
+  },
+  "2026-11-06-asus-rescue-remote-source/REPORT.md": {
+    "sha256": "d5d8b1214e58884445c3d5e0dcb134ca7fde71f7754f9f4c0fe13792387dddfe",
+    "bytes": 13645
+  },
+  "2026-11-06-asus-rescue-remote-source/SOURCE_PINS.json": {
+    "sha256": "ff4b9798ea0238e963153952f31143fe5f6aa9dd4031ca6ff0b745e1209c8b74",
+    "bytes": 3182
+  },
+  "2026-11-06-asus-rescue-remote-source/profiles/fixed.json": {
+    "sha256": "8b4bee1d648b581468a902cb4dcfd10f3d67c6178654c0d5b7a070ec8654b6a7",
+    "bytes": 893
+  },
+  "2026-11-06-asus-rescue-remote-source/profiles/local-fixed.json": {
+    "sha256": "f45d6b3ae3858e2e0cef3a726f4f6a6196b083e3164f2eca6a28189adb7cad75",
+    "bytes": 941
+  },
+  "2026-11-06-asus-rescue-remote-source/source/build_manifest.py": {
+    "sha256": "a00c55bf788b15a5d042b64917782c3b0076cc60ae11cd58e293290cae0388aa",
+    "bytes": 2864
+  },
+  "2026-11-06-asus-rescue-remote-source/source/parent_remote.py": {
+    "sha256": "9ee2f38683728ff93aaf62b2b28eabe8afa71a969fd2f390df8ecd9765d5271b",
+    "bytes": 6249
+  },
+  "2026-11-06-asus-rescue-remote-source/source/pinned.py": {
+    "sha256": "76f591977c7fc444dd3e252e258abae8de6291db8295cca5072293aaa059a6ae",
+    "bytes": 800
+  },
+  "2026-11-06-asus-rescue-remote-source/source/source_client.py": {
+    "sha256": "ec6935d41aae8c3cb5fd71be05e087af58154adced56a7746637dfe9b012fcc8",
+    "bytes": 3085
+  },
+  "2026-11-06-asus-rescue-remote-source/source/source_manifest.py": {
+    "sha256": "23f681756e4624e78857832540693b5d472b35e705a6554c372e478169d3027a",
+    "bytes": 3659
+  },
+  "2026-11-06-asus-rescue-remote-source/source/sources.py": {
+    "sha256": "b76600d02008aa5c211bdc6d417226cb5539a708eef57f45b433a6b7f226ac65",
+    "bytes": 8595
+  },
+  "2026-11-06-asus-rescue-remote-source/source/worker.py": {
+    "sha256": "10a4d1d1ee399d2565bacec10a26450f2df5e23b1666155cd895d42a2edc6629",
+    "bytes": 8480
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/BUILD.md": {
+    "sha256": "7bc0203f3db2eecb8ef38b1f3e10aefa7752413fbc3178ec5b8d1ca173e19a9b",
+    "bytes": 3194
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/BUILD_SOURCE_PINS.json": {
+    "sha256": "0ec4edd7faffc9b46d8dfee85d1dbdc27158242f9def5dc45772ecc6d5931667",
+    "bytes": 5021
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/HANDOFF.json": {
+    "sha256": "de609d5e36893143b959cf16236b87b1a06c0f0485e95bc57c968b6289cc284d",
+    "bytes": 3668
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/HANDOFF.md": {
+    "sha256": "ddb1ead2056c2371331d1610f4841626d5d4e6429e307a113fc11c5a33b2e828",
+    "bytes": 3916
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/PROTOCOL.md": {
+    "sha256": "3f182c86cba2ada3951431bff125a8adb0a374bbbe7e0aa98f6c8d6e6f81a6a1",
+    "bytes": 2884
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/REPORT.md": {
+    "sha256": "00006b0d9642e5be5f4b20004a938fcbe235f7fff58667dc2bf7f293b746ecc4",
+    "bytes": 14156
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/SOURCE_PINS.json": {
+    "sha256": "5518092ce9fd74afc2a0606d4797dc568313a55e80c107f04ad5018378922d25",
+    "bytes": 5120
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/evidence/bindings-and-geometry.json": {
+    "sha256": "da693b9a3da54a9acd36017d52c4a4e64bb7af66e8623e8be35b88ef5838416f",
+    "bytes": 1538
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/evidence/compact-delivery-verification.json": {
+    "sha256": "9c2667e1c0d67814ba299bf41b7e0a6763f1044df73d44c41b2d4d87cbb05e60",
+    "bytes": 801
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/evidence/host-durability.json": {
+    "sha256": "b6f3d17f29fbaf9ed9edaa45c0ad1a7431a1f7ac5a2fa0563fa5b1008a3a881a",
+    "bytes": 430
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/evidence/manifest-admission.json": {
+    "sha256": "5416d34b6491032927dd72a4b9fa054b7fa41d4777bef733d38375c8bd2df904",
+    "bytes": 4642
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/evidence/policy-structure.json": {
+    "sha256": "5a60a911abde65b92d24c1b63a9ee7c9176f2f9b8762dffdbb8385524202684f",
+    "bytes": 212
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/scripts/assemble_core.py": {
+    "sha256": "2aace148e31efc447b66efb615b7f1ada416bc3c46fc8aeb30c8d7081907db30",
+    "bytes": 2034
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/scripts/assemble_final.py": {
+    "sha256": "2328aa79b6d317d973cc6cbb7b9b2aab27cef76736f154e2672370c560ac1db5",
+    "bytes": 2160
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/scripts/build_remote.py": {
+    "sha256": "9978b4cf5c202e38b6476d86f973bd48627650d5395ae90aa70e89429e41d019",
+    "bytes": 4234
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/scripts/collect.py": {
+    "sha256": "b4c4b8fc690ce8654301ff1f78b3ea0c996b48677a8ef21bcd90f270ff016c91",
+    "bytes": 1847
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/scripts/postflight.py": {
+    "sha256": "fbb94dc550ace497fc9dab982a948ac5cb6ad6c00561140e4aa245aab34fa224",
+    "bytes": 6712
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/scripts/postflight_resume.py": {
+    "sha256": "a61a9d5e99dad4594708ac5beaa76135f41472d3de9088ad82f8f5ba6ec79733",
+    "bytes": 1096
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/scripts/remote.py": {
+    "sha256": "d7246fe2ac1bb9a9ef73d1520703911dc782673432888f3aa2b1dce0197569cc",
+    "bytes": 3058
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/scripts/run_build.py": {
+    "sha256": "36027513eb7c5dc7493a03bba2ff7b20dbcdb686d6aa8a5d102b37508ad90262",
+    "bytes": 350
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/scripts/verify_compact.py": {
+    "sha256": "a08988ea95097a518562dbf1c9c0f681c46104b2a188e4d39ceb340e2b95277e",
+    "bytes": 6058
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/scripts/verify_container.py": {
+    "sha256": "3f3c38f9636f12e4e17ce390d2c5d464d179e121717971c17b947029035b2b95",
+    "bytes": 5079
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/bootformat.py": {
+    "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017",
+    "bytes": 3936
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/client.py": {
+    "sha256": "0072398a0aa2da83bdf176d672e7ec767b6aaf034892fb603054a22549c5bf69",
+    "bytes": 7199
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/common.h": {
+    "sha256": "90fe60e79b3cc3932dab7e824bc803bb18ba086ea079beca8298c34ccf2a53c3",
+    "bytes": 2773
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/core_binding.h": {
+    "sha256": "c4040fd7bef4453f44b655ebf5e06fd88e7e3698ca6ad43e2ea87f1ac814c6e0",
+    "bytes": 907
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/file_contexts.py": {
+    "sha256": "012a4f0a71f49772a12e537721b5aca3e5de1b201b2dc5aaa07a26e07cdb650c",
+    "bytes": 1657
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/generated_host_binding.py": {
+    "sha256": "2962d493872ae4fb1b3f02204e583c6436d1cf97d4e9629f375a32f2e979f468",
+    "bytes": 173
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/handoff.h": {
+    "sha256": "7281fcf20343f8e6fbd95fa70c73b0c753f42f91e7230fc84014f02ee68af908",
+    "bytes": 735
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/host.py": {
+    "sha256": "2d6acd11f5b46585bec820188463e4ecb863ec19a6f106a83320f14c24c479d9",
+    "bytes": 5715
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/manifest.py": {
+    "sha256": "c9a40f5e1029e8252abc9a8256d63d9fae0d4e1c5373eb247dc76e2e06c52ae2",
+    "bytes": 4200
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/p10_restore.c": {
+    "sha256": "cddda42708f1444b7d773d57cb7e750a8a34d32e7a78b2c791a096a0a420b943",
+    "bytes": 6615
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/policy_audit.c": {
+    "sha256": "a8419a1ff771646dc28c96fa342f87ce4d949ee6368660bcd962f4d3053d9333",
+    "bytes": 3512
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/policy_build.c": {
+    "sha256": "1fbb9b714f630c7d058f583b3d42242814413988ee41b188463c1291dda56fdf",
+    "bytes": 5562
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/prior_container.h": {
+    "sha256": "ef0b9c351e4ffb33e0d9159c192a479ec426b1d332f27f9000598d0cf8160df4",
+    "bytes": 2998
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/rescue.c": {
+    "sha256": "23b0af1a8c813ae925459bf4614f768a5f90e5a76efb49bf8523135159c72c49",
+    "bytes": 15945
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/restore_core.h": {
+    "sha256": "152d83f4110bc1eb4f1ab5d285ae4c322cd9e8a87937c96ea332489429c26c8f",
+    "bytes": 4439
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/sha1.h": {
+    "sha256": "ef1b62f9220f23b953833d4066e2fc154b25abe4780b867feeba45dc6012cbce",
+    "bytes": 1458
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/sha256.h": {
+    "sha256": "4011564ce3516f8cc8e6e375cdd2923e72e9f9e74e77dc6e7db0637bda52efe0",
+    "bytes": 2434
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/source/stock_binding.h": {
+    "sha256": "e85c82f2357850cd438766fb775033e9f0d52aa25a4f387db0ce61e51c86c140",
+    "bytes": 213
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/tests/new_manifest_tests.py": {
+    "sha256": "d38b2d1fa399b50cd30465af054e75e2f97ec05fbda2e5cb48f8f29f95cba6c2",
+    "bytes": 3423
+  },
+  "2026-11-06-asus-stock-only-ram-rescue-build/tests/reproduce.py": {
+    "sha256": "45353e18a493e37d4ad1ab5f9ddf15d254ba1abc69921908a3f6ba57c3e29f37",
+    "bytes": 2120
+  },
+  "2026-11-06-asus-stock-userdata-recovery/HANDOFF.json": {
+    "sha256": "435bf7cf751519463cbba7edd80495ebc077db3534dd7bc011ed2df3d9c46060",
+    "bytes": 2739
+  },
+  "2026-11-06-asus-stock-userdata-recovery/REPORT.md": {
+    "sha256": "0fb762afed44e510202df73c2e249aad0a6cc288db5fcfb7a61ede9fb3446be3",
+    "bytes": 24643
+  },
+  "2026-11-06-asus-stock-userdata-recovery/evidence/parent-contract-acceptance.json": {
+    "sha256": "a81df89811ba8e15cc00a5b192d8df4f74b4b390baa1c5bc78f6f2d6df28eae3",
+    "bytes": 666
+  }
+}

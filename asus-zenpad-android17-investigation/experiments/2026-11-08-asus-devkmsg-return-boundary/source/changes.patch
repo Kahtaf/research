@@ -1,0 +1,128 @@
+--- a/kernel/printk/printk.c
++++ b/kernel/printk/printk.c
+@@ -723,6 +723,7 @@
+ 	struct devkmsg_user *user = file->private_data;
+ 	size_t len = iov_iter_count(from);
+ 	ssize_t ret = len;
++	u32 write_seq;
+ 
+ 	if (!user || len > LOG_LINE_MAX)
+ 		return -EINVAL;
+@@ -737,13 +738,19 @@
+ 			return ret;
+ 	}
+ 
++	write_seq = asus_devkmsg_boundary(0, len, 0);
+ 	buf = kmalloc(len+1, GFP_KERNEL);
+-	if (buf == NULL)
++	if (buf == NULL) {
++		if (write_seq)
++			asus_devkmsg_boundary(write_seq, ret, -ENOMEM);
+ 		return -ENOMEM;
++	}
+ 
+ 	buf[len] = '\0';
+ 	if (copy_from_iter(buf, len, from) != len) {
+ 		kfree(buf);
++		if (write_seq)
++			asus_devkmsg_boundary(write_seq, ret, -EFAULT);
+ 		return -EFAULT;
+ 	}
+ 
+@@ -774,6 +781,8 @@
+ 
+ 	printk_emit(facility, level, NULL, 0, "%s", line);
+ 	kfree(buf);
++	if (write_seq)
++		asus_devkmsg_boundary(write_seq, ret, ret);
+ 	return ret;
+ }
+ 
+--- a/include/linux/asus_retained_trace.h
++++ b/include/linux/asus_retained_trace.h
+@@ -85,6 +85,8 @@
+ void __init asus_retained_trace_early_init(void);
+ void __init asus_retained_trace_init(void);
+ void asus_retained_trace_write(const char *text, unsigned int len);
++/* seq=0 admits an entry; nonzero seq records its original return value. */
++u32 asus_devkmsg_boundary(u32 seq, size_t len, ssize_t rc);
+ u64 asus_capture_mono_enter(u32 seq, unsigned long caller);
+ void asus_capture_mono_seq(u64 token, u32 seq, unsigned int stage);
+ u64 asus_capture_counter_enter(unsigned long reader);
+@@ -106,6 +108,7 @@
+                                          unsigned int pc_valid, unsigned int access) { return 0; }
+ static inline void asus_capture_exit(u64 token, u64 value, u32 seq) { }
+ static inline void asus_retained_trace_write(const char *text, unsigned int len) { }
++static inline u32 asus_devkmsg_boundary(u32 seq, size_t len, ssize_t rc) { return 0; }
+ #endif
+ static inline void asus_retained_trace_mark(const char *text)
+ {
+--- a/arch/arm64/kernel/asus_retained_trace.c
++++ b/arch/arm64/kernel/asus_retained_trace.c
+@@ -1347,6 +1347,9 @@
+      SAME("06 time_init returned"))
+   return true;
+ #undef SAME
++ if (sparse_prefix(text, len, ASUS_DEVKMSG_PREFIX,
++                   sizeof(ASUS_DEVKMSG_PREFIX) - 1))
++  return true;
+  if (sparse_prefix(text, len, ASUS_SPARSE_WDT_PREFIX,
+                    sizeof(ASUS_SPARSE_WDT_PREFIX) - 1))
+   return true;
+@@ -1415,6 +1418,38 @@
+ 	__clean_dcache_area_poc(h, sizeof(*h));
+ out:
+ 	raw_spin_unlock_irqrestore(&trace_lock, flags);
++}
++
++/* One task (actual PID1) owns this counter; user signals cannot nest a
++ * devkmsg syscall on its kernel stack. The writer alone masks IRQs briefly.
++ * A refused/dropped publication is never evidence of an original operation.
++ */
++u32 noinline notrace asus_devkmsg_boundary(u32 seq, size_t len, ssize_t rc)
++{
++ static u32 writes;
++ char line[160];
++ unsigned int n;
++ if (current->pid != 1 || !in_task())
++  return 0;
++ if (!seq) {
++  if (writes >= 768) {
++   if (writes == 768) {
++    ++writes;
++    n = scnprintf(line, sizeof(line), ASUS_DEVKMSG_PREFIX
++                  "UNKNOWN reason=write-budget limit=768");
++    asus_retained_trace_write(line, n);
++   }
++   return 0;
++  }
++  seq = ++writes;
++  n = scnprintf(line, sizeof(line), ASUS_DEVKMSG_PREFIX
++                "WENT seq=%u len=%zu", seq, len);
++ } else {
++  n = scnprintf(line, sizeof(line), ASUS_DEVKMSG_PREFIX
++                "WRET seq=%u len=%zu rc=%zd", seq, len, rc);
++ }
++ asus_retained_trace_write(line, n);
++ return seq;
+ }
+ 
+ /* No printk, clocks, allocation, sleep, or hardware access on this path. */
+--- a/arch/arm64/kernel/asus_entry_tag.h
++++ b/arch/arm64/kernel/asus_entry_tag.h
+@@ -1,9 +1,11 @@
+-#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=f53fadc2-5cd5-4c44-b5a3-7a65567c6935 stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=e55f7efe0b074ca96c66526b2923b68c173d6b26c9c7ed007379af5b65762ecb cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
++#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=e7acab50-e05a-4684-8e5a-c352f025564b stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=e55f7efe0b074ca96c66526b2923b68c173d6b26c9c7ed007379af5b65762ecb cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
+ #define ASUS_ENTRY_TAG_LEN 340
+ 
+-#define ASUS_CAPTURE_TAG "A49CAP1 uuid=f53fadc2-5cd5-4c44-b5a3-7a65567c6935 rows=15 row=384 fields=17 header=192"
++#define ASUS_CAPTURE_TAG "A49CAP1 uuid=e7acab50-e05a-4684-8e5a-c352f025564b rows=15 row=384 fields=17 header=192"
+ 
+ #define ASUS_SPARSE_PROFILE 1
+-#define ASUS_SPARSE_MODE "ASUS49-MODE run=f53fadc2-5cd5-4c44-b5a3-7a65567c6935 profile=sparse-fifo-v1 hot=disabled ordinary_printk=filtered delay=original-virtual"
++#define ASUS_SPARSE_MODE "ASUS49-MODE run=e7acab50-e05a-4684-8e5a-c352f025564b profile=devkmsg-boundary-v1 format=1 pid1_write_budget=768 hot=disabled ordinary_printk=filtered delay=original-virtual"
+ 
+-#define ASUS_SPARSE_WDT_PREFIX "ASUS49-WDT run=f53fadc2-5cd5-4c44-b5a3-7a65567c6935 "
++#define ASUS_SPARSE_WDT_PREFIX "ASUS49-WDT run=e7acab50-e05a-4684-8e5a-c352f025564b "
++
++#define ASUS_DEVKMSG_PREFIX "ASUS49-KMSG run=e7acab50-e05a-4684-8e5a-c352f025564b v=1 "

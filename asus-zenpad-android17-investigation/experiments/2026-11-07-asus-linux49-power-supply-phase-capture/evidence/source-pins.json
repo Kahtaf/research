@@ -1,0 +1,18 @@
+{
+  "drivers/power/supply/power_supply_core.c": {
+    "before": "d7420a70ffc78caab45eb10d0793eed34f35d4cc01eee295d62562fc058d08c8",
+    "after": "f97d2c922cf42e0dcc415735afb55b0bfee38dd48dd7c6612c287d30297dbecd"
+  },
+  "arch/arm64/kernel/asus_retained_trace.c": {
+    "before": "7fdf69eb464cc424f8fff6e43bbefb2c4209da0cb95af04fb7ac7136f72901c3",
+    "after": "ce4b26cb937c2aa4cae2c53d23096bdb70a4fb8ca8beeab7f94cf4092775c2d4"
+  },
+  "include/linux/asus_retained_trace.h": {
+    "before": "984a388d7208c356bc4db4e8e87f522cc81f7e3c044c8fffee421bb6c865ea78",
+    "after": "9b7a55ca92aa273cb4f494eb5de040225af80b089596b425fafb35e158fa7692"
+  },
+  "arch/arm64/kernel/asus_entry_tag.h": {
+    "before": "13bd3a64cc090e1e49acde9819ad314fbad866f0e6535dfb78682445c5f7b21a",
+    "after": "4a5414485ea11f5a85802ac5e4c9e48af4d4099c810be643dab43cf09b01a402"
+  }
+}

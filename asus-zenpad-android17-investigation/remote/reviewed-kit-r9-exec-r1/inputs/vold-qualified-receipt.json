@@ -1,0 +1,26 @@
+{
+  "at_utc": "2026-11-06T21:28:50.106291+00:00",
+  "fixture": "/srv/android/asus-vold-build-include-fix",
+  "before_sha256": "0e17fccedefabb20e2d8650252af8c765af68378a1d853e0fbaa6a8bd1ea67fd",
+  "after_sha256": "c5147ca901fb1c4678b34c6727e63eb325e1ad21de2cdcbcb19b8cf9af1d49c9",
+  "patch_sha256": "98e923b851c0de58d4ca7787628f2fb4ea6471fd1cf2a36fe44c6482061168af",
+  "rows": [
+    {
+      "case": "before",
+      "exit_code": 1,
+      "diagnostic": "\u001b[1m/srv/android/asus-vold-build-include-fix/before/PublicVolume.cpp:73:14: \u001b[0m\u001b[0;1;31merror: \u001b[0m\u001b[1mno member named 'replace' in namespace 'std'\u001b[0m\n   73 |         std::replace(mFsLabel.begin(), mFsLabel.end(), \u001b[0;32m' '\u001b[0m, \u001b[0;32m'_'\u001b[0m);\u001b[0m\n      | \u001b[0;1;32m             ^~~~~~~\n\u001b[0m1 error generated.\n",
+      "object_bytes": null
+    },
+    {
+      "case": "after",
+      "exit_code": 0,
+      "diagnostic": "",
+      "object_bytes": 314376
+    }
+  ],
+  "active_source_unchanged": true,
+  "object_sha256": "953c20dcd3015ee81c3f134840c2d08eee70b8f13bb233986fd0b0b9e103674e",
+  "object_is_thin_lto_bitcode": true,
+  "compiled_not_linked": true,
+  "full_build_started": false
+}

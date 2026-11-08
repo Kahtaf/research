@@ -1,0 +1,226 @@
+--- base/kernel/sched/core.c
++++ candidate/kernel/sched/core.c
+@@ -27,6 +27,7 @@
+  */
+ 
+ #include <linux/kasan.h>
++#include <linux/asus_retained_trace.h>
+ #include <linux/mm.h>
+ #include <linux/module.h>
+ #include <linux/nmi.h>
+@@ -2811,6 +2812,7 @@
+ 	 * transition, resulting in a double drop.
+ 	 */
+ 	prev_state = prev->state;
++	asus_capture_switch(prev, prev_state);
+ 	vtime_task_switch(prev);
+ 	perf_event_task_sched_in(prev, current);
+ 	finish_lock_switch(rq, prev);
+--- base/arch/arm64/kernel/asus_retained_trace.c
++++ candidate/arch/arm64/kernel/asus_retained_trace.c
+@@ -105,6 +105,147 @@
+  __clean_dcache_area_poc(dest, 64);
+ }
+ 
++/* Independent scheduler capture: no trace_lock acquisition under rq->lock. */
++#define SW_RING 8
++#define SW_ROWS 10
++#define SW_ROW_SIZE 256
++#define SW_ROW_OFFSET 384
++#define SW_SIZE (SW_ROW_OFFSET + SW_ROWS * SW_ROW_SIZE + 64)
++static char *sw_area, *sw_storage;
++static u64 sw_total;
++static bool sw_busy;
++static const char sw_guard_a[] = "A49SGUARD BEGIN 3d26cc95-11a8-41a2-ac62-3a2a33bd506e           \n";
++static const char sw_guard_z[] = "A49SGUARD END   3d26cc95-11a8-41a2-ac62-3a2a33bd506e           \n";
++
++/* Each line is cache-line aligned; cache clean helper ends in dsb sy. */
++static void sw_commit(char *dest, char *line, unsigned int size)
++{
++ WRITE_ONCE(dest[0], '!');
++ __clean_dcache_area_poc(dest, 64);
++ memcpy(dest, line, size);
++ __clean_dcache_area_poc(dest, size);
++ WRITE_ONCE(dest[0], 'V');
++ __clean_dcache_area_poc(dest, 64);
++}
++
++static void sw_fault(unsigned int offset)
++{
++ char *area = READ_ONCE(sw_area);
++ if (!area)
++  return;
++ WRITE_ONCE(area[256 + 9], '1');
++ WRITE_ONCE(area[256 + offset], '1');
++ __clean_dcache_area_poc(area + 256, 64);
++}
++
++static void sw_header(void)
++{
++ char line[192];
++ u64 first = sw_total > SW_RING ? sw_total - SW_RING + 1 : !!sw_total;
++ u64 f[] = {sw_total + 1, sw_total, first, sw_total,
++             sw_total ? (sw_total - 1) / SW_RING : 0,
++             min_t(u64, sw_total, SW_RING), 0, nr_cpu_ids};
++ unsigned int i;
++ memset(line, ' ', sizeof(line));
++ memcpy(line, "!A49SH ", 7);
++ for (i = 0; i < ARRAY_SIZE(f); ++i)
++  cap_hex(line + 9 + i * 17, f[i], 16);
++ cap_hex(line + 160, f[0], 16);
++ line[191] = '\n';
++ sw_commit(sw_storage + 64, line, sizeof(line));
++}
++
++static void __init sw_init(char *dest)
++{
++ unsigned int i;
++ char line[SW_ROW_SIZE];
++ BUILD_BUG_ON(SW_SIZE != 3008);
++ memset(dest, ' ', SW_SIZE);
++ memcpy(dest, "A49SW1 uuid=3d26cc95-11a8-41a2-ac62-3a2a33bd506e", 48);
++ dest[63] = '\n';
++ memcpy(dest + 256, "A49SLOSS 0 guard=0 busy=0 admission=0 overflow=0", 48);
++ dest[319] = '\n';
++ memcpy(dest + 320, sw_guard_a, sizeof(sw_guard_a) - 1);
++ dest[383] = '\n';
++ memcpy(dest + SW_SIZE - 64, sw_guard_z, sizeof(sw_guard_z) - 1);
++ dest[SW_SIZE - 1] = '\n';
++ sw_storage = dest;
++ /* Zero records are committed empty slots, distinguishable from torn rows. */
++ for (i = 0; i < SW_ROWS; ++i) {
++  unsigned int j;
++  memset(line, ' ', sizeof(line));
++  memcpy(line, "!A49S ", 6);
++  cap_hex(line + 6, i, 2);
++  for (j = 0; j < 11; ++j)
++   cap_hex(line + 9 + j * 17, 0, 16);
++  memset(line + 196, '0', 32);
++  cap_hex(line + 232, 0, 16);
++  line[255] = '\n';
++  sw_commit(dest + SW_ROW_OFFSET + i * SW_ROW_SIZE, line, sizeof(line));
++ }
++ sw_header();
++ __clean_dcache_area_poc(dest, SW_SIZE);
++}
++
++void asus_capture_switch(struct task_struct *prev, long prev_state)
++{
++ char line[SW_ROW_SIZE];
++ u64 f[11], raw;
++ unsigned int i, row, cpu;
++ bool irqoff;
++ if (!smp_load_acquire(&sw_area))
++  return; /* Before ready is explicitly outside this capture's horizon. */
++ cpu = raw_smp_processor_id();
++ irqoff = irqs_disabled();
++ if (nr_cpu_ids != 1 || cpu || !irqoff || in_interrupt()) {
++  sw_fault(36); /* admission */
++  return;
++ }
++ if (sw_busy) { sw_fault(24); return; }
++ sw_busy = true;
++ if (memcmp(sw_storage + 320, sw_guard_a, sizeof(sw_guard_a) - 1) ||
++     memcmp(sw_storage + SW_SIZE - 64, sw_guard_z, sizeof(sw_guard_z) - 1)) {
++  sw_fault(17); goto out;
++ }
++ if (sw_total == U64_MAX - 1) { sw_fault(47); goto out; }
++ /* Exact known-safe register read, bypassing all arch_counter_read hooks. */
++ asm volatile("isb; mrs %0, cntvct_el0" : "=r" (raw));
++ f[0] = ++sw_total;
++ f[1] = raw;
++ f[2] = (u32)prev->pid;
++ f[3] = (u64)prev_state;
++ f[4] = (u32)current->pid;
++ f[5] = (u32)current->prio;
++ f[6] = (u32)current->policy;
++ f[7] = (u32)prev->prio;
++ f[8] = preempt_count();
++ f[9] = ((u64)cpu << 32) | irqoff;
++ f[10] = READ_ONCE(cap_serial);
++ memset(line, ' ', sizeof(line));
++ memcpy(line, "!A49S ", 6);
++ for (i = 0; i < ARRAY_SIZE(f); ++i)
++  cap_hex(line + 9 + i * 17, f[i], 16);
++ /* Encode every comm byte as ASCII hex, including embedded NULs. */
++ for (i = 0; i < TASK_COMM_LEN; ++i)
++  cap_hex(line + 196 + i * 2, (unsigned char)READ_ONCE(current->comm[i]), 2);
++ cap_hex(line + 232, f[0], 16);
++ line[255] = '\n';
++ row = (sw_total - 1) % SW_RING;
++ cap_hex(line + 6, row, 2);
++ sw_commit(sw_storage + SW_ROW_OFFSET + row * SW_ROW_SIZE, line, sizeof(line));
++ if (f[2] == 1) {
++  cap_hex(line + 6, 8, 2);
++  sw_commit(sw_storage + SW_ROW_OFFSET + 8 * SW_ROW_SIZE, line, sizeof(line));
++ }
++ if (f[4] == 1) {
++  cap_hex(line + 6, 9, 2);
++  sw_commit(sw_storage + SW_ROW_OFFSET + 9 * SW_ROW_SIZE, line, sizeof(line));
++ }
++ sw_header();
++out:
++ sw_busy = false;
++}
++
+ static void __init cap_init(struct trace_header *h)
+ {
+  unsigned long flags;
+@@ -113,10 +254,11 @@
+  u32 pos;
+  BUILD_BUG_ON(CAP_SIZE > 8192);
+  BUILD_BUG_ON(CAP_SIZE % 64);
++ BUILD_BUG_ON(SW_SIZE % 64);
+  if (!raw_spin_trylock_irqsave(&trace_lock, flags))
+   return;
+  pos = ALIGN(h->log_size, 64);
+- if (pos > h->sz_console || CAP_SIZE > h->sz_console - pos)
++ if (pos > h->sz_console || CAP_SIZE + SW_SIZE > h->sz_console - pos)
+   goto out;
+  dest = (char *)h + h->off_console + pos;
+  /* Console-relative alignment need not be physical cache-line alignment.
+@@ -137,11 +279,13 @@
+   cap_rows[row].f[C_KIND] = row % 3;
+   cap_publish(row);
+  }
++ sw_init(dest + CAP_SIZE);
+  __clean_dcache_area_poc((char *)h + h->off_console + h->log_size,
+-                         pos + CAP_SIZE - h->log_size);
+- WRITE_ONCE(h->log_size, pos + CAP_SIZE);
++                         pos + CAP_SIZE + SW_SIZE - h->log_size);
++ WRITE_ONCE(h->log_size, pos + CAP_SIZE + SW_SIZE);
+  __clean_dcache_area_poc(h, sizeof(*h));
+  smp_store_release(&cap_area, dest);
++ smp_store_release(&sw_area, dest + CAP_SIZE);
+ out:
+  raw_spin_unlock_irqrestore(&trace_lock, flags);
+ }
+--- base/include/linux/asus_retained_trace.h
++++ candidate/include/linux/asus_retained_trace.h
+@@ -4,7 +4,9 @@
+ #include <linux/init.h>
+ #include <linux/types.h>
+ #include <linux/string.h>
++struct task_struct;
+ #ifdef CONFIG_ASUS_P00A_RETAINED_BOOT_TRACE
++void asus_capture_switch(struct task_struct *prev, long prev_state);
+ void __init asus_retained_trace_early_init(void);
+ void __init asus_retained_trace_init(void);
+ void asus_retained_trace_write(const char *text, unsigned int len);
+@@ -15,6 +17,7 @@
+                             unsigned int pc_valid, unsigned int access);
+ void asus_capture_exit(u64 token, u64 value, u32 seq);
+ #else
++static inline void asus_capture_switch(struct task_struct *prev, long prev_state) { }
+ static inline void asus_retained_trace_early_init(void) { }
+ static inline void asus_retained_trace_init(void) { }
+ static inline u64 asus_capture_mono_enter(u32 seq, unsigned long caller) { return 0; }
+--- base/arch/arm64/kernel/asus_entry_tag.h
++++ candidate/arch/arm64/kernel/asus_entry_tag.h
+@@ -1,4 +1,4 @@
+-#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=d140b2bf-e06f-4ba7-8203-83a1c4ce4119 stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=1baa4bd8ea91477eb0592bc51d2d25a4cab8afe94c3c0014f98e2d4b222fbd90 cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
++#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=3d26cc95-11a8-41a2-ac62-3a2a33bd506e stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=804ad2c23885e1603ac7c3871fbb0bc9a793521ea106ad7d0f95331a6d5ef55e cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
+ #define ASUS_ENTRY_TAG_LEN 340
+ 
+-#define ASUS_CAPTURE_TAG "A49CAP1 uuid=d140b2bf-e06f-4ba7-8203-83a1c4ce4119 rows=15 row=384 fields=17 header=192"
++#define ASUS_CAPTURE_TAG "A49CAP1 uuid=3d26cc95-11a8-41a2-ac62-3a2a33bd506e rows=15 row=384 fields=17 header=192"

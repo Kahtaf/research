@@ -1,0 +1,28 @@
+{
+  "before": {
+    "init/main.c": "f7110828626521dc7a2058d5cf4da47fb7fadea1a48a47ecc71f6166a7c0a50a",
+    "kernel/printk/printk.c": "29626779261cd9cf0b6dfc76ade57f28b0eeedd0337f65366e94f314843a5e01",
+    "arch/arm64/Kconfig.debug": "849906b9f6dd2826834df11d7a6031c5a43edb40c81ee23ba7b71611eaa4268e",
+    "arch/arm64/kernel/Makefile": "d8e2b7eaf9500393f2b6e86f8f15e9ce1ea663548a9a6b2934653626d509f2cd",
+    "arch/arm64/kernel/setup.c": "a4747254f2851047eba9520f56c04cbc066e56b439658331fcf6ad4f771c455f",
+    "arch/arm64/kernel/asus_retained_trace.c": null,
+    "include/linux/asus_retained_trace.h": null,
+    "drivers/clocksource/mtk_timer.c": "2b298b9f5b7951104340b20b5591c2496746be088d3bec935a69157ba30ca197"
+  },
+  "after": {
+    "init/main.c": "6780e3143dc45bc1b63df0dd1e96033028008553303e0e382cb1737747d4ac8a",
+    "kernel/printk/printk.c": "4af88ab6aea16ea01f55a235c13a633d099b4566ddea4f4b7c5c9497fafdff4d",
+    "arch/arm64/Kconfig.debug": "33e37de5cccb47a48d6844b53423f162d495989a5b4c78901ed72b9413517f9e",
+    "arch/arm64/kernel/Makefile": "61ba1ae856234c29bc856a54c26c076c469949c2986f2a84e7e9314e66e3010d",
+    "arch/arm64/kernel/setup.c": "b7e00601397e1cfa03bae081171b2cec66e271000933685bf655368f24c3b610",
+    "arch/arm64/kernel/asus_retained_trace.c": "f6abf5fd043d4749262b536c7c5d77d4e84dddcb658bc0a7ac5c1190aa4181ba",
+    "include/linux/asus_retained_trace.h": "97794b8e7c1c68172045c51cd90e6a12300da33e990b58072766320c4436416a",
+    "drivers/clocksource/mtk_timer.c": "0c9e26f54ecbbdd8d60c9ed35cbfb62820b6a515ef25d0750fd16c3834db2913"
+  },
+  "patches": {
+    "retained-boot-trace.patch": "a0efbb7dee1688b07b0accebb8ef7f22a183fd58752aad9447bf89f1ba78cdbb",
+    "timer-clock.patch": "13294c10548d583e7fa86a4010fd3455822e3ba012a001cb40a6ecb1378d0816"
+  },
+  "copy_method": "cp -a full e9 source; independent new output",
+  "prior_port_delta_preserved_by_full_copy": true
+}

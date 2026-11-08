@@ -1,0 +1,18 @@
+{
+  "include/linux/preempt.h": {
+    "sha256": "3312e47d4fbccaa00f9ba03cb013ec058d8dbfedba01743f7b66f3ac1c323103",
+    "data_omitted_publication": {
+      "reason": "fetched source bytes excluded by research repository rules",
+      "decoded_bytes": 8815,
+      "decoded_sha256": "3312e47d4fbccaa00f9ba03cb013ec058d8dbfedba01743f7b66f3ac1c323103"
+    }
+  },
+  "include/linux/hardirq.h": {
+    "sha256": "ef53c59ca7251df4f858eda20dd8564a258192b165016baaef59c366a132ed19",
+    "data_omitted_publication": {
+      "reason": "fetched source bytes excluded by research repository rules",
+      "decoded_bytes": 1793,
+      "decoded_sha256": "ef53c59ca7251df4f858eda20dd8564a258192b165016baaef59c366a132ed19"
+    }
+  }
+}

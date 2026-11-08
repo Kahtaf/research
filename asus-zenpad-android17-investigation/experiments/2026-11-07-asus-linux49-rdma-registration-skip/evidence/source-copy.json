@@ -1,0 +1,16 @@
+{
+  "base": "/srv/android/asus-linux49-retained-clock-capture-20261107-fef31ed4",
+  "owned": "/srv/android/asus-linux49-rdma-registration-skip-20261107-d140b2bf",
+  "method": "cp -a --reflink=auto kernel AND out; independent inodes",
+  "scoped_source_pins": {
+    "drivers/misc/mediatek/video/mt8163/dispsys/ddp_drv.c": {
+      "before": "b19001ffd37cd83acf48de05cd369ab23fe4fc06b4868ef7b1d8a4829fe9aacb",
+      "after": "221a7e8f1bcceaec04b63fce1ace55d3739d1f3e7ebfe6c638c6f3bc84dec042"
+    },
+    "arch/arm64/kernel/asus_entry_tag.h": {
+      "before": "079c20ce859c8d224da2ba71d4ad0cb9337385a7e334c10a503b528b4ccaa6a8",
+      "after": "2d87e25d84daa61447c82568ac19c8a44df7ee2bc7d281a93da6113630f40826"
+    }
+  },
+  "full_tree_rehash": false
+}

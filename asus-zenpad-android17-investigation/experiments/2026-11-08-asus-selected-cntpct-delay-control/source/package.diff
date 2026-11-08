@@ -1,0 +1,49 @@
+--- base/scripts/package.py
++++ candidate/scripts/package.py
+@@ -2,7 +2,7 @@
+ from pathlib import Path
+ import ast,difflib,json,shutil,stat,struct,sys
+ sys.dont_write_bytecode=True
+-R=Path(__file__).resolve().parents[1];W=R.parent;B=W/'2026-11-08-asus-linux49-pmic-stage-capture'
++R=Path(__file__).resolve().parents[1];W=R.parent;B=W/'2026-11-08-asus-arm64-delay-loop-observation'
+ def boundary(event,args):
+  if event=='open':
+   p=str(args[0]);assert not any(x in p for x in ['/private/','/device-backup/','root_shell_wifi.py','mtk-su-mirror-b','/dev/']),p
+@@ -18,16 +18,16 @@
+  n=next(n for n in ast.parse(s).body if getattr(n,'name',None)==name)
+  return ''.join(s.splitlines(True)[n.lineno-1:n.end_lineno])
+ with (R/'evidence/package-attempt.json').open('x') as out:json.dump(dict(one_genuine_candidate=True,private=False,device=False),out)
+-old=(B/'artifacts/candidate.img').read_bytes();assert b.sha(old)=='df9ad602f617fc3e3191ac298b496e7d3d028509b4d6892329f2c0212260a26b'
+-current='bcf85635198721759d6f4f24f2e7311ca9bf594d7dae698cec8c169a8219f735'
++old=(B/'artifacts/candidate.img').read_bytes();assert b.sha(old)=='f7687610c88afc296a6140bd98501b5f0f0e90f150503b0107a3044719c4175c'
++current='9f827d45ac155d8e2f025e630666896fb3b6eb6744752266969f8d03b3c4089e'
+ assert b.sha(old+bytes(b.PARTITION_SIZE-len(old)))==current
+ h,k,ram,tail=b.parse_image(old);assert not tail
+-oldraw,runtime=b.ungzip(k[512:]);assert b.sha(oldraw)=='1430a1c295ebcddcbb499b7691128129fdae247d038de41e5c31cde4e5825d41'
++oldraw,runtime=b.ungzip(k[512:]);assert b.sha(oldraw)=='4838b63014e3cf5b778a2a616f60c4aaf767296d8fe3c60c5a3287048e2e955c'
+ baseblob=(B/'artifacts/Image.gz-dtb').read_bytes();baseraw,basedt0=b.ungzip(baseblob);assert baseraw==oldraw;assert k[512:-len(runtime)]==baseblob[:-len(basedt0)]
+ compiled=(R/'artifacts/Image.gz-dtb').read_bytes();config=(R/'artifacts/resolved.config').read_bytes()
+ assert b.sha(config)=='708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1'
+ raw,dt=b.ungzip(compiled);stream=compiled[:-len(dt)]
+-basecompiled=(B/'artifacts/Image.gz-dtb').read_bytes();assert b.sha(basecompiled)=='817c8b6ea5a739f046d48cf6ca69afa2f5707c7cd3b220e80c272f085be20b24'
++basecompiled=(B/'artifacts/Image.gz-dtb').read_bytes();assert b.sha(basecompiled)=='99daf8064b9818be1e822f41c83d626b79abd11daaf3742ddfdc10159d8e74e1'
+ _,basedt=b.ungzip(basecompiled);assert dt==basedt
+ fh,nodes,tokens=fdt.parse(runtime);_,cn,_=fdt.parse(dt)
+ assert {p:v for p,v in cn.items() if p!='/chosen'}=={p:v for p,v in nodes.items() if p!='/chosen'}
+@@ -61,7 +61,7 @@
+ prior=(B/'source/install.py').read_text();s=prior
+ pre=next(l for l in s.splitlines() if l.startswith('INSTALL_PREIMAGES='));assert current not in pre
+ profile=next(l for l in s.splitlines() if "profile='" in l)
+-changes={"IMAGE_SHA='df9ad602f617fc3e3191ac298b496e7d3d028509b4d6892329f2c0212260a26b'":f"IMAGE_SHA='{b.sha(image)}'",f"FULL_SHA='{current}'":f"FULL_SHA='{b.sha(full)}'",'len(image)==7987200':f'len(image)=={len(image)}',profile:profile.replace('exact-linux49-pmic-stage-a1ff82b1-r1','exact-arm64-delay-loop-f3da846c-r1'),pre:pre[:-1]+f",'{current}')"}
++changes={"IMAGE_SHA='f7687610c88afc296a6140bd98501b5f0f0e90f150503b0107a3044719c4175c'":f"IMAGE_SHA='{b.sha(image)}'",f"FULL_SHA='{current}'":f"FULL_SHA='{b.sha(full)}'",'len(image)==7989248':f'len(image)=={len(image)}',profile:profile.replace('exact-arm64-delay-loop-f3da846c-r1','exact-selected-cntpct-2ac3b1e4-r1'),pre:pre[:-1]+f",'{current}')"}
+ for a,z in changes.items():assert s.count(a)==1;s=s.replace(a,z)
+ restored=s
+ for a,z in reversed(list(changes.items())):assert restored.count(z)==1;restored=restored.replace(z,a)
+@@ -72,6 +72,6 @@
+ for n in ['bootformat.py','fdt.py','adb','legacy_adb.py']:
+  d=(R/'source'/n).read_bytes();assert d==(B/'source'/n).read_bytes();helpers[n]=dict(**rec(d),mode=oct(stat.S_IMODE((R/'source'/n).stat().st_mode)))
+ assert helpers['adb']['mode']=='0o755'
+-result=dict(status='ONE_GATED_DELAY_OBSERVATION_CANDIDATE_NO_PHYSICAL_GO',run_uuid=identity['run_uuid'],candidate=rec(image),full_p10=rec(full),base_candidate=rec(old),admitted_current_full_p10=current,current_pin_supplied_not_freshly_observed=True,compiled_Image_gz_dtb=rec(compiled),compressed_Image=rec(stream),raw_Image=rec(raw),config=rec(config),compiled_DTB=rec(dt),runtime_DTB=rec(runtime),ramdisk=rec(ram),init=rec(init),helper_uuid='f0c3c82c-d639-4d8a-90f2-155fd4224ceb',bootargs=args.decode(),initrd=dict(start='0x44000000',end='0x4403e9d8',payload_bytes=256472,wrapper_bytes=512,unchanged_entry_guard_end='0x4403f007'),preservation=dict(config_byte_identical=True,entire_wrapped_ramdisk_byte_identical=True,runtime_DT_byte_identical=True,compiled_DT_byte_identical=True,hardware_reservations_addresses_bounds_and_short_bootargs_unchanged=True,execute_Transport_Guard_byte_identical=True,adapters=helpers),installer=dict(**rec(s.encode()),changes=['actual image hash','full p10 hash','actual image size','profile','append current full p10']),Android_header_changed_offsets=diff(h,ah),kernel_wrapper_changed_offsets=diff(k[:512],newk[:512]),layout=layout,limits=['Source/ELF/host/PLAN checks do not establish physical capture or cause','Capture overhead can perturb timing; entry without exit is a captured boundary only','Dropped/torn/early-unavailable capture is UNKNOWN','No device/private payload or raw target log access'])
++result=dict(status='ONE_SELECTED_CNTPCT_CONTROL_CANDIDATE_NO_PHYSICAL_GO',run_uuid=identity['run_uuid'],candidate=rec(image),full_p10=rec(full),base_candidate=rec(old),admitted_current_full_p10=current,current_pin_supplied_not_freshly_observed=True,compiled_Image_gz_dtb=rec(compiled),compressed_Image=rec(stream),raw_Image=rec(raw),config=rec(config),compiled_DTB=rec(dt),runtime_DTB=rec(runtime),ramdisk=rec(ram),init=rec(init),helper_uuid='f0c3c82c-d639-4d8a-90f2-155fd4224ceb',bootargs=args.decode(),initrd=dict(start='0x44000000',end='0x4403e9d8',payload_bytes=256472,wrapper_bytes=512,unchanged_entry_guard_end='0x4403f007'),preservation=dict(config_byte_identical=True,entire_wrapped_ramdisk_byte_identical=True,runtime_DT_byte_identical=True,compiled_DT_byte_identical=True,hardware_reservations_addresses_bounds_and_short_bootargs_unchanged=True,execute_Transport_Guard_byte_identical=True,adapters=helpers),installer=dict(**rec(s.encode()),changes=['actual image hash','full p10 hash','actual image size','profile','append current full p10']),Android_header_changed_offsets=diff(h,ah),kernel_wrapper_changed_offsets=diff(k[:512],newk[:512]),layout=layout,limits=['Source/ELF/host/PLAN checks do not establish physical capture or cause','Capture overhead can perturb timing; entry without exit is a captured boundary only','Dropped/torn/early-unavailable capture is UNKNOWN','No device/private payload or raw target log access'])
+ (R/'evidence/packaging-receipt.json').write_text(json.dumps(result,indent=2)+'\n')
+ print(json.dumps({k:result[k] for k in ['status','run_uuid','candidate','full_p10','raw_Image','compiled_Image_gz_dtb']},indent=2))

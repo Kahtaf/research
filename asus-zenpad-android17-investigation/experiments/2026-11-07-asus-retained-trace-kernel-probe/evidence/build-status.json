@@ -1,0 +1,65 @@
+{
+  "started": "2026-11-07T14:19:04.512880+00:00",
+  "pid": 3335356,
+  "status": "complete",
+  "max_jobs": 8,
+  "affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "commands": [
+    {
+      "command": [
+        "make",
+        "-C",
+        "/srv/android/asus-retained-trace-kernel-probe-20261107/kernel",
+        "O=/srv/android/asus-retained-trace-kernel-probe-20261107/out",
+        "ARCH=arm64",
+        "CROSS_COMPILE=aarch64-linux-gnu-",
+        "HOSTCC=gcc",
+        "HOSTCXX=g++",
+        "LOCALVERSION=-g717bb3c9e13c-dirty",
+        "-j8",
+        "olddefconfig"
+      ],
+      "started": "2026-11-07T14:20:45.461942+00:00",
+      "exit": 0,
+      "finished": "2026-11-07T14:20:48.099637+00:00"
+    },
+    {
+      "command": [
+        "make",
+        "-C",
+        "/srv/android/asus-retained-trace-kernel-probe-20261107/kernel",
+        "O=/srv/android/asus-retained-trace-kernel-probe-20261107/out",
+        "ARCH=arm64",
+        "CROSS_COMPILE=aarch64-linux-gnu-",
+        "HOSTCC=gcc",
+        "HOSTCXX=g++",
+        "LOCALVERSION=-g717bb3c9e13c-dirty",
+        "-j8",
+        "Image.gz-dtb"
+      ],
+      "started": "2026-11-07T14:20:48.106986+00:00",
+      "exit": 0,
+      "finished": "2026-11-07T14:23:40.004073+00:00"
+    }
+  ],
+  "build_timestamp": "Sat Nov 07 14:20:45 UTC 2026",
+  "exit": 0,
+  "finished": "2026-11-07T14:23:40.088870+00:00"
+}

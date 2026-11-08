@@ -1,0 +1,244 @@
+{
+  "status": "STATIC_PACKAGING_PASS_ONLY",
+  "candidate_sha256": "48bb6efa1620cb380037e53b53cfa560e38cd23b95211c8634616ce94fd6ce48",
+  "candidate_bytes": 8880128,
+  "padded_sha256": "25812e7dde39ec37e3f4c9438341cc29f2b2e7dce61e4b88d0886cd9dd075b16",
+  "compiled_sha256": "d4094bcff6c763af7f1c01ccd3d612a988f96de13f78b492b808cc76c0ac929f",
+  "geometry": {
+    "kernel_size_including_wrapper": 7696802,
+    "ramdisk_size_including_wrapper": 1178032,
+    "ramdisk_file_offset": 7700480,
+    "unpadded_bytes": 8880128
+  },
+  "kernel_stream": {
+    "compressed_bytes": 7632565,
+    "raw_bytes": 17275392,
+    "crc32": "0xdb26b2f6"
+  },
+  "ramdisk_stream": {
+    "compressed_bytes": 1177520,
+    "raw_bytes": 3011584,
+    "crc32": "0x41be75ab"
+  },
+  "initrd_range": [
+    "0x44000200",
+    "0x4411f9b0"
+  ],
+  "image_header": {
+    "text_offset": "0x80000",
+    "image_size": 18767872,
+    "flags": "0xa",
+    "kernel_memory_end": "0x41266000"
+  },
+  "dt_changed_properties": [
+    [
+      "/chosen",
+      "bootargs"
+    ],
+    [
+      "/chosen",
+      "linux,initrd-end"
+    ],
+    [
+      "/chosen",
+      "linux,initrd-start"
+    ]
+  ],
+  "dt_reservations": [],
+  "cmdline": "androidboot.selinux=enforcing bootopt=64S3,32N2,64N2 build_version=3 initrd=0x44000200,0x11f7b0",
+  "chosen_bootargs": "console=ttyMT0,921600n1 root=/dev/ram initrd=0x44000200,0x11f7b0",
+  "elf": {
+    "init": {
+      "sha256": "e9594c0d1cbe7d05d34acd63e90b424672360ceb09112fa16b5b23390c21b7e5",
+      "aarch64_static": true,
+      "entry": "0x4009b0"
+    },
+    "sbin/adbd": {
+      "sha256": "78a7adbda0a28da4055da1ea68a2ead8ee01764a365778930ef03e6649dcb450",
+      "aarch64_static": true,
+      "entry": "0x4008f8"
+    },
+    "sbin/recovery": {
+      "sha256": "8dd14b57927a9cc148f0000d38c9fd7d590bbe4d18e99f6ebde3ce4b5fd21217",
+      "aarch64_static": true,
+      "entry": "0x2106a0"
+    },
+    "system/bin/sh": {
+      "sha256": "8dd14b57927a9cc148f0000d38c9fd7d590bbe4d18e99f6ebde3ce4b5fd21217",
+      "aarch64_static": true,
+      "entry": "0x2106a0"
+    }
+  },
+  "stock_preserved": [
+    "init",
+    "sbin/adbd",
+    "file_contexts.bin",
+    "property_contexts",
+    "seapp_contexts",
+    "service_contexts"
+  ],
+  "changes_vs_repaired_control": [
+    "config",
+    "init.rc",
+    "sbin/recovery",
+    "sepolicy",
+    "system/bin/sh"
+  ],
+  "entries": {
+    "adb_keys": {
+      "mode": "0o100444",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 701,
+      "sha256": "d2fa0667e26a7708a20807e9aa1bc68fff489f0d79d2a15439498417b544efdf"
+    },
+    "config": {
+      "mode": "0o40755",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "default.prop": {
+      "mode": "0o100644",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 254,
+      "sha256": "c38cb81c412aea0e45bdef7ad272f536b2d0f5d45e5bef13aa09cca158950134"
+    },
+    "dev": {
+      "mode": "0o40755",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "file_contexts.bin": {
+      "mode": "0o100644",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 220034,
+      "sha256": "ae49fd36f2803f13fd521c93f02d473d99774e7b5122012fbeabd6a31ab5c04c"
+    },
+    "init": {
+      "mode": "0o100750",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 1254760,
+      "sha256": "e9594c0d1cbe7d05d34acd63e90b424672360ceb09112fa16b5b23390c21b7e5"
+    },
+    "init.rc": {
+      "mode": "0o100644",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 2247,
+      "sha256": "632aac52bb002b89312f180145decd809b2139bbd3bd57209ab6b8f0a73ab106"
+    },
+    "proc": {
+      "mode": "0o40755",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "property_contexts": {
+      "mode": "0o100644",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 18471,
+      "sha256": "d0cd0317d86e6204e9946f1c9d635610ec03043896f5abaf80457147c197209d"
+    },
+    "sbin": {
+      "mode": "0o40755",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "sbin/adbd": {
+      "mode": "0o100750",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 1095256,
+      "sha256": "78a7adbda0a28da4055da1ea68a2ead8ee01764a365778930ef03e6649dcb450"
+    },
+    "sbin/recovery": {
+      "mode": "0o100750",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 6152,
+      "sha256": "8dd14b57927a9cc148f0000d38c9fd7d590bbe4d18e99f6ebde3ce4b5fd21217"
+    },
+    "sbin/ueventd": {
+      "mode": "0o120777",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 7,
+      "sha256": "2d2c3fd77b6302709fdcb1c427721f83e26e25d13672caa216d6b377e529d9b0"
+    },
+    "seapp_contexts": {
+      "mode": "0o100644",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 819,
+      "sha256": "93adb10a339dc9566a0feecaf3d5659dc2b40a56e437f7ef39d303a528b5ed83"
+    },
+    "sepolicy": {
+      "mode": "0o100644",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 388346,
+      "sha256": "3aac7deaf0ca689345d4fc667659d6d46899dea0e601a417a7ea989a0af339c6"
+    },
+    "service_contexts": {
+      "mode": "0o100644",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 15138,
+      "sha256": "c043331210d5d832e909e8fa1a396a6a1810505c377039d33aff7bcff3572a24"
+    },
+    "sys": {
+      "mode": "0o40755",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "system": {
+      "mode": "0o40755",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "system/bin": {
+      "mode": "0o40755",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "system/bin/sh": {
+      "mode": "0o100755",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 6152,
+      "sha256": "8dd14b57927a9cc148f0000d38c9fd7d590bbe4d18e99f6ebde3ce4b5fd21217"
+    },
+    "tmp": {
+      "mode": "0o40755",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "ueventd.rc": {
+      "mode": "0o100644",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 263,
+      "sha256": "8c6c25eba59bcf6d9cf23d37fb0cd1e63f3ce379a56325fde9dae346e298871a"
+    }
+  },
+  "physical_boot_proven": false
+}

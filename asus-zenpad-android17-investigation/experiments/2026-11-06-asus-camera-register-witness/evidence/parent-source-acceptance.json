@@ -1,0 +1,388 @@
+{
+  "utc": "2026-11-06T22:55:05.384467+00:00",
+  "decision": "accept bounded source-mode evidence",
+  "delivery_hashes_verified": 91,
+  "artifact_hashes_verified": 58,
+  "original_source_hashes_verified": 4,
+  "function_checks": [
+    {
+      "sensor": "ov5670",
+      "function": "set_dummy",
+      "exact_bytes": 523,
+      "sha256": "42b7232327d9da875763691ee25a8b34daf992aec188b82c813d08de06f8590c",
+      "source_lines": [
+        282,
+        291
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "set_max_framerate",
+      "exact_bytes": 1088,
+      "sha256": "cf47896f63e2dc2c597ae19a52eef2eb24f724d49f05be073a5ed61e37d0afcb",
+      "source_lines": [
+        294,
+        320
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "preview_setting",
+      "exact_bytes": 1564,
+      "sha256": "e0c15973213024d242a223f7c94f7eb77f42143d54fee8b55f60c033eac8864a",
+      "source_lines": [
+        906,
+        959
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "capture_setting",
+      "exact_bytes": 2860,
+      "sha256": "6c5cd3bf838d3491fdc0d36d13625cd5d00d98ece582469c63cf094c8e31fe55",
+      "source_lines": [
+        961,
+        1053
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "normal_video_setting",
+      "exact_bytes": 1798,
+      "sha256": "e213c41d02b955abae0f426fc7d6365011ee293951a6f402468f15b97769b7ff",
+      "source_lines": [
+        1055,
+        1101
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "hs_video_setting",
+      "exact_bytes": 1218,
+      "sha256": "228a71b859bb36456f8b4629766b387542275a3378d90a59b986d9769c1cb3c8",
+      "source_lines": [
+        1102,
+        1144
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "slim_video_setting",
+      "exact_bytes": 1751,
+      "sha256": "4d9f0cf9fc0a345221b6e53045c7d350d6ad5ae9fd8bb4ae2fd71e728c90db71",
+      "source_lines": [
+        1147,
+        1194
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "custom1_setting",
+      "exact_bytes": 1560,
+      "sha256": "1d6d7e8e9c938b0e7b3d97b873b7c0d0ecaaf7b564ad6a52ad972fae0e5a0768",
+      "source_lines": [
+        1196,
+        1249
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "preview",
+      "exact_bytes": 603,
+      "sha256": "570144aee90c11cf4230d8408bd1fdce822f2a1a6e22fc80fdcbf0908f871694",
+      "source_lines": [
+        1525,
+        1541
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "capture",
+      "exact_bytes": 1233,
+      "sha256": "f305301f859bbc5c6d217baf7de9155dde267fda371098f18dccd1dd85340f94",
+      "source_lines": [
+        1558,
+        1586
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "normal_video",
+      "exact_bytes": 665,
+      "sha256": "2e98ba037cb7cc93de05c1db68a049059459748659e16bbb89739e948522e2ab",
+      "source_lines": [
+        1587,
+        1605
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "hs_video",
+      "exact_bytes": 689,
+      "sha256": "55b26b254a9a20d402092f4778ba4baf621fa124e61bc6ef10a7e0e43bb54ce6",
+      "source_lines": [
+        1607,
+        1626
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "slim_video",
+      "exact_bytes": 659,
+      "sha256": "abe3f4e8d208f0e8d0901847a1fc86bc9261afca87915e7d24b5735e3d612160",
+      "source_lines": [
+        1628,
+        1646
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "custom1",
+      "exact_bytes": 641,
+      "sha256": "dd804b009802da89424bbb0cb09be5f17a6c3a8792cb9826e36343fa9c45943d",
+      "source_lines": [
+        1649,
+        1667
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "control",
+      "exact_bytes": 1088,
+      "sha256": "81139e7afd92a96c70a6c48a775d3c6d89e643add905dce105ba0bce15d2d63e",
+      "source_lines": [
+        1807,
+        1839
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "set_video_mode",
+      "exact_bytes": 587,
+      "sha256": "1324fb0126b2f7257cf13e2b46833b70f5452ab32b57902b9c36ae6bafb9b175",
+      "source_lines": [
+        1843,
+        1861
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "set_max_framerate_by_scenario",
+      "exact_bytes": 4414,
+      "sha256": "2e273af69a4844b1d839de9b9ca72d48041cd71fd51e11d2c14d5d04002debeb",
+      "source_lines": [
+        1876,
+        1953
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "get_default_framerate_by_scenario",
+      "exact_bytes": 748,
+      "sha256": "d94fa10b69944b588b76951370d56654ed50259147cffd3b9f4ab0a924c16428",
+      "source_lines": [
+        1956,
+        1981
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "set_dummy",
+      "exact_bytes": 718,
+      "sha256": "c9484f6a55bc70e84a575885f67a4a547457a199817199c05b748ecc322569f1",
+      "source_lines": [
+        205,
+        220
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "set_max_framerate",
+      "exact_bytes": 1117,
+      "sha256": "5e35f95b4eae2691b57ad51f6299005b5b32ec9f60daf21f5806c86e5bb60ab0",
+      "source_lines": [
+        226,
+        253
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "preview_setting",
+      "exact_bytes": 1440,
+      "sha256": "acbb941acc9d41e4413c1a9dfbe6680c24a857a80014307b5e36992f2f1df895",
+      "source_lines": [
+        492,
+        539
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "capture_setting",
+      "exact_bytes": 113,
+      "sha256": "c70174dd46a8424aef946858cbcfaf41b59c3f48d08be2d04bafb2515a4c2852",
+      "source_lines": [
+        641,
+        645
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "normal_video_setting",
+      "exact_bytes": 116,
+      "sha256": "e521a988832f62ee1c56dea8f480b37a4eb3e5ea4d837156373ae018fffa6a9b",
+      "source_lines": [
+        647,
+        651
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "hs_video_setting",
+      "exact_bytes": 1440,
+      "sha256": "eb45b6c42b4363240e9a3464ff9a404f9e54dbfeb4585fb6e012dad2cddf633a",
+      "source_lines": [
+        652,
+        699
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "slim_video_setting",
+      "exact_bytes": 77,
+      "sha256": "5dc29fadb93f29bdaedcb5c7bdb5b7ea3c2e004c9ab7071845dffbf4f163e386",
+      "source_lines": [
+        701,
+        705
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "preview",
+      "exact_bytes": 604,
+      "sha256": "14ca0de5eca88b34d3929a228b423c31015d3bed495f00936e75dedada7f030e",
+      "source_lines": [
+        896,
+        912
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "capture",
+      "exact_bytes": 1285,
+      "sha256": "5aa7c4c81cfa587af9b5272d4f74b760f8f878feeaaf2b7443bf01938dd01c91",
+      "source_lines": [
+        929,
+        954
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "normal_video",
+      "exact_bytes": 666,
+      "sha256": "0f41684f14d73c7ecd3de8170e0e76e9ba4175884adb3dcf1fb5af4e97a37f43",
+      "source_lines": [
+        955,
+        971
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "hs_video",
+      "exact_bytes": 724,
+      "sha256": "ac1d55bd614a774954c3c8ff9901db58baffd1f8c9676d3988a417d8ccc13253",
+      "source_lines": [
+        973,
+        993
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "slim_video",
+      "exact_bytes": 731,
+      "sha256": "4f8eb2c46eb0287d0940dd0704abcbe71bd5ace5b3d1561678f655d883d063b9",
+      "source_lines": [
+        995,
+        1015
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "control",
+      "exact_bytes": 1006,
+      "sha256": "6d4621b05772f118b12577b0a53b4b5b12b3c7a1592ec560d9fd73339843a4a4",
+      "source_lines": [
+        1144,
+        1173
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "set_video_mode",
+      "exact_bytes": 679,
+      "sha256": "2d7f4cd15e2e3fbdc9671091954e4d7f89009959e57e705b5b589655c3abbfc0",
+      "source_lines": [
+        1177,
+        1195
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "set_max_framerate_by_scenario",
+      "exact_bytes": 4377,
+      "sha256": "6ab944b0be34a5d1428bbd8bd6323a7950dc691d2b74c10f694d0540ed0c94cd",
+      "source_lines": [
+        1209,
+        1286
+      ],
+      "unique_exact_source_substring": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "get_default_framerate_by_scenario",
+      "exact_bytes": 752,
+      "sha256": "7f10dbfca2c1b916190e34becbe770eca9623db0a1419e80094525b566f16fcf",
+      "source_lines": [
+        1289,
+        1314
+      ],
+      "unique_exact_source_substring": true
+    }
+  ],
+  "all_functions_exact": true,
+  "audit_note": "Initial parent range-hash assumption included comments after closing braces on the same final line. Corrected check proves unchanged generated function bytes are unique exact original-source substrings and matches every recorded start/end line. Initial failed assumption preserved; no source or original report changed.",
+  "scope": "Source register programs and state arithmetic; not complete Android metadata or physical sensor operation.",
+  "hardware_qualified": false,
+  "camera_enabled": false
+}

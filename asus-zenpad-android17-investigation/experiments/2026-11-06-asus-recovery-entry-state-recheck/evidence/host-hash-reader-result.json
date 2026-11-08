@@ -1,0 +1,12 @@
+{
+  "utc": "2026-11-07T00:17:49.018634+00:00",
+  "method": "existing_pinned_two_capture_host_hash_reader",
+  "reader_sha256": "b8b0abf17c9f9909234bb03cf1a9e2295218857d02071813e3feaeb6937d1d6b",
+  "exit": 0,
+  "stdout": "{\n  \"at_utc\": \"2026-11-07T00:17:49.014573+00:00\",\n  \"phase\": \"after\",\n  \"files\": [\n    {\n      \"path\": \"private/after-92c13748703be507/para-a.bin\",\n      \"bytes\": 524288,\n      \"sha256\": \"8c9e2c158ac95f152d08ea9de929ae36d054131ca4b10620890974ed831480ef\"\n    },\n    {\n      \"path\": \"private/after-92c13748703be507/para-b.bin\",\n      \"bytes\": 524288,\n      \"sha256\": \"8c9e2c158ac95f152d08ea9de929ae36d054131ca4b10620890974ed831480ef\"\n    }\n  ],\n  \"both_match_expected\": true,\n  \"staging_cleanup_verified\": true,\n  \"block_writes\": false,\n  \"clear_requested\": false,\n  \"reboot\": false,\n  \"source_sha256\": \"b8b0abf17c9f9909234bb03cf1a9e2295218857d02071813e3feaeb6937d1d6b\",\n  \"receipt\": \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-pending-recovery-request/evidence/after-capture-92c13748703be507.json\"\n}\n",
+  "stderr": "",
+  "replaces_unavailable_tablet_sha256sum": true,
+  "partition_write": false,
+  "clear_requested": false,
+  "reboot": false
+}

@@ -1,0 +1,19 @@
+{
+  "status": "failed",
+  "kernel_builds": 1,
+  "helper_compiles": 0,
+  "kernel_command": [
+    "make",
+    "-C",
+    "/srv/android/asus-devkmsg-return-boundary-20261108-e7acab50/kernel",
+    "O=/srv/android/asus-devkmsg-return-boundary-20261108-e7acab50/out",
+    "ARCH=arm64",
+    "CROSS_COMPILE=aarch64-linux-gnu-",
+    "HOSTCC=gcc",
+    "HOSTCXX=g++",
+    "LOCALVERSION=-g717bb3c9e13c-dirty",
+    "-j8",
+    "Image.gz-dtb"
+  ],
+  "error": "FileNotFoundError(2, 'No such file or directory')"
+}

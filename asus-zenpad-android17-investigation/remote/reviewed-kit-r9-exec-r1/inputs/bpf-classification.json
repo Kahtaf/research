@@ -1,0 +1,1523 @@
+{
+  "baseline_method_sha256": "b582731ad51c8308f03796fbae39875ba1d8b1fdaa5b3fcc70ebee7be6a29bfb",
+  "baseline_scope": "Prior optional-platform-load failures and feature limitations retained; not all-feature readiness",
+  "qualification_sha256": "cec5f5151274b0a228f0482a0053bd91771840f3e752fefa97c9c2e804d5457c",
+  "rows": [
+    {
+      "current_sha256": "c25e367c588591df982b9ee131cca58cccd5e9728bdf2ff0ab6ee3c3ed4ca63c",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "apex/com.android.tethering/etc/bpf/mainline/clatd.o",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "clatd.o",
+      "native_command_hash": "dba76d3d659d171199605bf1b5300a05dd86402c5682bdb60e56c705faf1e5dc",
+      "output": "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/clatd.o/android_common/obj/packages/modules/Connectivity/bpf/progs/clatd.o",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/clatd.o/android_common/obj/packages/modules/Connectivity/bpf/progs/clatd.o": {
+            "bytes": 43968,
+            "sha256": "c25e367c588591df982b9ee131cca58cccd5e9728bdf2ff0ab6ee3c3ed4ca63c"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/clatd.o/android_common/obj/packages/modules/Connectivity/bpf/progs/clatd.o",
+        "graph_output_chain": [
+          "out/target/product/p00a/apex/com.android.tethering/etc/bpf/mainline/clatd.o",
+          "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/clatd.o/android_common/obj/packages/modules/Connectivity/bpf/progs/clatd.o"
+        ],
+        "install_path": "apex/com.android.tethering/etc/bpf/mainline/clatd.o",
+        "metadata": "evidence/object-metadata-v2/apex__com.android.tethering__etc__bpf__mainline__clatd.o.txt",
+        "selected_by": ".installable_files",
+        "sha256": "c25e367c588591df982b9ee131cca58cccd5e9728bdf2ff0ab6ee3c3ed4ca63c",
+        "system_image_dependency": false,
+        "system_image_file_list": false
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "916719bd916131e68bba9a19f481c233dd6ee120a2e5ef5ca5be62deb6718a0a",
+      "qualified_sha256": "c25e367c588591df982b9ee131cca58cccd5e9728bdf2ff0ab6ee3c3ed4ca63c",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "c25e367c588591df982b9ee131cca58cccd5e9728bdf2ff0ab6ee3c3ed4ca63c",
+      "source_pins": {
+        "packages/modules/Connectivity/bpf/progs/Android.bp": {
+          "bytes": 3933,
+          "sha256": "f80307f087746f3b7ec82c807cc1d587244e7463609407d3cc42498b4f944898",
+          "symlink": null
+        },
+        "packages/modules/Connectivity/bpf/progs/clatd.c": {
+          "bytes": 18692,
+          "sha256": "b82ac3df4f1a6322709d20909c7d8aec13d3a38b1443440ae445dbbdcabd43cf",
+          "symlink": null
+        }
+      },
+      "variant": "android_common"
+    },
+    {
+      "current_sha256": "418b9b09c96ed964bc408bff5df8f31e9fd5057d7f2bb56c3704c62c2ebdadec",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "apex/com.android.tethering/etc/bpf/mainline/dscpPolicy.o",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "dscpPolicy.o",
+      "native_command_hash": "0d20c46c81b1c3eccad6a41b49ec5d703f70c42092b8913778af3bff79cb7d59",
+      "output": "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/dscpPolicy.o/android_common/obj/packages/modules/Connectivity/bpf/progs/dscpPolicy.o",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/dscpPolicy.o/android_common/obj/packages/modules/Connectivity/bpf/progs/dscpPolicy.o": {
+            "bytes": 26512,
+            "sha256": "418b9b09c96ed964bc408bff5df8f31e9fd5057d7f2bb56c3704c62c2ebdadec"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/dscpPolicy.o/android_common/obj/packages/modules/Connectivity/bpf/progs/dscpPolicy.o",
+        "graph_output_chain": [
+          "out/target/product/p00a/apex/com.android.tethering/etc/bpf/mainline/dscpPolicy.o",
+          "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/dscpPolicy.o/android_common/obj/packages/modules/Connectivity/bpf/progs/dscpPolicy.o"
+        ],
+        "install_path": "apex/com.android.tethering/etc/bpf/mainline/dscpPolicy.o",
+        "metadata": "evidence/object-metadata-v2/apex__com.android.tethering__etc__bpf__mainline__dscpPolicy.o.txt",
+        "selected_by": ".installable_files",
+        "sha256": "418b9b09c96ed964bc408bff5df8f31e9fd5057d7f2bb56c3704c62c2ebdadec",
+        "system_image_dependency": false,
+        "system_image_file_list": false
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "e20b6edef84eb610adbad8162d3d2eb1bae9ed55d37b045d557c588b55a79229",
+      "qualified_sha256": "418b9b09c96ed964bc408bff5df8f31e9fd5057d7f2bb56c3704c62c2ebdadec",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "418b9b09c96ed964bc408bff5df8f31e9fd5057d7f2bb56c3704c62c2ebdadec",
+      "source_pins": {
+        "packages/modules/Connectivity/bpf/progs/Android.bp": {
+          "bytes": 3933,
+          "sha256": "f80307f087746f3b7ec82c807cc1d587244e7463609407d3cc42498b4f944898",
+          "symlink": null
+        },
+        "packages/modules/Connectivity/bpf/progs/dscpPolicy.c": {
+          "bytes": 11654,
+          "sha256": "99e39aae52c97a3c29b0870c2f527f535dbece7e5b52666cd3d666071dbc1093",
+          "symlink": null
+        }
+      },
+      "variant": "android_common"
+    },
+    {
+      "current_sha256": "b976cc2577ca47fc7ad5486a37f54cb29175dd5dad79379c1d3c0427e72bd3dd",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "apex/com.android.tethering/etc/bpf/mainline/dscpPolicy@funcs.o",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "dscpPolicy@funcs.o",
+      "native_command_hash": "c3823eb3269c278fedfa33de49e69f7dd0f82f579e59eedd4c14e04f4a552710",
+      "output": "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/dscpPolicy@funcs.o/android_common/obj/packages/modules/Connectivity/bpf/progs/dscpPolicy@funcs.o",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/dscpPolicy@funcs.o/android_common/obj/packages/modules/Connectivity/bpf/progs/dscpPolicy@funcs.o": {
+            "bytes": 25848,
+            "sha256": "b976cc2577ca47fc7ad5486a37f54cb29175dd5dad79379c1d3c0427e72bd3dd"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/dscpPolicy@funcs.o/android_common/obj/packages/modules/Connectivity/bpf/progs/dscpPolicy@funcs.o",
+        "graph_output_chain": [
+          "out/target/product/p00a/apex/com.android.tethering/etc/bpf/mainline/dscpPolicy@funcs.o",
+          "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/dscpPolicy@funcs.o/android_common/obj/packages/modules/Connectivity/bpf/progs/dscpPolicy@funcs.o"
+        ],
+        "install_path": "apex/com.android.tethering/etc/bpf/mainline/dscpPolicy@funcs.o",
+        "metadata": "evidence/object-metadata-v2/ACCOUNT_REDACTED",
+        "selected_by": ".installable_files",
+        "sha256": "b976cc2577ca47fc7ad5486a37f54cb29175dd5dad79379c1d3c0427e72bd3dd",
+        "system_image_dependency": false,
+        "system_image_file_list": false
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "9b28fe3d6a64faf5f5f99ba2ac23c5bacd8df756d4b4b1a21b7c1a6fadbfa5aa",
+      "qualified_sha256": "b976cc2577ca47fc7ad5486a37f54cb29175dd5dad79379c1d3c0427e72bd3dd",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "b976cc2577ca47fc7ad5486a37f54cb29175dd5dad79379c1d3c0427e72bd3dd",
+      "source_pins": {
+        "packages/modules/Connectivity/bpf/progs/Android.bp": {
+          "bytes": 3933,
+          "sha256": "f80307f087746f3b7ec82c807cc1d587244e7463609407d3cc42498b4f944898",
+          "symlink": null
+        },
+        "packages/modules/Connectivity/bpf/progs/dscpPolicy@funcs.c": {
+          "bytes": 11654,
+          "sha256": "99e39aae52c97a3c29b0870c2f527f535dbece7e5b52666cd3d666071dbc1093",
+          "symlink": "dscpPolicy.c"
+        }
+      },
+      "variant": "android_common"
+    },
+    {
+      "current_sha256": "863f3d2e79e804559c90ec145f23210d48f841777bb646a5f3f4b45952aad4b8",
+      "execution": {
+        "attempt_started_sha256": "6433c36ca34cfb8c19027aa8ff83560513d390786d640e085364144ae381b0f5",
+        "command_hash_hex": "bf9b897ab567ee0979ee791ac17e85fd8caca2650739e39fada4854345e75b81",
+        "integration_sha256": "eb3bea76da122ed3218821acdd5c72a1e20f5cf5cf1c9c485587399ebc095b03",
+        "metrics": {
+          "line": 8,
+          "value": {
+            "action": "g.bpf.stripRule",
+            "action_end": 38.54,
+            "action_start": 38.53,
+            "cmdhash": "v5uJerVn7gl57nkawX6F/YysomUHOeOfraSFQ0XnW4E=",
+            "duration": 0.02,
+            "exec": 0.01,
+            "exec_start": 38.53,
+            "inblock": 8,
+            "inputs": 3,
+            "is_local": true,
+            "max_rss": 21148596,
+            "oublock": 984,
+            "output": "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd.o/android_common/obj/packages/modules/Connectivity/bpf/progs/netd.o",
+            "outputs": 1,
+            "prev": "67220b8d-f70f-459e-8418-5bfc3eb3e5b0",
+            "prev_out": "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd.o/android_common/obj/unstripped/packages/modules/Connectivity/bpf/progs/netd.o",
+            "queue": 0.01,
+            "ready": 38.51,
+            "run": 0.01,
+            "start": 0.0,
+            "step_id": "276ce359-aecd-4fb7-a907-e77d88ea628b",
+            "stime": 0.0,
+            "utime": 0.0
+          }
+        },
+        "ninja": {
+          "line": 9,
+          "raw_v5_row": "38525\t38541\t1794008153289291267\tout/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd.o/android_common/obj/packages/modules/Connectivity/bpf/progs/netd.o\tf331979ee2a001ff"
+        },
+        "phase_exit_code": 1,
+        "phase_path": "/srv/android/asus-reviewed-build-kit/r8/attempt/native-evidence/bootimage",
+        "phase_receipt_sha256": "06a73e6125819f5dd7e7449cbd95e1ac128beb483be6f5b194d5c7324933a2b2",
+        "primary_rsp": null,
+        "verbose": {
+          "command": "prebuilts/clang/host/linux-x86/clang-r584948b/bin/llvm-strip -g out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd.o/android_common/obj/unstripped/packages/modules/Connectivity/bpf/progs/netd.o -o out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd.o/android_common/obj/packages/modules/Connectivity/bpf/progs/netd.o",
+          "line": 6705,
+          "progress": "9/214028",
+          "sha256": "bf9b897ab567ee0979ee791ac17e85fd8caca2650739e39fada4854345e75b81"
+        }
+      },
+      "final_runtime_admitted_sha256": null,
+      "historical_runtime_tested_substitution_sha256": "25ccea3b8043240238381ee19d950ebc51629f06688b3a1af9d97e8a6e11ad6f",
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "apex/com.android.tethering/etc/bpf/mainline/netd.o",
+      "kind": "PRIOR_R8_EXECUTION",
+      "module": "netd.o",
+      "native_command_hash": "bf9b897ab567ee0979ee791ac17e85fd8caca2650739e39fada4854345e75b81",
+      "output": "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd.o/android_common/obj/packages/modules/Connectivity/bpf/progs/netd.o",
+      "preparation_candidate_sha256": "863f3d2e79e804559c90ec145f23210d48f841777bb646a5f3f4b45952aad4b8",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd.o/android_common/obj/packages/modules/Connectivity/bpf/progs/netd.o": {
+            "bytes": 476832,
+            "sha256": "c5232afa1ae316a42008983b99aec58332a073dd95a57a63a6033fe96763c2bc"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd.o/android_common/obj/packages/modules/Connectivity/bpf/progs/netd.o",
+        "graph_output_chain": [
+          "out/target/product/p00a/apex/com.android.tethering/etc/bpf/mainline/netd.o",
+          "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd.o/android_common/obj/packages/modules/Connectivity/bpf/progs/netd.o"
+        ],
+        "install_path": "apex/com.android.tethering/etc/bpf/mainline/netd.o",
+        "metadata": "evidence/object-metadata-v2/apex__com.android.tethering__etc__bpf__mainline__netd.o.txt",
+        "selected_by": ".installable_files",
+        "sha256": "c5232afa1ae316a42008983b99aec58332a073dd95a57a63a6033fe96763c2bc",
+        "system_image_dependency": false,
+        "system_image_file_list": false
+      },
+      "qualification_row_interpretation": "Original selected-output inventory only; no runtime qualification of these changed/new bytes",
+      "qualification_row_sha256": "7b1cf95de26753a1485c907eadb674a6feba7588d7ae753d3e70621c26f0685e",
+      "qualified_sha256": null,
+      "runtime_requalification_required": true,
+      "selected_original_inventory_sha256": "c5232afa1ae316a42008983b99aec58332a073dd95a57a63a6033fe96763c2bc",
+      "source_pins": {
+        "packages/modules/Connectivity/bpf/progs/Android.bp": {
+          "bytes": 3933,
+          "sha256": "f80307f087746f3b7ec82c807cc1d587244e7463609407d3cc42498b4f944898",
+          "symlink": null
+        },
+        "packages/modules/Connectivity/bpf/progs/netd.c": {
+          "bytes": 65382,
+          "sha256": "0ecc7f0895df51ccfa2316115a148fd1fbc6c5a3797607035f51a889911571d1",
+          "symlink": null
+        }
+      },
+      "variant": "android_common"
+    },
+    {
+      "current_sha256": "b5f8f4bf79dfbd6403405163b768a3307b43fd30d90b19ac3fd2260d746ff9c4",
+      "execution": {
+        "attempt_started_sha256": "6433c36ca34cfb8c19027aa8ff83560513d390786d640e085364144ae381b0f5",
+        "command_hash_hex": "188903be1e849a4e3278cfbf804bd8855f46c637e1e75791212489fefd387eda",
+        "integration_sha256": "eb3bea76da122ed3218821acdd5c72a1e20f5cf5cf1c9c485587399ebc095b03",
+        "metrics": {
+          "line": 24,
+          "value": {
+            "action": "g.bpf.stripRule",
+            "action_end": 40.53,
+            "action_start": 40.52,
+            "cmdhash": "GIkDvh6Emk4yeM+/gEvYhV9Gxjfh51eRISSJ/v04fto=",
+            "duration": 1.99,
+            "exec": 0.01,
+            "exec_start": 40.52,
+            "inblock": 8,
+            "inputs": 3,
+            "is_local": true,
+            "max_rss": 21963188,
+            "oublock": 896,
+            "output": "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd@funcs.o/android_common/obj/packages/modules/Connectivity/bpf/progs/netd@funcs.o",
+            "outputs": 1,
+            "prev": "e32bbefc-c9a7-4fc4-930b-0054ae588209",
+            "prev_out": "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd@funcs.o/android_common/obj/unstripped/packages/modules/Connectivity/bpf/progs/netd@funcs.o",
+            "queue": 0.69,
+            "ready": 38.53,
+            "run": 0.01,
+            "start": 0.01,
+            "step_id": "ac0594b1-eb7c-45cf-8620-b7c8bd17dcce",
+            "stime": 0.0,
+            "utime": 0.0,
+            "weighted_duration": 0.0
+          }
+        },
+        "ninja": {
+          "line": 26,
+          "raw_v5_row": "40520\t40530\t1794008155277373842\tout/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd@funcs.o/android_common/obj/packages/modules/Connectivity/bpf/progs/netd@funcs.o\t9feb95fcbc61c7e5"
+        },
+        "phase_exit_code": 1,
+        "phase_path": "/srv/android/asus-reviewed-build-kit/r8/attempt/native-evidence/bootimage",
+        "phase_receipt_sha256": "06a73e6125819f5dd7e7449cbd95e1ac128beb483be6f5b194d5c7324933a2b2",
+        "primary_rsp": null,
+        "verbose": {
+          "command": "prebuilts/clang/host/linux-x86/clang-r584948b/bin/llvm-strip -g 'out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd@funcs.o/android_common/obj/unstripped/packages/modules/Connectivity/bpf/progs/netd@funcs.o' -o 'out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd@funcs.o/android_common/obj/packages/modules/Connectivity/bpf/progs/netd@funcs.o'",
+          "line": 16659,
+          "progress": "25/214028",
+          "sha256": "188903be1e849a4e3278cfbf804bd8855f46c637e1e75791212489fefd387eda"
+        }
+      },
+      "final_runtime_admitted_sha256": null,
+      "historical_runtime_tested_substitution_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "apex/com.android.tethering/etc/bpf/mainline/netd@funcs.o",
+      "kind": "PRIOR_R8_EXECUTION",
+      "module": "netd@funcs.o",
+      "native_command_hash": "188903be1e849a4e3278cfbf804bd8855f46c637e1e75791212489fefd387eda",
+      "output": "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd@funcs.o/android_common/obj/packages/modules/Connectivity/bpf/progs/netd@funcs.o",
+      "preparation_candidate_sha256": "b5f8f4bf79dfbd6403405163b768a3307b43fd30d90b19ac3fd2260d746ff9c4",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd@funcs.o/android_common/obj/packages/modules/Connectivity/bpf/progs/netd@funcs.o": {
+            "bytes": 434176,
+            "sha256": "052b61b53320dc2a94b9cf97323bc7a3bb3732b8a918ef4dd355e0cf591fd3b5"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd@funcs.o/android_common/obj/packages/modules/Connectivity/bpf/progs/netd@funcs.o",
+        "graph_output_chain": [
+          "out/target/product/p00a/apex/com.android.tethering/etc/bpf/mainline/netd@funcs.o",
+          "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/netd@funcs.o/android_common/obj/packages/modules/Connectivity/bpf/progs/netd@funcs.o"
+        ],
+        "install_path": "apex/com.android.tethering/etc/bpf/mainline/netd@funcs.o",
+        "metadata": "evidence/object-metadata-v2/ACCOUNT_REDACTED",
+        "selected_by": ".installable_files",
+        "sha256": "052b61b53320dc2a94b9cf97323bc7a3bb3732b8a918ef4dd355e0cf591fd3b5",
+        "system_image_dependency": false,
+        "system_image_file_list": false
+      },
+      "qualification_row_interpretation": "Original selected-output inventory only; no runtime qualification of these changed/new bytes",
+      "qualification_row_sha256": "3bd50fb22b2d3261fa6ce60ebf098a546445bde1de1069812496e35bc6a385b9",
+      "qualified_sha256": null,
+      "runtime_requalification_required": true,
+      "selected_original_inventory_sha256": "052b61b53320dc2a94b9cf97323bc7a3bb3732b8a918ef4dd355e0cf591fd3b5",
+      "source_pins": {
+        "packages/modules/Connectivity/bpf/progs/Android.bp": {
+          "bytes": 3933,
+          "sha256": "f80307f087746f3b7ec82c807cc1d587244e7463609407d3cc42498b4f944898",
+          "symlink": null
+        },
+        "packages/modules/Connectivity/bpf/progs/netd@funcs.c": {
+          "bytes": 65382,
+          "sha256": "0ecc7f0895df51ccfa2316115a148fd1fbc6c5a3797607035f51a889911571d1",
+          "symlink": "netd.c"
+        }
+      },
+      "variant": "android_common"
+    },
+    {
+      "current_sha256": "4ed894d5ae7d49caf9cb54b22d010eb7a7672fc68e634ed1163d28cb7bfd3198",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "apex/com.android.tethering/etc/bpf/mainline/offload.o",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "offload.o",
+      "native_command_hash": "ac93a5d394312dbebeaeedf802769d5d992c2d9478d7edbe80ae415aa07f9d69",
+      "output": "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/offload.o/android_common/obj/packages/modules/Connectivity/bpf/progs/offload.o",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/offload.o/android_common/obj/packages/modules/Connectivity/bpf/progs/offload.o": {
+            "bytes": 368096,
+            "sha256": "4ed894d5ae7d49caf9cb54b22d010eb7a7672fc68e634ed1163d28cb7bfd3198"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/offload.o/android_common/obj/packages/modules/Connectivity/bpf/progs/offload.o",
+        "graph_output_chain": [
+          "out/target/product/p00a/apex/com.android.tethering/etc/bpf/mainline/offload.o",
+          "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/offload.o/android_common/obj/packages/modules/Connectivity/bpf/progs/offload.o"
+        ],
+        "install_path": "apex/com.android.tethering/etc/bpf/mainline/offload.o",
+        "metadata": "evidence/object-metadata-v2/apex__com.android.tethering__etc__bpf__mainline__offload.o.txt",
+        "selected_by": ".installable_files",
+        "sha256": "4ed894d5ae7d49caf9cb54b22d010eb7a7672fc68e634ed1163d28cb7bfd3198",
+        "system_image_dependency": false,
+        "system_image_file_list": false
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "182999ee2802c9191fef7e0aa75da7ce5a01101f3e24f2c9e80ec674460a0baf",
+      "qualified_sha256": "4ed894d5ae7d49caf9cb54b22d010eb7a7672fc68e634ed1163d28cb7bfd3198",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "4ed894d5ae7d49caf9cb54b22d010eb7a7672fc68e634ed1163d28cb7bfd3198",
+      "source_pins": {
+        "packages/modules/Connectivity/bpf/progs/Android.bp": {
+          "bytes": 3933,
+          "sha256": "f80307f087746f3b7ec82c807cc1d587244e7463609407d3cc42498b4f944898",
+          "symlink": null
+        },
+        "packages/modules/Connectivity/bpf/progs/offload.c": {
+          "bytes": 37514,
+          "sha256": "cbf6be74b6908ae2f1c4fe0cfafd93851d9a19f8df0a732e7cae91823df117e0",
+          "symlink": null
+        }
+      },
+      "variant": "android_common"
+    },
+    {
+      "current_sha256": "0985e51706df066b83e6a56bc5545896853605e1437ac5d7f76c144e3c0d01d4",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "apex/com.android.tethering/etc/bpf/mainline/test.o",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "test.o",
+      "native_command_hash": "635128ac1c5bcf7bbfdec8f404ae721d0f05afa2c5fe2d15362a2b2cc65854ac",
+      "output": "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/test.o/android_common/obj/packages/modules/Connectivity/bpf/progs/test.o",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/test.o/android_common/obj/packages/modules/Connectivity/bpf/progs/test.o": {
+            "bytes": 8416,
+            "sha256": "0985e51706df066b83e6a56bc5545896853605e1437ac5d7f76c144e3c0d01d4"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/test.o/android_common/obj/packages/modules/Connectivity/bpf/progs/test.o",
+        "graph_output_chain": [
+          "out/target/product/p00a/apex/com.android.tethering/etc/bpf/mainline/test.o",
+          "out/soong/.intermediates/packages/modules/Connectivity/bpf/progs/test.o/android_common/obj/packages/modules/Connectivity/bpf/progs/test.o"
+        ],
+        "install_path": "apex/com.android.tethering/etc/bpf/mainline/test.o",
+        "metadata": "evidence/object-metadata-v2/apex__com.android.tethering__etc__bpf__mainline__test.o.txt",
+        "selected_by": ".installable_files",
+        "sha256": "0985e51706df066b83e6a56bc5545896853605e1437ac5d7f76c144e3c0d01d4",
+        "system_image_dependency": false,
+        "system_image_file_list": false
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "13c1c9c4d2e074cc692f86b2ebe20cfff277fb89eeffa68d53a2aad48dbc5506",
+      "qualified_sha256": "0985e51706df066b83e6a56bc5545896853605e1437ac5d7f76c144e3c0d01d4",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "0985e51706df066b83e6a56bc5545896853605e1437ac5d7f76c144e3c0d01d4",
+      "source_pins": {
+        "packages/modules/Connectivity/bpf/progs/Android.bp": {
+          "bytes": 3933,
+          "sha256": "f80307f087746f3b7ec82c807cc1d587244e7463609407d3cc42498b4f944898",
+          "symlink": null
+        },
+        "packages/modules/Connectivity/bpf/progs/test.c": {
+          "bytes": 1741,
+          "sha256": "bc843be0badb31d255e731e3d539845b98884f93330ab6de759b2f52480584dd",
+          "symlink": null
+        }
+      },
+      "variant": "android_common"
+    },
+    {
+      "current_sha256": "8b5a531f440df04ef84a37859c2b303950d7df040d9dbadd2b3f9c41b1229b64",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "apex/com.android.uprobestats/etc/bpf/uprobestats/Accessibility.o",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "Accessibility.o",
+      "native_command_hash": "10e08ed959dce05bf846961f97f4a138e4c129a936aacf31a96eab4f1bc45d32",
+      "output": "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/Accessibility.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/Accessibility.o",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/Accessibility.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/Accessibility.o": {
+            "bytes": 12856,
+            "sha256": "8b5a531f440df04ef84a37859c2b303950d7df040d9dbadd2b3f9c41b1229b64"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/Accessibility.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/Accessibility.o",
+        "graph_output_chain": [
+          "out/target/product/p00a/apex/com.android.uprobestats/etc/bpf/uprobestats/Accessibility.o",
+          "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/Accessibility.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/Accessibility.o"
+        ],
+        "install_path": "apex/com.android.uprobestats/etc/bpf/uprobestats/Accessibility.o",
+        "metadata": "evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__Accessibility.o.txt",
+        "selected_by": ".installable_files",
+        "sha256": "8b5a531f440df04ef84a37859c2b303950d7df040d9dbadd2b3f9c41b1229b64",
+        "system_image_dependency": false,
+        "system_image_file_list": false
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "db8120207617c1a813d428281aba198001c2f3a6655d4d7de09400452f7e555d",
+      "qualified_sha256": "8b5a531f440df04ef84a37859c2b303950d7df040d9dbadd2b3f9c41b1229b64",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "8b5a531f440df04ef84a37859c2b303950d7df040d9dbadd2b3f9c41b1229b64",
+      "source_pins": {
+        "packages/modules/UprobeStats/bpf_progs/Accessibility.c": {
+          "bytes": 3750,
+          "sha256": "2244409a8f852e81edc00f9c7836257389b41bd022912705f1cb33f614dc27a7",
+          "symlink": null
+        },
+        "packages/modules/UprobeStats/bpf_progs/Android.bp": {
+          "bytes": 1330,
+          "sha256": "d9461c1cf369a45353ded0dd0451fe0b4e31f7055d686b1b55631c9ba94482f4",
+          "symlink": null
+        }
+      },
+      "variant": "android_common"
+    },
+    {
+      "current_sha256": "ddc3eede78f7bf527e4bd5855779bdd254d0c3479da51da6441b135c9b19c774",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "apex/com.android.uprobestats/etc/bpf/uprobestats/ArtTest.o",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "ArtTest.o",
+      "native_command_hash": "24b6f3b7215645af6e41412f853f5baee7556d5ace8de4563bdfaf060aa3fd33",
+      "output": "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/ArtTest.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/ArtTest.o",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/ArtTest.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/ArtTest.o": {
+            "bytes": 13240,
+            "sha256": "ddc3eede78f7bf527e4bd5855779bdd254d0c3479da51da6441b135c9b19c774"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/ArtTest.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/ArtTest.o",
+        "graph_output_chain": [
+          "out/target/product/p00a/apex/com.android.uprobestats/etc/bpf/uprobestats/ArtTest.o",
+          "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/ArtTest.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/ArtTest.o"
+        ],
+        "install_path": "apex/com.android.uprobestats/etc/bpf/uprobestats/ArtTest.o",
+        "metadata": "evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__ArtTest.o.txt",
+        "selected_by": ".installable_files",
+        "sha256": "ddc3eede78f7bf527e4bd5855779bdd254d0c3479da51da6441b135c9b19c774",
+        "system_image_dependency": false,
+        "system_image_file_list": false
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "203c3d4b9bb6220d4cd1931d506f70c3564b9924b6422a1a15967172b7f03281",
+      "qualified_sha256": "ddc3eede78f7bf527e4bd5855779bdd254d0c3479da51da6441b135c9b19c774",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "ddc3eede78f7bf527e4bd5855779bdd254d0c3479da51da6441b135c9b19c774",
+      "source_pins": {
+        "packages/modules/UprobeStats/bpf_progs/Android.bp": {
+          "bytes": 1330,
+          "sha256": "d9461c1cf369a45353ded0dd0451fe0b4e31f7055d686b1b55631c9ba94482f4",
+          "symlink": null
+        },
+        "packages/modules/UprobeStats/bpf_progs/ArtTest.c": {
+          "bytes": 5810,
+          "sha256": "4dd34c4f02da8d098e6622992b9dc13ebaf6d3a8fa5533b21943874f8a08aa43",
+          "symlink": null
+        }
+      },
+      "variant": "android_common"
+    },
+    {
+      "current_sha256": "b86ce3426e2d059b9c324ba4c076a5ba0ceef65942f0b7b098b3ede8a498a205",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "apex/com.android.uprobestats/etc/bpf/uprobestats/Binder.o",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "Binder.o",
+      "native_command_hash": "62a7504137a76288c86da508a535f983404207cd1517b39d7532b9684fc752ec",
+      "output": "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/Binder.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/Binder.o",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/Binder.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/Binder.o": {
+            "bytes": 14656,
+            "sha256": "b86ce3426e2d059b9c324ba4c076a5ba0ceef65942f0b7b098b3ede8a498a205"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/Binder.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/Binder.o",
+        "graph_output_chain": [
+          "out/target/product/p00a/apex/com.android.uprobestats/etc/bpf/uprobestats/Binder.o",
+          "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/Binder.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/Binder.o"
+        ],
+        "install_path": "apex/com.android.uprobestats/etc/bpf/uprobestats/Binder.o",
+        "metadata": "evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__Binder.o.txt",
+        "selected_by": ".installable_files",
+        "sha256": "b86ce3426e2d059b9c324ba4c076a5ba0ceef65942f0b7b098b3ede8a498a205",
+        "system_image_dependency": false,
+        "system_image_file_list": false
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "a9d99fe9a09e06e24e3b186c609855a90b60d46f0e564f2d8b9d3cde6b159ae4",
+      "qualified_sha256": "b86ce3426e2d059b9c324ba4c076a5ba0ceef65942f0b7b098b3ede8a498a205",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "b86ce3426e2d059b9c324ba4c076a5ba0ceef65942f0b7b098b3ede8a498a205",
+      "source_pins": {
+        "packages/modules/UprobeStats/bpf_progs/Android.bp": {
+          "bytes": 1330,
+          "sha256": "d9461c1cf369a45353ded0dd0451fe0b4e31f7055d686b1b55631c9ba94482f4",
+          "symlink": null
+        },
+        "packages/modules/UprobeStats/bpf_progs/Binder.c": {
+          "bytes": 2576,
+          "sha256": "c92856fd21938c008622b990400d9835ad92458efcce36d2baf6db4433339dd0",
+          "symlink": null
+        }
+      },
+      "variant": "android_common"
+    },
+    {
+      "current_sha256": "6bb65dca2829818a523bc9c2bb11b0cc81342c6b9714addb6561dad31b161203",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "apex/com.android.uprobestats/etc/bpf/uprobestats/BitmapAllocation.o",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "BitmapAllocation.o",
+      "native_command_hash": "1323de3172a4ef47fe5445942a4c883a2513dde325430769b41990cd89ded04c",
+      "output": "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/BitmapAllocation.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/BitmapAllocation.o",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/BitmapAllocation.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/BitmapAllocation.o": {
+            "bytes": 19928,
+            "sha256": "6bb65dca2829818a523bc9c2bb11b0cc81342c6b9714addb6561dad31b161203"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/BitmapAllocation.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/BitmapAllocation.o",
+        "graph_output_chain": [
+          "out/target/product/p00a/apex/com.android.uprobestats/etc/bpf/uprobestats/BitmapAllocation.o",
+          "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/BitmapAllocation.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/BitmapAllocation.o"
+        ],
+        "install_path": "apex/com.android.uprobestats/etc/bpf/uprobestats/BitmapAllocation.o",
+        "metadata": "evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__BitmapAllocation.o.txt",
+        "selected_by": ".installable_files",
+        "sha256": "6bb65dca2829818a523bc9c2bb11b0cc81342c6b9714addb6561dad31b161203",
+        "system_image_dependency": false,
+        "system_image_file_list": false
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "733b8f197ed900a587f0e9f66547dace6ff4c28d58ef1d3d2a24f3e87fa57fb3",
+      "qualified_sha256": "6bb65dca2829818a523bc9c2bb11b0cc81342c6b9714addb6561dad31b161203",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "6bb65dca2829818a523bc9c2bb11b0cc81342c6b9714addb6561dad31b161203",
+      "source_pins": {
+        "packages/modules/UprobeStats/bpf_progs/Android.bp": {
+          "bytes": 1330,
+          "sha256": "d9461c1cf369a45353ded0dd0451fe0b4e31f7055d686b1b55631c9ba94482f4",
+          "symlink": null
+        },
+        "packages/modules/UprobeStats/bpf_progs/BitmapAllocation.c": {
+          "bytes": 6313,
+          "sha256": "a27e35682470d79efbb72f080fdb51c067e3fc48787766fd3182bc0aea0756d5",
+          "symlink": null
+        }
+      },
+      "variant": "android_common"
+    },
+    {
+      "current_sha256": "a4e3df676b6c92a0379d081db913d30edc8004bcbee2eb7337a0f640bf1e30e1",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "apex/com.android.uprobestats/etc/bpf/uprobestats/DisruptiveApp.o",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "DisruptiveApp.o",
+      "native_command_hash": "08c5426663f5437b931b25f8ab75e8b2a372b7679662da8d366980a8d3a359d6",
+      "output": "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/DisruptiveApp.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/DisruptiveApp.o",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/DisruptiveApp.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/DisruptiveApp.o": {
+            "bytes": 20168,
+            "sha256": "a4e3df676b6c92a0379d081db913d30edc8004bcbee2eb7337a0f640bf1e30e1"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/DisruptiveApp.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/DisruptiveApp.o",
+        "graph_output_chain": [
+          "out/target/product/p00a/apex/com.android.uprobestats/etc/bpf/uprobestats/DisruptiveApp.o",
+          "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/DisruptiveApp.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/DisruptiveApp.o"
+        ],
+        "install_path": "apex/com.android.uprobestats/etc/bpf/uprobestats/DisruptiveApp.o",
+        "metadata": "evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__DisruptiveApp.o.txt",
+        "selected_by": ".installable_files",
+        "sha256": "a4e3df676b6c92a0379d081db913d30edc8004bcbee2eb7337a0f640bf1e30e1",
+        "system_image_dependency": false,
+        "system_image_file_list": false
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "e13a4ad17ee96f13d9c364f5086e8167ac4f75f115c1d53b2fa7f24c9a241d68",
+      "qualified_sha256": "a4e3df676b6c92a0379d081db913d30edc8004bcbee2eb7337a0f640bf1e30e1",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "a4e3df676b6c92a0379d081db913d30edc8004bcbee2eb7337a0f640bf1e30e1",
+      "source_pins": {
+        "packages/modules/UprobeStats/bpf_progs/Android.bp": {
+          "bytes": 1330,
+          "sha256": "d9461c1cf369a45353ded0dd0451fe0b4e31f7055d686b1b55631c9ba94482f4",
+          "symlink": null
+        },
+        "packages/modules/UprobeStats/bpf_progs/DisruptiveApp.c": {
+          "bytes": 6090,
+          "sha256": "806e6bccea8f86e28b61ca976627a95fd97a68353e6ea96b78fbc3cef40cd1ae",
+          "symlink": null
+        }
+      },
+      "variant": "android_common"
+    },
+    {
+      "current_sha256": "25286e9955609372dd92caf5429e64054345e95461379f9c05f0217e5dcd6442",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "apex/com.android.uprobestats/etc/bpf/uprobestats/GenericInstrumentation.o",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "GenericInstrumentation.o",
+      "native_command_hash": "8c4630907fe3e560b9c518bdd70cf9ecbbed4a212f95ac6f9820507c8ef191f9",
+      "output": "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/GenericInstrumentation.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/GenericInstrumentation.o",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/GenericInstrumentation.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/GenericInstrumentation.o": {
+            "bytes": 13256,
+            "sha256": "25286e9955609372dd92caf5429e64054345e95461379f9c05f0217e5dcd6442"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/GenericInstrumentation.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/GenericInstrumentation.o",
+        "graph_output_chain": [
+          "out/target/product/p00a/apex/com.android.uprobestats/etc/bpf/uprobestats/GenericInstrumentation.o",
+          "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/GenericInstrumentation.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/GenericInstrumentation.o"
+        ],
+        "install_path": "apex/com.android.uprobestats/etc/bpf/uprobestats/GenericInstrumentation.o",
+        "metadata": "evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__GenericInstrumentation.o.txt",
+        "selected_by": ".installable_files",
+        "sha256": "25286e9955609372dd92caf5429e64054345e95461379f9c05f0217e5dcd6442",
+        "system_image_dependency": false,
+        "system_image_file_list": false
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "52c52740fb505bbf53d3cf899ac8c946215dc6e08a113f051ad10d0bfeff1776",
+      "qualified_sha256": "25286e9955609372dd92caf5429e64054345e95461379f9c05f0217e5dcd6442",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "25286e9955609372dd92caf5429e64054345e95461379f9c05f0217e5dcd6442",
+      "source_pins": {
+        "packages/modules/UprobeStats/bpf_progs/Android.bp": {
+          "bytes": 1330,
+          "sha256": "d9461c1cf369a45353ded0dd0451fe0b4e31f7055d686b1b55631c9ba94482f4",
+          "symlink": null
+        },
+        "packages/modules/UprobeStats/bpf_progs/GenericInstrumentation.c": {
+          "bytes": 4223,
+          "sha256": "e93886fe3c4695bb543bc019b529fd175ca3b0e79ba0442d4341265d8028ea91",
+          "symlink": null
+        }
+      },
+      "variant": "android_common"
+    },
+    {
+      "current_sha256": "e9e48d2436a4c9ed7b02bfd23ab868b43dec5db2a30123980c8d59d0f1930718",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "apex/com.android.uprobestats/etc/bpf/uprobestats/ProcessManagement.o",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "ProcessManagement.o",
+      "native_command_hash": "e90b00f013b9df279cde88c85d7233ab1c7e583289fa04ca2f06be0d0108d73f",
+      "output": "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/ProcessManagement.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/ProcessManagement.o",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/ProcessManagement.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/ProcessManagement.o": {
+            "bytes": 18328,
+            "sha256": "e9e48d2436a4c9ed7b02bfd23ab868b43dec5db2a30123980c8d59d0f1930718"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/ProcessManagement.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/ProcessManagement.o",
+        "graph_output_chain": [
+          "out/target/product/p00a/apex/com.android.uprobestats/etc/bpf/uprobestats/ProcessManagement.o",
+          "out/soong/.intermediates/packages/modules/UprobeStats/bpf_progs/ProcessManagement.o/android_common/obj/packages/modules/UprobeStats/bpf_progs/ProcessManagement.o"
+        ],
+        "install_path": "apex/com.android.uprobestats/etc/bpf/uprobestats/ProcessManagement.o",
+        "metadata": "evidence/object-metadata-v2/apex__com.android.uprobestats__etc__bpf__uprobestats__ProcessManagement.o.txt",
+        "selected_by": ".installable_files",
+        "sha256": "e9e48d2436a4c9ed7b02bfd23ab868b43dec5db2a30123980c8d59d0f1930718",
+        "system_image_dependency": false,
+        "system_image_file_list": false
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "751764aa3acb10de8566bea61148d6bbc2b1db38d6b2d152db0152ca73cd65ef",
+      "qualified_sha256": "e9e48d2436a4c9ed7b02bfd23ab868b43dec5db2a30123980c8d59d0f1930718",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "e9e48d2436a4c9ed7b02bfd23ab868b43dec5db2a30123980c8d59d0f1930718",
+      "source_pins": {
+        "packages/modules/UprobeStats/bpf_progs/Android.bp": {
+          "bytes": 1330,
+          "sha256": "d9461c1cf369a45353ded0dd0451fe0b4e31f7055d686b1b55631c9ba94482f4",
+          "symlink": null
+        },
+        "packages/modules/UprobeStats/bpf_progs/ProcessManagement.c": {
+          "bytes": 5141,
+          "sha256": "21e33fb01de7979ed4a4f0fb7483002240c234f99c357fde7a9536f0576bd709",
+          "symlink": null
+        }
+      },
+      "variant": "android_common"
+    },
+    {
+      "current_sha256": "a2270aa14c453ab4e674d68f5a4ee3d3e6a8e9b7ea3aec3f20818157763fd2e1",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "system/etc/bpf/bpfRingbufProg.bpf",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "bpfRingbufProg.bpf",
+      "native_command_hash": "ca42166f8a4629d39a73818481b0cb256fa9207673d3502175364e3bb20f866f",
+      "output": "out/soong/.intermediates/system/bpf/progs/bpfRingbufProg.bpf/android_arm64_armv8-a/obj/system/bpf/progs/bpfRingbufProg.bpf",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/system/bpf/progs/bpfRingbufProg.bpf/android_arm64_armv8-a/obj/system/bpf/progs/bpfRingbufProg.bpf": {
+            "bytes": 2320,
+            "sha256": "a2270aa14c453ab4e674d68f5a4ee3d3e6a8e9b7ea3aec3f20818157763fd2e1"
+          },
+          "out/target/product/p00a/obj/ETC/bpfRingbufProg.bpf_bpfRingbufProg.bpf_intermediates/bpfRingbufProg.bpf": {
+            "bytes": 2320,
+            "sha256": "a2270aa14c453ab4e674d68f5a4ee3d3e6a8e9b7ea3aec3f20818157763fd2e1"
+          },
+          "out/target/product/p00a/system/etc/bpf/bpfRingbufProg.bpf": {
+            "bytes": 2320,
+            "sha256": "a2270aa14c453ab4e674d68f5a4ee3d3e6a8e9b7ea3aec3f20818157763fd2e1"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/target/product/p00a/system/etc/bpf/bpfRingbufProg.bpf",
+        "graph_output_chain": [
+          "out/target/product/p00a/system/etc/bpf/bpfRingbufProg.bpf",
+          "out/target/product/p00a/obj/ETC/bpfRingbufProg.bpf_bpfRingbufProg.bpf_intermediates/bpfRingbufProg.bpf",
+          "out/soong/.intermediates/system/bpf/progs/bpfRingbufProg.bpf/android_arm64_armv8-a/obj/system/bpf/progs/bpfRingbufProg.bpf"
+        ],
+        "install_path": "system/etc/bpf/bpfRingbufProg.bpf",
+        "metadata": "evidence/object-metadata-v2/system__etc__bpf__bpfRingbufProg.bpf.txt",
+        "selected_by": ".installable_files",
+        "sha256": "a2270aa14c453ab4e674d68f5a4ee3d3e6a8e9b7ea3aec3f20818157763fd2e1",
+        "system_image_dependency": true,
+        "system_image_file_list": true
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "69a788e907467e89eb88961f17a1d050a50cb390b13a8f31efe0c9d3f4f9b7a3",
+      "qualified_sha256": "a2270aa14c453ab4e674d68f5a4ee3d3e6a8e9b7ea3aec3f20818157763fd2e1",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "a2270aa14c453ab4e674d68f5a4ee3d3e6a8e9b7ea3aec3f20818157763fd2e1",
+      "source_pins": {
+        "out/soong/.intermediates/system/bpf/progs/bpfRingbufProg.bpf/android_arm64_armv8-a/obj/unstripped/system/bpf/progs/bpfRingbufProg.bpf": {
+          "bytes": 6056,
+          "sha256": "384ec0e2b50f61b0984c3a6f3d20cd91585cbc6897acd3d4b9a527f2609472ee",
+          "symlink": null
+        },
+        "system/bpf/progs/Android.bp": {
+          "bytes": 1129,
+          "sha256": "4f0e5b539e037be3a2c7af5c3279e2978fced1851e348e1617367e2b36c3db38",
+          "symlink": null
+        },
+        "system/bpf/progs/bpfRingbufProg.c": {
+          "bytes": 1655,
+          "sha256": "42337f99c981fc1be75a0457c7667cec4eed8f271deaf0896daecde11928e7e8",
+          "symlink": null
+        }
+      },
+      "variant": "android_arm64_armv8-a"
+    },
+    {
+      "current_sha256": "eb0ab840dfab5b7ca1ade55a406a3b9c6ee04b090c546885003e0db01559499c",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "system/etc/bpf/cputimeinstate/timeInState.bpf",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "timeInState.bpf",
+      "native_command_hash": "4ad7b3234731af5ed39a93cf9fb3f9eeaa313e1116f10b39e998b4c86143640b",
+      "output": "out/soong/.intermediates/system/bpfprogs/timeInState.bpf/android_arm64_armv8-a/obj/system/bpfprogs/timeInState.bpf",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/system/bpfprogs/timeInState.bpf/android_arm64_armv8-a/obj/system/bpfprogs/timeInState.bpf": {
+            "bytes": 27040,
+            "sha256": "eb0ab840dfab5b7ca1ade55a406a3b9c6ee04b090c546885003e0db01559499c"
+          },
+          "out/target/product/p00a/obj/ETC/timeInState.bpf_timeInState.bpf_intermediates/timeInState.bpf": {
+            "bytes": 27040,
+            "sha256": "eb0ab840dfab5b7ca1ade55a406a3b9c6ee04b090c546885003e0db01559499c"
+          },
+          "out/target/product/p00a/system/etc/bpf/cputimeinstate/timeInState.bpf": {
+            "bytes": 27040,
+            "sha256": "eb0ab840dfab5b7ca1ade55a406a3b9c6ee04b090c546885003e0db01559499c"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/target/product/p00a/system/etc/bpf/cputimeinstate/timeInState.bpf",
+        "graph_output_chain": [
+          "out/target/product/p00a/system/etc/bpf/cputimeinstate/timeInState.bpf",
+          "out/target/product/p00a/obj/ETC/timeInState.bpf_timeInState.bpf_intermediates/timeInState.bpf",
+          "out/soong/.intermediates/system/bpfprogs/timeInState.bpf/android_arm64_armv8-a/obj/system/bpfprogs/timeInState.bpf"
+        ],
+        "install_path": "system/etc/bpf/cputimeinstate/timeInState.bpf",
+        "metadata": "evidence/object-metadata-v2/system__etc__bpf__cputimeinstate__timeInState.bpf.txt",
+        "selected_by": ".installable_files",
+        "sha256": "eb0ab840dfab5b7ca1ade55a406a3b9c6ee04b090c546885003e0db01559499c",
+        "system_image_dependency": true,
+        "system_image_file_list": true
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "158a02a305b08d08fb38f96b11236e4a0a4774058134bee8e24ec8b937099a3e",
+      "qualified_sha256": "eb0ab840dfab5b7ca1ade55a406a3b9c6ee04b090c546885003e0db01559499c",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "eb0ab840dfab5b7ca1ade55a406a3b9c6ee04b090c546885003e0db01559499c",
+      "source_pins": {
+        "out/soong/.intermediates/system/bpfprogs/timeInState.bpf/android_arm64_armv8-a/obj/unstripped/system/bpfprogs/timeInState.bpf": {
+          "bytes": 52136,
+          "sha256": "97320a718211f707046a53dc4eb9b10f912f522952bc6aa748d4f3bedadf9c8d",
+          "symlink": null
+        },
+        "system/bpfprogs/Android.bp": {
+          "bytes": 2652,
+          "sha256": "bc9326317c17e2890f8dfc4503a7d5a6895d03a26f90a882191e147a4b555bb9",
+          "symlink": null
+        },
+        "system/bpfprogs/timeInState.c": {
+          "bytes": 11966,
+          "sha256": "e6a8d2b2ffe0704c42d2999a4426aa9fc9d71114581ce3041473f58486911361",
+          "symlink": null
+        }
+      },
+      "variant": "android_arm64_armv8-a"
+    },
+    {
+      "current_sha256": "98d4e13f178b9f638925f0c8ac28720083f0cf33781b2e63a4723529b6184c3c",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "system/etc/bpf/dmabuf/dmabufIter.bpf",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "dmabufIter.bpf",
+      "native_command_hash": "f5817a416cf594d239ca24ffde0d185a26d2c7e39c4dda9a0dbd287041de54fc",
+      "output": "out/soong/.intermediates/system/bpfprogs/dmabufIter.bpf/android_arm64_armv8-a/obj/system/bpfprogs/dmabufIter.bpf",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/system/bpfprogs/dmabufIter.bpf/android_arm64_armv8-a/obj/system/bpfprogs/dmabufIter.bpf": {
+            "bytes": 19352,
+            "sha256": "98d4e13f178b9f638925f0c8ac28720083f0cf33781b2e63a4723529b6184c3c"
+          },
+          "out/target/product/p00a/obj/ETC/dmabufIter.bpf_dmabufIter.bpf_intermediates/dmabufIter.bpf": {
+            "bytes": 19352,
+            "sha256": "98d4e13f178b9f638925f0c8ac28720083f0cf33781b2e63a4723529b6184c3c"
+          },
+          "out/target/product/p00a/system/etc/bpf/dmabuf/dmabufIter.bpf": {
+            "bytes": 19352,
+            "sha256": "98d4e13f178b9f638925f0c8ac28720083f0cf33781b2e63a4723529b6184c3c"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/target/product/p00a/system/etc/bpf/dmabuf/dmabufIter.bpf",
+        "graph_output_chain": [
+          "out/target/product/p00a/system/etc/bpf/dmabuf/dmabufIter.bpf",
+          "out/target/product/p00a/obj/ETC/dmabufIter.bpf_dmabufIter.bpf_intermediates/dmabufIter.bpf",
+          "out/soong/.intermediates/system/bpfprogs/dmabufIter.bpf/android_arm64_armv8-a/obj/system/bpfprogs/dmabufIter.bpf"
+        ],
+        "install_path": "system/etc/bpf/dmabuf/dmabufIter.bpf",
+        "metadata": "evidence/object-metadata-v2/system__etc__bpf__dmabuf__dmabufIter.bpf.txt",
+        "selected_by": ".installable_files",
+        "sha256": "98d4e13f178b9f638925f0c8ac28720083f0cf33781b2e63a4723529b6184c3c",
+        "system_image_dependency": true,
+        "system_image_file_list": true
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "1b048842e5332f9e758071d8682495a6dbfe1683a9d55a0adc1ec79a6168c49b",
+      "qualified_sha256": "98d4e13f178b9f638925f0c8ac28720083f0cf33781b2e63a4723529b6184c3c",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "98d4e13f178b9f638925f0c8ac28720083f0cf33781b2e63a4723529b6184c3c",
+      "source_pins": {
+        "out/soong/.intermediates/system/bpfprogs/dmabufIter.bpf/android_arm64_armv8-a/obj/unstripped/system/bpfprogs/dmabufIter.bpf": {
+          "bytes": 593072,
+          "sha256": "ff658116141975f06b1ba701ceb3e57582b526c70f8b7f9291490ab3487f164b",
+          "symlink": null
+        },
+        "system/bpfprogs/Android.bp": {
+          "bytes": 2652,
+          "sha256": "bc9326317c17e2890f8dfc4503a7d5a6895d03a26f90a882191e147a4b555bb9",
+          "symlink": null
+        },
+        "system/bpfprogs/dmabufIter.c": {
+          "bytes": 1484,
+          "sha256": "de584083b1e2250ab3efe4d683f9190477d3ec5ec7e32543892d587ce7d4b1fd",
+          "symlink": null
+        }
+      },
+      "variant": "android_arm64_armv8-a"
+    },
+    {
+      "current_sha256": "c07777878428e20d5a2a275d9a7b2ad6acc27deb1c17dc678b35add1ae12de3c",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "system/etc/bpf/fuseMedia.bpf",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "fuseMedia.bpf",
+      "native_command_hash": "f03e50e1e2f193617eab0b53ddf3fce60fe5ba7cbf7d5499b11cc08714add3a4",
+      "output": "out/soong/.intermediates/system/bpfprogs/fuseMedia.bpf/android_arm64_armv8-a/obj/system/bpfprogs/fuseMedia.bpf",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/system/bpfprogs/fuseMedia.bpf/android_arm64_armv8-a/obj/system/bpfprogs/fuseMedia.bpf": {
+            "bytes": 3784,
+            "sha256": "c07777878428e20d5a2a275d9a7b2ad6acc27deb1c17dc678b35add1ae12de3c"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/soong/.intermediates/system/bpfprogs/fuseMedia.bpf/android_arm64_armv8-a/obj/system/bpfprogs/fuseMedia.bpf",
+        "graph_output_chain": [
+          "out/target/product/p00a/system/etc/bpf/fuseMedia.bpf",
+          "out/target/product/p00a/obj/ETC/fuseMedia.bpf_fuseMedia.bpf_intermediates/fuseMedia.bpf",
+          "out/soong/.intermediates/system/bpfprogs/fuseMedia.bpf/android_arm64_armv8-a/obj/system/bpfprogs/fuseMedia.bpf"
+        ],
+        "install_path": "system/etc/bpf/fuseMedia.bpf",
+        "metadata": "evidence/object-metadata-v2/system__etc__bpf__fuseMedia.bpf.txt",
+        "selected_by": ".installable_files",
+        "sha256": "c07777878428e20d5a2a275d9a7b2ad6acc27deb1c17dc678b35add1ae12de3c",
+        "system_image_dependency": true,
+        "system_image_file_list": true
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "6357d1f7441c3d8f863758a6b0da8db6eb9d9ac7d948cc9f51f3f730684cace4",
+      "qualified_sha256": "c07777878428e20d5a2a275d9a7b2ad6acc27deb1c17dc678b35add1ae12de3c",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "c07777878428e20d5a2a275d9a7b2ad6acc27deb1c17dc678b35add1ae12de3c",
+      "source_pins": {
+        "out/soong/.intermediates/system/bpfprogs/fuseMedia.bpf/android_arm64_armv8-a/obj/unstripped/system/bpfprogs/fuseMedia.bpf": {
+          "bytes": 10120,
+          "sha256": "8ac6deb23a233daa901e66e9f50733bbc2a2fd4e19b77a197402640d93243121",
+          "symlink": null
+        },
+        "system/bpfprogs/Android.bp": {
+          "bytes": 2652,
+          "sha256": "bc9326317c17e2890f8dfc4503a7d5a6895d03a26f90a882191e147a4b555bb9",
+          "symlink": null
+        },
+        "system/bpfprogs/fuseMedia.c": {
+          "bytes": 2014,
+          "sha256": "e42b2880351cf6b9ed064e89aecc1f48d9920942b3e8a53985a8bb9cf3a4b9ca",
+          "symlink": null
+        }
+      },
+      "variant": "android_arm64_armv8-a"
+    },
+    {
+      "current_sha256": "d049f06c108d94796599acc548a9fbab5ba367580d384457b5109520a2447af6",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "system/etc/bpf/gpuMem.bpf",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "gpuMem.bpf",
+      "native_command_hash": "79d88730e66f506cce5bc59b2eb7407e88570ba3bd44822b7c4063703dff7ea7",
+      "output": "out/soong/.intermediates/frameworks/native/services/gpuservice/bpfprogs/gpuMem.bpf/android_arm64_armv8-a/obj/frameworks/native/services/gpuservice/bpfprogs/gpuMem.bpf",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/frameworks/native/services/gpuservice/bpfprogs/gpuMem.bpf/android_arm64_armv8-a/obj/frameworks/native/services/gpuservice/bpfprogs/gpuMem.bpf": {
+            "bytes": 3240,
+            "sha256": "d049f06c108d94796599acc548a9fbab5ba367580d384457b5109520a2447af6"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/soong/.intermediates/frameworks/native/services/gpuservice/bpfprogs/gpuMem.bpf/android_arm64_armv8-a/obj/frameworks/native/services/gpuservice/bpfprogs/gpuMem.bpf",
+        "graph_output_chain": [
+          "out/target/product/p00a/system/etc/bpf/gpuMem.bpf",
+          "out/target/product/p00a/obj/ETC/gpuMem.bpf_gpuMem.bpf_intermediates/gpuMem.bpf",
+          "out/soong/.intermediates/frameworks/native/services/gpuservice/bpfprogs/gpuMem.bpf/android_arm64_armv8-a/obj/frameworks/native/services/gpuservice/bpfprogs/gpuMem.bpf"
+        ],
+        "install_path": "system/etc/bpf/gpuMem.bpf",
+        "metadata": "evidence/object-metadata-v2/system__etc__bpf__gpuMem.bpf.txt",
+        "selected_by": ".installable_files",
+        "sha256": "d049f06c108d94796599acc548a9fbab5ba367580d384457b5109520a2447af6",
+        "system_image_dependency": true,
+        "system_image_file_list": true
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "b4dfc284736f0b01f28dbf45b6f4ce66978d063d3d93b6f0e060f732a6a7e9fe",
+      "qualified_sha256": "d049f06c108d94796599acc548a9fbab5ba367580d384457b5109520a2447af6",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "d049f06c108d94796599acc548a9fbab5ba367580d384457b5109520a2447af6",
+      "source_pins": {
+        "frameworks/native/services/gpuservice/bpfprogs/Android.bp": {
+          "bytes": 1071,
+          "sha256": "3fe00dbb95d960530b6efa239dbe2c21631fe9d98a642f795f2cc98a3f5b51b2",
+          "symlink": null
+        },
+        "frameworks/native/services/gpuservice/bpfprogs/gpuMem.c": {
+          "bytes": 2526,
+          "sha256": "775034169a9a4f7ceebb66a2f0a2cb9cd67f6eae3fde43afccd33cd2164fbfa0",
+          "symlink": null
+        },
+        "out/soong/.intermediates/frameworks/native/services/gpuservice/bpfprogs/gpuMem.bpf/android_arm64_armv8-a/obj/unstripped/frameworks/native/services/gpuservice/bpfprogs/gpuMem.bpf": {
+          "bytes": 8616,
+          "sha256": "35b58862bed20755209fa9676f93f6c4c17d20e017d8839b69cd6a59724a43e8",
+          "symlink": null
+        }
+      },
+      "variant": "android_arm64_armv8-a"
+    },
+    {
+      "current_sha256": "7341cd61278b82ffa7b71dca5515beba0f23c0df2d9bfc2102efc89ac69a1589",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "system/etc/bpf/gpuWork.bpf",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "gpuWork.bpf",
+      "native_command_hash": "5608d4ccc60c323d4be7bc6573b3b8f49c6d63607ad1ebb55e651bcaf3c658e1",
+      "output": "out/soong/.intermediates/frameworks/native/services/gpuservice/gpuwork/bpfprogs/gpuWork.bpf/android_arm64_armv8-a/obj/frameworks/native/services/gpuservice/gpuwork/bpfprogs/gpuWork.bpf",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/frameworks/native/services/gpuservice/gpuwork/bpfprogs/gpuWork.bpf/android_arm64_armv8-a/obj/frameworks/native/services/gpuservice/gpuwork/bpfprogs/gpuWork.bpf": {
+            "bytes": 6280,
+            "sha256": "7341cd61278b82ffa7b71dca5515beba0f23c0df2d9bfc2102efc89ac69a1589"
+          },
+          "out/target/product/p00a/obj/ETC/gpuWork.bpf_gpuWork.bpf_intermediates/gpuWork.bpf": {
+            "bytes": 6280,
+            "sha256": "7341cd61278b82ffa7b71dca5515beba0f23c0df2d9bfc2102efc89ac69a1589"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/target/product/p00a/obj/ETC/gpuWork.bpf_gpuWork.bpf_intermediates/gpuWork.bpf",
+        "graph_output_chain": [
+          "out/target/product/p00a/system/etc/bpf/gpuWork.bpf",
+          "out/target/product/p00a/obj/ETC/gpuWork.bpf_gpuWork.bpf_intermediates/gpuWork.bpf",
+          "out/soong/.intermediates/frameworks/native/services/gpuservice/gpuwork/bpfprogs/gpuWork.bpf/android_arm64_armv8-a/obj/frameworks/native/services/gpuservice/gpuwork/bpfprogs/gpuWork.bpf"
+        ],
+        "install_path": "system/etc/bpf/gpuWork.bpf",
+        "metadata": "evidence/object-metadata-v2/system__etc__bpf__gpuWork.bpf.txt",
+        "selected_by": ".installable_files",
+        "sha256": "7341cd61278b82ffa7b71dca5515beba0f23c0df2d9bfc2102efc89ac69a1589",
+        "system_image_dependency": true,
+        "system_image_file_list": true
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "2af81e1b530eeeb93c2729b9b4ed9d2b1ec7ec8544b6a4e73363bfdae888019d",
+      "qualified_sha256": "7341cd61278b82ffa7b71dca5515beba0f23c0df2d9bfc2102efc89ac69a1589",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "7341cd61278b82ffa7b71dca5515beba0f23c0df2d9bfc2102efc89ac69a1589",
+      "source_pins": {
+        "frameworks/native/services/gpuservice/gpuwork/bpfprogs/Android.bp": {
+          "bytes": 899,
+          "sha256": "e0d8f98d8a5944025a703bfe905b7b2eb4322cc487eee5c39621d3e3654ae9cf",
+          "symlink": null
+        },
+        "frameworks/native/services/gpuservice/gpuwork/bpfprogs/gpuWork.c": {
+          "bytes": 13961,
+          "sha256": "e6a5b3cfb0b83d9277f4ca6f7a1d3ba02b529e422c45d10a2d37563cc203de3b",
+          "symlink": null
+        },
+        "out/soong/.intermediates/frameworks/native/services/gpuservice/gpuwork/bpfprogs/gpuWork.bpf/android_arm64_armv8-a/obj/unstripped/frameworks/native/services/gpuservice/gpuwork/bpfprogs/gpuWork.bpf": {
+          "bytes": 13680,
+          "sha256": "d6f18b4a6626e83015a0382656c97f78cfccbb8de51bac63782c548c1f48a41b",
+          "symlink": null
+        }
+      },
+      "variant": "android_arm64_armv8-a"
+    },
+    {
+      "current_sha256": "cddf598d1e0cee1d09e6bd60ff7445707a9494a6851aae04a062765eee1f8155",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "system/etc/bpf/kernelWakelockDuration.bpf",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "kernelWakelockDuration.bpf",
+      "native_command_hash": "5f1abd79375b74c3c6285acc0d4b0e60e897e8b6889653b5c7f635737582afe9",
+      "output": "out/soong/.intermediates/system/bpfprogs/kernelwakelockduration/kernelWakelockDuration.bpf/android_arm64_armv8-a/obj/system/bpfprogs/kernelwakelockduration/kernelWakelockDuration.bpf",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/system/bpfprogs/kernelwakelockduration/kernelWakelockDuration.bpf/android_arm64_armv8-a/obj/system/bpfprogs/kernelwakelockduration/kernelWakelockDuration.bpf": {
+            "bytes": 6400,
+            "sha256": "cddf598d1e0cee1d09e6bd60ff7445707a9494a6851aae04a062765eee1f8155"
+          },
+          "out/target/product/p00a/obj/ETC/kernelWakelockDuration.bpf_kernelWakelockDuration.bpf_intermediates/kernelWakelockDuration.bpf": {
+            "bytes": 6400,
+            "sha256": "cddf598d1e0cee1d09e6bd60ff7445707a9494a6851aae04a062765eee1f8155"
+          },
+          "out/target/product/p00a/system/etc/bpf/kernelWakelockDuration.bpf": {
+            "bytes": 6400,
+            "sha256": "cddf598d1e0cee1d09e6bd60ff7445707a9494a6851aae04a062765eee1f8155"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/target/product/p00a/system/etc/bpf/kernelWakelockDuration.bpf",
+        "graph_output_chain": [
+          "out/target/product/p00a/system/etc/bpf/kernelWakelockDuration.bpf",
+          "out/target/product/p00a/obj/ETC/kernelWakelockDuration.bpf_kernelWakelockDuration.bpf_intermediates/kernelWakelockDuration.bpf",
+          "out/soong/.intermediates/system/bpfprogs/kernelwakelockduration/kernelWakelockDuration.bpf/android_arm64_armv8-a/obj/system/bpfprogs/kernelwakelockduration/kernelWakelockDuration.bpf"
+        ],
+        "install_path": "system/etc/bpf/kernelWakelockDuration.bpf",
+        "metadata": "evidence/object-metadata-v2/system__etc__bpf__kernelWakelockDuration.bpf.txt",
+        "selected_by": ".installable_files",
+        "sha256": "cddf598d1e0cee1d09e6bd60ff7445707a9494a6851aae04a062765eee1f8155",
+        "system_image_dependency": true,
+        "system_image_file_list": true
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "8f15033f43d62f3ac18bb95bd92667022ec08bf9d8230b5a8c2c15d51746d1e7",
+      "qualified_sha256": "cddf598d1e0cee1d09e6bd60ff7445707a9494a6851aae04a062765eee1f8155",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "cddf598d1e0cee1d09e6bd60ff7445707a9494a6851aae04a062765eee1f8155",
+      "source_pins": {
+        "out/soong/.intermediates/system/bpfprogs/kernelwakelockduration/kernelWakelockDuration.bpf/android_arm64_armv8-a/obj/unstripped/system/bpfprogs/kernelwakelockduration/kernelWakelockDuration.bpf": {
+          "bytes": 15376,
+          "sha256": "f722fd7b70db478b36a57d3a30327ed4141fdd32abc06be71a820a98ddcada57",
+          "symlink": null
+        },
+        "system/bpfprogs/kernelwakelockduration/Android.bp": {
+          "bytes": 2242,
+          "sha256": "b77ec484571e89286fcf117ed70f5a88e5b24700849b5cd6e69eb04efcc164f6",
+          "symlink": null
+        },
+        "system/bpfprogs/kernelwakelockduration/kernelWakelockDuration.c": {
+          "bytes": 6493,
+          "sha256": "c9a773ba494ec06f361950cdd7abb60677e80664aced5abbfc708cf0e9aa38e4",
+          "symlink": null
+        }
+      },
+      "variant": "android_arm64_armv8-a"
+    },
+    {
+      "current_sha256": "60fd24dd02e99b3b8822532efbf4a0e35b48edf0e0d2583f25692979a8996d85",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "system/etc/bpf/kernelWakelockDurationTest.bpf",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "kernelWakelockDurationTest.bpf",
+      "native_command_hash": "5c3e5aba4ce8359a9f39cf78028af0d3230121561560b80813c338680b637abe",
+      "output": "out/soong/.intermediates/system/bpfprogs/kernelwakelockduration/kernelWakelockDurationTest.bpf/android_arm64_armv8-a/obj/.intermediates/system/bpfprogs/kernelwakelockduration/kernelWakelockDurationTest/gen/kernelWakelockDurationTest.bpf",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/system/bpfprogs/kernelwakelockduration/kernelWakelockDurationTest.bpf/android_arm64_armv8-a/obj/.intermediates/system/bpfprogs/kernelwakelockduration/kernelWakelockDurationTest/gen/kernelWakelockDurationTest.bpf": {
+            "bytes": 6456,
+            "sha256": "60fd24dd02e99b3b8822532efbf4a0e35b48edf0e0d2583f25692979a8996d85"
+          },
+          "out/target/product/p00a/obj/ETC/kernelWakelockDurationTest.bpf_kernelWakelockDurationTest.bpf_intermediates/kernelWakelockDurationTest.bpf": {
+            "bytes": 6456,
+            "sha256": "60fd24dd02e99b3b8822532efbf4a0e35b48edf0e0d2583f25692979a8996d85"
+          },
+          "out/target/product/p00a/system/etc/bpf/kernelWakelockDurationTest.bpf": {
+            "bytes": 6456,
+            "sha256": "60fd24dd02e99b3b8822532efbf4a0e35b48edf0e0d2583f25692979a8996d85"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/target/product/p00a/system/etc/bpf/kernelWakelockDurationTest.bpf",
+        "graph_output_chain": [
+          "out/target/product/p00a/system/etc/bpf/kernelWakelockDurationTest.bpf",
+          "out/target/product/p00a/obj/ETC/kernelWakelockDurationTest.bpf_kernelWakelockDurationTest.bpf_intermediates/kernelWakelockDurationTest.bpf",
+          "out/soong/.intermediates/system/bpfprogs/kernelwakelockduration/kernelWakelockDurationTest.bpf/android_arm64_armv8-a/obj/.intermediates/system/bpfprogs/kernelwakelockduration/kernelWakelockDurationTest/gen/kernelWakelockDurationTest.bpf"
+        ],
+        "install_path": "system/etc/bpf/kernelWakelockDurationTest.bpf",
+        "metadata": "evidence/object-metadata-v2/system__etc__bpf__kernelWakelockDurationTest.bpf.txt",
+        "selected_by": ".installable_files",
+        "sha256": "60fd24dd02e99b3b8822532efbf4a0e35b48edf0e0d2583f25692979a8996d85",
+        "system_image_dependency": true,
+        "system_image_file_list": true
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "bf23ba6020f2a954449b3ffecaeff95c56c5550e55079486e1ba685af0efd048",
+      "qualified_sha256": "60fd24dd02e99b3b8822532efbf4a0e35b48edf0e0d2583f25692979a8996d85",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "60fd24dd02e99b3b8822532efbf4a0e35b48edf0e0d2583f25692979a8996d85",
+      "source_pins": {
+        "out/soong/.intermediates/system/bpfprogs/kernelwakelockduration/kernelWakelockDurationTest.bpf/android_arm64_armv8-a/obj/unstripped/.intermediates/system/bpfprogs/kernelwakelockduration/kernelWakelockDurationTest/gen/kernelWakelockDurationTest.bpf": {
+          "bytes": 15552,
+          "sha256": "d957bccb0e6c41fff94a8798b1da2d2f73b7c9a07e96c2358b1b70980859b9f0",
+          "symlink": null
+        },
+        "out/soong/.intermediates/system/bpfprogs/kernelwakelockduration/kernelWakelockDurationTest/gen/kernelWakelockDurationTest.c": {
+          "bytes": 6493,
+          "sha256": "c9a773ba494ec06f361950cdd7abb60677e80664aced5abbfc708cf0e9aa38e4",
+          "symlink": null
+        },
+        "system/bpfprogs/kernelwakelockduration/Android.bp": {
+          "bytes": 2242,
+          "sha256": "b77ec484571e89286fcf117ed70f5a88e5b24700849b5cd6e69eb04efcc164f6",
+          "symlink": null
+        }
+      },
+      "variant": "android_arm64_armv8-a"
+    },
+    {
+      "current_sha256": "d8dcb9976034f9d73eee5bf469597fc210122872df74ad86425f781c7627b4f0",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "system/etc/bpf/lock_contention/bpfLockContention.bpf",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "bpfLockContention.bpf",
+      "native_command_hash": "bd9a69e03591eeaba14389d17ad9b7f1fa43273d59aff6f9d71f215d5ca9ec6d",
+      "output": "out/soong/.intermediates/system/bpfprogs/locks/bpfLockContention.bpf/android_arm64_armv8-a/obj/system/bpfprogs/locks/bpfLockContention.bpf",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/system/bpfprogs/locks/bpfLockContention.bpf/android_arm64_armv8-a/obj/system/bpfprogs/locks/bpfLockContention.bpf": {
+            "bytes": 41744,
+            "sha256": "d8dcb9976034f9d73eee5bf469597fc210122872df74ad86425f781c7627b4f0"
+          },
+          "out/target/product/p00a/obj/ETC/bpfLockContention.bpf_bpfLockContention.bpf_intermediates/bpfLockContention.bpf": {
+            "bytes": 41744,
+            "sha256": "d8dcb9976034f9d73eee5bf469597fc210122872df74ad86425f781c7627b4f0"
+          },
+          "out/target/product/p00a/system/etc/bpf/lock_contention/bpfLockContention.bpf": {
+            "bytes": 41744,
+            "sha256": "d8dcb9976034f9d73eee5bf469597fc210122872df74ad86425f781c7627b4f0"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/target/product/p00a/system/etc/bpf/lock_contention/bpfLockContention.bpf",
+        "graph_output_chain": [
+          "out/target/product/p00a/system/etc/bpf/lock_contention/bpfLockContention.bpf",
+          "out/target/product/p00a/obj/ETC/bpfLockContention.bpf_bpfLockContention.bpf_intermediates/bpfLockContention.bpf",
+          "out/soong/.intermediates/system/bpfprogs/locks/bpfLockContention.bpf/android_arm64_armv8-a/obj/system/bpfprogs/locks/bpfLockContention.bpf"
+        ],
+        "install_path": "system/etc/bpf/lock_contention/bpfLockContention.bpf",
+        "metadata": "evidence/object-metadata-v2/system__etc__bpf__lock_contention__bpfLockContention.bpf.txt",
+        "selected_by": ".installable_files",
+        "sha256": "d8dcb9976034f9d73eee5bf469597fc210122872df74ad86425f781c7627b4f0",
+        "system_image_dependency": true,
+        "system_image_file_list": true
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "a3cdc4c919e784af703075a60373e87905ff3626d736b9efb5e9156ebfc30217",
+      "qualified_sha256": "d8dcb9976034f9d73eee5bf469597fc210122872df74ad86425f781c7627b4f0",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "d8dcb9976034f9d73eee5bf469597fc210122872df74ad86425f781c7627b4f0",
+      "source_pins": {
+        "out/soong/.intermediates/system/bpfprogs/locks/bpfLockContention.bpf/android_arm64_armv8-a/obj/unstripped/system/bpfprogs/locks/bpfLockContention.bpf": {
+          "bytes": 652448,
+          "sha256": "7245ae0b95dbaf22b58442b6b392752e3d2c2cde34b0e7d42bb5b5ea76c6f52c",
+          "symlink": null
+        },
+        "system/bpfprogs/locks/Android.bp": {
+          "bytes": 1060,
+          "sha256": "9931fdaef734007adb7944c4f651fed015d8bb0494e8a42d91cd147d0446b859",
+          "symlink": null
+        },
+        "system/bpfprogs/locks/bpfLockContention.c": {
+          "bytes": 4220,
+          "sha256": "6586e2bec79a3f7820efb427ce37c3f8d60e7ff6be00309fd35ab1fac35b0d33",
+          "symlink": null
+        }
+      },
+      "variant": "android_arm64_armv8-a"
+    },
+    {
+      "current_sha256": "715e9f610f93e1e8d221829aaf1437be884def6c24916264218a9c01e6174af2",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "system/etc/bpf/memevents/bpfMemEvents.bpf",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "bpfMemEvents.bpf",
+      "native_command_hash": "627ebbcdbba7abf93cd2bff6b6d3a59d13ea52faa93923f68f1703d4a68d1b99",
+      "output": "out/soong/.intermediates/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEvents.bpf/android_arm64_armv8-a/obj/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEvents.bpf",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEvents.bpf/android_arm64_armv8-a/obj/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEvents.bpf": {
+            "bytes": 10392,
+            "sha256": "715e9f610f93e1e8d221829aaf1437be884def6c24916264218a9c01e6174af2"
+          },
+          "out/target/product/p00a/obj/ETC/bpfMemEvents.bpf_bpfMemEvents.bpf_intermediates/bpfMemEvents.bpf": {
+            "bytes": 10392,
+            "sha256": "715e9f610f93e1e8d221829aaf1437be884def6c24916264218a9c01e6174af2"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/target/product/p00a/obj/ETC/bpfMemEvents.bpf_bpfMemEvents.bpf_intermediates/bpfMemEvents.bpf",
+        "graph_output_chain": [
+          "out/target/product/p00a/system/etc/bpf/memevents/bpfMemEvents.bpf",
+          "out/target/product/p00a/obj/ETC/bpfMemEvents.bpf_bpfMemEvents.bpf_intermediates/bpfMemEvents.bpf",
+          "out/soong/.intermediates/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEvents.bpf/android_arm64_armv8-a/obj/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEvents.bpf"
+        ],
+        "install_path": "system/etc/bpf/memevents/bpfMemEvents.bpf",
+        "metadata": "evidence/object-metadata-v2/system__etc__bpf__memevents__bpfMemEvents.bpf.txt",
+        "selected_by": ".installable_files",
+        "sha256": "715e9f610f93e1e8d221829aaf1437be884def6c24916264218a9c01e6174af2",
+        "system_image_dependency": true,
+        "system_image_file_list": true
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "634eda538a399b8271fef9db1fc5e7469c598412112849dc838766ae2e9df98e",
+      "qualified_sha256": "715e9f610f93e1e8d221829aaf1437be884def6c24916264218a9c01e6174af2",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "715e9f610f93e1e8d221829aaf1437be884def6c24916264218a9c01e6174af2",
+      "source_pins": {
+        "out/soong/.intermediates/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEvents.bpf/android_arm64_armv8-a/obj/unstripped/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEvents.bpf": {
+          "bytes": 21392,
+          "sha256": "3bda3ff089b80e355c6eb5fe88f978c36ec9b5af85d6c03bdbe9a8e96fef915d",
+          "symlink": null
+        },
+        "system/memory/libmeminfo/libmemevents/bpfprogs/Android.bp": {
+          "bytes": 1022,
+          "sha256": "24b0a71eb8074f8f07490fd9bbf37b8957ba3ae89fd9ca72f5893a52d1541f85",
+          "symlink": null
+        },
+        "system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEvents.c": {
+          "bytes": 5320,
+          "sha256": "0ae9e314c7db7b47e41f0762be5879959d1a57ac3a28d261c4a38218fb0cd4df",
+          "symlink": null
+        }
+      },
+      "variant": "android_arm64_armv8-a"
+    },
+    {
+      "current_sha256": "f2504b7e3d9e7096f9d8fe9d33607d4600c91bac8002e7127062dc7bf3d99361",
+      "execution": null,
+      "final_runtime_admitted_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "system/etc/bpf/memevents/bpfMemEventsTest.bpf",
+      "kind": "QUALIFIED_BASELINE_ARTIFACT",
+      "module": "bpfMemEventsTest.bpf",
+      "native_command_hash": "9e78984ab8ab0f8aab12d3695fef7a26fd6db7058069cc36e2f5fc2a53b9c708",
+      "output": "out/soong/.intermediates/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEventsTest.bpf/android_arm64_armv8-a/obj/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEventsTest.bpf",
+      "qualification_row": {
+        "available_outputs": {
+          "out/soong/.intermediates/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEventsTest.bpf/android_arm64_armv8-a/obj/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEventsTest.bpf": {
+            "bytes": 12400,
+            "sha256": "f2504b7e3d9e7096f9d8fe9d33607d4600c91bac8002e7127062dc7bf3d99361"
+          },
+          "out/target/product/p00a/obj/ETC/bpfMemEventsTest.bpf_bpfMemEventsTest.bpf_intermediates/bpfMemEventsTest.bpf": {
+            "bytes": 12400,
+            "sha256": "f2504b7e3d9e7096f9d8fe9d33607d4600c91bac8002e7127062dc7bf3d99361"
+          }
+        },
+        "captured_source": "/srv/android/lineage24/out/target/product/p00a/obj/ETC/bpfMemEventsTest.bpf_bpfMemEventsTest.bpf_intermediates/bpfMemEventsTest.bpf",
+        "graph_output_chain": [
+          "out/target/product/p00a/system/etc/bpf/memevents/bpfMemEventsTest.bpf",
+          "out/target/product/p00a/obj/ETC/bpfMemEventsTest.bpf_bpfMemEventsTest.bpf_intermediates/bpfMemEventsTest.bpf",
+          "out/soong/.intermediates/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEventsTest.bpf/android_arm64_armv8-a/obj/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEventsTest.bpf"
+        ],
+        "install_path": "system/etc/bpf/memevents/bpfMemEventsTest.bpf",
+        "metadata": "evidence/object-metadata-v2/system__etc__bpf__memevents__bpfMemEventsTest.bpf.txt",
+        "selected_by": ".installable_files",
+        "sha256": "f2504b7e3d9e7096f9d8fe9d33607d4600c91bac8002e7127062dc7bf3d99361",
+        "system_image_dependency": true,
+        "system_image_file_list": true
+      },
+      "qualification_row_interpretation": "Exact unchanged qualified baseline, retaining prior optional-load failures and feature limitations",
+      "qualification_row_sha256": "ad666ffdd2ebf1cc74f370b7c56dbb706d42b82bf0146f9268daf48b7401360f",
+      "qualified_sha256": "f2504b7e3d9e7096f9d8fe9d33607d4600c91bac8002e7127062dc7bf3d99361",
+      "runtime_requalification_required": false,
+      "selected_original_inventory_sha256": "f2504b7e3d9e7096f9d8fe9d33607d4600c91bac8002e7127062dc7bf3d99361",
+      "source_pins": {
+        "out/soong/.intermediates/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEventsTest.bpf/android_arm64_armv8-a/obj/unstripped/system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEventsTest.bpf": {
+          "bytes": 23440,
+          "sha256": "b850ff429d884f3d20a09e6e722afffc21cc97eebc4e408529c3f2e09fc6d9b1",
+          "symlink": null
+        },
+        "system/memory/libmeminfo/libmemevents/bpfprogs/Android.bp": {
+          "bytes": 1022,
+          "sha256": "24b0a71eb8074f8f07490fd9bbf37b8957ba3ae89fd9ca72f5893a52d1541f85",
+          "symlink": null
+        },
+        "system/memory/libmeminfo/libmemevents/bpfprogs/bpfMemEventsTest.c": {
+          "bytes": 6602,
+          "sha256": "66c31f479ad320a142e4611e0c579ee3646dd6671808024dd9a3a91f6e637085",
+          "symlink": null
+        }
+      },
+      "variant": "android_arm64_armv8-a"
+    },
+    {
+      "current_sha256": "cc68c75c5046f450586fb6337d2b216dd22933e2b33357d54d5f37794e07cd1c",
+      "execution": {
+        "attempt_started_sha256": "6433c36ca34cfb8c19027aa8ff83560513d390786d640e085364144ae381b0f5",
+        "command_hash_hex": "5a1a36768e9172e161f14a9864b496f840dc6427b8e18e1da43102fc05921c82",
+        "integration_sha256": "eb3bea76da122ed3218821acdd5c72a1e20f5cf5cf1c9c485587399ebc095b03",
+        "metrics": {
+          "line": 12577,
+          "value": {
+            "action": "g.bpf.stripRule",
+            "action_end": 726.65,
+            "action_start": 726.64,
+            "cmdhash": "Who2do6RcuFh8UqYZLSW+EDcZCe44Y4dpDEC/AWSHII=",
+            "duration": 355.61,
+            "exec": 0.01,
+            "exec_start": 726.64,
+            "inputs": 3,
+            "is_local": true,
+            "max_rss": 22594820,
+            "oublock": 16,
+            "output": "out/soong/.intermediates/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.o/android_vendor_common/obj/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.o",
+            "outputs": 1,
+            "prev": "2dd0f3a1-9bb6-4f50-b0fe-53f2f3f9d8e5",
+            "prev_out": "out/soong/.intermediates/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.o/android_vendor_common/obj/unstripped/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.o",
+            "queue": 355.6,
+            "ready": 371.03,
+            "run": 0.01,
+            "start": 0.01,
+            "step_id": "13b59f3d-d6a9-4593-9053-6b7ed6ff6ed4",
+            "stime": 0.0,
+            "utime": 0.0,
+            "weighted_duration": 0.03
+          }
+        },
+        "ninja": {
+          "line": 12976,
+          "raw_v5_row": "726640\t726653\t1794008841401185321\tout/soong/.intermediates/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.o/android_vendor_common/obj/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.o\t65406da41af2228f"
+        },
+        "phase_exit_code": 1,
+        "phase_path": "/srv/android/asus-reviewed-build-kit/r8/attempt/native-evidence/bootimage",
+        "phase_receipt_sha256": "06a73e6125819f5dd7e7449cbd95e1ac128beb483be6f5b194d5c7324933a2b2",
+        "primary_rsp": null,
+        "verbose": {
+          "command": "prebuilts/clang/host/linux-x86/clang-r584948b/bin/llvm-strip -g out/soong/.intermediates/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.o/android_vendor_common/obj/unstripped/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.o -o out/soong/.intermediates/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.o/android_vendor_common/obj/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.o",
+          "line": 91459,
+          "progress": "12578/214028",
+          "sha256": "5a1a36768e9172e161f14a9864b496f840dc6427b8e18e1da43102fc05921c82"
+        }
+      },
+      "final_runtime_admitted_sha256": null,
+      "historical_runtime_tested_substitution_sha256": null,
+      "host_checks_scope": "ELF/compiler/graph/installed SYSTEM-or-APEX byte identity; no kernel/runtime qualification",
+      "install_path": "system/vendor/etc/bpf/filterPowerSupplyEvents.o",
+      "kind": "PRIOR_R8_EXECUTION",
+      "module": "filterPowerSupplyEvents.o",
+      "native_command_hash": "5a1a36768e9172e161f14a9864b496f840dc6427b8e18e1da43102fc05921c82",
+      "output": "out/soong/.intermediates/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.o/android_vendor_common/obj/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.o",
+      "preparation_candidate_sha256": "cc68c75c5046f450586fb6337d2b216dd22933e2b33357d54d5f37794e07cd1c",
+      "qualification_row": {
+        "available_outputs": {},
+        "graph_output_chain": [
+          "out/target/product/p00a/system/vendor/etc/bpf/filterPowerSupplyEvents.o",
+          "out/target/product/p00a/obj/ETC/filterPowerSupplyEvents.o_filterPowerSupplyEvents.o_intermediates/filterPowerSupplyEvents.o",
+          "out/soong/.intermediates/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.o/android_vendor_common/obj/hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.o"
+        ],
+        "install_path": "system/vendor/etc/bpf/filterPowerSupplyEvents.o",
+        "missing": true,
+        "selected_by": ".installable_files",
+        "system_image_dependency": true,
+        "system_image_file_list": true
+      },
+      "qualification_row_interpretation": "Original selected-output inventory only; no runtime qualification of these changed/new bytes",
+      "qualification_row_sha256": "96a2ebc8716da74c8c215f7dbc27f9f14da9f2fa031d71d721cfcca35678efa6",
+      "qualified_sha256": null,
+      "runtime_requalification_required": true,
+      "selected_original_inventory_sha256": null,
+      "source_pins": {
+        "hardware/interfaces/health/utils/libhealthloop/Android.bp": {
+          "bytes": 2807,
+          "sha256": "e9edb97f8ff039534b5a35e5260789d3ef63a54c93ecbd8ecc218c861c86532c",
+          "symlink": null
+        },
+        "hardware/interfaces/health/utils/libhealthloop/filterPowerSupplyEvents.c": {
+          "bytes": 3371,
+          "sha256": "371ca11052920914dffddccfc1c143f0a4ca253bb51fa3ecd5f2c2c9ebd2df2f",
+          "symlink": null
+        }
+      },
+      "variant": "android_vendor_common"
+    }
+  ],
+  "runtime_accepted": false,
+  "runtime_conditional_method_sha256": "a4b790a756d92d2d656e0d45fe80dca9839bb0a381d58b647266fd11ddf379ec",
+  "schema": "bpf-23-3-26-classification/v1"
+}

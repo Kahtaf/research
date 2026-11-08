@@ -1,0 +1,32 @@
+{
+  "budget_bytes": 1073741824,
+  "steps": [
+    {
+      "step": "ov5670-compile",
+      "peak_rss_bytes": 73596928
+    },
+    {
+      "step": "ov5670-link",
+      "peak_rss_bytes": 18481152
+    },
+    {
+      "step": "ov5670-run",
+      "peak_rss_bytes": 11911168
+    },
+    {
+      "step": "ov2680-compile",
+      "peak_rss_bytes": 73433088
+    },
+    {
+      "step": "ov2680-link",
+      "peak_rss_bytes": 18464768
+    },
+    {
+      "step": "ov2680-run",
+      "peak_rss_bytes": 11894784
+    }
+  ],
+  "max_observed_step_rss_bytes": 73596928,
+  "serial": true,
+  "Darwin_policy": "Observed RSS gate, not a hard cap. Whole Python runner measured separately in full-run.json. CPU 30 seconds, zero cores; hard AS 1 GiB on supported non-Darwin hosts."
+}

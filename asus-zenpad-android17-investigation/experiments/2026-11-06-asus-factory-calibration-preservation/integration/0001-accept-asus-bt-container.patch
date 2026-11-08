@@ -1,0 +1,19 @@
+--- a/src/bt_record.c
++++ b/src/bt_record.c
+@@ -16,13 +16,15 @@
+ #endif
+ int p00a_bt_record_open(const char *path, unsigned char address[6])
+ {
++    /* OEM file is 66 bytes: the API exposes the 64-byte logical prefix.
++     * Keep both trailing container bytes intact; this provider never writes. */
+     unsigned char record[64];
+     struct stat st;
+     int fd = open(path, O_RDONLY | O_CLOEXEC | O_NOFOLLOW);
+     if (fd < 0) return -1;
+     int saved;
+     if (fstat(fd, &st)) goto fail;
+-    if (!S_ISREG(st.st_mode) || st.st_size != sizeof(record)) { errno = EINVAL; goto fail; }
++    if (!S_ISREG(st.st_mode) || st.st_size != sizeof(record) + 2) { errno = EINVAL; goto fail; }
+     ssize_t n;
+     do { n = pread(fd, record, sizeof(record), 0); } while (n < 0 && errno == EINTR);
+     if (n != sizeof(record)) { errno = EIO; goto fail; }

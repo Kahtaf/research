@@ -1,0 +1,67 @@
+{
+  "status": "SIGNED_PACKAGING_VERIFIED_APP_CONTEXT_UNPROVED",
+  "apk": {
+    "name": "asus-wifi-adb-development.apk",
+    "bytes": 57876,
+    "sha256": "374ba0d1327572831c280da5d471d98e9bb48444943bb6e01768a75dd031235c"
+  },
+  "assets_sha256": {
+    "mtk-su64": "328632e853ff6427af9f35cb83a91d9e960f35d01188ee66d46ae9c7ce7c7827",
+    "root-actions.sh": "75bc4f393a44c8dfb4663b8da53e7986e1dca47ddf6b0c18472f39b2c523e05b"
+  },
+  "entries": [
+    {
+      "path": "AndroidManifest.xml",
+      "bytes": 2048
+    },
+    {
+      "path": "resources.arsc",
+      "bytes": 40
+    },
+    {
+      "path": "assets/mtk-su64",
+      "bytes": 65144
+    },
+    {
+      "path": "assets/root-actions.sh",
+      "bytes": 447
+    },
+    {
+      "path": "classes.dex",
+      "bytes": 17100
+    },
+    {
+      "path": "META-INF/DEVELOPM.SF",
+      "bytes": 590
+    },
+    {
+      "path": "META-INF/DEVELOPM.RSA",
+      "bytes": 1366
+    },
+    {
+      "path": "META-INF/MANIFEST.MF",
+      "bytes": 466
+    }
+  ],
+  "min_sdk": 24,
+  "target_sdk": 24,
+  "permissions": [],
+  "sdk24_v2_verified": true,
+  "v1_signature_entries_present": true,
+  "device_operations": 0,
+  "builder_prefix": "/srv/android/asus-wifi-adb-apk-20261107",
+  "tool_paths": [
+    "/srv/android/lineage24/prebuilts/jdk/jdk21/linux-x86/bin/javac",
+    "/srv/android/lineage24/prebuilts/jdk/jdk21/linux-x86/bin/java",
+    "/srv/android/lineage24/prebuilts/jdk/jdk21/linux-x86/bin/keytool",
+    "/srv/android/lineage24/prebuilts/sdk/37.0/public/android.jar",
+    "/srv/android/lineage24/prebuilts/sdk/tools/linux/bin/aapt2",
+    "/srv/android/lineage24/prebuilts/sdk/tools/linux/bin/zipalign",
+    "/srv/android/lineage24/prebuilts/sdk/tools/linux/lib/apksigner.jar",
+    "/srv/android/lineage24/prebuilts/sdk/tools/linux/lib/d8.jar"
+  ],
+  "signing_private_mode": "0o700",
+  "key_ignored": true,
+  "parallel_builds": 1
+}
+

@@ -1,0 +1,21 @@
+{
+  "utc": "2026-11-07T04:04:45.507948+00:00",
+  "captures": [
+    {
+      "bytes": 16740352,
+      "sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20"
+    },
+    {
+      "bytes": 16740352,
+      "sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20"
+    }
+  ],
+  "same_stock_boot": true,
+  "boot_id": "5294f6c0-17d0-4de4-9db6-f3ec9a0de52c",
+  "staging_cleanup_verified": true,
+  "enforcing": true,
+  "block_writes": false,
+  "reboot": false,
+  "engine_sha256": "630c4aaadbb418dc0af1f5a00628b3ec16117bb165707b4d18794c124464a681",
+  "source_sha256": "743f3c312a4f1637d5592173013a7a94b68c63e16e5090a6c7f8a54e2e3f9f3c"
+}

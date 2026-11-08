@@ -1,0 +1,107 @@
+{
+  "native_processes": "",
+  "markers": {
+    "started": {
+      "exists": true,
+      "text": "2026-11-06T15:37:39+00:00\n"
+    },
+    "finished": {
+      "exists": true,
+      "text": "2026-11-06T21:15:32+00:00\n"
+    },
+    "exit-code": {
+      "exists": true,
+      "text": "1\n"
+    },
+    "complete": {
+      "exists": false,
+      "text": null
+    },
+    "images.json": {
+      "exists": false,
+      "text": null
+    }
+  },
+  "log_tail": "template-names -gz=zstd -no-canonical-prefixes -fdebug-prefix-map=/proc/self/cwd= -ftrivial-auto-var-init=zero -g -ffunction-sections -fdata-sections -fno-short-enums -funwind-tables -Wa,--noexecstack -D_FORTIFY_SOURCE=3 -fstack-protector-strong -Werror=non-virtual-dtor -Werror=address -Werror=sequence-point -march=armv8-a  -target aarch64-linux-android10000 -DANDROID_STRICT -fPIC -Wimplicit-fallthrough -D_LIBCPP_ENABLE_THREAD_SAFETY_ANNOTATIONS -Wno-gnu-include-next -fvisibility-inlines-hidden  -Isystem/vold -DBOARD_RECOVERY_BLDRMSG_OFFSET=0 -D__LIBC_API__=10000 -D__LIBM_API__=10000 -D__LIBDL_API__=10000 -Isystem/memory/libmeminfo/include -Iframeworks/native/libs/binder/ndk/include_cpp -Iframeworks/native/libs/binder/ndk/include_ndk -Iframeworks/native/libs/binder/ndk/include_platform -Ilibnativehelper/include_jni -Iout/soong/.intermediates/hardware/interfaces/security/secureclock/aidl/android.hardware.security.secureclock-V1-ndk-source/gen/include -Iout/soong/.intermediates/hardware/interfaces/security/keymint/aidl/android.hardware.security.keymint-V5-ndk-source/gen/include -Iout/soong/.intermediates/system/hardware/interfaces/keystore2/aidl/android.system.keystore2-V6-ndk-source/gen/include -Iout/soong/.intermediates/system/security/keystore2/aidl/android.security.maintenance-ndk-source/gen/include -Ibionic/libc/async_safe/include -Isystem/logging/liblog/include -Iexternal/avb -Ibootable/recovery/bootloader_message/include -Isystem/fs/fs_mgr/libdm/include -Iexternal/e2fsprogs/lib/uuid -Iexternal/e2fsprogs/lib -Isystem/extras/libfec/include -Isystem/core/libcrypto_utils/include -Isystem/fs/fs_mgr/libfs_avb/include -Isystem/fs/fs_mgr/libfstab/include -Isystem/fs/fs_mgr/include -Isystem/fs/fs_mgr/libfiemap/include -Isystem/logging/logwrapper/include -Isystem/extras/libfscrypt/include -Isystem/fs/fs_mgr/liblp/include -Iout/soong/.intermediates/frameworks/base/core/java/libincremental_aidl-cpp/android_arm64_armv8-a_static/gen/aidl -Isystem/libbase/include -Iexternal/fmtlib/include -Iframeworks/native/libs/binder/include -Isystem/core/libcutils/include -Isystem/core/libprocessgroup/include -Isystem/core/libutils/include -Isystem/core/libsystem/include -Isystem/core/libutils/binder/include -Iout/soong/.intermediates/frameworks/native/libs/binder/libbinder/android_arm64_armv8-a_shared/gen/aidl -Iout/soong/.intermediates/system/vold/libvold_binder/android_arm64_armv8-a_static/gen/aidl -Iout/soong/.intermediates/system/hardware/interfaces/vold/android.system.vold-V1-cpp-source/gen/include -Iout/soong/.intermediates/system/fs/casefolding_remover/libcasefoldingremover/android_arm64_armv8-a_static/gen/aidl -Iout/soong/.intermediates/system/vold/vold_flags_c_lib/android_arm64_armv8-a_static/gen/include -Iprebuilts/clang/host/linux-x86/clang-r584948b/android_libc++/platform/aarch64/include/c++/v1 -Iprebuilts/clang/host/linux-x86/clang-r584948b/include/c++/v1 -Isystem/libhidl/base/include -Isystem/libhidl/transport/include -Isystem/libfmq/base -Isystem/libhwbinder/include -Iout/soong/.intermediates/system/libhidl/transport/manager/1.0/android.hidl.manager@1.0_genc++_headers/gen -Iout/soong/.intermediates/system/libhidl/transport/manager/1.1/android.hidl.manager@1.1_genc++_headers/gen -Iout/soong/.intermediates/system/libhidl/transport/manager/1.2/android.hidl.manager@1.2_genc++_headers/gen -Iout/soong/.intermediates/system/libhidl/transport/base/1.0/android.hidl.base@1.0_genc++_headers/gen -Iout/soong/.intermediates/hardware/interfaces/boot/1.0/android.hardware.boot@1.0_genc++_headers/gen -Iout/soong/.intermediates/hardware/interfaces/boot/aidl/android.hardware.boot-V1-ndk-source/gen/include -Ihardware/interfaces/boot/aidl/client/include -Iexternal/boringssl/src/include -Isystem/extras/ext4_utils/include -Isystem/extras/f2fs_utils -Iexternal/fec -Isystem/gsid/include -Ihardware/libhardware/include_all -Isystem/media/audio/include -Ihardware/libhardware_legacy/include -Isystem/incremental_delivery/incfs/include -Isystem/incremental_delivery/incfs/kernel-headers -Ihardware/interfaces/security/keymint/support/include -Iexternal/selinux/libselinux/include -Isystem/core/libsysutils/include -Isystem/server_configurable_flags/libflags/include -Ibionic/libc/system_properties/include -Isystem/core/property_service/libpropertyinfoparser/include -isystem bionic/libc/include -isystem bionic/libc/kernel/uapi/asm-arm64 -isystem bionic/libc/kernel/uapi -isystem bionic/libc/kernel/android/scsi -isystem bionic/libc/kernel/android/uapi -Wall -Werror -Wextra -Wno-unused-parameter -flto=thin -fsplit-lto-unit -std=gnu++23 -D__ANDROID_DEBUGGABLE__ -fno-rtti -Isystem/core/include -Isystem/logging/liblog/include -Isystem/media/audio/include -Ihardware/libhardware/include -Ihardware/libhardware_legacy/include -Ihardware/ril/include -Iframeworks/native/include -Iframeworks/native/opengl/include -Iframeworks/av/include  -Werror=address-of-temporary -Werror=dangling -Werror=format-insufficient-args -Werror=fortify-source -Werror=incompatible-function-pointer-types -Werror=int-in-bool-context -Werror=int-to-pointer-cast -Werror=null-dereference -Werror=return-type -Werror=xor-used-as-pow -Wno-missing-field-initializers -Wno-packed-non-pod -Wno-error=tautological-constant-compare -Wno-implicit-int-float-conversion -Wno-tautological-overlap-compare -Wno-deprecated-copy -Wno-zero-as-null-pointer-constant -Wno-deprecated-anon-enum-enum-conversion -Wno-deprecated-enum-enum-conversion -Wno-error=pessimizing-move -Wno-non-c-typedef-for-linkage -Wno-align-mismatch -Wno-error=unused-but-set-parameter -Wno-error=deprecated -Wno-error=invalid-offsetof -Wno-nontrivial-memcall -Wno-invalid-specialization -Wno-unterminated-string-initialization -Wno-implicit-int-conversion-on-negation -Wno-default-const-init-field-unsafe -Wno-default-const-init-var-unsafe -Wno-preferred-type-bitfield-enum-conversion -Wno-implicit-enum-enum-cast -Wno-character-conversion -Wno-error=uninitialized-const-pointer -Wno-incompatible-pointer-types -Wno-c2y-extensions -Wno-vla-cxx-extension -Wno-cast-function-type-mismatch  -MD -MF out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/PublicVolume.o.d -o out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/PublicVolume.o system/vold/model/PublicVolume.cpp\nstderr:\nsystem/vold/model/PublicVolume.cpp:73:14: error: no member named 'replace' in namespace 'std'\n   73 |         std::replace(mFsLabel.begin(), mFsLabel.end(), ' ', '_');\n      |              ^~~~~~~\n1 error generated.\n[ 79% 122308/153135] //system/vold:libvold clang++ model/DiskPartition.cpp\n[ 79% 122309/153135] //system/vold:libvold clang++ fs/Iso9660.cpp\n[ 79% 122310/153135] //hardware/interfaces/security/rkp/aidl:android.hardware.security.rkp-V3-cpp clang++ android/hardware/security/keymint/RpcHardwareInfo.cpp\n[ 79% 122311/153135] //system/connectivity/wificond:libwificond clang++ scanning/scan_utils.cpp\n[ 79% 122312/153135] //system/vold:libvold clang++ fs/Ntfs.cpp\n[ 79% 122313/153135] //frameworks/base/cmds/incident:incident_sections generate incident_sections.cpp\n[ 79% 122314/153135] //system/vold:libvold clang++ model/Disk.cpp\nstderr:\nsystem/vold/model/Disk.cpp:499:27: warning: 'strtok' is deprecated: strtok() is not thread-safe; use strtok_r() instead [-Wdeprecated-declarations]\n  499 |             char* token = strtok(cline, kSgdiskToken);\n      |                           ^\nbionic/libc/include/string.h:125:20: note: 'strtok' has been explicitly marked deprecated here\n  125 |     __attribute__((__deprecated__(\"strtok() is not thread-safe; use strtok_r() instead\")));\n      |                    ^\nsystem/vold/model/Disk.cpp:503:36: warning: 'strtok' is deprecated: strtok() is not thread-safe; use strtok_r() instead [-Wdeprecated-declarations]\n  503 |                 const char* type = strtok(nullptr, kSgdiskToken);\n      |                                    ^\nbionic/libc/include/string.h:125:20: note: 'strtok' has been explicitly marked deprecated here\n  125 |     __attribute__((__deprecated__(\"strtok() is not thread-safe; use strtok_r() instead\")));\n      |                    ^\n2 warnings generated.\n[ 79% 122315/153135] //system/vold:libvold clang++ fs/Ext4.cpp\n[ 79% 122316/153135] //system/vold:libvold clang++ fs/F2fs.cpp\n[ 79% 122317/153135] //system/vold:libvold clang++ cryptfs.cpp\n[ 79% 122318/153135] //hardware/interfaces/security/rkp/aidl:android.hardware.security.rkp-V3-cpp clang++ android/hardware/security/keymint/ProtectedData.cpp\n[ 79% 122319/153135] //hardware/interfaces/security/rkp/aidl:android.hardware.security.rkp-V3-cpp clang++ android/hardware/security/keymint/MacedPublicKey.cpp\n[ 79% 122320/153135] //system/vold:libvold clang++ FileDeviceUtils.cpp\n[ 79% 122321/153134] //system/security/provisioner/support:librkp_support clang++ rkpd_client.cpp\n[ 79% 122322/153134] //hardware/interfaces/security/rkp/aidl:android.hardware.security.rkp-V3-cpp clang++ android/hardware/security/keymint/DeviceInfo.cpp\n[ 79% 122323/153134] //hardware/interfaces/security/rkp/aidl:android.hardware.security.rkp-V3-cpp clang++ android/hardware/security/keymint/IRemotelyProvisionedComponent.cpp\n[ 79% 122324/153134] //system/vold:libvold clang++ AppFuseUtil.cpp\n[ 79% 122325/153134] //hardware/interfaces/camera/metadata/aidl:android.hardware.camera.metadata-V2-ndk clang++ android/hardware/camera/metadata/SensorInfoLensShadingApplied.cpp\n[ 79% 122326/153134] //hardware/interfaces/camera/metadata/aidl:android.hardware.camera.metadata-V2-ndk clang++ android/hardware/camera/metadata/LensState.cpp\n[ 79% 122327/153134] //art/perfetto_hprof:libperfetto_hprofd strip libperfetto_hprofd.so[arm apex31]\n[ 79% 122328/153133] //system/vold:libvold clang++ FsCrypt.cpp\n[ 79% 122329/153133] //frameworks/rs:libRSCacheDir strip libRSCacheDir.so[arm]\n[ 79% 122330/153133] //system/vold:libvold clang++ CryptoType.cpp\n[ 79% 122331/153133] //external/boringssl:libcrypto_static clang src/gen/bcm/sha1-x86_64-linux.S\n[ 79% 122332/153133] //system/vold:libvold clang++ EncryptInplace.cpp\n[ 79% 122333/153132] //system/vold:libvold clang++ VoldNativeServiceValidation.cpp\n[ 79% 122334/153132] //system/vold:libvold clang++ Checkpoint.cpp\n[ 79% 122335/153132] //system/vold:libvold clang++ KeyBuffer.cpp\n[ 79% 122336/153132] //frameworks/compile/mclinker/lib/LD:libmcldLD clang++ SectionSymbolSet.cpp\n[ 79% 122337/153132] //system/vold:libvold clang++ Loop.cpp\n[ 79% 122338/153132] //external/rust/android-crates-io/crates/tokio-stream:libtokio_stream rustc src/lib.rs\n[ 79% 122339/153132] //frameworks/base/packages/SettingsProvider:SettingsProvider r8[common]\nstderr:\nWarning: An API level of 37 is not supported by this compiler. Please use an API level of 36 or earlier)\n[ 79% 122340/153132] //system/vold:libvold clang++ fs/Exfat.cpp\n[ 79% 122341/153132] //system/vold:libvold clang++ NetlinkHandler.cpp\n[ 79% 122342/153132] //system/vold:libvold clang++ Process.cpp\n[ 79% 122343/153132] //system/vold:libvold clang++ NetlinkManager.cpp\n[ 79% 122344/153132] //system/timezone/apex:com.android.tzdata container notice file[common]\n[ 79% 122345/153132] //hardware/interfaces/camera/metadata/aidl:android.hardware.camera.metadata-V2-ndk clang++ android/hardware/camera/metadata/JpegrAvailableJpegRStreamConfigurationsMaximumResolution.cpp\n[ 79% 122346/153132] //hardware/interfaces/camera/metadata/aidl:android.hardware.camera.metadata-V2-ndk clang++ android/hardware/camera/metadata/JpegrAvailableJpegRStreamConfigurations.cpp\n[ 79% 122347/153132] //system/vold:libvold clang++ Keystore.cpp\n[ 79% 122348/153132] //system/vold:libvold clang++ MoveStorage.cpp\nFAILED: ninja: \n5h25m32.93s Build Failure: 122347 done, 1 failed, 30783 remaining - 6.26/s\n 1 steps failed: exit=1\n\nwarning: ninja: see ./out/siso_output for full command line and output\n or ./out/siso.INFO\nuse ./out/siso_failed_commands.sh to re-run failed commands\n\n21:15:29 ninja failed with: exit status 1\n\n#### failed to build some targets (05:25:49 (hh:mm:ss)) ####\n\n",
+  "service_exit": 2,
+  "services": [
+    {
+      "module": "apexd",
+      "variant": "android_arm64_armv8-a",
+      "output": "out/soong/.intermediates/system/apex/apexd/apexd/android_arm64_armv8-a/unstripped/apexd",
+      "output_exists": false,
+      "missing": [
+        "out/soong/.intermediates/system/apex/apexd/apexd/android_arm64_armv8-a/obj/system/apex/apexd/apexd_main.o",
+        "out/soong/.intermediates/system/apex/apexd/apex_aidl_interface-cpp/android_arm64_armv8-a_shared/before_final_validations/apex_aidl_interface-cpp.so.toc",
+        "out/soong/.intermediates/system/apex/apexd/libapexd_checkpoint_vold/android_arm64_armv8-a_static/libapexd_checkpoint_vold.a",
+        "out/soong/.intermediates/system/apex/apexd/libapexd_metrics_stats/android_arm64_armv8-a_static/libapexd_metrics_stats.a",
+        "out/soong/.intermediates/system/core/libstats/bootstrap/libstatsbootstrap/android_arm64_armv8-a_static/libstatsbootstrap.a",
+        "out/soong/.intermediates/frameworks/base/core/java/android.os.statsbootstrap_aidl-cpp/android_arm64_armv8-a_static/android.os.statsbootstrap_aidl-cpp.a",
+        "out/soong/.intermediates/system/apex/apexd/libapexservice/android_arm64_armv8-a_static/libapexservice.a",
+        "out/soong/.intermediates/system/apex/apexd/libapexd/android_arm64_armv8-a_static/libapexd.a",
+        "out/soong/.intermediates/system/apex/proto/lib_apex_blocklist_proto/android_arm64_armv8-a_static/lib_apex_blocklist_proto.a",
+        "out/soong/.intermediates/system/apex/proto/lib_apex_image_list_proto/android_arm64_armv8-a_static/lib_apex_image_list_proto.a",
+        "out/soong/.intermediates/system/apex/proto/lib_apex_storage_metadata_proto/android_arm64_armv8-a_static/lib_apex_storage_metadata_proto.a",
+        "out/soong/.intermediates/packages/modules/Virtualization/libs/libmicrodroid_payload_metadata/lib_microdroid_metadata_proto/android_arm64_armv8-a_static/lib_microdroid_metadata_proto.a",
+        "out/soong/.intermediates/system/apex/apexd/libapex/android_arm64_armv8-a_static/libapex.a",
+        "out/soong/.intermediates/system/apex/proto/lib_apex_session_state_proto/android_arm64_armv8-a_static/lib_apex_session_state_proto.a",
+        "out/soong/.intermediates/system/apex/proto/lib_apex_manifest_proto/android_arm64_armv8-a_static/lib_apex_manifest_proto.a",
+        "out/soong/.intermediates/system/security/ondevice-signing/libsigningutils/android_arm64_armv8-a_static/libsigningutils.a",
+        "out/soong/.intermediates/system/extras/verity/libverity_tree/android_arm64_armv8-a_static/libverity_tree.a",
+        "out/soong/.intermediates/system/apex/apexd/sysprop/libcom.android.sysprop.apex/android_arm64_armv8-a_static/libcom.android.sysprop.apex.a",
+        "out/soong/.intermediates/system/apex/apexd/apex_aidl_interface-cpp/android_arm64_armv8-a_shared/apex_aidl_interface-cpp.so"
+      ],
+      "link_inputs_ready": false
+    },
+    {
+      "module": "hwservicemanager",
+      "variant": "android_arm64_armv8-a",
+      "output": "out/soong/.intermediates/system/hwservicemanager/hwservicemanager/android_arm64_armv8-a/unstripped/hwservicemanager",
+      "output_exists": false,
+      "missing": [
+        "out/soong/.intermediates/system/hwservicemanager/hwservicemanager/android_arm64_armv8-a/obj/system/hwservicemanager/service.o",
+        "out/soong/.intermediates/system/tools/hidl/utils/libhidl-gen-utils/android_arm64_armv8-a_shared/before_final_validations/libhidl-gen-utils.so.toc",
+        "out/soong/.intermediates/system/hwservicemanager/libhwservicemanager/android_arm64_armv8-a_static/libhwservicemanager.a",
+        "out/soong/.intermediates/system/hwservicemanager/libtokenmanager/android_arm64_armv8-a_static/libtokenmanager.a",
+        "out/soong/.intermediates/system/tools/hidl/utils/libhidl-gen-utils/android_arm64_armv8-a_shared/libhidl-gen-utils.so"
+      ],
+      "link_inputs_ready": false
+    },
+    {
+      "module": "keystore2",
+      "variant": "android_arm64_armv8-a",
+      "output": "out/soong/.intermediates/system/security/keystore2/keystore2/android_arm64_armv8-a/unstripped/keystore2",
+      "output_exists": false,
+      "missing": [
+        "out/soong/.intermediates/system/security/keystore2/legacykeystore/liblegacykeystore-rust/android_arm64_armv8-a_rlib_rlib-std/liblegacykeystore-rust.rlib",
+        "out/soong/.intermediates/system/security/keystore2/keystore2/android_arm64_armv8-a/keystore2.soong_deps",
+        "out/soong/.intermediates/system/security/keystore2/keystore2/android_arm64_armv8-a/keystore2.clippy"
+      ],
+      "link_inputs_ready": false
+    },
+    {
+      "module": "servicemanager",
+      "variant": "android_arm64_armv8-a",
+      "output": "out/soong/.intermediates/frameworks/native/cmds/servicemanager/servicemanager/android_arm64_armv8-a/unstripped/servicemanager",
+      "output_exists": false,
+      "missing": [
+        "out/soong/.intermediates/frameworks/native/cmds/servicemanager/servicemanager/android_arm64_armv8-a/obj/frameworks/native/cmds/servicemanager/Access.o",
+        "out/soong/.intermediates/frameworks/native/cmds/servicemanager/servicemanager/android_arm64_armv8-a/obj/frameworks/native/cmds/servicemanager/ServiceManager.o",
+        "out/soong/.intermediates/frameworks/native/cmds/servicemanager/servicemanager/android_arm64_armv8-a/obj/frameworks/native/cmds/servicemanager/main.o"
+      ],
+      "link_inputs_ready": false
+    },
+    {
+      "module": "android.hardware.keymaster@4.0-service",
+      "variant": "android_vendor_arm64_armv8-a_cfi",
+      "output": "out/soong/.intermediates/hardware/interfaces/keymaster/4.0/default/android.hardware.keymaster@4.0-service/android_vendor_arm64_armv8-a_cfi/unstripped/android.hardware.keymaster@4.0-service",
+      "output_exists": false,
+      "missing": [
+        "out/soong/.intermediates/hardware/interfaces/keymaster/4.0/default/android.hardware.keymaster@4.0-service/android_vendor_arm64_armv8-a_cfi/obj/hardware/interfaces/keymaster/4.0/default/service.o",
+        "out/soong/.intermediates/system/keymaster/libkeymaster4/android_vendor_arm64_armv8-a_shared_cfi/before_final_validations/libkeymaster4.so.toc",
+        "out/soong/.intermediates/system/keymaster/libkeymaster4/android_vendor_arm64_armv8-a_shared_cfi/libkeymaster4.so"
+      ],
+      "link_inputs_ready": false
+    }
+  ]
+}

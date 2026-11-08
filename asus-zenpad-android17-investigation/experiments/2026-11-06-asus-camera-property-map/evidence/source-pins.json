@@ -1,0 +1,38 @@
+{
+  "unchanged_original_local_manifest": "local-inputs-pre.json / local-inputs-post.json",
+  "unchanged_original_remote_manifest": "input-pins.json / input-pins-post.json",
+  "new_primary_donor": "donor-pins.json + support-pins.json",
+  "new_primary_uapi": "uapi-pins.json",
+  "new_sources": [
+    {
+      "path": "src/Android.bp.snippet",
+      "bytes": 606,
+      "sha256": "c0b80092097ab50778eecbf30a67f4f09e5328cad63b1326ac086693b2626f2a"
+    },
+    {
+      "path": "src/BINDING.md",
+      "bytes": 2707,
+      "sha256": "c48ca329f3227cccbf5b85128b29cb3e7dc2f79c73bc3a2f4c9b1e6abc29ae20"
+    },
+    {
+      "path": "src/exports.map",
+      "bytes": 511,
+      "sha256": "fb5ea92095ac6e574668b7d4e9e58115aa6e711c8b2fe2156636c746c813a6e6"
+    },
+    {
+      "path": "src/import-renames.txt",
+      "bytes": 878,
+      "sha256": "d38c654c04a1243394d42b15d17590463b3835e52c26ad061c63ac65c9888403"
+    },
+    {
+      "path": "src/legacy_property_map.cpp",
+      "bytes": 2726,
+      "sha256": "6b4bab418a5511ca11e7308ef623a6e13963fba1a2fb28fe2ccdc41cb5bd41c6"
+    },
+    {
+      "path": "src/legacy_property_map.h",
+      "bytes": 1678,
+      "sha256": "21753f70dca1b189a9faf68469ed1a2705e2415532ed6c5013640d79dc0cdc82"
+    }
+  ]
+}

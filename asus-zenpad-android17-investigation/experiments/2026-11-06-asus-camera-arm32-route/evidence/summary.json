@@ -1,0 +1,44 @@
+{
+  "stock_server_elfclass": 1,
+  "metadata_constructor_sets_equal": true,
+  "metadata_constructor_count": 21,
+  "metadata_sensor_names": [
+    "GC2355_MIPI_RAW",
+    "IMX219_MIPI_RAW",
+    "OV5648_MIPI_RAW",
+    "OV5648_MIPI_RAW_TRULY",
+    "SP2518_YUV"
+  ],
+  "vendor_elfs": 82,
+  "vendor_bytes_read": 42768392,
+  "modern_providers_found": 25,
+  "modern_providers_missing": [
+    "libfs_mgr.so",
+    "libnativehelper.so"
+  ],
+  "unresolved_names": [
+    "_ZN7android11PropertyMap11addPropertyERKNS_7String8ES3_",
+    "_ZN7android11PropertyMap5clearEv",
+    "_ZN7android11PropertyMapC1Ev",
+    "_ZN7android11PropertyMapD1Ev",
+    "_ZN7android13GraphicBuffer4lockEjPPv",
+    "_ZN7android13GraphicBufferC1Ejjij",
+    "_ZN7android13GraphicBufferC1EjjijjP13native_handleb",
+    "_ZN7android13SensorManager16createEventQueueENS_7String8Ei",
+    "_ZN7android19GraphicBufferMapper6unlockEPK13native_handle",
+    "_ZN7android7String811setPathNameEPKc",
+    "_ZNK7android11PropertyMap11hasPropertyERKNS_7String8E",
+    "_ZNK7android11PropertyMap14tryGetPropertyERKNS_7String8ERS1_",
+    "_ZNK7android11PropertyMap14tryGetPropertyERKNS_7String8ERb",
+    "_ZNK7android11PropertyMap14tryGetPropertyERKNS_7String8ERf",
+    "_ZNK7android11PropertyMap14tryGetPropertyERKNS_7String8ERi",
+    "_ZNK7android7String811getBasePathEv",
+    "fs_mgr_free_fstab",
+    "fs_mgr_get_entry_for_mount_point",
+    "fs_mgr_read_fstab"
+  ],
+  "stock_graphicbuffer_allocation_bytes": 136,
+  "sdk37_graphicbuffer_compiled_bytes": 1784,
+  "runtime_proved": false,
+  "device_actions": false
+}

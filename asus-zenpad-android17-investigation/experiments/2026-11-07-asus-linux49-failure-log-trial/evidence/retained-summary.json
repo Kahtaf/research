@@ -1,0 +1,14 @@
+{
+  "bytes": 507837,
+  "sha256": "959828bef6a6f27a189e91b83071db438231bcf5c69b463d52210cc9944f6628",
+  "counts": {
+    "logger_markers": 0,
+    "linux49_mentions": 0,
+    "linux318_mentions": 7
+  },
+  "markers": [],
+  "log_identity_lines": [
+    "[    0.000000] -(0)[0:swapper]Linux version 3.18.35 (android@mec15) (gcc version 4.9 20150123 (prerelease) (GCC) ) #1 SMP PREEMPT Thu Aug 9 12:33:25 CST 2018",
+    "[    0.306806]  (2)[1:swapper/0]Unpacking initramfs..."
+  ]
+}

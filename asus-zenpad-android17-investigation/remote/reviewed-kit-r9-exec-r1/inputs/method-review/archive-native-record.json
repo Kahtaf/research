@@ -1,0 +1,42 @@
+{
+  "read_started_ns": 1794012952494785658,
+  "selected_paths": [
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/libvold.a"
+  ],
+  "fs_state_entries": [
+    {
+      "name": "/srv/android/lineage24/out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/libvold.a",
+      "mtime_ns": 1794007866085282536,
+      "digest": {
+        "hash": "b1483ca16634e3186cde09966868c059cef592f6079a3b3fec7acc370397e48a",
+        "size_bytes": 19158070
+      },
+      "cmd_hash_hex": "176c4d67066a98f67d05af609498c149d89345d14859b58369a89fd078c73d60",
+      "edge_hash_hex": "a95a053439df47cbfa0e275b0fb7a050ad9b55d6212a194e4ee06ff5045299e6",
+      "action": null,
+      "updated_time_ns": 1794007866085282536,
+      "local": 1,
+      "target": ""
+    }
+  ],
+  "selected_files": {
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/libvold.a": {
+      "bytes": 19158070,
+      "mtime_ns": 1794007866085282536,
+      "sha256": "b1483ca16634e3186cde09966868c059cef592f6079a3b3fec7acc370397e48a",
+      "symlink": false
+    }
+  },
+  "current_ninja_rows": [],
+  "state_before": {
+    "bytes": 56549473,
+    "mtime_ns": 1794008905091891985
+  },
+  "state_scanned_entries": 684658,
+  "state_uncompressed_payload_bytes": 197545648,
+  "state_after": {
+    "bytes": 56549473,
+    "mtime_ns": 1794008905091891985
+  },
+  "read_finished_ns": 1794012956420720740
+}

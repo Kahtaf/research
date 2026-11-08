@@ -1,0 +1,665 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "build_id",
+    "source_binding_sha256",
+    "tool_group_sha256",
+    "native_target_out",
+    "search_root",
+    "search_slots",
+    "contexts",
+    "installed_content_receipt"
+  ],
+  "properties": {
+    "schema": {
+      "const": "asus-sdk37-host-metadata-source-plan/v1"
+    },
+    "build_id": {
+      "type": "string"
+    },
+    "source_binding_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "tool_group_sha256": {
+      "const": "624ff875e00eea2489502489bfad4587efa398457d110bf404baac76e97aeff3"
+    },
+    "native_target_out": {
+      "type": "string"
+    },
+    "search_root": {
+      "type": "string"
+    },
+    "search_slots": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "slot",
+            "state",
+            "origin",
+            "sha256",
+            "absence_attestation_sha256"
+          ],
+          "properties": {
+            "slot": {
+              "const": "system"
+            },
+            "state": {
+              "enum": [
+                "present",
+                "absent"
+              ]
+            },
+            "origin": {
+              "type": "string"
+            },
+            "sha256": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "absence_attestation_sha256": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "state": {
+                    "const": "present"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "absence_attestation_sha256": {
+                    "type": "null"
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "sha256": {
+                    "type": "null"
+                  },
+                  "absence_attestation_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "slot",
+            "state",
+            "origin",
+            "sha256",
+            "absence_attestation_sha256"
+          ],
+          "properties": {
+            "slot": {
+              "const": "vendor"
+            },
+            "state": {
+              "enum": [
+                "present",
+                "absent"
+              ]
+            },
+            "origin": {
+              "type": "string"
+            },
+            "sha256": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "absence_attestation_sha256": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "state": {
+                    "const": "present"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "absence_attestation_sha256": {
+                    "type": "null"
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "sha256": {
+                    "type": "null"
+                  },
+                  "absence_attestation_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "slot",
+            "state",
+            "origin",
+            "sha256",
+            "absence_attestation_sha256"
+          ],
+          "properties": {
+            "slot": {
+              "const": "oem"
+            },
+            "state": {
+              "enum": [
+                "present",
+                "absent"
+              ]
+            },
+            "origin": {
+              "type": "string"
+            },
+            "sha256": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "absence_attestation_sha256": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "state": {
+                    "const": "present"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "absence_attestation_sha256": {
+                    "type": "null"
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "sha256": {
+                    "type": "null"
+                  },
+                  "absence_attestation_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "slot",
+            "state",
+            "origin",
+            "sha256",
+            "absence_attestation_sha256"
+          ],
+          "properties": {
+            "slot": {
+              "const": "odm"
+            },
+            "state": {
+              "enum": [
+                "present",
+                "absent"
+              ]
+            },
+            "origin": {
+              "type": "string"
+            },
+            "sha256": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "absence_attestation_sha256": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "state": {
+                    "const": "present"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "absence_attestation_sha256": {
+                    "type": "null"
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "sha256": {
+                    "type": "null"
+                  },
+                  "absence_attestation_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "slot",
+            "state",
+            "origin",
+            "sha256",
+            "absence_attestation_sha256"
+          ],
+          "properties": {
+            "slot": {
+              "const": "product"
+            },
+            "state": {
+              "enum": [
+                "present",
+                "absent"
+              ]
+            },
+            "origin": {
+              "type": "string"
+            },
+            "sha256": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "absence_attestation_sha256": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "state": {
+                    "const": "present"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "absence_attestation_sha256": {
+                    "type": "null"
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "sha256": {
+                    "type": "null"
+                  },
+                  "absence_attestation_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "slot",
+            "state",
+            "origin",
+            "sha256",
+            "absence_attestation_sha256"
+          ],
+          "properties": {
+            "slot": {
+              "const": "system_ext"
+            },
+            "state": {
+              "enum": [
+                "present",
+                "absent"
+              ]
+            },
+            "origin": {
+              "type": "string"
+            },
+            "sha256": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "absence_attestation_sha256": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "state": {
+                    "const": "present"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "absence_attestation_sha256": {
+                    "type": "null"
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "sha256": {
+                    "type": "null"
+                  },
+                  "absence_attestation_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "items": false
+    },
+    "contexts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "origin",
+        "sha256"
+      ],
+      "properties": {
+        "format": {
+          "const": "compiled"
+        },
+        "origin": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "installed_content_receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "build_id",
+        "source_binding_sha256",
+        "files"
+      ],
+      "properties": {
+        "schema": {
+          "const": "asus-sdk37-installed-four-content/v1"
+        },
+        "build_id": {
+          "type": "string"
+        },
+        "source_binding_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "files": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "sha256",
+                "bytes"
+              ],
+              "properties": {
+                "path": {
+                  "const": "/system/build.prop"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "bytes": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "sha256",
+                "bytes"
+              ],
+              "properties": {
+                "path": {
+                  "const": "/system/bin/init"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "bytes": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "sha256",
+                "bytes"
+              ],
+              "properties": {
+                "path": {
+                  "const": "/system/bin/run-as"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "bytes": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "path",
+                "sha256",
+                "bytes"
+              ],
+              "properties": {
+                "path": {
+                  "const": "/system/vendor/etc/selinux/vendor_file_contexts"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "bytes": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:asus:sdk37-host-metadata-source-plan:1"
+}

@@ -1,0 +1,86 @@
+From 55ceb5aad0ab3e08dd008fff253f0bd80acd299b Mon Sep 17 00:00:00 2001
+From: krazey <ACCOUNT_REDACTED>
+Date: Mon, 7 Nov 2022 20:20:18 +0100
+Subject: [PATCH] fs: erofs: Fix conflicts during driver import
+
+Signed-off-by: krazey <ACCOUNT_REDACTED>
+(cherry picked from commit fc23ff2726cb39dcd42e14bdeb7e5319f7e34c5f)
+---
+ fs/erofs/super.c | 14 +++++++-------
+ fs/erofs/zdata.c |  6 +++---
+ 2 files changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/fs/erofs/super.c b/fs/erofs/super.c
+index f933bde54e..47c208a5f7 100644
+--- a/fs/erofs/super.c
++++ b/fs/erofs/super.c
+@@ -380,7 +380,7 @@ static int erofs_fill_super(struct super_block *sb, void *data, int silent)
+ 	if (err)
+ 		return err;
+ 
+-	sb->s_flags |= SB_RDONLY | SB_NOATIME;
++	sb->s_flags |= MS_RDONLY | MS_NOATIME;
+ 	sb->s_maxbytes = MAX_LFS_FILESIZE;
+ 	sb->s_time_gran = 1;
+ 
+@@ -397,9 +397,9 @@ static int erofs_fill_super(struct super_block *sb, void *data, int silent)
+ 		return err;
+ 
+ 	if (test_opt(sbi, POSIX_ACL))
+-		sb->s_flags |= SB_POSIXACL;
++		sb->s_flags |= MS_POSIXACL;
+ 	else
+-		sb->s_flags &= ~SB_POSIXACL;
++		sb->s_flags &= ~MS_POSIXACL;
+ 
+ #ifdef CONFIG_EROFS_FS_ZIP
+ 	INIT_RADIX_TREE(&sbi->workstn.tree, GFP_ATOMIC);
+@@ -590,17 +590,17 @@ static int erofs_remount(struct super_block *sb, int *flags, char *data)
+ 	unsigned int org_mnt_opt = sbi->mount_opt;
+ 	int err;
+ 
+-	DBG_BUGON(!sb_rdonly(sb));
++	DBG_BUGON(!(sb->s_flags & MS_RDONLY));
+ 	err = erofs_parse_options(sb, data);
+ 	if (err)
+ 		goto out;
+ 
+ 	if (test_opt(sbi, POSIX_ACL))
+-		sb->s_flags |= SB_POSIXACL;
++		sb->s_flags |= MS_POSIXACL;
+ 	else
+-		sb->s_flags &= ~SB_POSIXACL;
++		sb->s_flags &= ~MS_POSIXACL;
+ 
+-	*flags |= SB_RDONLY;
++	*flags |= MS_RDONLY;
+ 	return 0;
+ out:
+ 	sbi->mount_opt = org_mnt_opt;
+diff --git a/fs/erofs/zdata.c b/fs/erofs/zdata.c
+index aec2bcd5d7..80cde2a664 100755
+--- a/fs/erofs/zdata.c
++++ b/fs/erofs/zdata.c
+@@ -812,8 +812,8 @@ static int z_erofs_decompress_pcluster(struct super_block *sb,
+ 		if (nr_pages > Z_EROFS_VMAP_GLOBAL_PAGES)
+ 			gfp_flags |= __GFP_NOFAIL;
+ 
+-		pages = kvmalloc_array(nr_pages, sizeof(struct page *),
+-				       gfp_flags);
++		pages = kmalloc_array(nr_pages, sizeof(struct page *),
++				      gfp_flags);
+ 
+ 		/* fallback to global pagemap for the lowmem scenario */
+ 		if (!pages) {
+@@ -1159,7 +1159,7 @@ static struct z_erofs_unzip_io *jobqueue_init(struct super_block *sb,
+ 		goto out;
+ 	}
+ 
+-	iosb = kvzalloc(sizeof(*iosb), GFP_KERNEL | __GFP_NOFAIL);
++	iosb = kzalloc(sizeof(*iosb), GFP_KERNEL | __GFP_NOFAIL);
+ 	DBG_BUGON(!iosb);
+ 
+ 	/* initialize fields in the allocated descriptor */
+-- 
+2.43.0
+

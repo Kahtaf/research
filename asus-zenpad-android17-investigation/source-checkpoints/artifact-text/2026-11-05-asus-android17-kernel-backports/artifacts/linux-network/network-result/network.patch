@@ -1,0 +1,25 @@
+From de61780979adc3c52068e244aa62ae0369c00527 Mon Sep 17 00:00:00 2001
+From: ASUS Android Port <asus-port@localhost>
+Date: Fri, 6 Nov 2026 05:14:31 +0000
+Subject: [PATCH] arm64: asus: enable existing BPF JIT and traffic control
+ support
+
+---
+ arch/arm64/configs/asus_p00a_defconfig | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/configs/asus_p00a_defconfig b/arch/arm64/configs/asus_p00a_defconfig
+index 9881acfe..ad9a6f20 100644
+--- a/arch/arm64/configs/asus_p00a_defconfig
++++ b/arch/arm64/configs/asus_p00a_defconfig
+@@ -407,3 +407,7 @@ CONFIG_VIRTUAL_SENSOR_THERMAL=y
+ 
+ # ASUS secure-carveout allocator (present in original ASUS defconfig).
+ CONFIG_CMA=y
++CONFIG_BPF_JIT=y
++CONFIG_NET_CLS_BPF=y
++CONFIG_NET_CLS_MATCHALL=y
++CONFIG_NET_ACT_BPF=y
+-- 
+2.43.0
+

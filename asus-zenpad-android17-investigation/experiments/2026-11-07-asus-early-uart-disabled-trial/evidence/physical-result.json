@@ -1,0 +1,36 @@
+{
+  "at": "2026-11-07T17:53:08.082575+00:00",
+  "status": "UART_DISABLED_TRIAL_RETURNED_WITH_LATER_KERNEL_PC_CANDIDATES",
+  "install_run": "097b74f7-ed11-45bc-94ca-a12c547ab3d7",
+  "candidate_sha256": "1d406f3416e94e54219935cb76de338e10d3155fe555baad6cb7c2e38068c95d",
+  "p10_sha256": "e965b75979e02e5514418e706f42b7874e4f72d72754864e5af0959646d2c9b0",
+  "kernel_sha256": "063dad1d9cc03b1c335dd712c9fcb0c36a006e5e99ebee4577e73e669613ac2d",
+  "install_full_readback_cleanup_verified": true,
+  "recovery_requests": 1,
+  "recovery_dispatch": "ACKNOWLEDGED",
+  "new_stock_boot_id": "de110e8a-fd75-41ae-8f90-6ac881b96085",
+  "normal_return_usb_verified": true,
+  "retained_log_bytes": 523007,
+  "retained_log_sha256": "9d122827a01b6680a848246fe0e2e515deec70e8ee623cda895c0b6b69d52fb8",
+  "v2_checkpoints": [],
+  "SD_report": "ABSENT",
+  "cached_lastpc": [
+    "[LAST PC] CORE_0 PC = 0xffffff8008692a40( + 0x0), FP = 0xffffffc073357e90, SP = 0xffffffc073357e90",
+    "[LAST PC] CORE_1 PC = 0xffffff80085b2c54( + 0x0), FP = 0xffffffc06ec2bae0, SP = 0xffffffc06ec2bad0",
+    "[LAST PC] CORE_2 PC = 0x0( + 0x0), FP = 0x0, SP = 0x0",
+    "[LAST PC] CORE_3 PC = 0x0( + 0x0), FP = 0x0, SP = 0x0"
+  ],
+  "exact_candidate_resolutions": {
+    "core0": "disp_irq_handler+0x530",
+    "core1": "asus_p00a_pmic_adc+0x154"
+  },
+  "entry_to_new_stock_kernel_estimate_seconds": [
+    32.905933000000005,
+    32.962684000000024
+  ],
+  "diagnostic_nominal_PID1_wait_seconds": 60,
+  "snapshot_epoch_proven": false,
+  "exclusive_reset_cause_proven": false,
+  "BOOT_SYSTEM_DATA_writes": false,
+  "next_source_question": "Does firmware watchdog handoff occur too late among built-in initcalls compared to stock?"
+}

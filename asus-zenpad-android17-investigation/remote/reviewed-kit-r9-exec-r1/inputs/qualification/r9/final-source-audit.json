@@ -1,0 +1,23 @@
+{
+  "active_baseline_files": 61976,
+  "kernel_postimages": 276,
+  "radio_changes": 25,
+  "total_product_changes": 43,
+  "input_mapping_files": 3,
+  "sensor_source_files": 12,
+  "platform_source_files": 2,
+  "qualified_bpf_files": 201,
+  "complete_compiled_files": 62228,
+  "connectivity_files": 3,
+  "scoped_parity": true,
+  "full_service_chain_accepted": false,
+  "flash_ready": false,
+  "utc": "2026-11-07T00:08:46.612351+00:00",
+  "active_source_and_current_ninja_scope_unchanged": true,
+  "active_artifact_is_original_pointer": true,
+  "r9_attempt_absent": true,
+  "r9_parent_review_absent": true,
+  "all_r8_attempt_logs_preserved": true,
+  "no_native_build": true,
+  "physical_go": false
+}

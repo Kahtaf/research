@@ -1,0 +1,21 @@
+{
+  "experiment": 2,
+  "question": "Did the fresh pre-MMU entry checkpoint execute and survive?",
+  "outcome": "UNKNOWN_NO_FRESH_ENTRY_TAG",
+  "run_uuid": "95c88f32-9471-4354-9a36-e44e98901a0f",
+  "exact_tag_count": 0,
+  "run_uuid_count": 0,
+  "new_stock_boot_id": "f53fef38-8c1e-40f2-aa9a-1b149cda93a9",
+  "stock_return_verified": true,
+  "recovery_dispatch": "ACKNOWLEDGED",
+  "candidate_p10_sha256": "f547c8fd3819b01efef6a232197aa5670dcbe332a83edcbc20529b2a07a08e42",
+  "collector_receipt": "2026-11-07-asus-usb-retained-log-collector/evidence/retained-trace-d7579cdb-3d64-46bc-bcb3-fc227dd86f0d.json",
+  "complete_log_bytes": 523015,
+  "complete_log_sha256": "4ed7b1f37c718d5a9c30519c63206b4ab0a90c964328004e7a348d7c5ba9042a",
+  "selected_diagnostic_lines": [],
+  "absence_does_not_prove_nonexecution": true,
+  "experiment3_admitted": false,
+  "OS_partitions_changed": false,
+  "VM_stopped": true,
+  "at": "2026-11-07T23:32:26.683674+00:00"
+}

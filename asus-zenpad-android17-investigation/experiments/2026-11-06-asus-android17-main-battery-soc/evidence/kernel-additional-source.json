@@ -1,0 +1,16 @@
+{
+  "revision": "717bb3c9e13ce573cfdd2dda856debd27a0fa17f",
+  "sha256": {
+    "drivers/misc/mediatek/include/mt-plat/battery_common.h": "39621621a1e3d48368b6c7b2e081835070bf777bc003411d61fc558be8e7636e",
+    "drivers/misc/mediatek/include/mt-plat/battery_meter_hal.h": "870d005d5959a98bb638f1a81c5f058138089d3d7a87b5688276f4a47983534f",
+    "include/linux/of.h": "c2d5abf988043aafb9aad7d1ba5ba6bb3d8739333b202527027fe5c38081abc0",
+    "include/linux/timekeeping.h": "c1fd1d13ad7460c5f949f4b272483a631ba3eb1c8dc5d9242fbb4ad2414040e1",
+    "include/linux/math64.h": "dd91d18945532b22a394dac9d959565ea24c1cc243e193bf11135218549e3e32",
+    "include/linux/pm_wakeup.h": "ce2b33a392d8e1d258e1b96b1168efdc71e4b543229e3229370d67c440eb1b1f",
+    "drivers/power/supply/power_supply_core.c": "d7420a70ffc78caab45eb10d0793eed34f35d4cc01eee295d62562fc058d08c8",
+    "drivers/power/supply/power_supply_sysfs.c": "e04ee771d01e58b88ec4ac0f266e37d1867e4f0a55b143b0a13525b2c31cd3b3",
+    "drivers/misc/mediatek/power/mt8163/asus_p00a/policy.h": "140424b0e487a45437f907084d3477128bea8cc25c847890fbd389396ba41520",
+    "Makefile": "8313e47662a5a24c4f6ef112d3f8bbe24d5a069da4b6bca8383346cf2edbeccf"
+  },
+  "caller_search": "git -C /srv/android/asus-android17/kernel-bpf-fd grep -n -E \"(battery_meter_get_battery_percentage|battery_meter_initial|battery_meter_reset|battery_meter_get_battery_soc|battery_meter_get_battery_temperature|force_get_tbat|fgauge_read_d_by_v|fgauge_construct_battery_profile|mt_battery_GetBatteryData|oam_d_|oam_car_)\" 717bb3c9e13ce573cfdd2dda856debd27a0fa17f -- drivers include"
+}

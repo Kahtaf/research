@@ -1,0 +1,25 @@
+{
+  "status": "complete",
+  "helper_compiles": 1,
+  "kernel_builds": 1,
+  "rlimit_as": [
+    -1,
+    -1
+  ],
+  "walltime_cap": null,
+  "error": null,
+  "copy_fallback": "user-authorized independent full copies; no new helper compile",
+  "kernel_command": [
+    "make",
+    "-C",
+    "/srv/android/asus-pid1-fifo-loop-control-20261108-f53fadc2/kernel",
+    "O=/srv/android/asus-pid1-fifo-loop-control-20261108-f53fadc2/out",
+    "ARCH=arm64",
+    "CROSS_COMPILE=aarch64-linux-gnu-",
+    "HOSTCC=gcc",
+    "HOSTCXX=g++",
+    "LOCALVERSION=-g717bb3c9e13c-dirty",
+    "-j8",
+    "Image.gz-dtb"
+  ]
+}

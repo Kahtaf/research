@@ -1,0 +1,58 @@
+{
+  "arch/arm64/kernel/setup.c": {
+    "sha256": "a4747254f2851047eba9520f56c04cbc066e56b439658331fcf6ad4f771c455f",
+    "bytes": 10006
+  },
+  "arch/arm64/kernel/Makefile": {
+    "sha256": "d8e2b7eaf9500393f2b6e86f8f15e9ce1ea663548a9a6b2934653626d509f2cd",
+    "bytes": 2267
+  },
+  "arch/arm64/Kconfig.debug": {
+    "sha256": "849906b9f6dd2826834df11d7a6031c5a43edb40c81ee23ba7b71611eaa4268e",
+    "bytes": 2423
+  },
+  "arch/arm64/mm/mmu.c": {
+    "sha256": "3fd9fa71734be4d23d7e087926cc2b45e8719926871171563d63d5a0ec7389ed",
+    "bytes": 22835
+  },
+  "arch/arm64/include/asm/cacheflush.h": {
+    "sha256": "d06aef590a6707030aca87f69d3b850db4dc73078ee003d62e33d02f90aec8bf",
+    "bytes": 4947
+  },
+  "arch/arm64/mm/cache.S": {
+    "sha256": "efb6b0ed193019547277403fc58d0ea181f7f794762376953f78955ec5de7354",
+    "bytes": 4772
+  },
+  "drivers/of/of_reserved_mem.c": {
+    "sha256": "be501dacc1c54ab28c98df9db4b8bff9d3ee07aa0ca4bd1df8c2d212d74440c7",
+    "bytes": 10706
+  },
+  "include/linux/of_reserved_mem.h": {
+    "sha256": "7b8860849320425b101056bc30cd60b98b7177475e150453abd09598705aa749",
+    "bytes": 2278
+  },
+  "include/linux/memblock.h": {
+    "sha256": "5164f200fa630f7c4db1a2a741f4818f7b08f4be5a1af21aac19b21cca9317ae",
+    "bytes": 14628
+  },
+  "mm/memblock.c": {
+    "sha256": "887ec7e5a0b8630e0ac2115aea245548b3b415229b74088bdab970163bddec5f",
+    "bytes": 49994
+  },
+  "kernel/printk/printk.c": {
+    "sha256": "29626779261cd9cf0b6dfc76ade57f28b0eeedd0337f65366e94f314843a5e01",
+    "bytes": 85060
+  },
+  "include/linux/console.h": {
+    "sha256": "501840ea1d7b0977b9b2d34317e110bb2f107d2121796f0a98b9e87610db78ba",
+    "bytes": 6513
+  },
+  "include/linux/of_fdt.h": {
+    "sha256": "3a5240300faa0c0f36b4048c4784dbf801e646bc3d5e1f6074a9eac64bd6d518",
+    "bytes": 5035
+  },
+  "arch/arm64/include/asm/memory.h": {
+    "sha256": "bfd330d12c857e978d9f5b759a672c042e0edb9f4ba4d8a920037bd7eb762bd6",
+    "bytes": 7101
+  }
+}

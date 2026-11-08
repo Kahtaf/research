@@ -1,0 +1,22 @@
+{
+  "2026-11-05-asus-latest-android-feasibility/evidence/device/memory.txt": {
+    "sha256": "3c2353ad5b5d0c1d2cf0e7beb5332df4123db5ae1909943d04bfda5e19774f92",
+    "snapshot": "inputs/0-memory.txt"
+  },
+  "2026-11-05-asus-android17-device-product/candidates/full/device/asus/p00a/device.mk": {
+    "sha256": "679cbabca032d0d6925e09fc4e2b4e749f058bfa7b9f0b6b15c4981cb66b43c1",
+    "snapshot": "inputs/1-device.mk"
+  },
+  "2026-11-05-asus-android17-device-product/candidates/full/device/asus/p00a/rootdir/init.mt8163.rc": {
+    "sha256": "7e89915e62d927601d15a832c802efd902f81cc27a48026554e6a159a19b72df",
+    "snapshot": "inputs/2-init.mt8163.rc"
+  },
+  "2026-11-05-asus-android17-device-product/candidates/full/device/asus/p00a/rootdir/fstab.mt8163": {
+    "sha256": "04179d23e76be8755f6452319e05cc89f2438b51fcc539cb76695c9c65c57e75",
+    "snapshot": "inputs/3-fstab.mt8163"
+  },
+  "2026-11-06-asus-bmc156-full-kernel/artifacts/resolved.config": {
+    "sha256": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2",
+    "snapshot": "inputs/4-resolved.config"
+  }
+}

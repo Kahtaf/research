@@ -1,0 +1,24 @@
+{
+  "utc": "2026-11-06T21:31:42.221567+00:00",
+  "scope": "Original r7 cgroup/SID/enforcing policy/property/POSIX-lock proof extended by actual290source/134option equality to the newly compiled physical BMC156 kernel; no hardware-driver or whole-kernel equivalence claim",
+  "export_payloads_independently_verified": 84,
+  "qualification_sha256": "ebeba9d2caf028cbdf3279bb303c05367bbc49cf80ced8db4cb718667c0e509b",
+  "combined_parity_sha256": "9b165061348fdc6be1112533e10341f720c45f4cdccc097991635cb4100ee403",
+  "parent_actual_source_and_config_check": {
+    "utc": "2026-11-06T21:31:42.210687+00:00",
+    "actual_selected_source_files_rehashed": 290,
+    "selected_config_options_verified": 134,
+    "staged_config_sha256": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2",
+    "active_source_written": false,
+    "device_contacted": false
+  },
+  "combined_kernel_sha256": "e9cde06e85e752aec0433ea37fa926c31b4f7a72cd55453762ec6870e5bb5bf1",
+  "firstboot_file_locking_parity_accepted": true,
+  "combined_kernel_executed": false,
+  "whole_kernel_equivalence": false,
+  "full_service_chain_accepted": false,
+  "physical_boot_verified": false,
+  "flash_ready": false,
+  "prior_parent_acceptance_sha256": "c41c57757ec3e37eed57655f0876ad5efefd2dcd44c4eb5f8a809518badb1696",
+  "accelerometer_physical_verified": false
+}

@@ -1,0 +1,52 @@
+{
+  "2026-11-06-asus-recovery-control-wifi/source/recovery_control.py": {
+    "sha256": "34ed0079e7f9ca3b4edcab5d108fe29d330a653781c4ec5d67b8ca421daac0ab",
+    "bytes": 27010,
+    "snapshot": "00-recovery_control.py"
+  },
+  "2026-11-06-asus-recovery-control-wifi/tests/test_recovery_control.py": {
+    "sha256": "828499fe5006e7e2cfa0c53989b933d666bd52d70ca957451d4796fd3f8bf196",
+    "bytes": 27642,
+    "snapshot": "01-test_recovery_control.py"
+  },
+  "2026-11-06-asus-recovery-control-wifi/README.md": {
+    "sha256": "35a42f20ad5bcd7bb6985f175dd8a16616a3203d481ff5b36a5bf8fd531d3a03",
+    "bytes": 2387,
+    "snapshot": "02-README.md"
+  },
+  "2026-11-06-asus-linux49-probe-review/REPORT.md": {
+    "sha256": "0f978ca2280edf05b24e0cb49a6130e2eb5a47aa86c1ac28d88da041fea2bada",
+    "bytes": 22561,
+    "snapshot": "03-REPORT.md"
+  },
+  "2026-11-06-asus-linux49-probe-review/review-receipt.json": {
+    "sha256": "cae2e6a13215dc5d3efbefff231598ea6ba97a963a9e051ff953b51d7d841ccf",
+    "bytes": 3777,
+    "snapshot": "04-review-receipt.json"
+  },
+  "2026-11-06-asus-linux49-probe-review/proposed-acceptance-contract.json": {
+    "sha256": "019f0e40eee2e145190ee929a1fcb7ac3129dbbfc15a5f60a6f02f7ae6460310",
+    "bytes": 8305,
+    "snapshot": "05-proposed-acceptance-contract.json"
+  },
+  "2026-11-06-asus-linux49-probe-review/evidence/artifact-inspection.json": {
+    "sha256": "50856198de4d4e9579aef1600020c8ad9933617513d20f53f3f0f762886fcc51",
+    "bytes": 6486,
+    "snapshot": "06-artifact-inspection.json"
+  },
+  "2026-11-06-asus-linux49-probe-acceptance/README.md": {
+    "sha256": "e4239560746426f8a4d9d52cd1af8d6000556f5dd442cc886aa48008c8836638",
+    "bytes": 4504,
+    "snapshot": "07-README.md"
+  },
+  "2026-11-06-asus-linux49-probe-acceptance/source/observer.py": {
+    "sha256": "75b1d96686a484e0eb5cfd73ec62976c394de1895e14ea45c83ea745d15f07ec",
+    "bytes": 18780,
+    "snapshot": "08-observer.py"
+  },
+  "2026-11-06-asus-linux49-probe-acceptance/tests/test_observer.py": {
+    "sha256": "e35d47d408ed9070f489d6aee31f18a20e58dfb178dd80f5dbdc0f00f5fccb6b",
+    "bytes": 12717,
+    "snapshot": "09-test_observer.py"
+  }
+}

@@ -1,0 +1,41 @@
+diff --git a/drivers/misc/mediatek/connectivity/Kconfig b/drivers/misc/mediatek/connectivity/Kconfig
+--- a/drivers/misc/mediatek/connectivity/Kconfig
++++ b/drivers/misc/mediatek/connectivity/Kconfig
+@@ -364,3 +364,19 @@
+ config SUPPORT_FT
+ 	bool "SUPPORT_FT"
+ 	default n
++
++config ASUS_P00A_RADIO
++	bool "ASUS P00A MT8163 WMT/STP and AHB gen2 WLAN port"
++	depends on ARM64 && OF && MTK_COMBO=y && MTK_COMBO_CHIP_CONSYS_8163
++	depends on MTK_BTIF=y && MTK_COMBO_WIFI=y && MTK_COMBO_BT=y
++	depends on CFG80211=y && PM && PM_GENERIC_DOMAINS && RESET_CONTROLLER
++	depends on MTK_EMI_MPU && PM_WAKELOCKS
++	select CRC16
++	select CRC32
++	select ZLIB_DEFLATE
++	select ZLIB_INFLATE
++	help
++	  Built-in ASUS GPL transport port for the exact P00A platform.
++	  Registers WMT, BT character transport and gen2 AHB WLAN in order.
++	  Requires the matching userspace firmware command protocol. No radios
++	  are claimed operational merely because this option builds.
+diff --git a/drivers/misc/mediatek/connectivity/Makefile b/drivers/misc/mediatek/connectivity/Makefile
+--- a/drivers/misc/mediatek/connectivity/Makefile
++++ b/drivers/misc/mediatek/connectivity/Makefile
+@@ -25,7 +25,13 @@
+     subdir-ccflags-y += -I$(srctree)/drivers/misc/mediatek/eccci/$(MTK_PLATFORM)
+     subdir-ccflags-y += -I$(srctree)/drivers/misc/mediatek/eccci/
+ 
+-    # Do Nothing, move to standalone repo
++ifeq ($(CONFIG_ASUS_P00A_RADIO),y)
++    subdir-ccflags-y += -DMTK_WCN_REMOVE_KERNEL_MODULE -DMTK_WCN_BUILT_IN_DRIVER
++    subdir-ccflags-y += -DCONFIG_MTK_WCN_ARM64 -DWMT_PLAT_ALPS=1 -DWMT_IDC_SUPPORT=0
++    subdir-ccflags-y += -DWMT_CREATE_NODE_DYNAMIC=1 -DCFG_WMT_LTE_COEX_HANDLING=0
++    obj-y += common/conn_soc/ wlan/gen2/ p00a/
++endif
++    # Existing adapter remains the owner of reserved memory/platform exports.
+     MODULE_NAME := connadp
+     obj-y += $(MODULE_NAME).o
+     $(MODULE_NAME)-objs += common/connectivity_build_in_adapter.o

@@ -1,0 +1,72 @@
+{
+  "run-r1": {
+    "qemu_exit": 0,
+    "timeout": false,
+    "complete": true,
+    "elapsed_seconds": 4.784132592001697,
+    "peak_child_rss_kib": 118168,
+    "serial_sha256": "46d99280d1bd9e00581e4035d6d5ef4fdf2709a5fd45be746c1fef26f6642951",
+    "kernel_config_unchanged": true,
+    "owned_allocation_bytes": 2732032
+  },
+  "run-r2": {
+    "qemu_exit": 0,
+    "timeout": false,
+    "complete": true,
+    "elapsed_seconds": 6.436606477996975,
+    "peak_child_rss_kib": 103800,
+    "serial_sha256": "1c5a9ed504a098b5d71c289272997dcfb6ed9993cbbe08b3631a4606e21a2d3c",
+    "kernel_config_unchanged": true,
+    "owned_allocation_bytes": 3411968
+  },
+  "run-r3": {
+    "qemu_exit": 0,
+    "timeout": false,
+    "complete": true,
+    "elapsed_seconds": 6.088163521999377,
+    "peak_child_rss_kib": 122188,
+    "serial_sha256": "95eb35548f4a1f65e3672ff3b77084bc92b655780393d562046f49929c8f5325",
+    "kernel_config_unchanged": true,
+    "owned_allocation_bytes": 4612096
+  },
+  "run-r4": {
+    "qemu_exit": 0,
+    "timeout": false,
+    "complete": true,
+    "elapsed_seconds": 22.569979955995223,
+    "peak_child_rss_kib": 415396,
+    "serial_sha256": "f7c436b78a5c8357d98f3439794633baf897a08d63e94caa3e95c30aa7614bb1",
+    "kernel_config_unchanged": true,
+    "owned_allocation_bytes": 9527296
+  },
+  "run-r5": {
+    "qemu_exit": 0,
+    "timeout": false,
+    "complete": true,
+    "elapsed_seconds": 4.633306764000736,
+    "peak_child_rss_kib": 103544,
+    "serial_sha256": "4173959d8a2007d1321aa5069b3633f7c0ee90f0e8bd705f46ff4367e847b3ab",
+    "kernel_config_unchanged": true,
+    "owned_allocation_bytes": 10190848
+  },
+  "run-r6": {
+    "qemu_exit": 0,
+    "timeout": false,
+    "complete": true,
+    "elapsed_seconds": 4.729604152002139,
+    "peak_child_rss_kib": 109748,
+    "serial_sha256": "6c64e223fb69f84496d562988501edeaac557d1f5ebead63c1b0bf9607c3e509",
+    "kernel_config_unchanged": true,
+    "owned_allocation_bytes": 10784768
+  },
+  "run-r7": {
+    "qemu_exit": 0,
+    "timeout": false,
+    "complete": true,
+    "elapsed_seconds": 7.491932213000837,
+    "peak_child_rss_kib": 122364,
+    "serial_sha256": "e00722a68075894f9e1f508b8eea4615deac0e7cca285033c9d810fd0500b4df",
+    "kernel_config_unchanged": true,
+    "owned_allocation_bytes": 11399168
+  }
+}

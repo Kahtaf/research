@@ -1,0 +1,38 @@
+{
+  "README.md": {
+    "bytes": 5519,
+    "sha256": "22467f4b67ff39515a224ff049bc431f30135dd2d634175cfcf245fcb09b79b9"
+  },
+  "source/install.py": {
+    "bytes": 10652,
+    "sha256": "7856ddf343e16e01f35425a402acf100470bc5e301b78807cc3faa88d19986cf"
+  },
+  "source/admission.py": {
+    "bytes": 10831,
+    "sha256": "ef16e88edb9e4a4e7c0deccdc318b4a23f1ab8ee4b8880c440bd4c58c527e599"
+  },
+  "source/check_offline.py": {
+    "bytes": 4549,
+    "sha256": "64fd30fe5806a2cbaa93341e7e4161d60eaa7b52d53ce139215ac5d17f0ea1d1"
+  },
+  "evidence/upstream-before.json": {
+    "bytes": 1205,
+    "sha256": "8506a20780540857a95ad06230f89ad18ec40d69a233fa8760208d94de50f350"
+  },
+  "evidence/upstream-after.json": {
+    "bytes": 1205,
+    "sha256": "8506a20780540857a95ad06230f89ad18ec40d69a233fa8760208d94de50f350"
+  },
+  "evidence/core-source-pins.json": {
+    "bytes": 1511,
+    "sha256": "841fd9d0eb60636bf876e2155499c29479809f3b7db92e18a973807ef33532e0"
+  },
+  "evidence/focused-offline.json": {
+    "bytes": 1362,
+    "sha256": "381935dd5381ae4d93ff38669c2232a7cb3f26569ed812d87f5717bc3302b8fe"
+  },
+  "evidence/install.patch": {
+    "bytes": 7348,
+    "sha256": "a6b7ad0a94372a1b4ea0a0a02ecf3f232553a2b3323e217e38093017875097d4"
+  }
+}

@@ -1,0 +1,33 @@
+--- /dev/null
++++ b/tests/policy_xperms.c
+@@ -0,0 +1,30 @@
++/* Offline unconditional Android-7 xperm query, paired with libsepol effective AV.
++   Reject conditional policies and bounded endpoint types rather than guessing. */
++#include <assert.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++#include <sepol/policydb/policydb.h>
++#include <sepol/policydb/services.h>
++#include <sepol/policydb/sidtab.h>
++int main(int argc,char**argv){
++ if(argc!=5)return 2;policydb_t p;policy_file_t f;sidtab_t st;policydb_init(&p);policy_file_init(&f);f.type=PF_USE_STDIO;f.fp=fopen(argv[1],"rb");if(!f.fp||policydb_read(&p,&f,0))return 3;fclose(f.fp);
++ assert(!p.cond_list&&!p.te_cond_avtab.nel);
++ type_datum_t*s=hashtab_search(p.p_types.table,argv[2]),*t=hashtab_search(p.p_types.table,argv[3]);assert(s&&t&&!s->bounds&&!t->bounds);
++ class_datum_t*c=hashtab_search(p.p_classes.table,"blk_file");assert(c);perm_datum_t*io=hashtab_search(c->comdatum->permissions.table,"ioctl");assert(io);
++ sepol_sidtab_init(&st);sepol_set_policydb(&p);sepol_set_sidtab(&st);char sc[128],tc[128];snprintf(sc,sizeof(sc),"u:r:%s:s0",argv[2]);snprintf(tc,sizeof(tc),"u:object_r:%s:s0",argv[3]);sepol_security_id_t ss,ts;
++ assert(!sepol_context_to_sid(sc,strlen(sc)+1,&ss)&&!sepol_context_to_sid(tc,strlen(tc)+1,&ts));struct sepol_av_decision av;assert(!sepol_compute_av(ss,ts,c->s.value,~0U,&av));
++ unsigned char allowed[65536]={0};unsigned matches=0;
++ for(unsigned i=0;i<p.te_avtab.nslot;i++)for(avtab_ptr_t a=p.te_avtab.htable[i];a;a=a->next){
++  if(a->key.specified!=AVTAB_XPERMS_ALLOWED||a->key.target_class!=c->s.value||!ebitmap_get_bit(&p.type_attr_map[s->s.value-1],a->key.source_type-1)||!ebitmap_get_bit(&p.type_attr_map[t->s.value-1],a->key.target_type-1))continue;
++  matches++;avtab_extended_perms_t*x=a->datum.xperms;assert(x&&(x->specified==AVTAB_XPERMS_IOCTLFUNCTION||x->specified==AVTAB_XPERMS_IOCTLDRIVER));
++  for(unsigned j=0;j<65536;j++)if(x->perms[(x->specified==AVTAB_XPERMS_IOCTLFUNCTION?(j&255):(j>>8))/32]&(1U<<((x->specified==AVTAB_XPERMS_IOCTLFUNCTION?(j&255):(j>>8))%32)))if(x->specified==AVTAB_XPERMS_IOCTLDRIVER||(j>>8)==x->driver)allowed[j]=1;
++ }
++ unsigned count=0,first=1;printf("{\"source\":\"%s\",\"target\":\"%s\",\"matching_xperm_rules\":%u,\"effective_ioctl_av\":%s,\"allowed\":[",argv[2],argv[3],matches,(av.allowed&(1U<<(io->s.value-1)))?"true":"false");
++ for(unsigned j=0;j<65536;j++){
++  allowed[j]=(av.allowed&(1U<<(io->s.value-1)))&&(!matches||allowed[j]);
++  if(allowed[j]){if(!first)printf(",");printf("%u",j);first=0;count++;}
++ }
++ unsigned requested=(unsigned)strtoul(argv[4],NULL,0);assert(requested<65536);
++ printf("],\"allowed_count\":%u,\"denied_count\":%u,\"requested\":%u,\"requested_allowed\":%s}\n",count,65536-count,requested,allowed[requested]?"true":"false");return allowed[requested]?0:1;
++}

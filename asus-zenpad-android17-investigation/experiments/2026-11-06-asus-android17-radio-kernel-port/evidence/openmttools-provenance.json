@@ -1,0 +1,31 @@
+{
+  "repository": "https://gitlab.com/Dahrkael/openmttools",
+  "revision": "ef35f769d211a2942a6783410b58bd824dd363f9",
+  "files": {
+    "LICENSE": {
+      "sha256": "c3ee8171a95c407440b4729843b9696e48909aceac27383e665bbe320b119c93",
+      "bytes": 1065,
+      "url": "https://gitlab.com/api/v4/projects/20233066/repository/files/LICENSE/raw?ref=ef35f769d211a2942a6783410b58bd824dd363f9"
+    },
+    "Makefile": {
+      "sha256": "bd5ec9911716aed7fc5ff39051047039e0ec71bbf896ed0eff9ea343f6a72590",
+      "bytes": 525,
+      "url": "https://gitlab.com/api/v4/projects/20233066/repository/files/Makefile/raw?ref=ef35f769d211a2942a6783410b58bd824dd363f9"
+    },
+    "README.md": {
+      "sha256": "deb40cd13e35b99daba492904a40638e29828c2773e49561bb5b93f47f18d2d4",
+      "bytes": 603,
+      "url": "https://gitlab.com/api/v4/projects/20233066/repository/files/README.md/raw?ref=ef35f769d211a2942a6783410b58bd824dd363f9"
+    },
+    "mtdaemon.c": {
+      "sha256": "09c7a6d30b3259c817c8f3bcccff8b1ee1be189dd2e7e72dfe9e17b7b9f7d248",
+      "bytes": 16335,
+      "url": "https://gitlab.com/api/v4/projects/20233066/repository/files/mtdaemon.c/raw?ref=ef35f769d211a2942a6783410b58bd824dd363f9"
+    },
+    "mtinit.c": {
+      "sha256": "45f34757c30d036572529283da3e3882ffe50e7718fcd71718fc1289b62771d3",
+      "bytes": 6786,
+      "url": "https://gitlab.com/api/v4/projects/20233066/repository/files/mtinit.c/raw?ref=ef35f769d211a2942a6783410b58bd824dd363f9"
+    }
+  }
+}

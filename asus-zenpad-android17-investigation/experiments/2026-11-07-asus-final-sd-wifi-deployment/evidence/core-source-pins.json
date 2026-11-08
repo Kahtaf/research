@@ -1,0 +1,30 @@
+{
+  "scripts/final_package.py": {
+    "expected_sha256": "382b753f9c0af7bad1f821a468c6e6ec5541544603b1a0ca2a9ee54efa7fecee",
+    "observed_sha256": "382b753f9c0af7bad1f821a468c6e6ec5541544603b1a0ca2a9ee54efa7fecee"
+  },
+  "source/bootformat.py": {
+    "expected_sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017",
+    "observed_sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017"
+  },
+  "source/fdt.py": {
+    "expected_sha256": "1bd710a08eae5677689a52042a621f39dcd57e49197749cf2833eead1fc0dcae",
+    "observed_sha256": "1bd710a08eae5677689a52042a621f39dcd57e49197749cf2833eead1fc0dcae"
+  },
+  "source/lk_contract.py": {
+    "expected_sha256": "34331d6eef8254e2b17b8464dc73997bd582826f6008bf2efd8a5561879b32d7",
+    "observed_sha256": "34331d6eef8254e2b17b8464dc73997bd582826f6008bf2efd8a5561879b32d7"
+  },
+  "source/boot_memory.py": {
+    "expected_sha256": "4efe28cf150856c86b7b851464b40ad9dd05fa0daaab6502694fa1083cf37575",
+    "observed_sha256": "4efe28cf150856c86b7b851464b40ad9dd05fa0daaab6502694fa1083cf37575"
+  },
+  "source/package_core.py": {
+    "expected_sha256": "442f6e099999d83ccd77eab2e10c4cfc935c206e908a364acfbd56c96771329b",
+    "observed_sha256": "442f6e099999d83ccd77eab2e10c4cfc935c206e908a364acfbd56c96771329b"
+  },
+  "source/init.offline.action.rc": {
+    "expected_sha256": "6d38d8a9daaf3b75136f730c900bbf6776bdb04b514c8574ece4db8859b7b93b",
+    "observed_sha256": "6d38d8a9daaf3b75136f730c900bbf6776bdb04b514c8574ece4db8859b7b93b"
+  }
+}

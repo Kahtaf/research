@@ -1,0 +1,485 @@
+[
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_afe_control.c",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_afe_control.c",
+    "bytes": 124956,
+    "sha256": "ae453e0b83761d69584454f29f73fdf25aae133497e00c36e5a25f4ff2081a24",
+    "expected_sha256": "ae453e0b83761d69584454f29f73fdf25aae133497e00c36e5a25f4ff2081a24"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_dummy.c",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_dummy.c",
+    "bytes": 17355,
+    "sha256": "15df88a0d23cef68761e6b3fb40e8514f0d151073386952e38c970f18e5306ff",
+    "expected_sha256": "15df88a0d23cef68761e6b3fb40e8514f0d151073386952e38c970f18e5306ff"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.h",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.h",
+    "bytes": 1343,
+    "sha256": "966aefe5669acd6ee1ac486c8b7bfecf82f659e908d6334da77c80fd971e5949",
+    "expected_sha256": "966aefe5669acd6ee1ac486c8b7bfecf82f659e908d6334da77c80fd971e5949"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_speaker_63xx.h",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_speaker_63xx.h",
+    "bytes": 803,
+    "sha256": "71b2f60954950de9986a435c40d944d205674fa1511fb5811d0ba2f2aadba34e",
+    "expected_sha256": "71b2f60954950de9986a435c40d944d205674fa1511fb5811d0ba2f2aadba34e"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Afe.c",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Afe.c",
+    "bytes": 22286,
+    "sha256": "1f5904788ab5c0980df7b9cf037c3ef733a1f9e71280ca99bab0bddbeba6d5db",
+    "expected_sha256": "1f5904788ab5c0980df7b9cf037c3ef733a1f9e71280ca99bab0bddbeba6d5db"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Ana.c",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Ana.c",
+    "bytes": 5567,
+    "sha256": "c26356e02995b0a9ab031364476026fb163a4f23df5a540111d33968971a8935",
+    "expected_sha256": "c26356e02995b0a9ab031364476026fb163a4f23df5a540111d33968971a8935"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Clk.h",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Clk.h",
+    "bytes": 2847,
+    "sha256": "0867d0c5d20cbd41066143f6a6806d994230c815a9c3c1ecca13c179ef001977",
+    "expected_sha256": "0867d0c5d20cbd41066143f6a6806d994230c815a9c3c1ecca13c179ef001977"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Def.h",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Def.h",
+    "bytes": 13646,
+    "sha256": "5228ae65c6a15e5e1ed1eb3d4382092ac5d6e94b4776e03b47f8852a4dc06db4",
+    "expected_sha256": "5228ae65c6a15e5e1ed1eb3d4382092ac5d6e94b4776e03b47f8852a4dc06db4"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_dai_stub.c",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_dai_stub.c",
+    "bytes": 15869,
+    "sha256": "a77ab7e3526489135dd23f043b9b37cc9855411e09ebbb06be7cdce1fc151d07",
+    "expected_sha256": "a77ab7e3526489135dd23f043b9b37cc9855411e09ebbb06be7cdce1fc151d07"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_analog_type.h",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_analog_type.h",
+    "bytes": 5983,
+    "sha256": "27fa5dba131d7cb5e91fe3f072b5b4842a7dc04cfcc4cfa2581d84f2074f403d",
+    "expected_sha256": "27fa5dba131d7cb5e91fe3f072b5b4842a7dc04cfcc4cfa2581d84f2074f403d"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_afe_connection.c",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_afe_connection.c",
+    "bytes": 20240,
+    "sha256": "d1e2d59ef6143b841dfff14402d53f2f6d6590fab0bb3b272b1ae3f0dbb9591d",
+    "expected_sha256": "d1e2d59ef6143b841dfff14402d53f2f6d6590fab0bb3b272b1ae3f0dbb9591d"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Type_Def.h",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Type_Def.h",
+    "bytes": 792,
+    "sha256": "16d36cf9a8140d6839156d8425a1603ecbc4fd6ccd5edcb0c7ea55319f069aa0",
+    "expected_sha256": "16d36cf9a8140d6839156d8425a1603ecbc4fd6ccd5edcb0c7ea55319f069aa0"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_machine.c",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_machine.c",
+    "bytes": 43473,
+    "sha256": "22f508445647f4031dadfb713ab5c4029fd28ec6cc408790883698f371cc347c",
+    "expected_sha256": "22f508445647f4031dadfb713ab5c4029fd28ec6cc408790883698f371cc347c"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_afe_control.h",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_afe_control.h",
+    "bytes": 8107,
+    "sha256": "c64ba93dbd9618d4f126faf23912606c7e5721c0ec67506de04dd8972e92b156",
+    "expected_sha256": "c64ba93dbd9618d4f126faf23912606c7e5721c0ec67506de04dd8972e92b156"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_afe_connection.h",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_afe_connection.h",
+    "bytes": 986,
+    "sha256": "228e79e9fbce8857292b5809efc961518ca2d0e31b598f6665d7b37f2f46033b",
+    "expected_sha256": "228e79e9fbce8857292b5809efc961518ca2d0e31b598f6665d7b37f2f46033b"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.h",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.h",
+    "bytes": 2178,
+    "sha256": "7e3ebe555a2e7dbb43028110e74d04e4f2722b7f4cf7e3e9bf05a32f8371bb0f",
+    "expected_sha256": "7e3ebe555a2e7dbb43028110e74d04e4f2722b7f4cf7e3e9bf05a32f8371bb0f"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_digital_type.h",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_digital_type.h",
+    "bytes": 22996,
+    "sha256": "0775fb1daa6aff607439e54fbed1b4f3d4400ab0de5f6c82c92ed645c0bedebe",
+    "expected_sha256": "0775fb1daa6aff607439e54fbed1b4f3d4400ab0de5f6c82c92ed645c0bedebe"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "bytes": 117756,
+    "sha256": "a6cbff61167f1c3690b2554f4aa59fe365d8bbeb3a7e3ae12999d4266ab3e3b2",
+    "expected_sha256": "a6cbff61167f1c3690b2554f4aa59fe365d8bbeb3a7e3ae12999d4266ab3e3b2"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Clk.c",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Clk.c",
+    "bytes": 33128,
+    "sha256": "3806028d53909786dd576c485a5a8e0ad1ecc69363d1abcb68fb25e86b88fc0f",
+    "expected_sha256": "3806028d53909786dd576c485a5a8e0ad1ecc69363d1abcb68fb25e86b88fc0f"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Common.h",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Common.h",
+    "bytes": 2075,
+    "sha256": "7f5b991187a7a36d1cfcd43a680c97f9651d655de3d07239b77c223ba83d5396",
+    "expected_sha256": "7f5b991187a7a36d1cfcd43a680c97f9651d655de3d07239b77c223ba83d5396"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_stream_type.h",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_stream_type.h",
+    "bytes": 1763,
+    "sha256": "9b2864dc5678ef9322f040a3b4ccf0224764a351bdf2eb5a6d31f1ddd483bef0",
+    "expected_sha256": "9b2864dc5678ef9322f040a3b4ccf0224764a351bdf2eb5a6d31f1ddd483bef0"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_dai_routing.c",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_dai_routing.c",
+    "bytes": 4852,
+    "sha256": "d42464b545051dab2fef8891a500b281a315bdfb17470403818f04c971dc74f4",
+    "expected_sha256": "d42464b545051dab2fef8891a500b281a315bdfb17470403818f04c971dc74f4"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Kernel.h",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Kernel.h",
+    "bytes": 7478,
+    "sha256": "94cfaedc2f2e8aa4948998a05cc7bd452733b5a01e715c255c42dc1471c69387",
+    "expected_sha256": "94cfaedc2f2e8aa4948998a05cc7bd452733b5a01e715c255c42dc1471c69387"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Common_func.h",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Common_func.h",
+    "bytes": 738,
+    "sha256": "163cc3e26d04c3b5b7b230032a0edd34c38ec8d127bcbfc7f9b1fafa7ad84e34",
+    "expected_sha256": "163cc3e26d04c3b5b7b230032a0edd34c38ec8d127bcbfc7f9b1fafa7ad84e34"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Afe.h",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Afe.h",
+    "bytes": 14813,
+    "sha256": "a5c0a12a15457a850093e4ec293b139b652e81434fcda078ea689f9482dbf51d",
+    "expected_sha256": "a5c0a12a15457a850093e4ec293b139b652e81434fcda078ea689f9482dbf51d"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Ana.h",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Ana.h",
+    "bytes": 6733,
+    "sha256": "30f7ca4c237861eb0916a421f55a6d5a4a8d6b446992fdd3fd221ce42dd04097",
+    "expected_sha256": "30f7ca4c237861eb0916a421f55a6d5a4a8d6b446992fdd3fd221ce42dd04097"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_speaker_63xx.c",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_speaker_63xx.c",
+    "bytes": 3723,
+    "sha256": "4781a0c95bbd1f6cd547164b32264ee61745b800bb4cde9cbe2d2b74705613ab",
+    "expected_sha256": "4781a0c95bbd1f6cd547164b32264ee61745b800bb4cde9cbe2d2b74705613ab"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_tdm_capture.c",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_tdm_capture.c",
+    "bytes": 22004,
+    "sha256": "990a679a845273b09e93b931c406dac11a1b03da64b98d9915993d851fe1cb88",
+    "expected_sha256": "990a679a845273b09e93b931c406dac11a1b03da64b98d9915993d851fe1cb88"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c",
+    "bytes": 10255,
+    "sha256": "d2381b84a3dfbf8258723d365ec35e17f5ad75b97b9595e883fdf596bc68a7f5",
+    "expected_sha256": "d2381b84a3dfbf8258723d365ec35e17f5ad75b97b9595e883fdf596bc68a7f5"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/arch/arm64/boot/dts/mediatek/asus-p00a.dts",
+    "copy": "inputs/combined/arch/arm64/boot/dts/mediatek/asus-p00a.dts",
+    "bytes": 29636,
+    "sha256": "bb39c36199b6cb92b453c59116d85bc3e6769663792d0ddf7f18e7509d81f572",
+    "expected_sha256": "bb39c36199b6cb92b453c59116d85bc3e6769663792d0ddf7f18e7509d81f572"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/sound/soc/soc-core.c",
+    "copy": "inputs/combined/sound/soc/soc-core.c",
+    "bytes": 101776,
+    "sha256": "918395572ef95cc5c5e1a81ca6208540365e7b3e491a4e82bcad66cf324dd328",
+    "expected_sha256": "918395572ef95cc5c5e1a81ca6208540365e7b3e491a4e82bcad66cf324dd328"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/kernel/include/sound/mt_soc_audio.h",
+    "copy": "inputs/combined/include/sound/mt_soc_audio.h",
+    "bytes": 698,
+    "sha256": "a822a110072fa97b20e77eccc67b09c3bf3dd6d763a878951425cbd8a0b43122",
+    "expected_sha256": "a822a110072fa97b20e77eccc67b09c3bf3dd6d763a878951425cbd8a0b43122"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/stock/resolved.config",
+    "copy": "inputs/stock/resolved.config",
+    "bytes": 126441,
+    "sha256": "067090e03ad762344308cebd0a71274d9943e299ded6707051ebfdc075dd045f",
+    "expected_sha256": "067090e03ad762344308cebd0a71274d9943e299ded6707051ebfdc075dd045f"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/stock/AudioParamOptions.xml",
+    "copy": "inputs/stock/AudioParamOptions.xml",
+    "bytes": 2401,
+    "sha256": "fef2413c3aeb56808fe9840d6a95ad7cd2b3a753e20537ed081eb85e6aabb2dc",
+    "expected_sha256": "fef2413c3aeb56808fe9840d6a95ad7cd2b3a753e20537ed081eb85e6aabb2dc"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/stock/audio_device.xml",
+    "copy": "inputs/stock/audio_device.xml",
+    "bytes": 9568,
+    "sha256": "734480322851caacad72d602ef24d451294b79832db4b8ee08a07bbf9f26938a",
+    "expected_sha256": "734480322851caacad72d602ef24d451294b79832db4b8ee08a07bbf9f26938a"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/stock/audio_policy_configuration.xml",
+    "copy": "inputs/stock/audio_policy_configuration.xml",
+    "bytes": 11557,
+    "sha256": "4524cd200ebd8e9d362cc6d8c0af25851ffba7cdb1437c38274c4c996551b191",
+    "expected_sha256": "4524cd200ebd8e9d362cc6d8c0af25851ffba7cdb1437c38274c4c996551b191"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/stock/audio_policy.conf",
+    "copy": "inputs/stock/audio_policy.conf",
+    "bytes": 5219,
+    "sha256": "170d911de4439a07c98ec1e501071888efe5b81f9fd153d0d28fbb862efcea3d",
+    "expected_sha256": "170d911de4439a07c98ec1e501071888efe5b81f9fd153d0d28fbb862efcea3d"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/oem/asus-original/kernel-3.18/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "copy": "inputs/oem/asus-original/kernel-3.18/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "bytes": 119307,
+    "sha256": "9bf0fa463833741695903b4cf151453ed56b93217ef4efe5011ddf5c24066260",
+    "expected_sha256": "9bf0fa463833741695903b4cf151453ed56b93217ef4efe5011ddf5c24066260"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/oem/asus-original/kernel-3.18/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_machine.c",
+    "copy": "inputs/oem/asus-original/kernel-3.18/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_machine.c",
+    "bytes": 40870,
+    "sha256": "f6560cdcaa84c3b0b603e58fd5bc64342c512222b82e8fd39184c938491058b4",
+    "expected_sha256": "f6560cdcaa84c3b0b603e58fd5bc64342c512222b82e8fd39184c938491058b4"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/oem/asus-original/kernel-3.18/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_analog_type.h",
+    "copy": "inputs/oem/asus-original/kernel-3.18/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_analog_type.h",
+    "bytes": 7242,
+    "sha256": "16bf1549aeb9ffbacdb9d7f23702c1ed18d8c2909852e8a1b93b40dd02421d8f",
+    "expected_sha256": "16bf1549aeb9ffbacdb9d7f23702c1ed18d8c2909852e8a1b93b40dd02421d8f"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/oem/asus-original/kernel-3.18/arch/arm64/configs/asus8163_tb_380_m_defconfig",
+    "copy": "inputs/oem/asus-original/kernel-3.18/arch/arm64/configs/asus8163_tb_380_m_defconfig",
+    "bytes": 13606,
+    "sha256": "d78fb9f2c6e0e926c1c3b3e31cdc609ce03242446dba685db98c8a4ab25e74a3",
+    "expected_sha256": "d78fb9f2c6e0e926c1c3b3e31cdc609ce03242446dba685db98c8a4ab25e74a3"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/oem/asus-original/kernel-3.18/arch/arm64/boot/dts/asus8163_tb_380_m-Z380M.dts",
+    "copy": "inputs/oem/asus-original/kernel-3.18/arch/arm64/boot/dts/asus8163_tb_380_m-Z380M.dts",
+    "bytes": 28774,
+    "sha256": "90cbeb776795fcff85a148f74d5b741aeb0463f52e9b1fd14006f1360a194bbf",
+    "expected_sha256": "90cbeb776795fcff85a148f74d5b741aeb0463f52e9b1fd14006f1360a194bbf"
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/source/oem/asus-original/kernel-3.18/arch/arm64/boot/dts/asus8163_tb_380_m.dts",
+    "copy": "inputs/oem/asus-original/kernel-3.18/arch/arm64/boot/dts/asus8163_tb_380_m.dts",
+    "bytes": 24307,
+    "sha256": "78f327d470385474dc159dc657ef58eb6c23487e7df528a2141c1db84a152414",
+    "expected_sha256": "78f327d470385474dc159dc657ef58eb6c23487e7df528a2141c1db84a152414"
+  },
+  {
+    "path": "2026-11-05-asus-p00a-power-port/sources/kernel/Kconfig",
+    "copy": "inputs/combined/Kconfig",
+    "bytes": 252,
+    "sha256": "d0240517bffb43ef99c68c4be4f59d43e1cf439b7d8691e4e5b9c2e837755849",
+    "expected_sha256": "d0240517bffb43ef99c68c4be4f59d43e1cf439b7d8691e4e5b9c2e837755849"
+  },
+  {
+    "path": "2026-11-05-asus-p00a-power-port/sources/kernel/sound/Kconfig",
+    "copy": "inputs/combined/sound/Kconfig",
+    "bytes": 3913,
+    "sha256": "fb7262032c8f8b5ca76c64ea6c5efe2fddba1c03ef6ade947109b87b25d48984",
+    "expected_sha256": "fb7262032c8f8b5ca76c64ea6c5efe2fddba1c03ef6ade947109b87b25d48984"
+  },
+  {
+    "path": "2026-11-05-asus-p00a-power-port/sources/kernel/sound/soc/Kconfig",
+    "copy": "inputs/combined/sound/soc/Kconfig",
+    "bytes": 2010,
+    "sha256": "5ca9ae032701b55ead992203864189969262b9153c313097cd6d55e2c0b14412",
+    "expected_sha256": "5ca9ae032701b55ead992203864189969262b9153c313097cd6d55e2c0b14412"
+  },
+  {
+    "path": "2026-11-05-asus-p00a-power-port/sources/kernel/sound/soc/mediatek/Kconfig",
+    "copy": "inputs/combined/sound/soc/mediatek/Kconfig",
+    "bytes": 6473,
+    "sha256": "3be1ee72b1f74fb03bb39d53889b50d5ecba48ae32970316a6801d7e40c6f1dc",
+    "expected_sha256": "3be1ee72b1f74fb03bb39d53889b50d5ecba48ae32970316a6801d7e40c6f1dc"
+  },
+  {
+    "path": "2026-11-05-asus-p00a-power-port/sources/kernel/sound/soc/mediatek/Makefile",
+    "copy": "inputs/combined/sound/soc/mediatek/Makefile",
+    "bytes": 2513,
+    "sha256": "67eee28bdecbd49cd8ba6205271ffec28bb4c11e553f777ba3c2e0bf33bc18f4",
+    "expected_sha256": "67eee28bdecbd49cd8ba6205271ffec28bb4c11e553f777ba3c2e0bf33bc18f4"
+  },
+  {
+    "path": "2026-11-05-asus-p00a-power-port/sources/kernel/sound/soc/mediatek/mt_soc_audio_8163/Makefile",
+    "copy": "inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/Makefile",
+    "bytes": 3328,
+    "sha256": "68bd0ad29f04f37dfafbb2c59d5d95182e885df0d3f454fca19c92a54e476cef",
+    "expected_sha256": "68bd0ad29f04f37dfafbb2c59d5d95182e885df0d3f454fca19c92a54e476cef"
+  },
+  {
+    "path": "2026-11-05-asus-p00a-power-port/sources/kernel/arch/arm64/boot/dts/mediatek/mt8163.dtsi",
+    "copy": "inputs/combined/arch/arm64/boot/dts/mediatek/mt8163.dtsi",
+    "bytes": 51729,
+    "sha256": "a605903380bac77de2d077e002d215e20422f4a9bf6441c9d782fef3e0c2382a",
+    "expected_sha256": "a605903380bac77de2d077e002d215e20422f4a9bf6441c9d782fef3e0c2382a"
+  },
+  {
+    "path": "2026-11-05-asus-p00a-power-port/sources/kernel/arch/arm64/boot/dts/mediatek/mt8163-pinfunc.h",
+    "copy": "inputs/combined/arch/arm64/boot/dts/mediatek/mt8163-pinfunc.h",
+    "bytes": 44066,
+    "sha256": "01138f6a53285f69c16091f9a52cfda74b83692d29dee8d8ffb66e33a880d386",
+    "expected_sha256": "01138f6a53285f69c16091f9a52cfda74b83692d29dee8d8ffb66e33a880d386"
+  },
+  {
+    "path": "2026-11-06-asus-bmc156-full-kernel/artifacts/resolved.config",
+    "copy": "inputs/bmc/resolved.config",
+    "bytes": 126472,
+    "sha256": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2",
+    "expected_sha256": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2"
+  },
+  {
+    "path": "2026-11-06-asus-bmc156-full-kernel/source/arch/arm64/configs/asus_p00a_defconfig",
+    "copy": "inputs/bmc/asus_p00a_defconfig",
+    "bytes": 11026,
+    "sha256": "423c68c8870d56b843f447dc45c4b63f908143ca8a85c462481a1a161c9a9588",
+    "expected_sha256": null
+  },
+  {
+    "path": "2026-11-06-asus-bmc156-full-kernel/artifacts/asus-p00a.dtb",
+    "copy": "inputs/bmc/asus-p00a.dtb",
+    "bytes": 63621,
+    "sha256": "a099d0538b270e23ec0d034b507eef9248252a3c459a11aa70edb6520bfd2b77",
+    "expected_sha256": "a099d0538b270e23ec0d034b507eef9248252a3c459a11aa70edb6520bfd2b77"
+  },
+  {
+    "path": "2026-11-06-asus-bmc156-full-kernel/artifacts/Image.gz-dtb",
+    "copy": "inputs/bmc/Image.gz-dtb",
+    "bytes": 7716897,
+    "sha256": "e9cde06e85e752aec0433ea37fa926c31b4f7a72cd55453762ec6870e5bb5bf1",
+    "expected_sha256": "e9cde06e85e752aec0433ea37fa926c31b4f7a72cd55453762ec6870e5bb5bf1"
+  },
+  {
+    "path": "2026-11-05-asus-latest-android-feasibility/sources/stock-firmware/boot.img",
+    "copy": "inputs/stock-public/boot.img",
+    "bytes": 10004736,
+    "sha256": "a175ed39c9e9642756dd28f1d006b39937d17f290da6af69dda6d4b52d6f910d",
+    "expected_sha256": "a175ed39c9e9642756dd28f1d006b39937d17f290da6af69dda6d4b52d6f910d"
+  },
+  {
+    "path": "2026-11-06-asus-stock-audio-topology/evidence/stock-selected-mixer-queries.json",
+    "copy": "inputs/observations/stock-selected-mixer-queries.json",
+    "bytes": 445,
+    "sha256": "364f857c97c8699e5d26398dbff9c3f37602f7ec8cb4a1d6487eb6e2539e16cc",
+    "expected_sha256": null
+  },
+  {
+    "path": "2026-11-06-asus-stock-audio-topology/evidence/stock-idle-mixer-baseline.json",
+    "copy": "inputs/observations/stock-idle-mixer-baseline.json",
+    "bytes": 1907,
+    "sha256": "4720d083034b7d9f7099841d361eeadefa4c7f86b181ecf2c0e3a6478a8e42b0",
+    "expected_sha256": null
+  },
+  {
+    "path": "2026-11-06-asus-stock-audio-topology/evidence/root-selected-mixer-queries.json",
+    "copy": "inputs/observations/root-selected-mixer-queries.json",
+    "bytes": 1362,
+    "sha256": "c462a31c04d59f0b24b6b0242045dd39504656a3fd7b4f3974503dac77a34b9f",
+    "expected_sha256": null
+  },
+  {
+    "path": "2026-11-06-asus-stock-audio-topology/evidence/stock-topology.json",
+    "copy": "inputs/observations/stock-topology.json",
+    "sha256": "49294754a62ac35618337f2a11904af099cc8d186178ca9ce88c3e4089967b31",
+    "bytes": 3381,
+    "expected_sha256": null
+  },
+  {
+    "path": "2026-11-06-asus-local-stock-rollback/artifacts/stock-rollback/READY.json",
+    "copy": "inputs/public-receipts/READY.json",
+    "sha256": "08aa920a328fc5b468e76d9b59ed6ee1978648a7e3c84427767e3987d3747af3",
+    "bytes": 1535,
+    "expected_sha256": null
+  },
+  {
+    "path": "2026-11-06-asus-stock-firmware-restore-source/evidence/audit.json",
+    "copy": "inputs/public-receipts/firmware-audit.json",
+    "sha256": "ff86fdfb3e6fe28c5849e62393e86088e7792af5c9550adc25ec153175fc2e07",
+    "bytes": 1622,
+    "expected_sha256": null
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/report/HANDOFF.md",
+    "copy": "inputs/context/2026-11-06-asus-minimal-audio-hal/report/HANDOFF.md",
+    "bytes": 8997,
+    "sha256": "e7e86bdad81523e069eb6fd467b4e97259492b7b99c01370e3aed1ce8a96e3b9",
+    "expected_sha256": null
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/report/ROUTE-LEDGER.md",
+    "copy": "inputs/context/2026-11-06-asus-minimal-audio-hal/report/ROUTE-LEDGER.md",
+    "bytes": 11871,
+    "sha256": "136335238a5baa3c68874039c39c5d6ec256e14a9d94e2de5fa04731e073b8fe",
+    "expected_sha256": null
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/report/CALIBRATION.md",
+    "copy": "inputs/context/2026-11-06-asus-minimal-audio-hal/report/CALIBRATION.md",
+    "bytes": 3818,
+    "sha256": "682e2828866a56c298f9b4b9e53c46bbfc8d3c1d25fba858c96bef21ab7a477c",
+    "expected_sha256": null
+  },
+  {
+    "path": "2026-11-06-asus-minimal-audio-hal/evidence/source-pins.json",
+    "copy": "inputs/context/2026-11-06-asus-minimal-audio-hal/evidence/source-pins.json",
+    "bytes": 32329,
+    "sha256": "27d004f56f0918ab1b0ba25995227df65790b47150bf10aa413b687033f280d3",
+    "expected_sha256": null
+  },
+  {
+    "path": "2026-11-06-asus-bmc156-full-kernel/report/HANDOFF.md",
+    "copy": "inputs/context/2026-11-06-asus-bmc156-full-kernel/report/HANDOFF.md",
+    "bytes": 2788,
+    "sha256": "6d08d956e9b71a18f9889fc035f5efba27ffc2c711db3b69fd9e7f98cfbd053e",
+    "expected_sha256": null
+  },
+  {
+    "path": "2026-11-06-asus-bmc156-full-kernel/report/SOURCE-PINS.json",
+    "copy": "inputs/context/2026-11-06-asus-bmc156-full-kernel/report/SOURCE-PINS.json",
+    "bytes": 3940,
+    "sha256": "f6e8b9d198608e507e7a97ae528e5b29a95b54fc3aa03bfb2b3020ce2c9afd03",
+    "expected_sha256": null
+  },
+  {
+    "path": "2026-11-06-asus-bmc156-full-kernel/evidence/r5-source-manifest.json.gz",
+    "copy": "inputs/context/2026-11-06-asus-bmc156-full-kernel/evidence/r5-source-manifest.json.gz",
+    "bytes": 2855106,
+    "sha256": "93b4a51a45af00095283dc428d4ace6c5b8027b27cfc4f829f05d7453f572c04",
+    "expected_sha256": null
+  }
+]

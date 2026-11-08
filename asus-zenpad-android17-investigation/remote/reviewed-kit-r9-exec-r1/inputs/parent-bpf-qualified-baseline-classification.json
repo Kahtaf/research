@@ -1,0 +1,27 @@
+{
+  "schema": "parent-qualified-baseline-classification/v1",
+  "utc": "2026-11-07T01:08:21.438709+00:00",
+  "classification_accepted": true,
+  "classification": "QUALIFIED_BASELINE_ARTIFACT",
+  "parent_native_method_sha256": "202562e1b98a0d9de47f9896b755be10957984c7812d1b9268d3052201cee3ad",
+  "scope": "Only the proposed 23 unchanged BPF outputs from the existing exact sealed 26-output qualified selection",
+  "proposed_baseline_count": 23,
+  "claimed_prior_or_current_execution": false,
+  "required_predicates": [
+    "exact sealed qualification row and fixed output allowlist",
+    "matching qualified SHA256 and ELF machine247 checks",
+    "unchanged bound source/module/variant and actual graph predecessor",
+    "matching retained native content digest and current bytes where provided by the admitted map",
+    "successful new required native dependency closure",
+    "exact final SYSTEM or APEX installed byte identity",
+    "all existing BPF digest/requalification rules"
+  ],
+  "rebuilt_outputs_require_current_execution_evidence": true,
+  "changed_digest_requires_existing_requalification": true,
+  "unknown_unqualified_outputs_may_not_use_baseline_classification": true,
+  "current_log_membership_required_for_qualified_baseline": false,
+  "specific_23_rows_parent_accepted": false,
+  "r9_kit_accepted": false,
+  "r9_launch_authorized": false,
+  "physical_GO": false
+}

@@ -1,0 +1,37 @@
+{
+  "reference_repository": "https://github.com/qcom-toolbox/EVOLUTION-X-DANDELION-17",
+  "reference_commit": "75f316ebd586d93e98fb912a273a33e8845dc3d7",
+  "status": "staged; not yet applied to build tree",
+  "patches": [
+    {
+      "project": "bionic",
+      "patch": "patches/01-0001-arc4random-fall-back-to-pid-fork-detection-on-4.9.patch",
+      "sha256": "77658715db690e784256956126ce079c6783a4cbf869d76d955a30f027da847c",
+      "upstream_path": "patches/bionic/0001-arc4random-fall-back-to-pid-fork-detection-on-4.9.patch"
+    },
+    {
+      "project": "system/linkerconfig",
+      "patch": "patches/02-0001-linkerconfig-default-VNDK-vars-to-empty.patch",
+      "sha256": "ae7805b027aff4f926033bc2b2e09c1d75a72496d0bffa10095fcb905a0e75d2",
+      "upstream_path": "patches/system/linkerconfig/0001-linkerconfig-default-VNDK-vars-to-empty.patch"
+    },
+    {
+      "project": "frameworks/base",
+      "patch": "patches/03-0001-HintManagerService-handle-missing-AIDL-PowerHAL.patch",
+      "sha256": "0d0e3fc9e2d9d097ec9066b192195a497a2f946463e98df0314976548f5c3b26",
+      "upstream_path": "patches/frameworks/base/0001-HintManagerService-handle-missing-AIDL-PowerHAL.patch"
+    },
+    {
+      "project": "packages/modules/Connectivity",
+      "patch": "patches/04-0001-bpf-netd-connectivity-support-legacy-4.9-kernels.patch",
+      "sha256": "a5feb48739a953bdf194fed51cdc7b6ef895ef50c3688c37d8a274129271c435",
+      "upstream_path": "patches/packages/modules/Connectivity/0001-bpf-netd-connectivity-support-legacy-4.9-kernels.patch"
+    },
+    {
+      "project": "packages/modules/Connectivity",
+      "patch": "patches/05-connectivity-legacy-25Q4-floor.patch",
+      "sha256": "ce209800721c8139c91f130cbcb870f47f326b0a78effba25b288c3a472db6ca",
+      "origin": "ASUS adaptation to pinned Lineage24 Connectivity revision"
+    }
+  ]
+}

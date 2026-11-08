@@ -1,0 +1,492 @@
+--- baseline/source/init.c
++++ microsd/source/init.c
+@@ -1,54 +1,56 @@
+ #define _GNU_SOURCE
+ #include <errno.h>
+-#include <dirent.h>
+ #include <fcntl.h>
+-#include <stdint.h>
++#include <limits.h>
++#include <signal.h>
+ #include <stdio.h>
+-#include <signal.h>
++#include <stdlib.h>
+ #include <string.h>
+ #include <sys/mount.h>
+ #include <sys/reboot.h>
+ #include <sys/stat.h>
+ #include <sys/statfs.h>
++#include <sys/sysmacros.h>
+ #include <sys/utsname.h>
+ #include <time.h>
+ #include <unistd.h>
+ 
+-#define RUN_ID "801c68c4-841f-4ea4-9e9e-c608621839ca"
+-#define USB "/config/usb_gadget/ramprobe/"
+-#define FUNCTION USB "functions/mass_storage.ram"
+-#define LUN FUNCTION "/lun.0/"
+-#define UDC "musb-hdrc"
+-#define RAMFILE "/dev/probe.img"
+-#define FAT_BYTES 65536
+-#define TMPFS_MAGIC 0x01021994
++#define RUN_ID "dbbb6afb-dd70-4c35-961e-9c977d7164a8"
++#define MARKER "PROBE.ID"
++#define REPORT "PROBE.TXT"
++#define DISK "/sys/class/block/mmcblk1"
++#define PART "/sys/class/block/mmcblk1p1"
++#define NODE "/dev/sd-report"
++#define SD "/sd"
++#define SAFE_FLAGS (MS_NOSUID|MS_NODEV|MS_NOEXEC)
++#define MSDOS_MAGIC 0x4d44
+ 
+-/* Tests replace every external operation; the production body is identical. */
+ static int arm_watchdog(void);
+-static int scan_dir(const char *,const char *);
+ struct operations {
+  int (*watchdog)(void);
+- int (*mkdir)(const char *,mode_t);
+- int (*symlink)(const char *,const char *);
+- int (*scan_dir)(const char *,const char *);
+  int (*mount)(const char *,const char *,const char *,unsigned long,const void *);
++ int (*umount)(const char *);
++ int (*mknod)(const char *,mode_t,dev_t);
++ int (*lstat)(const char *,struct stat *);
++ char *(*realpath)(const char *,char *);
+  int (*open)(const char *,int,...);
++ int (*openat)(int,const char *,int,...);
+  ssize_t (*read)(int,void *,size_t);
+  ssize_t (*write)(int,const void *,size_t);
+  int (*close)(int);
+  int (*fstat)(int,struct stat *);
+  int (*fstatfs)(int,struct statfs *);
+- int (*fchmod)(int,mode_t);
++ int (*fsync)(int);
+  pid_t (*getpid)(void);
+  int (*uname)(struct utsname *);
+  int (*clock_gettime)(clockid_t,struct timespec *);
+  int (*clock_nanosleep)(clockid_t,int,const struct timespec *,struct timespec *);
+  int (*reboot)(int);
+ };
+-static struct operations op={arm_watchdog,mkdir,symlink,scan_dir,mount,open,read,write,close,fstat,fstatfs,fchmod,getpid,uname,clock_gettime,clock_nanosleep,reboot};
++static struct operations op={arm_watchdog,mount,umount,mknod,lstat,realpath,open,openat,read,write,close,fstat,fstatfs,fsync,getpid,uname,clock_gettime,clock_nanosleep,reboot};
+ static void watchdog_signal(int signo){
+  (void)signo;(void)op.reboot(RB_AUTOBOOT);
+- /* A returning reboot cannot allow interrupted setup to enable USB later. */
++ /* Never resume a write/remount after a returning watchdog reboot. */
+  for(;;)pause();
+ }
+ static int arm_watchdog(void){
+@@ -56,113 +58,142 @@
+  if(sigemptyset(&sa.sa_mask)||sigaction(SIGALRM,&sa,NULL))return -1;
+  alarm(60);return 0;
+ }
+-/* Only enumerate public USB controller names and our fresh configfs namespace. */
+-static int scan_dir(const char *path,const char *want){
+- DIR *d=opendir(path);if(!d)return -1;
+- unsigned count=0;int rc=0;struct dirent *e;
+- errno=0;
+- while((e=readdir(d))){
+-  if(!strcmp(e->d_name,".")||!strcmp(e->d_name,".."))continue;
+-  if(!want||strcmp(e->d_name,want)){rc=-1;break;}
+-  count++;
++/* Each short operation and EINTR consumes one of 64 attempts. */
++static ssize_t bounded_read(int fd,char *b,size_t cap){
++ size_t n=0;
++ for(unsigned i=0;i<64&&n<cap;i++){
++  ssize_t r=op.read(fd,b+n,cap-n);
++  if(r==0)return (ssize_t)n;
++  if(r<0){if(errno==EINTR)continue;return -1;}
++  if((size_t)r>cap-n)return -1;
++  n+=(size_t)r;
+  }
+- if(errno||count!=(want?1u:0u))rc=-1;
+- if(closedir(d))rc=-1;return rc;
++ return -1; /* Full buffer is not EOF; never accept a prefix. */
+ }
+-static uint8_t fat[FAT_BYTES];
+-static int stage;
+-static void le16(uint8_t *p,unsigned v){p[0]=v;p[1]=v>>8;}
+-static void le32(uint8_t *p,uint32_t v){le16(p,v);le16(p+2,v>>16);}
+-static void fat12(uint8_t *p,unsigned cluster,unsigned v){
+- unsigned o=cluster+cluster/2;
+- if(cluster&1){p[o]=(p[o]&15)|(v<<4);p[o+1]=v>>4;}
+- else{p[o]=v;p[o+1]=(p[o+1]&240)|(v>>8);}
++static int text(const char *path,char *b,size_t cap){
++ int fd=op.open(path,O_RDONLY|O_CLOEXEC|O_NOFOLLOW);if(fd<0)return -1;
++ ssize_t n=bounded_read(fd,b,cap-1);int c=op.close(fd);
++ if(n<0||c)return -1;b[n]=0;return 0;
+ }
+-static int clean_uname(const struct utsname *u){
+- const char *s[]={u->sysname,u->release,u->version,u->machine};
++static int equals(const char *path,const char *want){
++ char b[80];return text(path,b,sizeof(b))||strcmp(b,want)?-1:0;
++}
++static int dev_number(const char *path,dev_t *dev){
++ char b[80],want[80];unsigned ma,mi;int used=0;
++ if(text(path,b,sizeof(b))||sscanf(b,"%u:%u\n%n",&ma,&mi,&used)!=2||used!=(int)strlen(b))return -1;
++ if(ma!=179||mi==0||mi>1048574)return -1;
++ if(snprintf(want,sizeof(want),"%u:%u\n",ma,mi)<=0||strcmp(b,want))return -1;
++ *dev=makedev(ma,mi);return 0;
++}
++struct binding {dev_t dev;char disk[PATH_MAX];char part[PATH_MAX];};
++static int bind_card(struct binding *b){
++ char card[PATH_MAX],want[PATH_MAX],p[PATH_MAX];dev_t diskdev;
++ if(!op.realpath(DISK,b->disk)||!op.realpath(PART,b->part))return -1;
++ const char *suffix="/block/mmcblk1";size_t n=strlen(b->disk),s=strlen(suffix);
++ if(strncmp(b->disk,"/sys/devices/",13)||n<=s||strcmp(b->disk+n-s,suffix))return -1;
++ if(snprintf(want,sizeof(want),"%s/mmcblk1p1",b->disk)>=(int)sizeof(want)||strcmp(want,b->part))return -1;
++ if(!op.realpath(DISK "/device",card)||strlen(card)!=n-s||strncmp(card,b->disk,n-s))return -1;
++ if(equals(DISK "/removable","1\n")||equals(DISK "/device/type","SD\n")||equals(PART "/partition","1\n"))return -1;
++ if(dev_number(DISK "/dev",&diskdev)||dev_number(PART "/dev",&b->dev)||minor(b->dev)!=minor(diskdev)+1)return -1;
++ /* Independent dev-number links must resolve to those same canonical objects. */
++ snprintf(p,sizeof(p),"/sys/dev/block/%u:%u",major(diskdev),minor(diskdev));
++ if(!op.realpath(p,want)||strcmp(want,b->disk))return -1;
++ snprintf(p,sizeof(p),"/sys/dev/block/%u:%u",major(b->dev),minor(b->dev));
++ if(!op.realpath(p,want)||strcmp(want,b->part))return -1;
++ return 0;
++}
++static int same_card(const struct binding *a){
++ struct binding b;
++ return bind_card(&b)||a->dev!=b.dev||strcmp(a->disk,b.disk)||strcmp(a->part,b.part)?-1:0;
++}
++static int earlier(const struct timespec *a,const struct timespec *b){
++ return a->tv_sec<b->tv_sec||(a->tv_sec==b->tv_sec&&a->tv_nsec<b->tv_nsec);
++}
++static int discover(struct binding *b){
++ struct timespec end,now,nap={0,250000000};
++ if(op.clock_gettime(CLOCK_MONOTONIC,&end))return -1;end.tv_sec+=10;
++ for(unsigned i=0;i<40;i++){
++  if(op.clock_gettime(CLOCK_MONOTONIC,&now)||!earlier(&now,&end))return -1;
++  int rc=bind_card(b);
++  if(op.clock_gettime(CLOCK_MONOTONIC,&now)||!earlier(&now,&end))return -1;
++  if(!rc)return 0;
++  if(op.clock_nanosleep(CLOCK_MONOTONIC,0,&nap,NULL))return -1;
++ }
++ return -1;
++}
++static int make_report(char *report,size_t cap){
++ struct utsname u;
++ if(op.getpid()!=1||op.uname(&u))return -1;
++ const char *s[]={u.sysname,u.release,u.version,u.machine};
+  for(unsigned j=0;j<4;j++){
+-  size_t n=strnlen(s[j],65);if(n==65)return -1;
++  size_t n=strnlen(s[j],65);if(!n||n==65)return -1;
+   for(size_t i=0;i<n;i++)if((unsigned char)s[j][i]<32||(unsigned char)s[j][i]>126)return -1;
+  }
+- return 0;
++ int n=snprintf(report,cap,"run_id=%s\npid1=1\nsysname=%s\nrelease=%s\nversion=%s\nmachine=%s\nstatus=pid1_uname_observed\n",RUN_ID,u.sysname,u.release,u.version,u.machine);
++ return n>0&&(size_t)n<cap?n:-1;
+ }
+-static int make_fat(void){
+- struct utsname u;char report[1024];
+- if(op.getpid()!=1||op.uname(&u)||clean_uname(&u))return -1;
+- int n=snprintf(report,sizeof(report),"run_id=%s\npid1=1\nsysname=%s\nrelease=%s\nversion=%s\nmachine=%s\nstatus=pid1_ram_report_ready\n",RUN_ID,u.sysname,u.release,u.version,u.machine);
+- if(n<=0||n>1024)return -1;
+- memset(fat,0,sizeof(fat));fat[0]=0xeb;fat[1]=0x3c;fat[2]=0x90;
+- memcpy(fat+3,"RAMPROBE",8);le16(fat+11,512);fat[13]=1;le16(fat+14,1);fat[16]=2;
+- le16(fat+17,32);le16(fat+19,128);fat[21]=0xf8;le16(fat+22,1);le16(fat+24,1);le16(fat+26,1);
+- fat[38]=0x29;le32(fat+39,0x617e2e06);memcpy(fat+43,"RAMPROBE   ",11);memcpy(fat+54,"FAT12   ",8);
+- fat[510]=0x55;fat[511]=0xaa;
+- fat[512]=0xf8;fat[513]=0xff;fat[514]=0xff;
+- unsigned count=((unsigned)n+511)/512;
+- for(unsigned i=0;i<count;i++)fat12(fat+512,2+i,i+1<count?3+i:0xfff);
+- memcpy(fat+1024,fat+512,512);
+- uint8_t *root=fat+1536;memcpy(root,"RAMPROBE   ",11);root[11]=8;
+- root+=32;memcpy(root,"REPORT  TXT",11);root[11]=1;le16(root+26,2);le32(root+28,(unsigned)n);
+- /* Fixed valid FAT date 1980-01-01; no wall clock or unit identity. */
+- le16(root+16,0x21);le16(root+18,0x21);le16(root+24,0x21);
+- memcpy(fat+2560,report,(size_t)n);return 0;
++static int sd_root(int fd,dev_t dev,int readonly){
++ struct stat st;struct statfs fs;
++ return op.fstat(fd,&st)||!S_ISDIR(st.st_mode)||st.st_dev!=dev||op.fstatfs(fd,&fs)||fs.f_type!=MSDOS_MAGIC||!!(fs.f_flags&MS_RDONLY)!=readonly?-1:0;
+ }
+-static int put(const char *path,const char *value){
+- int fd=op.open(path,O_WRONLY|O_CLOEXEC|O_NOFOLLOW);if(fd<0)return -1;
+- size_t n=strlen(value);ssize_t w=op.write(fd,value,n);int c=op.close(fd);
+- return w==(ssize_t)n&&!c?0:-1;
++static int marker(int root,dev_t dev){
++ const char want[]=RUN_ID "\n";char b[sizeof(want)+1];struct stat st;
++ int fd=op.openat(root,MARKER,O_RDONLY|O_NOFOLLOW|O_CLOEXEC);if(fd<0)return -1;
++ int rc=-1;
++ if(!op.fstat(fd,&st)&&S_ISREG(st.st_mode)&&st.st_nlink==1&&st.st_dev==dev&&st.st_size==(off_t)(sizeof(want)-1)){
++  ssize_t n=bounded_read(fd,b,sizeof(b));
++  if(n==(ssize_t)(sizeof(want)-1)&&!memcmp(b,want,sizeof(want)-1))rc=0;
++ }
++ if(op.close(fd))rc=-1;return rc;
+ }
+-static int equals(const char *path,const char *want){
+- char b[256];int fd=op.open(path,O_RDONLY|O_CLOEXEC|O_NOFOLLOW);if(fd<0)return -1;
+- ssize_t n=op.read(fd,b,sizeof(b)-1);int c=op.close(fd);if(n<0||n>=255||c)return -1;
+- if(n&&b[n-1]=='\n')n--;b[n]=0;return strcmp(b,want)?-1:0;
+-}
+-static int ram_report(void){
+- struct stat st;struct statfs fs;
+- int fd=op.open(RAMFILE,O_CREAT|O_EXCL|O_WRONLY|O_NOFOLLOW|O_CLOEXEC,0600);
+- if(fd<0)return -1;
+- int rc=-1;
+- if(op.fstat(fd,&st)||!S_ISREG(st.st_mode)||st.st_nlink!=1||st.st_size!=0||op.fstatfs(fd,&fs)||fs.f_type!=TMPFS_MAGIC)goto done;
+- if(op.write(fd,fat,sizeof(fat))!=(ssize_t)sizeof(fat)||op.fchmod(fd,0444)||op.fstat(fd,&st)||st.st_size!=FAT_BYTES||(st.st_mode&0777)!=0444)goto done;
++static int write_report(int root,dev_t dev,const char *report,size_t n){
++ int fd=op.openat(root,REPORT,O_CREAT|O_EXCL|O_WRONLY|O_NOFOLLOW|O_CLOEXEC,0600);if(fd<0)return -1;
++ int rc=-1;size_t done=0;struct stat st;
++ if(op.fstat(fd,&st)||!S_ISREG(st.st_mode)||st.st_nlink!=1||st.st_size||st.st_dev!=dev)goto out;
++ for(unsigned i=0;i<64&&done<n;i++){
++  ssize_t w=op.write(fd,report+done,n-done);
++  if(w<0){if(errno==EINTR)continue;goto out;}
++  if(w==0||(size_t)w>n-done)goto out;
++  done+=(size_t)w;
++ }
++ if(done!=n||op.fstat(fd,&st)||st.st_size!=(off_t)n||op.fsync(fd))goto out;
+  rc=0;
+- done:if(op.close(fd))rc=-1;return rc;
++ out:if(op.close(fd))rc=-1;
++ if(!rc&&op.fsync(root))rc=-1;
++ return rc;
+ }
+ static int setup(void){
+- stage=1;if(op.getpid()!=1)return -1;
+- if(op.mount("tmpfs","/dev","tmpfs",MS_NOSUID|MS_NODEV|MS_NOEXEC,"mode=0755,size=1m")||
+-    op.mount("proc","/proc","proc",MS_NOSUID|MS_NODEV|MS_NOEXEC,NULL)||
+-    op.mount("sysfs","/sys","sysfs",MS_NOSUID|MS_NODEV|MS_NOEXEC,NULL)||
+-    op.mount("none","/config","configfs",MS_NOSUID|MS_NODEV|MS_NOEXEC,NULL))return -1;
+- stage=2;
+- if(op.scan_dir("/sys/class/udc",UDC)||op.scan_dir("/config/usb_gadget",NULL)||op.mkdir(USB,0700)||equals(USB "UDC",""))return -1;
+- if(put(USB "idVendor","0x18d1")||put(USB "idProduct","0x4ee7")||put(USB "bcdUSB","0x0200")||put(USB "bcdDevice","0x0100")||put(USB "bDeviceClass","0"))return -1;
+- if(op.mkdir(USB "strings/0x409",0700)||put(USB "strings/0x409/manufacturer","RAM Probe")||put(USB "strings/0x409/product","Linux49 PID1 RAM Report")||put(USB "strings/0x409/serialnumber",RUN_ID))return -1;
+- if(op.mkdir(USB "configs/b.1",0700)||put(USB "configs/b.1/bmAttributes","0xc0")||put(USB "configs/b.1/MaxPower","2")||op.mkdir(USB "configs/b.1/strings/0x409",0700)||put(USB "configs/b.1/strings/0x409/configuration","RAM report"))return -1;
+- if(op.mkdir(FUNCTION,0700)||equals(LUN "file",""))return -1;
+- stage=3;
+- /* Default lun.0 is removable; set and verify every medium property before file. */
+- if(put(LUN "removable","1")||equals(LUN "removable","1")||put(LUN "cdrom","0")||equals(LUN "cdrom","0")||put(LUN "ro","1")||equals(LUN "ro","1"))return -1;
+- stage=4;if(make_fat()||ram_report())return -1;
+- stage=5;
+- if(put(LUN "file",RAMFILE)||equals(LUN "file",RAMFILE)||equals(LUN "ro","1"))return -1;
+- if(op.symlink(FUNCTION,USB "configs/b.1/f1")||equals(LUN "ro","1")||op.scan_dir("/sys/class/udc",UDC)||equals(USB "UDC",""))return -1;
+- stage=6;if(put(USB "UDC",UDC)||equals(USB "UDC",UDC))return -1;
+- stage=7;return 0;
++ char report[1024];int n=make_report(report,sizeof(report));if(n<0)return -1;
++ /* Device-enabled, private tmpfs: only one verified partition node is created. */
++ if(op.mount("tmpfs","/dev","tmpfs",MS_NOSUID|MS_NOEXEC,"mode=0700,size=64k")||
++    op.mount("proc","/proc","proc",SAFE_FLAGS,NULL)||
++    op.mount("sysfs","/sys","sysfs",SAFE_FLAGS|MS_RDONLY,NULL))return -1;
++ struct binding b;struct stat st;
++ if(discover(&b)||op.mknod(NODE,S_IFBLK|0600,b.dev)||op.lstat(NODE,&st)||!S_ISBLK(st.st_mode)||st.st_rdev!=b.dev||same_card(&b))return -1;
++ if(op.mount(NODE,SD,"vfat",SAFE_FLAGS|MS_RDONLY,"errors=remount-ro"))return -1;
++ int root=op.open(SD,O_RDONLY|O_DIRECTORY|O_CLOEXEC|O_NOFOLLOW),rc=-1;
++ if(root<0)goto unmount;
++ if(sd_root(root,b.dev,1)||marker(root,b.dev)||same_card(&b))goto close_root;
++ /* Remount preserves the mounted filesystem object; never select another node. */
++ if(op.mount(NODE,SD,"vfat",SAFE_FLAGS|MS_REMOUNT,"errors=remount-ro")||sd_root(root,b.dev,0)||same_card(&b))goto close_root;
++ rc=write_report(root,b.dev,report,(size_t)n);
++ close_root:if(op.close(root))rc=-1;
++ unmount:if(op.umount(SD))rc=-1;
++ return rc;
+ }
+-static void disable(void){(void)put(USB "UDC","\n");}
+ static void lifecycle(void){
+  struct timespec end;
+- if(op.watchdog()){disable();(void)op.reboot(RB_AUTOBOOT);return;}
+- if(op.clock_gettime(CLOCK_MONOTONIC,&end)){disable();(void)op.reboot(RB_AUTOBOOT);return;}
+- /* Includes setup time, rather than starting a new 60 s timer after setup. */
++ if(op.getpid()!=1)return;
++ if(op.watchdog()||op.clock_gettime(CLOCK_MONOTONIC,&end)){(void)op.reboot(RB_AUTOBOOT);return;}
+  end.tv_sec+=60;
+- if(setup())disable();
++ (void)setup();
+  int r;do{r=op.clock_nanosleep(CLOCK_MONOTONIC,TIMER_ABSTIME,&end,NULL);}while(r==EINTR);
+- disable();(void)op.reboot(RB_AUTOBOOT);
++ (void)op.reboot(RB_AUTOBOOT);
+ }
+ #ifndef PROBE_TEST
+ int main(void){
+  lifecycle();
+- /* Reboot returning is a failure. Keep PID1 alive; parent uses Power. */
++ /* Reboot returning is failure; keep PID1 alive for the manual Power fallback. */
+  for(;;){struct timespec t={60,0};(void)clock_nanosleep(CLOCK_MONOTONIC,0,&t,NULL);}
+ }
+ #endif
+--- baseline/source/package_probe.py
++++ microsd/source/package_probe.py
+@@ -10,8 +10,8 @@
+  assert len(compiled)==7716897 and b.sha(compiled)==KERNEL_SHA
+  raw,dt=b.ungzip(compiled);assert dt
+  config=kernel_config(raw);assert b.sha(config)==CONFIG_SHA
+- for line in [b'CONFIG_USB_CONFIGFS_MASS_STORAGE=y',b'CONFIG_USB_F_MASS_STORAGE=y',b'CONFIG_CONFIGFS_FS=y',b'CONFIG_TMPFS=y']:assert line in config.splitlines()
+- entries={n:(0o40755,0,0,b'') for n in ['dev','proc','sys','config']};entries['init']=(0o100755,0,0,init)
++ for line in [b'CONFIG_MMC_MTK=y',b'CONFIG_MMC_BLOCK=y',b'CONFIG_FAT_FS=y',b'CONFIG_VFAT_FS=y',b'CONFIG_MSDOS_PARTITION=y',b'CONFIG_TMPFS=y']:assert line in config.splitlines()
++ entries={n:(0o40755,0,0,b'') for n in ['dev','proc','sys','sd']};entries['init']=(0o100755,0,0,init)
+  cp=b.make_cpio(entries);assert b.parse_cpio(cp)==entries
+  gz=bytearray(gzip.compress(cp,compresslevel=9,mtime=0));gz[9]=255;gz=bytes(gz)
+  stream=compiled[:-len(dt)];newdt=chosen_dt(dt,len(gz),HEADER)
+--- baseline/scripts/build.py
++++ microsd/scripts/build.py
+@@ -1,61 +1,41 @@
++"""One serial static ARM64 build and package; no kernel/platform build or sweeps."""
+ from pathlib import Path
+-import os,resource,subprocess,json,hashlib,sys,gzip,shutil
++import os,sys,subprocess,json,hashlib,struct,gzip
+ sys.dont_write_bytecode=True
+-R=Path(__file__).resolve().parents[1];assert str(R)=='/srv/android/asus-linux49-minimal-ram-probe-20261106';os.chdir(R)
+-os.sched_setaffinity(0,{min(os.sched_getaffinity(0))});resource.setrlimit(resource.RLIMIT_AS,(1024**3,1024**3));resource.setrlimit(resource.RLIMIT_CPU,(180,180));resource.setrlimit(resource.RLIMIT_FSIZE,(32*1024**2,32*1024**2));resource.setrlimit(resource.RLIMIT_CORE,(0,0))
+-os.environ.update(TMPDIR=str(R/'artifacts'),LC_ALL='C',SOURCE_DATE_EPOCH='1793923200',PYTHONDONTWRITEBYTECODE='1',OMP_NUM_THREADS='1')
+-H=lambda b:hashlib.sha256(b).hexdigest();logs=[];peak=0
+-
+-def usage():
+- global peak
+- n=sum(p.stat().st_size for p in R.rglob('*') if p.is_file());peak=max(peak,n);assert n<=128*1024**2;return n
+-
+-def run(cmd,timeout=60):
+- p=subprocess.run([str(x) for x in cmd],capture_output=True,text=True,timeout=timeout)
+- logs.append({'command':[str(x) for x in cmd],'returncode':p.returncode,'stdout':p.stdout,'stderr':p.stderr});(R/'evidence/build-log.json').write_text(json.dumps(logs,indent=2)+'\n');usage()
+- if p.returncode:raise RuntimeError(p.stderr[-3000:])
++R=Path(__file__).resolve().parents[1]
++assert str(R)=='/srv/android/asus-linux49-microsd-report-20261107'
++os.chdir(R)
++os.environ.update(LC_ALL='C',PYTHONDONTWRITEBYTECODE='1')
++sys.path.insert(0,str(R/'source'))
++import bootformat as b
++from package_probe import package
++from lk_contract import HEADER
++H=lambda x:hashlib.sha256(x).hexdigest()
++logs=[]
++def run(cmd):
++ p=subprocess.run(cmd,capture_output=True,text=True,timeout=120)
++ logs.append(dict(command=cmd,returncode=p.returncode,stdout=p.stdout,stderr=p.stderr))
++ (R/'evidence/build-log.json').write_text(json.dumps(logs,indent=2)+'\n')
++ if p.returncode:raise RuntimeError(p.stderr or p.stdout)
+  return p.stdout
+-
+-sys.path.insert(0,str(R/'source'));import bootformat as b
+-old=Path('/srv/android/asus-bmc156-full-kernel-r1')
+-kpath=old/'out/arch/arm64/boot/Image.gz-dtb';k=kpath.read_bytes()
+-assert len(k)==7716897 and H(k)=='e9cde06e85e752aec0433ea37fa926c31b4f7a72cd55453762ec6870e5bb5bf1'
+-assert H((old/'out/.config').read_bytes())=='10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2'
+-h=(R/'inputs/original-header').read_bytes();w=(R/'inputs/original-wrapper').read_bytes();kw=(R/'inputs/original-kernel-wrapper').read_bytes()
+-inputpins={str(p.relative_to(R)):H(p.read_bytes()) for p in (R/'inputs').iterdir() if p.is_file()}
+-external={str(old/'kernel/drivers/usb/gadget'/n):H((old/'kernel/drivers/usb/gadget'/n).read_bytes()) for n in ['configfs.c','function/f_mass_storage.c','function/storage_common.c']}
+-external.update({str(old/'out/include/generated'/n):H((old/'out/include/generated'/n).read_bytes()) for n in ['utsrelease.h','compile.h']})
+-for n,digest in external.items():assert H((R/'inputs'/Path(n).name).read_bytes())==digest
+-external[str(kpath)]=H(k);external[str(old/'out/.config')]=H((old/'out/.config').read_bytes())
+-# Pin the exact existing compiler, linker, assembler, startup objects and static libraries.
+-tools={}
+-for compiler in ['gcc','aarch64-linux-gnu-gcc']:
+- for p in [Path(shutil.which(compiler))]+[Path(run([compiler,('-print-prog-name=' if n in ['cc1','collect2'] else '-print-file-name=')+n]).strip()) for n in ['cc1','collect2','crt1.o','crti.o','crtn.o','crtbeginT.o','crtend.o','libc.a','libgcc.a','libgcc_eh.a']]:
+-  assert p.is_file(),str(p);tools[str(p)]={'sha256':H(p.read_bytes()),'bytes':p.stat().st_size}
+-for name in ['ld','as','aarch64-linux-gnu-ld','aarch64-linux-gnu-as','aarch64-linux-gnu-objdump','aarch64-linux-gnu-readelf','fsck.fat','python3']:
+- p=Path(shutil.which(name));tools[str(p)]={'sha256':H(p.read_bytes()),'bytes':p.stat().st_size}
+-(R/'evidence/toolchain-pins.json').write_text(json.dumps(tools,indent=2)+'\n')
+-flags=['-static','-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-Wl,--build-id=none','-fno-ident']
+-for name in ['init','init-reproduction']:run(['aarch64-linux-gnu-gcc',*flags,'source/init.c','-o','artifacts/'+name],120)
+-assert (R/'artifacts/init').read_bytes()==(R/'artifacts/init-reproduction').read_bytes();b.elf_static((R/'artifacts/init').read_bytes())
+-run(['aarch64-linux-gnu-readelf','-h','-l','artifacts/init'])
+-run(['gcc',*flags,'-Wno-unused-function','source/test_init.c','-o','artifacts/test_init'],120)
+-run(['artifacts/test_init'])
+-run(['fsck.fat','-n','-v','artifacts/report-fixture.fat'])
+-
+-from package_probe import package
+-im,cp,gz,contract=package((R/'artifacts/init').read_bytes(),k,h,kw,w)
+-im2,cp2,gz2,contract2=package((R/'artifacts/init-reproduction').read_bytes(),k,h,kw,w)
+-assert (im,cp,gz,contract)==(im2,cp2,gz2,contract2)
+-(R/'artifacts/candidate.img').write_bytes(im);(R/'artifacts/candidate.p10.raw').write_bytes(im+bytes(b.PARTITION_SIZE-len(im)));(R/'artifacts/initramfs.cpio.gz').write_bytes(gz)
+-(R/'evidence/packaging-contract.json').write_text(json.dumps(contract,indent=2)+'\n')
+-run(['python3','-B','scripts/verify.py'])
+-run(['python3','-B','scripts/source_contract.py'])
+-for p,pin in tools.items():assert H(Path(p).read_bytes())==pin['sha256']
+-assert H(kpath.read_bytes())==H(k)
+-assert {str(p.relative_to(R)):H(p.read_bytes()) for p in (R/'inputs').iterdir() if p.is_file()}==inputpins
+-for n,digest in external.items():assert H(Path(n).read_bytes())==digest
+-(R/'evidence/external-input-preservation.json').write_text(json.dumps({'passed':True,'before_after_sha256':external},indent=2)+'\n')
+-owned=usage();(R/'evidence/resources.json').write_text(json.dumps({'cpu_affinity':sorted(os.sched_getaffinity(0)),'rlimit_as':resource.getrlimit(resource.RLIMIT_AS),'rlimit_cpu':resource.getrlimit(resource.RLIMIT_CPU),'rlimit_fsize':resource.getrlimit(resource.RLIMIT_FSIZE),'owned_bytes':owned,'observed_peak_bytes':peak,'max_owned_bytes':128*1024**2,'subprocess_timeout_seconds_max':120,'parallelism':1,'device_operations':0},indent=2)+'\n')
+-manifest={'status':'OFFLINE_CANDIDATE_NO_PHYSICAL_TEST','run_id':'801c68c4-841f-4ea4-9e9e-c608621839ca','image':{'bytes':len(im),'sha256':H(im)},'p10':{'bytes':16740352,'sha256':H(im+bytes(16740352-len(im)))},'compiled_input_kernel_sha256':H(k),'packaging':contract,'init_sha256':H((R/'artifacts/init').read_bytes()),'gzip_sha256':H(gz),'reproduction':{'ELF_byte_identical':True,'gzip_newc_byte_identical':True,'image_byte_identical':True},'source_pins':{str(p.relative_to(R)):H(p.read_bytes()) for group in ['source','scripts','inputs'] for p in sorted((R/group).rglob('*')) if p.is_file() and '__pycache__' not in p.parts},'physical_validation':False,'automatic_return_proven':False,'persistent_write_scope':[]}
+-(R/'evidence/manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');print(json.dumps(manifest,indent=2));print('OFFLINE_MINIMAL_PROBE_PASS')
++flags=['-O2','-Wall','-Wextra','-Werror','-Wno-misleading-indentation']
++run(['gcc',*flags,'-Wno-unused-function','source/test_init.c','-o','artifacts/test_init'])
++print(run(['artifacts/test_init']))
++# Exactly one serial cross compiler invocation; no resource settings for other processes.
++run(['aarch64-linux-gnu-gcc','-static',*flags,'-Wl,--build-id=none','-fno-ident','source/init.c','-o','artifacts/init'])
++init=(R/'artifacts/init').read_bytes();elf=b.elf_static(init)
++k=Path('/srv/android/asus-bmc156-full-kernel-r1/out/arch/arm64/boot/Image.gz-dtb').read_bytes()
++im,cp,gz,contract=package(init,k,(R/'inputs/original-header').read_bytes(),(R/'inputs/original-kernel-wrapper').read_bytes(),(R/'inputs/original-wrapper').read_bytes())
++(R/'artifacts/candidate.img').write_bytes(im)
++padded=im+bytes(b.PARTITION_SIZE-len(im));(R/'artifacts/candidate.p10.raw').write_bytes(padded)
++# One small package-layout check of the actual candidate.
++h,kw,rw,tail=b.parse_image(im)
++rawcp,extra=b.ungzip(rw[512:]);entries=b.parse_cpio(rawcp)
++assert not tail and not extra and rawcp==cp and set(entries)=={'init','dev','proc','sys','sd'}
++assert entries['init']==(0o100755,0,0,init) and gzip.decompress(gz)==cp
++assert h[64:576].split(b'\0')[0]==HEADER
++assert struct.unpack_from('<I',h,16)[0]==len(rw) and contract['compressed_Image_unchanged']
++run_id=(R/'inputs/run-id.txt').read_text().strip();assert run_id.encode() in init
++manifest=dict(status='OFFLINE_CANDIDATE_NO_PHYSICAL_TEST',run_id=run_id,marker={'name':'PROBE.ID','exact_ascii_contents':run_id+'\n'},report='PROBE.TXT',image={'bytes':len(im),'sha256':H(im)},p10={'bytes':len(padded),'sha256':H(padded),'path':str(R/'artifacts/candidate.p10.raw')},init={'bytes':len(init),'sha256':H(init),**elf},packaging=contract,checks=['three focused mock behavior groups','actual candidate layout and static ELF'],build={'ARM64_static_compiler_invocations':1,'parallel_jobs':1},physical_boot_verified=False,sd_hardware_verified=False,automatic_return_proven=False)
++(R/'evidence/manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
++print(json.dumps(manifest,indent=2))
+--- baseline/scripts/local_driver.py
++++ microsd/scripts/local_driver.py
+@@ -1,45 +1,44 @@
++"""Use only the baseline's fixed SSH helper and this new owned prefix."""
+ from pathlib import Path
+-import importlib.util,subprocess,shlex,tarfile,io,sys,json
++import importlib.util,tarfile,io,sys
++sys.dont_write_bytecode=True
+ R=Path(__file__).resolve().parents[1]
+-spec=importlib.util.spec_from_file_location('frozen_transport',R.parent/'2026-11-06-asus-stock-only-ram-rescue-build/scripts/remote.py');mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
+-REMOTE='/srv/android/asus-linux49-minimal-ram-probe-20261106'
++p=R.parent/'2026-11-06-asus-stock-only-ram-rescue-build/scripts/remote.py'
++spec=importlib.util.spec_from_file_location('frozen_transport',p);mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
++REMOTE='/srv/android/asus-linux49-microsd-report-20261107'
+ def call(code,data=None,timeout=180):
+- p=mod.call(code,data,timeout);(R/'evidence/remote-last.stdout').write_bytes(p.stdout);(R/'evidence/remote-last.stderr').write_bytes(p.stderr)
++ p=mod.call(code,data,timeout)
++ (R/'evidence/remote-last.stdout').write_bytes(p.stdout);(R/'evidence/remote-last.stderr').write_bytes(p.stderr)
+  print(p.stdout.decode(errors='replace'));print(p.stderr.decode(errors='replace'),file=sys.stderr)
+- if p.returncode:raise RuntimeError('Remote command failed')
+- return p.stdout
++ if p.returncode:raise RuntimeError('Owned remote command failed')
+ if sys.argv[1] in ['setup','sync']:
+- b=io.BytesIO()
+- with tarfile.open(fileobj=b,mode='w') as t:
++ buf=io.BytesIO()
++ with tarfile.open(fileobj=buf,mode='w') as t:
+   for group in ['source','scripts','inputs']:
+    for p in sorted((R/group).rglob('*')):
+     if p.is_file() and '__pycache__' not in p.parts:t.add(p,arcname=str(p.relative_to(R)))
+  code="""from pathlib import Path
+-import io,sys,tarfile,os,shutil
++import io,sys,tarfile,os
+ r=Path(REMOTE)
+ if SETUP:r.mkdir()
+ else:assert r.is_dir() and not r.is_symlink() and (r/'source/init.c').is_file()
+ os.chdir(r)
+-for p in r.rglob('__pycache__'):
+- assert r in p.resolve().parents;shutil.rmtree(p)
+ tarfile.open(fileobj=io.BytesIO(sys.stdin.buffer.read())).extractall(filter='data')
+ Path('artifacts').mkdir(exist_ok=True);Path('evidence').mkdir(exist_ok=True)
+-print('own fixture staged')
++print('Owned microSD sources ready')
+ """.replace('REMOTE',repr(REMOTE)).replace('SETUP',repr(sys.argv[1]=='setup'))
+- call(code,b.getvalue(),30)
++ call(code,buf.getvalue(),30)
+ elif sys.argv[1]=='build':
+- call("import os,runpy;os.chdir("+repr(REMOTE)+");runpy.run_path('scripts/build.py',run_name='__main__')",timeout=240)
++ call("import os,runpy;os.chdir("+repr(REMOTE)+");runpy.run_path('scripts/build.py',run_name='__main__')",timeout=180)
+ elif sys.argv[1]=='fetch':
+  code="""from pathlib import Path
+-import tarfile,sys
+-r=Path('/srv/android/asus-linux49-minimal-ram-probe-20261106')
++import sys,tarfile
++r=Path(REMOTE)
+ with tarfile.open(fileobj=sys.stdout.buffer,mode='w|') as t:
+- for group in ['evidence']:
+-  for p in sorted((r/group).rglob('*')):
+-   if p.is_file():t.add(p,arcname=str(p.relative_to(r)))
+- for n in ['candidate.img','report-fixture.fat']:
+-  p=r/'artifacts'/n;assert p.stat().st_size<16*1024**2;t.add(p,arcname='artifacts/'+n)
+-"""
++ for rel in ['evidence/manifest.json','evidence/build-log.json','artifacts/candidate.img']:
++  p=r/rel;assert p.stat().st_size<16*1024**2;t.add(p,arcname=rel)
++""".replace('REMOTE',repr(REMOTE))
+  p=mod.call(code,timeout=45);assert p.returncode==0,p.stderr
+  with tarfile.open(fileobj=io.BytesIO(p.stdout)) as t:t.extractall(R,filter='data')
+- print('fetched small candidate and public evidence')
++ print('Fetched candidate and focused build evidence; padded p10 stays in owned VM prefix')
++else:raise SystemExit('Use setup, build or fetch')

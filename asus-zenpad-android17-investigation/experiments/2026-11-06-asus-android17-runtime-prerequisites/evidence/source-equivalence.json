@@ -1,0 +1,219 @@
+{
+  "virtual_commit": "fcb1b6c2de6348e2724981dcd520dec631ed5255",
+  "physical_commit": "717bb3c9e13ce573cfdd2dda856debd27a0fa17f",
+  "equal_git_objects": {
+    "drivers/android/Kconfig": "63ed9ceebf7b0b6f3034688e91f6fd7bdc21c21a",
+    "drivers/android/Makefile": "a01254c43ee3f714020aff487314f32ec0b2bbde",
+    "drivers/android/binder.c": "deb907e516ee5d83c78ab657561074473400bde8",
+    "drivers/android/binder_alloc.c": "5addcd56afb4b97e854ccdc772a0856912507653",
+    "drivers/android/binder_alloc.h": "fdb220eb55d14fc68cd8cb24d3beff2bc3cf75f0",
+    "drivers/android/binder_alloc_selftest.c": "c839c490fde35b304165beb941ec01f08bc26ca0",
+    "drivers/android/binder_trace.h": "7674231af8cba4a1ed633576fb267496b02c4a54",
+    "drivers/block/loop.c": "ca14ee441ed3d423e1799d4f2ed66e49cc4129b7",
+    "drivers/block/loop.h": "60f0fd2c0c6527cc8e1bdda469d7042aa74a1172",
+    "drivers/md/dm-table.c": "b6b4d4094627ee320e6ca0e96e2d05882a90726d",
+    "drivers/md/dm-verity-fec.c": "dc7133d6316759326ed169cc030d5ab38ccbeee2",
+    "drivers/md/dm-verity-fec.h": "4db0cae262eb7ccc489ee3ce44fbde7660626fdc",
+    "drivers/md/dm-verity-target.c": "bd64f27bac6b05bdb0ca6c28478fcb6a003f3666",
+    "drivers/md/dm-verity.h": "116e91fa50d77d1a54143913baf3749d06156ca2",
+    "drivers/md/dm.c": "ec6c2b566621cab25e80e1cc12c08fca1a151356",
+    "fs/erofs/Kconfig": "c474ccc1bbac74ad5ab143daefcd54ac598cf774",
+    "fs/erofs/Makefile": "fb16557864583f46f6b1db1ce69e69e582972638",
+    "fs/erofs/compress.h": "07d279fd5d67dce831e8cde1df59a9905624da7b",
+    "fs/erofs/data.c": "55ef356f0a7c72f9de29885448cea9591dcb6155",
+    "fs/erofs/decompressor.c": "874f10db526cdfdb1623d22fbcab39e2ccc26b2e",
+    "fs/erofs/dir.c": "e1f2316a7db50abb91df737ddd6a4db3df5441d7",
+    "fs/erofs/erofs_fs.h": "0c1f43a0c46ef2ccf11e47a263b2308092ec5570",
+    "fs/erofs/inode.c": "294f28ca83affac740fe073e28e8b2a168e8582b",
+    "fs/erofs/internal.h": "6cfbf4be825368685263755c290a8bec309399c9",
+    "fs/erofs/lz4.c": "0c0042120759e83a5ca1cec572029d6c1bd2bb50",
+    "fs/erofs/lz4armv8/lz4accel.c": "dae52ab3b8d3260e9d88ef06fc272df4c457fa3a",
+    "fs/erofs/lz4armv8/lz4accel.h": "fca7305040d6c59dbc367e049c193b072c6211b7",
+    "fs/erofs/lz4armv8/lz4armv8.S": "a0f41c6134ecbd287e2dfd7afc2b3fecb45f585e",
+    "fs/erofs/namei.c": "140b16a91f0737788add0b19387899434de8fd9f",
+    "fs/erofs/super.c": "47c208a5f719a34a063d396d3bebefa931408d6b",
+    "fs/erofs/tagptr.h": "a72897c86744c057240a2ee6fc6461c5cbe19924",
+    "fs/erofs/utils.c": "45fcc47b43e463021fb0d2accf6584d37e692f06",
+    "fs/erofs/xattr.c": "f78496776e764a9620501810091073a696f8ab1c",
+    "fs/erofs/xattr.h": "3585b84d2f201dfcd278b0ed6d8dc6bfe9c374fb",
+    "fs/erofs/zdata.c": "e6d09aaabc7f616fd723b90a97bad79b24a4c0a5",
+    "fs/erofs/zdata.h": "c046311fef7a2e8cac948cf212dfba16ce6bc682",
+    "fs/erofs/zmap.c": "fff5741007214c4f5115a88cad0aab358c90bd48",
+    "fs/erofs/zpvec.h": "58556903aa94517c997038073469214600c4e808",
+    "include/linux/device-mapper.h": "e9157b9377b79b052224045c962713b0f390817b",
+    "include/uapi/linux/android/Kbuild": "ca011eec252a8c2fd962e24ca6542a771dcf9284",
+    "include/uapi/linux/android/binder.h": "0457ff02d616e9440bb2c51b8db0e3f9f7c2201e",
+    "include/uapi/linux/loop.h": "2bb48ed86144ace744ce70fa8012bf83af9cfec5"
+  },
+  "all_equal": true,
+  "files": {
+    "drivers/android/Kconfig": {
+      "sha256": "2fe210dff80d566c89ecba52b81230ede77c7b67031a26d24109b10643dcca55",
+      "bytes": 1333
+    },
+    "drivers/android/Makefile": {
+      "sha256": "f883a3a949ae852ab8a26b3db87e588ddf24c3b2a071a52e9a642cca8a304d80",
+      "bytes": 180
+    },
+    "drivers/android/binder.c": {
+      "sha256": "f96dbb3adc023d72d1860472dd8d28dc88d6f3dbef9bfc6235a812d49ab2f7d5",
+      "bytes": 181451
+    },
+    "drivers/android/binder_alloc.c": {
+      "sha256": "3b15bda04fcdd1924e0f6b7d4d8373478d13b569a30ec0d4b3686237aaa4f42c",
+      "bytes": 34879
+    },
+    "drivers/android/binder_alloc.h": {
+      "sha256": "6dea0a8997d7a03631db4dccab1f9b9943ffd057932bc2ded10c88e30878aea5",
+      "bytes": 6721
+    },
+    "drivers/android/binder_alloc_selftest.c": {
+      "sha256": "cbd30a96819c414e0dda1cfdf7a619c17d1c072e8ac5d87bf8ccd11c74b82aee",
+      "bytes": 8576
+    },
+    "drivers/android/binder_trace.h": {
+      "sha256": "f5b4c3269c455354df4e623edcba231427237741c36d6c2ae0033d4468c706e6",
+      "bytes": 11753
+    },
+    "drivers/block/loop.c": {
+      "sha256": "e06592cc94661f922dd033262cf7e4ad536764b5d95d01207a822db4efb19c48",
+      "bytes": 55531
+    },
+    "drivers/block/loop.h": {
+      "sha256": "93d0d2a18f7d3fd236db1fd1bde7ed22c0eab9ae263199f0bd64d1c500c7d1ff",
+      "bytes": 2371
+    },
+    "drivers/md/dm-table.c": {
+      "sha256": "c7cc84372088007347dbbaa863b27bf71a413d785e26a6bfa5b7566115004954",
+      "bytes": 43683
+    },
+    "drivers/md/dm-verity-fec.c": {
+      "sha256": "8ecbfa3d29db54b57912018beb851a1d7a01b6d79d215f223fbd1bd58f2621a6",
+      "bytes": 22339
+    },
+    "drivers/md/dm-verity-fec.h": {
+      "sha256": "2e9b0b5355387abd3135704d0bcdbe4990b252426122d86bcf24ea184e9acfa6",
+      "bytes": 4667
+    },
+    "drivers/md/dm-verity-target.c": {
+      "sha256": "483e59515c169d845f4ebbabfca6c55ae2311463bc06042c88c95134b6266907",
+      "bytes": 30354
+    },
+    "drivers/md/dm-verity.h": {
+      "sha256": "20829bc17a9e2d4ad462ef3f2de67f00d1177dde419b1f519c96b180b3a3541b",
+      "bytes": 4388
+    },
+    "drivers/md/dm.c": {
+      "sha256": "5b2aeb8db349e2b6d48cbdc5d0a949ad6f6216f3cfe8ce6f8a856fc0b61053c9",
+      "bytes": 65566
+    },
+    "fs/erofs/Kconfig": {
+      "sha256": "8a5004d3576f2ae51388b0af5226fd6b3ed401751bc1fb9d44cb2e1db2725971",
+      "bytes": 2960
+    },
+    "fs/erofs/Makefile": {
+      "sha256": "e570e421c812dd1b91a77c3a605ab74a6f88fb9ed59b62978fff89ccc77b395b",
+      "bytes": 526
+    },
+    "fs/erofs/compress.h": {
+      "sha256": "ae7b7c5e458e18846059924610d2da2fe748ec4519243a5bcb8b7a3f374ee030",
+      "bytes": 1444
+    },
+    "fs/erofs/data.c": {
+      "sha256": "88029936c5cdd135292075139b49f5121a76afe322079a533719af3085fe1c1c",
+      "bytes": 9907
+    },
+    "fs/erofs/decompressor.c": {
+      "sha256": "cbe491254db9d0ace51750e4ceb4bd909746a8f518b134777a9fe42c327953c2",
+      "bytes": 8730
+    },
+    "fs/erofs/dir.c": {
+      "sha256": "4ececa75de6ad3aae2f241c5b183cb9b893a49ae8c97acba1f30cdda31d6120c",
+      "bytes": 3887
+    },
+    "fs/erofs/erofs_fs.h": {
+      "sha256": "8ad6811ad65bb522d07d80e7879237ed7ebe59baef6c00422194ae4d9220ae8e",
+      "bytes": 9848
+    },
+    "fs/erofs/inode.c": {
+      "sha256": "caaa1e1aef3b6054101bf96737e66597196acc5b787ae4d5e5cbfdafd8e163ad",
+      "bytes": 8257
+    },
+    "fs/erofs/internal.h": {
+      "sha256": "e48d66a6766220e22e6682a09adda597c4bbb4bb3f0b0ac7fb35886a19afde84",
+      "bytes": 12758
+    },
+    "fs/erofs/lz4.c": {
+      "sha256": "136a313d7b25a191a4a2ff97ddc3128c8fe4e0b3e1e2d6a882cde70bb6016265",
+      "bytes": 12075
+    },
+    "fs/erofs/lz4armv8/lz4accel.c": {
+      "sha256": "32b3bcb0751806ee460b8f4b731da30330175a462029069b2ae347fee7d2deee",
+      "bytes": 1533
+    },
+    "fs/erofs/lz4armv8/lz4accel.h": {
+      "sha256": "6eb1464aaff7553a9fb0878bb18db3072cdfe3063bfbdcfa4ff7cdfc22b63fc7",
+      "bytes": 1456
+    },
+    "fs/erofs/lz4armv8/lz4armv8.S": {
+      "sha256": "70be7b61ca72a68ab6c5f23f7cfd43b7903828dbd4ec4b384b0d77f1497c6216",
+      "bytes": 8055
+    },
+    "fs/erofs/namei.c": {
+      "sha256": "41bcabf68417099978272fb79248a90eeace1b8d40bb47420b368c8be151f0a3",
+      "bytes": 6024
+    },
+    "fs/erofs/super.c": {
+      "sha256": "77a1cbd57f6627b45eec8b97946acd24bf227d2b79d9105ef3a39a3e3b6d19d9",
+      "bytes": 14422
+    },
+    "fs/erofs/tagptr.h": {
+      "sha256": "e5bbaa273eda0de0d0aabd4b100a5e1b08a9e00c163da3ab7356b302314501f8",
+      "bytes": 3044
+    },
+    "fs/erofs/utils.c": {
+      "sha256": "d1540fed0e7c0d52e092ae37a538805e02e1cd22889a55eebab4451949f26c9d",
+      "bytes": 7603
+    },
+    "fs/erofs/xattr.c": {
+      "sha256": "8e277622114d85586f39e253662066956b3b86d0825a5e582b5ac3a6abe76a20",
+      "bytes": 17129
+    },
+    "fs/erofs/xattr.h": {
+      "sha256": "0f050c08ae4d3f2638b84e9d503a66d5bf37dc04f3ad7d93d8e247be7b52113e",
+      "bytes": 2498
+    },
+    "fs/erofs/zdata.c": {
+      "sha256": "4597f3c3dc21061fe67d0f02428f1f35e3abc2a464a14ee668159772e921d227",
+      "bytes": 38521
+    },
+    "fs/erofs/zdata.h": {
+      "sha256": "576dc436987ffcc9778bcf132f67fa6d628a7d7c186ae90681cea0c2bd7516b7",
+      "bytes": 5080
+    },
+    "fs/erofs/zmap.c": {
+      "sha256": "ef5fc792ea5522b7b4bb54fa8f5636fdf274dcb654571b180d897e81a4631759",
+      "bytes": 12488
+    },
+    "fs/erofs/zpvec.h": {
+      "sha256": "0403b65115c76ec4a229ec501c2a2c8b965421b7819bc4d8f0919b34cd6a79e3",
+      "bytes": 3631
+    },
+    "include/linux/device-mapper.h": {
+      "sha256": "8fb73d354681d8e059db5ed27f79ca4f8f8483168714c64ce135342678ab57ce",
+      "bytes": 18149
+    },
+    "include/uapi/linux/android/Kbuild": {
+      "sha256": "e1d4b1bcce1158a646ec5bced34e6682ae5b317438a42f5b2b537802b36c2be6",
+      "bytes": 47
+    },
+    "include/uapi/linux/android/binder.h": {
+      "sha256": "89e7df45c203a5e79b47140d0b5ca43cd4a101578e65bad967129b42c496caaa",
+      "bytes": 16092
+    },
+    "include/uapi/linux/loop.h": {
+      "sha256": "d1cd7f4c45d4890d287760749380906697c9484de8aa608bc4e6be0b4412e6cf",
+      "bytes": 3448
+    }
+  }
+}

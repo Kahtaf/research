@@ -1,0 +1,1516 @@
+--- a/arch/arm64/boot/dts/mediatek/asus-p00a.dts
++++ b/arch/arm64/boot/dts/mediatek/asus-p00a.dts
+@@ -19,9 +19,21 @@
+ / {
+ 	model = "ASUS ZenPad 8.0 Z380M P00A_2 - compile candidate";
+ 	compatible = "asus,p00a", "mediatek,mt8163";
++	/* The 4.9 SoC include has /memory; ASUS LK fixes /memory@00000000. */
++	/delete-node/ memory;
++
++	thermal-sensor {
++		compatible = "generic-adc-thermal";
++		#thermal-sensor-cells = <0>;
++		io-channels = <&auxadc 0>;
++		io-channel-names = "sensor-channel";
++	};
++
++
+ 	memory@00000000 {
+ 		device_type = "memory";
+-		reg = <0 0x40000000 0 0x20000000>;
++		/* Observed usable bank on DEVICE_SERIAL_REDACTED; LK may refine it. */
++		reg = <0 0x40000000 0 0x7d600000>;
+ 	};
+ 
+ 	reserved-memory {
+@@ -29,11 +41,22 @@
+ 		#size-cells = <2>;
+ 		ranges;
+ 
++		/delete-node/ mdump-reserved-memory;
++		/delete-node/ pstore-reserved-memory;
++		ram_console-reserved-memory {
++			reg = <0 0x44400000 0 0x80000>;
++		};
++		minirdump-reserved-memory {
++			reg = <0 0x44570000 0 0x10000>;
++		};
++
+ 		secure_carveout: secure-carveout {
+ 			compatible = "shared-secure-pool";
+ 			reusable;
+-			size = <0 0x9400000>;
+-			alignment = <0 0x100000>;
++			/* Match this unit's live secure pool; preserve it across 4.9. */
++			/delete-property/ size;
++			reg = <0 0xb3400000 0 0xa000000>;
++			alignment = <0 0x400000>;
+ 			/*
+ 			 * loader should fill buffer range if share secure
+ 			 * buffer is enabled.
+@@ -176,6 +199,7 @@
+ 
+ 	lp8557_led@2c {
+ 		compatible = "ti,lp8557-led";
++		enable-gpios = <&pio 43 0>;
+ 		reg = <0x2c>;
+ 	};
+ 
+--- a/arch/arm64/configs/asus_p00a_defconfig
++++ b/arch/arm64/configs/asus_p00a_defconfig
+@@ -78,7 +78,6 @@
+ CONFIG_ZRAM=y
+ CONFIG_ZRAM_WRITEBACK=y
+ CONFIG_BLK_DEV_LOOP=y
+-CONFIG_IDME=y
+ CONFIG_MEDIATEK_SOLUTION=y
+ CONFIG_MTK_PLATFORM="mt8163"
+ # CONFIG_MTK_DTBO_FEATURE is not set
+@@ -89,7 +88,6 @@
+ CONFIG_CLATM_CHOOSE_HIGHER_TARGET_TJ=y
+ CONFIG_VS_BACKLIGHT_COOLER=y
+ CONFIG_VS_BCCT_COOLER=y
+-CONFIG_THERMAL_KARNAK=y
+ CONFIG_MTK_PSCI=y
+ CONFIG_MTK_SEC_VIDEO_PATH_SUPPORT=y
+ CONFIG_FREE_FB_BUFFER=y
+@@ -136,7 +134,7 @@
+ CONFIG_MTK_LASTPC=y
+ CONFIG_MTK_CHIP=y
+ CONFIG_MTK_GPU_SUPPORT=y
+-CONFIG_MTK_GPU_VERSION="mali midgard r26p0"
++CONFIG_MTK_GPU_VERSION="mali midgard r20p0"
+ CONFIG_MTK_GPU_COMMON_DVFS_SUPPORT=y
+ CONFIG_MTK_RTC=y
+ CONFIG_USB_MTK_HDRC=y
+@@ -214,8 +212,6 @@
+ CONFIG_THERMAL=y
+ CONFIG_THERMAL_WRITABLE_TRIPS=y
+ CONFIG_THERMAL_DEFAULT_GOV_BACKWARD_COMPATIBLE=y
+-CONFIG_THERMAL_GOV_VIRTUAL_SENSOR=y
+-CONFIG_VIRTUAL_SENSOR_THERMAL=y
+ CONFIG_WATCHDOG=y
+ CONFIG_MEDIATEK_WATCHDOG=y
+ # CONFIG_MTK_WATCHDOG is not set
+@@ -399,3 +395,15 @@
+ # CONFIG_SND_SOC_RT551X_SPI is not set
+ # CONFIG_SND_SOC_RT551X_TEST_ONLY is not set
+ # CONFIG_SND_SOC_RT551X is not set
++
++CONFIG_ASUS_P00A_BQ25896=y
++
++# CONFIG_THERMAL_KARNAK is not set
++CONFIG_THERMAL_ASUS_P00A=y
++CONFIG_ASUS_P00A_LP8557=y
++# CONFIG_IDME is not set
++CONFIG_VIRTUAL_SENSOR_THERMAL=y
++# CONFIG_THERMAL_GOV_VIRTUAL_SENSOR is not set
++
++# ASUS secure-carveout allocator (present in original ASUS defconfig).
++CONFIG_CMA=y
+--- a/drivers/input/touchscreen/goodix.c
++++ b/drivers/input/touchscreen/goodix.c
+@@ -29,6 +29,8 @@
+ #include <linux/slab.h>
+ #include <linux/acpi.h>
+ #include <linux/of.h>
++#include <linux/of_gpio.h>
++#include <linux/gpio.h>
+ #include <asm/unaligned.h>
+ 
+ struct goodix_ts_data {
+@@ -728,6 +730,18 @@
+ 	i2c_set_clientdata(client, ts);
+ 	init_completion(&ts->firmware_loading_complete);
+ 
++	if (of_device_is_compatible(client->dev.of_node, "goodix,gt6108")) {
++		int power_gpio = of_get_named_gpio(client->dev.of_node, "power-gpio", 0);
++
++		if (power_gpio < 0)
++			return power_gpio;
++		error = devm_gpio_request_one(&client->dev, power_gpio,
++			GPIOF_OUT_INIT_HIGH, "asus-gt6108-power");
++		if (error)
++			return error;
++		msleep(20);
++	}
++
+ 	error = goodix_get_gpio_config(ts);
+ 	if (error)
+ 		return error;
+--- a/drivers/misc/mediatek/gpu/gpu_mali/mali_midgard/Makefile
++++ b/drivers/misc/mediatek/gpu/gpu_mali/mali_midgard/Makefile
+@@ -14,4 +14,8 @@
+ MTK_GPU_VERSION = $(subst ",,$(CONFIG_MTK_GPU_VERSION))
+ $(info *MTK_GPU_VERSION 2 = $(word 2,$(MTK_GPU_VERSION)-$(word 3,$(MTK_GPU_VERSION))))
+ 
++ifeq ($(MTK_GPU_VERSION),mali midgard r20p0)
++obj-y += mali-r20p0/
++else
+ obj-y += $(word 2,$(MTK_GPU_VERSION))-$(word 3,$(MTK_GPU_VERSION))/
++endif
+--- /dev/null
++++ b/drivers/misc/mediatek/gpu/gpu_mali/mali_midgard/mali-r20p0/Makefile
+@@ -0,0 +1,3 @@
++# SPDX-License-Identifier: GPL-2.0
++# Select the existing MT8163 legacy UK 10.x implementation.
++obj-y += drivers/
+--- a/drivers/misc/mediatek/leds/Kconfig
++++ b/drivers/misc/mediatek/leds/Kconfig
+@@ -37,3 +37,9 @@
+ 	---help---
+ 	  Support backlight of factor,and adapt to different manufacturers to adajust to
+ 	  the led brightness.
++
++config ASUS_P00A_LP8557
++	bool "ASUS P00A LP8557 backlight enable bridge"
++	depends on I2C && MTK_LEDS=y
++	depends on !BACKLIGHT_SUPPORT_LP8557 && !BACKLIGHT_LP855X
++	default n
+--- a/drivers/misc/mediatek/leds/Makefile
++++ b/drivers/misc/mediatek/leds/Makefile
+@@ -18,3 +18,5 @@
+ 
+ obj-y += $(subst ",,$(CONFIG_MTK_PLATFORM))/
+ 
++
++obj-$(CONFIG_ASUS_P00A_LP8557) += asus_p00a_lp8557.o
+--- /dev/null
++++ b/drivers/misc/mediatek/leds/asus_p00a_lp8557.c
+@@ -0,0 +1,165 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/* LP8557 initialization sequence comes from the ASUS Z380M GPL LED driver. */
++#include <linux/delay.h>
++#include <linux/gpio.h>
++#include <linux/i2c.h>
++#include <linux/module.h>
++#include <linux/of_gpio.h>
++#include <linux/spinlock.h>
++#include <linux/workqueue.h>
++
++struct p00a_bl {
++	struct i2c_client *client;
++	struct work_struct work;
++	int gpio;
++	bool configured;
++	bool suspended;
++};
++static DEFINE_SPINLOCK(p00a_bl_lock);
++static struct p00a_bl *p00a_bl_device;
++static unsigned int p00a_bl_requested;
++static bool p00a_bl_has_request;
++
++static int p00a_bl_write(struct p00a_bl *bl, unsigned int reg, unsigned int value)
++{
++	return i2c_smbus_write_byte_data(bl->client, reg, value);
++}
++static int p00a_bl_gate(struct p00a_bl *bl, int enable)
++{
++	return gpio_direction_output(bl->gpio, enable);
++}
++static void p00a_bl_settle(struct p00a_bl *bl)
++{
++	msleep(100);
++}
++#include "asus_p00a_lp8557_core.h"
++
++void asus_p00a_backlight_set(unsigned int level)
++{
++	unsigned long flags;
++
++	spin_lock_irqsave(&p00a_bl_lock, flags);
++	p00a_bl_requested = level;
++	p00a_bl_has_request = true;
++	if (p00a_bl_device && !p00a_bl_device->suspended)
++		schedule_work(&p00a_bl_device->work);
++	spin_unlock_irqrestore(&p00a_bl_lock, flags);
++}
++
++static void p00a_bl_work(struct work_struct *work)
++{
++	struct p00a_bl *bl = container_of(work, struct p00a_bl, work);
++	unsigned long flags;
++	unsigned int level;
++	bool suspended;
++	int ret;
++
++	spin_lock_irqsave(&p00a_bl_lock, flags);
++	level = p00a_bl_requested;
++	suspended = bl->suspended;
++	spin_unlock_irqrestore(&p00a_bl_lock, flags);
++	ret = p00a_bl_apply(bl, suspended ? 0 : level);
++	if (ret)
++		dev_warn_ratelimited(&bl->client->dev, "backlight I2C/GPIO: %d\n", ret);
++}
++
++static int p00a_bl_probe(struct i2c_client *client, const struct i2c_device_id *id)
++{
++	struct p00a_bl *bl;
++	unsigned long flags;
++	int ret;
++
++	if (!of_machine_is_compatible("asus,p00a"))
++		return -ENODEV;
++	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_BYTE_DATA))
++		return -EOPNOTSUPP;
++	bl = devm_kzalloc(&client->dev, sizeof(*bl), GFP_KERNEL);
++	if (!bl)
++		return -ENOMEM;
++	bl->client = client;
++	bl->gpio = of_get_named_gpio(client->dev.of_node, "enable-gpios", 0);
++	if (bl->gpio < 0)
++		return bl->gpio;
++	ret = devm_gpio_request(&client->dev, bl->gpio, "asus-lp8557-enable");
++	if (ret)
++		return ret;
++	INIT_WORK(&bl->work, p00a_bl_work);
++	i2c_set_clientdata(client, bl);
++	spin_lock_irqsave(&p00a_bl_lock, flags);
++	if (p00a_bl_device) {
++		spin_unlock_irqrestore(&p00a_bl_lock, flags);
++		return -EBUSY;
++	}
++	p00a_bl_device = bl;
++	if (p00a_bl_has_request)
++		schedule_work(&bl->work);
++	spin_unlock_irqrestore(&p00a_bl_lock, flags);
++	return 0;
++}
++
++static int p00a_bl_remove(struct i2c_client *client)
++{
++	struct p00a_bl *bl = i2c_get_clientdata(client);
++	unsigned long flags;
++
++	spin_lock_irqsave(&p00a_bl_lock, flags);
++	p00a_bl_device = NULL;
++	bl->suspended = true;
++	spin_unlock_irqrestore(&p00a_bl_lock, flags);
++	cancel_work_sync(&bl->work);
++	return p00a_bl_apply(bl, 0);
++}
++
++static int p00a_bl_suspend(struct device *dev)
++{
++	struct p00a_bl *bl = dev_get_drvdata(dev);
++	unsigned long flags;
++	int ret;
++
++	spin_lock_irqsave(&p00a_bl_lock, flags);
++	bl->suspended = true;
++	spin_unlock_irqrestore(&p00a_bl_lock, flags);
++	cancel_work_sync(&bl->work);
++	ret = p00a_bl_apply(bl, 0);
++	if (ret) {
++		spin_lock_irqsave(&p00a_bl_lock, flags);
++		bl->suspended = false;
++		spin_unlock_irqrestore(&p00a_bl_lock, flags);
++	}
++	return ret;
++}
++
++static int p00a_bl_resume(struct device *dev)
++{
++	struct p00a_bl *bl = dev_get_drvdata(dev);
++	unsigned long flags;
++
++	spin_lock_irqsave(&p00a_bl_lock, flags);
++	bl->configured = false;
++	bl->suspended = false;
++	if (p00a_bl_has_request)
++		schedule_work(&bl->work);
++	spin_unlock_irqrestore(&p00a_bl_lock, flags);
++	return 0;
++}
++
++static const struct dev_pm_ops p00a_bl_pm = {
++	SET_SYSTEM_SLEEP_PM_OPS(p00a_bl_suspend, p00a_bl_resume)
++};
++static const struct of_device_id p00a_bl_match[] = {
++	{ .compatible = "ti,lp8557-led" },
++	{ .compatible = "ti,lp8557_led" }, {}
++};
++MODULE_DEVICE_TABLE(of, p00a_bl_match);
++static const struct i2c_device_id p00a_bl_ids[] = { { "lp8557-led", 0 }, {} };
++MODULE_DEVICE_TABLE(i2c, p00a_bl_ids);
++static struct i2c_driver p00a_bl_driver = {
++	.driver = { .name = "asus-p00a-lp8557", .of_match_table = p00a_bl_match,
++		.pm = &p00a_bl_pm },
++	.probe = p00a_bl_probe,
++	.remove = p00a_bl_remove,
++	.id_table = p00a_bl_ids,
++};
++module_i2c_driver(p00a_bl_driver);
++MODULE_LICENSE("GPL");
++MODULE_DESCRIPTION("ASUS P00A LP8557 enable bridge for MediaTek PWM backlight");
+--- /dev/null
++++ b/drivers/misc/mediatek/leds/asus_p00a_lp8557_core.h
+@@ -0,0 +1,41 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++#ifndef ASUS_P00A_LP8557_CORE_H
++#define ASUS_P00A_LP8557_CORE_H
++
++static int p00a_bl_apply(struct p00a_bl *bl, unsigned int level)
++{
++	int ret, off_ret;
++
++	if (!level) {
++		ret = p00a_bl_write(bl, 0x00, 0);
++		off_ret = p00a_bl_gate(bl, 0);
++		bl->configured = false;
++		return ret ? ret : off_ret;
++	}
++	if (bl->configured)
++		return 0;
++	ret = p00a_bl_gate(bl, 1);
++	if (ret)
++		goto fail;
++	p00a_bl_settle(bl);
++	ret = p00a_bl_write(bl, 0x10, 0x04);
++	if (ret)
++		goto fail;
++	ret = p00a_bl_write(bl, 0x14, 0xdf);
++	if (ret)
++		goto fail;
++	ret = p00a_bl_write(bl, 0x04, 0xff);
++	if (ret)
++		goto fail;
++	ret = p00a_bl_write(bl, 0x00, 0x01);
++	if (ret)
++		goto fail;
++	bl->configured = true;
++	return 0;
++fail:
++	p00a_bl_write(bl, 0x00, 0);
++	p00a_bl_gate(bl, 0);
++	bl->configured = false;
++	return ret;
++}
++#endif
+--- a/drivers/misc/mediatek/leds/mt8163/mtk_leds.c
++++ b/drivers/misc/mediatek/leds/mt8163/mtk_leds.c
+@@ -33,6 +33,9 @@
+ 
+ #include "mtk_leds_sw.h"
+ #include "mtk_leds_hal.h"
++#ifdef CONFIG_ASUS_P00A_LP8557
++extern void asus_p00a_backlight_set(unsigned int level);
++#endif
+ 
+ /* for LED&Backlight bringup, define the dummy API */
+ #ifndef CONFIG_MTK_PMIC
+@@ -960,6 +963,11 @@
+ 	unsigned int BacklightLevelSupport =
+ 	    Cust_GetBacklightLevelSupport_byPWM();
+ 
++#ifdef CONFIG_ASUS_P00A_LP8557
++	if (!strcmp(cust->name, "lcd-backlight"))
++		asus_p00a_backlight_set(level);
++#endif
++
+ 	switch (cust->mode) {
+ 
+ 	case MT65XX_LED_MODE_PWM:
+@@ -1069,6 +1077,11 @@
+ #endif
+ 	struct mt65xx_led_data *led_data =
+ 	    container_of(led_cdev, struct mt65xx_led_data, cdev);
++#ifdef CONFIG_ASUS_P00A_LP8557
++	if (!strcmp(led_data->cust.name, "lcd-backlight"))
++		asus_p00a_backlight_set(level);
++#endif
++
+ 	/* unsigned long flags; */
+ 	/* spin_lock_irqsave(&leds_lock, flags); */
+ 
+--- a/drivers/misc/mediatek/power/mt8163/Makefile
++++ b/drivers/misc/mediatek/power/mt8163/Makefile
+@@ -20,3 +20,5 @@
+ ifeq ($(CONFIG_MTK_INTERNAL_CHARGER_SUPPORT),y)
+ 	obj-$(CONFIG_MTK_SMART_BATTERY) += charging_hw_pmic.o
+ endif
++
++obj-$(CONFIG_ASUS_P00A_BQ25896) += asus_p00a/
+--- /dev/null
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/Makefile
+@@ -0,0 +1 @@
++obj-y += bq25896.o
+--- /dev/null
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c
+@@ -0,0 +1,233 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/* Pad-only ASUS P00A integration. Register/policy provenance: PROVENANCE.md. */
++#include <linux/delay.h>
++#include <linux/gpio.h>
++#include <linux/i2c.h>
++#include <linux/module.h>
++#include <linux/mutex.h>
++#include <linux/of_gpio.h>
++#include <linux/reboot.h>
++#include <linux/regmap.h>
++#include <linux/workqueue.h>
++#include <mt-plat/battery_common.h>
++#include <mt-plat/battery_meter.h>
++#include <mt-plat/mtk_boot.h>
++#include <mt-plat/upmu_common.h>
++#include "policy.h"
++
++#define REG_INPUT 0x00
++#define REG_ADC 0x02
++#define REG_CONTROL 0x03
++#define REG_ICHG 0x04
++#define REG_TERM 0x05
++#define REG_CV 0x06
++#define REG_TIMER 0x07
++#define REG_STATUS 0x0b
++#define REG_FAULT 0x0c
++#define REG_TS 0x10
++#define REG_ID 0x14
++#define CHG_ENABLE BIT(4)
++#define OTG_ENABLE BIT(5)
++
++struct p00a_power {
++	struct device *dev;
++	struct regmap *map;
++	struct mutex lock;
++	struct delayed_work monitor;
++	struct p00a_limits limits;
++	unsigned int error_state;
++	int programmed_cv;
++	bool initialized;
++	bool needs_programming;
++};
++
++bool chargin_hw_init_done;
++static DEFINE_MUTEX(p00a_global_lock);
++static struct p00a_power *p00a;
++
++static const struct regmap_config p00a_regmap = {
++	.reg_bits = 8,
++	.val_bits = 8,
++	.max_register = REG_ID,
++	.cache_type = REGCACHE_NONE,
++};
++
++#include "control.h"
++
++int chr_control_interface(int cmd, void *data)
++{
++	int ret;
++
++	mutex_lock(&p00a_global_lock);
++	if (!p00a) {
++		mutex_unlock(&p00a_global_lock);
++		return -ENODEV;
++	}
++	mutex_lock(&p00a->lock);
++	ret = p00a_command(p00a, cmd, data);
++	mutex_unlock(&p00a->lock);
++	mutex_unlock(&p00a_global_lock);
++	return ret;
++}
++
++static void p00a_monitor(struct work_struct *work)
++{
++	struct p00a_power *p = container_of(to_delayed_work(work),
++		struct p00a_power, monitor);
++	int ret;
++
++	mutex_lock(&p->lock);
++	ret = p00a_apply(p);
++	if (ret && ret != -EAGAIN)
++		dev_warn_ratelimited(p->dev, "charging guard: %d\n", ret);
++	if (!p->limits.suspended)
++		schedule_delayed_work(&p->monitor, 5 * HZ);
++	mutex_unlock(&p->lock);
++}
++
++static int p00a_gpio(struct device *dev, const char *property, int level)
++{
++	int gpio = of_get_named_gpio(dev->of_node, property, 0);
++
++	if (gpio < 0)
++		return gpio;
++	return devm_gpio_request_one(dev, gpio,
++		level ? GPIOF_OUT_INIT_HIGH : GPIOF_OUT_INIT_LOW, property);
++}
++
++static int p00a_probe(struct i2c_client *client, const struct i2c_device_id *id)
++{
++	static const struct { const char *name; int level; } routing[] = {
++		{ "pg_otg_en_soc_gpio", 0 },
++		{ "usb_bus_on_num_gpio", 0 },
++		{ "cover_bus_on_gpio", 0 },
++		{ "cover_bus_off_gpio", 1 },
++	};
++	struct p00a_power *p;
++	unsigned int value;
++	int i, ret;
++
++	if (!of_machine_is_compatible("asus,p00a"))
++		return -ENODEV;
++	p = devm_kzalloc(&client->dev, sizeof(*p), GFP_KERNEL);
++	if (!p)
++		return -ENOMEM;
++	p->dev = &client->dev;
++	mutex_init(&p->lock);
++	INIT_DELAYED_WORK(&p->monitor, p00a_monitor);
++	p->limits.input_cap_ma = 100;
++	p->limits.charging_permitted = of_property_read_bool(client->dev.of_node,
++		"asus,allow-battery-charging");
++	p->map = devm_regmap_init_i2c(client, &p00a_regmap);
++	if (IS_ERR(p->map))
++		return PTR_ERR(p->map);
++	ret = regmap_read(p->map, REG_ID, &value);
++	if (ret)
++		return ret;
++	if (((value >> 3) & 7) != 0 || !(value & BIT(2)))
++		return -ENODEV;
++	ret = p00a_disable(p);
++	if (ret)
++		return ret;
++	for (i = 0; i < ARRAY_SIZE(routing); i++) {
++		ret = p00a_gpio(p->dev, routing[i].name, routing[i].level);
++		if (ret)
++			return ret;
++	}
++	ret = p00a_hw_init(p);
++	if (ret)
++		return ret;
++	i2c_set_clientdata(client, p);
++	mutex_lock(&p00a_global_lock);
++	if (p00a) {
++		mutex_unlock(&p00a_global_lock);
++		return -EBUSY;
++	}
++	p00a = p;
++	WRITE_ONCE(chargin_hw_init_done, true);
++	mutex_unlock(&p00a_global_lock);
++	schedule_delayed_work(&p->monitor, HZ);
++	dev_info(p->dev, "ASUS pad charger ready; charging %s pending validation\n",
++		p->limits.charging_permitted ? "permitted" : "inhibited");
++	return 0;
++}
++
++static int p00a_remove(struct i2c_client *client)
++{
++	struct p00a_power *p = i2c_get_clientdata(client);
++
++	mutex_lock(&p00a_global_lock);
++	WRITE_ONCE(chargin_hw_init_done, false);
++	p00a = NULL;
++	mutex_unlock(&p00a_global_lock);
++	mutex_lock(&p->lock);
++	p->limits.suspended = true;
++	mutex_unlock(&p->lock);
++	cancel_delayed_work_sync(&p->monitor);
++	return p00a_disable(p);
++}
++
++static void p00a_shutdown(struct i2c_client *client)
++{
++	struct p00a_power *p = i2c_get_clientdata(client);
++
++	mutex_lock(&p->lock);
++	p->limits.suspended = true;
++	p00a_disable(p);
++	mutex_unlock(&p->lock);
++	cancel_delayed_work_sync(&p->monitor);
++}
++
++static int p00a_suspend(struct device *dev)
++{
++	struct p00a_power *p = dev_get_drvdata(dev);
++	int ret;
++
++	mutex_lock(&p->lock);
++	p->limits.suspended = true;
++	ret = p00a_disable(p);
++	mutex_unlock(&p->lock);
++	cancel_delayed_work_sync(&p->monitor);
++	if (ret) {
++		mutex_lock(&p->lock);
++		p->limits.suspended = false;
++		mutex_unlock(&p->lock);
++		schedule_delayed_work(&p->monitor, 0);
++	}
++	return ret;
++}
++
++static int p00a_resume(struct device *dev)
++{
++	struct p00a_power *p = dev_get_drvdata(dev);
++
++	mutex_lock(&p->lock);
++	p->limits.suspended = false;
++	mutex_unlock(&p->lock);
++	schedule_delayed_work(&p->monitor, 0);
++	return 0;
++}
++
++static const struct dev_pm_ops p00a_pm = {
++	SET_SYSTEM_SLEEP_PM_OPS(p00a_suspend, p00a_resume)
++};
++static const struct of_device_id p00a_match[] = {
++	{ .compatible = "ti,bq25896" }, {}
++};
++MODULE_DEVICE_TABLE(of, p00a_match);
++static const struct i2c_device_id p00a_ids[] = { { "bq25896", 0 }, {} };
++MODULE_DEVICE_TABLE(i2c, p00a_ids);
++static struct i2c_driver p00a_driver = {
++	.driver = {
++		.name = "asus-p00a-bq25896",
++		.of_match_table = p00a_match,
++		.pm = &p00a_pm,
++	},
++	.probe = p00a_probe,
++	.remove = p00a_remove,
++	.shutdown = p00a_shutdown,
++	.id_table = p00a_ids,
++};
++module_i2c_driver(p00a_driver);
++MODULE_LICENSE("GPL");
++MODULE_DESCRIPTION("ASUS P00A BQ25896 pad charging integration");
+--- /dev/null
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/control.h
+@@ -0,0 +1,285 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++#ifndef ASUS_P00A_POWER_CONTROL_H
++#define ASUS_P00A_POWER_CONTROL_H
++
++static int p00a_disable(struct p00a_power *p)
++{
++	return regmap_update_bits(p->map, REG_CONTROL, CHG_ENABLE, 0);
++}
++
++static int p00a_sample(struct p00a_power *p)
++{
++	unsigned int previous, fault_now, ts, status;
++	int ret;
++
++	p->limits.sensors_valid = false;
++	ret = regmap_read(p->map, REG_STATUS, &status);
++	if (ret)
++		return ret;
++	p->limits.charger_present = !!(status & BIT(2));
++	if (!p->limits.charger_present) {
++		p->limits.input_cap_ma = 100;
++		p->limits.enable_requested = false;
++		p->needs_programming = true;
++	}
++	ret = regmap_read(p->map, REG_FAULT, &previous);
++	if (ret)
++		return ret;
++	ret = regmap_read(p->map, REG_FAULT, &fault_now);
++	if (ret)
++		return ret;
++	ret = regmap_read(p->map, REG_TS, &ts);
++	if (ret)
++		return ret;
++	p->limits.fault = previous | fault_now;
++	p->limits.ts_raw = ts & 0x7f;
++	p->limits.temp_c = READ_ONCE(BMT_status.temperature);
++	p->limits.battery_present = READ_ONCE(BMT_status.bat_exist);
++	p->limits.sensors_valid = p->limits.temp_c >= -20 &&
++		p->limits.temp_c <= 80 &&
++		READ_ONCE(BMT_status.bat_vol) >= 2500 &&
++		READ_ONCE(BMT_status.bat_vol) <= 4500 &&
++		p->limits.ts_raw > 0 && p->limits.ts_raw < 127;
++	return 0;
++}
++
++static int p00a_apply(struct p00a_power *p)
++{
++	int cv, input, ret, stop_ret;
++
++	if (!p->initialized)
++		return -EAGAIN;
++	ret = p00a_sample(p);
++	if (ret)
++		goto stop;
++	if (!p00a_can_charge(&p->limits)) {
++		ret = p->limits.enable_requested ? -EAGAIN : 0;
++		goto stop;
++	}
++	cv = p00a_effective_cv(&p->limits);
++	input = p00a_input_code(p->limits.input_10ua, p->limits.input_cap_ma);
++	if (p->programmed_cv != cv)
++		p->needs_programming = true;
++	if (p->needs_programming) {
++		ret = p00a_disable(p);
++		if (ret)
++			return ret;
++		ret = regmap_update_bits(p->map, REG_CV, 0xfc, cv << 2);
++		if (ret)
++			goto stop;
++		ret = regmap_update_bits(p->map, REG_ICHG, 0x7f,
++			p00a_ichg_code(p->limits.ichg_10ua));
++		if (ret)
++			goto stop;
++		ret = regmap_update_bits(p->map, REG_INPUT, 0xbf, input);
++		if (ret)
++			goto stop;
++		p->programmed_cv = cv;
++		p->needs_programming = false;
++	}
++	ret = regmap_update_bits(p->map, REG_CONTROL, CHG_ENABLE, CHG_ENABLE);
++	if (!ret)
++		return 0;
++stop:
++	p->needs_programming = true;
++	stop_ret = p00a_disable(p);
++	return stop_ret ? stop_ret : ret;
++}
++
++static int p00a_hw_init(struct p00a_power *p)
++{
++	int ret;
++
++	if (p->initialized)
++		return 0;
++
++	ret = p00a_disable(p);
++	if (ret)
++		return ret;
++	ret = regmap_update_bits(p->map, REG_CONTROL, OTG_ENABLE | 0x0e, 0x0c);
++	if (ret)
++		return ret;
++	/* Keep the safety timer and hardware NTC protection; no watchdog reset to defaults. */
++	ret = regmap_update_bits(p->map, REG_TIMER, 0xb8, BIT(7) | BIT(3));
++	if (ret)
++		return ret;
++	ret = regmap_update_bits(p->map, REG_TERM, 0xff, 0x22);
++	if (ret)
++		return ret;
++	ret = regmap_update_bits(p->map, REG_ADC, 0x53, BIT(6));
++	if (ret)
++		return ret;
++	ret = regmap_update_bits(p->map, 0x01, 0x1f, 7);
++	if (ret)
++		return ret;
++	ret = regmap_update_bits(p->map, REG_INPUT, 0x7f, BIT(6));
++	if (!ret) {
++		p->initialized = true;
++		p->needs_programming = true;
++	}
++	return ret;
++}
++
++static unsigned int p00a_input_cap(enum CHARGER_TYPE type)
++{
++	switch (type) {
++	case STANDARD_HOST:
++		return 500;
++	case CHARGING_HOST:
++		return 1500;
++	case STANDARD_CHARGER:
++	case NONSTANDARD_CHARGER:
++	case APPLE_2_1A_CHARGER:
++	case APPLE_1_0A_CHARGER:
++	case APPLE_0_5A_CHARGER:
++		return 1000;
++	default:
++		return 100;
++	}
++}
++
++static int p00a_command(struct p00a_power *p, int cmd, void *data)
++{
++	unsigned int value, previous;
++	int ret;
++
++	if (cmd < 0 || cmd >= CHARGING_CMD_NUMBER)
++		return -EOPNOTSUPP;
++	if (!data && cmd != CHARGING_CMD_INIT &&
++	    cmd != CHARGING_CMD_DUMP_REGISTER &&
++	    cmd != CHARGING_CMD_RESET_WATCH_DOG_TIMER &&
++	    cmd != CHARGING_CMD_SET_PLATFORM_RESET &&
++	    cmd != CHARGING_CMD_SET_POWER_OFF)
++		return -EINVAL;
++
++	switch (cmd) {
++	case CHARGING_CMD_INIT:
++		return p00a_hw_init(p);
++	case CHARGING_CMD_ENABLE:
++		p->limits.enable_requested = !!*(unsigned int *)data;
++		return p00a_apply(p);
++	case CHARGING_CMD_SET_CV_VOLTAGE:
++		value = *(unsigned int *)data;
++		ret = p00a_cv_code(value);
++		if (ret < 0) {
++			p->limits.cv_uv = 0;
++			p00a_disable(p);
++			return ret;
++		}
++		p->limits.cv_uv = value;
++		p->needs_programming = true;
++		return p00a_apply(p);
++	case CHARGING_CMD_SET_CURRENT:
++		p->limits.ichg_10ua = *(unsigned int *)data;
++		p->needs_programming = true;
++		return p00a_apply(p);
++	case CHARGING_CMD_SET_INPUT_CURRENT:
++		p->limits.input_10ua = *(unsigned int *)data;
++		p->needs_programming = true;
++		ret = p00a_input_code(p->limits.input_10ua, p->limits.input_cap_ma);
++		if (ret < 0) {
++			p00a_disable(p);
++			regmap_update_bits(p->map, REG_INPUT, BIT(7), BIT(7));
++			return ret;
++		}
++		return p00a_apply(p);
++	case CHARGING_CMD_GET_CURRENT:
++		ret = regmap_read(p->map, REG_ICHG, &value);
++		if (ret)
++			return ret;
++		if ((value & 0x7f) > 47)
++			return -EIO;
++		*(unsigned int *)data = (value & 0x7f) * 64;
++		return 0;
++	case CHARGING_CMD_GET_CHARGING_STATUS:
++		ret = regmap_read(p->map, REG_STATUS, &value);
++		if (ret)
++			return ret;
++		*(unsigned int *)data = ((value >> 3) & 3) == 3;
++		return 0;
++	case CHARGING_CMD_RESET_WATCH_DOG_TIMER:
++		return p00a_apply(p);
++	case CHARGING_CMD_GET_CHARGER_TYPE:
++		value = hw_charger_type_detection();
++		p->limits.input_cap_ma = p00a_input_cap(value);
++		p->needs_programming = true;
++		*(unsigned int *)data = value;
++		return 0;
++	case CHARGING_CMD_SET_ERROR_STATE:
++		p->error_state = *(unsigned int *)data;
++		p->limits.error = !!p->error_state;
++		return p00a_apply(p);
++	case CHARGING_CMD_GET_FAULT_TYPE:
++		ret = regmap_read(p->map, REG_FAULT, &previous);
++		if (ret)
++			return ret;
++		ret = regmap_read(p->map, REG_FAULT, &value);
++		if (ret)
++			return ret;
++		*(unsigned int *)data = ((previous | value) >> 4) & 3;
++		return 0;
++	case CHARGING_CMD_GET_VBUS_STAT:
++		ret = regmap_read(p->map, REG_STATUS, &value);
++		if (ret)
++			return ret;
++		value = (value >> 5) & 7;
++		*(unsigned int *)data = value == 7 ? VBUS_STAT_OTG :
++			value == 1 ? VBUS_STAT_SDP : value == 2 ? VBUS_STAT_AC : VBUS_STAT_NONE;
++		return 0;
++	case CHARGING_CMD_GET_SW_AICL_SUPPORT:
++		*(unsigned int *)data = 0;
++		return 0;
++	case CHARGING_CMD_SET_ITERM:
++		value = *(unsigned int *)data;
++		if (!value)
++			return 0;
++		ret = p00a_iterm_code(value);
++		return ret < 0 ? ret : regmap_update_bits(p->map, REG_TERM, 0x0f, ret);
++	case CHARGING_CMD_SET_HV_THRESHOLD:
++		ret = p00a_hv_code(*(unsigned int *)data);
++		if (ret < 0)
++			return ret;
++		upmu_set_rg_vcdt_hv_vth(ret);
++		return 0;
++	case CHARGING_CMD_GET_HV_STATUS:
++		*(bool *)data = upmu_get_rgs_vcdt_hv_det();
++		return 0;
++	case CHARGING_CMD_GET_BATTERY_STATUS:
++		upmu_set_baton_tdet_en(1);
++		upmu_set_rg_baton_en(1);
++		*(bool *)data = upmu_get_rgs_baton_undet();
++		return 0;
++	case CHARGING_CMD_GET_CHARGER_DET_STATUS:
++		*(bool *)data = upmu_get_rgs_chrdet();
++		return 0;
++	case CHARGING_CMD_GET_PLATFORM_BOOT_MODE:
++		*(unsigned int *)data = get_boot_mode();
++		return 0;
++	case CHARGING_CMD_SET_PLATFORM_RESET:
++		orderly_reboot();
++		return 0;
++	case CHARGING_CMD_SET_POWER_OFF:
++		orderly_poweroff(true);
++		return 0;
++	case CHARGING_CMD_GET_POWER_SOURCE:
++		*(bool *)data = false;
++		return 0;
++	case CHARGING_CMD_DUMP_REGISTER:
++		for (value = 0; value <= REG_ID; value++) {
++			ret = regmap_read(p->map, value, &previous);
++			if (ret)
++				return ret;
++			dev_dbg(p->dev, "reg %02x: %02x\n", value, previous);
++		}
++		return 0;
++	case CHARGING_CMD_BOOST_ENABLE:
++		if (*(unsigned int *)data)
++			return -EOPNOTSUPP;
++		return regmap_update_bits(p->map, REG_CONTROL, OTG_ENABLE, 0);
++	default:
++		return -EOPNOTSUPP;
++	}
++}
++
++
++#endif
+--- /dev/null
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/policy.h
+@@ -0,0 +1,127 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++#ifndef ASUS_P00A_POWER_POLICY_H
++#define ASUS_P00A_POWER_POLICY_H
++
++#ifdef __KERNEL__
++#include <linux/errno.h>
++#include <linux/types.h>
++#else
++#include <stdbool.h>
++#include <errno.h>
++#endif
++
++#define P00A_CV_MAX_UV 4352000U
++#define P00A_CV_WARM_UV 4304000U
++#define P00A_ICHG_MAX_MA 1920U
++#define P00A_ITERM_MAX_MA 192U
++
++struct p00a_limits {
++	unsigned int cv_uv;
++	unsigned int ichg_10ua;
++	unsigned int input_10ua;
++	unsigned int input_cap_ma;
++	unsigned int ts_raw;
++	unsigned int fault;
++	int temp_c;
++	bool battery_present;
++	bool charger_present;
++	bool sensors_valid;
++	bool enable_requested;
++	bool charging_permitted;
++	bool suspended;
++	bool thermal_latched;
++	bool error;
++};
++
++static inline int p00a_cv_code(unsigned int uv)
++{
++	if (uv < 3840000U)
++		return -ERANGE;
++	if (uv > P00A_CV_MAX_UV)
++		uv = P00A_CV_MAX_UV;
++	return (uv - 3840000U) / 16000U;
++}
++
++static inline unsigned int p00a_ichg_code(unsigned int current_10ua)
++{
++	unsigned int ma = current_10ua / 100U;
++
++	if (ma > P00A_ICHG_MAX_MA)
++		ma = P00A_ICHG_MAX_MA;
++	return ma / 64U;
++}
++
++static inline int p00a_input_code(unsigned int current_10ua,
++				 unsigned int cap_ma)
++{
++	unsigned int ma = current_10ua / 100U;
++
++	if (ma > cap_ma)
++		ma = cap_ma;
++	if (ma < 100U)
++		return -ERANGE;
++	if (ma > 1500U)
++		ma = 1500U;
++	return (ma - 100U) / 50U;
++}
++
++static inline int p00a_iterm_code(unsigned int ma)
++{
++	if (ma < 64U)
++		return -ERANGE;
++	if (ma > P00A_ITERM_MAX_MA)
++		ma = P00A_ITERM_MAX_MA;
++	return (ma - 64U) / 64U;
++}
++
++static inline int p00a_hv_code(unsigned int uv)
++{
++	static const unsigned int levels[] = {
++		4200000, 4250000, 4300000, 4350000,
++		4400000, 4450000, 4500000, 4550000,
++		4600000, 6000000, 6500000
++	};
++	int i;
++
++	if (uv < levels[0])
++		return -ERANGE;
++	for (i = 10; i > 0; i--)
++		if (levels[i] <= uv)
++			return i;
++	return 0;
++}
++
++static inline bool p00a_fault_blocks(unsigned int fault)
++{
++	unsigned int ntc = fault & 7U;
++
++	return (fault & 0xf8U) || (ntc != 0 && ntc != 2 && ntc != 3);
++}
++
++static inline bool p00a_can_charge(struct p00a_limits *p)
++{
++	if (!p->sensors_valid || p->temp_c <= 0 || p->temp_c >= 50)
++		p->thermal_latched = true;
++	else if (p->thermal_latched && p->temp_c > 6 && p->temp_c < 47)
++		p->thermal_latched = false;
++
++	return p->charging_permitted && p->enable_requested &&
++		!p->suspended && !p->thermal_latched && !p->error &&
++		p->battery_present && p->charger_present && p->sensors_valid &&
++		p->ts_raw > 0 && p->ts_raw < 127 &&
++		!p00a_fault_blocks(p->fault) &&
++		p00a_cv_code(p->cv_uv) >= 0 &&
++		p00a_ichg_code(p->ichg_10ua) > 0 &&
++		p00a_input_code(p->input_10ua, p->input_cap_ma) >= 0;
++}
++
++static inline int p00a_effective_cv(struct p00a_limits *p)
++{
++	unsigned int uv = p->cv_uv;
++
++	if ((p->temp_c >= 45 || p->ts_raw <= 51) && uv > P00A_CV_WARM_UV)
++		uv = P00A_CV_WARM_UV;
++	return p00a_cv_code(uv);
++}
++
++#endif
+--- a/drivers/misc/mediatek/thermal/Kconfig
++++ b/drivers/misc/mediatek/thermal/Kconfig
+@@ -91,3 +91,7 @@
+ 	  For CRONOS specific configurations for thermal related.
+ 
+ source "drivers/misc/mediatek/thermal/tmp103/Kconfig"
++
++config THERMAL_ASUS_P00A
++	bool "ASUS P00A board thermistor"
++	default n
+--- /dev/null
++++ b/drivers/misc/mediatek/thermal/mt8163/inc/mtk_ts_board_asus_p00a.h
+@@ -0,0 +1,338 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/* ASUS GPL mtk_ts_bts.c: AUXADC0, 390k pull-up, 1.8V, NTC table 6. */
++#define AUX_CHANNEL_NUM 1
++struct mtkts_bts_channel_param;
++static struct mtkts_bts_channel_param bts_channel_param[AUX_CHANNEL_NUM] = {
++	{ 390000, 4251000, 1800, 6, 0, 0, "mtkts_bts0" },
++};
++
++struct BTS_TEMPERATURE;
++
++/* BTS_TEMPERATURE BTS_Temperature_Table[] = {0}; */
++
++static struct BTS_TEMPERATURE BTS_Temperature_Table[] = {
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0},
++	{0, 0}
++};
++
++
++/* AP_NTC_BL197 */
++struct BTS_TEMPERATURE BTS_Temperature_Table1[] = {
++	{-40, 74354},		/* FIX_ME */
++	{-35, 74354},		/* FIX_ME */
++	{-30, 74354},		/* FIX_ME */
++	{-25, 74354},		/* FIX_ME */
++	{-20, 74354},
++	{-15, 57626},
++	{-10, 45068},
++	{-5, 35548},
++	{0, 28267},
++	{5, 22650},
++	{10, 18280},
++	{15, 14855},
++	{20, 12151},
++	{25, 10000},		/* 10K */
++	{30, 8279},
++	{35, 6892},
++	{40, 5768},
++	{45, 4852},
++	{50, 4101},
++	{55, 3483},
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970}		/* FIX_ME */
++};
++
++/* AP_NTC_TSM_1 */
++struct BTS_TEMPERATURE BTS_Temperature_Table2[] = {
++	{-40, 70603},		/* FIX_ME */
++	{-35, 70603},		/* FIX_ME */
++	{-30, 70603},		/* FIX_ME */
++	{-25, 70603},		/* FIX_ME */
++	{-20, 70603},
++	{-15, 55183},
++	{-10, 43499},
++	{-5, 34569},
++	{0, 27680},
++	{5, 22316},
++	{10, 18104},
++	{15, 14773},
++	{20, 12122},
++	{25, 10000},		/* 10K */
++	{30, 8294},
++	{35, 6915},
++	{40, 5795},
++	{45, 4882},
++	{50, 4133},
++	{55, 3516},
++	{60, 3004},		/* FIX_ME */
++	{60, 3004},		/* FIX_ME */
++	{60, 3004},		/* FIX_ME */
++	{60, 3004},		/* FIX_ME */
++	{60, 3004},		/* FIX_ME */
++	{60, 3004},		/* FIX_ME */
++	{60, 3004},		/* FIX_ME */
++	{60, 3004},		/* FIX_ME */
++	{60, 3004},		/* FIX_ME */
++	{60, 3004},		/* FIX_ME */
++	{60, 3004},		/* FIX_ME */
++	{60, 3004},		/* FIX_ME */
++	{60, 3004},		/* FIX_ME */
++	{60, 3004}		/* FIX_ME */
++};
++
++/* AP_NTC_10_SEN_1 */
++struct BTS_TEMPERATURE BTS_Temperature_Table3[] = {
++	{-40, 74354},		/* FIX_ME */
++	{-35, 74354},		/* FIX_ME */
++	{-30, 74354},		/* FIX_ME */
++	{-25, 74354},		/* FIX_ME */
++	{-20, 74354},
++	{-15, 57626},
++	{-10, 45068},
++	{-5, 35548},
++	{0, 28267},
++	{5, 22650},
++	{10, 18280},
++	{15, 14855},
++	{20, 12151},
++	{25, 10000},		/* 10K */
++	{30, 8279},
++	{35, 6892},
++	{40, 5768},
++	{45, 4852},
++	{50, 4101},
++	{55, 3483},
++	{60, 2970},
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970},		/* FIX_ME */
++	{60, 2970}		/* FIX_ME */
++};
++
++#if 0
++/* AP_NTC_10 */
++struct BTS_TEMPERATURE BTS_Temperature_Table4[] = {
++	{-20, 68237},
++	{-15, 53650},
++	{-10, 42506},
++	{-5, 33892},
++	{0, 27219},
++	{5, 22021},
++	{10, 17926},
++	{15, 14674},
++	{20, 12081},
++	{25, 10000},
++	{30, 8315},
++	{35, 6948},
++	{40, 5834},
++	{45, 4917},
++	{50, 4161},
++	{55, 3535},
++	{60, 3014}
++};
++#else
++/* AP_NTC_10(TSM0A103F34D1RZ) */
++struct BTS_TEMPERATURE BTS_Temperature_Table4[] = {
++	{-40, 188500},
++	{-35, 144290},
++	{-30, 111330},
++	{-25, 86560},
++	{-20, 67790},
++	{-15, 53460},
++	{-10, 42450},
++	{-5, 33930},
++	{0, 27280},
++	{5, 22070},
++	{10, 17960},
++	{15, 14700},
++	{20, 12090},
++	{25, 10000},		/* 10K */
++	{30, 8310},
++	{35, 6940},
++	{40, 5830},
++	{45, 4910},
++	{50, 4160},
++	{55, 3540},
++	{60, 3020},
++	{65, 2590},
++	{70, 2230},
++	{75, 1920},
++	{80, 1670},
++	{85, 1450},
++	{90, 1270},
++	{95, 1110},
++	{100, 975},
++	{105, 860},
++	{110, 760},
++	{115, 674},
++	{120, 599},
++	{125, 534}
++};
++#endif
++
++/* AP_NTC_47 */
++struct BTS_TEMPERATURE BTS_Temperature_Table5[] = {
++	{-40, 483954},		/* FIX_ME */
++	{-35, 483954},		/* FIX_ME */
++	{-30, 483954},		/* FIX_ME */
++	{-25, 483954},		/* FIX_ME */
++	{-20, 483954},
++	{-15, 360850},
++	{-10, 271697},
++	{-5, 206463},
++	{0, 158214},
++	{5, 122259},
++	{10, 95227},
++	{15, 74730},
++	{20, 59065},
++	{25, 47000},		/* 47K */
++	{30, 37643},
++	{35, 30334},
++	{40, 24591},
++	{45, 20048},
++	{50, 16433},
++	{55, 13539},
++	{60, 11210},
++	{60, 11210},		/* FIX_ME */
++	{60, 11210},		/* FIX_ME */
++	{60, 11210},		/* FIX_ME */
++	{60, 11210},		/* FIX_ME */
++	{60, 11210},		/* FIX_ME */
++	{60, 11210},		/* FIX_ME */
++	{60, 11210},		/* FIX_ME */
++	{60, 11210},		/* FIX_ME */
++	{60, 11210},		/* FIX_ME */
++	{60, 11210},		/* FIX_ME */
++	{60, 11210},		/* FIX_ME */
++	{60, 11210},		/* FIX_ME */
++	{60, 11210}		/* FIX_ME */
++};
++
++
++/* NTCG104EF104F(100K) */
++struct BTS_TEMPERATURE BTS_Temperature_Table6[] = {
++	{-40, 4251000},
++	{-35, 3005000},
++	{-30, 2149000},
++	{-25, 1554000},
++	{-20, 1135000},
++	{-15, 837800},
++	{-10, 624100},
++	{-5, 469100},
++	{0, 355600},
++	{5, 271800},
++	{10, 209400},
++	{15, 162500},
++	{20, 127000},
++	{25, 100000},		/* 100K */
++	{30, 79230},
++	{35, 63180},
++	{40, 50680},
++	{45, 40900},
++	{50, 33190},
++	{55, 27090},
++	{60, 22220},
++	{65, 18320},
++	{70, 15180},
++	{75, 12640},
++	{80, 10580},
++	{85, 8887},
++	{90, 7500},
++	{95, 6357},
++	{100, 5410},
++	{105, 4623},
++	{110, 3965},
++	{115, 3415},
++	{120, 2951},
++	{125, 2560}
++};
++
++struct BTS_TEMPERATURE BTS_Temperature_Table7[] = {
++	{-40, 195652},
++	{-35, 148171},
++	{-30, 113347},
++	{-25, 87558},
++	{-20, 68236},
++	{-15, 53649},
++	{-10, 42506},
++	{-5, 33892},
++	{0, 27218},
++	{5, 22021},
++	{10, 17925},
++	{15, 14673},
++	{20, 12080},
++	{25, 10000},   /*100K*/
++	{30, 8314},
++	{35, 6947},
++	{40, 5833},
++	{45, 4916},
++	{50, 4160},
++	{55, 3535},
++	{60, 3014},
++	{65, 2586},
++	{70, 2227},
++	{75, 1924},
++	{80, 1668},
++	{85, 1452},
++	{90, 1268},
++	{95, 1109},
++	{100, 973},
++	{105, 858},
++	{110, 758},
++	{115, 671},
++	{120, 596},
++	{125, 531}
++};
+--- a/drivers/misc/mediatek/thermal/mt8163/mtk_ts_bts.c
++++ b/drivers/misc/mediatek/thermal/mt8163/mtk_ts_bts.c
+@@ -81,6 +81,8 @@
+ #include "inc/mtk_ts_board_abh123.h"
+ #elif defined(CONFIG_THERMAL_abg123)
+ #include "inc/mtk_ts_board_abg123.h"
++#elif defined(CONFIG_THERMAL_ASUS_P00A)
++#include "inc/mtk_ts_board_asus_p00a.h"
+ #elif defined(CONFIG_THERMAL_KARNAK)
+ #include "inc/mtk_ts_board_karnak.h"
+ #elif defined(CONFIG_THERMAL_abc123)
+@@ -301,6 +303,7 @@
+ int mtkts_bts_get_hw_temp(int index)
+ {
+ 	int t_ret = 0;
++	int ret;
+ /* static int AP[60]={0}; */
+ /* int i=0; */
+ 
+@@ -309,7 +312,11 @@
+ 	/* get HW AP temp (TSAP) */
+ 	/* cat /sys/class/power_supply/AP/AP_temp */
+ 	/*use upstream adc api*/
+-	gadc_thermal_get_temp(gti_ntc, index, &t_ret);
++	ret = gadc_thermal_get_temp(gti_ntc, index, &t_ret);
++	if (ret) {
++		mutex_unlock(&BTS_lock);
++		return THERMAL_TEMP_INVALID;
++	}
+ 	t_ret = t_ret * 1000;
+ 
+ 	mutex_unlock(&BTS_lock);
+@@ -330,12 +337,14 @@
+ 
+ 	mtkts_bts_dprintk("[mtkts_bts_get_temp]index = %d\n", i);
+ 
+-	if (i < 0 || i > AUX_CHANNEL_NUM) {
++	if (i < 0 || i >= AUX_CHANNEL_NUM) {
+ 		pr_err("%s bad channel index %d, name=%s\n",
+ 			__func__, i, thermal->type);
+ 		return -EINVAL;
+ 	}
+ 	*t = mtkts_bts_get_hw_temp(i);
++	if (*t == THERMAL_TEMP_INVALID)
++		return -EAGAIN;
+ 
+ 	/* if ((int) *t > 52000) */
+ 	/* xlog_printk(ANDROID_LOG_INFO, "Power/BTS_Thermal",
+@@ -1009,9 +1018,9 @@
+ 	int ret;
+ 
+ 	if (gti == NULL || !gadc_ready)
+-		return 0;
+-
+-	if (index >= AUX_CHANNEL_NUM) {
++		return -EAGAIN;
++
++	if (index < 0 || index >= AUX_CHANNEL_NUM) {
+ 		dev_err(gti->dev, "%s: error: index:%d > AUX_CHANNEL_NUM:%d\n",
+ 				__func__, index, AUX_CHANNEL_NUM);
+ 		return -EINVAL;
+--- a/drivers/power/supply/mediatek/battery/Kconfig
++++ b/drivers/power/supply/mediatek/battery/Kconfig
+@@ -301,3 +301,10 @@
+ 	  to achive better charging ability.
+ 	  Set Yes to enable PE+.
+ 	  Set No to disable PE+.
++
++config ASUS_P00A_BQ25896
++	bool "ASUS P00A BQ25896 pad charging integration"
++	depends on I2C && MTK_SMART_BATTERY=y
++	depends on !MTK_BQ24296_SUPPORT && !MTK_BQ25601_SUPPORT
++	select REGMAP_I2C
++	default n

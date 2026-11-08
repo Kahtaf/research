@@ -1,0 +1,124 @@
+--- a/source/rescue.c
++++ b/source/rescue.c
+@@ -67,7 +67,7 @@
+ int f=open_part(0,0);if(f<0)return -1;int rc=-1;
+ if(!readat(f,io_buf,17408,0)){hash(io_buf,17408,digest);if(!memcmp(digest,gpt1,32)&&!readat(f,io_buf,16896,geom(0)->size-16896)){hash(io_buf,16896,digest);if(!memcmp(digest,gpt2,32))rc=0;}}
+ close(f);return rc;}
+-static int recovery_ok(void){unsigned char h[32];int f=open_part(10,0);if(f<0)return -1;int rc=fd_hash(f,geom(10)->size,h)||memcmp(h,recovery_pin,32);close(f);return rc?-1:0;}
++#include "recovery_phase.h"
+ static int load_manifest(void){char p[512];path(p,sizeof(p),"/rescue.manifest");int f=open(p,O_RDONLY|O_NOFOLLOW|O_CLOEXEC);if(f<0)return -1;struct stat st;
+ if(fstat(f,&st)||!S_ISREG(st.st_mode)||st.st_size<112||st.st_size>MAX_MANIFEST){close(f);return -1;}
+ manifest_size=(size_t)st.st_size;int rc=exact_read(f,manifest,manifest_size);close(f);if(rc||memcmp(manifest,"ASUSR002",8)||u32(manifest+8)!=2)return -1;
+@@ -109,24 +109,25 @@
+ #include "handoff.h"
+ #endif
+ static int session(int c){
++struct recovery_phase recovery={.fd=-1};
+ uint32_t op,n;int fd=-1;unsigned char token[32],h[32],same[MAX_CHUNKS];int index=-1;uint32_t next=0;enum{IDLE,RECONCILED,WRITING,VERIFIED}state=IDLE;int rc=-1;
+ while(!frame_in(c,&op,wire,&n)){
+ #ifdef P10_HANDOFF
+-if(op==0x30&&n==0&&state==IDLE){(void)p10_handoff(c);return -1;}
++if(op==0x30&&n==0&&state==IDLE){recovery_phase_close(&recovery);(void)p10_handoff(c);return -1;}
+ #endif
+ if(op==1&&n==0&&state==IDLE){if(send_status(c))break;continue;}
+ if(((op==2&&n==68)||(op==8&&n==104))&&state==IDLE){
+ index=(int)u32(wire+64);if(!image_count||memcmp(wire,manifest_id,32)||index<0||(uint32_t)index>=image_count||(uncertain_image>=0&&memcmp(wire+32,recovery_pin,32))||(op==2&&uncertain_image>=0&&index!=uncertain_image)||(op==8&&(uncertain_image<0||u32(wire+68)!=(uint32_t)uncertain_image||index>1||memcmp(wire+72,images[index].full,32)))){error_reply(c,"manifest/image mismatch; deliberate same-image reconciliation required");break;}
+ memcpy(recovery_pin,wire+32,32);Image*m=&images[index];
+-if(identity()||recovery_ok()||prerequisite(m)){error_reply(c,"identity/recovery/system prerequisite failed");break;}
++if(identity()||recovery_phase_open(&recovery)||prerequisite(m)){error_reply(c,"identity/recovery/system prerequisite failed");break;}
+ fd=open_part(m->part,0);if(fd<0){error_reply(c,"node guard failed");break;}
+ for(uint32_t j=0;j<m->count;j++){uint64_t off=(uint64_t)j*CHUNK;size_t count=m->size-off>CHUNK?CHUNK:(size_t)(m->size-off);if(readat(fd,io_buf,count,off))goto done;hash(io_buf,count,h);same[j]=!memcmp(h,m->chunks+j*32,32);}
+ close(fd);fd=-1;
+-if(identity()||recovery_ok()||clear_pending()||new_token(token))break;
++if(identity()||recovery_phase_full(&recovery)||clear_pending()||new_token(token))break;
+ memcpy(wire,token,32);memcpy(wire+32,same,m->count);
+ if(frame_out(c,0x82,wire,32+m->count))break;state=RECONCILED;continue;}
+ if(op==3&&n==32&&state==RECONCILED&&!memcmp(wire,token,32)){
+-Image*m=&images[index];if(identity()||recovery_ok()||prerequisite(m))break;
++Image*m=&images[index];if(identity()||recovery_phase_activate(&recovery,index,token)||prerequisite(m))break;
+ frozen=1;uncertain_image=index;
+ if(journal(index,"UNCERTAIN"))break;
+ fd=open_part(m->part,1);if(fd<0)break;state=WRITING;next=0;
+@@ -135,18 +136,19 @@
+ if(op==4){if(n!=count)break;hash(wire,n,h);if(memcmp(h,m->chunks+next*32,32)){error_reply(c,"chunk digest mismatch");break;}}else if(n!=0)break;
+ n=count;
+ /* Short I/O is uncertain; never retry it. Re-read the current chunk even after reconciliation. */
+-if(identity()||validate_fd(fd,geom(m->part))||recovery_ok()||readat(fd,io_buf,n,off))break;
++if(identity()||validate_fd(fd,geom(m->part))||recovery_phase_chunk(&recovery,index,token)||readat(fd,io_buf,n,off))break;
+ hash(io_buf,n,h);int skipped=!memcmp(h,m->chunks+next*32,32);
+ if(op==7&&!skipped)break;
+ if(!skipped){if(writeat(fd,wire,n,off)||flush(fd)||readat(fd,io_buf,n,off))break;hash(io_buf,n,h);if(memcmp(h,m->chunks+next*32,32))break;}
+ unsigned char ack[8];put32(ack,next++);put32(ack+4,skipped);
+ if(injected("ack")||frame_out(c,0x84,ack,8))break;continue;}
+-if(op==5&&n==0&&state==WRITING){Image*m=&images[index];if(next!=m->count||flush(fd)||fd_hash(fd,m->size,h)||memcmp(h,m->full,32)||identity()||recovery_ok()||validate_fd(fd,geom(m->part)))break;
++if(op==5&&n==0&&state==WRITING){Image*m=&images[index];if(next!=m->count||flush(fd)||fd_hash(fd,m->size,h)||memcmp(h,m->full,32)||identity()||recovery_phase_full(&recovery)||validate_fd(fd,geom(m->part)))break;
+ if(close(fd)){fd=-1;break;}fd=-1;if(journal(index,"VERIFIED"))break;
+-/* Even a lost final acknowledgement leaves mutation frozen until a new reconciliation. */
++/* Failed sends freeze mutation. Host receipt loss remains UNKNOWN even if
++ * a later daemon STATUS is IDLE; only a verified commit receipt is success. */
+ if(frame_out(c,0x85,h,32))break;state=VERIFIED;continue;}
+ if(op==9&&n==32&&state==VERIFIED&&!memcmp(wire,images[index].full,32)){
+-if(identity()||recovery_ok()||frame_out(c,0x89,wire,32))break;frozen=0;uncertain_image=-1;rc=0;goto done;}
++if(identity()||recovery_phase_full(&recovery)||frame_out(c,0x89,wire,32))break;frozen=0;uncertain_image=-1;rc=0;goto done;}
+ if(op==6&&n==8&&state==IDLE){int part=(int)u32(wire);uint32_t chunk=u32(wire+4);const Geometry*g=geom(part);
+ if(!image_count||!g||!part||(part==26&&image_count!=5)||(uint64_t)chunk*CHUNK>=g->size||identity()){error_reply(c,"readback guard failed");break;}
+ fd=open_part(part,0);if(fd<0)break;uint64_t off=(uint64_t)chunk*CHUNK;uint32_t count=g->size-off>CHUNK?CHUNK:(uint32_t)(g->size-off);
+@@ -154,7 +156,7 @@
+ if(frame_out(c,0x86,h,32)||frame_out(c,0x87,io_buf,count))break;continue;}
+ error_reply(c,"invalid state/opcode/length");break;
+ }
+-done:if(fd>=0)close(fd);if((state==WRITING||state==VERIFIED)&&rc!=0)frozen=1;return rc;
++done:recovery_phase_close(&recovery);if(fd>=0)close(fd);if((state==WRITING||state==VERIFIED)&&rc!=0)frozen=1;return rc;
+ }
+ static int serve(void){
+ if(getuid()!=0)return 81; if(!context_is("u:r:os_rescue:s0"))return 82; if(!enforcing())return 83; if(load_manifest())return 84;
+--- /dev/null
++++ b/source/recovery_phase.h
+@@ -0,0 +1,47 @@
++/* Valid only in the reviewed fixed RAM service graph: ordinary RSC cannot
++ * write p10; its only recovery writer replaces this process by exec, holding
++ * the lifetime writer lock. Metadata is NOT a content-change detector.
++ * Every connection owns its own FD/proofs; no guard survives session exit. */
++struct recovery_phase {
++ int fd, image, writing;
++ struct stat node;
++ unsigned char manifest[32], pin[32], token[32];
++};
++static void recovery_phase_close(struct recovery_phase *g){
++ if(g->fd>=0)close(g->fd);
++ memset(g,0,sizeof(*g));g->fd=-1;
++}
++static int recovery_phase_node(struct recovery_phase *g){
++ struct stat s;
++ if(g->fd<0||memcmp(g->manifest,manifest_id,32)||memcmp(g->pin,recovery_pin,32)||
++    fstat(g->fd,&s)||s.st_dev!=g->node.st_dev||s.st_ino!=g->node.st_ino||
++    s.st_rdev!=g->node.st_rdev||s.st_mode!=g->node.st_mode||
++    s.st_uid!=g->node.st_uid||s.st_gid!=g->node.st_gid||
++    validate_fd(g->fd,geom(10))){recovery_phase_close(g);return -1;}
++ return 0;
++}
++static int recovery_phase_full(struct recovery_phase *g){
++ unsigned char h[32];
++ if(recovery_phase_node(g)||fd_hash(g->fd,geom(10)->size,h)||
++    memcmp(h,g->pin,32)||recovery_phase_node(g)){
++  recovery_phase_close(g);return -1;
++ }
++ return 0;
++}
++static int recovery_phase_open(struct recovery_phase *g){
++ recovery_phase_close(g);
++ g->fd=open_part(10,0);
++ if(g->fd<0||fstat(g->fd,&g->node)){recovery_phase_close(g);return -1;}
++ memcpy(g->manifest,manifest_id,32);memcpy(g->pin,recovery_pin,32);
++ return recovery_phase_full(g);
++}
++static int recovery_phase_activate(struct recovery_phase *g,int image,const unsigned char *token){
++ if(recovery_phase_full(g))return -1;
++ g->image=image;memcpy(g->token,token,32);g->writing=1;return 0;
++}
++static int recovery_phase_chunk(struct recovery_phase *g,int image,const unsigned char *token){
++ if(!g->writing||g->image!=image||memcmp(g->token,token,32)){
++  recovery_phase_close(g);return -1;
++ }
++ return recovery_phase_node(g);
++}

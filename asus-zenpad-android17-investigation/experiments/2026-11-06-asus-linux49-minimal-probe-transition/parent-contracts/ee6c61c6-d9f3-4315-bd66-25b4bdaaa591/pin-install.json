@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "run_id": "ee6c61c6-d9f3-4315-bd66-25b4bdaaa591",
+  "phase": "pin-install",
+  "profile_sha256": "7e79c212f4bcb8df67e25c3a37a3e765fabf67f917d747dafb51ff6ffd07570c",
+  "code_sha256": "2462a2ef11137852fbca68e89d22fce6ebd7dc4b48458ff38a88814f162b6ef3",
+  "parent_technical_review": true,
+  "reviewer": "parent",
+  "reference": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-linux49-minimal-probe-physical-test/evidence/factory-mode-correction.json",
+  "issued_at": 1794026938.684997,
+  "valid_until": 1794027538.684997,
+  "maximum_seconds": 600,
+  "supervised_manual_entry_return_plan": true,
+  "nearby_power_fallback_required": true,
+  "install_completion_token": null
+}

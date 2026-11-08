@@ -1,0 +1,54 @@
+{
+  "stock_reference": {
+    "kernel/printk/printk.c": {
+      "bytes": 86568,
+      "sha256": "3307400a34620781223aee78a0acdffefc9f542a4ece7bc85395d3b837919b13"
+    },
+    "drivers/misc/mediatek/ram_console/mtk_ram_console.c": {
+      "bytes": 57775,
+      "sha256": "c966a4508bff43f31a551103b7c5a9cfad4b11164c069b7d30ba9c09199e86b2"
+    },
+    "drivers/char/mem.c": {
+      "bytes": 19400,
+      "sha256": "b693f13ce4edf0f0e5e3553ddf0d86fc779283c2ce6442972731cfbe31d45390"
+    },
+    "include/linux/console.h": {
+      "bytes": 6160,
+      "sha256": "079833d17b9d1d32dcd3b1d9c7078e62a8fd976ada73e84e47405ea74bd54ac9"
+    },
+    "include/linux/fs.h": {
+      "bytes": 96346,
+      "sha256": "dae295e462f2451915517462e39599be81b7a83be9a1d36929b6ae3a9351e1af"
+    }
+  },
+  "e9_reference": {
+    "mm/early_ioremap.c": {
+      "bytes": 6351,
+      "sha256": "d6e6cfafdc7ce475ac295e98e2dc9a1bbe9de2a4f55a869e301ec2dbe1382ec6"
+    },
+    "arch/arm64/mm/init.c": {
+      "bytes": 15250,
+      "sha256": "27442b977fa7a209125f3dcee5f2ae9768fc40f9d4e1aa896ad02cfccdd982de"
+    },
+    "arch/arm64/mm/ioremap.c": {
+      "bytes": 2994,
+      "sha256": "70088a420b630dd2bc8f99cd4f5347dd9b21af8e7aa6cc52165a2ae4718508c4"
+    },
+    "arch/arm64/include/asm/pgtable-prot.h": {
+      "bytes": 4544,
+      "sha256": "ae3ce82fb19c470b237958430dfa5f64306c2747baf948cdcb240f1411c48f47"
+    },
+    "arch/arm64/include/asm/fixmap.h": {
+      "bytes": 2826,
+      "sha256": "3eee65477d14ebc4f9ed4dfb3776db65aa2aeebbaa6e115d46cea6c214315446"
+    },
+    "include/asm-generic/early_ioremap.h": {
+      "bytes": 1547,
+      "sha256": "0a1266fa6b015f3953df76f4028cb43db71044170a819665f862bd364cce3c8e"
+    },
+    "include/asm-generic/fixmap.h": {
+      "bytes": 2904,
+      "sha256": "55df17c460cf1241e4a1d8c8555322d9f5c01234471932d522cd67af34315554"
+    }
+  }
+}

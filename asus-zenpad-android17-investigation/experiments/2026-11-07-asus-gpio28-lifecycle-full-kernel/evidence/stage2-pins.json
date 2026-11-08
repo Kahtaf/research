@@ -1,0 +1,32 @@
+[
+  {
+    "path": "sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c",
+    "pre_sha256": "4628dd7d0525e39bd296152f579ac16afe726e039f2021eb41cb0acf7e78930c",
+    "post_sha256": "6b07488b81f6b4e3f40dfa07126001a39cf42650585abd74a3860023afd8b69a",
+    "destination_must_be_absent": false
+  },
+  {
+    "path": "sound/soc/mediatek/mt_soc_audio_8163/codec_state_controls.h",
+    "pre_sha256": null,
+    "post_sha256": "33d54e6193b267a58441908dc7bcde6766031bfb215134729215fd50b6dc7519",
+    "destination_must_be_absent": true
+  },
+  {
+    "path": "sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "pre_sha256": "4753b516aeb4a6c43ec510580bbba1563a9bc1443765331fa8c89b47c7206675",
+    "post_sha256": "939e840a897cd71c74f714b565b68da0445297dac8137ea6ca61d054f82f79d9",
+    "destination_must_be_absent": false
+  },
+  {
+    "path": "sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.h",
+    "pre_sha256": "966aefe5669acd6ee1ac486c8b7bfecf82f659e908d6334da77c80fd971e5949",
+    "post_sha256": "c89532131c85afed3b944b0cf421475ffc1515790ae3a23662def80799c39c72",
+    "destination_must_be_absent": false
+  },
+  {
+    "path": "sound/soc/mediatek/mt_soc_audio_8163/p00a_stock_gate.h",
+    "pre_sha256": "6405ec0f74808c22f638569b86a9522603c3ae668fa2ce51e511347b7f85d868",
+    "post_sha256": "2a1e8e0a79051ba46255f287c5ebda9b5432cb6c0b9f31b5cee644ac6c52c9b0",
+    "destination_must_be_absent": false
+  }
+]

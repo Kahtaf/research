@@ -1,0 +1,12 @@
+{
+  "sources": [
+    "2026-11-06-asus-recovery-diagnostic/source/diag.c",
+    "2026-11-06-asus-android17-os-rescue/source/diag.c"
+  ],
+  "identical": true,
+  "sha256": [
+    "a7101be35a9a505b2c24bd0e456348a72dd913e0125daa5f09efef331086cd75",
+    "a7101be35a9a505b2c24bd0e456348a72dd913e0125daa5f09efef331086cd75"
+  ],
+  "interpretation": "same reviewed monotonic120s reboot source as physically observed control; not a new runtime claim"
+}

@@ -1,0 +1,44 @@
+{
+  "status": "PHYSICAL_TRIAL_RETURNED_NO_LINUX49_REPORT_OR_TRACE",
+  "candidate_sha256": "2a0d400811292ece957bb00f632f56aef8e5967643bd5a0184c10eaeea051533",
+  "p10_sha256": "c9d4506c90fa12f6a77a5e34368312307903eb9e0c04d47d5461f2e455b062e3",
+  "install_run": "99a72150-b8ae-45e9-8ae0-230408d75803",
+  "full_readback_cleanup": true,
+  "reboot_requests": 1,
+  "reboot_transport": "authenticated_WiFi",
+  "host_reboot_ack": "UNKNOWN_timeout12s",
+  "stock_kernel_log_confirms_recovery_reboot_request": true,
+  "new_stock_boot": "bf1566ca-25aa-4eec-96bd-6851f7fafdee",
+  "new_stock_return_observed_wifi_only": true,
+  "new_adb_tcpip_reset": false,
+  "complete_retained_log_bytes": 523005,
+  "complete_retained_log_sha256": "9c73ce60dfa5a8168670d1e5366e38dda5eef72a3c73720f59c8055fa8d7b8f6",
+  "trace_v2_markers": [],
+  "SD_report": "ABSENT",
+  "linux49_nonexecution_proven": false,
+  "timing": {
+    "seconds_entry_until_current_stock_kernel_estimate_low": 33.07506599999999,
+    "seconds_entry_until_current_stock_kernel_estimate_high": 33.341048,
+    "probe_nominal_pid1_delay_seconds": 60,
+    "source": "host entry/query window minus current normal kernel uptime",
+    "assumptions": [
+      "host wall clock did not step during this interval",
+      "stock kernel uptime represents current boot elapsed time"
+    ],
+    "does_not_prove_specific_reset_cause": true
+  },
+  "reset_reason": {
+    "bootreason": "",
+    "reason": "0",
+    "bootmode": "main",
+    "selected_cmdline": [
+      "boot_reason=4",
+      "androidboot.bootreason=",
+      "androidboot.mode=main"
+    ],
+    "read_by_existing_temporary_root": true
+  },
+  "specific_reset_cause_proven": false,
+  "internal_OS_writes": false,
+  "card_unarmed": true
+}

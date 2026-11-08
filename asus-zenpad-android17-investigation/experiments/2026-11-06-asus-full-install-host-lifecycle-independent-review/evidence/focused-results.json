@@ -1,0 +1,471 @@
+{
+  "tests": 14,
+  "failures": 2,
+  "errors": 0,
+  "failures_detail": [
+    {
+      "case": "review_cli_partial_unknown_then_recovered_sink_records_unknown (__main__.Focused.review_cli_partial_unknown_then_recovered_sink_records_unknown)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-host-lifecycle-independent-review/review/focused.py\", line 41, in last_unknown\n    try:last=json.loads(text.splitlines()[-1])\n             ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.13/3.13.14_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py\", line 352, in loads\n    return _default_decoder.decode(s)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"/opt/homebrew/Cellar/python@3.13/3.13.14_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.13/3.13.14_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\njson.decoder.JSONDecodeError: Expecting ':' delimiter: line 1 column 27 (char 26)\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-host-lifecycle-independent-review/review/focused.py\", line 100, in review_cli_partial_unknown_then_recovered_sink_records_unknown\n    self.last_unknown(self.root/'parent-evidence')\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-host-lifecycle-independent-review/review/focused.py\", line 43, in last_unknown\n    self.fail('durable terminal line is not a complete UNKNOWN JSON record: '+str(error))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: durable terminal line is not a complete UNKNOWN JSON record: Expecting ':' delimiter: line 1 column 27 (char 26)\n"
+    },
+    {
+      "case": "review_direct_partial_success_then_write_error_records_unknown (__main__.Focused.review_direct_partial_success_then_write_error_records_unknown)",
+      "traceback": "Traceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-host-lifecycle-independent-review/review/focused.py\", line 41, in last_unknown\n    try:last=json.loads(text.splitlines()[-1])\n             ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.13/3.13.14_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py\", line 352, in loads\n    return _default_decoder.decode(s)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"/opt/homebrew/Cellar/python@3.13/3.13.14_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.13/3.13.14_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\njson.decoder.JSONDecodeError: Expecting ':' delimiter: line 1 column 27 (char 26)\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-host-lifecycle-independent-review/review/focused.py\", line 62, in review_direct_partial_success_then_write_error_records_unknown\n    self.last_unknown(self.root/'journal')\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-host-lifecycle-independent-review/review/focused.py\", line 43, in last_unknown\n    self.fail('durable terminal line is not a complete UNKNOWN JSON record: '+str(error))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: durable terminal line is not a complete UNKNOWN JSON record: Expecting ':' delimiter: line 1 column 27 (char 26)\n"
+    }
+  ],
+  "wall_seconds": 2.5447437499533407,
+  "parent_cpu_seconds": 0.44365699999999997,
+  "child_cpu_seconds": 1.287833,
+  "parent_maxrss": 102858752,
+  "child_maxrss": 43450368,
+  "children_created": 36,
+  "max_live_children": 4,
+  "all_children_reaped": true,
+  "all_child_streams_closed": true,
+  "unreaped_registry_count": 0,
+  "memory_limit_error": "ValueError('current limit exceeds maximum limit')",
+  "observations": [
+    {
+      "parent_error": null,
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-host-lifecycle-independent-review/evidence/qa-owned-5a4pipt9/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"commit_receipt_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"intermediate\": true}\n{\"outcome\": \"SUCCESS\", \"commit_receipt\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"possible_partition_modification\": true}\n",
+      "case": "review_cli_all_nonboolean_armed_values_refused",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "VERIFIED_COMMIT_RECEIPT",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: FOCUSED after intermediate commit before parent exit",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-host-lifecycle-independent-review/evidence/qa-owned-jyc91bsf/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"commit_receipt_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"intermediate\": true}\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n",
+      "commit_receipt": "a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9",
+      "source_consumed": true,
+      "journal_last_line": "{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}",
+      "case": "review_cli_deferred_writer_consumed_but_not_success",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: FOCUSED cleanup report during lost completion",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-host-lifecycle-independent-review/evidence/qa-owned-w_ba4yee/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n",
+      "commit_receipt": null,
+      "source_consumed": true,
+      "case": "review_cli_failure_cleanup_and_unknown_write_failure_stay_poisoned",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: FOCUSED stderr failed after commit",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-host-lifecycle-independent-review/evidence/qa-owned-r57ly3c0/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"idle_proven\": true, \"reconciled_matching_chunks\": 0, \"manifest\": \"d86757bc12ae584078e80322504f5d1af20c210b370af7c8c3d1e674afc70b9d\", \"p10\": \"5050505050505050505050505050505050505050505050505050505050505050\", \"image\": 0, \"explicit_inverse_from\": null}\n{\"chunk\": 0, \"skipped\": false}\n{\"chunk\": 1, \"skipped\": false}\n{\"chunk\": 2, \"skipped\": false}\n{\"whole_partition_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"commit_receipt_verified\": \"a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9\", \"intermediate\": true}\n{\"outcome\": \"UNKNOWN\", \"{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}\n",
+      "commit_receipt": "a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9",
+      "source_consumed": true,
+      "journal_last_line": "{\"outcome\": \"UNKNOWN\", \"{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}",
+      "case": "review_cli_partial_unknown_then_recovered_sink_records_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: FOCUSED final stderr publication",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-host-lifecycle-independent-review/evidence/qa-owned-co1mx9oj/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"chunk_sha256\": \"dafdc2648feb18c731a8da15261c8c33b659721c421f92c2c33fa85b0727a045\", \"bytes\": 19, \"whole_backup_claim\": false}\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": false, \"automatic_retry\": false}\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": false, \"automatic_retry\": false}\n",
+      "commit_receipt": null,
+      "source_consumed": null,
+      "journal_last_line": "{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": false, \"automatic_retry\": false}",
+      "case": "review_cli_readback_final_stderr_failure_unknown",
+      "target_ops": [
+        6
+      ],
+      "source_ops": [],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": false
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": null,
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-host-lifecycle-independent-review/evidence/qa-owned-xzh4o1iy/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"chunk_sha256\": \"dafdc2648feb18c731a8da15261c8c33b659721c421f92c2c33fa85b0727a045\", \"bytes\": 19, \"whole_backup_claim\": false}\n{\"outcome\": \"SUCCESS\", \"commit_receipt\": null, \"possible_partition_modification\": false}\n",
+      "case": "review_cli_readback_short_output_is_completed",
+      "target_ops": [
+        6
+      ],
+      "source_ops": [],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "SUCCESS",
+        "possible_partition_modification": false
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: FOCUSED final stderr publication",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-host-lifecycle-independent-review/evidence/qa-owned-jsdhpjeu/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"idle_proven\": true, \"matching_chunks\": 0, \"total_chunks\": 3, \"write_authorized\": false}\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": false, \"automatic_retry\": false}\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": false, \"automatic_retry\": false}\n",
+      "commit_receipt": null,
+      "source_consumed": null,
+      "journal_last_line": "{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": false, \"automatic_retry\": false}",
+      "case": "review_cli_reconcile_final_stderr_failure_unknown",
+      "target_ops": [
+        2
+      ],
+      "source_ops": [],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": false
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: FOCUSED SOURCE receipt close",
+      "parent_journal": "",
+      "case": "review_cli_source_receipt_close_error_no_target",
+      "target_ops": [],
+      "source_ops": [
+        1,
+        4
+      ],
+      "parent_calls": [],
+      "session": null,
+      "children_created": 1,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "parent_error": "OSError: FOCUSED final stderr publication",
+      "parent_journal": "{\"command\": [\"/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-full-install-host-lifecycle-independent-review/evidence/qa-owned-esz8ce8x/MEMORY-transport\", \"-t\", \"999\", \"shell\", \"-T\", \"rescue-v1\"], \"automatic_retry\": false, \"contract_sha256\": \"184db723e87c830e94faec23a07e7e228aad46a2cde682f2968d003ece89e6a6\"}\n{\"status\": \"fake idle\"}\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": false, \"automatic_retry\": false}\n{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": false, \"automatic_retry\": false}\n",
+      "commit_receipt": null,
+      "source_consumed": null,
+      "journal_last_line": "{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": false, \"automatic_retry\": false}",
+      "case": "review_cli_status_final_stderr_failure_unknown",
+      "target_ops": [
+        1
+      ],
+      "source_ops": [],
+      "parent_calls": [
+        "features",
+        "rescue-v1"
+      ],
+      "session": {
+        "dead": true,
+        "closed": true,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": false
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "commit_receipt": null,
+      "source_consumed": false,
+      "case": "review_complete_phase_with_pending_request_poisoned",
+      "target_ops": [],
+      "source_ops": [
+        1,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": false
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "commit_receipt": null,
+      "source_consumed": true,
+      "case": "review_direct_consumed_source_on_fresh_target_refused_before_request",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": false
+      },
+      "children_created": 3,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "commit_receipt": "a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9",
+      "source_consumed": true,
+      "journal_last_line": "{\"outcome\": \"SUCCESS\", \"{\"outcome\": \"UNKNOWN\", \"possible_partition_modification\": true, \"automatic_retry\": false}",
+      "case": "review_direct_partial_success_then_write_error_records_unknown",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "commit_receipt": "a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9",
+      "source_consumed": true,
+      "case": "review_direct_source_stream_close_error_still_reaps_and_poison",
+      "target_ops": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4,
+        5,
+        9
+      ],
+      "source_ops": [
+        1,
+        4,
+        4,
+        4,
+        2,
+        2,
+        2,
+        4
+      ],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 2,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    },
+    {
+      "commit_receipt": "a93c017bb24a24d9024ebe106662b2a6feacb65c7bd8aaa2c171cdba854195b9",
+      "source_consumed": true,
+      "case": "review_direct_unknown_write_flush_fsync_failures_stay_poisoned",
+      "target_ops": [],
+      "source_ops": [],
+      "parent_calls": [],
+      "session": {
+        "dead": true,
+        "closed": false,
+        "outcome": "UNKNOWN",
+        "possible_partition_modification": true
+      },
+      "children_created": 6,
+      "all_children_reaped": true,
+      "all_child_streams_closed": true,
+      "fd_before": 4,
+      "fd_after": 4
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "2026-11-07-asus-stock-sd-final-assembly/scripts/assemble.py": "5ae53a0c2fcf606162c73aec7dac315cecf4423fe6e801d9c489c7a408ccc910",
+  "2026-11-07-asus-stock-sd-final-assembly/source/install.py": "3bcfa3d782b88017f5815ef88ca69285fbdb4bd4e949de86fcbe2b0a589ff8ee",
+  "2026-11-07-asus-stock-sd-final-assembly/source/adb": "820fd0d66e75ee98701798e385f04e48a026ec7abd22ec6a67e9760ed0829e82",
+  "2026-11-07-asus-stock-sd-final-assembly/source/legacy_adb.py": "6d00836d7e0cc28834f858b0fd6ab5515ffe7b3ecd37a6da6ba1f66b43597731"
+}

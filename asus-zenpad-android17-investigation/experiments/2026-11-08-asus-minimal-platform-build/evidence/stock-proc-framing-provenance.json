@@ -1,0 +1,5 @@
+{
+  "source": "2026-11-07-asus-early-reset-isolation/source/stock-3.18/drivers/misc/mediatek/ram_console/mtk_ram_console.c",
+  "sha256": "c966a4508bff43f31a551103b7c5a9cfad4b11164c069b7d30ba9c09199e86b2",
+  "behavior": "last_kmsg emits exact ram console header line, then complete console bytes; no suffix. Corrupted/raw-buffer branch is rejected by decoder."
+}

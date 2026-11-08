@@ -1,0 +1,55 @@
+{
+  "utc": "2026-11-06T18:24:45.235365+00:00",
+  "manifest_sha256": "d6790e2efde8ddb11102f561b5c58129660be09d41f1bbfb66402f3865ef13dd",
+  "handoff_payload_hashes_verified": 60,
+  "connectivity_before": {
+    "bpf/loader/NetBpfLoad.cpp": "49548c50cea266cbbbedee318374179d202cb59cd2e22e612276047890c129a3",
+    "bpf/netd/BpfHandler.cpp": "ed2538a9eed9a59b76d2dec2ac62070dea2d98020cafacd940edbc146851b617",
+    "bpf/progs/netd.c": "7dc4fa02952c0268737dc9aad20a0571b55df255f878506a4db91c1d962713b6"
+  },
+  "connectivity_after": {
+    "bpf/loader/NetBpfLoad.cpp": "8e88bba6fb7f6eec0e71e3825fe13862d8c347d1d9fafd5de6e76428c316eac9",
+    "bpf/netd/BpfHandler.cpp": "cd2c5c6ac46ada7c7078d837f327db31c01470c1a85332c207f2cea855bc826a",
+    "bpf/progs/netd.c": "0ecc7f0895df51ccfa2316115a148fd1fbc6c5a3797607035f51a889911571d1"
+  },
+  "kernel_preimages_verified": {
+    "include/uapi/linux/bpf.h": {
+      "baseline_sha256": "0acaebd9f2d05a8854ac4ef2315b2058f3f64dc61bd89fd918ca80b89aeddd05",
+      "tested_sha256": "5df820b95a96cef06c9e67b9fab9cbb5ad46b7e62b76a9d69db6af269c5eeb07"
+    },
+    "kernel/bpf/syscall.c": {
+      "baseline_sha256": "4633a05b44be09da4394c42ec4b13ba7173e5a3ffc693ca523b28e4b1bd4d09d",
+      "tested_sha256": "739b2804cb256f7666496cabe9924567d9964a65dcc13e0a979c4c6c47ab63ac"
+    },
+    "kernel/bpf/Makefile": {
+      "baseline_sha256": "1bb0955b7a4e228af836149441ee2257d80533423b365e6bab007897c7055c98",
+      "tested_sha256": "ab33f64caba9dbf5d1bbd13fdfc6d8d2cbac5fac944a2fb7daa65dd990aff5e3"
+    },
+    "kernel/bpf/lpm_trie.c": {
+      "baseline_sha256": null,
+      "tested_sha256": "fb2023411dd320b2959722f1a0a1d44243e0c360cf585a9ef385618c5dbf8fa9"
+    },
+    "net/core/filter.c": {
+      "baseline_sha256": "e2cf9265a249356213bfd0780ce4fbacde814505407875095de9b01bfb40971a",
+      "tested_sha256": "b4fc1f6bf7801417772128db04dffb3657fc01fc0e151079fef4c70b9e1669b8"
+    }
+  },
+  "kernel_patches_applied": false,
+  "active_aosp_changed": false,
+  "virtual_config_copied": false,
+  "file_locking_preserved_y": true,
+  "whole_platform_loader_qualified": false,
+  "boundary": [
+    "Real Linux 4.9 ARM64 QEMU; no external NIC/network exposure",
+    "Actual SDK37 ELF helpers and BpfHandler source harness, current genuine/rebuilt BPF objects",
+    "No Android Java VM/ConnectivityManager/DnsResolver integration or actual WiFi",
+    "Cross-profile loopback enforcement and SDK37 socket-create/UID permission migration not qualified; not to be silently marked ready",
+    "Remaining whole-platform-loader work is separate from this frozen qualified handoff"
+  ],
+  "legacy_map_type_adaptations": {
+    "tether_dev_map": "25 -> HASH1",
+    "local_net_note_op_cache_map": "LRU9 -> HASH1",
+    "loopback_access_cache_map": "LRU9 -> HASH1"
+  },
+  "local_access_lpm_maps": "both actual type11"
+}

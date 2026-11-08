@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-07T18:15:32.685624+00:00",
+  "status": "STOCK_RETURNED_WITHOUT_PID1_USB_OBSERVATION",
+  "candidate_sha256": "8298badb09d9e91ee584eb6e27baf2054e660bbc5640443e9212f484f6fd590b",
+  "p10_sha256": "c1fe664108ee8e2ef24edc9f0b3249589dc227f0ee8502b63e224930ee7fa541",
+  "kernel_sha256": "063dad1d9cc03b1c335dd712c9fcb0c36a006e5e99ebee4577e73e669613ac2d",
+  "install_run": "ffcb0e5d-a976-4723-9f17-133910fb75d9",
+  "full_readback_cleanup_verified": true,
+  "recovery_requests": 1,
+  "dispatch": "ACKNOWLEDGED",
+  "normal_stock_boot": "0c805b5e-a9af-42f1-a9db-d567509cf639",
+  "usb_descriptor_positive": false,
+  "usb_observation_errors": [],
+  "cached_lastpc": [
+    "[LAST PC] CORE_0 PC = 0xffffff80085b2c54( + 0x0), FP = 0xffffffc06ed7fae0, SP = 0xffffffc06ed7fad0",
+    "[LAST PC] CORE_1 PC = 0xffffff80084bd348( + 0x0), FP = 0xffffffc0032e3ee0, SP = 0xffffffc0032e3ee0",
+    "[LAST PC] CORE_2 PC = 0x0( + 0x0), FP = 0x0, SP = 0x0",
+    "[LAST PC] CORE_3 PC = 0x0( + 0x0), FP = 0x0, SP = 0x0"
+  ],
+  "enforcing_restored": true,
+  "BOOT_SYSTEM_DATA_writes": false,
+  "next_change_candidate": "move existing watchdog platform driver registration earlier, retain probe/stop/restart behavior; source qualification and nearby Power fallback required",
+  "exclusive_reset_cause_proven": false
+}

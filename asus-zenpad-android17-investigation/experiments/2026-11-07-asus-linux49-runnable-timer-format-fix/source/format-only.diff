@@ -1,0 +1,29 @@
+--- 
++++ 
+@@ -101,10 +101,11 @@
+  *p=q;return 0;
+ }
+ static int timer_line(char *line){
+- char *p=line;unsigned long long irq,ppi,c;char counts[384];size_t used=0;unsigned cpus=0;
++ char *p=line;unsigned long long irq,ppi,c;char counts[384];size_t used=0;unsigned cpus=0;const char *chip="GIC",*trigger="absent";
+  if(number(&p,&irq)||*p++!=':')return -1;
+  for(;;){
+   while(*p==' '||*p=='\t')p++;
++  if(!strncmp(p,"GICv2",5)&&(p[5]==' '||p[5]=='\t')){chip="GICv2";p+=5;break;}
+   if(!strncmp(p,"GIC",3)&&(p[3]==' '||p[3]=='\t')){p+=3;break;}
+   if(cpus==16||number(&p,&c))return -1;
+   int n=snprintf(counts+used,sizeof(counts)-used,"%s%llu",cpus?",":"",c);
+@@ -113,9 +114,12 @@
+  }
+  if(!cpus||number(&p,&ppi))return -1;
+  while(*p==' '||*p=='\t')p++;
++ if(!strncmp(p,"Level",5)&&(p[5]==' '||p[5]=='\t')){trigger="Level";p+=5;}
++ else if(!strncmp(p,"Edge",4)&&(p[4]==' '||p[4]=='\t')){trigger="Edge";p+=4;}
++ while(*p==' '||*p=='\t')p++;
+  if(strncmp(p,"arch_timer",10))return -1;
+  p+=10;while(*p==' '||*p=='\t')p++;if(*p)return -1;
+- char v[512];snprintf(v,sizeof(v),"irq=%llu counts=%s cpus=%u controller=GIC hwirq=%llu name=arch_timer",irq,counts,cpus,ppi);
++ char v[512];snprintf(v,sizeof(v),"irq=%llu counts=%s cpus=%u controller=%s hwirq=%llu trigger=%s name=arch_timer",irq,counts,cpus,chip,ppi,trigger);
+  event("actual","interrupts.arch_timer","/proc/interrupts",0,0,v);return 0;
+ }
+ static void timer_snapshot(void){

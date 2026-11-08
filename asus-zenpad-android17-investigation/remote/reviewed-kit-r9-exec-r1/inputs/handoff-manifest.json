@@ -1,0 +1,38 @@
+{
+  "status": "Compiled and statically verified physical combined kernel; staged integration only",
+  "utc": "2026-11-06T18:58:21.983430+00:00",
+  "compile_exit": 0,
+  "started": "2026-11-06T18:52:47+00:00",
+  "finished": "2026-11-06T18:57:57+00:00",
+  "max_jobs": 4,
+  "image": {
+    "file": "Image.gz-dtb",
+    "bytes": 7705525,
+    "sha256": "46895deb12ec94160ea5af0e85afa89c6de84971db126bb94c60cec1ec3ec401"
+  },
+  "config_sha256": "067090e03ad762344308cebd0a71274d9943e299ded6707051ebfdc075dd045f",
+  "kernel_release": "4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty",
+  "dtb_sha256": "a099d0538b270e23ec0d034b507eef9248252a3c459a11aa70edb6520bfd2b77",
+  "charging_permission_absent": true,
+  "source_receipt_sha256": "b207be8fcb6739202fae31f54a987f2d11834d43f618edd2a47c6cc33fe2ebe4",
+  "staged_product_receipt_sha256": "085c3e0febdb4dcac5d8b8235ee6aa7da8adcdb8ce0af3a7bd1366fb0a527b7d",
+  "runtime_source_receipt_sha256": "44e28e85d6a0c70a524111aa634c6c4eeef3d7041fa9c88c8e409f1f6f38dc21",
+  "active_kernel_files_unchanged": 61976,
+  "declared_source_changes": 268,
+  "new_source_delta": 9,
+  "targeted_network_handoff_accepted": true,
+  "firstboot_file_locking_parity_accepted": false,
+  "physical_boot_verified": false,
+  "full_product_ready": false,
+  "device_operations": "PLAN_ONLY; parent-owned",
+  "automatic_AOSP_integration_started": false,
+  "remaining": [
+    "Firstboot r7 FILE_LOCKING=y runtime parity rerun and qualification",
+    "Optional whole-loader patch12 frozen qualified supplement or equivalent product validation",
+    "Original AOSP r5 terminal verification before active integration",
+    "Full SDK37 product compile, strict ELF/init/SELinux/VINTF/Google byte and image fit checks",
+    "Corrected whole-BOOT LK-aware initrd packaging owned separately",
+    "Physical firstboot with nearby fallback; parent owns all device work",
+    "Full policy/Java/WiFi/metrics/Google/root/hardware runtime verification"
+  ]
+}

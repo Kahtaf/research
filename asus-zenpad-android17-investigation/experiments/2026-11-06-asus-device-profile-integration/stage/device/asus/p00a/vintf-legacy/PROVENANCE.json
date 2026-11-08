@@ -1,0 +1,22 @@
+{
+  "purpose": "Experimental retrofit FCM3/P kernel contract for original API23 device on SDK37; not OEM launch history or official CTS support",
+  "kernel_configs_commit": "e92f32aef4ca28afbd3cd259e179313719940f6c",
+  "kernel_source_directory": "p/android-4.9",
+  "hardware_interfaces_commit": "f16c6d3a5741768356159f099d04bfe2219c81fe",
+  "hal_matrix_path": "compatibility_matrices/compatibility_matrix.3.xml",
+  "sha256": {
+    "android-base.config": "4060ce3beeb85ce69fb1b6904efba0c02cd00817fadfe9656be279761e58f874",
+    "android-base-arm.config": "d41fbc0214bf03074f0dd23f09233efcbb36916f0bb371dc6b5903da441e5c42",
+    "android-base-arm64.config": "6ba4f4bb1e496e0444b9b10fd352e0a73ea3bc0ed7d84cb24b0b17b052dfab95",
+    "android-base-conditional.xml": "722cf4fa5201f876d2879e1e179d79b973c11b5b7d66d824898456e8ec56f7a2"
+  },
+  "historical_hal_catalog_sha256": "9e7ac2d83e98bed55f3cd4b395e0cc627aa1ce603fcf07d4475d43fe1be81408",
+  "unmodified_files": [
+    "android-base.config",
+    "android-base-arm.config",
+    "android-base-arm64.config",
+    "android-base-conditional.xml",
+    "compatibility_matrix.p00a-p.xml"
+  ],
+  "keep_existing_sdk37_matrices": true
+}

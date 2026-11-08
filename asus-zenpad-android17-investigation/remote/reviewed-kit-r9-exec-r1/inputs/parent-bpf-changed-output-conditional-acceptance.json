@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "utc": "2026-11-07T01:30:09.861414+00:00",
+  "decision": "HOST_ASSEMBLY_ALLOWED_RUNTIME_ACCEPTANCE_CONDITIONAL",
+  "source": "Parent admission decision; candidate digests are worker-reported until exact completed-product receipt binds them",
+  "selected_inventory_sha256": "cec5f5151274b0a228f0482a0053bd91771840f3e752fefa97c9c2e804d5457c",
+  "rows": [
+    {
+      "path": "apex/com.android.tethering/etc/bpf/mainline/netd.o",
+      "classification": "PRIOR_R8_EXECUTION",
+      "reported_native_sha256": "863f3d2e79e804559c90ec145f23210d48f841777bb646a5f3f4b45952aad4b8",
+      "selected_old_sha256": "c5232afa1ae316a42008983b99aec58332a073dd95a57a63a6033fe96763c2bc",
+      "runtime_requalification_required": true,
+      "final_admitted_sha256": null
+    },
+    {
+      "path": "apex/com.android.tethering/etc/bpf/mainline/netd@funcs.o",
+      "classification": "PRIOR_R8_EXECUTION",
+      "reported_native_sha256": "b5f8f4bf79dfbd6403405163b768a3307b43fd30d90b19ac3fd2260d746ff9c4",
+      "selected_old_sha256": "052b61b53320dc2a94b9cf97323bc7a3bb3732b8a918ef4dd355e0cf591fd3b5",
+      "runtime_requalification_required": true,
+      "final_admitted_sha256": null
+    },
+    {
+      "path": "system/vendor/etc/bpf/filterPowerSupplyEvents.o",
+      "classification": "PRIOR_R8_EXECUTION",
+      "reported_native_sha256": null,
+      "selected_old_sha256": null,
+      "runtime_requalification_required": true,
+      "final_admitted_sha256": null
+    }
+  ],
+  "requirements": [
+    "Bind all26 final object rows, actual compiled/installed/final SYSTEM or APEX bytes and genuine completed product identity; no path-name-only matching.",
+    "Capture the full vendor-filter digest from genuine final output; a prefix is not a pin.",
+    "Run genuine Connectivity and platform/vendor loaders against exact final captured objects on a selected-source/config-qualified Linux4.9 fixture. Preserve genuine failure handling and property-service readiness ownership.",
+    "Repeat map metadata/CRUD, doze allow/deny, VPN lockdown/interface enforcement and IPv4/IPv6 routed DNS/TCP/UDP and local-prefix outgoing EPERM tests for the changed netd algorithms; preserve negatives.",
+    "Verify the vendor filter actual load/attach/event behavior separately; previous supplement omitted it.",
+    "Keep the reproduced cross-profile loopback failure and UID permission migration open until explicitly fixed and exercised. Never disable their flags or infer success from optional skip."
+  ],
+  "limits": [
+    "Selected inventory digest is not a runtime golden: core network handoff tested netd.o25ccea3b8043240238381ee19d950ebc51629f06688b3a1af9d97e8a6e11ad6f, distinct from selected inventory netd.oc5232afa... .",
+    "Twenty-three unchanged baseline classifications preserve scoped prior evidence and its optional-load failures; they are not claims that all platform metrics/features work.",
+    "No runtime receipt for the reported changed digests is admitted here.",
+    "No native launch, source/output read, runtime execution or flash authorization is created by this receipt."
+  ],
+  "runtime_accepted": false,
+  "physical_go": false
+}

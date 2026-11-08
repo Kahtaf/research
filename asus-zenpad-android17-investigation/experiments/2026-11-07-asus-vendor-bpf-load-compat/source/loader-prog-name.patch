@@ -1,0 +1,12 @@
+--- a/system/bpf/loader/Loader.cpp
++++ b/system/bpf/loader/Loader.cpp
+@@ -472,7 +472,8 @@
+               .log_buf = ptr_to_u64(log_buf.data()),
+               .log_size = static_cast<__u32>(log_buf.size()),
+             };
+-            strlcpy(req.prog_name, cs[i].name.c_str(), sizeof(req.prog_name));
++            if (kernelVer >= KVER(4, 15, 0))
++                strlcpy(req.prog_name, cs[i].name.c_str(), sizeof(req.prog_name));
+             fd.reset(bpf(BPF_PROG_LOAD, req));
+ 
+             if (!fd.ok()) {

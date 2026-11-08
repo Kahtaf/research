@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: Apache-2.0
+cc_library_shared {
+    name: "audio.primary.mt8163",
+    vendor: true,
+    relative_install_path: "hw",
+    compile_multilib: "64",
+    srcs: ["src/audio_hw.c", "src/transport.c", "src/routes.c"],
+    header_libs: ["libhardware_headers", "libaudio_system_headers"],
+    shared_libs: ["libtinyalsav2"],
+    cflags: ["-Wall", "-Wextra", "-Werror"],
+    stl: "none",
+}
+prebuilt_etc {
+    name: "p00a_audio_policy_configuration",
+    src: "staging/config/audio_policy_configuration.xml",
+    filename: "audio_policy_configuration.xml",
+    vendor: true,
+}
+prebuilt_etc {
+    name: "p00a_audio_policy_volumes",
+    src: "staging/config/audio_policy_volumes.xml",
+    filename: "audio_policy_volumes.xml",
+    vendor: true,
+}
+prebuilt_etc {
+    name: "p00a_audio_effects",
+    src: "staging/config/audio_effects.xml",
+    filename: "audio_effects.xml",
+    vendor: true,
+}

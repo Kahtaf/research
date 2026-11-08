@@ -1,0 +1,48 @@
+diff --git a/protobuf_vendorcompat/Android.bp b/protobuf_vendorcompat/Android.bp
+index dc9273e..2f7bd1b 100644
+--- a/protobuf_vendorcompat/Android.bp
++++ b/protobuf_vendorcompat/Android.bp
+@@ -9,42 +9,4 @@ license {
+     license_text: ["LICENSE"],
+ }
+ 
+-cc_prebuilt_library_shared {
+-    name: "libprotobuf-cpp-full-21.12-vendorcompat",
+-    stem: "libprotobuf-cpp-full-21.12",
+-    vendor: true,
+-    target: {
+-        android_arm: {
+-            srcs: ["arm/libprotobuf-cpp-full-21.12.so"],
+-        },
+-    },
+-
+-    shared_libs: [
+-        "libc++",
+-        "libc",
+-        "libdl",
+-        "liblog",
+-        "libm",
+-        "libz",
+-    ],
+-}
+-
+-cc_prebuilt_library_shared {
+-    name: "libprotobuf-cpp-lite-21.12-vendorcompat",
+-    stem: "libprotobuf-cpp-lite-21.12",
+-    vendor: true,
+-    target: {
+-        android_arm: {
+-            srcs: ["arm/libprotobuf-cpp-lite-21.12.so"],
+-        },
+-    },
+-
+-    shared_libs: [
+-        "libc++",
+-        "libc",
+-        "libdl",
+-        "liblog",
+-        "libm",
+-        "libz",
+-    ],
+-}
++// The arm/arm64 definitions are supplied by hardware/lineage/compat.

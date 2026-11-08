@@ -1,0 +1,1461 @@
+{
+  "drivers/misc/mediatek/connectivity/common/common_detect/Makefile": {
+    "sha256": "da9acebcc8bf971429abd2fa5527a89b3f9f74b2e2035207198298d766e32b37",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/drv_init/Makefile": {
+    "sha256": "e2188a463d05477d38b07bf5a82099c43c9bf8f1c42c7512f0494c6ab7b1a8d6",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/drv_init/ant_drv_init.c": {
+    "sha256": "3e66e41242e48029af956b9741ee453a7bad2b19781e31076090c1d60e17d8a6",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/drv_init/bluetooth_drv_init.c": {
+    "sha256": "7e901486b6c46e3d48f97b8421b03edcec011e52f11205d602a87d799ff8c44e",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/drv_init/common_drv_init.c": {
+    "sha256": "97d4a030cd15f56edd777e1d520fd63646a6410d7b261a0955279d0463b5d429",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/drv_init/conn_drv_init.c": {
+    "sha256": "01a19e83933b7e46030b25a0ff3c8fe15d5db9a51196003a1d63e6a757828f43",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/drv_init/fm_drv_init.c": {
+    "sha256": "99150a2308e2be9eb962cc4cf029d693efb870aa9c1a4eed5d6ac06de5ac021c",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/drv_init/gps_drv_init.c": {
+    "sha256": "86542221e015f61e79c2b521d440d8e170bd07c497fc0aedfba098d7ea6cb831",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/drv_init/inc/ant_drv_init.h": {
+    "sha256": "0f0af122d7225bc45a4b38f7b04d8a0e74c8f66dfd8f88d83aa0487df5d529df",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/drv_init/inc/bluetooth_drv_init.h": {
+    "sha256": "e34ed7bccbb1e6d0d7fab72f843fd51a80ead56ffe2174430401df835588c13d",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/drv_init/inc/common_drv_init.h": {
+    "sha256": "25bbb0d12002ed67787769a020419db7e605acf433f4158ceafd29521ce5c179",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/drv_init/inc/conn_drv_init.h": {
+    "sha256": "26ad92c3ea1cfb34e2943a569c2f11b7e0bf12728f71f98d2fa7a50f2b42a82c",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/drv_init/inc/fm_drv_init.h": {
+    "sha256": "b408d5ccdbfd8e72f62c6a369e17a5283a52b58151ff16d67df91d0797f8fb7f",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/drv_init/inc/gps_drv_init.h": {
+    "sha256": "0c9163123478552f86955f4cca50ed9003e3440b3f30d867117889af34ed5df3",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/drv_init/inc/wlan_drv_init.h": {
+    "sha256": "d76e421a46e017147c6311d7524d11fb78cc72d10e6fd3cb858ee0c9b17bb0b8",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/drv_init/wlan_drv_init.c": {
+    "sha256": "92bea150715ef09d2661d427dd33a1a3c290acf6123106add093c1028ebcacad",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/mtk_wcn_stub_alps.c": {
+    "sha256": "93c99922714b2430c5da7196e9f6689549ec03920532f82d979ec3e729ce5407",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/sdio_detect.c": {
+    "sha256": "c20f2f88540ba4eca3225babc632a7d9d2850b06766050fb05d78b9bce738fa3",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/sdio_detect.h": {
+    "sha256": "bbff7d6837128a791f119f54d92bdeaadeffd8ff7ae71af1f139cc960017bb1b",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/wmt_detect.c": {
+    "sha256": "637fc33b97772f2bf6dc0fd4733aedad7b559f6c515db27c441f9d276df0dfe9",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/wmt_detect.h": {
+    "sha256": "4403b3cda81bf904bbc61ea8729a4e82f7486bcebd30122cac916af06615d49d",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/wmt_detect_pwr.c": {
+    "sha256": "3fdb9ce34532ff5bbe2df11cdc26e923ec4dd2e857f4ea0fabb4f1718a7606d3",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/wmt_detect_pwr.h": {
+    "sha256": "f9be833546aac427c235ffa10660b7024181b75515a36b85b36ae7ffa88ae0c2",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/wmt_gpio.c": {
+    "sha256": "b346e3b8e03d3198d2a830c15351ed4c9e9cd063c1f059fb2628e20348cd6508",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/wmt_gpio.h": {
+    "sha256": "e54cf44201aba36fa489913fc8dfb5bbbb430030f9fbc1f88a958e22e2cc2f65",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/wmt_stp_exp.c": {
+    "sha256": "193e16bf6b50bf18c0bdaac8c2e5df5e3e08642b7ff47989c60f03477fd4bee2",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/common_detect/wmt_stp_exp.h": {
+    "sha256": "270893fd8501060a119377924d087edbc6e704e80c88ad3260bd69383a5b4e8c",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/Makefile": {
+    "sha256": "1eaad3ea4b9354cec7d538e9167b9852163ca5fb214ec53206775eedb3c4fd25",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/Makefile": {
+    "sha256": "26b9554048eda737e7ec6d6c712e874c972efb64e18f2d3b02a7523c5772615d",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/btm_core.c": {
+    "sha256": "6a9f86f6217e79800ef1283ae6a3135d5a40c276569ba8f86af00f22467a5205",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/dbg_core.c": {
+    "sha256": "6d27e4b4a5010751684115c688786a947b074236ad75e8165a59635cf9164a21",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/include/btm_core.h": {
+    "sha256": "992660b4941fdd29eec33a9abd2d1041b27d7ed4d5909134345cd11d200dd9d8",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/include/dbg_core.h": {
+    "sha256": "1cda89d19d4333b96409b1ea7220989596fbd6b604a374c7141343664bad0ef7",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/include/psm_core.h": {
+    "sha256": "43a3cca3bfe466854302c1fde7e2a28d436fb54c5cc35aa6bb777988cf7afeec",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/include/stp_core.h": {
+    "sha256": "3f69c46e4aa568597aee9e9d09c089f5e929faffadfe8075d99ee2e1ad32bfa4",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/include/stp_wmt.h": {
+    "sha256": "3d8b0c9b76955d994232bc930eacd11a0d4917c31176f1c20a5f8064fc0ada89",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/include/wmt_conf.h": {
+    "sha256": "02e40283f788cab53acac6a4a9cdea497af655b73d71311802ad9d3af5e4f804",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/include/wmt_core.h": {
+    "sha256": "e2d92fa6cccb6d10d6e4d1ebcf0e9e52b124e2c03b796ae313a8aab812501ae1",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/include/wmt_ctrl.h": {
+    "sha256": "5aa06917d4735ab91c340a069a9fa2ff3b2424da2de42c716820cecbecb185a8",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/include/wmt_func.h": {
+    "sha256": "abf2ebadb70795131026c4f6f4d958b0a5e5cbcd7e6c4a0a4d9b401b55334567",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/include/wmt_ic.h": {
+    "sha256": "f748cd6e13a8c055e0d93f4a1ff4ef6fc3787432edd44f1d7be45ffe1809de97",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/include/wmt_lib.h": {
+    "sha256": "3a1e7dcc7d5db1f8920663772b375649462c3d9f88cb1bf698f1f4e58673c5a6",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/psm_core.c": {
+    "sha256": "f1a1e6e6703db58e15c1e420b8fdc094822aad25053b6f9e07d6916f7f1c7b74",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/stp_core.c": {
+    "sha256": "96cb232ff355d9ede78045437141a608e1402d696695d4e160aa2a73f59dc391",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/wmt_conf.c": {
+    "sha256": "dbef1884bfef4a308b1283d9ed8d6f37b28821b1710eaff9d36acf6ece5a3816",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/wmt_core.c": {
+    "sha256": "41652355c42a5b269fcbb24bcdac3005267cbeb11400566945f6ca83fafbcdd7",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/wmt_ctrl.c": {
+    "sha256": "0f3df1a33ebb922216f502467a85cb017cce12b078869663122ac398f4d2b338",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/wmt_func.c": {
+    "sha256": "0eec93fe65c8b971b1cdb9dded0d61b8140c48ecc4b4c5968d05b52e4eef8155",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/wmt_ic_soc.c": {
+    "sha256": "a05c918e2a6baa69b7ce04764ec39f74008534291fd38e1bfd540eafd4f2313a",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/core/wmt_lib.c": {
+    "sha256": "8f288d6c40cae432a5734c0817b7fa815aca9a83bfed2e69f2bc6232b1715147",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/include/stp_exp.h": {
+    "sha256": "f219bd5c3a1392e6459a8f5456faf4e15e498be8a415e893c74378725c5d10e6",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/include/wmt.h": {
+    "sha256": "189d255c27980e27b4abaf81c1492d5c6bcd52ed836945eae90b312d24485df8",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/include/wmt_exp.h": {
+    "sha256": "ac5d4e2f2e1e8287c3e864ae6af6dc73cae2eb58fc2a705888da74e3b2d9a93c",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/include/wmt_plat.h": {
+    "sha256": "0c7754e8e7fbd2114c4f1481db7e38993ea379e8d3c7e3203e8ccc4be2cf6559",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/Makefile": {
+    "sha256": "c6b70e34ce05b07d04dd147abb1a5c952648aaf096c39d3afa56aa9f4f4bf6b5",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/include/bgw_desense.h": {
+    "sha256": "4af9d478ca68bb3b7b26c30d679c279d0b8cda1f548fabeefb853d4589e99527",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/include/osal.h": {
+    "sha256": "3fdb0a957c2a62645ae739b2f1c8df0f7f23a892b35fe1f8a9ff11d134901d49",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/include/osal_typedef.h": {
+    "sha256": "446dfa7b20ffbcd65848aa005eb16f14e4f5c3f28f30cf28386a3db06965ed06",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/include/wmt_idc.h": {
+    "sha256": "126fa0bd34acf00e24c1154aacc1382aa20c5f49e6efef38015809eebdb20d36",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/Makefile": {
+    "sha256": "161ed4ec44504f875074758bcf0cf6f0c2902b33a5a38a4f43e0b69e61f53430",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/include/stp_btif.h": {
+    "sha256": "1dce34e8d06a9ffdf46a3889da732b3da57089304197ab2e6430f7252dd28640",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/include/stp_dbg.h": {
+    "sha256": "7363d467624d0cd445bd64541d823fb838f882b238fce1982042477bcb625191",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/include/wmt_dev.h": {
+    "sha256": "9dd87d53abaa7f89236b33410c86cf11b4226697ea16315ca84b5a2011f0e523",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/stp_btif.c": {
+    "sha256": "0d0ba1ec5652e9ac77a8dfe8f5eaf6a95f90468048e068977379c3d18f005d6b",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/stp_dbg.c": {
+    "sha256": "882964d578c627f3b0f94b1dc67d9bb80446c25f4e0349ea5ede2b72fb23b3a6",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/stp_exp.c": {
+    "sha256": "f6a52ad61e8b198f7f1152d6cb34bc9cb092cc8effadf488ce96945ba0a29601",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/wmt_dev.c": {
+    "sha256": "585a67f69c2b60f1333d18a4bac9a68233a933d1257e796cd3e3b816c2fc48c8",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/wmt_exp.c": {
+    "sha256": "d8fa04992c7e4ad21a3dc21289c9b745c40f83fa5678600318e79142b287005b",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/Makefile": {
+    "sha256": "997058aed92fcc9675e114dadb6a1b47e7dc1ac619746040964a802f3a0be638",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/bgw_desense.c": {
+    "sha256": "ce69de23b3273b65681a326815036fb5678b3f733cd4224370dacc4eb4e80e22",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/osal.c": {
+    "sha256": "9ff3d67458c75268e0fd0ac52979f8804f1dc66d01e539714d4762024a66d67f",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/stp_chrdev_ant.c": {
+    "sha256": "2c95f33cf6f705eb004fb5fffe9888fae8b9b4d8e3c12767803aafb183440fd8",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/stp_chrdev_bt.c": {
+    "sha256": "d758cfc715e3344ba544e998b5465de475ee9b1b131c011c22db9aa4ecb8c73f",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/wmt_chrdev_wifi.c": {
+    "sha256": "559def0351c7ed77c9129903d25aa3aea7485d58446516dc2a6acf43d5ba088f",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/wmt_idc.c": {
+    "sha256": "f73bc4df7c02e581cdac43cde26af9b10a92db3d324d472119ea955816ea9e53",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/mt8163/Makefile": {
+    "sha256": "8219b47901af4cdcf5f40b1a6e07c95f623a02c8185646c4249909d9b9a12c23",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/mt8163/include/mtk_wcn_consys_hw.h": {
+    "sha256": "7a2ddf9d42c589ab55526b0d095e59da44434a0cdd40a884fbf3aceb510c6c89",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/mt8163/mtk_wcn_consys_hw.c": {
+    "sha256": "ca3ab29ab4f91132c922839a76cc13f091b91edac98e737ea5a28d5d96d9ef41",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/conn_soc/mt8163/wmt_plat_alps.c": {
+    "sha256": "e6fdfe36bb7d0fbf2f818bded9d3ac05ff9b2daaa5c60578a650c64fa629d698",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/p00a/Makefile": {
+    "sha256": "846569a85960c25565834e5a5cbdf1cd910fc958a1cd0d1474974d2ef6053118",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/p00a/bootstrap.c": {
+    "sha256": "b8f8f034d296884735810ca2f0ea8dfcbd17401506d2c6750622fadd3dac5ae3",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/Makefile": {
+    "sha256": "1c0bb900e98d31e8fbb57cf903f083cfa3b501cc1aed65eb2ddcddb807c0e8ae",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/common/debug.c": {
+    "sha256": "8a362ba03c6dc5457825ab012b95a26536e19f09d612c527c6ebab6d93a258ff",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/common/dump.c": {
+    "sha256": "acfd89998eda05bd74b40811148ea02a1857aeaaf45799ef1beb36d924571ca1",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/common/wlan_bow.c": {
+    "sha256": "dc457d380923d3ec44ff6fa6fefe1271c8ff51d4ae533c9225665651bbae2cbd",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/common/wlan_lib.c": {
+    "sha256": "45938b38824858954a2642d292704aebcfcae30b2e0466e5685843cb95b36fd0",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/common/wlan_oid.c": {
+    "sha256": "0caa1d0ea2022fcb97080a4169e5cdc968b7625cef12bd09f86c85e57202a9a9",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/common/wlan_p2p.c": {
+    "sha256": "353d636b378ca7f4670b72026559166e5df82bf9d3ff258b091176dd0d3d88f3",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/CFG_Wifi_File.h": {
+    "sha256": "d7df54e6bd007b93aba4ab59188b31c18918f3ffc53509969f27ddbb5145a953",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/config.h": {
+    "sha256": "2a2d1f03f0e39594cadfac3a367b5a4b10780edaee89eff282b9397318a1cafa",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/debug.h": {
+    "sha256": "02079569f98b12c8075799676ad247f7ecf92e56654495cd9fdcd9d308a3e287",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/link.h": {
+    "sha256": "699d6c5770b4729895c2e0e4a65e774d36ec5dbacbc2af7568c77781e5add5d5",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/aa_fsm.h": {
+    "sha256": "53ca266efdbd3457feedd016796a35414610bba326529463d0fe86f6e8f598ae",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/ais_fsm.h": {
+    "sha256": "a6dbca6c9ab38d5c27b25daf662f6c046851ebdae82797890d71ef76bb6a4e2b",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/assoc.h": {
+    "sha256": "3de4c05bd53ca6c593022cf7a7a987be9777c47b3c1e7ac56b0e52d488ca6d95",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/auth.h": {
+    "sha256": "a23cf0de35b6f5435bb43dfbc23c9fe536f2df75c6e3e291c164b1e671c64a25",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/bow_fsm.h": {
+    "sha256": "9aa4b7c959f97a50aa11f53677ef3511ec58d5d924482f5f172fffe3302d7c27",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/bss.h": {
+    "sha256": "b07b4714f183b200cb21b0c7801cdb71f905db1beaced90202870e5d6d5070eb",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/cnm.h": {
+    "sha256": "eebd838809e7a702eb9163cadf6d5cfde0944113761a81003f7e84c9cef782ca",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/cnm_mem.h": {
+    "sha256": "11529fdd8c382da1a22f59be43777c1b2bf7aba8cc8d6698ab1490e2d47ab529",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/cnm_scan.h": {
+    "sha256": "f35c92c2f6654bce6818ba574978fb78637607157b52a5d0fa6a1702b0509df0",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/cnm_timer.h": {
+    "sha256": "48b61c3db0b6d77229d606a74465df15fd39b8610c12738231c0eea4741f144f",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/hem_mbox.h": {
+    "sha256": "f1b886dc2cdda6f045fd5d9011236c647f28cef1709f9cb8bc1fe268f12b2665",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/hs20.h": {
+    "sha256": "672dbcf3813bd5bc598154670afd6be448c42ffb3e820873bc80f7980c36b5bf",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/mib.h": {
+    "sha256": "065ae95a8fda30b3f066ffdca73ff980eaeafc9f4b7f52f2bcb45a9bbffc0565",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_assoc.h": {
+    "sha256": "d8faa99c48bee05968eb06c322b057fb9f75650a15a4b8cdbb753d217ef90404",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_bss.h": {
+    "sha256": "76d156254235b451791d110510e5d64a8c739b1685944c3f2be9cea1035c794d",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_fsm.h": {
+    "sha256": "2e0a56ba61441d2856e23238be2f4a6cf891ec9bc21e35baefb2a070f6983207",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_func.h": {
+    "sha256": "ef89878bb34f9c72c95b387a859c81082dea51ef46886a4479fec228e126a679",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_ie.h": {
+    "sha256": "3c0803f38e97f0a660ba508b981bf4fbb4a72cbabed835a2a1cea66d33815385",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_rlm.h": {
+    "sha256": "7cbc341c8d07d91a057893ebcf2c426c52faf16f634a56b7a07ae6d59e3f4563",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_rlm_obss.h": {
+    "sha256": "a99e0bb2c978fb3ae8ad06e0964caf9aa86c4216725f60d2135807351b6a548d",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_scan.h": {
+    "sha256": "12db873b24377b6fdc60c04b1cbfb4bf5f6ce2cec6f2f88d16aff0d4929476f3",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/p2p_state.h": {
+    "sha256": "1a1fefabb49f2e27e0474fcb970d7ff20553ca040f68b7b9c2116112226f7123",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/privacy.h": {
+    "sha256": "774a9c77f180a033d6a067002171ea7aa6dc44e201482bd15963035227b1abb3",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/rate.h": {
+    "sha256": "18f28adc750cd0d9c1d5218653ea92343c9ce06e89ebfc3b9eeadad51030ac53",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/rlm.h": {
+    "sha256": "94fb6d0c48645b03b269a16407f550a447bd51d11e0b7f6c156306573d07d3bc",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/rlm_domain.h": {
+    "sha256": "840056de5a0b3ae7cfc21f8cf8d5087521106c4c6bbc780621e73ca6fc941754",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/rlm_obss.h": {
+    "sha256": "f1e2e453b94a64963c47d38ee81d2baf110398f0c937fada42e5171e34becb04",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/rlm_protection.h": {
+    "sha256": "67cb129b13f828fb6916b2f7c8988c4e8d32fb231b75a651cdbf52c38f7767fe",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/rlm_txpwr_init.h": {
+    "sha256": "b4713d86864e730325475e2e32a1cab6a557d6b7026e147a106bd7b90a25bf9b",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/roaming_fsm.h": {
+    "sha256": "94892750636a558548696b9d5394f4b361fc7a13019831d4d2224cd977ea9042",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/rsn.h": {
+    "sha256": "6562805aaf70f7e5bb8066047c3de8d912387b2cf77e334d682fb9ca5bda3fca",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/scan.h": {
+    "sha256": "4d0cc56657f6b94d7cfd33adba8f8bdd5086a458ee3f846c8423e0a5f1499ae8",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/sec_fsm.h": {
+    "sha256": "c5be45bc3a3f95f9267954de96f890cf67d43688a801256e2641ad75e0711ef7",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/stats.h": {
+    "sha256": "89a1cf7c5b0cffd266575964ea73d67b447ba54411e420420a65a3630aba7b47",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/swcr.h": {
+    "sha256": "ae41e12dbb5cb2f00380da4641c6471caa390ff94256733fc1b15258a22ca769",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/tdls.h": {
+    "sha256": "666184ea032c3455b3badb439596435867461db6451551f70c1dbfa63c1de994",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/wapi.h": {
+    "sha256": "dd867e4593380eb5e22dae064438a9563c103e4b568e8c0cfec2b463ea41214c",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/wlan_typedef.h": {
+    "sha256": "64348608e2a4d42e25472e81314e8dd998a1cc464ee32516b4082aeb05b9c22d",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/mgmt/wnm.h": {
+    "sha256": "2f6fab2fc9dafb4ff2c9713ba8e0335f5123bee46ed49314bfcca5b02c64da3f",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/adapter.h": {
+    "sha256": "82b8ff462935da45587064df7f4db8b2ed3820b5b685ef8e9c761bbdf2c4ae8d",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/bow.h": {
+    "sha256": "940722fc31f483c5ed4930c4a0fc66bef4390a168881bbb34042f76caff95def",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/cmd_buf.h": {
+    "sha256": "4f3e8176b366f8c3a99b029603917f2e6d9013597abf5d254bc82dfd10506f4c",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/hal.h": {
+    "sha256": "19fdc4f7fd4b8229451ceaabbf170973a8663a880527a7ec5390a755452fbcda",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/hif_rx.h": {
+    "sha256": "8fee57a8b659b6af22bb8b2aeeb8aed55dfb03a7d0c399d0ab4d7659128e925f",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/hif_tx.h": {
+    "sha256": "fdb375611df5297a9a4a63484fdbf2afd287593deed233369a907c909ef509fa",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/mac.h": {
+    "sha256": "06398fbbc84a7c86ed32959cde65e3fa723e88200b6387d269e4938c2d15ce25",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/mtreg.h": {
+    "sha256": "62ef27e9e1d3d19bb7e499ec68c62f4e97bac7be11e534d01847d9b37d17bc75",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/nic.h": {
+    "sha256": "5a4b74dac75f3a9a0908a1d0b0df38992b6245f3407d2c8aff81bbb3ade72c68",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/nic_rx.h": {
+    "sha256": "dd4d9c6dbfd90bc7e011bf6e5e2cfc63cacd59b4370f8aa3b788ebdd2aef767a",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/nic_tx.h": {
+    "sha256": "9adcbe718133835e6c923208460544de624d2c1490ef6ae04afaca4f22d397cd",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/p2p.h": {
+    "sha256": "92d813dc89e328b4053c4a687407cd461fed6b1909dbcb83fb6cdf66e3627ad7",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/p2p_cmd_buf.h": {
+    "sha256": "fa84e8969c382e592a4e1bf49440d0526bae92b342f6e2a06d71f9687aa7c620",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/p2p_mac.h": {
+    "sha256": "9add146e0c3b7ab96d34e0cc25fe4831c12d8ab4951c187b508cf2914dae076f",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/p2p_nic.h": {
+    "sha256": "73b9011961e6916b3118f2119f906baec0432a532409f3ff3876e6032aef9532",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/p2p_nic_cmd_event.h": {
+    "sha256": "9834615621df23555f554bb3e5686eeeb7bcd2ad8cf07d228b8c5a73b61294d5",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/que_mgt.h": {
+    "sha256": "2d6042d12eec8bcb5e3a9a021ea79c97a416e5712d4c7b53186b2b2a80a90b53",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic/wlan_def.h": {
+    "sha256": "5287f47f0f4217b4945c2a8dc936d2d043145c56a8b558f59e9b6ab31aa26245",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic_cmd_event.h": {
+    "sha256": "408957e64e2a7870aca61197f932ea028d27db2c8aed0fce6d1eac9b750dd8e5",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/nic_init_cmd_event.h": {
+    "sha256": "04c9677fdc09f6140318f0e63de4086117bca3d86f1c1fd573c2c19628943d46",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/p2p_precomp.h": {
+    "sha256": "ae27c9dfb714c5625f0bf987b594ba338cf1947338bb971da57c931e2e600618",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/p2p_typedef.h": {
+    "sha256": "83a29eac4a1f72b4d31c290a5a05055400ddb122c84feddaf251d32d4f2900a2",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/precomp.h": {
+    "sha256": "d9bb5243d9e773fa7b166d03cd70b7956673b33730f9fa9e6caad88e6ff4cbc5",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/pwr_mgt.h": {
+    "sha256": "102b0dd6e9f70a991d0c7a6f4b563a51f2b66f7b7c19f014716cfc2788d5f696",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/queue.h": {
+    "sha256": "1339c8317f0154ba6d3c6207ef43963995ab4ff109bf4ddbe9c4939ad2e00586",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/rftest.h": {
+    "sha256": "73dad245f8b3d775b66630aedc1e7d7590453340367380abc360e6d12ee755a7",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/tdls_extr.h": {
+    "sha256": "3e3da675d3bc6336013c29faba8078f061425e170c3b717551b31d40ae2c13c3",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/typedef.h": {
+    "sha256": "7ca8673cb2ad526d639c05a06858c70ec9587e06a644080f479f2e634ba26ad6",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/wlan_bow.h": {
+    "sha256": "3ece3a5e20a0e5bcb6b4b054ab5d3118962d5c894bb4a295c51b25b51ccb8437",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/wlan_lib.h": {
+    "sha256": "a828b3c737f4a7df85e35045eed78d7f108111a0da41915c0b0340296766f995",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/wlan_oid.h": {
+    "sha256": "025fe4a7ec4d54ce446e3ec6e2fb247dfc47b591819fe6665775c1dee9b15923",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/include/wlan_p2p.h": {
+    "sha256": "6e545072c4fb1f8c4b2ff5a6a4e091247aa66524258383caf7059c241f1d65ff",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/aaa_fsm.c": {
+    "sha256": "23112dee1155eb540f3198e76830e92fc020188ef2b306b6d2416d1c9ca49094",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/ais_fsm.c": {
+    "sha256": "0d48aa1ea9183f31722793d8847b5d62498657bffb67c7edaa943f87e2768f40",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/assoc.c": {
+    "sha256": "51af65f653d3b735da95dfeb44ad643398d7c8982dbec12fedf8241afb5c890c",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/auth.c": {
+    "sha256": "e619da9abd41bc0fa0fa80d5bebb87170d8f417cf52cb3b9fd1998f326d639aa",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/bss.c": {
+    "sha256": "3f3d06164404a681dd98dad8d749a7b229e8b285b43876ce45720bf76670e0a2",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/cnm.c": {
+    "sha256": "08b704a19cf2436c6bc1ac1a2469ebf066118b70b53c282ea599d3e9a7a38569",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/cnm_mem.c": {
+    "sha256": "4447d2ef5a566cc867429521964d3c170e020ab183fa03817eb1510450e6b08b",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/cnm_timer.c": {
+    "sha256": "5fd2fb7213b667a3a92d87a2f875a8eb7d4084a2de3e7e3fefc1799258cddb44",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/hem_mbox.c": {
+    "sha256": "dcc056795630fd38566e06199f239ab08cbd75c21db305a9d16f0a68f80574f9",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/hs20.c": {
+    "sha256": "909a8ee47f38caed3c0c1ef838665aed44da0dc91106389aadf7626a7a2bef4c",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/mib.c": {
+    "sha256": "e99ec5b81f60d26c07453089f0aeb86b09a40493accb3c9eb4f108a623aa1978",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_assoc.c": {
+    "sha256": "ea2f7e71612cb6de0141801a0c0814b39731ebed17abdc8d4810bed935045ab7",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_bss.c": {
+    "sha256": "32fb791c3e915c3083e82033f66f22d2781b66449430f93372b8e23042d4e02b",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_fsm.c": {
+    "sha256": "6dcfca91ed4ad061ac6796883a590610df58887b4a473cb4850dc1acad02b3df",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_func.c": {
+    "sha256": "dbea5b48557d93c85d338e9b7cceb83bdf69a8b5e30b3e4aeeb8a152ceb9d339",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_ie.c": {
+    "sha256": "ae6f9155ae407f2a30106b7bb8aeb5349d41b81267406554120b10dfb567efe8",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_rlm.c": {
+    "sha256": "c86f942cb41f9d263113cacb59904dbd3908862b196cddebca04526105609eee",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_rlm_obss.c": {
+    "sha256": "fd8e6edc9f6ee890e663a286462adee057afb420c710faae94db22206b346b6b",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_scan.c": {
+    "sha256": "b157b67e4c342b850b888a7a2685b7a3707a4ae86dce4d5a3ca25d645f34f8d6",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/p2p_state.c": {
+    "sha256": "94f647ad0f4f952aacdec5a6985d396c779f2492e4b39e83d1d873dc63b132e7",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/privacy.c": {
+    "sha256": "f717e997482e577f5bd4ee6d1ac35261de032515fde1d6ee4a158127594d9fe4",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/rate.c": {
+    "sha256": "149a7151be03cd803e2453f89f0e85e401ee890bb90e98879d0b5f24d31621bb",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/rlm.c": {
+    "sha256": "b35040f24f2abbfcf8836a28a1389f2537d96cb49c3156ee25a0eda3d4b2961b",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/rlm_domain.c": {
+    "sha256": "66105f39cbf9eaadda23a26f0768c1ab5ca41ba3a1f644812d5c351a297eeb1f",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/rlm_obss.c": {
+    "sha256": "2436630d80c8d6a614771bd34ad216f3ad370fd9d731f1ae51aa5de84d5f658b",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/rlm_protection.c": {
+    "sha256": "fbf8d54cb34ea6c9f9cb46433a49e68ac190da73d89136dc8becdda0320ff275",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/roaming_fsm.c": {
+    "sha256": "d7ade81a729dda965ab6460bb4dbe5662813ac43ca23305ce7480b99ca94589e",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/rsn.c": {
+    "sha256": "92ae251bbf226aa6451a896c01ff9187bfaeae5c0f460dbbd462ffc2e9239876",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/saa_fsm.c": {
+    "sha256": "57c3be7b218214e0abde4a2d0afbd14165f957c719464d4306b3418f9b2e78a5",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/scan.c": {
+    "sha256": "6a9b7812b8297cdd237310d1cae9f02c5c67a324f87d293535ff8fc7fc1b898f",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/scan_fsm.c": {
+    "sha256": "8c44691156a60c587df2d9ee9d9031956d8de4932a70ec0a9ab4a01878babe0a",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/sec_fsm.c": {
+    "sha256": "2eafead07be0c2fe8a99582fd7503081dd1f29e900e24b99ca7bad947e4d005f",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/stats.c": {
+    "sha256": "16467e47beaf5d81e7ba111051c962dbd20890036e624e5f0347752da88f6cf4",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/swcr.c": {
+    "sha256": "24865fb037d1e62faa6013d811cadb21ffa8bd47ed3e46e4897ef058b13bef7d",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/tdls.c": {
+    "sha256": "9f5e7bd32f2393e4019cbb734f1e177f86bbcd496343112cd74395d29cd86c50",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/tdls_com.c": {
+    "sha256": "45a03283064734ada1e762f7ad76c36283af20d7ba1b427857d96a0e1f373dd8",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/wapi.c": {
+    "sha256": "f1d2f1db3c267a15c5e05652082572c8d3801b4d8135c329deeba46315f1c436",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/mgmt/wnm.c": {
+    "sha256": "260d8c0ed7cf696bd21b96bf12ff2d9b535ed2fcc3c41750dcd3bb63480a0d7d",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/nic/cmd_buf.c": {
+    "sha256": "69338cda214ae528beef983e759f010ba35428a29ec9baa2a0bc03c8007e93d4",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/nic/nic.c": {
+    "sha256": "cf021e7444ecccfee49218c020a64684fa5bf7ff716ed9f16810a47bdb706106",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/nic/nic_cmd_event.c": {
+    "sha256": "6b1d27bfda27982b76a43779f2d3679bc0108fb64b44531efaff06ee730061ff",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/nic/nic_pwr_mgt.c": {
+    "sha256": "fdb3c756c3656db5061863992f3170127126ed802e0b0cd143d07b64757a0e54",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/nic/nic_rx.c": {
+    "sha256": "a2cbe59968262ec043c41eab545b9db6899bffd92d44a1850c47315151113d1e",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/nic/nic_tx.c": {
+    "sha256": "9d74c99894ff8781edb1cb9d661e96cda0f284ae4bbd41251ea697a302286bde",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/nic/p2p_nic.c": {
+    "sha256": "af1eebdbe482bfb4f6f9c113b1b0204091688f6e31a3dd7ec56b101cee602db9",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/nic/que_mgt.c": {
+    "sha256": "1885f83a22088a3acbeda477ceb14fe509abcaa27f249dd3cc8a5fbbc950969d",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_bow.c": {
+    "sha256": "d1d191092f52feb9e94ea4c997b2dac705299c8f87caf16258c3d63f1fd3ece6",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_cfg80211.c": {
+    "sha256": "f81fc217e007300a6d141092a2277618c7fae90ca6d9980a99a6215766fcda6c",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_init.c": {
+    "sha256": "a988c57e4c373d2559763915805ebf93fdd606928cd3708f3e6ab7a5f7902c7c",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_kal.c": {
+    "sha256": "ff13424d084f3bc7f9751c40503c79a3bce9e4f630b6d6c0e0b4fc073eb47850",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_p2p.c": {
+    "sha256": "b6f3569e11cb6b2076ff0fe9cafbc60c58ca654bf0fe0d78b8b7a7b57b855956",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_p2p_cfg80211.c": {
+    "sha256": "336ab1dac9c227994c88f174014cfe764741f5e7c1c8e2e6bc9d5748b6d1c189",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_p2p_init.c": {
+    "sha256": "18abfcb427c8456fc1294dc8ab0d4a455542b406748e60c363af3f7a7d484aaf",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_p2p_kal.c": {
+    "sha256": "bd51d3c3e678cc3bc73b1675cd224b0765f9d63f8457f95c34b5027b63395371",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_proc.c": {
+    "sha256": "7c5f5a2a41cb00e81f0bbca4ba7be5ae7c641e13af6bcf1688fb4ce80bfb7ded",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_rst.c": {
+    "sha256": "63c419323b7b09067530a51e7b694ea88b6b9b21f53fcb30c3dc4f059ccf19aa",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_vendor.c": {
+    "sha256": "5c6c8a5d893a68733c7c35549b1baee6fb5c2edef17afd71e46301da65ee9e25",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_wext.c": {
+    "sha256": "8ea6bd9b2908ff42d8e88fa9f7ebfbe1c00ea9ab25905e72d6533267d376abfa",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_wext_priv.c": {
+    "sha256": "bcf58bcb76f14cc8a83d2a4f3133945966b2eb9406b637838ce934db1a64d723",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/hif/ahb/ahb.c": {
+    "sha256": "da8bb69dbcce253f56179d8c0e9a72015d91eac8c49bf47d30f02038dbdae4d9",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/hif/ahb/arm.c": {
+    "sha256": "36f47d879d70d65032358b05e090180f82c8794f0f33e72fa53b7e4edc08c6c8",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/hif/ahb/include/hif.h": {
+    "sha256": "1970c4cec0169d3c26337652058eb192e9a15625cec29c860b728c8b039ebe7b",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/hif/ahb/include/hif_gdma.h": {
+    "sha256": "9905f1812fbeaa5aca4c79ab806696e8187f0dd3a8a3006380da90c346f07631",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/hif/ahb/include/hif_pdma.h": {
+    "sha256": "b4142e31656dd604721e1ba3b8a369a701ca18d23cbf58c3048d8ced69e34989",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/hif/ahb/include/mtk_porting.h": {
+    "sha256": "8295fd6b3058ce336109563ff8c51ea1cbb9c6acff78107d17e440618966fac8",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/hif/ahb/mt8163/ahb_pdma.c": {
+    "sha256": "0de59e71c36d10e197a7c828dab7cc0466a694d2b9f7d05dd24bd3b81b3bbba9",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_cfg80211.h": {
+    "sha256": "145e36d2a833e9f743061f3ca521429c2d2e8487775ac636fe9f78bdd8a8ae4f",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_kal.h": {
+    "sha256": "0021d109c3d57c05fa14b82b74e4c454e074d59f2c7b6a3f3cb949a4acfdc7f8",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_os.h": {
+    "sha256": "447eadfa4c8eb769f9b0ea1ecf8f2f8c69373555f139acc9274c68eb272654c9",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_p2p_ioctl.h": {
+    "sha256": "2631ad06abe81b15f01c81af2204393f9bd1ba91edbc2936af4c34b495660355",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_p2p_kal.h": {
+    "sha256": "a9ff93abd0d8d2f695a60af851d144e538e3a6135216a06321bb020bdf390dcb",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_p2p_os.h": {
+    "sha256": "c728841308cfe35106a51dc8da5656c0cb97babf5e417cc3830f7378c470d3e6",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_rst.h": {
+    "sha256": "2a01822b7dd5fa65d5522f316da2e7939397cce8218d75a5411b996a0e176df4",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_sec.h": {
+    "sha256": "65c70648eac93e0bda899fb71468e7ca0e180695cf7d38819de7b937b7c4d887",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_typedef.h": {
+    "sha256": "336da83a6e9adecd1cf3e71e4bbd9a2a8ff4beabf769527b447e9d534615e478",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_vendor.h": {
+    "sha256": "ef5bcc699657165b0fd6b57062dd1c06b6a278d693c32a08a6ab81eefe026f1a",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_wext.h": {
+    "sha256": "9481a8833f18b1948d61693274292a9e91559dc6cc1a74fa4ace21b6dc7c1898",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/gl_wext_priv.h": {
+    "sha256": "9f2bee424fb5d85376cd8442b9d572e7046fbbb753df12d5bcb34acee466d8a3",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/include/p00a_addr.h": {
+    "sha256": "cb085fe138bdb7ec82e68a41ec5544291ebebf237bcbcd616de94ebcadc74de4",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/platform.c": {
+    "sha256": "910e206de8ec58cb83443f93cd4b7c8f6e96437512e07b41a6819f7540c3f54d",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/wlan/gen2/os/version.h": {
+    "sha256": "fd04db09b6319bec5f17951c65ac07f5c3070ab2d7fd44a605cbd1d5451dd6b6",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/power/mt8163/asus_p00a/bc12.inc": {
+    "sha256": "74e6d61e419f70551ba26d5a6089a0a0c38b226c7cd9b1e91f0312dbf3ee69de",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/power/mt8163/asus_p00a/charge_snapshot.inc": {
+    "sha256": "7c5a6f8e88838fead53471be49e1f43ef2ca5d8f966a6d5b32b7eec456772bee",
+    "origin": "exported patch",
+    "matches_receipt": true
+  },
+  "arch/arm64/kernel/setup.c": {
+    "sha256": "a4747254f2851047eba9520f56c04cbc066e56b439658331fcf6ad4f771c455f",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/of/fdt.c": {
+    "sha256": "d16f3132ce3a887ab3e1ff361a0d58f5dd0034073ba64b341decbf85db848c6c",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "init/do_mounts.c": {
+    "sha256": "f68868c20c6ec29abca91f80f1cc84d409c2602fc66ceaacc6a0170d70ba6118",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "init/main.c": {
+    "sha256": "f7110828626521dc7a2058d5cf4da47fb7fadea1a48a47ecc71f6166a7c0a50a",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/usb/gadget/udc/core.c": {
+    "sha256": "e2f5a844c9d7cf839c1c6186b079447bd9e465266dfa5eee2236ad3ded4cd118",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/usb/gadget/configfs.c": {
+    "sha256": "b1652ce0af567c11c838fb27db01789cbc9749e645c1812f20b942a217e80adb",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/usb/gadget/function/f_fs.c": {
+    "sha256": "d9659aaad3fd36bbde3936717b0d585fd0cdbc47a039e840a61364689a066823",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "kernel/reboot.c": {
+    "sha256": "26a5412f18d29581785a6b05895c8e3bb64968fe2c5f385930aeef1d410ba208",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/base/core.c": {
+    "sha256": "37bd1bd10b5c13c9dfd5639b9a433d5a3d666f06d92c52bf7850b728270c61c5",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "arch/arm64/kernel/process.c": {
+    "sha256": "83c5443d277e1226c129e23a67ab006eabb293af87f64cd615605fd0ebacb2bb",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "arch/arm64/include/asm/unistd.h": {
+    "sha256": "3de756a3dc0240f343764bbda0ca4291716f1dc54f96c5e03f61505eb7ded4c7",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "include/uapi/asm-generic/unistd.h": {
+    "sha256": "8f7db7b0f20200bb03d6aeac21e430cf750b26b5a190335e671a9aecbb4a0801",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/usb20/musb_core.c": {
+    "sha256": "28492c02a58e8c626b2f598ddb9b70cdfd81a8b56622f7051b64575beca6ad37",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/usb20/musb_gadget.c": {
+    "sha256": "f47356ac31f42b9e3fa3393fe0c4f9e005da51377bb0edf6f828d6aa99111e77",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/watchdog/mtk_wdt.c": {
+    "sha256": "b4650c1d087bc2ef4e0e4161afc9dd54cb38901e98af16a1b2fc2e784f1d927b",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "arch/arm64/mm/init.c": {
+    "sha256": "27442b977fa7a209125f3dcee5f2ae9768fc40f9d4e1aa896ad02cfccdd982de",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/usb20/mt8163/usb20.c": {
+    "sha256": "cbca157a6801c3d04647f64ea82dab5887315dde3dccd1b4b698884c76a7bc57",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/usb20/mt8163/usb20_host.c": {
+    "sha256": "225f2fac696dbaacef37abf026b72dfa21ec874a9c4d0503d43da57cf3be8217",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/usb20/mt8163/usb20_phy.c": {
+    "sha256": "bbd0cac9a11c0524e295a7815a615d02bf771308a12c6603a6af715b45e993b4",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/connectivity_build_in_adapter.c": {
+    "sha256": "45fa0e8b4cfd0e9189990fadb8be17c1d8a4ddf2ad3108563754171085ac7406",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/common/wmt_build_in_adapter.c": {
+    "sha256": "7900e4d29bd95a3e1b6cf6e6eb2d4cc6e506d1d04aba20862a321ea98a2ec520",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/power/supply/mediatek/battery/switch_charging.c": {
+    "sha256": "03fe67283cfd8b9ca251c0119134e5491eefebea6d5fca077269e88c8438417c",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/power/mt8163/battery_meter_hal.c": {
+    "sha256": "776279ba47e593e1277d9c791ff000a53369822ea0e6bcbbf190e7f4952fb9f1",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/power/mt8163/pmic_chr_type_det.c": {
+    "sha256": "5651bbab7ff42e623c28351ba2c7cf3c2743d2da1c86a54bd22998d92259b133",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/input/keyboard/mediatek/mt8163/hal_kpd.c": {
+    "sha256": "edfc1384e9b2d3142494e884f31457fe0a6e27036f9c51409ba133788d810ce9",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "drivers/input/keyboard/mediatek/Kconfig": {
+    "sha256": "a27796e231c735cbd33a049bd09320e62da957529905057427e93e416e0324fe",
+    "origin": "hash-matching local source",
+    "matches_receipt": true
+  },
+  "arch/arm64/boot/dts/mediatek/asus-p00a.dts": {
+    "sha256": "bb39c36199b6cb92b453c59116d85bc3e6769663792d0ddf7f18e7509d81f572",
+    "origin": "authorized read-only SSH isolated kernel",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/Kconfig": {
+    "sha256": "620a495a6c65815b32878f8ec5ac330515f47566a5c8ddb7274ad216900eea8b",
+    "origin": "authorized read-only SSH isolated kernel",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/connectivity/Makefile": {
+    "sha256": "6a755d28aca1da6844b58f050135aa6bc4981542f031f1de862f4af4c116f991",
+    "origin": "authorized read-only SSH isolated kernel",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c": {
+    "sha256": "03e05c11d4c08f9f2cb030bc05ea94b3c5310c6c1d0905d470181dcf9e4f800e",
+    "origin": "authorized read-only SSH isolated kernel",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/power/mt8163/asus_p00a/battery_status.inc": {
+    "sha256": "d143b2d3a8917e4bec8905060ebf095a95fff00438be143f98eaed6948ac17cb",
+    "origin": "authorized read-only SSH isolated kernel",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c": {
+    "sha256": "e087d8d7f1482c9dd5a427ce96584439e71e656379eab6167307a0cb5508eed9",
+    "origin": "authorized read-only SSH isolated kernel",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/power/mt8163/asus_p00a/control.h": {
+    "sha256": "a17d2f6896388ae82f6e1b7fd25b364de686621d635ea0be2105fa6d701d3864",
+    "origin": "authorized read-only SSH isolated kernel",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc": {
+    "sha256": "78396990fbffd1d1459fa939ff91f658b77cf57d1ea507417e51963caa4c93e1",
+    "origin": "authorized read-only SSH isolated kernel",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/power/mt8163/asus_p00a/policy.h": {
+    "sha256": "5f74866be6cad47d8298350456161736fbea5972e76241a48f1e6a7793fc4861",
+    "origin": "authorized read-only SSH isolated kernel",
+    "matches_receipt": true
+  },
+  "drivers/power/supply/mediatek/battery/asus_p00a_soc.inc": {
+    "sha256": "2491d14ab7dd2c6b6b2383b2703660cec64da618012e368ecb003388ffb9cb08",
+    "origin": "authorized read-only SSH isolated kernel",
+    "matches_receipt": true
+  },
+  "drivers/power/supply/mediatek/battery/battery_common.c": {
+    "sha256": "d750ffb77339826bd0a2282e71660d2899f5139a527d8b3ea966a954a74a22c9",
+    "origin": "authorized read-only SSH isolated kernel",
+    "matches_receipt": true
+  },
+  "include/linux/power/asus_p00a_battery.h": {
+    "sha256": "a6edafe209947c255b3b12ebfd5e6336f77d9c4faa5c27e9d1ee7a6d2f578b2c",
+    "origin": "authorized read-only SSH isolated kernel",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/usb20/usb20.c": {
+    "missing": true
+  },
+  "drivers/misc/mediatek/usb20/mt_usb.c": {
+    "missing": true
+  },
+  "drivers/misc/mediatek/power/mt8163/asus_p00a/Makefile": {
+    "sha256": "9bff0d2e4930a699ec8fdc485e6e2b96e8d2e6ea660560380510203ce8535bef",
+    "origin": "authorized read-only SSH isolated kernel",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/power/mt8163/asus_p00a/pmic.c": {
+    "missing": true
+  },
+  "drivers/misc/mediatek/pmic/mt8163/pmic.c": {
+    "missing": true
+  },
+  "drivers/misc/mediatek/power/mt8163/pmic.c": {
+    "missing": true
+  },
+  "drivers/misc/mediatek/power/mt8163/pmic_irq.c": {
+    "missing": true
+  },
+  "drivers/power/supply/mediatek/battery/battery_meter.c": {
+    "sha256": "1f063043ecc794020942c0ea81a80c075acaddf99c080b217fb1b7ec07cd8d2f",
+    "origin": "authorized read-only SSH isolated kernel",
+    "matches_receipt": true
+  },
+  "drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_auxadc.inc": {
+    "missing": true
+  },
+  "drivers/misc/mediatek/power/mt8163/pmic_mt6323.c": {
+    "sha256": "be1932abf3164ed2e2fe64b524878def16d7bdfc3f149e162095390c7232af19",
+    "origin": "authorized read-only SSH isolated kernel",
+    "matches_receipt": true
+  },
+  "drivers/input/keyboard/mediatek/mtk_kpd.c": {
+    "missing": true
+  }
+}

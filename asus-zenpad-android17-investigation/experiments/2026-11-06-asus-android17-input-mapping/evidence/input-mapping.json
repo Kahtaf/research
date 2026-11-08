@@ -1,0 +1,26 @@
+{
+  "utc": "2026-11-06T20:01:57.915249+00:00",
+  "kernel_name_evidence": {
+    "goodix_path": "/srv/android/asus-build-continuation/kernel/drivers/input/touchscreen/goodix.c",
+    "goodix_sha256": "813e77db23b5f972b9749ede74f85c8b48fe6738eb5e59e32f92ea8435124e3d",
+    "goodix_name_lines": [
+      "ts->input_dev->name = \"Goodix Capacitive TouchScreen\";"
+    ],
+    "keypad_matches": "drivers/input/keyboard/mediatek/kpd.c:29:#define KPD_NAME\t\"mtk-kpd\"\ndrivers/input/keyboard/mediatek/kpd.c:411:\tkpd_input_dev->name = KPD_NAME;\ndrivers/input/keyboard/mediatek/kpd.c:455:\t\t\tKPD_NAME, NULL);\ndrivers/input/keyboard/mediatek/kpd.c:523:\t\t   .name = KPD_NAME,\n",
+    "keypad_search_exit": 0
+  },
+  "SDK37_InputDevice_cpp_sha256": "51ff0cb46fff83aa7f74152c28d0bb954eb598f3faddc4345e5509736c4640f9",
+  "canonical_touch_name": "Goodix_Capacitive_TouchScreen",
+  "touch_configuration": "Goodix_Capacitive_TouchScreen.idc",
+  "key_layout": "mtk-kpd.kl",
+  "stock_property_source": "2026-11-06-asus-hardware-completeness-audit/evidence/stock-elf-and-config.txt:2524",
+  "staged_files": {
+    "device/asus/p00a/input/Goodix_Capacitive_TouchScreen.idc": "ff9c53351559ea415c5bbb2aafd3472bbedd6f264646903d20189e41da2d8a55",
+    "device/asus/p00a/input/input-mapping.mk": "6ec0030412932f6dcef9795aa9d708425661ff2368282b6b4536e03f743c1a75",
+    "device/asus/p00a/input/mtk-kpd.kl": "a940764c7807d582cb04cadeb3140566d6472353cf27a31a52a2e7aefcb0a942"
+  },
+  "source_naming_consistency_checked": true,
+  "SDK37_input_parser_executed": false,
+  "active_source_written": false,
+  "physical_touch_or_keys_tested": false
+}

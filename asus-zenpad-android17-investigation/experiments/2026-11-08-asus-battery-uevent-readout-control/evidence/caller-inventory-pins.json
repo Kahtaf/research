@@ -1,0 +1,8 @@
+{
+  "drivers/power/supply/power_supply_core.c": "f97d2c922cf42e0dcc415735afb55b0bfee38dd48dd7c6612c287d30297dbecd",
+  "drivers/power/supply/power_supply_sysfs.c": "e04ee771d01e58b88ec4ac0f266e37d1867e4f0a55b143b0a13525b2c31cd3b3",
+  "drivers/power/supply/mediatek/battery/battery_common.c": "072cf7b43a0b2b8f23dcdf216246e107d007c41ad817013073c085608ebad4a1",
+  "drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c": "03e05c11d4c08f9f2cb030bc05ea94b3c5310c6c1d0905d470181dcf9e4f800e",
+  "drivers/power/supply/mediatek/battery/battery_meter.c": "1f063043ecc794020942c0ea81a80c075acaddf99c080b217fb1b7ec07cd8d2f",
+  "drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c": "e087d8d7f1482c9dd5a427ce96584439e71e656379eab6167307a0cb5508eed9"
+}

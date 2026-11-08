@@ -1,0 +1,437 @@
+[
+  {
+    "file": "HANDOFF.md",
+    "bytes": 1498,
+    "sha256": "dbd443821d026a0fb11e32b3c421b434b685ed0aec121fbd4a2518366f5662e0"
+  },
+  {
+    "file": "README.md",
+    "bytes": 1269,
+    "sha256": "aa66544d669fa50237a31f69869cc2a6a38f42f4bd817ada7e30b1d814b6945b"
+  },
+  {
+    "file": "evidence/aosp7-source-pins.json",
+    "bytes": 706,
+    "sha256": "606023c79657c4c83cfb0b3ca234ddae0a160445c1d6f71a7c6b1d46f394d61b"
+  },
+  {
+    "file": "evidence/closure-constructors.json",
+    "bytes": 102443,
+    "sha256": "26c0d56ef8639d49672ff08b1cdea3b82e09b9c8c101d8c27a67ab9d201c9cf9"
+  },
+  {
+    "file": "evidence/complete-closure-constructors.json",
+    "bytes": 139793,
+    "sha256": "1890f83ae92146ff510c274c6c7a7f6044e0af0bd961d1a2abc95775cfb51e06"
+  },
+  {
+    "file": "evidence/fixture-results.json",
+    "bytes": 217155,
+    "sha256": "e39d141a0058d7b5caff0beb62fce2d093cdc9f75f782e5e93d60e60913f4f2c"
+  },
+  {
+    "file": "evidence/fixture64-results.json",
+    "bytes": 82326,
+    "sha256": "a864ad5d87d468641818cfc73e6350362e153f88bdeb854c8baa298da7f8175b"
+  },
+  {
+    "file": "evidence/halsensor-global-references.json",
+    "bytes": 1069,
+    "sha256": "53d5b7a95df411dbd16250f08be3fefc461b69b2eda3432b0c6fa9308d3985e2"
+  },
+  {
+    "file": "evidence/inventory.json",
+    "bytes": 2463633,
+    "sha256": "965391c1922366aad208d2ef618e3d4652268d887b6ba51f365bbbe5edd37648"
+  },
+  {
+    "file": "evidence/lib64_common.txt",
+    "bytes": 25854,
+    "sha256": "a7c3b44d6cbb34997aaa8dfcad6cefc9c0bb549cc5d45d871fafff3fe1c2da45"
+  },
+  {
+    "file": "evidence/lib64_custom-init-selected.txt",
+    "bytes": 6170,
+    "sha256": "af1b1698639eb7a301200b7ab5c74f98f37c4724a94e59f39dfbe390d8ff5c88"
+  },
+  {
+    "file": "evidence/lib64_custom-init.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "file": "evidence/lib64_halsensor-constructors.txt",
+    "bytes": 32073,
+    "sha256": "112898f3c9b46a563393aa454945136ec79ba6fefebfc5e15e9dc6c3bae35442"
+  },
+  {
+    "file": "evidence/lib64_libcam.hal3a.v3.dng.so.dis.txt",
+    "bytes": 52666,
+    "sha256": "9219f208635d04f96a22c82f3827885abd183b683860d7aacb1c1fcecadc565d"
+  },
+  {
+    "file": "evidence/lib64_libcam.hal3a.v3.dng.so.strings.json",
+    "bytes": 5339,
+    "sha256": "04323f18fb0e2a77194a1452bdf16a7eccd40598e55059b4a576d690d64c033a"
+  },
+  {
+    "file": "evidence/lib64_libcam.hal3a.v3.so.dis.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "file": "evidence/lib64_libcam.hal3a.v3.so.strings.json",
+    "bytes": 253541,
+    "sha256": "66ce8995f68314d84d0e7bc949075471d652b88a8b479d6f7c01821f96683f02"
+  },
+  {
+    "file": "evidence/lib64_libcam.halsensor.so.dis.txt",
+    "bytes": 117259,
+    "sha256": "fc1825d684967f3d2a955f322e5b72db75f22f85e4b0c8af95ffb0f3b4fcd08d"
+  },
+  {
+    "file": "evidence/lib64_libcam.halsensor.so.strings.json",
+    "bytes": 66952,
+    "sha256": "33a222b9a86319f517cce5af7c5c698d6b4732d238ff5bf4cedbfa797d60fac5"
+  },
+  {
+    "file": "evidence/lib64_libcam.metadataprovider.so.dis.txt",
+    "bytes": 381190,
+    "sha256": "84dd576b0a07dc604676ab00a6ab466bfc4959b71334a1e0691ef754469818ff"
+  },
+  {
+    "file": "evidence/lib64_libcam.metadataprovider.so.strings.json",
+    "bytes": 45263,
+    "sha256": "cfa4ab43e31ceea712b3335364231d7c5615bc7cfc247cd54fb190cf7e007584"
+  },
+  {
+    "file": "evidence/lib64_libcameracustom.so.dis.txt",
+    "bytes": 35979,
+    "sha256": "c7fd818fb17adf1b332dd309942a50118b16a099f627ce40c4371cda0a58e2b8"
+  },
+  {
+    "file": "evidence/lib64_libcameracustom.so.strings.json",
+    "bytes": 894580,
+    "sha256": "d3bd6d46ec3e44abcfcd163f7f789e346ff2a189297ae34d5b30b221465c730d"
+  },
+  {
+    "file": "evidence/lib64_metadata-container.txt",
+    "bytes": 414334,
+    "sha256": "58b8a67f937403aa7058179413783a9ff6a9efd69afc2eb0835e7faa656a936e"
+  },
+  {
+    "file": "evidence/lib64_selected-hidden.txt",
+    "bytes": 3753,
+    "sha256": "baf70bb093ad1eea3631d62feedd963021b53fe2591ada9b1719d3b3a5b0b362"
+  },
+  {
+    "file": "evidence/lib64_sensor-accessors.txt",
+    "bytes": 494,
+    "sha256": "b8d739a4b042fc46ac122ca36a6bd7f77961ceb58ee2b3dd0563379bf75e7a5a"
+  },
+  {
+    "file": "evidence/lib_custom-init.txt",
+    "bytes": 464822,
+    "sha256": "3bc6f8952b272f7bb722c7d258737cc1a41921d5a45487ba7f6bf1da5ebad20f"
+  },
+  {
+    "file": "evidence/lib_halsensor-constructors.txt",
+    "bytes": 41952,
+    "sha256": "b53f17e0ddc9fbf12132462a9a178b5f347e4b7ab7f27988efb7ef1ba77f3587"
+  },
+  {
+    "file": "evidence/lib_libcam.hal3a.v3.dng.so.dis.txt",
+    "bytes": 41346,
+    "sha256": "1648a48a0ba1ccf27e9ba09485f8e8046dcaf855f2a4d2ad0c4fbbfefc217f62"
+  },
+  {
+    "file": "evidence/lib_libcam.hal3a.v3.dng.so.strings.json",
+    "bytes": 13599,
+    "sha256": "706df9a0dc25ca409d6c8343ae07bfbaf3677f0fc58c3629e42b8e49608618e5"
+  },
+  {
+    "file": "evidence/lib_libcam.hal3a.v3.so.dis.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "file": "evidence/lib_libcam.hal3a.v3.so.strings.json",
+    "bytes": 362887,
+    "sha256": "408b77d3af9b42e20b03c5e8050b5ff8838dc132ffc966d0ce6c08a2e3d9075f"
+  },
+  {
+    "file": "evidence/lib_libcam.halsensor.so.dis.txt",
+    "bytes": 121525,
+    "sha256": "c0c8a4dcf3f5aa98ca0d95b37211db816109a156976bfea77959fee02f4684b7"
+  },
+  {
+    "file": "evidence/lib_libcam.halsensor.so.hidden.txt",
+    "bytes": 11169,
+    "sha256": "812b95eae8b4a7971c56e16ae251d3ca91bc0ea26ecd25faffcb5792731e73a9"
+  },
+  {
+    "file": "evidence/lib_libcam.halsensor.so.strings.json",
+    "bytes": 137633,
+    "sha256": "6d33017766bcc525c7bc8775c0b8ea789c18ba4bc9dd08b0941df306dd8d0638"
+  },
+  {
+    "file": "evidence/lib_libcam.metadataprovider.so.dis.txt",
+    "bytes": 66022,
+    "sha256": "ce57d27349a810411d5c96994fbf67df0309271c61b548f314f26410d872588a"
+  },
+  {
+    "file": "evidence/lib_libcam.metadataprovider.so.hidden.txt",
+    "bytes": 30206,
+    "sha256": "badb9f5686cf49b943c1c13d5fd07838d2f3cce83e67d0c925edfe5c873a28ac"
+  },
+  {
+    "file": "evidence/lib_libcam.metadataprovider.so.strings.json",
+    "bytes": 193981,
+    "sha256": "7f6b6fe99ccbee83f348a8e13512f3ac0efe0fa6b5bfad947001bde244371a1a"
+  },
+  {
+    "file": "evidence/lib_libcameracustom.so.dis.txt",
+    "bytes": 52386,
+    "sha256": "984d0c53bfc8b0b8a753c5637a96e299b1a53d9e24ee430cb8dc1cd723708cd1"
+  },
+  {
+    "file": "evidence/lib_libcameracustom.so.strings.json",
+    "bytes": 1013091,
+    "sha256": "fadc8e9dca53308e8a6cf837bdd70569a2e1adcc3945f9ba669907e9e2929f44"
+  },
+  {
+    "file": "evidence/lib_metadata-container.txt",
+    "bytes": 485531,
+    "sha256": "414544d91c963f7ed3c267293d568f9ea1cfc385cdd02874034a8fb9eb904b31"
+  },
+  {
+    "file": "evidence/lib_selected-hidden.txt",
+    "bytes": 7885,
+    "sha256": "29b2dd5d527abdb3e281c6f6e776905126da5b5955b66d72ca43ef5d18952811"
+  },
+  {
+    "file": "evidence/lib_sensor-accessors.txt",
+    "bytes": 535,
+    "sha256": "9b03f5fa0031a138f07d7ddca99995c824b2cbbabf85a778497fc6ee14d54138"
+  },
+  {
+    "file": "evidence/mapping.json",
+    "bytes": 83216,
+    "sha256": "afbfed12347bbb15b19cb92d6f7c11a07f609f5e4ee2a503bc08eb57872d5465"
+  },
+  {
+    "file": "evidence/oem-tag-schema.json",
+    "bytes": 49898,
+    "sha256": "9f7d0ec7bcbae30e2f4256dbd1813861c0c70c39d7ddef18b3b7d30e89a1a067"
+  },
+  {
+    "file": "evidence/parent-source-pins.json",
+    "bytes": 798,
+    "sha256": "46283eaa58edc43087cf775f1cc4306cea3be382c3c0cb956fdcfa64c6433f65"
+  },
+  {
+    "file": "evidence/schema-witness.json",
+    "bytes": 2739,
+    "sha256": "46cf40acfe612c2b4663d10d50f393d266ed43ba0adb44030fcc76a754e6b0d7"
+  },
+  {
+    "file": "evidence/sdk37-schema-pin.json",
+    "bytes": 235,
+    "sha256": "39ab97f33255d41c7472458f6232a45c63da64c8abc936a22a308c14c41c12fc"
+  },
+  {
+    "file": "fixture/schema_witness.arm32.o",
+    "bytes": 764,
+    "sha256": "b05a11c4fb37415ff0c48b1fa8a04fcd1e186e2483635898d64915bca4857d91"
+  },
+  {
+    "file": "fixture/schema_witness.c",
+    "bytes": 1222,
+    "sha256": "e368f4b34c0ec5f5fc62cab9f2d5eee4f4906ad9e1847a3d25271e6382048f65"
+  },
+  {
+    "file": "inputs/aosp7_libc_include_dlfcn.h",
+    "bytes": 2763,
+    "sha256": "0c537de84f3e7d50fb7540ed428f86e9d8fc7a8e20fb9afdad0e4effdd98b61f"
+  },
+  {
+    "file": "inputs/aosp7_linker_linker.cpp",
+    "bytes": 139835,
+    "sha256": "281c6d1423f2e26de90664b0d561172ec573735b1cd665e485fc80197b107446"
+  },
+  {
+    "file": "inputs/dng-pins.json",
+    "bytes": 388,
+    "sha256": "c0ae7e1e8401f67d51299dd8fb10fae9da6ced18c96426ab13a3ec1ed60f7401"
+  },
+  {
+    "file": "inputs/elf-pins.json",
+    "bytes": 2014,
+    "sha256": "fb696d61d3066fd1044ecb1373386385eb44208451d72f843773efd08c18d0e7"
+  },
+  {
+    "file": "inputs/identification.json",
+    "bytes": 870,
+    "sha256": "49208d5d2be99e616215a8f3b65d774053504f6c6dbb3a84296b8503561ecd88"
+  },
+  {
+    "file": "inputs/kd_camera_feature.h",
+    "bytes": 890,
+    "sha256": "8678d7ee26f4f14ac458b0353494b129c1ab1317814ba8e3c1ebe95c2d847ffc"
+  },
+  {
+    "file": "inputs/kd_imgsensor.h",
+    "bytes": 20528,
+    "sha256": "a591d026637ca60919a9e1b79c724f7b54896ed674d98f82ef48c3ec9beb640c"
+  },
+  {
+    "file": "inputs/lib64_libcam.hal3a.v3.dng.so",
+    "bytes": 14360,
+    "sha256": "c2a3aeb83d2fb346cd8624c759ca556cab25a0bf907553d93f0997c3954468fc"
+  },
+  {
+    "file": "inputs/lib64_libcam.hal3a.v3.so",
+    "bytes": 641440,
+    "sha256": "e31f70806e597e2401d83d8f726437f1ee69f1fab071bc903ed2cd7207e27b6f"
+  },
+  {
+    "file": "inputs/lib64_libcam.halsensor.so",
+    "bytes": 194656,
+    "sha256": "4a97003fc6ae1013b47df4bdd0517c6b77d3027c68063da921b87e4701a741c7"
+  },
+  {
+    "file": "inputs/lib64_libcam.metadata.so",
+    "bytes": 112664,
+    "sha256": "124b9082e9c82d8895dd219d66c9010429e6c4fa2f58904edf8df8d33349de6b"
+  },
+  {
+    "file": "inputs/lib64_libcam.metadataprovider.so",
+    "bytes": 211048,
+    "sha256": "4d0f1880876d0b3190e02744df3d27794a00c2768f2bd5f422a4233108c8b437"
+  },
+  {
+    "file": "inputs/lib64_libcameracustom.so",
+    "bytes": 6835040,
+    "sha256": "c1f28589c32a57e4466a24279875afd4e03d3ae125f28843b7f4a10c578e3623"
+  },
+  {
+    "file": "inputs/lib_libcam.hal3a.v3.dng.so",
+    "bytes": 17948,
+    "sha256": "2c58d5ea4ec744192df961acdd9db9f3235bb0a27ab68966684f3c1dcb385e5f"
+  },
+  {
+    "file": "inputs/lib_libcam.hal3a.v3.so",
+    "bytes": 452496,
+    "sha256": "c36859cbe76f5c64c23d3cf71c1fed8a0fdebbb8380118d568342671be5f7d6c"
+  },
+  {
+    "file": "inputs/lib_libcam.halsensor.so",
+    "bytes": 165448,
+    "sha256": "4aa53587d2a41696c6244b726ea3e796e704b1661e4f7eedfb7b188d68de0898"
+  },
+  {
+    "file": "inputs/lib_libcam.metadata.so",
+    "bytes": 83476,
+    "sha256": "7f8ad2dfef079bb26ff7a46439b316d02c7122aeb1951f009e75e5d2ebb4fe93"
+  },
+  {
+    "file": "inputs/lib_libcam.metadataprovider.so",
+    "bytes": 185940,
+    "sha256": "262b468e997320c0da7c3be510b7c52635ccc25614749b3ab06083eb1f7bc45c"
+  },
+  {
+    "file": "inputs/lib_libcameracustom.so",
+    "bytes": 6740256,
+    "sha256": "d819ea49f2bea61b6a46581c4b1e12b3133dca3c00a44d5b204da6069907d887"
+  },
+  {
+    "file": "inputs/metadata-pins.json",
+    "bytes": 381,
+    "sha256": "518d0d191cd7e93cf21926e8bf41efcbe130e6ed378a0cea40439c30695edafd"
+  },
+  {
+    "file": "inputs/sdk37_camera_metadata_tags.h",
+    "bytes": 106910,
+    "sha256": "bde84090ba7cb609ac4f52163f33c05c4a1d2ad54e46b9ca79fca1117e622613"
+  },
+  {
+    "file": "report/REPORT.md",
+    "bytes": 12858,
+    "sha256": "31f4642f35aff2b8f3c28ee690b945319767ea7c282b5f43e61b7778187401f3"
+  },
+  {
+    "file": "scripts/analyze.py",
+    "bytes": 2940,
+    "sha256": "cdcc9466c854d455785d5233077f6f12ba4c7a667de73094fcf889af4d146d59"
+  },
+  {
+    "file": "scripts/collect.py",
+    "bytes": 2288,
+    "sha256": "0d772c2cd0c141d0504884da4ac7e180bbd77ce65f3689cb5d469da1c957e2ac"
+  },
+  {
+    "file": "scripts/collect_metadata_remote.py",
+    "bytes": 1418,
+    "sha256": "a76954bcf46c7091421e2f398e07515c4c3375f0040a9fc95a292fcac313ea88"
+  },
+  {
+    "file": "scripts/collect_remote.py",
+    "bytes": 1417,
+    "sha256": "dbaa5776e36c354406691de4ef54461fc9c55e0494efc481f51f2e949e9d468c"
+  },
+  {
+    "file": "scripts/complete_closure.py",
+    "bytes": 2894,
+    "sha256": "33b7e72a5eb5817f81f0414c146b5d9a9c5b176c093633024d555093f57b29f3"
+  },
+  {
+    "file": "scripts/complete_closure_remote.py",
+    "bytes": 77356,
+    "sha256": "98ec46ce6c42f4fea4a26fd88c0c092ce478818360ba74919356a93b12a0b6e7"
+  },
+  {
+    "file": "scripts/dispatch64_fixture.py",
+    "bytes": 5669,
+    "sha256": "ec571d6fa7b441f4a9ea706924e873f14b071b4dedbcf9bbdb6a1549f720b3e8"
+  },
+  {
+    "file": "scripts/dispatch_fixture.py",
+    "bytes": 19057,
+    "sha256": "3b1fc7e4c38941864d43e3fc03104da4776746b70efca50048f2da479adea2ea"
+  },
+  {
+    "file": "scripts/extend.py",
+    "bytes": 293,
+    "sha256": "ae9ee3dbd71931b1099c06997aa8fb16505486cb3a99e9512bb650561c726159"
+  },
+  {
+    "file": "scripts/finalize.py",
+    "bytes": 6488,
+    "sha256": "a72fa713abfa42795300471f111be6e506550861c35d3dc9b8d2eff69d32f189"
+  },
+  {
+    "file": "scripts/references.py",
+    "bytes": 1104,
+    "sha256": "02f11ef23ebfc81339ca22d89bb952f1827637021d1ce63e3d9879ebbdf26669"
+  },
+  {
+    "file": "scripts/scan_closure.py",
+    "bytes": 2741,
+    "sha256": "0026bf353a23eb766b1f27cd6530254cb7d896256febd91ff12948f7a94e62f7"
+  },
+  {
+    "file": "scripts/scan_closure_remote.py",
+    "bytes": 17847,
+    "sha256": "38b04a636cfa1252733c18c428f1e20722fa0cc24a3055bd1a8bd9203a8da4ea"
+  },
+  {
+    "file": "scripts/schema_witness.py",
+    "bytes": 2491,
+    "sha256": "4d541e96033251e08b27166df9ff892788014fe162a516d3f30cfb6a8c9e3536"
+  },
+  {
+    "file": "scripts/sdk_schema.py",
+    "bytes": 1291,
+    "sha256": "1280122b81f4a088934aea1fea636f6b22d2644b25906a2244e3df6aa8cd52eb"
+  }
+]

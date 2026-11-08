@@ -1,0 +1,786 @@
+[
+  {
+    "path": "ARTIFACTS.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/ARTIFACTS.json",
+    "bytes": 10038,
+    "sha256": "6b57b2b7c61b99ff356542f56e564a8efa56cdc197ae3cce600bc8d0326a888a",
+    "source_sha256": "6b57b2b7c61b99ff356542f56e564a8efa56cdc197ae3cce600bc8d0326a888a"
+  },
+  {
+    "path": "BUILD.md",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/BUILD.md",
+    "bytes": 3200,
+    "sha256": "2bd720cf0c8468b8e97a560d95f655d121b65fe62c5458e43f77da75cca4f202",
+    "source_sha256": "2bd720cf0c8468b8e97a560d95f655d121b65fe62c5458e43f77da75cca4f202"
+  },
+  {
+    "path": "HANDOFF.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/HANDOFF.json",
+    "bytes": 3646,
+    "sha256": "430c4c8f598096e530dcb7f99db6a5ec33609fb7c4b86a7593f61f0daddae5fd",
+    "source_sha256": "430c4c8f598096e530dcb7f99db6a5ec33609fb7c4b86a7593f61f0daddae5fd"
+  },
+  {
+    "path": "PROTOCOL.md",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/PROTOCOL.md",
+    "bytes": 2913,
+    "sha256": "d7c6f90f34435750a5697994a6c2c45c96463aef45b1d8e6fb69a61f66187f44",
+    "source_sha256": "d7c6f90f34435750a5697994a6c2c45c96463aef45b1d8e6fb69a61f66187f44"
+  },
+  {
+    "path": "README.md",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/README.md",
+    "bytes": 1660,
+    "sha256": "b01873f4e273ddcf9cd433eeecb1c7dfdb848fc16a0d746333b43637f55691c0",
+    "source_sha256": "b01873f4e273ddcf9cd433eeecb1c7dfdb848fc16a0d746333b43637f55691c0"
+  },
+  {
+    "path": "REPORT.md",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/REPORT.md",
+    "bytes": 13804,
+    "sha256": "1afb3a0eee4568b90d08b9230508779e0e67161f2f42bdd07c67c32ed2908052",
+    "source_sha256": "1afb3a0eee4568b90d08b9230508779e0e67161f2f42bdd07c67c32ed2908052"
+  },
+  {
+    "path": "SOURCE_PINS.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/SOURCE_PINS.json",
+    "bytes": 5810,
+    "sha256": "a2e1c4a595a13239f3797ccd4a30367d730229e486cf9013816c99c11430fbe1",
+    "source_sha256": "a2e1c4a595a13239f3797ccd4a30367d730229e486cf9013816c99c11430fbe1"
+  },
+  {
+    "path": "artifacts/base-header",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/base-header",
+    "bytes": 2048,
+    "sha256": "6f3f1377890f49aaecc8c345c8c0279553b0e77e62e6df7dcc42b803de150549",
+    "source_sha256": "6f3f1377890f49aaecc8c345c8c0279553b0e77e62e6df7dcc42b803de150549"
+  },
+  {
+    "path": "artifacts/base-kernel",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/base-kernel",
+    "bytes": 7472341,
+    "sha256": "b0e5d48bf2889b418dda0fc867f70e42e27a0aeb0a0a3d37539d9a7435430880",
+    "source_sha256": "b0e5d48bf2889b418dda0fc867f70e42e27a0aeb0a0a3d37539d9a7435430880"
+  },
+  {
+    "path": "artifacts/base-policy",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/base-policy",
+    "bytes": 389688,
+    "sha256": "189c477ac73ecb161a6527f7f98a6fec76a913b0d5cf8d11591d440dc79af842",
+    "source_sha256": "189c477ac73ecb161a6527f7f98a6fec76a913b0d5cf8d11591d440dc79af842"
+  },
+  {
+    "path": "artifacts/base-wrapper",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/base-wrapper",
+    "bytes": 512,
+    "sha256": "46588dd2eeaf139b6791785b209f5bae1d54eed2f0b059c56dcdbfc7f52bb2a0",
+    "source_sha256": "46588dd2eeaf139b6791785b209f5bae1d54eed2f0b059c56dcdbfc7f52bb2a0"
+  },
+  {
+    "path": "artifacts/candidate/UNARMED.img",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/candidate/UNARMED.img",
+    "bytes": 10317824,
+    "sha256": "94e6747bc5998d7e5cf58a33280d362bb0dd97c14941c7fae6625117cc53ef91",
+    "source_sha256": "94e6747bc5998d7e5cf58a33280d362bb0dd97c14941c7fae6625117cc53ef91"
+  },
+  {
+    "path": "artifacts/candidate/UNARMED.p10.raw",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/candidate/UNARMED.p10.raw",
+    "bytes": 16740352,
+    "sha256": "e3df64342477816bc9aa2c8bb44cb61adf7a0f910d2d016c339c3250ff8457e3",
+    "source_sha256": "e3df64342477816bc9aa2c8bb44cb61adf7a0f910d2d016c339c3250ff8457e3"
+  },
+  {
+    "path": "artifacts/candidate/helper.cpio",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/candidate/helper.cpio",
+    "bytes": 775680,
+    "sha256": "8390c88d50690fe67987ddbd30d432912e7b3f93576c0f0312580b6c99e85b89",
+    "source_sha256": "8390c88d50690fe67987ddbd30d432912e7b3f93576c0f0312580b6c99e85b89"
+  },
+  {
+    "path": "artifacts/candidate/session-contract.UNAPPROVED.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/candidate/session-contract.UNAPPROVED.json",
+    "bytes": 1311,
+    "sha256": "88fa73c21ce2929780d4e68a32a6242b658d995b6003ca2c70ed49696456260e",
+    "source_sha256": "88fa73c21ce2929780d4e68a32a6242b658d995b6003ca2c70ed49696456260e"
+  },
+  {
+    "path": "artifacts/concat-probe",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/concat-probe",
+    "bytes": 635896,
+    "sha256": "6f184b6217f8738761b2cc9507bba206db46de1d6a9639f6764caa8d1a72569d",
+    "source_sha256": "6f184b6217f8738761b2cc9507bba206db46de1d6a9639f6764caa8d1a72569d"
+  },
+  {
+    "path": "artifacts/core-entries.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/core-entries.json",
+    "bytes": 4059,
+    "sha256": "48e375b8af6f1cb75e8afbca5fba6e9be55bcd57a04e7ca5bd36371dec1201b7",
+    "source_sha256": "48e375b8af6f1cb75e8afbca5fba6e9be55bcd57a04e7ca5bd36371dec1201b7"
+  },
+  {
+    "path": "artifacts/core-input-metadata.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/core-input-metadata.json",
+    "bytes": 1121,
+    "sha256": "dad9e051aa11f9c293d5a6ac441adfe7fe2703492283613a17fae5662f652f8e",
+    "source_sha256": "dad9e051aa11f9c293d5a6ac441adfe7fe2703492283613a17fae5662f652f8e"
+  },
+  {
+    "path": "artifacts/core-inputs/adb_keys",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/core-inputs/adb_keys",
+    "bytes": 701,
+    "sha256": "d2fa0667e26a7708a20807e9aa1bc68fff489f0d79d2a15439498417b544efdf",
+    "source_sha256": "d2fa0667e26a7708a20807e9aa1bc68fff489f0d79d2a15439498417b544efdf"
+  },
+  {
+    "path": "artifacts/core-inputs/default.prop",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/core-inputs/default.prop",
+    "bytes": 256,
+    "sha256": "cfbf9ec81d426f9278e782b841fa94b947384e09153e43089e9c05f121674000",
+    "source_sha256": "cfbf9ec81d426f9278e782b841fa94b947384e09153e43089e9c05f121674000"
+  },
+  {
+    "path": "artifacts/core-inputs/init",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/core-inputs/init",
+    "bytes": 1254760,
+    "sha256": "e9594c0d1cbe7d05d34acd63e90b424672360ceb09112fa16b5b23390c21b7e5",
+    "source_sha256": "e9594c0d1cbe7d05d34acd63e90b424672360ceb09112fa16b5b23390c21b7e5"
+  },
+  {
+    "path": "artifacts/core-inputs/init.rc",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/core-inputs/init.rc",
+    "bytes": 1386,
+    "sha256": "b01786f26282f296589bc9f108086247ee4b1b08aeaceb9484dd86b735189b3c",
+    "source_sha256": "b01786f26282f296589bc9f108086247ee4b1b08aeaceb9484dd86b735189b3c"
+  },
+  {
+    "path": "artifacts/core-inputs/property_contexts",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/core-inputs/property_contexts",
+    "bytes": 18471,
+    "sha256": "d0cd0317d86e6204e9946f1c9d635610ec03043896f5abaf80457147c197209d",
+    "source_sha256": "d0cd0317d86e6204e9946f1c9d635610ec03043896f5abaf80457147c197209d"
+  },
+  {
+    "path": "artifacts/core-inputs/sbin/adbd",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/core-inputs/sbin/adbd",
+    "bytes": 1095256,
+    "sha256": "78a7adbda0a28da4055da1ea68a2ead8ee01764a365778930ef03e6649dcb450",
+    "source_sha256": "78a7adbda0a28da4055da1ea68a2ead8ee01764a365778930ef03e6649dcb450"
+  },
+  {
+    "path": "artifacts/core-inputs/seapp_contexts",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/core-inputs/seapp_contexts",
+    "bytes": 819,
+    "sha256": "93adb10a339dc9566a0feecaf3d5659dc2b40a56e437f7ef39d303a528b5ed83",
+    "source_sha256": "93adb10a339dc9566a0feecaf3d5659dc2b40a56e437f7ef39d303a528b5ed83"
+  },
+  {
+    "path": "artifacts/core-inputs/service_contexts",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/core-inputs/service_contexts",
+    "bytes": 15138,
+    "sha256": "c043331210d5d832e909e8fa1a396a6a1810505c377039d33aff7bcff3572a24",
+    "source_sha256": "c043331210d5d832e909e8fa1a396a6a1810505c377039d33aff7bcff3572a24"
+  },
+  {
+    "path": "artifacts/core-inputs/ueventd.rc",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/core-inputs/ueventd.rc",
+    "bytes": 498,
+    "sha256": "0502a4e7b2055e4cb98910bbd37786fabce8cb4abd4291bfa354d73cc2d187aa",
+    "source_sha256": "0502a4e7b2055e4cb98910bbd37786fabce8cb4abd4291bfa354d73cc2d187aa"
+  },
+  {
+    "path": "artifacts/core.cpio.gz",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/core.cpio.gz",
+    "bytes": 2065532,
+    "sha256": "5fc6b0bae1d94cc500118ae6dc8772576889de57dbf2e54bd725ec0d1690d14b",
+    "source_sha256": "5fc6b0bae1d94cc500118ae6dc8772576889de57dbf2e54bd725ec0d1690d14b"
+  },
+  {
+    "path": "artifacts/core_tests",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/core_tests",
+    "bytes": 49472,
+    "sha256": "4f3aac35f7be4ca51a67be9801bc37d9194647c7e2f3d37c9ce9a5df8870f7cc",
+    "source_sha256": "4f3aac35f7be4ca51a67be9801bc37d9194647c7e2f3d37c9ce9a5df8870f7cc"
+  },
+  {
+    "path": "artifacts/file_contexts",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/file_contexts",
+    "bytes": 49597,
+    "sha256": "8edd2720728edcac617d78c1a70b160562e26f44802553a794b3f97b5613cfd5",
+    "source_sha256": "8edd2720728edcac617d78c1a70b160562e26f44802553a794b3f97b5613cfd5"
+  },
+  {
+    "path": "artifacts/file_contexts.bin",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/file_contexts.bin",
+    "bytes": 223569,
+    "sha256": "d82c9ca28d1d9017aea5f58d1cb9b46f6122ef22953ab32b7b4a3a8ccd07186c",
+    "source_sha256": "d82c9ca28d1d9017aea5f58d1cb9b46f6122ef22953ab32b7b4a3a8ccd07186c"
+  },
+  {
+    "path": "artifacts/legacy-reproduction",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/legacy-reproduction",
+    "bytes": 775656,
+    "sha256": "30ae9252e575d7c9c837783d60e51016a16bcadb46bd38215d8e49e5bb5d1c53",
+    "source_sha256": "30ae9252e575d7c9c837783d60e51016a16bcadb46bd38215d8e49e5bb5d1c53"
+  },
+  {
+    "path": "artifacts/original-recovery.payload",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/original-recovery.payload",
+    "bytes": 16740352,
+    "sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20",
+    "source_sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20"
+  },
+  {
+    "path": "artifacts/original-stock.manifest",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/original-stock.manifest",
+    "bytes": 115288,
+    "sha256": "605cdec038dafe3dddabfe92b8bd6cd189734f740230dfc362d02a43421e4e47",
+    "source_sha256": "605cdec038dafe3dddabfe92b8bd6cd189734f740230dfc362d02a43421e4e47"
+  },
+  {
+    "path": "artifacts/os-rescue",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/os-rescue",
+    "bytes": 776472,
+    "sha256": "606b659f213e1acb80de469bc8273203ddc60cc0b2ca76d943cccfe5ebc8ec63",
+    "source_sha256": "606b659f213e1acb80de469bc8273203ddc60cc0b2ca76d943cccfe5ebc8ec63"
+  },
+  {
+    "path": "artifacts/p10-restore",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/p10-restore",
+    "bytes": 775344,
+    "sha256": "1d5c51991fd74129a1aac3694a860fca7c7fbf8d1e22cfa601620248de50b463",
+    "source_sha256": "1d5c51991fd74129a1aac3694a860fca7c7fbf8d1e22cfa601620248de50b463"
+  },
+  {
+    "path": "artifacts/p10-restore-reproduction",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/p10-restore-reproduction",
+    "bytes": 775344,
+    "sha256": "1d5c51991fd74129a1aac3694a860fca7c7fbf8d1e22cfa601620248de50b463",
+    "source_sha256": "1d5c51991fd74129a1aac3694a860fca7c7fbf8d1e22cfa601620248de50b463"
+  },
+  {
+    "path": "artifacts/policy_audit",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/policy_audit",
+    "bytes": 198256,
+    "sha256": "aad961393fd81951acb2121a6451f5a6d6e051f1572931a0bee5ea39f8864104",
+    "source_sha256": "aad961393fd81951acb2121a6451f5a6d6e051f1572931a0bee5ea39f8864104"
+  },
+  {
+    "path": "artifacts/policy_build",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/policy_build",
+    "bytes": 219984,
+    "sha256": "1a10c77892ca89ceeaddb8adbbbef0960d4ecba4ee9fc0f503fa1587ab5a1024",
+    "source_sha256": "1a10c77892ca89ceeaddb8adbbbef0960d4ecba4ee9fc0f503fa1587ab5a1024"
+  },
+  {
+    "path": "artifacts/rescue-proxy",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/rescue-proxy",
+    "bytes": 635624,
+    "sha256": "f915eca1b2ae5250afef76d3154a853b933278c283f82cfb4eb0cee7d2736d0f",
+    "source_sha256": "f915eca1b2ae5250afef76d3154a853b933278c283f82cfb4eb0cee7d2736d0f"
+  },
+  {
+    "path": "artifacts/restore-sepolicy",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/restore-sepolicy",
+    "bytes": 390383,
+    "sha256": "16f6ce7f25c1b56aba9e4179573c49a6c55f9b9fe3f18336029f6d83b5b4b2c2",
+    "source_sha256": "16f6ce7f25c1b56aba9e4179573c49a6c55f9b9fe3f18336029f6d83b5b4b2c2"
+  },
+  {
+    "path": "artifacts/session_server",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/session_server",
+    "bytes": 45216,
+    "sha256": "6b5ed70ed9ed78b0aa012552cfc987413f3854ce48dad01b6ce0bd4ed1755a86",
+    "source_sha256": "6b5ed70ed9ed78b0aa012552cfc987413f3854ce48dad01b6ce0bd4ed1755a86"
+  },
+  {
+    "path": "artifacts/unarmed.manifest",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/artifacts/unarmed.manifest",
+    "bytes": 112,
+    "sha256": "3b5c1c0a65fb1e43a67d18b31c498315b30e3a2d4494396ef5357153bf7bd7f5",
+    "source_sha256": "3b5c1c0a65fb1e43a67d18b31c498315b30e3a2d4494396ef5357153bf7bd7f5"
+  },
+  {
+    "path": "evidence/DEVELOPMENT.md",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/DEVELOPMENT.md",
+    "bytes": 2236,
+    "sha256": "1e27c126c73c3a2328ac99bb0ac31a50d9f4220061f54eb735f554adebb14f5b",
+    "source_sha256": "1e27c126c73c3a2328ac99bb0ac31a50d9f4220061f54eb735f554adebb14f5b"
+  },
+  {
+    "path": "evidence/audit-finish.stderr",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/audit-finish.stderr",
+    "bytes": 431,
+    "sha256": "5958177d214ca80c93be844b1b7b0f73307d562a3e764a887ceaad32383f18bb",
+    "source_sha256": "5958177d214ca80c93be844b1b7b0f73307d562a3e764a887ceaad32383f18bb"
+  },
+  {
+    "path": "evidence/audit-finish.stdout",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/audit-finish.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "evidence/build-log.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/build-log.json",
+    "bytes": 18430,
+    "sha256": "2fe587da811e2960971a922beb4b6018680958315d4c76adf93e2d90eb7fd571",
+    "source_sha256": "2fe587da811e2960971a922beb4b6018680958315d4c76adf93e2d90eb7fd571"
+  },
+  {
+    "path": "evidence/built-source-identity.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/built-source-identity.json",
+    "bytes": 2905,
+    "sha256": "18e323cbe5576cd9b468d1f77743656f4b870332d14ae7390a2d535d06e641a8",
+    "source_sha256": "18e323cbe5576cd9b468d1f77743656f4b870332d14ae7390a2d535d06e641a8"
+  },
+  {
+    "path": "evidence/concat-guest.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/concat-guest.json",
+    "bytes": 882,
+    "sha256": "ec233c5e42b6b727d964a5ef0e88901ce274e91fa4e8ea370ec35c6778d7c70c",
+    "source_sha256": "ec233c5e42b6b727d964a5ef0e88901ce274e91fa4e8ea370ec35c6778d7c70c"
+  },
+  {
+    "path": "evidence/concat-guest.log",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/concat-guest.log",
+    "bytes": 345,
+    "sha256": "8d7ea1f841f99b1bda7839c9c98d4f6467be49ec39f7c1154c10d8eac1946d6f",
+    "source_sha256": "8d7ea1f841f99b1bda7839c9c98d4f6467be49ec39f7c1154c10d8eac1946d6f"
+  },
+  {
+    "path": "evidence/core-tests.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/core-tests.json",
+    "bytes": 2299,
+    "sha256": "a005c647b353fd5eaa76c2695ece71e23bcd0c96c9cecb6d5b139ae4d8818a11",
+    "source_sha256": "a005c647b353fd5eaa76c2695ece71e23bcd0c96c9cecb6d5b139ae4d8818a11"
+  },
+  {
+    "path": "evidence/delivery-verification.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/delivery-verification.json",
+    "bytes": 220,
+    "sha256": "cdf22582b29983ae88121b299937cbd047c489059a0d9de54d0697ed211d2b55",
+    "source_sha256": "cdf22582b29983ae88121b299937cbd047c489059a0d9de54d0697ed211d2b55"
+  },
+  {
+    "path": "evidence/host-durability.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/host-durability.json",
+    "bytes": 430,
+    "sha256": "b6f3d17f29fbaf9ed9edaa45c0ad1a7431a1f7ac5a2fa0563fa5b1008a3a881a",
+    "source_sha256": "b6f3d17f29fbaf9ed9edaa45c0ad1a7431a1f7ac5a2fa0563fa5b1008a3a881a"
+  },
+  {
+    "path": "evidence/host-tests.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/host-tests.json",
+    "bytes": 2996,
+    "sha256": "2d9453a8bc4458125f089604699999b4bb0b6fff22ad528236b1da8a324697bc",
+    "source_sha256": "2d9453a8bc4458125f089604699999b4bb0b6fff22ad528236b1da8a324697bc"
+  },
+  {
+    "path": "evidence/independent-container.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/independent-container.json",
+    "bytes": 978,
+    "sha256": "08e6f710cf49bcf6b4c4a9db77cc3c522a2542898a9a29c1637651a552f8dba9",
+    "source_sha256": "08e6f710cf49bcf6b4c4a9db77cc3c522a2542898a9a29c1637651a552f8dba9"
+  },
+  {
+    "path": "evidence/input-pins.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/input-pins.json",
+    "bytes": 357,
+    "sha256": "6a483b832131414e27e80732a4b6c18a0c2919f3fcd3d889d9c3491a14a077c3",
+    "source_sha256": "6a483b832131414e27e80732a4b6c18a0c2919f3fcd3d889d9c3491a14a077c3"
+  },
+  {
+    "path": "evidence/original-unchanged.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/original-unchanged.json",
+    "bytes": 278,
+    "sha256": "b8451426098dad4dce170da10416db4720f39ed68d36b05a27047dedc54926b9",
+    "source_sha256": "b8451426098dad4dce170da10416db4720f39ed68d36b05a27047dedc54926b9"
+  },
+  {
+    "path": "evidence/policy-checks.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/policy-checks.json",
+    "bytes": 34578,
+    "sha256": "968fe50f6ba4e551e6b1bc57e0d11dc8aa534b69c220db7a195139806664b636",
+    "source_sha256": "968fe50f6ba4e551e6b1bc57e0d11dc8aa534b69c220db7a195139806664b636"
+  },
+  {
+    "path": "evidence/policy-structure.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/policy-structure.json",
+    "bytes": 212,
+    "sha256": "5a60a911abde65b92d24c1b63a9ee7c9176f2f9b8762dffdbb8385524202684f",
+    "source_sha256": "5a60a911abde65b92d24c1b63a9ee7c9176f2f9b8762dffdbb8385524202684f"
+  },
+  {
+    "path": "evidence/remote-build.stderr",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/remote-build.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "evidence/remote-build.stdout",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/remote-build.stdout",
+    "bytes": 26,
+    "sha256": "189be4118cf39afe6fe79a7deb2a4319697c31e0caed2cbb22fa1cebe58a983e",
+    "source_sha256": "189be4118cf39afe6fe79a7deb2a4319697c31e0caed2cbb22fa1cebe58a983e"
+  },
+  {
+    "path": "evidence/remote-r1.stderr",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/remote-r1.stderr",
+    "bytes": 971,
+    "sha256": "d6b0c991394f7d21f7d3803ec6a5004b2ecfa5390f8b03e387c573266636b09e",
+    "source_sha256": "d6b0c991394f7d21f7d3803ec6a5004b2ecfa5390f8b03e387c573266636b09e"
+  },
+  {
+    "path": "evidence/remote-r1.stdout",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/remote-r1.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "evidence/remote-r2.stderr",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/remote-r2.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "evidence/remote-r2.stdout",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/remote-r2.stdout",
+    "bytes": 42,
+    "sha256": "f1648adc40d657c9c794ebd5fbd4c2e712097fc43df81de0424b8bbffd9f020d",
+    "source_sha256": "f1648adc40d657c9c794ebd5fbd4c2e712097fc43df81de0424b8bbffd9f020d"
+  },
+  {
+    "path": "evidence/remote-r3.stderr",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/remote-r3.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "evidence/remote-r3.stdout",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/remote-r3.stdout",
+    "bytes": 42,
+    "sha256": "f1648adc40d657c9c794ebd5fbd4c2e712097fc43df81de0424b8bbffd9f020d",
+    "source_sha256": "f1648adc40d657c9c794ebd5fbd4c2e712097fc43df81de0424b8bbffd9f020d"
+  },
+  {
+    "path": "evidence/reproduction.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/reproduction.json",
+    "bytes": 3185,
+    "sha256": "4102706b0f0d79254b9c62472a55ad7f50ec5f48da7eb175c42ea5833f4ca2d1",
+    "source_sha256": "4102706b0f0d79254b9c62472a55ad7f50ec5f48da7eb175c42ea5833f4ca2d1"
+  },
+  {
+    "path": "evidence/resources.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/resources.json",
+    "bytes": 112,
+    "sha256": "11e15874bffd20668efa37e9b8ae72ecf5d89437a39d3c39e4b1d15c9c30bb5e",
+    "source_sha256": "11e15874bffd20668efa37e9b8ae72ecf5d89437a39d3c39e4b1d15c9c30bb5e"
+  },
+  {
+    "path": "evidence/toolchain.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/evidence/toolchain.json",
+    "bytes": 912,
+    "sha256": "936c32ae0ed76fbc08869cfe6bfde21253d88aaa235fe45903263d037fc05668",
+    "source_sha256": "936c32ae0ed76fbc08869cfe6bfde21253d88aaa235fe45903263d037fc05668"
+  },
+  {
+    "path": "scripts/assemble_core.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/scripts/assemble_core.py",
+    "bytes": 1871,
+    "sha256": "5475fb1f379e57070368427788c4350dd051aff98c64351cd2cc5134e9c4f892",
+    "source_sha256": "5475fb1f379e57070368427788c4350dd051aff98c64351cd2cc5134e9c4f892"
+  },
+  {
+    "path": "scripts/assemble_final.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/scripts/assemble_final.py",
+    "bytes": 1880,
+    "sha256": "876fdd4610b16ab59a9dca0b60fdd169f88ccddfac160ebe48a79283d2a0ac36",
+    "source_sha256": "876fdd4610b16ab59a9dca0b60fdd169f88ccddfac160ebe48a79283d2a0ac36"
+  },
+  {
+    "path": "scripts/build_remote.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/scripts/build_remote.py",
+    "bytes": 3736,
+    "sha256": "31f84421635ab9d7e573d3ee6ca48b30b25e4c71082c7e01482c2d4f9d1bb487",
+    "source_sha256": "31f84421635ab9d7e573d3ee6ca48b30b25e4c71082c7e01482c2d4f9d1bb487"
+  },
+  {
+    "path": "scripts/collect.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/scripts/collect.py",
+    "bytes": 1158,
+    "sha256": "c640293f4e69e08c363e8fc67abe0de9c53a5849c70261bf0b0edebe0e07d92b",
+    "source_sha256": "c640293f4e69e08c363e8fc67abe0de9c53a5849c70261bf0b0edebe0e07d92b"
+  },
+  {
+    "path": "scripts/finish_audit.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/scripts/finish_audit.py",
+    "bytes": 1599,
+    "sha256": "2304de63cb00e00c8cd1575bc0897f55e48eef32a8514de327f15365623faaa5",
+    "source_sha256": "2304de63cb00e00c8cd1575bc0897f55e48eef32a8514de327f15365623faaa5"
+  },
+  {
+    "path": "scripts/prepare.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/scripts/prepare.py",
+    "bytes": 2622,
+    "sha256": "584c8da3f9230558d812346e031463318a75154b1c84a98143d520cbee141fd4",
+    "source_sha256": "584c8da3f9230558d812346e031463318a75154b1c84a98143d520cbee141fd4"
+  },
+  {
+    "path": "scripts/remote.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/scripts/remote.py",
+    "bytes": 1869,
+    "sha256": "0fc5c5d6455edd68ea38f318011451a4aa4096d9de9c7b0662c828b874dd3f5f",
+    "source_sha256": "0fc5c5d6455edd68ea38f318011451a4aa4096d9de9c7b0662c828b874dd3f5f"
+  },
+  {
+    "path": "scripts/retry_concat.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/scripts/retry_concat.py",
+    "bytes": 966,
+    "sha256": "9e679b107efad67873978d5d17216db65b2df06069bf2041a6c6e32725ed3832",
+    "source_sha256": "9e679b107efad67873978d5d17216db65b2df06069bf2041a6c6e32725ed3832"
+  },
+  {
+    "path": "scripts/update_remote.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/scripts/update_remote.py",
+    "bytes": 1740,
+    "sha256": "c8590c1ece0a60ea5f1905db16d80f96fadeb9beb6c05f6a7d122f1aac9bfb18",
+    "source_sha256": "c8590c1ece0a60ea5f1905db16d80f96fadeb9beb6c05f6a7d122f1aac9bfb18"
+  },
+  {
+    "path": "scripts/verify_container.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/scripts/verify_container.py",
+    "bytes": 5039,
+    "sha256": "201b904e036b3482547799298303d2cc55b654a497b1e40b1cdd378d41db40b5",
+    "source_sha256": "201b904e036b3482547799298303d2cc55b654a497b1e40b1cdd378d41db40b5"
+  },
+  {
+    "path": "scripts/verify_delivery.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/scripts/verify_delivery.py",
+    "bytes": 2156,
+    "sha256": "70989177c497a6ec03f7e3fa460d5b694f7186122825ae276f824c593895da20",
+    "source_sha256": "70989177c497a6ec03f7e3fa460d5b694f7186122825ae276f824c593895da20"
+  },
+  {
+    "path": "source/bootformat.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/bootformat.py",
+    "bytes": 3936,
+    "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017",
+    "source_sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017"
+  },
+  {
+    "path": "source/client.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/client.py",
+    "bytes": 7199,
+    "sha256": "0072398a0aa2da83bdf176d672e7ec767b6aaf034892fb603054a22549c5bf69",
+    "source_sha256": "0072398a0aa2da83bdf176d672e7ec767b6aaf034892fb603054a22549c5bf69"
+  },
+  {
+    "path": "source/common.h",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/common.h",
+    "bytes": 2773,
+    "sha256": "90fe60e79b3cc3932dab7e824bc803bb18ba086ea079beca8298c34ccf2a53c3",
+    "source_sha256": "90fe60e79b3cc3932dab7e824bc803bb18ba086ea079beca8298c34ccf2a53c3"
+  },
+  {
+    "path": "source/core_binding.h",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/core_binding.h",
+    "bytes": 907,
+    "sha256": "3856a65d798c494286b42362fb2132f697ec7b4427a9fceeb6befb75e9c08be7",
+    "source_sha256": "3856a65d798c494286b42362fb2132f697ec7b4427a9fceeb6befb75e9c08be7"
+  },
+  {
+    "path": "source/file_contexts.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/file_contexts.py",
+    "bytes": 1657,
+    "sha256": "012a4f0a71f49772a12e537721b5aca3e5de1b201b2dc5aaa07a26e07cdb650c",
+    "source_sha256": "012a4f0a71f49772a12e537721b5aca3e5de1b201b2dc5aaa07a26e07cdb650c"
+  },
+  {
+    "path": "source/generated_host_binding.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/generated_host_binding.py",
+    "bytes": 173,
+    "sha256": "ad07c65143a15699012716ecc8d78606ea2a18aa870ae2d9d288ea1e316cec67",
+    "source_sha256": "ad07c65143a15699012716ecc8d78606ea2a18aa870ae2d9d288ea1e316cec67"
+  },
+  {
+    "path": "source/handoff.h",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/handoff.h",
+    "bytes": 735,
+    "sha256": "7281fcf20343f8e6fbd95fa70c73b0c753f42f91e7230fc84014f02ee68af908",
+    "source_sha256": "7281fcf20343f8e6fbd95fa70c73b0c753f42f91e7230fc84014f02ee68af908"
+  },
+  {
+    "path": "source/host.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/host.py",
+    "bytes": 4567,
+    "sha256": "7830374c08c78db915099f12c7d635c7df9280fc153e12b165ef54a1d98d6dd3",
+    "source_sha256": "7830374c08c78db915099f12c7d635c7df9280fc153e12b165ef54a1d98d6dd3"
+  },
+  {
+    "path": "source/manifest.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/manifest.py",
+    "bytes": 4200,
+    "sha256": "c9a40f5e1029e8252abc9a8256d63d9fae0d4e1c5373eb247dc76e2e06c52ae2",
+    "source_sha256": "c9a40f5e1029e8252abc9a8256d63d9fae0d4e1c5373eb247dc76e2e06c52ae2"
+  },
+  {
+    "path": "source/p10_restore.c",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/p10_restore.c",
+    "bytes": 6615,
+    "sha256": "cddda42708f1444b7d773d57cb7e750a8a34d32e7a78b2c791a096a0a420b943",
+    "source_sha256": "cddda42708f1444b7d773d57cb7e750a8a34d32e7a78b2c791a096a0a420b943"
+  },
+  {
+    "path": "source/policy_audit.c",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/policy_audit.c",
+    "bytes": 3512,
+    "sha256": "a8419a1ff771646dc28c96fa342f87ce4d949ee6368660bcd962f4d3053d9333",
+    "source_sha256": "a8419a1ff771646dc28c96fa342f87ce4d949ee6368660bcd962f4d3053d9333"
+  },
+  {
+    "path": "source/policy_build.c",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/policy_build.c",
+    "bytes": 5562,
+    "sha256": "1fbb9b714f630c7d058f583b3d42242814413988ee41b188463c1291dda56fdf",
+    "source_sha256": "1fbb9b714f630c7d058f583b3d42242814413988ee41b188463c1291dda56fdf"
+  },
+  {
+    "path": "source/prior_container.h",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/prior_container.h",
+    "bytes": 2998,
+    "sha256": "ef0b9c351e4ffb33e0d9159c192a479ec426b1d332f27f9000598d0cf8160df4",
+    "source_sha256": "ef0b9c351e4ffb33e0d9159c192a479ec426b1d332f27f9000598d0cf8160df4"
+  },
+  {
+    "path": "source/rescue.c",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/rescue.c",
+    "bytes": 15945,
+    "sha256": "23b0af1a8c813ae925459bf4614f768a5f90e5a76efb49bf8523135159c72c49",
+    "source_sha256": "23b0af1a8c813ae925459bf4614f768a5f90e5a76efb49bf8523135159c72c49"
+  },
+  {
+    "path": "source/restore_core.h",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/restore_core.h",
+    "bytes": 4439,
+    "sha256": "152d83f4110bc1eb4f1ab5d285ae4c322cd9e8a87937c96ea332489429c26c8f",
+    "source_sha256": "152d83f4110bc1eb4f1ab5d285ae4c322cd9e8a87937c96ea332489429c26c8f"
+  },
+  {
+    "path": "source/sha1.h",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/sha1.h",
+    "bytes": 1458,
+    "sha256": "ef1b62f9220f23b953833d4066e2fc154b25abe4780b867feeba45dc6012cbce",
+    "source_sha256": "ef1b62f9220f23b953833d4066e2fc154b25abe4780b867feeba45dc6012cbce"
+  },
+  {
+    "path": "source/sha256.h",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/sha256.h",
+    "bytes": 2434,
+    "sha256": "4011564ce3516f8cc8e6e375cdd2923e72e9f9e74e77dc6e7db0637bda52efe0",
+    "source_sha256": "4011564ce3516f8cc8e6e375cdd2923e72e9f9e74e77dc6e7db0637bda52efe0"
+  },
+  {
+    "path": "source/stock_binding.h",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/source/stock_binding.h",
+    "bytes": 213,
+    "sha256": "e85c82f2357850cd438766fb775033e9f0d52aa25a4f387db0ce61e51c86c140",
+    "source_sha256": "e85c82f2357850cd438766fb775033e9f0d52aa25a4f387db0ce61e51c86c140"
+  },
+  {
+    "path": "tests/concat_probe.c",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/tests/concat_probe.c",
+    "bytes": 931,
+    "sha256": "9a5149a190f82f92d3af294199e2f7f869a0e04d79ac546a7e28e3e93981d503",
+    "source_sha256": "9a5149a190f82f92d3af294199e2f7f869a0e04d79ac546a7e28e3e93981d503"
+  },
+  {
+    "path": "tests/concat_test.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/tests/concat_test.py",
+    "bytes": 1974,
+    "sha256": "1d443d060b5561d66216c5b72cc9e3218db55a470772a0e919366191fb7edaa6",
+    "source_sha256": "1d443d060b5561d66216c5b72cc9e3218db55a470772a0e919366191fb7edaa6"
+  },
+  {
+    "path": "tests/core_tests.c",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/tests/core_tests.c",
+    "bytes": 2576,
+    "sha256": "4b7084d62b53c42c092e15638847c5516a322dd6599d87c0b2651128c3b7d04a",
+    "source_sha256": "4b7084d62b53c42c092e15638847c5516a322dd6599d87c0b2651128c3b7d04a"
+  },
+  {
+    "path": "tests/host_durability.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/tests/host_durability.py",
+    "bytes": 2330,
+    "sha256": "e932b96d9ca061ba99c48d664d9dfc769feb136026ca2d4e9c1979dbb7095a3b",
+    "source_sha256": "e932b96d9ca061ba99c48d664d9dfc769feb136026ca2d4e9c1979dbb7095a3b"
+  },
+  {
+    "path": "tests/host_tests.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/tests/host_tests.py",
+    "bytes": 4901,
+    "sha256": "729ded16bf728d7528dde676647bc53fbba7813650a4f57ce461c85bd6c033a2",
+    "source_sha256": "729ded16bf728d7528dde676647bc53fbba7813650a4f57ce461c85bd6c033a2"
+  },
+  {
+    "path": "tests/policy_checks.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/tests/policy_checks.py",
+    "bytes": 3690,
+    "sha256": "0a367f27a483ef0918d95a984efae0cde307d2920b3f42e998d8b11cb00ecca9",
+    "source_sha256": "0a367f27a483ef0918d95a984efae0cde307d2920b3f42e998d8b11cb00ecca9"
+  },
+  {
+    "path": "tests/probe_binding.h",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/tests/probe_binding.h",
+    "bytes": 182,
+    "sha256": "08b3ea6e34744d2bacdf4d89bf658a683d7b1f736e57d382393bf9be079289a4",
+    "source_sha256": "08b3ea6e34744d2bacdf4d89bf658a683d7b1f736e57d382393bf9be079289a4"
+  },
+  {
+    "path": "tests/reproduce.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/tests/reproduce.py",
+    "bytes": 1831,
+    "sha256": "3c307c221bf680e8e39022bbc975fbc7611267eef642ba371a91da7f9f28bf5c",
+    "source_sha256": "3c307c221bf680e8e39022bbc975fbc7611267eef642ba371a91da7f9f28bf5c"
+  },
+  {
+    "path": "tests/session_server.c",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/tests/session_server.c",
+    "bytes": 1036,
+    "sha256": "6ae8e4ff9e52d0a9fb7443ca47b328cde24c4282b3684101133cc464db427ec9",
+    "source_sha256": "6ae8e4ff9e52d0a9fb7443ca47b328cde24c4282b3684101133cc464db427ec9"
+  },
+  {
+    "path": "tests/storage.h",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/tests/storage.h",
+    "bytes": 3051,
+    "sha256": "18c911276f71b84d5b6c7bbd1add027422d8b0bddf3ac822c6eb9e52cf4e6b43",
+    "source_sha256": "18c911276f71b84d5b6c7bbd1add027422d8b0bddf3ac822c6eb9e52cf4e6b43"
+  },
+  {
+    "path": "tests/test_adapters.py",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/tests/test_adapters.py",
+    "bytes": 15503,
+    "sha256": "6556cff96bb85cf690e63d67d2814021e38b036a078adbcc0f38d5c49a980170",
+    "source_sha256": "6556cff96bb85cf690e63d67d2814021e38b036a078adbcc0f38d5c49a980170"
+  },
+  {
+    "path": "tests/test_server.c",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/tests/test_server.c",
+    "bytes": 760,
+    "sha256": "b85d2e5e2abbb6f3544ccd3997ce15046e7477a7e20c530e2c3bda5e16a24bd2",
+    "source_sha256": "b85d2e5e2abbb6f3544ccd3997ce15046e7477a7e20c530e2c3bda5e16a24bd2"
+  },
+  {
+    "path": "tool-pins.json",
+    "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-ram-original-recovery-restorer/tool-pins.json",
+    "bytes": 535,
+    "sha256": "9b1bc998b999a5b7e62c53f37ef6af06a56ad531e47503c4fcb5f56ab131653f",
+    "source_sha256": "9b1bc998b999a5b7e62c53f37ef6af06a56ad531e47503c4fcb5f56ab131653f"
+  }
+]

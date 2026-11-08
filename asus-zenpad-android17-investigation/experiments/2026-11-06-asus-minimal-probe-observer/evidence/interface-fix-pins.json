@@ -1,0 +1,21 @@
+{
+  "utc": "2026-11-07T03:13:22.494261+00:00",
+  "preimage_sha256": "1d841ddae19394490b3a58b4ef61e6ce24464242af787715daf3b3714a5f0d8b",
+  "postimage_sha256": "776f9f90c748187cbc3e55935a2c8c51a10ae5790500e39d7b22437c08ad16e5",
+  "fix": "Ignore only known mass-storage driver-nub descriptor copies; require the sole actual USB interface object; unknown or duplicate descriptors remain rejected.",
+  "basis": "Actual parent IOService observation collector-host-schema.json: physicalIOUSBHostInterface + duplicate descriptor fields in IOUSBMassStorageInterfaceNub/DriverNub.",
+  "before_regressions": "3methods:1failure+1error reproduce incorrectacceptance and false refusal.",
+  "intermediate_failure": "First interface-only filter weakened refusal of unclassified descriptor; inheritedtestcaughtit, narrowedtonub-onlyexclusion. No testassertionrelaxed.",
+  "final_tests": 28,
+  "final_failures": 0,
+  "final_errors": 0,
+  "files": {
+    "scripts/observe.py": "776f9f90c748187cbc3e55935a2c8c51a10ae5790500e39d7b22437c08ad16e5",
+    "evidence/host-acceptance.json": "1603d8e6d0dc03620c3d6ff1747d188bd9cd68bb1e13df3a6f853389452818ee",
+    "tests/test_observe.py": "76b68700c12d92201a15503d1353660973643fbe62aaa3bce8bae294a18a9d00",
+    "tests/test_interface_nubs.py": "c8d11f982514ea836d4d5622e4db2614f0c7d4caa7aff1f9c1eb5a65c36d2478",
+    "evidence/interface-before-tests.json": "ee3aa1b8eef7635db00ff3146028edd8605adf858bae20767f0b3351d6d1470e",
+    "evidence/interface-after-tests.json": "80eba67adc9a595adaf8d045555e2c905245443376659bad7297369a84007e9f"
+  },
+  "device_trial_performed": false
+}

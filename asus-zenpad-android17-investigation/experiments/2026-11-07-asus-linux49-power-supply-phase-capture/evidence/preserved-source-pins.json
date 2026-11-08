@@ -1,0 +1,16 @@
+{
+  "kernel/time/timekeeping.c": "42effa2858ae8683a555757f1d82c7a8b9384f656296e234f88efa4384f77e07",
+  "drivers/clocksource/arm_arch_timer.c": "ed5182139af568c73a8c7eb6eb600d647a97ef5d91ce942d52c47260ddbd06c4",
+  "drivers/misc/mediatek/video/mt8163/dispsys/ddp_drv.c": "221a7e8f1bcceaec04b63fce1ace55d3739d1f3e7ebfe6c638c6f3bc84dec042",
+  "kernel/workqueue_internal.h": "1a25c3afc81d43d5c731e796f7375bf059c14445945dc60a80db1eeb6957b9bc",
+  "kernel/kthread.c": "8010e5f276b45b4303ff7dca89d2d7f6d5858f3590df34f447e0859009eac82a",
+  "include/linux/kthread.h": "c6b35c06d5b92554e84360a5191f785734407e0541c32c694247371ab34c78e2",
+  "include/linux/sched.h": "23bfdbe61befab00f17b5f2242117e031254455d77383d69f7f31379d6a78360",
+  "arch/arm64/include/asm/current.h": "3c0a8da91feb3df9934ad586cab46c757356e74368cb1cba19cebc2055e825cf",
+  "arch/arm64/kernel/asm-offsets.c": "d1eb47dbb6c97bcf61841acd72378ac4044ca5cad9e8265a2f4d4c1c2ef07075",
+  "arch/arm64/include/asm/arch_timer.h": "617e79936d3028e62b842c5e2b9499b19e54de5fac4c8c2bd87a9e18cfb0c614",
+  "arch/arm64/mm/cache.S": "efb6b0ed193019547277403fc58d0ea181f7f794762376953f78955ec5de7354",
+  "kernel/sched/core.c": "0011d79248859aa241a025767ff30ea50002b6e879ca56372468c3ca0c363ec7",
+  "kernel/workqueue.c": "3fb24d48d5b68fc7a84d564f3de71e98383ee8eb274e1a9c55d8862a8d3c9f2a",
+  "include/linux/power_supply.h": "02028897a99ca42b4688c029d62d78c4203ee2d18852bdf1df3ee677f071bcf6"
+}

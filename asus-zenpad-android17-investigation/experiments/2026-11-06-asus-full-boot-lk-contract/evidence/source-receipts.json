@@ -1,0 +1,264 @@
+{
+  "files": {
+    "kernel/init/main.c": {
+      "remote_path": "/srv/android/asus-build-continuation/kernel/init/main.c",
+      "sha256": "f7110828626521dc7a2058d5cf4da47fb7fadea1a48a47ecc71f6166a7c0a50a"
+    },
+    "kernel/arch/arm64/kernel/setup.c": {
+      "remote_path": "/srv/android/asus-build-continuation/kernel/arch/arm64/kernel/setup.c",
+      "sha256": "a4747254f2851047eba9520f56c04cbc066e56b439658331fcf6ad4f771c455f"
+    },
+    "kernel/arch/arm64/mm/init.c": {
+      "remote_path": "/srv/android/asus-build-continuation/kernel/arch/arm64/mm/init.c",
+      "sha256": "27442b977fa7a209125f3dcee5f2ae9768fc40f9d4e1aa896ad02cfccdd982de"
+    },
+    "kernel/drivers/of/fdt.c": {
+      "remote_path": "/srv/android/asus-build-continuation/kernel/drivers/of/fdt.c",
+      "sha256": "d16f3132ce3a887ab3e1ff361a0d58f5dd0034073ba64b341decbf85db848c6c"
+    },
+    "kernel/security/selinux/hooks.c": {
+      "remote_path": "/srv/android/asus-build-continuation/kernel/security/selinux/hooks.c",
+      "sha256": "37e17317112d813dbb85884ba7edad0ab8bce64d59b590d90c8ca1be65a40e91"
+    },
+    "kernel/security/selinux/Kconfig": {
+      "remote_path": "/srv/android/asus-build-continuation/kernel/security/selinux/Kconfig",
+      "sha256": "d3309ed36b619847f5b6d5aa4d759fcadf1e64cf0ea9ba7b54c971b70ed8dafe"
+    },
+    "aosp/system/core/init/selinux.cpp": {
+      "remote_path": "/srv/android/lineage24/system/core/init/selinux.cpp",
+      "sha256": "fe0c79ed657ff7cffbde0026cebd0f741b2b5703dbd092d2e19b2df52b5a139e"
+    },
+    "aosp/system/core/init/Android.bp": {
+      "remote_path": "/srv/android/lineage24/system/core/init/Android.bp",
+      "sha256": "1735cb1ed0e787c75d20b412abf55e4aaaa73750cfb0a7654dd096a148d9b363"
+    },
+    "aosp/system/core/init/property_service.cpp": {
+      "remote_path": "/srv/android/lineage24/system/core/init/property_service.cpp",
+      "sha256": "5c3c53b56705328e1d482c897df6e8ab129c4998efab620595aec717464df4be"
+    },
+    "aosp/system/core/init/init.cpp": {
+      "remote_path": "/srv/android/lineage24/system/core/init/init.cpp",
+      "sha256": "4070fb5640a42fcd24d1d4b6cb88981b4648be5c9135e984e88800e345bf4f3b"
+    },
+    "aosp/system/core/init/first_stage_init.cpp": {
+      "remote_path": "/srv/android/lineage24/system/core/init/first_stage_init.cpp",
+      "sha256": "ddb34b37d470ad8266150865513ed25cbf29e1d404e248022765fbb1d9bc3b31"
+    },
+    "aosp/system/core/init/first_stage_mount.cpp": {
+      "remote_path": "/srv/android/lineage24/system/core/init/first_stage_mount.cpp",
+      "sha256": "c4ca7f2e3d7f43e6c33d3112305427b18ce6c76d7818acf98e2204d9fd6acb38"
+    },
+    "aosp/system/core/init/block_dev_initializer.cpp": {
+      "remote_path": "/srv/android/lineage24/system/core/init/block_dev_initializer.cpp",
+      "sha256": "0f3aa868b685dec98c43b788ab599decb4e9d0274d1cf31436ab0bf9c6b6668e"
+    },
+    "aosp/system/fs/fs_mgr/libfstab/boot_config.cpp": {
+      "remote_path": "/srv/android/lineage24/system/fs/fs_mgr/libfstab/boot_config.cpp",
+      "sha256": "b302ddc844fb6eb46f905c69a0e67d1067f7524c34db3d9b722f44b5927e20c8"
+    },
+    "aosp/system/fs/fs_mgr/libfstab/fstab.cpp": {
+      "remote_path": "/srv/android/lineage24/system/fs/fs_mgr/libfstab/fstab.cpp",
+      "sha256": "2667f00763b474e55d658920e25923d17ec6c38eafa4243f33ad1924349338b5"
+    },
+    "aosp/device/asus/p00a/BoardConfig.mk": {
+      "remote_path": "/srv/android/lineage24/device/asus/p00a/BoardConfig.mk",
+      "sha256": "3b0c50fa36d60a16b51efbe7b953523a6f2309573b7ff58c645103b22b9e4d8f"
+    },
+    "aosp/device/asus/p00a/rootdir/fstab.mt8163": {
+      "remote_path": "/srv/android/lineage24/device/asus/p00a/rootdir/fstab.mt8163",
+      "sha256": "04179d23e76be8755f6452319e05cc89f2438b51fcc539cb76695c9c65c57e75"
+    },
+    "aosp/build/release/flag_values/trunk_staging/RELEASE_PLATFORM_SDK_VERSION.textproto": {
+      "remote_path": "/srv/android/lineage24/build/release/flag_values/trunk_staging/RELEASE_PLATFORM_SDK_VERSION.textproto",
+      "sha256": "8441ad6bb303cce43a07c5858d04be95a0c6a0417993adee4ae3f0bb92550f9b"
+    },
+    "aosp/build/release/flag_values/cp2a/RELEASE_PLATFORM_SDK_VERSION.textproto": {
+      "remote_path": "/srv/android/lineage24/build/release/flag_values/cp2a/RELEASE_PLATFORM_SDK_VERSION.textproto",
+      "sha256": "8441ad6bb303cce43a07c5858d04be95a0c6a0417993adee4ae3f0bb92550f9b"
+    }
+  },
+  "kernel_argument_search": {
+    "file_count": 48366,
+    "sorted_walk_manifest_sha256": "6af80e904e4ab0168e6185e1db60dea706118bb00e72f9275284a0ef3d6c71fb",
+    "suffixes": [
+      ".c",
+      ".h",
+      ".S"
+    ],
+    "symlinks_followed": false,
+    "matches": [
+      {
+        "path": "drivers/bluetooth/ath3k.c",
+        "sha256": "0b54a6d5629f9eca311083ea721cd40dfab4235bbed5371fd6a2ef4b264f62fe",
+        "lines": [
+          {
+            "line": 55,
+            "text": "\t__le32\tbuild_version;"
+          },
+          {
+            "line": 403,
+            "text": "\t__u32 pt_rom_version, pt_build_version;"
+          },
+          {
+            "line": 434,
+            "text": "\tpt_build_version = get_unaligned_le32(firmware->data +"
+          },
+          {
+            "line": 438,
+            "text": "\t    pt_build_version <= le32_to_cpu(fw_version.build_version)) {"
+          }
+        ]
+      },
+      {
+        "path": "drivers/net/ethernet/intel/i40e/i40e_common.c",
+        "sha256": "c7256a53a3e004898d0ba6d90dabc2d5834d249e743f3ebab6a23b86f42f432e",
+        "lines": [
+          {
+            "line": 2462,
+            "text": "\tcmd->driver_build_ver = dv->build_version;"
+          },
+          {
+            "line": 2463,
+            "text": "\tcmd->driver_subbuild_ver = dv->subbuild_version;"
+          }
+        ]
+      },
+      {
+        "path": "drivers/net/ethernet/intel/i40e/i40e_main.c",
+        "sha256": "23a0f2b970d777b72a02d01abdfba87af3e080a43a64a16a2175f55dbf2701fc",
+        "lines": [
+          {
+            "line": 6814,
+            "text": "\tdv.build_version = DRV_VERSION_BUILD;"
+          },
+          {
+            "line": 6815,
+            "text": "\tdv.subbuild_version = 0;"
+          }
+        ]
+      },
+      {
+        "path": "drivers/net/ethernet/intel/i40e/i40e_type.h",
+        "sha256": "efa15d26f552bcf04be5d067be3be3d65c8492633c9259c44d040d24ce14fadd",
+        "lines": [
+          {
+            "line": 588,
+            "text": "\tu8 build_version;"
+          },
+          {
+            "line": 589,
+            "text": "\tu8 subbuild_version;"
+          }
+        ]
+      },
+      {
+        "path": "drivers/net/ethernet/intel/i40evf/i40e_type.h",
+        "sha256": "34ea532ace374661d963976f8fb405a41965226e8662f89d39e90167ddaa5909",
+        "lines": [
+          {
+            "line": 558,
+            "text": "\tu8 build_version;"
+          },
+          {
+            "line": 559,
+            "text": "\tu8 subbuild_version;"
+          }
+        ]
+      },
+      {
+        "path": "drivers/net/wireless/atmel/atmel.c",
+        "sha256": "acd4592a10e96249684bb736a3e6d3b14f9acd9eb1fc5cf95bd5a79a4bd6bd15",
+        "lines": [
+          {
+            "line": 492,
+            "text": "\t\tu16 build_version;"
+          },
+          {
+            "line": 1425,
+            "text": "\t\t\t   priv->host_info.build_version);"
+          },
+          {
+            "line": 3683,
+            "text": "\tiface->build_version = le16_to_cpu(iface->build_version);"
+          }
+        ]
+      },
+      {
+        "path": "drivers/scsi/bfa/bfa_defs.h",
+        "sha256": "161eccd7d1370f31a3082bdbede51ba963faa6036be89527c3797424d3b6624d",
+        "lines": [
+          {
+            "line": 700,
+            "text": "enum bfa_boot_bootopt {"
+          },
+          {
+            "line": 727,
+            "text": "\tu8\t\tbootopt;        /* bfa_boot_bootopt_t */"
+          }
+        ]
+      },
+      {
+        "path": "drivers/scsi/qla4xxx/ql4_fw.h",
+        "sha256": "62a1508771dc922a675a22321f3744fd8155483d6bcba5cddba6f63efa930f6d",
+        "lines": [
+          {
+            "line": 1013,
+            "text": "\tuint16_t fw_build_version;\t/* 06 - 07 */"
+          }
+        ]
+      },
+      {
+        "path": "drivers/staging/vc04_services/interface/vchiq_arm/vchiq_build_info.h",
+        "sha256": "b05b06d323a7d37a9267a39a58d698e6b0f88aa7bf5ac345ba4788f0ed0f950b",
+        "lines": [
+          {
+            "line": 35,
+            "text": "const char *vchiq_get_build_version(void);"
+          }
+        ]
+      },
+      {
+        "path": "drivers/staging/vc04_services/interface/vchiq_arm/vchiq_version.c",
+        "sha256": "6e54ed661366d251c88a3f021d6d5ded52b39838686ac42d77cb534033135e28",
+        "lines": [
+          {
+            "line": 37,
+            "text": "VC_DEBUG_DECLARE_STRING_VAR( vchiq_build_version, \"9245b4c35b99b3870e1f7dc598c5692b3c66a6f0 (tainted)\" );"
+          },
+          {
+            "line": 46,
+            "text": "const char *vchiq_get_build_version( void )"
+          },
+          {
+            "line": 48,
+            "text": "   return vchiq_build_version;"
+          }
+        ]
+      },
+      {
+        "path": "include/uapi/linux/adfs_fs.h",
+        "sha256": "18467eaffd12ad1188b1d04b71f24af46ef57614fc733db08f79791a09388876",
+        "lines": [
+          {
+            "line": 18,
+            "text": "    __u8  bootoption;"
+          }
+        ]
+      },
+      {
+        "path": "init/main.c",
+        "sha256": "f7110828626521dc7a2058d5cf4da47fb7fadea1a48a47ecc71f6166a7c0a50a",
+        "lines": [
+          {
+            "line": 280,
+            "text": "static int __init unknown_bootoption(char *param, char *val,"
+          },
+          {
+            "line": 521,
+            "text": "\t\t\t\t  -1, -1, NULL, &unknown_bootoption);"
+          }
+        ]
+      }
+    ]
+  }
+}

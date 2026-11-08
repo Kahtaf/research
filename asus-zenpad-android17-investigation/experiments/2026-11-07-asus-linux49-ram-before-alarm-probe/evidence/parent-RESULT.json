@@ -1,0 +1,17 @@
+{
+  "run_uuid": "b388b428-514d-49ee-949f-6b79317699bd",
+  "outcome": "OBSERVATIONS_COLLECTED",
+  "fresh_record_count": 10,
+  "clock_nanosleep_return_records": [],
+  "sleep_returned_successfully": false,
+  "observation_completed": false,
+  "fixed_block_nodes": [],
+  "last_fresh_line": "ASUS49-PRIMITIVE run=b388b428-514d-49ee-949f-6b79317699bd stage=begin op=alarm.nominal10s.timer-dependent path=- rc=0 errno=0 value=-",
+  "stock_return_verified": true,
+  "new_stock_boot_id": "7cb4b7ca-76c4-4dc5-ac5d-5ced7a3fe9a8",
+  "complete_log_bytes": 32031,
+  "complete_log_sha256": "1c3a37b2c863a59c8011b715b374d720d665ba8c8927d6a207abb2bc65f1fa66",
+  "collector_receipt": "2026-11-07-asus-usb-retained-log-collector/evidence/retained-trace-b5b08753-1076-4d7d-b3b9-31fab5a5e380.json",
+  "OS_partitions_changed": false,
+  "at": "2026-11-08T01:07:19.979078+00:00"
+}

@@ -1,0 +1,5 @@
+{
+  "preimage_sha256": "a620a009ecbb724b4a4c2be9313b191b5d1912ea1c353185fc4896fd0fe84927",
+  "postimage_sha256": "bb74f694cf3e626ec472f029cfe94ef5354fee1afefc3417cbab599c757db8f8",
+  "scope": "one newline before every UNKNOWN recovery record; cap charged through existing BoundedJournal"
+}

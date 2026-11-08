@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "original_semantic_token_stream_restored": true,
+  "added_braces": "only original single-statement controls and inert return scopes; no else ambiguity",
+  "original_driver_calls_conditions_register_access_transforms_loops_unchanged": true,
+  "exported_signatures_unchanged": true,
+  "prepare_only_instrumentation_parent_arg": true,
+  "old_recorder_exact_after_reverting_UUID_and_append": true,
+  "capacity_before_any_append_write_and_readiness": true,
+  "no_raw_value_hook_arguments": true,
+  "one_raw_counter_per_publication": true,
+  "no_new_publication_lock_spans_original_primitive": true
+}

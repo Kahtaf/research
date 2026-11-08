@@ -1,0 +1,93 @@
+{
+  "started": "2026-11-07T07:20:22.463034+00:00",
+  "pid": 2257482,
+  "status": "complete",
+  "affinity": [
+    0
+  ],
+  "max_jobs": 1,
+  "native_as": [
+    -1,
+    -1
+  ],
+  "window_seconds": 3600,
+  "commands": [
+    {
+      "command": [
+        "make",
+        "-C",
+        "/srv/android/asus-gpio28-lifecycle-full-kernel-20261107-r1/kernel",
+        "O=/srv/android/asus-gpio28-lifecycle-full-kernel-20261107-r1/out",
+        "ARCH=arm64",
+        "CROSS_COMPILE=aarch64-linux-gnu-",
+        "HOSTCC=gcc",
+        "HOSTCXX=g++",
+        "LOCALVERSION=-g717bb3c9e13c-dirty",
+        "-j1",
+        "olddefconfig"
+      ],
+      "started": "2026-11-07T07:20:22.581487+00:00",
+      "exit": 0,
+      "finished": "2026-11-07T07:20:27.319042+00:00"
+    },
+    {
+      "command": [
+        "make",
+        "-C",
+        "/srv/android/asus-gpio28-lifecycle-full-kernel-20261107-r1/kernel",
+        "O=/srv/android/asus-gpio28-lifecycle-full-kernel-20261107-r1/out",
+        "ARCH=arm64",
+        "CROSS_COMPILE=aarch64-linux-gnu-",
+        "HOSTCC=gcc",
+        "HOSTCXX=g++",
+        "LOCALVERSION=-g717bb3c9e13c-dirty",
+        "-j1",
+        "sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.o",
+        "sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.o"
+      ],
+      "started": "2026-11-07T07:20:27.328343+00:00",
+      "exit": 0,
+      "finished": "2026-11-07T07:20:42.355904+00:00"
+    },
+    {
+      "command": [
+        "make",
+        "-C",
+        "/srv/android/asus-gpio28-lifecycle-full-kernel-20261107-r1/kernel",
+        "O=/srv/android/asus-gpio28-lifecycle-full-kernel-20261107-r1/out",
+        "ARCH=arm64",
+        "CROSS_COMPILE=aarch64-linux-gnu-",
+        "HOSTCC=gcc",
+        "HOSTCXX=g++",
+        "LOCALVERSION=-g717bb3c9e13c-dirty",
+        "-j1",
+        "dtbs"
+      ],
+      "started": "2026-11-07T07:20:42.356352+00:00",
+      "exit": 0,
+      "finished": "2026-11-07T07:20:44.333884+00:00"
+    },
+    {
+      "command": [
+        "make",
+        "-C",
+        "/srv/android/asus-gpio28-lifecycle-full-kernel-20261107-r1/kernel",
+        "O=/srv/android/asus-gpio28-lifecycle-full-kernel-20261107-r1/out",
+        "ARCH=arm64",
+        "CROSS_COMPILE=aarch64-linux-gnu-",
+        "HOSTCC=gcc",
+        "HOSTCXX=g++",
+        "LOCALVERSION=-g717bb3c9e13c-dirty",
+        "-j1",
+        "Image.gz-dtb"
+      ],
+      "started": "2026-11-07T07:20:44.334286+00:00",
+      "exit": 0,
+      "finished": "2026-11-07T07:50:31.737077+00:00"
+    }
+  ],
+  "resolved_config_sha256": "26c59e0afa3f6438fafea4b5379b898c9b1fcaf05adf1d7e14db93b2e976bd13",
+  "owned_output_allocated_bytes": 410836992,
+  "exit": 0,
+  "finished": "2026-11-07T07:50:31.737616+00:00"
+}

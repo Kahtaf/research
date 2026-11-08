@@ -1,0 +1,79 @@
+{
+  "status": "EXACT_BUILD_SOURCE_OFFLINE_CONTRACT",
+  "runtime_verified": false,
+  "function": "mass_storage.ram",
+  "lun": "lun.0",
+  "set_before_file": [
+    "removable=1",
+    "cdrom=0",
+    "ro=1"
+  ],
+  "backing_file": "/dev/probe.img",
+  "initially_ro_open": "O_RDONLY|O_LARGEFILE",
+  "do_write_when_ro": "SS_WRITE_PROTECTED",
+  "expected_udc": "musb-hdrc",
+  "UDC_expectation_origin": "retained Android17 probe/init.rc; not a new observation",
+  "expected_uname": {
+    "sysname": "Linux",
+    "release": "4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty",
+    "version": "#1 SMP PREEMPT Fri Nov 6 21:17:56 UTC 2026",
+    "machine": "aarch64"
+  },
+  "excerpts": {
+    "storage_common.c": {
+      "sha256": "2ec40f8a20ca10f14bd0c5d17adc8e17ee11f6707d353d98bdb6ef263e352512",
+      "lines": [
+        {
+          "start": 182,
+          "end": 209,
+          "text": "int fsg_lun_open(struct fsg_lun *curlun, const char *filename)\n{\n\tint\t\t\t\tro;\n\tstruct file\t\t\t*filp = NULL;\n\tint\t\t\t\trc = -EINVAL;\n\tstruct inode\t\t\t*inode = NULL;\n\tloff_t\t\t\t\tsize;\n\tloff_t\t\t\t\tnum_sectors;\n\tloff_t\t\t\t\tmin_sectors;\n\tunsigned int\t\t\tblkbits;\n\tunsigned int\t\t\tblksize;\n\n\t/* R/W if we can, R/O if we must */\n\tro = curlun->initially_ro;\n\tif (!ro) {\n\t\tfilp = filp_open(filename, O_RDWR | O_LARGEFILE, 0);\n\t\tif (PTR_ERR(filp) == -EROFS || PTR_ERR(filp) == -EACCES)\n\t\t\tro = 1;\n\t}\n\tif (ro)\n\t\tfilp = filp_open(filename, O_RDONLY | O_LARGEFILE, 0);\n\tif (IS_ERR(filp)) {\n\t\tLINFO(curlun, \"unable to open backing file: %s\\n\", filename);\n\t\treturn PTR_ERR(filp);\n\t}\n\n\tif (!(filp->f_mode & FMODE_WRITE))\n\t\tro = 1;"
+        },
+        {
+          "start": 383,
+          "end": 419,
+          "text": "static ssize_t _fsg_store_ro(struct fsg_lun *curlun, bool ro)\n{\n\tif (fsg_lun_is_open(curlun)) {\n\t\tLDBG(curlun, \"read-only status change prevented\\n\");\n\t\treturn -EBUSY;\n\t}\n\n\tcurlun->ro = ro;\n\tcurlun->initially_ro = ro;\n\tLDBG(curlun, \"read-only status set to %d\\n\", curlun->ro);\n\n\treturn 0;\n}\n\nssize_t fsg_store_ro(struct fsg_lun *curlun, struct rw_semaphore *filesem,\n\t\t     const char *buf, size_t count)\n{\n\tssize_t\t\trc;\n\tbool\t\tro;\n\n\trc = strtobool(buf, &ro);\n\tif (rc)\n\t\treturn rc;\n\n\t/*\n\t * Allow the write-enable status to change only while the\n\t * backing file is closed.\n\t */\n\tdown_read(filesem);\n\trc = _fsg_store_ro(curlun, ro);\n\tif (!rc)\n\t\trc = count;\n\tup_read(filesem);\n\n\treturn rc;\n}\nEXPORT_SYMBOL_GPL(fsg_store_ro);"
+        },
+        {
+          "start": 440,
+          "end": 469,
+          "text": "ssize_t fsg_store_file(struct fsg_lun *curlun, struct rw_semaphore *filesem,\n\t\t       const char *buf, size_t count)\n{\n\tint\t\trc = 0;\n\n\tif (curlun->prevent_medium_removal && fsg_lun_is_open(curlun)) {\n\t\tLDBG(curlun, \"eject attempt prevented\\n\");\n\t\treturn -EBUSY;\t\t\t\t/* \"Door is locked\" */\n\t}\n\n\t/* Remove a trailing newline */\n\tif (count > 0 && buf[count-1] == '\\n')\n\t\t((char *) buf)[count-1] = 0;\t\t/* Ugh! */\n\n\t/* Load new medium */\n\tdown_write(filesem);\n\tif (count > 0 && buf[0]) {\n\t\t/* fsg_lun_open() will close existing file if any. */\n\t\trc = fsg_lun_open(curlun, buf);\n\t\tif (rc == 0)\n\t\t\tcurlun->unit_attention_data =\n\t\t\t\t\tSS_NOT_READY_TO_READY_TRANSITION;\n\t} else if (fsg_lun_is_open(curlun)) {\n\t\tfsg_lun_close(curlun);\n\t\tcurlun->unit_attention_data = SS_MEDIUM_NOT_PRESENT;\n\t}\n\tup_write(filesem);\n\treturn (rc < 0 ? rc : count);\n}\nEXPORT_SYMBOL_GPL(fsg_store_file);"
+        }
+      ]
+    },
+    "f_mass_storage.c": {
+      "sha256": "e2ffe1cc0ce370f728bc4d36b70e654a4bbd4d30c2828621b99b4d138831dd0e",
+      "lines": [
+        {
+          "start": 776,
+          "end": 796,
+          "text": "static int do_write(struct fsg_common *common)\n{\n\tstruct fsg_lun\t\t*curlun = common->curlun;\n\tu32\t\t\tlba;\n\tstruct fsg_buffhd\t*bh;\n\tint\t\t\tget_some_more;\n\tu32\t\t\tamount_left_to_req, amount_left_to_write;\n\tloff_t\t\t\tusb_offset, file_offset, file_offset_tmp;\n\tunsigned int\t\tamount;\n\tssize_t\t\t\tnwritten;\n\tint\t\t\trc;\n\n\tif (curlun->ro) {\n\t\tcurlun->sense_data = SS_WRITE_PROTECTED;\n\t\treturn -EINVAL;\n\t}\n\tspin_lock(&curlun->filp->f_lock);\n\tcurlun->filp->f_flags &= ~O_SYNC;\t/* Default is not to wait */\n\tspin_unlock(&curlun->filp->f_lock);\n\n\t/*"
+        },
+        {
+          "start": 3132,
+          "end": 3196,
+          "text": "static ssize_t fsg_lun_opts_file_show(struct config_item *item, char *page)\n{\n\tstruct fsg_lun_opts *opts = to_fsg_lun_opts(item);\n\tstruct fsg_opts *fsg_opts = to_fsg_opts(opts->group.cg_item.ci_parent);\n\n\treturn fsg_show_file(opts->lun, &fsg_opts->common->filesem, page);\n}\n\nstatic ssize_t fsg_lun_opts_file_store(struct config_item *item,\n\t\t\t\t       const char *page, size_t len)\n{\n\tstruct fsg_lun_opts *opts = to_fsg_lun_opts(item);\n\tstruct fsg_opts *fsg_opts = to_fsg_opts(opts->group.cg_item.ci_parent);\n\n\treturn fsg_store_file(opts->lun, &fsg_opts->common->filesem, page, len);\n}\n\nCONFIGFS_ATTR(fsg_lun_opts_, file);\n\nstatic ssize_t fsg_lun_opts_ro_show(struct config_item *item, char *page)\n{\n\treturn fsg_show_ro(to_fsg_lun_opts(item)->lun, page);\n}\n\nstatic ssize_t fsg_lun_opts_ro_store(struct config_item *item,\n\t\t\t\t       const char *page, size_t len)\n{\n\tstruct fsg_lun_opts *opts = to_fsg_lun_opts(item);\n\tstruct fsg_opts *fsg_opts = to_fsg_opts(opts->group.cg_item.ci_parent);\n\n\treturn fsg_store_ro(opts->lun, &fsg_opts->common->filesem, page, len);\n}\n\nCONFIGFS_ATTR(fsg_lun_opts_, ro);\n\nstatic ssize_t fsg_lun_opts_removable_show(struct config_item *item,\n\t\t\t\t\t   char *page)\n{\n\treturn fsg_show_removable(to_fsg_lun_opts(item)->lun, page);\n}\n\nstatic ssize_t fsg_lun_opts_removable_store(struct config_item *item,\n\t\t\t\t       const char *page, size_t len)\n{\n\treturn fsg_store_removable(to_fsg_lun_opts(item)->lun, page, len);\n}\n\nCONFIGFS_ATTR(fsg_lun_opts_, removable);\n\nstatic ssize_t fsg_lun_opts_cdrom_show(struct config_item *item, char *page)\n{\n\treturn fsg_show_cdrom(to_fsg_lun_opts(item)->lun, page);\n}\n\nstatic ssize_t fsg_lun_opts_cdrom_store(struct config_item *item,\n\t\t\t\t       const char *page, size_t len)\n{\n\tstruct fsg_lun_opts *opts = to_fsg_lun_opts(item);\n\tstruct fsg_opts *fsg_opts = to_fsg_opts(opts->group.cg_item.ci_parent);\n\n\treturn fsg_store_cdrom(opts->lun, &fsg_opts->common->filesem, page,\n\t\t\t       len);\n}\n\nCONFIGFS_ATTR(fsg_lun_opts_, cdrom);"
+        },
+        {
+          "start": 3443,
+          "end": 3483,
+          "text": "static struct usb_function_instance *fsg_alloc_inst(void)\n{\n\tstruct fsg_opts *opts;\n\tstruct fsg_lun_config config;\n\tint rc;\n\n\topts = kzalloc(sizeof(*opts), GFP_KERNEL);\n\tif (!opts)\n\t\treturn ERR_PTR(-ENOMEM);\n\tmutex_init(&opts->lock);\n\topts->func_inst.free_func_inst = fsg_free_inst;\n\topts->common = fsg_common_setup(opts->common);\n\tif (IS_ERR(opts->common)) {\n\t\trc = PTR_ERR(opts->common);\n\t\tgoto release_opts;\n\t}\n\n\trc = fsg_common_set_num_buffers(opts->common,\n\t\t\t\t\tCONFIG_USB_GADGET_STORAGE_NUM_BUFFERS);\n\tif (rc)\n\t\tgoto release_opts;\n\n\tpr_info(FSG_DRIVER_DESC \", version: \" FSG_DRIVER_VERSION \"\\n\");\n\n\tmemset(&config, 0, sizeof(config));\n\tconfig.removable = true;\n\trc = fsg_common_create_lun(opts->common, &config, 0, \"lun.0\",\n\t\t\t(const char **)&opts->func_inst.group.cg_item.ci_name);\n\tif (rc)\n\t\tgoto release_buffers;\n\n\topts->lun0.lun = opts->common->luns[0];\n\topts->lun0.lun_id = 0;\n\n\tconfig_group_init_type_name(&opts->func_inst.group, \"\", &fsg_func_type);\n\n\tconfig_group_init_type_name(&opts->lun0.group, \"lun.0\", &fsg_lun_type);\n\tconfigfs_add_default_group(&opts->lun0.group, &opts->func_inst.group);\n\n\treturn &opts->func_inst;\n"
+        }
+      ]
+    },
+    "configfs.c": {
+      "sha256": "b1652ce0af567c11c838fb27db01789cbc9749e645c1812f20b942a217e80adb",
+      "lines": [
+        {
+          "start": 270,
+          "end": 345,
+          "text": "static ssize_t gadget_dev_desc_UDC_show(struct config_item *item, char *page)\n{\n\tstruct gadget_info *gi = to_gadget_info(item);\n\tchar *udc_name;\n\tint ret;\n\n\tmutex_lock(&gi->lock);\n\tudc_name = gi->composite.gadget_driver.udc_name;\n\tret = sprintf(page, \"%s\\n\", udc_name ?: \"\");\n\tmutex_unlock(&gi->lock);\n\n\treturn ret;\n}\n\nstatic int unregister_gadget(struct gadget_info *gi)\n{\n\tint ret;\n\n\tif (!gi->composite.gadget_driver.udc_name)\n\t\treturn -ENODEV;\n\n\tret = usb_gadget_unregister_driver(&gi->composite.gadget_driver);\n\tif (ret)\n\t\treturn ret;\n\tkfree(gi->composite.gadget_driver.udc_name);\n\tgi->composite.gadget_driver.udc_name = NULL;\n\treturn 0;\n}\n\nstatic ssize_t gadget_dev_desc_UDC_store(struct config_item *item,\n\t\tconst char *page, size_t len)\n{\n\tstruct gadget_info *gi = to_gadget_info(item);\n\tchar *name;\n\tint ret;\n\n\tif (strlen(page) < len)\n\t\treturn -EOVERFLOW;\n\n\tname = kstrdup(page, GFP_KERNEL);\n\tif (!name)\n\t\treturn -ENOMEM;\n\tif (name[len - 1] == '\\n')\n\t\tname[len - 1] = '\\0';\n\n\tmutex_lock(&gi->lock);\n\n\tif (!strlen(name) || strcmp(name, \"none\") == 0) {\n\t\tret = unregister_gadget(gi);\n\t\tif (ret)\n\t\t\tgoto err;\n\t\tkfree(name);\n\t} else {\n\t\tif (gi->composite.gadget_driver.udc_name) {\n\t\t\tret = -EBUSY;\n\t\t\tgoto err;\n\t\t}\n\t\tgi->composite.gadget_driver.udc_name = name;\n\t\tret = usb_gadget_probe_driver(&gi->composite.gadget_driver);\n\t\tif (ret) {\n\t\t\tgi->composite.gadget_driver.udc_name = NULL;\n\t\t\tgoto err;\n\t\t}\n\t}\n\tmutex_unlock(&gi->lock);\n\treturn len;\nerr:\n\tkfree(name);\n\tmutex_unlock(&gi->lock);\n\treturn ret;\n}\n\nCONFIGFS_ATTR(gadget_dev_desc_, bDeviceClass);\nCONFIGFS_ATTR(gadget_dev_desc_, bDeviceSubClass);\nCONFIGFS_ATTR(gadget_dev_desc_, bDeviceProtocol);\nCONFIGFS_ATTR(gadget_dev_desc_, bMaxPacketSize0);"
+        },
+        {
+          "start": 578,
+          "end": 618,
+          "text": "\t\tstruct config_group *group,\n\t\tconst char *name)\n{\n\tstruct gadget_info *gi;\n\tstruct usb_function_instance *fi;\n\tchar buf[MAX_NAME_LEN];\n\tchar *func_name;\n\tchar *instance_name;\n\tint ret;\n\n\tret = snprintf(buf, MAX_NAME_LEN, \"%s\", name);\n\tif (ret >= MAX_NAME_LEN)\n\t\treturn ERR_PTR(-ENAMETOOLONG);\n\n\tfunc_name = buf;\n\tinstance_name = strchr(func_name, '.');\n\tif (!instance_name) {\n\t\tpr_err(\"Unable to locate . in FUNC.INSTANCE\\n\");\n\t\treturn ERR_PTR(-EINVAL);\n\t}\n\t*instance_name = '\\0';\n\tinstance_name++;\n\n\tfi = usb_get_function_instance(func_name);\n\tif (IS_ERR(fi))\n\t\treturn ERR_CAST(fi);\n\n\tret = config_item_set_name(&fi->group.cg_item, \"%s\", name);\n\tif (ret) {\n\t\tusb_put_function_instance(fi);\n\t\treturn ERR_PTR(ret);\n\t}\n\tif (fi->set_inst_name) {\n\t\tret = fi->set_inst_name(fi, instance_name);\n\t\tif (ret) {\n\t\t\tusb_put_function_instance(fi);\n\t\t\treturn ERR_PTR(ret);\n\t\t}\n\t}\n\n\tgi = container_of(group, struct gadget_info, functions_group);"
+        }
+      ]
+    }
+  }
+}

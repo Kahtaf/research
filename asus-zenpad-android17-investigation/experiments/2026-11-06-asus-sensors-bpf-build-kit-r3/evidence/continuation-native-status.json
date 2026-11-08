@@ -1,0 +1,37 @@
+{
+  "utc": "2026-11-06T21:51:58.951414+00:00",
+  "processes": [],
+  "r3_kit_exists": false,
+  "r6_files": [],
+  "r5": {
+    "full-build-r5.finished": {
+      "bytes": 26,
+      "sha256": "28fe7f126dce2c10f71e6c2ac6b46de3db0d1e211b25be55599fd750084aaf49",
+      "text": "2026-11-06T21:15:32+00:00\n"
+    },
+    "full-build-r5.log": {
+      "bytes": 22563352,
+      "sha256": "4f317efdc2a8583190ca275084ccf976632573fe32a5c57e274d04d10e7570b2"
+    },
+    "full-build-r5.started": {
+      "bytes": 26,
+      "sha256": "4e3bc24f179c505824a545f73b3f9215fc55146f1db6e3b0be39a922d8fa5cee",
+      "text": "2026-11-06T15:37:39+00:00\n"
+    },
+    "full-build-r5.vars": {
+      "bytes": 20863,
+      "sha256": "a78bfa9a87c674f2794e97c185303163ade7235f185e85ec3785dfea6a602855"
+    },
+    "full-build-r5.exit-code": {
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "text": "1\n"
+    },
+    "full-build-r5.pid": {
+      "bytes": 6,
+      "sha256": "bc5bd66933c91178b8690af15f4d344b0e7a7814b6b35f28f1ca34ccd8f085de",
+      "text": "78673\n"
+    }
+  },
+  "stage_sha256": "c168e1b13ad76b669655c071017f3ba038b06b1fc2b619df969aade441f7e17d"
+}

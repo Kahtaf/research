@@ -1,0 +1,126 @@
+{
+  "checks": {
+    "frozen_first_phase_parent_pin": true,
+    "frozen_full_phase_parent_pin": true,
+    "frozen_file_pins": true,
+    "source_receipt_bound_before_build": true,
+    "selected_seven_native_digest_matches": true,
+    "selected_seven_metric_cmdhash_matches": true,
+    "five_exact_commands_plus_rsp_matches": true,
+    "selected_current_ninja_rows_absent": true,
+    "all_elf_aarch64": true,
+    "bpfloader_build_id_consistency": true,
+    "vold_build_id_consistency": true,
+    "libvold_archive_native_digest_matches": true,
+    "libvold_archive_frozen_cmdhash_matches": true,
+    "PublicVolume_dependency_record_key_matches": true,
+    "selected_native_no_action_attestations": true
+  },
+  "all_pass": true,
+  "scope": "owned extracts only; no current native target validation or parent acceptance",
+  "evidence_files": {
+    "archive-native-record.json": {
+      "sha256": "3156f6f1bcd78571d83f5fd1cf50100b52653bdeade36683f1daf762193c7d1a",
+      "bytes": 1413
+    },
+    "frozen-exact-commands.json": {
+      "sha256": "fb06ab408b218d1bb73707d8e022845ae14bbf6d37bcc93aa288f81632e7d3f4",
+      "bytes": 36050
+    },
+    "frozen-r8-selected-metrics.json": {
+      "sha256": "05c7626cdfd68027dd908712377ba34e7fd9a403ecf8d1eb2765067e2c390cb5",
+      "bytes": 12083
+    },
+    "frozen-r8-selected.json": {
+      "sha256": "13f1fbe2ba7e68c6d8833fdabf70ae196236abb037ee04a133381e8957a740df",
+      "bytes": 132339
+    },
+    "graph-layout.txt": {
+      "sha256": "cfe0a157036a6838017c919c1b42f49d219dd1e3a8d2d62c402f2a88582dd2db",
+      "bytes": 2654
+    },
+    "graph-locator.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    "graph-shard-heads.json": {
+      "sha256": "0552b0ddaa81020e8d8d5450f5727ff1e61ef4ee39ebc59d4068e8ff746497ac",
+      "bytes": 42204
+    },
+    "implementation-inventory.json": {
+      "sha256": "648a581bdba873b74f8c123dc9492c1e14f854905399bd14ad7ea35d0181d948",
+      "bytes": 29568
+    },
+    "initial-inventory.json": {
+      "sha256": "b2877ab6dfba894fd251aaea1010824af4e695f76aa3eeacf47551d52a0fd219",
+      "bytes": 45930
+    },
+    "lineage.html": {
+      "sha256": "31f445909d0f69db2eb2c4ff1cee8c2e33e90be935a5c7a16ba83fb0d8508373",
+      "bytes": 1710
+    },
+    "native-metadata-layout.json": {
+      "sha256": "c648851757b1edfb68e40ffc4addd1d5387f43e9b8cef8376d822e200dbadc12",
+      "bytes": 19810
+    },
+    "relational-lineage.json": {
+      "sha256": "30596616d900600f830c7d50a3bbcab608766ccae4c90b8f8638fb8f342b7b99",
+      "bytes": 41271
+    },
+    "selected-cache.json": {
+      "sha256": "8419c1c919a0d9ab9dd0f8744457801b7d23e7420c0027d34dd305cdfe2c9c88",
+      "bytes": 9853
+    },
+    "selected-deps.json": {
+      "sha256": "0a861165f5167eb093595fa4006feac5e249d9e62d58975ec5f63e5dba1b1e4d",
+      "bytes": 91660
+    },
+    "selected-elf-identity.json": {
+      "sha256": "b9009d7f74fe1f7b5f6f706197b93777253126ad96234fa4b0d74a16c9c37e8e",
+      "bytes": 1798
+    },
+    "selected-localexec.txt": {
+      "sha256": "1a44ea89f3dcd5a0d43f4929bf98a87e801294fde460b3831eb5e7f7b49751b8",
+      "bytes": 2823
+    },
+    "selected-soong-edges.json": {
+      "sha256": "c9d7b1af08ccada22e70c32572c1e1081bf3ab5f4cd21fa636d8c724397d0cfd",
+      "bytes": 7576
+    },
+    "selected-soong-modules.json": {
+      "sha256": "588ef23c5701750b02f796365d1ddcd8dc88f5f2942edc36571ef4b33ca51944",
+      "bytes": 724846
+    },
+    "soong-siso-source.txt": {
+      "sha256": "480b4d643d4065117402fecec73aed089c9a4d923995bbd7e34d7237e3cc9c61",
+      "bytes": 400
+    },
+    "source-and-tools.json": {
+      "sha256": "d3bc1c0305444ebc590561990703d2e952b362f5c88a2923633327c7447f913e",
+      "bytes": 3862
+    }
+  },
+  "baseline_script_pins": {
+    "2026-11-06-asus-r8-continuation-kit/scripts/capture_build_evidence.py": {
+      "sha256": "4a0b76fb849cc3da930b102bc3c4f90ebfd18a2e217558083652efcdb30bf9a2"
+    },
+    "2026-11-06-asus-r8-continuation-kit/scripts/compiler_channel.py": {
+      "sha256": "f0015e77ac572d88dce5876b4a6999d829090cacfe487b3738cb9b3b37ce5814"
+    },
+    "2026-11-06-asus-r8-continuation-kit/scripts/continuation.py": {
+      "sha256": "1e6260a675dc3f7025cb97681a81e5ed0ac36f5d23f8eb0b28c0e46546e549fb"
+    },
+    "2026-11-06-asus-r8-continuation-kit/scripts/integrate.py": {
+      "sha256": "fc9cd5d4db8a9f8c9610a06887d95b97647be3fd9d3a853d400c39082b627d1f"
+    },
+    "2026-11-06-asus-r8-continuation-kit/scripts/r3_inputs.py": {
+      "sha256": "5836613ce2b120b0be25744e16db7eb941bd3862a355724438ff1af10fad8ee9"
+    },
+    "2026-11-06-asus-r8-continuation-kit/scripts/seal.py": {
+      "sha256": "d5cc8de58cec9548558a1db430ae5c281913749036ddb63c22f94bf37abdff68"
+    },
+    "2026-11-06-asus-r8-continuation-kit/scripts/verify_product_r3.py": {
+      "sha256": "18649dcf23abfd82c68d46a823f365380af8f10d2f15227f4354b90ac3bc0190"
+    }
+  }
+}

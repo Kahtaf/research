@@ -1,0 +1,11 @@
+--- a/drivers/clocksource/mtk_timer.c
++++ b/drivers/clocksource/mtk_timer.c
+@@ -268,7 +268,7 @@
+ 	if (!IS_ERR(clk_bus))
+ 		clk_prepare_enable(clk_bus);
+ 
+-	clk_src = of_clk_get(node, 0);
++	clk_src = of_clk_get_by_name(node, "clk13m");
+ 	if (IS_ERR(clk_src)) {
+ 		pr_err("Can't get timer clock\n");
+ 		goto err_irq;

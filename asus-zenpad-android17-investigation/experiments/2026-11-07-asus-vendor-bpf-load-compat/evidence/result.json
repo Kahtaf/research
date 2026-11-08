@@ -1,0 +1,170 @@
+{
+  "status": "CANDIDATE_BPF_PASSED_ZYGOTE_STARTED_HWC_RESTART_BOUNDARY_STOP_DELAY",
+  "remote_prefix": "/srv/android/asus-vendor-bpf-load-compat-20261107",
+  "actual_os_boots": 1,
+  "kernel_builds": 0,
+  "leaf_compile_link_attempts": 2,
+  "focused_fixture_runs": 3,
+  "original_cause": {
+    "errno": 7,
+    "rejection": "nonzero prog_name starting at offset 48 beyond sizeof(kernel union bpf_attr)=48",
+    "syscall_attr_size": 168,
+    "prog_type": 1,
+    "insn_count": 2284,
+    "log_level": 1,
+    "log_size": 1048575,
+    "flags": 0,
+    "verifier_entered": false
+  },
+  "fix": "Only populate req.prog_name when measured kernelVer >= KVER(4,15,0); preserve all flags, logs, instructions, critical/error behavior",
+  "candidate_runtime": true,
+  "overlay": {
+    "/system/lib64/libbpf_android.so": "682ed7fd0c69bcf0567d81c4d0d43314fce1c0205172f6a1dd9c263a97c7389e"
+  },
+  "leaf": {
+    "source_origin": "/srv/android/lineage24/system/bpf/loader/Loader.cpp",
+    "pre_sha256": "4795e5bb1d46187f1aa858ba0703185ff9309dcd6d4fa97f2860b12b357f93b7",
+    "post_sha256": "bb8288818619d492a79fe997c902dc9b64fa67f1f04bff4afb2b047b4511dccf",
+    "source_origin_unchanged": true,
+    "patch_sha256": "e442a96373a2a9a7ec16d59f13315997487935bd074c29f5369a216e15d6993f",
+    "candidate_sha256": "682ed7fd0c69bcf0567d81c4d0d43314fce1c0205172f6a1dd9c263a97c7389e",
+    "unstripped_sha256": "43ffe4eb156831bfc412136364e7dcf7514f4797eaa2f2755ac619ae5cf77595",
+    "object_sha256": "7e9c1868432bb1f4b966e0f5590b2129595a36a49849059553df45b0ce533a1c",
+    "compiler_sha256": "15261046b6ea9504da0ae57b9d65ebc869ab1942aecb1af2819762b9b5251957",
+    "strip_sha256": "80d3ed195ba6ad67670506dfe265d344832ef8344d913fb9e46b7b71e5744007",
+    "installed_pre_sha256": "b40bd6f4d6677484a8a83d9ceeecdc59724d3c80ee8d2772678060c618050183",
+    "kernel_unchanged": true
+  },
+  "kernel": {
+    "image_sha256": "aaa35347bd751c3e79eac78608f1a37d5a5cc1c34429773c257b91bb17e4bf47",
+    "image_bytes": 5785608,
+    "config_sha256": "c2ea1277e1574da39d1d55d31bde7bda439ab624561ad3c6a6f4730e38f57834",
+    "source_origin": "/srv/android/asus-android-runtime-network-parity-20261107/kernel",
+    "source_owned_copy": "/srv/android/asus-vendor-bpf-load-compat-20261107/kernel",
+    "five_postimages": {
+      "include/uapi/linux/bpf.h": "5df820b95a96cef06c9e67b9fab9cbb5ad46b7e62b76a9d69db6af269c5eeb07",
+      "kernel/bpf/syscall.c": "739b2804cb256f7666496cabe9924567d9964a65dcc13e0a979c4c6c47ab63ac",
+      "kernel/bpf/Makefile": "ab33f64caba9dbf5d1bbd13fdfc6d8d2cbac5fac944a2fb7daa65dd990aff5e3",
+      "kernel/bpf/lpm_trie.c": "fb2023411dd320b2959722f1a0a1d44243e0c360cf585a9ef385618c5dbf8fa9",
+      "net/core/filter.c": "b4fc1f6bf7801417772128db04dffb3657fc01fc0e151079fef4c70b9e1669b8"
+    },
+    "kernel_builds_this_spike": 0,
+    "reused_qualified_image": true,
+    "physical_comparison": {
+      "kernel/bpf/syscall.c": {
+        "virtual": "739b2804cb256f7666496cabe9924567d9964a65dcc13e0a979c4c6c47ab63ac",
+        "physical": "739b2804cb256f7666496cabe9924567d9964a65dcc13e0a979c4c6c47ab63ac"
+      },
+      "include/uapi/linux/bpf.h": {
+        "virtual": "5df820b95a96cef06c9e67b9fab9cbb5ad46b7e62b76a9d69db6af269c5eeb07",
+        "physical": "5df820b95a96cef06c9e67b9fab9cbb5ad46b7e62b76a9d69db6af269c5eeb07"
+      }
+    }
+  },
+  "actual_properties": {
+    "bpf.progs_loaded": [
+      ""
+    ],
+    "init.svc.zygote": [
+      "",
+      "restarting",
+      "running"
+    ],
+    "init.svc.netd": [
+      "",
+      "running"
+    ],
+    "odsign.key.done": [
+      "",
+      "1"
+    ],
+    "odsign.verification.done": [
+      "",
+      "1"
+    ]
+  },
+  "zygote_service_started": true,
+  "system_server_explicit_evidence": [],
+  "runtime": {
+    "started_utc": "2026-11-07T15:47:50.315990+00:00",
+    "wall_limit_seconds": 600,
+    "system_before": {
+      "path": "/srv/android/asus-radio-trigger-build-r4/system-partition.raw",
+      "dev": 2049,
+      "inode": 28131263,
+      "bytes": 3753902080,
+      "mtime_ns": 1794058262209728788,
+      "ctime_ns": 1794058592912890361,
+      "mode": "0o444"
+    },
+    "boot_before": {
+      "path": "/srv/android/asus-radio-trigger-build-r4/checks/r3/UNTESTED-combined-MTKBOOT.img",
+      "dev": 2049,
+      "inode": 28339982,
+      "bytes": 9242624,
+      "mtime_ns": 1794058592870514759,
+      "ctime_ns": 1794058592912890361,
+      "mode": "0o444"
+    },
+    "cpu_affinity": [
+      0,
+      1
+    ],
+    "phase": "runtime",
+    "rlimit_as_added": false,
+    "owned_qemu_pid": 52811,
+    "returncode": -9,
+    "timeout": false,
+    "finished_utc": "2026-11-07T15:55:44.578239+00:00",
+    "elapsed_wall_seconds": 474.2622053639998,
+    "system_after": {
+      "path": "/srv/android/asus-radio-trigger-build-r4/system-partition.raw",
+      "dev": 2049,
+      "inode": 28131263,
+      "bytes": 3753902080,
+      "mtime_ns": 1794058262209728788,
+      "ctime_ns": 1794058592912890361,
+      "mode": "0o444"
+    },
+    "boot_after": {
+      "path": "/srv/android/asus-radio-trigger-build-r4/checks/r3/UNTESTED-combined-MTKBOOT.img",
+      "dev": 2049,
+      "inode": 28339982,
+      "bytes": 9242624,
+      "mtime_ns": 1794058592870514759,
+      "ctime_ns": 1794058592912890361,
+      "mode": "0o444"
+    },
+    "base_identity_unchanged": true,
+    "boot_identity_unchanged": true
+  },
+  "supplemental_first_fatal_guard": null,
+  "framework_boundary_stop": {
+    "first_boundary_line": "[  392.427968] init: Service 'surfaceflinger' (pid 1115) received SIGKILL",
+    "last_guest_line": "[  473.964303] logd: logdr: UID=2000 GID=2000 PID=1635 n tail=500 logMask=bf pid=0 start=0ns deadline=0ns",
+    "detected_utc": "2026-11-07T15:55:44.551170+00:00",
+    "owned_qemu_pid": 52811,
+    "action": "Stop owned QEMU at framework restart boundary; no retry",
+    "detection_limitation": "Automatic critical-banner/native-fatal matchers missed hwcomposer-triggered SurfaceFlinger and zygote restart cycle; stop was delayed",
+    "signal_sent": true
+  },
+  "first_boundary_stop_requirement_met": false,
+  "source_origin_unchanged": true,
+  "base_identity_unchanged": true,
+  "boot_identity_unchanged": true,
+  "prior_failures_retained": true,
+  "whole_os_hardware_or_flash_go": false,
+  "bpf_progs_loaded": {
+    "value": "1",
+    "source": "genuine init property wait already set at 388.743887s",
+    "line": "[  388.743887] init: start_waiting_for_property(\"bpf.progs_loaded\", \"1\"): already set",
+    "shell_observer_reads": "empty; do not infer absence from these reads"
+  },
+  "next_boundary": {
+    "first_hwcomposer_exit": "[  392.366962] init: Service 'vendor.hwcomposer-2-1' (pid 1097) exited with status 1",
+    "first_zygote_start": "[  389.382266] init: starting service 'zygote'...",
+    "last_guest_line": "[  473.964303] logd: logdr: UID=2000 GID=2000 PID=1635 n tail=500 logMask=bf pid=0 start=0ns deadline=0ns",
+    "root_cause": "not isolated; HWC exit triggers SurfaceFlinger and zygote restarts",
+    "system_server_or_framework_ready": "not established"
+  }
+}

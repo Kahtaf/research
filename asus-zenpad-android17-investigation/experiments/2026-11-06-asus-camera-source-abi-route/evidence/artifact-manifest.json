@@ -1,0 +1,677 @@
+{
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 5166,
+      "sha256": "f88dfa608a9e1bb99846bc6a0d9f87610a514456f18332852f855a6cc14a0db5"
+    },
+    {
+      "path": "donors/frameworks/av/services/camera/libcameraservice/Android.mk",
+      "bytes": 2921,
+      "sha256": "2e3dc7f32235c586cfcb587d0a59ed65e2724653d2c713dffa3132c86c523377"
+    },
+    {
+      "path": "donors/frameworks/av/services/camera/libcameraservice/CameraService.cpp",
+      "bytes": 114324,
+      "sha256": "bd7842a0956c055aa5de5e50998a1b2b20921b32e4ec237d7b84ad9eb9f1e4c3"
+    },
+    {
+      "path": "donors/frameworks/av/services/camera/libcameraservice/api1/CameraClient.cpp",
+      "bytes": 40201,
+      "sha256": "bed2b2576cfcf72e32ebd048173bb08979705c28a3326682f597b2ac08d1b4c7"
+    },
+    {
+      "path": "donors/frameworks/av/services/camera/libcameraservice/api1/CameraClient.h",
+      "bytes": 8383,
+      "sha256": "967d6681ac77947320213887cd805cc297f98a261548670234d9bb383918ce72"
+    },
+    {
+      "path": "donors/frameworks/av/services/camera/libcameraservice/common/CameraProviderManager.cpp",
+      "bytes": 54404,
+      "sha256": "8fcbbd238ed68f065442b2a1852112d7cf22bcc8c5103db6e48d2a14daf86c6c"
+    },
+    {
+      "path": "donors/frameworks/av/services/camera/libcameraservice/common/CameraProviderManager.h",
+      "bytes": 17858,
+      "sha256": "eddc26bc231524e9ade20f6e3a812d30df82a1fd8e6e52cddc33edfe0ad531c8"
+    },
+    {
+      "path": "donors/frameworks/av/services/camera/libcameraservice/device1/CameraHardwareInterface.cpp",
+      "bytes": 26889,
+      "sha256": "243f22bdd3553f58acb935ae53128663f4298224bfd930da85e96ba8c6c1f8f2"
+    },
+    {
+      "path": "donors/frameworks/av/services/camera/libcameraservice/device1/CameraHardwareInterface.h",
+      "bytes": 18493,
+      "sha256": "d6224732d3a52cdcc6742bd141771a62ec8bfada7deb72578e5d84195f61b99d"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/CameraManager.java",
+      "bytes": 59803,
+      "sha256": "7ff8db9aad48efb73ca8d0659ce0e1812beaef343541e014e530b8884f6c4b2e"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/BurstHolder.java",
+      "bytes": 2924,
+      "sha256": "ac8333e174363dfea76ea63bea88cea68c4a05d6f4898aa4f8162541c26bd1bc"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/CameraDeviceState.java",
+      "bytes": 14299,
+      "sha256": "d822d97d284a9879ca10697ec1d452c234b7baf17b200957765d9756ad7c8f27"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/CameraDeviceUserShim.java",
+      "bytes": 27408,
+      "sha256": "9fe04348936b8840f38027847d99bfbc49968f13239acee400e96c5c642bc31b"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/CaptureCollector.java",
+      "bytes": 24726,
+      "sha256": "d6bd3418da2683373260963eb8d9b6f3760fe7715f13f0dff03b56539e11abe7"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/GLThreadManager.java",
+      "bytes": 9626,
+      "sha256": "e065b3d5b800f76773808b9a4a3249dbb892d3c58356cb93e2268ed4f53c119c"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/LegacyCameraDevice.java",
+      "bytes": 34886,
+      "sha256": "9108fd72e7cac8b5db923afa6dd805c5dff6aeb1185fa5b2315e8a12f8d2bd8e"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/LegacyExceptionUtils.java",
+      "bytes": 5463,
+      "sha256": "bf1ab656f5e39fd9b230ea37bfe06fbdeb374aa9bdd34292404c0f5e40fa4479"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/LegacyFaceDetectMapper.java",
+      "bytes": 10575,
+      "sha256": "8511e58a0b26486bc72b9564bed447f6d053b20c498ad50f62dac919065f5be4"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/LegacyFocusStateMapper.java",
+      "bytes": 12333,
+      "sha256": "f0097da4e38eae0c9b47fe100b36381a0896f2bcedce2c68b09ee393d1862e42"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/LegacyMetadataMapper.java",
+      "bytes": 60739,
+      "sha256": "ad0d7df851d9e76e3bc139e0749f5c873aa30b1f7724d47fed5d6ae885e66e07"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/LegacyRequest.java",
+      "bytes": 2818,
+      "sha256": "2d6c51de601468fbf3b81e9f00e08e60db8e3b572684c2bd1382fe02d1359946"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/LegacyRequestMapper.java",
+      "bytes": 27849,
+      "sha256": "48da15ccef27e3beffb5a2693866b23525f3f2abf8517902f7d337fc3296b911"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/LegacyResultMapper.java",
+      "bytes": 19182,
+      "sha256": "cc6c680d1071579eeecb342d12367b66985b0d365dfcea0f569612ead3c29fa9"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/ParameterUtils.java",
+      "bytes": 42424,
+      "sha256": "e08fb8a2f2cb86ae2c543df497824cbec0e02f26c74258004e53bcbbc169828b"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/PerfMeasurement.java",
+      "bytes": 10942,
+      "sha256": "f789faf445ac9425223a06763503b47b3d245b5d0643bf49d8b1311cfc15e9bb"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/RequestHandlerThread.java",
+      "bytes": 3454,
+      "sha256": "c04d0e48c07d104603c6b207301a67f0106c04912b27debfde18fc36291a86fe"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/RequestHolder.java",
+      "bytes": 9446,
+      "sha256": "8a090054e60d8f9c82e4e8a76148743f9dfb4025f2b82e22ae05aec8ac59d2b2"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/RequestQueue.java",
+      "bytes": 6509,
+      "sha256": "51a67d283cd757d2f38ad0b20526e2b7ecdd0d8e74fdf4e3bc6f41238f2faec2"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/RequestThreadManager.java",
+      "bytes": 48899,
+      "sha256": "e649fd6c09757c2176fdb68af12c883bfe8ca2651f488d4a29d90ae11f4d5a20"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/SizeAreaComparator.java",
+      "bytes": 2253,
+      "sha256": "9d98a846d451d971da637e2b733124dde04469c75150339ac7fb7272a07500c5"
+    },
+    {
+      "path": "donors/frameworks/base/core/java/android/hardware/camera2/legacy/SurfaceTextureRenderer.java",
+      "bytes": 34301,
+      "sha256": "20f3f0447c75b2d6abe998858bfe1ebdac82e02096032892787c55437b8db966"
+    },
+    {
+      "path": "donors/frameworks/base/core/jni/Android.bp",
+      "bytes": 10760,
+      "sha256": "cd37b4c634dc23fa54f102471868154f7781f46637d9a7dbbb6bc8b73e8c142a"
+    },
+    {
+      "path": "donors/frameworks/base/core/jni/android_hardware_camera2_legacy_LegacyCameraDevice.cpp",
+      "bytes": 30692,
+      "sha256": "1f2f51a3502884ebac51f689d90bd39ce841197d3af89c9af9f0caa91a5652cd"
+    },
+    {
+      "path": "donors/frameworks/base/core/jni/android_hardware_camera2_legacy_PerfMeasurement.cpp",
+      "bytes": 10364,
+      "sha256": "0e767bba309efc29fc31b954abae36c483c4ddfac6094db6732b84fed2cf4e80"
+    },
+    {
+      "path": "donors/pins.json",
+      "bytes": 15462,
+      "sha256": "b5e8d8099123462aa309be8f16f1a654867236a178f8bcbd02ff9b39c55281ef"
+    },
+    {
+      "path": "evidence/abi-compile.txt",
+      "bytes": 41557,
+      "sha256": "cb6cc1ade15ba8641cf0ddb37c85ba9ed5a49cde0e6076998dce06f675c19880"
+    },
+    {
+      "path": "evidence/abi-followup.txt",
+      "bytes": 49992,
+      "sha256": "0aecb5e6ef65108c42753dcc68c7a24ab6bbf7c5e9031b58a1462985ed15d2a4"
+    },
+    {
+      "path": "evidence/compile-artifacts.json",
+      "bytes": 903,
+      "sha256": "92120428c1fd116a4b806b6123c9914e53d7637e12cd74f04016c884c1a99196"
+    },
+    {
+      "path": "evidence/compile.json",
+      "bytes": 19505,
+      "sha256": "4e8126f48837b02ffc273d3847c2250d72e25d9986fe146c34f6c96ca2acfb2e"
+    },
+    {
+      "path": "evidence/dependency-audit.json",
+      "bytes": 241216,
+      "sha256": "b9309b66a1aa69c78205f6123a39a649475b590585010b81e898a3300b79feeb"
+    },
+    {
+      "path": "evidence/discovery.txt",
+      "bytes": 8926,
+      "sha256": "d8d34dc115974e571dd32c05eabeb4fd29c8a2f54c35186f37be162961a67db6"
+    },
+    {
+      "path": "evidence/donor-fetch.log",
+      "bytes": 2742,
+      "sha256": "3a5d0495a3d1b29e059bdc43e818c0f2a1991902ae26126e0e135f04b8602fc9"
+    },
+    {
+      "path": "evidence/enum-compiles.json",
+      "bytes": 10135,
+      "sha256": "8870f28bf12c9e17c157253fc080b1ced1b4fde0c7cc69b07c648c431a6b05b6"
+    },
+    {
+      "path": "evidence/final-edges.txt",
+      "bytes": 154761,
+      "sha256": "84ac86a22c9bfb7ca378808f2f939fa7446e2478e39f0b6cb18b4f66b49a7a83"
+    },
+    {
+      "path": "evidence/input-pins.json",
+      "bytes": 21726,
+      "sha256": "f1aaa794d3d5fff09bb5e2541540426772cbe57a750a19c3ab00be959d78de82"
+    },
+    {
+      "path": "evidence/kernel-header-comparison.json",
+      "bytes": 2200,
+      "sha256": "301314dfa2c600f6cdfb73a50abe671ee0bb098b2c554e8b61c84cc04c144d09"
+    },
+    {
+      "path": "evidence/kernel-header-diff.txt",
+      "bytes": 161157,
+      "sha256": "5530ea04ff836930be004b650b6f8b428fd0d942bec5ed779beeb74f1e056c1f"
+    },
+    {
+      "path": "evidence/metadata-edges.txt",
+      "bytes": 79766,
+      "sha256": "1d136bef7c595b051a96052928c065ebe32f8748cbea168f2581dd9c60ae93e2"
+    },
+    {
+      "path": "evidence/module-layout.txt",
+      "bytes": 67987,
+      "sha256": "f92b243993304572c7d7dfda004f30bf6281515ddeced7f88662e73c9d28aa2d"
+    },
+    {
+      "path": "evidence/ndk-camera.txt",
+      "bytes": 6142,
+      "sha256": "b63d08a420f54386bd93c06c3477d19d5e9f3103d24491ddc4255582a10cc8c7"
+    },
+    {
+      "path": "evidence/oem-dispatch.txt",
+      "bytes": 2496869,
+      "sha256": "5c68ff8fc455a7740287bd8e4fbbcd455a47b5b3239d3d084524bbe1c2e5f33c"
+    },
+    {
+      "path": "evidence/oem-elf.txt",
+      "bytes": 1047218,
+      "sha256": "b95d87bda0dd07f7f8289221170d7dc152a76e3986c1c3cf6ded13bf8b0feeed"
+    },
+    {
+      "path": "evidence/provider-inventory.json",
+      "bytes": 274,
+      "sha256": "680742ba3ae525bc53129c10cd4b52eaf2b83c33b653e0ee4aba00391830d437"
+    },
+    {
+      "path": "evidence/public-system-leaves.json",
+      "bytes": 1687,
+      "sha256": "eb6f010a2708366c83326fa84133ee78ee5540cdde33e1e9a145a7d3e4d292b1"
+    },
+    {
+      "path": "evidence/sdk37-source-pins.json",
+      "bytes": 3394,
+      "sha256": "94fab562df78630dc40b44cfe7d6f55762bfbd7e6c08b86be669360a64a814a1"
+    },
+    {
+      "path": "evidence/sensor-feature-enums.json",
+      "bytes": 11487,
+      "sha256": "54054c84a57ab92f09a494dbd525bfc64af9f68ec8458c5f3f2b35ca520d5cad"
+    },
+    {
+      "path": "evidence/source-edge-pins.json",
+      "bytes": 2623,
+      "sha256": "85f6cab474e6b04160e65398b2e636556f0ef9cccf2e71baaab410b3390c6af4"
+    },
+    {
+      "path": "evidence/verification.json",
+      "bytes": 15803,
+      "sha256": "6195bf5a0ef67e0be9558cabff1429d0e89becfcae59ce67d53db69c9641b8cf"
+    },
+    {
+      "path": "fixture/camera_abi_probe.c",
+      "bytes": 1691,
+      "sha256": "90cc7b11ce36c81d1e8db67550a9f16bbdbb8cfaee66f19aa88867d29af0b744"
+    },
+    {
+      "path": "fixture/camera_abi_probe.o",
+      "bytes": 5208,
+      "sha256": "2ec14af6f190fc02f6af3a7194bc691c0e60a65a1bf5ce58fd17c51008ae15cd"
+    },
+    {
+      "path": "fixture/enum_kernel49.c",
+      "bytes": 4936,
+      "sha256": "c929e8538502bf7dca1950c96ace1fffefcb956a7c1d4522fe0be4283afec6d1"
+    },
+    {
+      "path": "fixture/enum_kernel49.o",
+      "bytes": 3352,
+      "sha256": "d11fab71cc2286c1662727d376d0c0c50f886d90d23176a065ea1158f9789ec9"
+    },
+    {
+      "path": "fixture/enum_oem.c",
+      "bytes": 3779,
+      "sha256": "708a0f63343ef068a4a41407bcf3b99421a205f9a7a8b7f50a6944ca96b46675"
+    },
+    {
+      "path": "fixture/enum_oem.o",
+      "bytes": 3336,
+      "sha256": "042da01ec95475c52559677ddb70dce016e987eb1d458d67b841e870a60b58d6"
+    },
+    {
+      "path": "fixture/libp00a_camera_abi_probe.so",
+      "bytes": 10288,
+      "sha256": "b9d4a22c7c09d37e21e86356118be0cccc407285b9d68818b5e871999882bea5"
+    },
+    {
+      "path": "fixture/oem-kernel/drivers/misc/mediatek/cam_cal/inc/cam_cal.h",
+      "bytes": 929,
+      "sha256": "4581f458963f1d917d47b10814556494f2281982d7221087fab85fb030226eec"
+    },
+    {
+      "path": "fixture/oem-kernel/drivers/misc/mediatek/cam_cal/inc/cam_cal_define.h",
+      "bytes": 443,
+      "sha256": "c9aaabd7f9abbd7bc89cc7cb94660ebcda02e51dd95bcf2670b62ad54ee2bc28"
+    },
+    {
+      "path": "fixture/oem-kernel/drivers/misc/mediatek/cameraisp/src/mt8163/inc/camera_isp.h",
+      "bytes": 20612,
+      "sha256": "3ebca32dc7096050d9a49d87ff2c1ec3038d7ccadbc4bc80c5ad8fd13aba88ec"
+    },
+    {
+      "path": "fixture/oem-kernel/drivers/misc/mediatek/cameraisp/src/mt8163/inc/camera_isp_FrmB.h",
+      "bytes": 19677,
+      "sha256": "96ab82c3e685c93846ab61fc536aaf2100420d3f1ba172648ca9133372119559"
+    },
+    {
+      "path": "fixture/oem-kernel/drivers/misc/mediatek/imgsensor/inc/kd_imgsensor.h",
+      "bytes": 20528,
+      "sha256": "a591d026637ca60919a9e1b79c724f7b54896ed674d98f82ef48c3ec9beb640c"
+    },
+    {
+      "path": "fixture/oem-kernel/drivers/misc/mediatek/imgsensor/inc/kd_imgsensor_define.h",
+      "bytes": 36054,
+      "sha256": "582b64b65c2df1b8775e61347eb5ae5f125f052d2c7b337e1fc96ca280a7eaf8"
+    },
+    {
+      "path": "fixture/oem-kernel/drivers/misc/mediatek/m4u/mt8163/m4u.h",
+      "bytes": 5560,
+      "sha256": "12c9a620d8af354522e5bbd132bb2d8f28a1afb3f33dfd2b98eb5c240d996ad6"
+    },
+    {
+      "path": "fixture/oem-kernel/drivers/misc/mediatek/m4u/mt8163/m4u_port.h",
+      "bytes": 2123,
+      "sha256": "293c819086eafa42cc8d5146de3714f4d2bd4544929df0b8c1f6c73619d734f3"
+    },
+    {
+      "path": "fixture/oem-kernel/drivers/misc/mediatek/m4u/mt8163/m4u_priv.h",
+      "bytes": 9721,
+      "sha256": "c894c73832ff7db8b5338db8307e9e9cb51a499dd07a0498d178170e0996a51e"
+    },
+    {
+      "path": "fixture/sdk37/frameworks/av/camera/aidl/android/hardware/ICamera.aidl",
+      "bytes": 862,
+      "sha256": "e8458ccabacf4ca816abe592c4ee09d2bbd57c82920da50e9886d57247764002"
+    },
+    {
+      "path": "fixture/sdk37/frameworks/av/camera/aidl/android/hardware/ICameraService.aidl",
+      "bytes": 21709,
+      "sha256": "2d7ff5adc8d761a4460022001efbfc1b936e8e9f3c43090f94584cf48a737803"
+    },
+    {
+      "path": "fixture/sdk37/frameworks/av/camera/aidl/android/hardware/camera2/ICameraDeviceCallbacks.aidl",
+      "bytes": 2831,
+      "sha256": "ba8de4636be47fe380efa2b71f98b9b2f1b30a28e96f37240367f2d451d38ade"
+    },
+    {
+      "path": "fixture/sdk37/frameworks/av/camera/aidl/android/hardware/camera2/ICameraDeviceUser.aidl",
+      "bytes": 9835,
+      "sha256": "dda5f9e0c432e4ec350854ce258ab24e54d636f69fccbd085894483779c7656a"
+    },
+    {
+      "path": "fixture/sdk37/frameworks/av/services/camera/libcameraservice/Android.bp",
+      "bytes": 10592,
+      "sha256": "0cefe30c4a76dfd0e9a24092908ad22c4520b20281e8d6992149072309c9721a"
+    },
+    {
+      "path": "fixture/sdk37/frameworks/av/services/camera/libcameraservice/CameraService.cpp",
+      "bytes": 289010,
+      "sha256": "0ccdba028e8d2e7d167d8da2c10b3d4cf0c3d8633fa1533f56992d156b84bd39"
+    },
+    {
+      "path": "fixture/sdk37/frameworks/av/services/camera/libcameraservice/CameraService.h",
+      "bytes": 71570,
+      "sha256": "714d21d1d38a228eef79d88f0b7606ea3b11ca2d5bdcda2e39dbb2066e0efa4d"
+    },
+    {
+      "path": "fixture/sdk37/frameworks/av/services/camera/libcameraservice/common/CameraProviderInfoTemplated.h",
+      "bytes": 4128,
+      "sha256": "14d7ddc3bc5aa4ae883a9f5dd672a28dad6dee89696b5d21f3c0a1613f96f522"
+    },
+    {
+      "path": "fixture/sdk37/frameworks/av/services/camera/libcameraservice/common/CameraProviderManager.cpp",
+      "bytes": 154204,
+      "sha256": "11ec4f73529b4310591662108981b0ee73d461f7f2da8ab140990889f1f2a1d5"
+    },
+    {
+      "path": "fixture/sdk37/frameworks/av/services/camera/libcameraservice/common/CameraProviderManager.h",
+      "bytes": 43579,
+      "sha256": "4d59470c6dfd0353fb821ec5c86d3ad1093e17aebcdc475881608873f4b5d94a"
+    },
+    {
+      "path": "fixture/sdk37/frameworks/av/services/camera/libcameraservice/common/hidl/HidlProviderInfo.cpp",
+      "bytes": 45321,
+      "sha256": "4b103597d2479d60f80216dda6394ae168b7f9bcde94b7b2b37ee7c053ed9976"
+    },
+    {
+      "path": "fixture/sdk37/frameworks/av/services/camera/libcameraservice/common/hidl/HidlProviderInfo.h",
+      "bytes": 6114,
+      "sha256": "39977fd2146006cb62a85e4878fad060a37a3028f3133eb4e4ea7b0306e8c46c"
+    },
+    {
+      "path": "fixture/sdk37/frameworks/base/core/java/android/hardware/camera2/CameraManager.java",
+      "bytes": 173740,
+      "sha256": "61a7ffa36a0b4199d1b22359f6e78af43a1212ea9d6b2cc491c977ac70ba89c3"
+    },
+    {
+      "path": "fixture/sdk37/frameworks/base/core/jni/android_hardware_Camera.cpp",
+      "bytes": 47293,
+      "sha256": "bada670fd334b8145b93e465e917800620b8ad9c145d28367749289554c8a577"
+    },
+    {
+      "path": "fixture/sdk37/hardware/interfaces/camera/common/default/CameraModule.cpp",
+      "bytes": 21664,
+      "sha256": "0210898466c2f78f06ddae3644091330d24556ba9aefcd60d3ad0a7439a207c0"
+    },
+    {
+      "path": "fixture/sdk37/hardware/interfaces/camera/common/default/include/CameraModule.h",
+      "bytes": 3924,
+      "sha256": "bda2fd306e464450348860847b8d18f0c0d64a065cc2d980fc340af99c72e7a2"
+    },
+    {
+      "path": "fixture/sdk37/hardware/interfaces/camera/device/1.0/ICameraDevice.hal",
+      "bytes": 16938,
+      "sha256": "c1705e9d62438a1d955269965af915ae28e692bd480a3b1ce67056fef992d62f"
+    },
+    {
+      "path": "fixture/sdk37/hardware/interfaces/camera/device/1.0/default/CameraDevice.cpp",
+      "bytes": 36839,
+      "sha256": "3f962e2008b058563effa0cd5d4a7624c663db2dab7bcbb858a36d6c8b0660dd"
+    },
+    {
+      "path": "fixture/sdk37/hardware/interfaces/camera/device/3.2/default/CameraDevice.cpp",
+      "bytes": 11144,
+      "sha256": "a06582f399303cf5fcc93a51118868b5116f7869e9a0403e7eaea0a23767546a"
+    },
+    {
+      "path": "fixture/sdk37/hardware/interfaces/camera/device/3.2/default/CameraDeviceSession.cpp",
+      "bytes": 62526,
+      "sha256": "f713f2b7f035ae780c7b23f358c0938673b22e56c2a3393084006ff8cf33d58b"
+    },
+    {
+      "path": "fixture/sdk37/hardware/interfaces/camera/provider/2.4/ICameraProvider.hal",
+      "bytes": 8330,
+      "sha256": "bceee81ec1b59324abd05932b5620fda5a6589597c9cb3953ba7f3ea02cccd3e"
+    },
+    {
+      "path": "fixture/sdk37/hardware/interfaces/camera/provider/2.4/default/Android.bp",
+      "bytes": 7990,
+      "sha256": "e0e92a77608a7bd7fb16630b5cb8938ff2a977dee500ae90571b42b6fbf46b25"
+    },
+    {
+      "path": "fixture/sdk37/hardware/interfaces/camera/provider/2.4/default/LegacyCameraProviderImpl_2_4.cpp",
+      "bytes": 26911,
+      "sha256": "8d7adc5733c6261d295f91aef76ca3ca260c0c8d6f7761404a1f17051454286c"
+    },
+    {
+      "path": "fixture/sdk37/hardware/libhardware/include_all/hardware/camera.h",
+      "bytes": 11242,
+      "sha256": "f470417bc0a35c37de55636bf27e72dab7715e069bdbb37d24a93df740a91bd8"
+    },
+    {
+      "path": "fixture/sdk37/hardware/libhardware/include_all/hardware/camera3.h",
+      "bytes": 163317,
+      "sha256": "52b0e387de7c176af4d9684ab33c5fd1850945c3d22bd8dd316dbd9487af0d04"
+    },
+    {
+      "path": "fixture/sdk37/hardware/libhardware/include_all/hardware/camera_common.h",
+      "bytes": 51275,
+      "sha256": "689d838ea6f5e746696aa6e98880301ef209d8d133ac2a48dd5c1eaaf62f73b1"
+    },
+    {
+      "path": "fixture/sdk37/hardware/libhardware/include_all/hardware/hardware.h",
+      "bytes": 8063,
+      "sha256": "05cc2f0108d6c87e36384380559943d34acd104e3c2ade9aeba4415cfb23aee8"
+    },
+    {
+      "path": "fixture/sdk37/kernel/asus/p00a-fd/drivers/misc/mediatek/cam_cal/inc/cam_cal.h",
+      "bytes": 1464,
+      "sha256": "3ea5a48bb8ff989edd0641802567927412fd2c975d686630b4a357fc8b077706"
+    },
+    {
+      "path": "fixture/sdk37/kernel/asus/p00a-fd/drivers/misc/mediatek/cam_cal/inc/cam_cal_define.h",
+      "bytes": 968,
+      "sha256": "2c634df17e7fa7adcb2ce0a0869f44ac7eb95cca595f58abc029e8bd8d798014"
+    },
+    {
+      "path": "fixture/sdk37/kernel/asus/p00a-fd/drivers/misc/mediatek/cameraisp/src/mt8163/inc/camera_isp.h",
+      "bytes": 18851,
+      "sha256": "4493e13f8511001397625c773d6ee871db9226d9869c0ea4cc893382ee11a03e"
+    },
+    {
+      "path": "fixture/sdk37/kernel/asus/p00a-fd/drivers/misc/mediatek/cameraisp/src/mt8163/inc/camera_isp_FrmB.h",
+      "bytes": 21359,
+      "sha256": "d04e379ad96a28442dc2252b8974bf244df0641a56f3eb8bb608d44c23502823"
+    },
+    {
+      "path": "fixture/sdk37/kernel/asus/p00a-fd/drivers/misc/mediatek/imgsensor/inc/kd_imgsensor.h",
+      "bytes": 26568,
+      "sha256": "b2a93edcb7f7a79a959f1061aa7ebb53ecd34f970af531148d26d7a96203b608"
+    },
+    {
+      "path": "fixture/sdk37/kernel/asus/p00a-fd/drivers/misc/mediatek/imgsensor/inc/kd_imgsensor_define.h",
+      "bytes": 601,
+      "sha256": "fb2aed3d7f6b28234c36277af14c6fc6defc4b48ac9879c8f01e24605fc47cf8"
+    },
+    {
+      "path": "fixture/sdk37/kernel/asus/p00a-fd/drivers/misc/mediatek/imgsensor/inc/kd_imgsensor_define_default.h",
+      "bytes": 38680,
+      "sha256": "6fca3017534dfddf48db1f1f2d1ec02512f2d683366b43f1c42c40124769ba28"
+    },
+    {
+      "path": "fixture/sdk37/kernel/asus/p00a-fd/drivers/misc/mediatek/m4u/mt8163/m4u.h",
+      "bytes": 6491,
+      "sha256": "45d72b4681f2b940cd86df0975424d35ebae506a2971f3528f4057f263c4432f"
+    },
+    {
+      "path": "fixture/sdk37/kernel/asus/p00a-fd/drivers/misc/mediatek/m4u/mt8163/m4u_port.h",
+      "bytes": 2605,
+      "sha256": "6da8e8616154dc7139c9c474b6bb6c8fcac8a724076762b5464239912df8ed2b"
+    },
+    {
+      "path": "fixture/sdk37/kernel/asus/p00a-fd/drivers/misc/mediatek/m4u/mt8163/m4u_priv.h",
+      "bytes": 10610,
+      "sha256": "6aeff18f1b3fb36ae212865ba4b76163b957d0d7d06072ad56a8ae1f1cc0f354"
+    },
+    {
+      "path": "report/ABI-LEDGER.md",
+      "bytes": 13688,
+      "sha256": "6efeb94fe589ed9b30f0c39d03d26a8a55ceb85be4250296a821453fcd180a22"
+    },
+    {
+      "path": "report/CAMERA-ROUTE.md",
+      "bytes": 21802,
+      "sha256": "6f653af99b7647580e53ed29c2e24d1921d412928d236be2cad225a137c7a91d"
+    },
+    {
+      "path": "report/routes.html",
+      "bytes": 2464,
+      "sha256": "e5faf969c6b0a2da1c7480283f92663a65ba28bc4ea33b694732c2740ceede7c"
+    },
+    {
+      "path": "scripts/abi_followup.py",
+      "bytes": 1500,
+      "sha256": "1eb88422936828ae67fe18aae3ee70ae6e8e8ba37e2c336904e4b99cb4d7e005"
+    },
+    {
+      "path": "scripts/analyze_headers.py",
+      "bytes": 1722,
+      "sha256": "dc7d035cd26acbf49a96d24565eddb5f4b21716ecef5b63bad7d65f020022600"
+    },
+    {
+      "path": "scripts/compile_abi.py",
+      "bytes": 3600,
+      "sha256": "c27ecd4647c1bfea0794cdfcba2022be547590746d88035c1bcb67ec2878817b"
+    },
+    {
+      "path": "scripts/compile_enums.py",
+      "bytes": 2981,
+      "sha256": "ee384efe0551c3a9a0631566948985f527e524c5314420be93ff9deec117ad0c"
+    },
+    {
+      "path": "scripts/dependency_audit.py",
+      "bytes": 4582,
+      "sha256": "cbbd676a48462b0a4f404d7485fdb752a5b76b17797ba52e4427e93ba8344362"
+    },
+    {
+      "path": "scripts/discover.py",
+      "bytes": 1163,
+      "sha256": "096eec4c254f82eb670b1fd196730fd6437ee0d71c318df079b8eddc3a120a6d"
+    },
+    {
+      "path": "scripts/fetch_donors.py",
+      "bytes": 2046,
+      "sha256": "bd4831464f299b8d221edc56e775de0671107cbd0add369187c3a9f4d9beb550"
+    },
+    {
+      "path": "scripts/final_edges.py",
+      "bytes": 2015,
+      "sha256": "f5840933b1877ff5b6fe1437f627a87e01112e022fe25c31a720d63ef20c2466"
+    },
+    {
+      "path": "scripts/metadata_edges.py",
+      "bytes": 1588,
+      "sha256": "c64f0cccb453a05cfbf8a343322527ec96d5e3abc5bf53b499635e3fb76756e6"
+    },
+    {
+      "path": "scripts/module_layout.py",
+      "bytes": 1807,
+      "sha256": "77d5e4ab4c0bf4acd51820e70969a26acc9943c81d1fefb6011bf575c88e5d9f"
+    },
+    {
+      "path": "scripts/ndk_check.py",
+      "bytes": 643,
+      "sha256": "e855d8597a3f98c2c19ff2a5d32dce625fa56afe4479f257753e15b8ef34d28c"
+    },
+    {
+      "path": "scripts/oem_dispatch.py",
+      "bytes": 1522,
+      "sha256": "b91c4d49f9f52b819e853daa1c1a580c4c03d937bb7097367cc40b12632b8abd"
+    },
+    {
+      "path": "scripts/oem_elf.py",
+      "bytes": 1719,
+      "sha256": "a2b8dea9cbd1248fc2fc703be9e6e2188823cefc2b42aaf4eac86cada90b1c0b"
+    },
+    {
+      "path": "scripts/provider_inventory.py",
+      "bytes": 842,
+      "sha256": "51afb8c1b480008b04f28cfd17359728c452ea997170749eec84b91f21c03757"
+    },
+    {
+      "path": "scripts/run_compile.py",
+      "bytes": 634,
+      "sha256": "ecaaf1ab260dbe177947d81b3df943772f03808667a0b5e7b4aeb848de8f8705"
+    },
+    {
+      "path": "scripts/run_remote.py",
+      "bytes": 510,
+      "sha256": "f6901fa548d4b0e5d2f57c980653fadb5e11ac1930cb5ade570be9f2070914fa"
+    },
+    {
+      "path": "scripts/sdk_sources.py",
+      "bytes": 2097,
+      "sha256": "5ef639e4baf32fc6462e02d434c083c5a1734e401bbc687d8b263dbfd835425c"
+    },
+    {
+      "path": "scripts/source_edges.py",
+      "bytes": 1507,
+      "sha256": "911b9944993d4b781008b105ff01a0ff93d56fac4a27160eb3d1e9d18a872e6e"
+    },
+    {
+      "path": "scripts/unpack_sources.py",
+      "bytes": 470,
+      "sha256": "0d36476be1fc7d0c9837a61662d4fcf838d82798d6c78aa7a24ccfdff77bccc0"
+    },
+    {
+      "path": "scripts/verify_evidence.py",
+      "bytes": 3923,
+      "sha256": "e3ae2b3e385eca5577725719733cc020f8f91a0beaa0e58125cc7cc38e5aa088"
+    }
+  ],
+  "total_bytes_excluding_manifest": 6937056,
+  "runtime_camera_tested": false,
+  "active_build_or_device_changed": false
+}

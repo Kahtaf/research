@@ -1,0 +1,13 @@
+{
+  "approval_authored_by_worker": false,
+  "files": {
+    "inputs/lmkd-functional/HANDOFF.md": "d817d66962903c45d0f52fd517d22de6beb557d52786b96a71f9fea0318b0408",
+    "inputs/lmkd-functional/REPORT.md": "9b9cef064f5f894f4f8c2b115341af007e5038921196f82ed3638dcfa3aa687b",
+    "inputs/lmkd-functional/qualification.json": "f880948fd4b21a13edc057b09be12a8ec1c508f42157ac179ccac44c2a4a37af",
+    "inputs/lmkd-functional/vendor-file-contexts.additions": "3c9be94080cd5d2b146bd52e325545bc7b27e86395413e16ae650d3895c2426c"
+  },
+  "full_android_google_root_usability": false,
+  "parent_complete_memory_evidence_review_required": true,
+  "protected_incompressible_overload": "FAILED; retained, no recovery claim",
+  "status": "NATIVE_MEMORY_SUBSYSTEM_PASS_WITH_STAGED_CONTEXT_CORRECTION"
+}

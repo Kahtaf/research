@@ -1,0 +1,162 @@
+{
+  "at": "2026-11-08T06:17:02.635696+00:00",
+  "uuid": "f3da846c-cbd9-4623-adc2-5e54d097dfdc",
+  "status": "FINITE_DELAY_CAPTURE",
+  "previous_statuses": {
+    "pmic": "FINITE_PMIC_CAPTURE",
+    "power": "FINITE_POWER_CAPTURE",
+    "work": "FINITE_WORK_CAPTURE",
+    "switch": "FINITE_SWITCH_CAPTURE",
+    "clock": "COMPLETE_CAPTURE_ROWS"
+  },
+  "target": {
+    "status": "JOINED_FINITE_DELAY",
+    "pid": 119,
+    "pmic_token": 123,
+    "property_token": 89,
+    "body_token": 61,
+    "sample": 3,
+    "generation": 4,
+    "state": "DELAY_ACTIVE_FINITE",
+    "stages": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "requested_cycles": 3900,
+    "interpretation": "FINITE_BOUNDARY_ONLY"
+  },
+  "calculation": {
+    "generation": 4,
+    "xloops": 1288500,
+    "lpj": 52000,
+    "HZ": 250,
+    "product": 16750500000000,
+    "cycles": 3900
+  },
+  "milestones": [
+    {
+      "generation": 4,
+      "stage": 0,
+      "iteration": 0,
+      "counter": 0,
+      "cycles": 3900,
+      "preempt": 0,
+      "context": 4,
+      "pid": 119
+    },
+    {
+      "generation": 4,
+      "stage": 1,
+      "iteration": 0,
+      "counter": 176036156,
+      "cycles": 3900,
+      "preempt": 0,
+      "context": 4,
+      "pid": 119
+    },
+    {
+      "generation": 4,
+      "stage": 2,
+      "iteration": 1,
+      "counter": 176036191,
+      "cycles": 3900,
+      "preempt": 0,
+      "context": 4,
+      "pid": 119
+    },
+    {
+      "generation": 4,
+      "stage": 3,
+      "iteration": 256,
+      "counter": 176036301,
+      "cycles": 3900,
+      "preempt": 0,
+      "context": 4,
+      "pid": 119
+    }
+  ],
+  "counter_deltas_from_start": [
+    {
+      "iteration": 1,
+      "delta": 35
+    },
+    {
+      "iteration": 256,
+      "delta": 145
+    }
+  ],
+  "clock_rows": [
+    {
+      "slot": 0,
+      "kind": 0,
+      "entries": 240,
+      "complete": 239,
+      "enter": 270592,
+      "exit": 270080,
+      "stage": 3,
+      "parent": 0,
+      "raw": 0,
+      "function_symbol": "posix_ktime_get_ts+16",
+      "pc_symbol": null
+    },
+    {
+      "slot": 0,
+      "kind": 1,
+      "entries": 240,
+      "complete": 240,
+      "enter": 270864,
+      "exit": 270864,
+      "stage": 4,
+      "parent": 270592,
+      "raw": 176011844,
+      "function_symbol": "arch_counter_get_cntvct+0",
+      "pc_symbol": null
+    },
+    {
+      "slot": 1,
+      "kind": 1,
+      "entries": 403,
+      "complete": 403,
+      "enter": 272145,
+      "exit": 272145,
+      "stage": 4,
+      "parent": 271137,
+      "raw": 176012288,
+      "function_symbol": "arch_counter_get_cntvct+0",
+      "pc_symbol": null
+    },
+    {
+      "slot": 1,
+      "kind": 2,
+      "entries": 180,
+      "complete": 180,
+      "enter": 271137,
+      "exit": 271137,
+      "stage": 4,
+      "parent": 0,
+      "raw": 0,
+      "function_symbol": "hrtimer_interrupt+0",
+      "pc_symbol": "_raw_spin_unlock_irqrestore+16"
+    }
+  ],
+  "pmic_latest": {
+    "code": 38,
+    "raw_cntvct": 176035725,
+    "pid": 119,
+    "sample": 3,
+    "capture_anchor": 1063,
+    "switch_anchor": 1231,
+    "work_anchor": 132,
+    "power_anchor": 89,
+    "stage": "UDELAY300_PRE"
+  },
+  "last_switch_sequence": 1231,
+  "last_helper_record": "ASUS49-SYSCLOCK run=f0c3c82c-d639-4d8a-90f2-155fd4224ceb phase=observe stage=end op=clock_gettime path=loop.initial rc=0 errno=0 value=0.651969153",
+  "new_stock_boot_id": "9c48f48e-6ea8-403d-aa74-2916f546080c",
+  "normal_stock_return_verified": true,
+  "normal_OS_partitions_changed": false,
+  "full_console_sha256": "84ae298cd1a5b0df412b98c0934f3f7da52705dbab532fe408ea4e55f97a8539",
+  "conclusion": "ExactselectedfourthdelayLPJ52000,HZ250,cycles3900; start/firstread/iteration256returned andrawcounteradvanced145ticks. No65536milestoneorreturn. Doesnotprovefrozenclock/corruption/continuousexecutionorIRQfailure; consultLargewithpartialresultbeforenextunit."
+}

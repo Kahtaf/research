@@ -1,0 +1,27 @@
+{
+  "status": "complete",
+  "started": "2026-11-08T04:11:39.495022+00:00",
+  "max_jobs": 8,
+  "compile_attempts": 1,
+  "rlimit_as": [
+    -1,
+    -1
+  ],
+  "build_timeout": null,
+  "command": [
+    "make",
+    "-C",
+    "/srv/android/asus-linux49-active-work-capture-20261107-8e5c5d4d/kernel",
+    "O=/srv/android/asus-linux49-active-work-capture-20261107-8e5c5d4d/out",
+    "ARCH=arm64",
+    "CROSS_COMPILE=aarch64-linux-gnu-",
+    "HOSTCC=gcc",
+    "HOSTCXX=g++",
+    "LOCALVERSION=-g717bb3c9e13c-dirty",
+    "-j8",
+    "Image.gz-dtb"
+  ],
+  "compile_exit": 0,
+  "exit": 0,
+  "finished": "2026-11-08T04:14:25.906885+00:00"
+}

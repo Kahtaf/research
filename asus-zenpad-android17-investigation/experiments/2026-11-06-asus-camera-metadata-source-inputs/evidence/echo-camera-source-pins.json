@@ -1,0 +1,49 @@
+{
+  "commit": "1381755099398de8b5c09ad2f85023c40ec0ec12",
+  "tree_sha": "20d9f02f23795fae9cf71195bbe0ee9e5f5fc860",
+  "files": [
+    {
+      "path": "inputs/echo-camera/README.md",
+      "url": "https://raw.githubusercontent.com/jxlarrea/lineageos-echo-show-camera/1381755099398de8b5c09ad2f85023c40ec0ec12/README.md",
+      "bytes": 20575,
+      "sha256": "b4f4b6be3faea8b833de57bce463abcfbab473a2358b663b886d7388f9b2fc59",
+      "git_blob_sha": "e48c8b11d2a40d0c6833bfe6774a9520449071fb"
+    },
+    {
+      "path": "inputs/echo-camera/LICENSE",
+      "url": "https://raw.githubusercontent.com/jxlarrea/lineageos-echo-show-camera/1381755099398de8b5c09ad2f85023c40ec0ec12/LICENSE",
+      "bytes": 1311,
+      "sha256": "f91da35d35480e54882fca84b498ffb3d24a7e1407d467fbc10fcb3b3f8d21c4",
+      "git_blob_sha": "1c67b6f0105b21fb80e02d1873e42b15b9dc97ff"
+    },
+    {
+      "path": "inputs/echo-camera/docs/findings.md",
+      "url": "https://raw.githubusercontent.com/jxlarrea/lineageos-echo-show-camera/1381755099398de8b5c09ad2f85023c40ec0ec12/docs/findings.md",
+      "bytes": 93925,
+      "sha256": "58e7b505e756c56961a5f60213150b80290d0cd9cf9bc8e21542f013c2b965aa",
+      "git_blob_sha": "b0f320de247baa6f80ebffb07adbb0b6a74cec46"
+    },
+    {
+      "path": "inputs/echo-camera/shims/libcamera_shim/camera_shim.cpp",
+      "url": "https://raw.githubusercontent.com/jxlarrea/lineageos-echo-show-camera/1381755099398de8b5c09ad2f85023c40ec0ec12/shims/libcamera_shim/camera_shim.cpp",
+      "bytes": 4975,
+      "sha256": "33c2d1ad49875d580dfd77f0460cfe03e239aa54081d979cdef838f50557786c",
+      "git_blob_sha": "fa5a056ace5f58495337960f34858335e814eb13"
+    },
+    {
+      "path": "inputs/echo-camera/shims/libdpframework_cam/dpframework_adapter.cpp",
+      "url": "https://raw.githubusercontent.com/jxlarrea/lineageos-echo-show-camera/1381755099398de8b5c09ad2f85023c40ec0ec12/shims/libdpframework_cam/dpframework_adapter.cpp",
+      "bytes": 15804,
+      "sha256": "d7b60bc8902e69594783360b5eb9cc97334dfcc098995ec316d6cedcb48a858a",
+      "git_blob_sha": "65b41773f15f7313352ef302e51a226f65e2c350"
+    },
+    {
+      "path": "inputs/echo-camera/shims/libdpframework_cam/README.md",
+      "url": "https://raw.githubusercontent.com/jxlarrea/lineageos-echo-show-camera/1381755099398de8b5c09ad2f85023c40ec0ec12/shims/libdpframework_cam/README.md",
+      "bytes": 1700,
+      "sha256": "8322881ee9d11389d420f95d62a4ddcdb27e619b8b0a7877e21eff7c379d105e",
+      "git_blob_sha": "3ea802c67550185bb8a64f09763a430be6b3c893"
+    }
+  ],
+  "scope": "Other-device Android11 source references only; not qualified ASUS SDK37 metadata/pipeline."
+}

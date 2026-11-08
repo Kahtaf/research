@@ -1,0 +1,38 @@
+{
+  "all_exported_hashes_verified": true,
+  "objects": [
+    {
+      "name": "mt_soc_codec_63xx.o",
+      "sha256": "4559441b14d13c99b6570424fed2b031e56395182d98d65217e069e9594cf6f1",
+      "bytes": 147408,
+      "machine": "AArch64",
+      "kind": "relocatable",
+      "actual_source_and_kernel_flags_in_cmd": true
+    },
+    {
+      "name": "AudDrv_Gpio.o",
+      "sha256": "78dd70c14340bb081c0050959490263793ae3e3e674fb344a37bb7aad30e95eb",
+      "bytes": 15416,
+      "machine": "AArch64",
+      "kind": "relocatable",
+      "actual_source_and_kernel_flags_in_cmd": true
+    },
+    {
+      "name": "AudDrv_Afe.o",
+      "sha256": "0444ffaa3145fdb5a02cfa1d26b75452525f6830f9bc8a539755534b160dab24",
+      "bytes": 92168,
+      "machine": "AArch64",
+      "kind": "relocatable",
+      "actual_source_and_kernel_flags_in_cmd": true
+    }
+  ],
+  "actual_generated_headers_retained": true,
+  "actual_dtc_sha256": "17b1b27846396b6d94f44ad1fc133568bf553aedacd5dff6f07977dae8769c98",
+  "new_header_bound_to_real_compiler_dependency": true,
+  "codec_ClassAB_references_retained": true,
+  "codec_AW_and_GPIO24_select_references_absent": true,
+  "AFE_AW_state_reference_absent": true,
+  "gate_disassembly_has_no_delay_or_generic_EXTAMP_call": true,
+  "routing_repro_matches_exact_BMC_source": true,
+  "source_candidate_disposition": "CHANGES_REQUESTED"
+}

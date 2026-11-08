@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-07T17:24:40.683221+00:00",
+  "status": "RECOVERY_TRIAL_RETURNED_NO_NEW_KERNEL_CHECKPOINT",
+  "install_run": "09a515f8-b0ca-476a-9d67-bc9d9a4a53fb",
+  "candidate_sha256": "4eab0d05c2bd05d3ced4d47471867a401babd56c96a3ff989c70b555edd9b3e6",
+  "full_p10_sha256": "4fb2f280ba90e9e1487b3728056a67ccd4883f918cc81a1145c100a3eb999a26",
+  "full_readback_and_cleanup_verified": true,
+  "recovery_requests": 1,
+  "recovery_dispatch": "ACKNOWLEDGED",
+  "new_stock_boot_id": "07b983d4-92fd-4abd-ad7f-4afb6e017571",
+  "normal_return_verified_usb": true,
+  "selinux_restored": "Enforcing",
+  "usb_log_capture_complete": true,
+  "retained_log_bytes": 523020,
+  "retained_log_sha256": "bfe6ab5610e470fcc3fd814f606469d4b2230f4e6235cfbd187e188a67084b8f",
+  "v2_checkpoints": [],
+  "sd_report": "ABSENT",
+  "specific_reset_cause_proven": false,
+  "linux49_nonexecution_proven": false,
+  "BOOT_SYSTEM_DATA_writes": false,
+  "tcp_collection_failed_before_root_dispatch": true,
+  "next_read_only_lead": "stock lastpc driver with lastpc_dump endpoint exists; previous-reset provenance needs source qualification before interpreting values"
+}

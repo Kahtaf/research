@@ -1,0 +1,6 @@
+from pathlib import Path
+import subprocess as s,json,hashlib,os
+R=Path('/srv/android/asus-firstboot-runtime');K=R/'kernel-cpuset-r1';B=R/'kernel-build-r7';assert not B.exists();s.run(['cp','-a','--reflink=auto',str(R/'kernel-build-r6'),str(B)],check=True);s.run([str(K/'scripts/config'),'--file',str(B/'.config'),'-e','FILE_LOCKING'],check=True);os.environ['TMPDIR']=str(R/'tmp')
+args=['make','-C',str(K),'O='+str(B),'ARCH=arm64','CROSS_COMPILE=aarch64-linux-gnu-','HOSTCC=gcc','HOSTCXX=g++','KBUILD_BUILD_USER=asus-port','KBUILD_BUILD_HOST=firstboot-runtime','KBUILD_BUILD_VERSION=1','KBUILD_BUILD_TIMESTAMP=Fri Nov 6 00:00:00 UTC 2026'];s.run(args+['olddefconfig'],check=True);delta=s.check_output([str(K/'scripts/diffconfig'),str(R/'kernel-build-r6/.config'),str(B/'.config')],text=True);(R/'evidence/kernel-file-locking-delta.txt').write_text(delta);assert delta.strip()=='FILE_LOCKING n -> y',delta
+(R/'evidence/kernel-r7-command.json').write_text(json.dumps(args+['-j1','Image'],indent=2));p=s.run(args+['-j1','Image']);(R/'evidence/kernel-r7-status.json').write_text(json.dumps(dict(returncode=p.returncode)));assert p.returncode==0
+(R/'evidence/kernel-r7-hashes.json').write_text(json.dumps({str(f.relative_to(R)):hashlib.sha256(f.read_bytes()).hexdigest() for f in [B/'.config',B/'arch/arm64/boot/Image']},indent=2))

@@ -1,0 +1,126 @@
+{
+  "HANDOFF.json": {
+    "bytes": 2889,
+    "sha256": "545cbadb5ff47084a2759ce4ca898be7cd4aeed4be8b00562a9148827b6a4857"
+  },
+  "SOURCE_PINS.json": {
+    "bytes": 5537,
+    "sha256": "84682d317fd91472be5cdc69e1010870e5b44272ab6eaac0d8bead1e9f629eb2"
+  },
+  "INTEGRATION.md": {
+    "bytes": 4376,
+    "sha256": "0909f097d7fe693991f3ec1e60a63f7364065eda7910821c995a1ff646266d94"
+  },
+  "REPORT.md": {
+    "bytes": 10760,
+    "sha256": "2bcdccab991312fb84f4b06134c4d2210d386b6ab00c0e529c2c4bb2eceec2ef"
+  },
+  "README.md": {
+    "bytes": 2783,
+    "sha256": "9950e1d24bc2110b7350b0d069a371acc593b38311564dd781cd68894f2cfb5b"
+  },
+  "ARTIFACTS.json": {
+    "bytes": 173276,
+    "sha256": "dccc392271ffc0ec101cace4538e599162efd6f2b22c7ab3582ae7ec88483900"
+  },
+  "evidence/initial-effective-policy.json": {
+    "bytes": 45323,
+    "sha256": "114c221b146dc571d3f852c6ed454ca0c692c393d34d761c7815fafbb0b7ca4a"
+  },
+  "evidence/effective-xperms.json": {
+    "bytes": 3609,
+    "sha256": "d4a731fec4edc5af92deeaee21e22bb6659249ef5eacb98a36869f43a1ae26a3"
+  },
+  "evidence/resource-limit-probes.json": {
+    "bytes": 1548,
+    "sha256": "d2dfa08582ed825e4225633435db0b6103d089916dd1b1150dacb2941594ab1d"
+  },
+  "evidence/final-policy-audit.json": {
+    "bytes": 385,
+    "sha256": "f2987cd67aba77787d45567f0bd8451d82e6c3a3d1333fee66aa847b15f8fb1c"
+  },
+  "evidence/reproduction.json": {
+    "bytes": 3346,
+    "sha256": "ecdda6251b647889ed238622c1a9d8b5396d547b6a946bab41a827329b21ca60"
+  },
+  "evidence/original-files-before.json": {
+    "bytes": 28517,
+    "sha256": "50fe3d12eb597e3f029b6fc69aa6500ec49382ac735f4a43ff1702a4f41c7927"
+  },
+  "evidence/initial-policy-checks.json": {
+    "bytes": 152167,
+    "sha256": "ca47571709ec190e8a55f3666af69d9aee345bd8f052db7c8e995c9cf16bab59"
+  },
+  "evidence/source-delta.json": {
+    "bytes": 1267,
+    "sha256": "5575b2e5a3e3daa4d22221c33e8735c4fc3c77a86bbb55196cfcbae28ae776a8"
+  },
+  "evidence/frozen-not-final5role.json": {
+    "bytes": 236,
+    "sha256": "3b12d72853926d4e13c331263f6bbbcefc49c8cd003241ec2c9a7d1b98a677e8"
+  },
+  "evidence/clean-reproduction.json": {
+    "bytes": 280,
+    "sha256": "37f019b70e6a3757985bb36a390999999d7699e49a15a7a488ff63fc2941c7f6"
+  },
+  "evidence/preservation.json": {
+    "bytes": 945,
+    "sha256": "51e99c6a0114a3892cdedeaabf0b7cc2ad7f8362eb5c246c0a8d8c8f62303ac2"
+  },
+  "evidence/UNQUALIFIED-future5role-policy-audit.json": {
+    "bytes": 385,
+    "sha256": "f2987cd67aba77787d45567f0bd8451d82e6c3a3d1333fee66aa847b15f8fb1c"
+  },
+  "evidence/commands.jsonl": {
+    "bytes": 293038,
+    "sha256": "8556c6bb7b20fb4f08930187ccaab96a9c0b50bd1acf28e5ddc679e6262d03db"
+  },
+  "evidence/resources.json": {
+    "bytes": 82934,
+    "sha256": "7168c29e60492704214f054559cee00c11c0d9f7fe1340f5966596c11511fbfb"
+  },
+  "evidence/UNQUALIFIED-future5role-policy-reproduction-audit.json": {
+    "bytes": 385,
+    "sha256": "f2987cd67aba77787d45567f0bd8451d82e6c3a3d1333fee66aa847b15f8fb1c"
+  },
+  "evidence/patch-application.json": {
+    "bytes": 250,
+    "sha256": "d71d1eae64e2b16220f9649b48118a469cc0bcbf36597bc6ed83a6cca6f28549"
+  },
+  "evidence/policy-checks.json": {
+    "bytes": 152340,
+    "sha256": "6f75c2100a82065024feedbeffacc6c5b69c308f204f14ef21258610d9722aeb"
+  },
+  "evidence/original-files-after.json": {
+    "bytes": 28517,
+    "sha256": "50fe3d12eb597e3f029b6fc69aa6500ec49382ac735f4a43ff1702a4f41c7927"
+  },
+  "evidence/effective-policy.json": {
+    "bytes": 45323,
+    "sha256": "114c221b146dc571d3f852c6ed454ca0c692c393d34d761c7815fafbb0b7ca4a"
+  },
+  "evidence/initial-run-scheduling.json": {
+    "bytes": 415,
+    "sha256": "46c292c931e2fab3466e9df13f9c6b687ac36c26aae994ad35aa608163edd8dc"
+  },
+  "evidence/toolchain.json": {
+    "bytes": 12882,
+    "sha256": "f28bac0faee75f0420f54a57b9bfc17e84bdf32e16f7806f8e159d27083b439a"
+  },
+  "evidence/negative-fixtures.json": {
+    "bytes": 15207,
+    "sha256": "715bb6c5c7c83d07e41c31c0b8ecf906bbbd1f3d67d1683d5551f15e35db5174"
+  },
+  "evidence/initial-commands-before-serialization.jsonl": {
+    "bytes": 201783,
+    "sha256": "297196b842653d552e5656ddba8498f21823cae9607c92580d6e2e1b6c544618"
+  },
+  "patches/offline-xperm-test-support.patch": {
+    "bytes": 2848,
+    "sha256": "4af62387c3fd3863006872f6d6aea0151970030eb282b2d2f2da361101f8c7dd"
+  },
+  "patches/three-file-policy-correction.patch": {
+    "bytes": 14910,
+    "sha256": "15693b16ca33055a8c854286270a40af61802239c6a9b5d9e262ada661143937"
+  }
+}

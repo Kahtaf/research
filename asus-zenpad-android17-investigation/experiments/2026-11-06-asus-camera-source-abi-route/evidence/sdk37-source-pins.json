@@ -1,0 +1,82 @@
+[
+  {
+    "path": "frameworks/av/services/camera/libcameraservice/CameraService.cpp",
+    "sha256": "0ccdba028e8d2e7d167d8da2c10b3d4cf0c3d8633fa1533f56992d156b84bd39"
+  },
+  {
+    "path": "frameworks/av/services/camera/libcameraservice/CameraService.h",
+    "sha256": "714d21d1d38a228eef79d88f0b7606ea3b11ca2d5bdcda2e39dbb2066e0efa4d"
+  },
+  {
+    "path": "frameworks/av/services/camera/libcameraservice/Android.bp",
+    "sha256": "0cefe30c4a76dfd0e9a24092908ad22c4520b20281e8d6992149072309c9721a"
+  },
+  {
+    "path": "frameworks/av/services/camera/libcameraservice/common/hidl/HidlProviderInfo.cpp",
+    "sha256": "4b103597d2479d60f80216dda6394ae168b7f9bcde94b7b2b37ee7c053ed9976"
+  },
+  {
+    "path": "frameworks/av/services/camera/libcameraservice/common/hidl/HidlProviderInfo.h",
+    "sha256": "39977fd2146006cb62a85e4878fad060a37a3028f3133eb4e4ea7b0306e8c46c"
+  },
+  {
+    "path": "frameworks/av/services/camera/libcameraservice/common/CameraProviderManager.cpp",
+    "sha256": "11ec4f73529b4310591662108981b0ee73d461f7f2da8ab140990889f1f2a1d5"
+  },
+  {
+    "path": "frameworks/av/services/camera/libcameraservice/common/CameraProviderManager.h",
+    "sha256": "4d59470c6dfd0353fb821ec5c86d3ad1093e17aebcdc475881608873f4b5d94a"
+  },
+  {
+    "path": "frameworks/base/core/java/android/hardware/camera2/CameraManager.java",
+    "sha256": "61a7ffa36a0b4199d1b22359f6e78af43a1212ea9d6b2cc491c977ac70ba89c3"
+  },
+  {
+    "path": "frameworks/base/core/jni/android_hardware_Camera.cpp",
+    "sha256": "bada670fd334b8145b93e465e917800620b8ad9c145d28367749289554c8a577"
+  },
+  {
+    "path": "hardware/interfaces/camera/provider/2.4/default/LegacyCameraProviderImpl_2_4.cpp",
+    "sha256": "8d7adc5733c6261d295f91aef76ca3ca260c0c8d6f7761404a1f17051454286c"
+  },
+  {
+    "path": "hardware/interfaces/camera/provider/2.4/default/Android.bp",
+    "sha256": "e0e92a77608a7bd7fb16630b5cb8938ff2a977dee500ae90571b42b6fbf46b25"
+  },
+  {
+    "path": "hardware/interfaces/camera/device/1.0/default/CameraDevice.cpp",
+    "sha256": "3f962e2008b058563effa0cd5d4a7624c663db2dab7bcbb858a36d6c8b0660dd"
+  },
+  {
+    "path": "hardware/interfaces/camera/device/3.2/default/CameraDevice.cpp",
+    "sha256": "a06582f399303cf5fcc93a51118868b5116f7869e9a0403e7eaea0a23767546a"
+  },
+  {
+    "path": "hardware/interfaces/camera/device/3.2/default/CameraDeviceSession.cpp",
+    "sha256": "f713f2b7f035ae780c7b23f358c0938673b22e56c2a3393084006ff8cf33d58b"
+  },
+  {
+    "path": "hardware/interfaces/camera/device/1.0/ICameraDevice.hal",
+    "sha256": "c1705e9d62438a1d955269965af915ae28e692bd480a3b1ce67056fef992d62f"
+  },
+  {
+    "path": "hardware/interfaces/camera/provider/2.4/ICameraProvider.hal",
+    "sha256": "bceee81ec1b59324abd05932b5620fda5a6589597c9cb3953ba7f3ea02cccd3e"
+  },
+  {
+    "path": "hardware/libhardware/include_all/hardware/camera_common.h",
+    "sha256": "689d838ea6f5e746696aa6e98880301ef209d8d133ac2a48dd5c1eaaf62f73b1"
+  },
+  {
+    "path": "hardware/libhardware/include_all/hardware/camera.h",
+    "sha256": "f470417bc0a35c37de55636bf27e72dab7715e069bdbb37d24a93df740a91bd8"
+  },
+  {
+    "path": "hardware/libhardware/include_all/hardware/camera3.h",
+    "sha256": "52b0e387de7c176af4d9684ab33c5fd1850945c3d22bd8dd316dbd9487af0d04"
+  },
+  {
+    "path": "hardware/libhardware/include_all/hardware/hardware.h",
+    "sha256": "05cc2f0108d6c87e36384380559943d34acd104e3c2ade9aeba4415cfb23aee8"
+  }
+]

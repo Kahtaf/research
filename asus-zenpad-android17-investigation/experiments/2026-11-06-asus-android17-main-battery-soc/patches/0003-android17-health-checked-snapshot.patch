@@ -1,0 +1,68 @@
+diff --git a/health/aidl/default/HalHealthLoop.cpp b/health/aidl/default/HalHealthLoop.cpp
+index ec23c10bc0d4d557fa07ee5830d9a3b2fc27d8b1..cfb2f5d72f61b384405d8528cfaeb095784be1b7 100644
+--- a/health/aidl/default/HalHealthLoop.cpp
++++ b/health/aidl/default/HalHealthLoop.cpp
+@@ -44,8 +44,14 @@ void HalHealthLoop::ScheduleBatteryUpdate() {
+ 
+     HealthInfo health_info;
+     auto res = service_->getHealthInfo(&health_info);
+-    CHECK(res.isOk()) << "getHealthInfo() on the health HAL implementation failed with "
+-                      << res.getDescription();
++    if (!res.isOk()) {
++        LOG(WARNING) << "getHealthInfo() unavailable; retaining callbacks and retrying: "
++                     << res.getDescription();
++        // Do not deliver an invalid aggregate or terminate the service. Keep
++        // periodic updates running, using the last observed charger state.
++        AdjustWakealarmPeriods(charger_online());
++        return;
++    }
+     OnHealthInfoChanged(health_info);
+ }
+ 
+diff --git a/health/aidl/default/Health.cpp b/health/aidl/default/Health.cpp
+index d1c61213817ee17a93f5fcea19ee12af8aa49892..0082a0804ae0067a7562312d98bb1c7d3ea3ae38 100644
+--- a/health/aidl/default/Health.cpp
++++ b/health/aidl/default/Health.cpp
+@@ -238,7 +238,13 @@ ndk::ScopedAStatus Health::getHealthInfo(HealthInfo* out) {
+     // A subclass may want to update health info struct before returning it.
+     UpdateHealthInfo(out);
+ 
+-    return ndk::ScopedAStatus::ok();
++    auto status = ReadBatterySnapshot(out);
++    if (!status.isOk()) {
++        // A failed binder method has no valid aggregate output. Callers must
++        // inspect status; update/registerCallback already do so.
++        *out = HealthInfo{};
++    }
++    return status;
+ }
+ 
+ binder_status_t Health::dump(int fd, const char**, uint32_t) {
+@@ -290,6 +296,10 @@ void Health::UpdateHealthInfo(HealthInfo* /* health_info */) {
+     */
+ }
+ 
++ndk::ScopedAStatus Health::ReadBatterySnapshot(HealthInfo*) {
++    return ndk::ScopedAStatus::ok();
++}
++
+ int32_t Health::getFullChargeUah() const {
+     return battery_monitor_.getFullChargeUah();
+ }
+diff --git a/health/aidl/default/include/health-impl/Health.h b/health/aidl/default/include/health-impl/Health.h
+index b5c7a4a28c749cef59289412b0984e556ac04b14..b236713ca81e3ef5ac1a7796f9292337e0026679 100644
+--- a/health/aidl/default/include/health-impl/Health.h
++++ b/health/aidl/default/include/health-impl/Health.h
+@@ -101,6 +101,12 @@ class Health : public BnHealth, public HalHealthLoopCallback {
+     // By default, it does nothing.
+     // See implementation of Health for code samples.
+     virtual void UpdateHealthInfo(HealthInfo* health_info);
++
++    // Optional checked platform snapshot. Called by final getHealthInfo before
++    // returning success. Errors propagate through update and callback delivery.
++    // The default preserves existing products; a board can reject unavailable
++    // mandatory measurements without overriding the final aggregate method.
++    virtual ndk::ScopedAStatus ReadBatterySnapshot(HealthInfo* health_info);
+     int32_t getFullChargeUah() const;
+     int32_t getFullChargeDesignCapacityUah() const;
+ 

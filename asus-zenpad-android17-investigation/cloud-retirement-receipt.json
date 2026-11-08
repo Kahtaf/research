@@ -1,0 +1,26 @@
+{
+  "verified_utc": "2026-11-08T17:40:38.901064+00:00",
+  "status": "REMOVED_AND_API_VERIFIED_ABSENT",
+  "scope": {
+    "instances": {
+      "remaining_owned_resources": 0,
+      "API_query_succeeded": true
+    },
+    "disks": {
+      "remaining_owned_resources": 0,
+      "API_query_succeeded": true
+    },
+    "addresses": {
+      "remaining_owned_resources": 0,
+      "API_query_succeeded": true
+    }
+  },
+  "deleted_VM": true,
+  "deleted_single_boot_disk_GB": 600,
+  "released_reserved_IP": true,
+  "new_snapshots_created": false,
+  "unrelated_resources_modified": false,
+  "generated_build_outputs_discarded": true,
+  "local_original_stock_backups_verified_and_untouched": true,
+  "private_calibration_backups_published": false
+}

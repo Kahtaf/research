@@ -1,0 +1,49 @@
+{
+  "started": "2026-11-06T20:45:27.308619+00:00",
+  "pid": 1366626,
+  "status": "complete",
+  "affinity": [
+    0
+  ],
+  "max_jobs": 1,
+  "commands": [
+    {
+      "command": [
+        "make",
+        "-C",
+        "/srv/android/asus-bmc156-full-kernel-r1/kernel",
+        "O=/srv/android/asus-bmc156-full-kernel-r1/out",
+        "ARCH=arm64",
+        "CROSS_COMPILE=aarch64-linux-gnu-",
+        "HOSTCC=gcc",
+        "HOSTCXX=g++",
+        "LOCALVERSION=-g717bb3c9e13c-dirty",
+        "-j1",
+        "olddefconfig"
+      ],
+      "started": "2026-11-06T20:45:27.431183+00:00",
+      "exit": 0,
+      "finished": "2026-11-06T20:45:30.735058+00:00"
+    },
+    {
+      "command": [
+        "make",
+        "-C",
+        "/srv/android/asus-bmc156-full-kernel-r1/kernel",
+        "O=/srv/android/asus-bmc156-full-kernel-r1/out",
+        "ARCH=arm64",
+        "CROSS_COMPILE=aarch64-linux-gnu-",
+        "HOSTCC=gcc",
+        "HOSTCXX=g++",
+        "LOCALVERSION=-g717bb3c9e13c-dirty",
+        "-j1",
+        "Image.gz-dtb"
+      ],
+      "started": "2026-11-06T20:45:30.744549+00:00",
+      "exit": 0,
+      "finished": "2026-11-06T21:18:01.746895+00:00"
+    }
+  ],
+  "exit": 0,
+  "finished": "2026-11-06T21:18:01.747515+00:00"
+}

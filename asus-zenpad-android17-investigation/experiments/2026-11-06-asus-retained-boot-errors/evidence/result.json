@@ -1,0 +1,49 @@
+{
+  "utc": "2026-11-07T04:06:31.262492+00:00",
+  "observations": [
+    {
+      "path": "/proc/last_kmsg",
+      "available": true,
+      "bounded_bytes": 262144,
+      "selected_events": [],
+      "captured_sha256": "ab4146fac14088376c685d39589a43bce56d7c60f2f9407966500d3d69dfb586"
+    },
+    {
+      "path": "/sys/fs/pstore/console-ramoops",
+      "available": false,
+      "bounded_bytes": 0,
+      "selected_events": []
+    },
+    {
+      "path": "/sys/fs/pstore/console-ramoops-0",
+      "available": false,
+      "bounded_bytes": 0,
+      "selected_events": []
+    },
+    {
+      "path": "/sys/fs/pstore/dmesg-ramoops-0",
+      "available": false,
+      "bounded_bytes": 0,
+      "selected_events": []
+    },
+    {
+      "path": "/proc/aed/current-ke-console",
+      "available": true,
+      "bounded_bytes": 0,
+      "selected_events": [],
+      "captured_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/proc/aed/previous-ke-console",
+      "available": false,
+      "bounded_bytes": 0,
+      "selected_events": []
+    }
+  ],
+  "max_bytes_per_path": 262144,
+  "specific_recovery_attempt_attribution": false,
+  "block_reads": false,
+  "block_writes": false,
+  "reboot": false,
+  "source_sha256": "c3b03fb77218aed559207eef18b846f382750a0b873fbcfb46b6710e952da5a6"
+}

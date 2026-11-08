@@ -1,0 +1,10 @@
+from pathlib import Path
+import subprocess as s,json,hashlib
+R=Path('/srv/android/asus-vendor-bpf-load-compat-20261107');P=Path('/srv/android/asus-android-runtime-network-parity-20261107');sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+assert 'CAPTURE_RETURN result=-7 first_log_byte=0' in (R/'run-trace/serial.log').read_text();t=(R/'run-candidate-r2/serial.log').read_text();assert 'CAPTURE_RETURN result=7' in t and 'PACKET case=1 expected=0 delivered=0' in t and 'REPLAY unsupported-prog-flags fd=-1 errno=22' in t
+s.run(['cp','-a','--reflink=auto',str(P/'kernel'),str(R/'kernel')],check=True);(R/'build/arch/arm64/boot').mkdir(parents=True);(R/'build/arch/arm64/boot/Image').write_bytes((P/'build/arch/arm64/boot/Image').read_bytes());(R/'build/.config').write_bytes((P/'build/.config').read_bytes())
+b=json.loads((P/'evidence/build-result.json').read_text());assert sha(R/'build/arch/arm64/boot/Image')==b['image_sha256'];assert sha(R/'build/.config')==b['config_after'];pins=b['five_postimages_after'];assert {n:sha(R/'kernel'/n) for n in pins}==pins
+physical=Path('/srv/android/asus-bmc156-full-kernel-r1/kernel');comparison={n:dict(virtual=sha(R/'kernel'/n),physical=sha(physical/n)) for n in ['kernel/bpf/syscall.c','include/uapi/linux/bpf.h']}
+d=dict(image_sha256=b['image_sha256'],image_bytes=b['image_bytes'],config_sha256=b['config_after'],source_origin=str(P/'kernel'),source_owned_copy=str(R/'kernel'),five_postimages=pins,kernel_builds_this_spike=0,reused_qualified_image=True,physical_comparison=comparison)
+(R/'evidence/kernel-selection.json').write_text(json.dumps(d,indent=2));(R/'evidence/built.config').write_bytes((R/'build/.config').read_bytes());(R/'source/observer.c').write_bytes((P/'source/observer.c').read_bytes());p=(P/'source/patcher.c').read_text();p=p.replace('put("/observer",','put("/candidate-lib","/mnt/system/lib64/libbpf_android.so",1,0,0);put("/observer",').replace('modified=2 added_observer=2','modified=3 added_observer=2');(R/'source/patcher.c').write_text(p)
+print(json.dumps(d,indent=2))

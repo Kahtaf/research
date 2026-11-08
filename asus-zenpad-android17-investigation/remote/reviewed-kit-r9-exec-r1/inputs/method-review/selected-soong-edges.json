@@ -1,0 +1,46 @@
+{
+  "path": "/srv/android/lineage24/out/soong/build.lineage_p00a.ninja",
+  "before": {
+    "bytes": 520066043,
+    "mtime_ns": 1794005596071085865
+  },
+  "edges": {},
+  "rules": {
+    "g.cc.cc": {
+      "offset": 57366,
+      "text": "rule g.cc.cc\n    command = ${g.cc.relPwd} ${g.android.soong.cc.config.CcWrapper}${ccCmd} -c ${cFlags} -MD -MF ${out}.d -o ${out} ${in}${postCmd}\n    depfile = ${out}.d\n    deps = gcc\n"
+    },
+    "g.cc.ld": {
+      "offset": 58646,
+      "text": "rule g.cc.ld\n    command = ${ldCmd} ${crtBegin} @${out}.rsp ${crtEnd} -o ${out} ${ldFlags} ${extraLibFlags}\n    restat = true\n    rspfile = ${out}.rsp\n    rspfile_content = ${in} ${libFlags}\n"
+    },
+    "g.cc.strip": {
+      "offset": 61201,
+      "text": "rule g.cc.strip\n    command = XZ=${g.cc.xzCmd} CREATE_MINIDEBUGINFO=${g.cc.createMiniDebugInfo} CLANG_BIN=${g.android.soong.cc.config.ClangBin} ${g.cc.stripPath} ${args} -i ${in} -o ${out} -d ${out}.d\n    depfile = ${out}.d\n    deps = gcc\n"
+    },
+    "g.rust.rustc": {
+      "offset": 93148,
+      "text": "rule g.rust.rustc\n    command = ${g.rust.relPwd}  ${g.rust.SoongEnvCmd} -i --allow PWD --allow TMPDIR ${envVars} ${g.rust.RustcWrapper} ${g.rust.rustcCmd} -C linker=${g.rust.RustcLinkerCmd} -C link-args=\"--android-clang-bin=${g.android.soong.rust.config.ClangCmd} ${linkerScriptFlags}\" -C link-args=@${out}.clang.rsp --emit ${emitType} -o ${out} --emit dep-info=${out}.d.raw ${in} ${libFlags} ${rustcFlags} && ${g.rust.DepfileVerifier} --check-suffix-only ${out}.d ${soongSrcsFile}\n    rspfile = ${out}.clang.rsp\n    rspfile_content = ${crtBegin} ${earlyLinkFlags} ${linkFlags} ${crtEnd}\n"
+    }
+  },
+  "auxiliary": {
+    "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader.d": {
+      "bytes": 128,
+      "text": "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader: system/bpf/loader/bpfloader.rs\n"
+    },
+    "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader.soong_deps": {
+      "bytes": 167,
+      "text": "system/bpf/loader/bpfloader.rs\nsystem/bpf/loader/bpfloader.rs\nsystem/bpf/loader/bpfloader.rs\nsystem/bpf/loader/bpfloader.rs\nsystem/bpf/loader/include/libbpf_android.h\n"
+    },
+    "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader.rsp": null,
+    "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold.rsp": {
+      "bytes": 4925,
+      "text": "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/obj/system/vold/main.o out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/libvold.a out/soong/.intermediates/system/security/keystore2/aidl/android.security.maintenance-ndk/android_arm64_armv8-a_static/android.security.maintenance-ndk.a out/soong/.intermediates/bootable/recovery/bootloader_message/libbootloader_message/android_arm64_armv8-a_static/libbootloader_message.a out/soong/.intermediates/system/fs/fs_mgr/libfs_mgr/android_arm64_armv8-a_static/libfs_mgr.a out/soong/.intermediates/system/fs/fs_mgr/libfs_avb/libfs_avb/android_arm64_armv8-a_static/libfs_avb.a out/soong/.intermediates/system/fs/fs_mgr/libdm/libdm/android_arm64_armv8-a_static/libdm.a out/soong/.intermediates/external/e2fsprogs/lib/uuid/libext2_uuid/android_arm64_armv8-a_static/libext2_uuid.a out/soong/.intermediates/system/extras/libfec/libfec/android_arm64_armv8-a_static/libfec.a out/soong/.intermediates/external/avb/libavb/android_arm64_armv8-a_static/libavb.a out/soong/.intermediates/system/vold/libvold_binder/android_arm64_armv8-a_static/libvold_binder.a out/soong/.intermediates/system/hardware/interfaces/vold/android.system.vold-V1-cpp/android_arm64_armv8-a_static/android.system.vold-V1-cpp.a out/soong/.intermediates/system/fs/casefolding_remover/libcasefoldingremover/android_arm64_armv8-a_static/libcasefoldingremover.a out/soong/.intermediates/bionic/libc/async_safe/libasync_safe/android_arm64_armv8-a_static/libasync_safe.a prebuilts/clang/host/linux-x86/clang-r584948b/lib/clang/22/lib/linux/libclang_rt.ubsan_minimal-aarch64-android.a prebuilts/clang/host/linux-x86/clang-r584948b/android_libc++/platform/aarch64/lib/libc++demangle.a -Wl,--start-group prebuilts/clang/host/linux-x86/clang-r584948b/lib/clang/22/lib/linux/libclang_rt.builtins-aarch64-android.a -Wl,--end-group out/soong/.intermediates/system/hardware/interfaces/keystore2/aidl/android.system.keystore2-V6-ndk/android_arm64_armv8-a_shared/android.system.keystore2-V6-ndk.so out/soong/.intermediates/hardware/interfaces/boot/1.0/android.hardware.boot@1.0/android_arm64_armv8-a_shared/ACCOUNT_REDACTED out/soong/.intermediates/hardware/interfaces/boot/aidl/android.hardware.boot-V1-ndk/android_arm64_armv8-a_shared/android.hardware.boot-V1-ndk.so out/soong/.intermediates/hardware/interfaces/boot/aidl/client/libboot_control_client/android_arm64_armv8-a_shared/libboot_control_client.so out/soong/.intermediates/system/libbase/libbase/android_arm64_armv8-a_shared/libbase.so out/soong/.intermediates/frameworks/native/libs/binder/libbinder/android_arm64_armv8-a_shared/libbinder.so out/soong/.intermediates/frameworks/native/libs/binder/ndk/libbinder_ndk/android_arm64_armv8-a_shared/libbinder_ndk.so out/soong/.intermediates/external/boringssl/libcrypto/android_arm64_armv8-a_shared/libcrypto.so out/soong/.intermediates/system/core/libcrypto_utils/libcrypto_utils/android_arm64_armv8-a_shared/libcrypto_utils.so out/soong/.intermediates/system/core/libcutils/libcutils/android_arm64_armv8-a_shared/libcutils.so out/soong/.intermediates/system/extras/ext4_utils/libext4_utils/android_arm64_armv8-a_shared/libext4_utils.so out/soong/.intermediates/system/extras/f2fs_utils/libf2fs_sparseblock/android_arm64_armv8-a_shared/libf2fs_sparseblock.so out/soong/.intermediates/external/fec/libfec_rs/android_arm64_armv8-a_shared/libfec_rs.so out/soong/.intermediates/system/gsid/libgsi/android_arm64_armv8-a_shared/libgsi.so out/soong/.intermediates/hardware/libhardware/libhardware/android_arm64_armv8-a_shared/libhardware.so out/soong/.intermediates/hardware/libhardware_legacy/libhardware_legacy/android_arm64_armv8-a_shared/libhardware_legacy.so out/soong/.intermediates/system/incremental_delivery/incfs/libincfs/android_arm64_armv8-a_shared/libincfs.so out/soong/.intermediates/system/libhidl/libhidlbase/android_arm64_armv8-a_shared/libhidlbase.so out/soong/.intermediates/hardware/interfaces/security/keymint/support/libkeymint_support/android_arm64_armv8-a_shared_cfi/libkeymint_support.so out/soong/.intermediates/system/logging/liblog/liblog/android_arm64_armv8-a_shared/liblog.so out/soong/.intermediates/system/logging/logwrapper/liblogwrap/android_arm64_armv8-a_shared/liblogwrap.so out/soong/.intermediates/external/selinux/libselinux/libselinux/android_arm64_armv8-a_shared/libselinux.so out/soong/.intermediates/system/core/libsysutils/libsysutils/android_arm64_armv8-a_shared/libsysutils.so out/soong/.intermediates/system/core/libutils/libutils/android_arm64_armv8-a_shared/libutils.so out/soong/.intermediates/prebuilts/clang/host/linux-x86/libc++/android_arm64_armv8-a_shared/libc++.so out/soong/.intermediates/bionic/libc/libc/android_arm64_armv8-a_shared_current/libc.so out/soong/.intermediates/bionic/libm/libm/android_arm64_armv8-a_shared_current/libm.so out/soong/.intermediates/bionic/libdl/libdl/android_arm64_armv8-a_shared_current/libdl.so"
+    }
+  },
+  "bytes_streamed": 520066043,
+  "after": {
+    "bytes": 520066043,
+    "mtime_ns": 1794005596071085865
+  }
+}

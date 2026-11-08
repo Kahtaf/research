@@ -1,0 +1,18 @@
+--- a/device/asus/p00a/connectivity/src/driver_cmd_p00a.c
++++ b/device/asus/p00a/connectivity/src/driver_cmd_p00a.c
+@@ -3,10 +3,15 @@
+  * Never send Android's pointer-based private command structure to ASUS gen2:
+  * that kernel expects a 512-byte inline command structure instead.
+  */
++/* Upstream disabled-feature inline stubs have unused parameters. Keep the
++ * exception at this include boundary; adapter code retains -Wextra -Werror. */
++#pragma clang diagnostic push
++#pragma clang diagnostic ignored "-Wunused-parameter"
+ #include "includes.h"
+ #include "common.h"
+ #include "driver_nl80211.h"
+ #include "linux_ioctl.h"
++#pragma clang diagnostic pop
+ 
+ int wpa_driver_nl80211_driver_cmd(void *priv, char *cmd, char *buf,
+                                 size_t buf_len) {

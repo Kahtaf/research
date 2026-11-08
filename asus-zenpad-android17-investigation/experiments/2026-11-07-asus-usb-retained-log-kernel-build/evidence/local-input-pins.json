@@ -1,0 +1,30 @@
+{
+  "2026-11-07-asus-early-retained-kernel-probe/source/package_probe.py": {
+    "bytes": 6811,
+    "sha256": "28589cfbb8b968641f5d3c950470b492bdca97a6b98f7a63f054b0bdd060c1c2"
+  },
+  "2026-11-07-asus-early-retained-kernel-probe/source/install.py": {
+    "bytes": 9074,
+    "sha256": "7a0fbe28c10c16b7378eedba973f548fe6c4d9bab9f31bb98227af330f724c4d"
+  },
+  "2026-11-07-asus-early-retained-kernel-probe/source/bootformat.py": {
+    "bytes": 3936,
+    "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017"
+  },
+  "2026-11-07-asus-early-retained-kernel-probe/source/fdt.py": {
+    "bytes": 3024,
+    "sha256": "1bd710a08eae5677689a52042a621f39dcd57e49197749cf2833eead1fc0dcae"
+  },
+  "2026-11-07-asus-early-retained-kernel-probe/artifacts/candidate.img": {
+    "bytes": 8044544,
+    "sha256": "2a0d400811292ece957bb00f632f56aef8e5967643bd5a0184c10eaeea051533"
+  },
+  "2026-11-07-asus-early-retained-kernel-probe/scripts/build.py": {
+    "bytes": 6224,
+    "sha256": "f056784ee2a294745cd5ed0c3b66eb2c2859f270b4a258507e34a2491a5a8979"
+  },
+  "2026-11-07-asus-usb-retained-log-initialization/retained-linux-owned-initialization.patch": {
+    "bytes": 2902,
+    "sha256": "9d9790f13e837ab7569a706e790d99c372d69c3700e8767811723c0bdd0718fa"
+  }
+}

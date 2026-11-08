@@ -1,0 +1,10 @@
+{
+  "utc": "2026-11-06T19:47:15.521827+00:00",
+  "current_raw_factory_partitions_verified": 6,
+  "two_independent_current_reads_match": true,
+  "all_actual_geometry_checks_passed": true,
+  "historical_snapshots_retained": true,
+  "current_snapshots_differing_from_historical": 1,
+  "private_payloads_uploaded": false,
+  "partition_writes": false
+}

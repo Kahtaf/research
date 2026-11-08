@@ -1,0 +1,835 @@
+{
+  "date": "2026-11-08",
+  "status": "ONE_BOUNDED_UNIT_COMPLETE_STOP",
+  "scope": {
+    "remotely_fetched_production_bodies": 8,
+    "initial_gap_C_files": 5,
+    "additional_backend_C_files": 1,
+    "additional_backend_headers": 1,
+    "additional_DT_source_files": 1,
+    "existing_five_S_and_original_delay_remote_hash_only": 6,
+    "no_build_compile_test_candidate_trial": true
+  },
+  "identity": {
+    "kernel_uuid": "e7acab50-e05a-4684-8e5a-c352f025564b",
+    "fullp10": {
+      "bytes": 16740352,
+      "sha256": "d07c38333018f7b9cde03ac87bec79928ee934bdbf29332fa55841f7d5157310"
+    },
+    "vmlinux_published": {
+      "path": "/srv/android/asus-devkmsg-return-boundary-20261108-e7acab50/out/vmlinux",
+      "bytes": 23248008,
+      "sha256": "dd163b5ce2b69f3491cbe9846ca352bcadd08bb78d48359679fb9781cc44aa1b",
+      "left_remote": true
+    },
+    "current_metadata": {
+      "out/vmlinux": {
+        "bytes": 23248008,
+        "inode": 5592515,
+        "mtime_ns": 1794139721680681520
+      },
+      "out/.config": {
+        "bytes": 126443,
+        "inode": 5592290,
+        "mtime_ns": 1794098284048029560,
+        "sha256": "708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1"
+      },
+      "out/System.map": {
+        "bytes": 4393362,
+        "inode": 5592517,
+        "mtime_ns": 1794139721769681407,
+        "sha256": "8fd1a94a66f5e6ce053e48a5a91950f106d0d01038c7c2f1b22ca239f29ad3b1"
+      }
+    }
+  },
+  "sources": [
+    {
+      "path": "source/arch/arm64/boot/dts/mediatek/mt8163.dtsi",
+      "production_path": "arch/arm64/boot/dts/mediatek/mt8163.dtsi",
+      "bytes": 51729,
+      "sha256": "a605903380bac77de2d077e002d215e20422f4a9bf6441c9d782fef3e0c2382a",
+      "slices": [
+        {
+          "first": 223,
+          "last": 236,
+          "path": "slices/arch/arm64/boot/dts/mediatek/mt8163.dtsi/223-236.txt",
+          "sha256": "c5e36f0833777a141e91b7dc3c0781ff154fed3065d78e2f72185cd1bf28b790"
+        },
+        {
+          "first": 485,
+          "last": 497,
+          "path": "slices/arch/arm64/boot/dts/mediatek/mt8163.dtsi/485-497.txt",
+          "sha256": "bc983d59569418cb3818ca7ba3e3e05ae8863428fbd38165b10a867f6d484934"
+        }
+      ],
+      "acquisition": "current named remote kernel source bytes",
+      "prior_local_pins": []
+    },
+    {
+      "path": "source/arch/arm64/include/asm/arch_timer.h",
+      "production_path": "arch/arm64/include/asm/arch_timer.h",
+      "bytes": 3704,
+      "sha256": "617e79936d3028e62b842c5e2b9499b19e54de5fac4c8c2bd87a9e18cfb0c614",
+      "slices": [
+        {
+          "first": 122,
+          "last": 147,
+          "path": "slices/arch/arm64/include/asm/arch_timer.h/122-147.txt",
+          "sha256": "7d785c3ffabb42d7933697fb48ed1f567039c41ec2915f56930650952d74cec0"
+        },
+        {
+          "first": 31,
+          "last": 64,
+          "path": "slices/arch/arm64/include/asm/arch_timer.h/31-64.txt",
+          "sha256": "9c8b8b8527306da3141316aae7ad8eae8a4978a654557c6db8fc2c023748b9a3"
+        }
+      ],
+      "acquisition": "current named remote kernel source bytes",
+      "prior_local_pins": []
+    },
+    {
+      "path": "source/drivers/base/regmap/regmap.c",
+      "production_path": "drivers/base/regmap/regmap.c",
+      "bytes": 71338,
+      "sha256": "f44d84d83c76ec9d3439f2a50cd1ef25baa0186871aafb7fbcb9d0fb93bb446c",
+      "slices": [
+        {
+          "first": 1629,
+          "last": 1683,
+          "path": "slices/drivers/base/regmap/regmap.c/1629-1683.txt",
+          "sha256": "f2a40c0d3e0d571ffe967ce806942d3c03cef95a10a9d678e4136f29abcba51d"
+        },
+        {
+          "first": 2355,
+          "last": 2414,
+          "path": "slices/drivers/base/regmap/regmap.c/2355-2414.txt",
+          "sha256": "b6ee141804c59cd91e45a460d73233c53279b63038ab03e6b0db78e3811c6f88"
+        },
+        {
+          "first": 428,
+          "last": 443,
+          "path": "slices/drivers/base/regmap/regmap.c/428-443.txt",
+          "sha256": "159c6931677f8791cc74b9d0f7daa9ca3aaa91e32c444de77e183335ee95d96c"
+        },
+        {
+          "first": 626,
+          "last": 646,
+          "path": "slices/drivers/base/regmap/regmap.c/626-646.txt",
+          "sha256": "a4293b9fa8c0beb41f3a5ca655f6d23ebb2c685119070e0ceb8fe9b978ee7d3a"
+        }
+      ],
+      "acquisition": "current named remote kernel source bytes",
+      "remote_metadata": {
+        "bytes": 71338,
+        "inode": 13979549,
+        "mtime_ns": 1793997658653087730,
+        "sha256": "f44d84d83c76ec9d3439f2a50cd1ef25baa0186871aafb7fbcb9d0fb93bb446c"
+      },
+      "prior_local_pins": [
+        {
+          "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/drivers/base/regmap/regmap.c",
+          "sha256": "f44d84d83c76ec9d3439f2a50cd1ef25baa0186871aafb7fbcb9d0fb93bb446c",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "path": "source/drivers/clocksource/arm_arch_timer.c",
+      "production_path": "drivers/clocksource/arm_arch_timer.c",
+      "bytes": 31521,
+      "sha256": "ed5182139af568c73a8c7eb6eb600d647a97ef5d91ce942d52c47260ddbd06c4",
+      "slices": [
+        {
+          "first": 101,
+          "last": 169,
+          "path": "slices/drivers/clocksource/arm_arch_timer.c/101-169.txt",
+          "sha256": "31911130e541c739377bc49731120cce9ce367ecba5d2479c2bd6c22afa38f29"
+        },
+        {
+          "first": 1025,
+          "last": 1066,
+          "path": "slices/drivers/clocksource/arm_arch_timer.c/1025-1066.txt",
+          "sha256": "49729de4872b84d985838de8e7348bd1f888a750f83f830530b0ecefd6cf6798"
+        },
+        {
+          "first": 175,
+          "last": 250,
+          "path": "slices/drivers/clocksource/arm_arch_timer.c/175-250.txt",
+          "sha256": "33fadac57075a23f02a5f7657690c83cfa76e90a048e9a56a8dbeac8a5a2e63d"
+        },
+        {
+          "first": 640,
+          "last": 662,
+          "path": "slices/drivers/clocksource/arm_arch_timer.c/640-662.txt",
+          "sha256": "087680a50734db4c7692cfe2f4d09cb5506603555122c33339ad4344ff867b2f"
+        },
+        {
+          "first": 699,
+          "last": 776,
+          "path": "slices/drivers/clocksource/arm_arch_timer.c/699-776.txt",
+          "sha256": "e8876c895c213216530786842a9a17566ec51751bde31fdcfc871c895ef715a9"
+        },
+        {
+          "first": 936,
+          "last": 975,
+          "path": "slices/drivers/clocksource/arm_arch_timer.c/936-975.txt",
+          "sha256": "bcb0bb1145d157a68b70c7692bfb1c231e2f9a8c783b844c61a76e2246de32f4"
+        }
+      ],
+      "acquisition": "current named remote kernel source bytes",
+      "prior_local_pins": []
+    },
+    {
+      "path": "source/drivers/mfd/mt6397-core.c",
+      "production_path": "drivers/mfd/mt6397-core.c",
+      "bytes": 9002,
+      "sha256": "ccae740b0cd68e38a3e371e1bc8dceb370fdb70dd23065b04027ff9b00193e29",
+      "slices": [
+        {
+          "first": 283,
+          "last": 350,
+          "path": "slices/drivers/mfd/mt6397-core.c/283-350.txt",
+          "sha256": "295c28ca80e78992fd158cc761dcd291530d14d4368d97911f4dcf0ca0f205a0"
+        }
+      ],
+      "acquisition": "current named remote kernel source bytes",
+      "remote_metadata": {
+        "bytes": 9002,
+        "inode": 15553844,
+        "mtime_ns": 1793997665479441861,
+        "sha256": "ccae740b0cd68e38a3e371e1bc8dceb370fdb70dd23065b04027ff9b00193e29"
+      },
+      "prior_local_pins": [
+        {
+          "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/drivers/mfd/mt6397-core.c",
+          "sha256": "ccae740b0cd68e38a3e371e1bc8dceb370fdb70dd23065b04027ff9b00193e29",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "path": "source/drivers/power/supply/mediatek/battery/battery_common.c",
+      "production_path": "drivers/power/supply/mediatek/battery/battery_common.c",
+      "bytes": 148747,
+      "sha256": "d750ffb77339826bd0a2282e71660d2899f5139a527d8b3ea966a954a74a22c9",
+      "slices": [
+        {
+          "first": 591,
+          "last": 605,
+          "path": "slices/drivers/power/supply/mediatek/battery/battery_common.c/591-605.txt",
+          "sha256": "a1481c995d2da8bb937876f97829af3ca7262edfbff9d2f41bdb0ceb1c3c5a37"
+        },
+        {
+          "first": 775,
+          "last": 800,
+          "path": "slices/drivers/power/supply/mediatek/battery/battery_common.c/775-800.txt",
+          "sha256": "7c94d29af3cf9b146cda45b85f313a7cffc33135d766be31d3109dfc5ad392dd"
+        }
+      ],
+      "acquisition": "current named remote kernel source bytes",
+      "remote_metadata": {
+        "bytes": 148747,
+        "inode": 22872054,
+        "mtime_ns": 1793997697477608016,
+        "sha256": "d750ffb77339826bd0a2282e71660d2899f5139a527d8b3ea966a954a74a22c9"
+      },
+      "prior_local_pins": [
+        {
+          "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/drivers/power/supply/mediatek/battery/battery_common.c",
+          "sha256": "f133db5d90f9f78d8e036e489871a0e163cbdbf25fd09cfbe3faade5d4d169e4",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "path": "source/drivers/soc/mediatek/mtk-pmic-wrap.c",
+      "production_path": "drivers/soc/mediatek/mtk-pmic-wrap.c",
+      "bytes": 37222,
+      "sha256": "0432a02bdb38abed8a6251d58a36ca952207c9636726b26bc71fa016674eba5e",
+      "slices": [
+        {
+          "first": 1167,
+          "last": 1198,
+          "path": "slices/drivers/soc/mediatek/mtk-pmic-wrap.c/1167-1198.txt",
+          "sha256": "3ec73aaade6a38a978482277580414267f4af4ffe46782b066968df4461b4d72"
+        },
+        {
+          "first": 1239,
+          "last": 1268,
+          "path": "slices/drivers/soc/mediatek/mtk-pmic-wrap.c/1239-1268.txt",
+          "sha256": "ec32f2eaa2d521dd05a5687ebeb67e8e24537190733180bf8a16113070a26b6e"
+        },
+        {
+          "first": 1270,
+          "last": 1317,
+          "path": "slices/drivers/soc/mediatek/mtk-pmic-wrap.c/1270-1317.txt",
+          "sha256": "c966df2fefd98ab26f9d0d029442488c1975db3ecb59313fe6dbc9f737c6b172"
+        },
+        {
+          "first": 1372,
+          "last": 1416,
+          "path": "slices/drivers/soc/mediatek/mtk-pmic-wrap.c/1372-1416.txt",
+          "sha256": "ee961364dae36642bc43c72251ca1fd85c650c35cdd2bef92b9a64ab4ea7b5da"
+        },
+        {
+          "first": 625,
+          "last": 761,
+          "path": "slices/drivers/soc/mediatek/mtk-pmic-wrap.c/625-761.txt",
+          "sha256": "5a0053a40dd36ab001fef13ffe45e6d78ef14da7c5c58a7e70ae3ac705182b3c"
+        }
+      ],
+      "acquisition": "current named remote kernel source bytes",
+      "remote_metadata": {
+        "bytes": 37222,
+        "inode": 23942193,
+        "mtime_ns": 1793997672263571314,
+        "sha256": "0432a02bdb38abed8a6251d58a36ca952207c9636726b26bc71fa016674eba5e"
+      },
+      "prior_local_pins": [
+        {
+          "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/drivers/soc/mediatek/mtk-pmic-wrap.c",
+          "sha256": "0432a02bdb38abed8a6251d58a36ca952207c9636726b26bc71fa016674eba5e",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "path": "source/kernel/time/sched_clock.c",
+      "production_path": "kernel/time/sched_clock.c",
+      "bytes": 8459,
+      "sha256": "6338a5e16059ccf43ed0b07724afd818905506811020fcbd9d0d8dedc8a762fe",
+      "slices": [
+        {
+          "first": 114,
+          "last": 165,
+          "path": "slices/kernel/time/sched_clock.c/114-165.txt",
+          "sha256": "8d598b1e0e434eaf8f50894673acd56f23f7f3d43244eefd433a29c024eedb69"
+        },
+        {
+          "first": 167,
+          "last": 211,
+          "path": "slices/kernel/time/sched_clock.c/167-211.txt",
+          "sha256": "6a81f4e35e96be388c46274dd6609d7b1635fac7908b5b9ee3f8ed078878dabc"
+        },
+        {
+          "first": 239,
+          "last": 256,
+          "path": "slices/kernel/time/sched_clock.c/239-256.txt",
+          "sha256": "8f82ea9fad736db7ed907b8fa22147c4efe3ac691cd72b5f9c4bf161faf86446"
+        },
+        {
+          "first": 259,
+          "last": 306,
+          "path": "slices/kernel/time/sched_clock.c/259-306.txt",
+          "sha256": "a655788b75db98f6b0bceb93f0e57d585337103387455ff87e893dfdcfc9f4ce"
+        },
+        {
+          "first": 38,
+          "last": 112,
+          "path": "slices/kernel/time/sched_clock.c/38-112.txt",
+          "sha256": "2e089210dcbb62205de2359da9ed377118fdb367bd3322fc8b5eae3b63b27f2b"
+        }
+      ],
+      "acquisition": "current named remote kernel source bytes",
+      "remote_metadata": {
+        "bytes": 8459,
+        "inode": 26825894,
+        "mtime_ns": 1793997677617868729,
+        "sha256": "6338a5e16059ccf43ed0b07724afd818905506811020fcbd9d0d8dedc8a762fe"
+      },
+      "prior_local_pins": [
+        {
+          "path": "2026-11-05-asus-mt8163-kernel-bringup/sources/kernel/kernel/time/sched_clock.c",
+          "sha256": "6338a5e16059ccf43ed0b07724afd818905506811020fcbd9d0d8dedc8a762fe",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "path": "source/prior-hash-bound/arch/arm64/lib/delay.c",
+      "production_path": "arch/arm64/lib/delay.c",
+      "bytes": 2627,
+      "sha256": "964b155f79a2d764a8f22955098b9573221b3a325fec2b71d81d03f7e35dcff4",
+      "slices": [
+        {
+          "first": 28,
+          "last": 88,
+          "path": "slices/prior-hash-bound/arch/arm64/lib/delay.c/28-88.txt",
+          "sha256": "819827408919ad2763bfff4b0f27df5a4358fa7fc92de2468b966faff27b46b4"
+        }
+      ],
+      "acquisition": "remote hash only; copied matching preexisting local bytes",
+      "remote_metadata": {
+        "bytes": 2627,
+        "inode": 13647903,
+        "mtime_ns": 1794117561491313705,
+        "sha256": "964b155f79a2d764a8f22955098b9573221b3a325fec2b71d81d03f7e35dcff4"
+      },
+      "prior_local_pins": [
+        {
+          "path": "2026-11-08-asus-selected-cntpct-delay-control/source/arch/arm64/lib/delay.c",
+          "sha256": "409ad5988ad419bc11e4c14b1a273fcfa07fa5fcccc798a70292f9bca117e82a",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "path": "source/prior-hash-bound/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c",
+      "production_path": "drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c",
+      "bytes": 4552,
+      "sha256": "03e05c11d4c08f9f2cb030bc05ea94b3c5310c6c1d0905d470181dcf9e4f800e",
+      "slices": [
+        {
+          "first": 136,
+          "last": 160,
+          "path": "slices/prior-hash-bound/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c/136-160.txt",
+          "sha256": "0627683c2219a6bff6ecc8c82c68105302a85881f07f23dfdefa6b83e0d7afe3"
+        },
+        {
+          "first": 68,
+          "last": 97,
+          "path": "slices/prior-hash-bound/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c/68-97.txt",
+          "sha256": "96632a376cd2dc2e86c4b5938431421bc99a1e34dffe8489b66ac5b31fabf507"
+        }
+      ],
+      "acquisition": "remote hash only; copied matching preexisting local bytes",
+      "remote_metadata": {
+        "bytes": 4552,
+        "inode": 16864304,
+        "mtime_ns": 1793997697473564676,
+        "sha256": "03e05c11d4c08f9f2cb030bc05ea94b3c5310c6c1d0905d470181dcf9e4f800e"
+      },
+      "prior_local_pins": [
+        {
+          "path": "2026-11-08-asus-selected-cntpct-delay-control/source/base/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c",
+          "sha256": "03e05c11d4c08f9f2cb030bc05ea94b3c5310c6c1d0905d470181dcf9e4f800e",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "path": "source/prior-hash-bound/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc",
+      "production_path": "drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc",
+      "bytes": 8405,
+      "sha256": "aa1ab909484560707fa67ec238350ab5ce8040116b0a5df2374f183d04be6fae",
+      "slices": [
+        {
+          "first": 117,
+          "last": 220,
+          "path": "slices/prior-hash-bound/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc/117-220.txt",
+          "sha256": "da40c5c9404d1a7f6f28374bbaffcbc934b872f27aab9c017d55a2dbccc61d63"
+        },
+        {
+          "first": 6,
+          "last": 71,
+          "path": "slices/prior-hash-bound/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc/6-71.txt",
+          "sha256": "82a84baa77e5d0548325c650c92168d342d2ccef41e63ece4a27b4c6e698cc95"
+        },
+        {
+          "first": 73,
+          "last": 115,
+          "path": "slices/prior-hash-bound/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc/73-115.txt",
+          "sha256": "29d48ddba6921d234ff59760a427e96d2f5d4e409ae70778255a614a09bc4ef9"
+        }
+      ],
+      "acquisition": "remote hash only; copied matching preexisting local bytes",
+      "remote_metadata": {
+        "bytes": 8405,
+        "inode": 16864308,
+        "mtime_ns": 1794115589179433887,
+        "sha256": "aa1ab909484560707fa67ec238350ab5ce8040116b0a5df2374f183d04be6fae"
+      },
+      "prior_local_pins": [
+        {
+          "path": "2026-11-08-asus-selected-cntpct-delay-control/source/base/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc",
+          "sha256": "aa1ab909484560707fa67ec238350ab5ce8040116b0a5df2374f183d04be6fae",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "path": "source/prior-hash-bound/drivers/misc/mediatek/power/mt8163/pmic_mt6323.c",
+      "production_path": "drivers/misc/mediatek/power/mt8163/pmic_mt6323.c",
+      "bytes": 51944,
+      "sha256": "be1932abf3164ed2e2fe64b524878def16d7bdfc3f149e162095390c7232af19",
+      "slices": [
+        {
+          "first": 135,
+          "last": 235,
+          "path": "slices/prior-hash-bound/drivers/misc/mediatek/power/mt8163/pmic_mt6323.c/135-235.txt",
+          "sha256": "a23e290cb822c7f41504c113d91326fd6c97394c06b373491e90176c5180f331"
+        },
+        {
+          "first": 1736,
+          "last": 1745,
+          "path": "slices/prior-hash-bound/drivers/misc/mediatek/power/mt8163/pmic_mt6323.c/1736-1745.txt",
+          "sha256": "7314a4fcad82b1f313da8ca42c75e55f3a510614b237e0089ec831d13c025930"
+        },
+        {
+          "first": 255,
+          "last": 329,
+          "path": "slices/prior-hash-bound/drivers/misc/mediatek/power/mt8163/pmic_mt6323.c/255-329.txt",
+          "sha256": "403ccb5a6f39cb25b5f415b64f25faa47a05d3b5e3d7349a6e043fe61978aff8"
+        },
+        {
+          "first": 66,
+          "last": 75,
+          "path": "slices/prior-hash-bound/drivers/misc/mediatek/power/mt8163/pmic_mt6323.c/66-75.txt",
+          "sha256": "c959a5323bbdbd8be510f1de5d176c329f3e2fc09c67c7f0fd6258631cc85346"
+        }
+      ],
+      "acquisition": "remote hash only; copied matching preexisting local bytes",
+      "remote_metadata": {
+        "bytes": 51944,
+        "inode": 16864321,
+        "mtime_ns": 1793997667104693245,
+        "sha256": "be1932abf3164ed2e2fe64b524878def16d7bdfc3f149e162095390c7232af19"
+      },
+      "prior_local_pins": [
+        {
+          "path": "2026-11-08-asus-selected-cntpct-delay-control/source/base/drivers/misc/mediatek/power/mt8163/pmic_mt6323.c",
+          "sha256": "be1932abf3164ed2e2fe64b524878def16d7bdfc3f149e162095390c7232af19",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "path": "source/prior-hash-bound/drivers/power/supply/power_supply_core.c",
+      "production_path": "drivers/power/supply/power_supply_core.c",
+      "bytes": 27976,
+      "sha256": "f97d2c922cf42e0dcc415735afb55b0bfee38dd48dd7c6612c287d30297dbecd",
+      "slices": [
+        {
+          "first": 530,
+          "last": 550,
+          "path": "slices/prior-hash-bound/drivers/power/supply/power_supply_core.c/530-550.txt",
+          "sha256": "83a9d13785069002ef39bf3abe8f10d37af3c9950b756701ab09a156ea811810"
+        },
+        {
+          "first": 83,
+          "last": 144,
+          "path": "slices/prior-hash-bound/drivers/power/supply/power_supply_core.c/83-144.txt",
+          "sha256": "ccfff0c1e56d86b8c2e74a7a12d8fe7d7ceff73cc8109772c0ed59b8c2a187f6"
+        }
+      ],
+      "acquisition": "remote hash only; copied matching preexisting local bytes",
+      "remote_metadata": {
+        "bytes": 27976,
+        "inode": 22872065,
+        "mtime_ns": 1794113799659510045,
+        "sha256": "f97d2c922cf42e0dcc415735afb55b0bfee38dd48dd7c6612c287d30297dbecd"
+      },
+      "prior_local_pins": [
+        {
+          "path": "2026-11-08-asus-selected-cntpct-delay-control/source/base/drivers/power/supply/power_supply_core.c",
+          "sha256": "f97d2c922cf42e0dcc415735afb55b0bfee38dd48dd7c6612c287d30297dbecd",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "path": "source/prior-hash-bound/drivers/power/supply/power_supply_sysfs.c",
+      "production_path": "drivers/power/supply/power_supply_sysfs.c",
+      "bytes": 10197,
+      "sha256": "e04ee771d01e58b88ec4ac0f266e37d1867e4f0a55b143b0a13525b2c31cd3b3",
+      "slices": [
+        {
+          "first": 305,
+          "last": 361,
+          "path": "slices/prior-hash-bound/drivers/power/supply/power_supply_sysfs.c/305-361.txt",
+          "sha256": "6f83ecae229c34ac2cdf07b657c90a7bda19cd15830f8be3eb92529423abb63e"
+        },
+        {
+          "first": 78,
+          "last": 92,
+          "path": "slices/prior-hash-bound/drivers/power/supply/power_supply_sysfs.c/78-92.txt",
+          "sha256": "288d72219e05f113e781f4119ad38cb0e4e47dcc8a9ca4ca8f1b4ac6c8b86dc7"
+        }
+      ],
+      "acquisition": "remote hash only; copied matching preexisting local bytes",
+      "remote_metadata": {
+        "bytes": 10197,
+        "inode": 22872067,
+        "mtime_ns": 1793997671176399066,
+        "sha256": "e04ee771d01e58b88ec4ac0f266e37d1867e4f0a55b143b0a13525b2c31cd3b3"
+      },
+      "prior_local_pins": [
+        {
+          "path": "2026-11-08-asus-selected-cntpct-delay-control/source/base/drivers/power/supply/power_supply_sysfs.c",
+          "sha256": "e04ee771d01e58b88ec4ac0f266e37d1867e4f0a55b143b0a13525b2c31cd3b3",
+          "matches": true
+        }
+      ]
+    }
+  ],
+  "actual_route": "ACTUAL-ROUTE.json",
+  "ELF_symbols": [
+    {
+      "name": "update_sched_clock",
+      "address": "0xffffff8008132534",
+      "size": 164
+    },
+    {
+      "name": "sched_clock",
+      "address": "0xffffff80081326d4",
+      "size": 136
+    },
+    {
+      "name": "__const_udelay",
+      "address": "0xffffff80083e4ae0",
+      "size": 84
+    },
+    {
+      "name": "__delay",
+      "address": "0xffffff80083e4b34",
+      "size": 556
+    },
+    {
+      "name": "pwrap_node_to_regmap",
+      "address": "0xffffff800844ff60",
+      "size": 44
+    },
+    {
+      "name": "pwrap_write",
+      "address": "0xffffff80084500c4",
+      "size": 256
+    },
+    {
+      "name": "pwrap_regmap_write",
+      "address": "0xffffff80084502d0",
+      "size": 20
+    },
+    {
+      "name": "pwrap_read",
+      "address": "0xffffff8008450470",
+      "size": 420
+    },
+    {
+      "name": "pwrap_regmap_read",
+      "address": "0xffffff8008450614",
+      "size": 20
+    },
+    {
+      "name": "pwrap_probe",
+      "address": "0xffffff8008450660",
+      "size": 4236
+    },
+    {
+      "name": "regmap_lock_spinlock",
+      "address": "0xffffff80084a0e10",
+      "size": 36
+    },
+    {
+      "name": "regmap_unlock_spinlock",
+      "address": "0xffffff80084a0e34",
+      "size": 24
+    },
+    {
+      "name": "__regmap_init",
+      "address": "0xffffff80084a32d0",
+      "size": 3120
+    },
+    {
+      "name": "_regmap_read",
+      "address": "0xffffff80084a4154",
+      "size": 388
+    },
+    {
+      "name": "regmap_read",
+      "address": "0xffffff80084a42e0",
+      "size": 112
+    },
+    {
+      "name": "_regmap_write",
+      "address": "0xffffff80084a45c0",
+      "size": 348
+    },
+    {
+      "name": "regmap_write",
+      "address": "0xffffff80084a5fa4",
+      "size": 112
+    },
+    {
+      "name": "pmic_read_interface",
+      "address": "0xffffff80085b9340",
+      "size": 220
+    },
+    {
+      "name": "pmic_config_interface",
+      "address": "0xffffff80085b97e0",
+      "size": 248
+    },
+    {
+      "name": "pmic_read_interface_nolock",
+      "address": "0xffffff80085ba6f0",
+      "size": 184
+    },
+    {
+      "name": "pmic_config_interface_nolock",
+      "address": "0xffffff80085ba7b0",
+      "size": 224
+    },
+    {
+      "name": "p00a_pmic_prepare_adc",
+      "address": "0xffffff80085ba890",
+      "size": 1256
+    },
+    {
+      "name": "asus_p00a_pmic_present",
+      "address": "0xffffff80085baf70",
+      "size": 524
+    },
+    {
+      "name": "asus_p00a_pmic_adc",
+      "address": "0xffffff80085bb180",
+      "size": 1588
+    },
+    {
+      "name": "asus_p00a_battery_get_property",
+      "address": "0xffffff80085c0194",
+      "size": 600
+    },
+    {
+      "name": "mt6397_probe",
+      "address": "0xffffff80086f2fe0",
+      "size": 652
+    },
+    {
+      "name": "battery_get_property",
+      "address": "0xffffff8008801560",
+      "size": 28
+    },
+    {
+      "name": "arch_counter_get_cntvct",
+      "address": "0xffffff800886f5a0",
+      "size": 60
+    },
+    {
+      "name": "arch_timer_check_ool_workaround",
+      "address": "0xffffff800886f8f0",
+      "size": 336
+    },
+    {
+      "name": "arch_counter_read",
+      "address": "0xffffff800886fda0",
+      "size": 72
+    },
+    {
+      "name": "arch_timer_detect_rate.part.0",
+      "address": "0xffffff8008b63f70",
+      "size": 116
+    },
+    {
+      "name": "sched_clock_register",
+      "address": "0xffffff8008f14b58",
+      "size": 488
+    },
+    {
+      "name": "sched_clock_postinit",
+      "address": "0xffffff8008f14d40",
+      "size": 124
+    },
+    {
+      "name": "arch_timer_common_init",
+      "address": "0xffffff8008f43bc0",
+      "size": 492
+    },
+    {
+      "name": "arch_timer_of_init",
+      "address": "0xffffff8008f43dac",
+      "size": 752
+    }
+  ],
+  "additional_ELF": {
+    "pmic_mt6323_probe": {
+      "address": "0xffffff80085bc9f0",
+      "symbol_size": 984,
+      "inspected_bytes": 160
+    },
+    "arm64_1188873_read_cntvct_el0": {
+      "address": "0xffffff800886f5e0",
+      "symbol_size": 8,
+      "inspected_bytes": 8
+    },
+    "fsl_a008585_read_cntvct_el0": {
+      "address": "0xffffff800886fe30",
+      "symbol_size": 72,
+      "inspected_bytes": 72
+    },
+    "_raw_spin_lock_irqsave": {
+      "address": "0xffffff8008b6d4d0",
+      "symbol_size": 80,
+      "inspected_bytes": 80
+    },
+    "_raw_spin_unlock_irqrestore": {
+      "address": "0xffffff8008b6d7f4",
+      "symbol_size": 68,
+      "inspected_bytes": 68
+    },
+    "of_pwrap_match_tbl": {
+      "address": "0xffffff8008bed770",
+      "symbol_size": 1000,
+      "inspected_bytes": 1000
+    },
+    "of_slave_match_tbl": {
+      "address": "0xffffff8008bedb58",
+      "symbol_size": 600,
+      "inspected_bytes": 600
+    },
+    "pwrap_regmap_config": {
+      "address": "0xffffff8008bedde8",
+      "symbol_size": 216,
+      "inspected_bytes": 216
+    },
+    "arch_timer_read_counter": {
+      "address": "0xffffff800906bb08",
+      "symbol_size": 8,
+      "inspected_bytes": 8
+    },
+    "dt_cmd": {
+      "path": "/srv/android/asus-devkmsg-return-boundary-20261108-e7acab50/out/arch/arm64/boot/dts/mediatek/.asus-p00a.dtb.cmd",
+      "bytes": 3028,
+      "sha256": "fd01b4cacac37377f69e2978c7284e497093145b35b20f54ca70f9d701186de3",
+      "lines": [
+        {
+          "line": 1,
+          "text": "cmd_arch/arm64/boot/dts/mediatek/asus-p00a.dtb := mkdir -p arch/arm64/boot/dts/mediatek/ ; aarch64-linux-gnu-gcc -E -Wp,-MD,arch/arm64/boot/dts/mediatek/.asus-p00a.dtb.d.pre.tmp -nostdinc -I/srv/android/asus-devkmsg-return-boundary-20261108-e7acab50/kernel/arch/arm64/boot/dts -I/srv/android/asus-devkmsg-return-boundary-20261108-e7acab50/kernel/arch/arm64/boot/dts/include -I/srv/android/asus-devkmsg-return-boundary-20261108-e7acab50/kernel/drivers/of/testcase-data -undef -D__DTS__ -x assembler-with-cpp -o arch/arm64/boot/dts/mediatek/.asus-p00a.dtb.dts.tmp /srv/android/asus-devkmsg-return-boundary-20261108-e7acab50/kernel/arch/arm64/boot/dts/mediatek/asus-p00a.dts ; ./scripts/dtc/dtc -O dtb -o arch/arm64/boot/dts/mediatek/asus-p00a.dtb -b 0 -i /srv/android/asus-devkmsg-return-boundary-20261108-e7acab50/kernel/arch/arm64/boot/dts/mediatek/ -q -Wno-unit_address_vs_reg -d arch/arm64/boot/dts/mediatek/.asus-p00a.dtb.d.dtc.tmp arch/arm64/boot/dts/mediatek/.asus-p00a.dtb.dts.tmp ; cat arch/arm64/boot/dts/mediatek/.asus-p00a.dtb.d.pre.tmp arch/arm64/boot/dts/mediatek/.asus-p00a.dtb.d.dtc.tmp > arch/arm64/boot/dts/mediatek/.asus-p00a.dtb.d"
+        },
+        {
+          "line": 3,
+          "text": "source_arch/arm64/boot/dts/mediatek/asus-p00a.dtb := /srv/android/asus-devkmsg-return-boundary-20261108-e7acab50/kernel/arch/arm64/boot/dts/mediatek/asus-p00a.dts"
+        },
+        {
+          "line": 6,
+          "text": "  /srv/android/asus-devkmsg-return-boundary-20261108-e7acab50/kernel/arch/arm64/boot/dts/mediatek/mt8163.dtsi \\"
+        }
+      ]
+    },
+    "arch/arm64/boot/dts/mediatek/asus-p00a.dtb": {
+      "bytes": 63621,
+      "inode": 27055406,
+      "mtime_ns": 1794139721911681225,
+      "sha256": "a099d0538b270e23ec0d034b507eef9248252a3c459a11aa70edb6520bfd2b77"
+    },
+    "vmlinux": {
+      "bytes": 23248008,
+      "inode": 5592515,
+      "mtime_ns": 1794139721680681520
+    }
+  },
+  "VM": {
+    "id": "8549823276971553556",
+    "status": "TERMINATED",
+    "owned_master_closed": true,
+    "channel": "/tmp/aspmic-e7acab50",
+    "TCP_fallback": false
+  },
+  "limits": [
+    "Published vmlinux SHA is reused from owned build/handoff. No fresh remote vmlinux hash or full vmlinux/out fetch. Current size, genuine System.map hash, named paths, object/cmd metadata and focused native disassembly support controlled provenance, not unconditional historical byte attestation.",
+    "Owned independent-copy receipt says command/dependency paths were relocated. Current .cmd files name source inputs but do not attest immutable historical source bytes; metadata alone is not byte attestation.",
+    "Config, preserved DT and linked init select the ARM virtual-counter route. Runtime registration success, live reader pointer, suspended state and selected erratum workaround were not directly observed.",
+    "Only scoped clocksource registration-line search selected additional backend files. No whole-kernel audit or further power-stack acquisition.",
+    "Loop bounds assume each MMIO/counter operation returns and locks are acquired. They do not bound stalled MMIO, a stalled reader, lock acquisition or scheduler waits.",
+    "Physical facts supplied by parent were not decoded here. Parser framing refusal/raw artifacts remain parent-owned. WRET precedes C return and does not prove userspace resumption. Absence and cached PC are not fault evidence."
+  ]
+}

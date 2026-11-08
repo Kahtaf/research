@@ -1,0 +1,97 @@
+{
+  "after_sha256": {
+    "BoardConfig.mk": "e5296e182b457ec662694e044fffd322bdc246d556783743d080c23f5e4bde55",
+    "device.mk": "788d0a4a0bebf492886651d8fb3ef3020654c063e704231c5baa282281c6fc14",
+    "rootdir/ueventd.rc": "27357623ffefae44db3678a44f5aaf28c9c4ae2c65ca1b699078c18924271936"
+  },
+  "architecture_adjustment": "Only add :64 suffix to the two genuine SDK37 HIDL package names; supported by actual build/make/core/main.mk",
+  "base_sha256": {
+    "BoardConfig.mk": "f7eb19e4c8baa0de35b602e8da5e411f2480801155ea145ce41b29c50de7ccb5",
+    "device.mk": "ca2993e8303061d8d29656470cab29146287b1c5c6c6257dd7715a42b09e19b7",
+    "rootdir/ueventd.rc": "988d67b64e4a2ca201d4a543c2d563e3407b295621f486a88c81bdb8cc79b583"
+  },
+  "board_path_adjustment": "One exact reviewed assignment replaces unavailable my-dir; policy and manifest unchanged",
+  "calibration_payload_included": false,
+  "files": {
+    "Android.bp": {
+      "sha256": "f1fab55f9dea964aaeeb13d271f75eebb9d9c6e8ae86bb9d06d5c6ba44a2d035"
+    },
+    "BoardConfig.mk": {
+      "sha256": "9207c304761cf86afb423641534ed383e7f8dae613e64061e972d2f65832aa4d"
+    },
+    "accel_protocol.c": {
+      "sha256": "35d4dc5163b65894acfaaac36555334a8948c4d084d1958c77c6ae33fe1fe8a8"
+    },
+    "accel_protocol.h": {
+      "sha256": "1e51b0be70bdaf77d00e143810af88f117749f8dcfd8c46cdf325db729df77f2"
+    },
+    "init.p00a-accelerometer.rc": {
+      "sha256": "5e1652e4437f3fe04285a64453cf75a0edfdcca00708cd2af08e256c1ed3c712"
+    },
+    "manifest.xml": {
+      "sha256": "051ea959884e25bc75009ceddd19c8f689bae989f9973e36a0032ab8cdf32c22"
+    },
+    "sensors.c": {
+      "sha256": "767b8f8e8b232bb3f82c464926e10425e604f04570c2ac0c7a02c5ff77f0fd22"
+    },
+    "sensors.mk": {
+      "sha256": "a0f3546101ee0f6e82e6bf832a711bc28f9d1b7d6b66dba22dace3f20a5cf73d"
+    },
+    "sepolicy/file_contexts": {
+      "sha256": "2f39279a5a2f1a22b0cadcf5a85c682f3c522744a9840c18ce91e9aa32a2d034"
+    },
+    "sepolicy/genfs_contexts": {
+      "sha256": "ac05b23dd0fdfb9b7bd2dd83401d4ab461efd96bf2ab6da87ad471423564b23d"
+    },
+    "sepolicy/p00a_accelerometer.te": {
+      "sha256": "54bc1962f05ffa1987bf01d5cfa89f1b5c752120890bed1eef36c877165f6a47"
+    },
+    "ueventd.fragment.rc": {
+      "sha256": "507fd039f06a16145545030df90af0723c6e14d54679560603b216a94154b728"
+    }
+  },
+  "original_files": {
+    "Android.bp": {
+      "sha256": "f1fab55f9dea964aaeeb13d271f75eebb9d9c6e8ae86bb9d06d5c6ba44a2d035"
+    },
+    "BoardConfig.mk": {
+      "sha256": "0e012287927a5b8ac3733f7fcc28d5cdc0eb1d8f06e82e0ff6ad211fe2f72f90"
+    },
+    "accel_protocol.c": {
+      "sha256": "35d4dc5163b65894acfaaac36555334a8948c4d084d1958c77c6ae33fe1fe8a8"
+    },
+    "accel_protocol.h": {
+      "sha256": "1e51b0be70bdaf77d00e143810af88f117749f8dcfd8c46cdf325db729df77f2"
+    },
+    "init.p00a-accelerometer.rc": {
+      "sha256": "5e1652e4437f3fe04285a64453cf75a0edfdcca00708cd2af08e256c1ed3c712"
+    },
+    "manifest.xml": {
+      "sha256": "051ea959884e25bc75009ceddd19c8f689bae989f9973e36a0032ab8cdf32c22"
+    },
+    "sensors.c": {
+      "sha256": "767b8f8e8b232bb3f82c464926e10425e604f04570c2ac0c7a02c5ff77f0fd22"
+    },
+    "sensors.mk": {
+      "sha256": "2285d404d1b160bd336cc9a6bb9a7bbdbbe479257d1d94895aa497cfd8fbac0a"
+    },
+    "sepolicy/file_contexts": {
+      "sha256": "2f39279a5a2f1a22b0cadcf5a85c682f3c522744a9840c18ce91e9aa32a2d034"
+    },
+    "sepolicy/genfs_contexts": {
+      "sha256": "ac05b23dd0fdfb9b7bd2dd83401d4ab461efd96bf2ab6da87ad471423564b23d"
+    },
+    "sepolicy/p00a_accelerometer.te": {
+      "sha256": "54bc1962f05ffa1987bf01d5cfa89f1b5c752120890bed1eef36c877165f6a47"
+    },
+    "ueventd.fragment.rc": {
+      "sha256": "507fd039f06a16145545030df90af0723c6e14d54679560603b216a94154b728"
+    }
+  },
+  "physical_sensor_qualified": false,
+  "suffixes": {
+    "BoardConfig.mk": "\ninclude device/asus/p00a/sensors/BoardConfig.mk\n",
+    "device.mk": "\n$(call inherit-product, device/asus/p00a/sensors/sensors.mk)\n",
+    "rootdir/ueventd.rc": "\n/dev/m_acc_misc 0400 system system\n/sys/devices/virtual/sensor/m_acc_misc accactive 0600 system system\n/sys/devices/virtual/sensor/m_acc_misc accbatch 0600 system system\n/sys/devices/virtual/sensor/m_acc_misc accflush 0600 system system\n/sys/devices/virtual/sensor/m_acc_misc acccali 0600 system system\n"
+  }
+}

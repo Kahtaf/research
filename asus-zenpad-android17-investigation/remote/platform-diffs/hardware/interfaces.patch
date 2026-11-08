@@ -1,0 +1,205 @@
+diff --git a/health/aidl/default/HalHealthLoop.cpp b/health/aidl/default/HalHealthLoop.cpp
+index ec23c10..cfb2f5d 100644
+--- a/health/aidl/default/HalHealthLoop.cpp
++++ b/health/aidl/default/HalHealthLoop.cpp
+@@ -44,8 +44,14 @@ void HalHealthLoop::ScheduleBatteryUpdate() {
+ 
+     HealthInfo health_info;
+     auto res = service_->getHealthInfo(&health_info);
+-    CHECK(res.isOk()) << "getHealthInfo() on the health HAL implementation failed with "
+-                      << res.getDescription();
++    if (!res.isOk()) {
++        LOG(WARNING) << "getHealthInfo() unavailable; retaining callbacks and retrying: "
++                     << res.getDescription();
++        // Do not deliver an invalid aggregate or terminate the service. Keep
++        // periodic updates running, using the last observed charger state.
++        AdjustWakealarmPeriods(charger_online());
++        return;
++    }
+     OnHealthInfoChanged(health_info);
+ }
+ 
+diff --git a/health/aidl/default/Health.cpp b/health/aidl/default/Health.cpp
+index d1c6121..0082a08 100644
+--- a/health/aidl/default/Health.cpp
++++ b/health/aidl/default/Health.cpp
+@@ -238,7 +238,13 @@ ndk::ScopedAStatus Health::getHealthInfo(HealthInfo* out) {
+     // A subclass may want to update health info struct before returning it.
+     UpdateHealthInfo(out);
+ 
+-    return ndk::ScopedAStatus::ok();
++    auto status = ReadBatterySnapshot(out);
++    if (!status.isOk()) {
++        // A failed binder method has no valid aggregate output. Callers must
++        // inspect status; update/registerCallback already do so.
++        *out = HealthInfo{};
++    }
++    return status;
+ }
+ 
+ binder_status_t Health::dump(int fd, const char**, uint32_t) {
+@@ -290,6 +296,10 @@ void Health::UpdateHealthInfo(HealthInfo* /* health_info */) {
+     */
+ }
+ 
++ndk::ScopedAStatus Health::ReadBatterySnapshot(HealthInfo*) {
++    return ndk::ScopedAStatus::ok();
++}
++
+ int32_t Health::getFullChargeUah() const {
+     return battery_monitor_.getFullChargeUah();
+ }
+diff --git a/health/aidl/default/include/health-impl/Health.h b/health/aidl/default/include/health-impl/Health.h
+index b5c7a4a..b236713 100644
+--- a/health/aidl/default/include/health-impl/Health.h
++++ b/health/aidl/default/include/health-impl/Health.h
+@@ -101,6 +101,12 @@ class Health : public BnHealth, public HalHealthLoopCallback {
+     // By default, it does nothing.
+     // See implementation of Health for code samples.
+     virtual void UpdateHealthInfo(HealthInfo* health_info);
++
++    // Optional checked platform snapshot. Called by final getHealthInfo before
++    // returning success. Errors propagate through update and callback delivery.
++    // The default preserves existing products; a board can reject unavailable
++    // mandatory measurements without overriding the final aggregate method.
++    virtual ndk::ScopedAStatus ReadBatterySnapshot(HealthInfo* health_info);
+     int32_t getFullChargeUah() const;
+     int32_t getFullChargeDesignCapacityUah() const;
+ 
+diff --git a/health/utils/libhealthloop/filterPowerSupplyEvents.c b/health/utils/libhealthloop/filterPowerSupplyEvents.c
+index 6f295c7..f2b4583 100644
+--- a/health/utils/libhealthloop/filterPowerSupplyEvents.c
++++ b/health/utils/libhealthloop/filterPowerSupplyEvents.c
+@@ -19,8 +19,6 @@
+ #include <linux/netlink.h>     // struct nlmsghdr
+ #include <stdint.h>
+ 
+-static long (*bpf_skb_load_bytes)(const struct __sk_buff* skb, int off, void* to, int len) =
+-    (void*)BPF_FUNC_skb_load_bytes;
+ 
+ #define LENGTH_0SUBSYSTEM_EQUAL 11          // length of "\0SUBSYSTEM="
+ #define LENGTH_POWER_SUPPLY0 13             // length of "power_supply\0"
+@@ -34,44 +32,85 @@ static long (*bpf_skb_load_bytes)(const struct __sk_buff* skb, int off, void* to
+ 
+ DEFINE_BPF_PROG("skfilter/power_supply", AID_ROOT, AID_SYSTEM, skfilter_power_supply)
+ (struct __sk_buff* skb) {
+-    // The first character matched is a '\0'. Starting right past the netlink message header
+-    // is fine since the SUBSYSTEM= text never occurs at the start, as the kernel always
+-    // adds ACTION=%s DEVPATH=%s SUBSYSTEM=%s first and null terminates each.
+-    //
+-    // See also the kobject_uevent_env() implementation:
+-    // https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/lib/kobject_uevent.c?#n473
+-    //
+-    // The upper bound of this loop has been chosen not to exceed the maximum
+-    // number of instructions in a BPF program (BPF loops are unrolled).
+-    #define LENGTH_PREFIX 16 // length of "ACTION=\0DEVPATH="
+-    for (uint64_t i = sizeof(struct nlmsghdr) + LENGTH_PREFIX; i < 256; ++i) {
+-
+-        // 16 bytes is big enough to cover both
+-        uint64_t buf[2] = {};
+-
+-        if (bpf_skb_load_bytes(skb, i, &buf, LENGTH_0SUBSYSTEM_EQUAL))
+-            break;  // too far -> SUBSYSTEM= not found
+-
+-        uint64_t v = (buf[0] ^ HEX_0SUBSYST) | (buf[1] ^ HEX_EM_EQUAL);
+-        asm ("" : "+r" (v));  // prevent compiler optimizing ^ | ^ into != || !=
+-        if (v) continue;  // no match -> try again at next position
+-
+-        i += LENGTH_0SUBSYSTEM_EQUAL;
+-
+-        // No need to zero buffer as second string is not shorter than first
+-
+-        if (bpf_skb_load_bytes(skb, i, &buf, LENGTH_POWER_SUPPLY0))
+-            return 0;  // too far -> cannot match -> drop
+-
+-        v = (buf[0] ^ HEX_POWER_SU) | (buf[1] ^ HEX_PPLY0);
+-        asm ("" : "+r" (v));  // prevent compiler optimizing ^ | ^ into != || !=
+-        if (v) return 0;  // did not match -> drop packet
+-
+-        return skb->len;  // did match -> accept packet
+-    }
+-
+-    // The SUBSYSTEM= text has not been found in the bytes that have been
+-    // examined: let the user space software perform filtering.
++    // Length guards preserve helper-OOB acceptance before a complete prefix.
++    // Three overlapping network-order words cover all eleven prefix bytes.
++    uint32_t offset;
++#define CHECK_PREFIX(i) do { \
++    offset = (i) + LENGTH_0SUBSYSTEM_EQUAL; \
++    asm volatile ("" : "+r" (offset)); \
++    if (skb->len < (i) + LENGTH_0SUBSYSTEM_EQUAL) return skb->len; \
++    if (load_word(skb, (i)) == 0x00535542 && \
++        load_word(skb, (i) + 4) == 0x53595354 && \
++        load_word(skb, (i) + 7) == 0x54454d3d) { \
++        goto found; \
++    } \
++} while (0)
++    CHECK_PREFIX(32); CHECK_PREFIX(33); CHECK_PREFIX(34); CHECK_PREFIX(35);
++    CHECK_PREFIX(36); CHECK_PREFIX(37); CHECK_PREFIX(38); CHECK_PREFIX(39);
++    CHECK_PREFIX(40); CHECK_PREFIX(41); CHECK_PREFIX(42); CHECK_PREFIX(43);
++    CHECK_PREFIX(44); CHECK_PREFIX(45); CHECK_PREFIX(46); CHECK_PREFIX(47);
++    CHECK_PREFIX(48); CHECK_PREFIX(49); CHECK_PREFIX(50); CHECK_PREFIX(51);
++    CHECK_PREFIX(52); CHECK_PREFIX(53); CHECK_PREFIX(54); CHECK_PREFIX(55);
++    CHECK_PREFIX(56); CHECK_PREFIX(57); CHECK_PREFIX(58); CHECK_PREFIX(59);
++    CHECK_PREFIX(60); CHECK_PREFIX(61); CHECK_PREFIX(62); CHECK_PREFIX(63);
++    CHECK_PREFIX(64); CHECK_PREFIX(65); CHECK_PREFIX(66); CHECK_PREFIX(67);
++    CHECK_PREFIX(68); CHECK_PREFIX(69); CHECK_PREFIX(70); CHECK_PREFIX(71);
++    CHECK_PREFIX(72); CHECK_PREFIX(73); CHECK_PREFIX(74); CHECK_PREFIX(75);
++    CHECK_PREFIX(76); CHECK_PREFIX(77); CHECK_PREFIX(78); CHECK_PREFIX(79);
++    CHECK_PREFIX(80); CHECK_PREFIX(81); CHECK_PREFIX(82); CHECK_PREFIX(83);
++    CHECK_PREFIX(84); CHECK_PREFIX(85); CHECK_PREFIX(86); CHECK_PREFIX(87);
++    CHECK_PREFIX(88); CHECK_PREFIX(89); CHECK_PREFIX(90); CHECK_PREFIX(91);
++    CHECK_PREFIX(92); CHECK_PREFIX(93); CHECK_PREFIX(94); CHECK_PREFIX(95);
++    CHECK_PREFIX(96); CHECK_PREFIX(97); CHECK_PREFIX(98); CHECK_PREFIX(99);
++    CHECK_PREFIX(100); CHECK_PREFIX(101); CHECK_PREFIX(102); CHECK_PREFIX(103);
++    CHECK_PREFIX(104); CHECK_PREFIX(105); CHECK_PREFIX(106); CHECK_PREFIX(107);
++    CHECK_PREFIX(108); CHECK_PREFIX(109); CHECK_PREFIX(110); CHECK_PREFIX(111);
++    CHECK_PREFIX(112); CHECK_PREFIX(113); CHECK_PREFIX(114); CHECK_PREFIX(115);
++    CHECK_PREFIX(116); CHECK_PREFIX(117); CHECK_PREFIX(118); CHECK_PREFIX(119);
++    CHECK_PREFIX(120); CHECK_PREFIX(121); CHECK_PREFIX(122); CHECK_PREFIX(123);
++    CHECK_PREFIX(124); CHECK_PREFIX(125); CHECK_PREFIX(126); CHECK_PREFIX(127);
++    CHECK_PREFIX(128); CHECK_PREFIX(129); CHECK_PREFIX(130); CHECK_PREFIX(131);
++    CHECK_PREFIX(132); CHECK_PREFIX(133); CHECK_PREFIX(134); CHECK_PREFIX(135);
++    CHECK_PREFIX(136); CHECK_PREFIX(137); CHECK_PREFIX(138); CHECK_PREFIX(139);
++    CHECK_PREFIX(140); CHECK_PREFIX(141); CHECK_PREFIX(142); CHECK_PREFIX(143);
++    CHECK_PREFIX(144); CHECK_PREFIX(145); CHECK_PREFIX(146); CHECK_PREFIX(147);
++    CHECK_PREFIX(148); CHECK_PREFIX(149); CHECK_PREFIX(150); CHECK_PREFIX(151);
++    CHECK_PREFIX(152); CHECK_PREFIX(153); CHECK_PREFIX(154); CHECK_PREFIX(155);
++    CHECK_PREFIX(156); CHECK_PREFIX(157); CHECK_PREFIX(158); CHECK_PREFIX(159);
++    CHECK_PREFIX(160); CHECK_PREFIX(161); CHECK_PREFIX(162); CHECK_PREFIX(163);
++    CHECK_PREFIX(164); CHECK_PREFIX(165); CHECK_PREFIX(166); CHECK_PREFIX(167);
++    CHECK_PREFIX(168); CHECK_PREFIX(169); CHECK_PREFIX(170); CHECK_PREFIX(171);
++    CHECK_PREFIX(172); CHECK_PREFIX(173); CHECK_PREFIX(174); CHECK_PREFIX(175);
++    CHECK_PREFIX(176); CHECK_PREFIX(177); CHECK_PREFIX(178); CHECK_PREFIX(179);
++    CHECK_PREFIX(180); CHECK_PREFIX(181); CHECK_PREFIX(182); CHECK_PREFIX(183);
++    CHECK_PREFIX(184); CHECK_PREFIX(185); CHECK_PREFIX(186); CHECK_PREFIX(187);
++    CHECK_PREFIX(188); CHECK_PREFIX(189); CHECK_PREFIX(190); CHECK_PREFIX(191);
++    CHECK_PREFIX(192); CHECK_PREFIX(193); CHECK_PREFIX(194); CHECK_PREFIX(195);
++    CHECK_PREFIX(196); CHECK_PREFIX(197); CHECK_PREFIX(198); CHECK_PREFIX(199);
++    CHECK_PREFIX(200); CHECK_PREFIX(201); CHECK_PREFIX(202); CHECK_PREFIX(203);
++    CHECK_PREFIX(204); CHECK_PREFIX(205); CHECK_PREFIX(206); CHECK_PREFIX(207);
++    CHECK_PREFIX(208); CHECK_PREFIX(209); CHECK_PREFIX(210); CHECK_PREFIX(211);
++    CHECK_PREFIX(212); CHECK_PREFIX(213); CHECK_PREFIX(214); CHECK_PREFIX(215);
++    CHECK_PREFIX(216); CHECK_PREFIX(217); CHECK_PREFIX(218); CHECK_PREFIX(219);
++    CHECK_PREFIX(220); CHECK_PREFIX(221); CHECK_PREFIX(222); CHECK_PREFIX(223);
++    CHECK_PREFIX(224); CHECK_PREFIX(225); CHECK_PREFIX(226); CHECK_PREFIX(227);
++    CHECK_PREFIX(228); CHECK_PREFIX(229); CHECK_PREFIX(230); CHECK_PREFIX(231);
++    CHECK_PREFIX(232); CHECK_PREFIX(233); CHECK_PREFIX(234); CHECK_PREFIX(235);
++    CHECK_PREFIX(236); CHECK_PREFIX(237); CHECK_PREFIX(238); CHECK_PREFIX(239);
++    CHECK_PREFIX(240); CHECK_PREFIX(241); CHECK_PREFIX(242); CHECK_PREFIX(243);
++    CHECK_PREFIX(244); CHECK_PREFIX(245); CHECK_PREFIX(246); CHECK_PREFIX(247);
++    CHECK_PREFIX(248); CHECK_PREFIX(249); CHECK_PREFIX(250); CHECK_PREFIX(251);
++    CHECK_PREFIX(252); CHECK_PREFIX(253); CHECK_PREFIX(254); CHECK_PREFIX(255);
++#undef CHECK_PREFIX
++    return skb->len;
++found:
++    if (skb->len < offset + LENGTH_POWER_SUPPLY0) return 0;
++    uint64_t v = (load_word(skb, offset) ^ 0x706f7765) |
++                 (load_word(skb, offset + 4) ^ 0x725f7375) |
++                 (load_word(skb, offset + 8) ^ 0x70706c79) |
++                 load_byte(skb, offset + 12);
++    asm ("" : "+r" (v));
++    if (v) return 0;
+     return skb->len;
+ }
+ 

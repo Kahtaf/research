@@ -1,0 +1,5 @@
+{
+  "commit": "a96adf2c6e62dbb22299cd83bbb9ea4bc569e985",
+  "binder_worktree_diff_empty_at_capture": true,
+  "note": "Probe headers are git-archived committed inputs; ELF double-read hash freeze from core Soong intermediate; no AOSP build invoked."
+}

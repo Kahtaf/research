@@ -1,0 +1,19 @@
+{
+  "utc": "2026-11-07T00:48:56.231331+00:00",
+  "outcome": "OWNED_READER_TERMINATED_AFTER_SINGLE_TERM",
+  "remote_pid": 1679682,
+  "remote_uid": 1001,
+  "start_ticks": 3292870,
+  "ssh_client_port": 50161,
+  "local_wrapper_pid": 9069,
+  "local_ssh_pid": 9071,
+  "local_handles_absent": true,
+  "kill_used": false,
+  "parent_sshd_native_other_worker_signals": false,
+  "payload_and_frozen_milestone_pins_unchanged": true,
+  "rejection_sentinel_preserved": true,
+  "proof_path": "/srv/android/asus-reviewed-build-kit/r9/evidence/obsolete-reader-cleanup.json",
+  "proof_sha256": "2fa0f5dc845006673a284476cc9bb0d16ef3a0e1129a3d4402096cafe656a29e",
+  "obsolete_terminal_log_sha256": "770032324639735fee7b448a068696eb427439c4e783f2079eea5bf04968d3be",
+  "uncertainty": null
+}

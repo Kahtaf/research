@@ -1,0 +1,146 @@
+{
+  "scope": "Local public text source/scripts only; no image or binary opened; not a build or runtime test",
+  "checked": {
+    "source/file_contexts.py": {
+      "expected": "012a4f0a71f49772a12e537721b5aca3e5de1b201b2dc5aaa07a26e07cdb650c",
+      "actual": "012a4f0a71f49772a12e537721b5aca3e5de1b201b2dc5aaa07a26e07cdb650c",
+      "match": true
+    },
+    "source/restore_core.h": {
+      "expected": "152d83f4110bc1eb4f1ab5d285ae4c322cd9e8a87937c96ea332489429c26c8f",
+      "actual": "152d83f4110bc1eb4f1ab5d285ae4c322cd9e8a87937c96ea332489429c26c8f",
+      "match": true
+    },
+    "source/manifest.py": {
+      "expected": "c9a40f5e1029e8252abc9a8256d63d9fae0d4e1c5373eb247dc76e2e06c52ae2",
+      "actual": "c9a40f5e1029e8252abc9a8256d63d9fae0d4e1c5373eb247dc76e2e06c52ae2",
+      "match": true
+    },
+    "source/bootformat.py": {
+      "expected": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017",
+      "actual": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017",
+      "match": true
+    },
+    "source/host.py": {
+      "expected": "2d6acd11f5b46585bec820188463e4ecb863ec19a6f106a83320f14c24c479d9",
+      "actual": "2d6acd11f5b46585bec820188463e4ecb863ec19a6f106a83320f14c24c479d9",
+      "match": true
+    },
+    "source/client.py": {
+      "expected": "0072398a0aa2da83bdf176d672e7ec767b6aaf034892fb603054a22549c5bf69",
+      "actual": "0072398a0aa2da83bdf176d672e7ec767b6aaf034892fb603054a22549c5bf69",
+      "match": true
+    },
+    "source/sha256.h": {
+      "expected": "4011564ce3516f8cc8e6e375cdd2923e72e9f9e74e77dc6e7db0637bda52efe0",
+      "actual": "4011564ce3516f8cc8e6e375cdd2923e72e9f9e74e77dc6e7db0637bda52efe0",
+      "match": true
+    },
+    "source/handoff.h": {
+      "expected": "7281fcf20343f8e6fbd95fa70c73b0c753f42f91e7230fc84014f02ee68af908",
+      "actual": "7281fcf20343f8e6fbd95fa70c73b0c753f42f91e7230fc84014f02ee68af908",
+      "match": true
+    },
+    "source/prior_container.h": {
+      "expected": "ef0b9c351e4ffb33e0d9159c192a479ec426b1d332f27f9000598d0cf8160df4",
+      "actual": "ef0b9c351e4ffb33e0d9159c192a479ec426b1d332f27f9000598d0cf8160df4",
+      "match": true
+    },
+    "source/common.h": {
+      "expected": "90fe60e79b3cc3932dab7e824bc803bb18ba086ea079beca8298c34ccf2a53c3",
+      "actual": "90fe60e79b3cc3932dab7e824bc803bb18ba086ea079beca8298c34ccf2a53c3",
+      "match": true
+    },
+    "source/p10_restore.c": {
+      "expected": "cddda42708f1444b7d773d57cb7e750a8a34d32e7a78b2c791a096a0a420b943",
+      "actual": "cddda42708f1444b7d773d57cb7e750a8a34d32e7a78b2c791a096a0a420b943",
+      "match": true
+    },
+    "source/rescue.c": {
+      "expected": "23b0af1a8c813ae925459bf4614f768a5f90e5a76efb49bf8523135159c72c49",
+      "actual": "23b0af1a8c813ae925459bf4614f768a5f90e5a76efb49bf8523135159c72c49",
+      "match": true
+    },
+    "source/core_binding.h": {
+      "expected": "c4040fd7bef4453f44b655ebf5e06fd88e7e3698ca6ad43e2ea87f1ac814c6e0",
+      "actual": "c4040fd7bef4453f44b655ebf5e06fd88e7e3698ca6ad43e2ea87f1ac814c6e0",
+      "match": true
+    },
+    "source/sha1.h": {
+      "expected": "ef1b62f9220f23b953833d4066e2fc154b25abe4780b867feeba45dc6012cbce",
+      "actual": "ef1b62f9220f23b953833d4066e2fc154b25abe4780b867feeba45dc6012cbce",
+      "match": true
+    },
+    "source/generated_host_binding.py": {
+      "expected": "2962d493872ae4fb1b3f02204e583c6436d1cf97d4e9629f375a32f2e979f468",
+      "actual": "2962d493872ae4fb1b3f02204e583c6436d1cf97d4e9629f375a32f2e979f468",
+      "match": true
+    },
+    "source/policy_build.c": {
+      "expected": "1fbb9b714f630c7d058f583b3d42242814413988ee41b188463c1291dda56fdf",
+      "actual": "1fbb9b714f630c7d058f583b3d42242814413988ee41b188463c1291dda56fdf",
+      "match": true
+    },
+    "source/stock_binding.h": {
+      "expected": "e85c82f2357850cd438766fb775033e9f0d52aa25a4f387db0ce61e51c86c140",
+      "actual": "e85c82f2357850cd438766fb775033e9f0d52aa25a4f387db0ce61e51c86c140",
+      "match": true
+    },
+    "source/policy_audit.c": {
+      "expected": "a8419a1ff771646dc28c96fa342f87ce4d949ee6368660bcd962f4d3053d9333",
+      "actual": "a8419a1ff771646dc28c96fa342f87ce4d949ee6368660bcd962f4d3053d9333",
+      "match": true
+    },
+    "scripts/collect.py": {
+      "expected": "b4c4b8fc690ce8654301ff1f78b3ea0c996b48677a8ef21bcd90f270ff016c91",
+      "actual": "b4c4b8fc690ce8654301ff1f78b3ea0c996b48677a8ef21bcd90f270ff016c91",
+      "match": true
+    },
+    "scripts/remote.py": {
+      "expected": "d7246fe2ac1bb9a9ef73d1520703911dc782673432888f3aa2b1dce0197569cc",
+      "actual": "d7246fe2ac1bb9a9ef73d1520703911dc782673432888f3aa2b1dce0197569cc",
+      "match": true
+    },
+    "scripts/postflight.py": {
+      "expected": "fbb94dc550ace497fc9dab982a948ac5cb6ad6c00561140e4aa245aab34fa224",
+      "actual": "fbb94dc550ace497fc9dab982a948ac5cb6ad6c00561140e4aa245aab34fa224",
+      "match": true
+    },
+    "scripts/verify_compact.py": {
+      "expected": "a08988ea95097a518562dbf1c9c0f681c46104b2a188e4d39ceb340e2b95277e",
+      "actual": "a08988ea95097a518562dbf1c9c0f681c46104b2a188e4d39ceb340e2b95277e",
+      "match": true
+    },
+    "scripts/postflight_resume.py": {
+      "expected": "a61a9d5e99dad4594708ac5beaa76135f41472d3de9088ad82f8f5ba6ec79733",
+      "actual": "a61a9d5e99dad4594708ac5beaa76135f41472d3de9088ad82f8f5ba6ec79733",
+      "match": true
+    },
+    "scripts/assemble_core.py": {
+      "expected": "2aace148e31efc447b66efb615b7f1ada416bc3c46fc8aeb30c8d7081907db30",
+      "actual": "2aace148e31efc447b66efb615b7f1ada416bc3c46fc8aeb30c8d7081907db30",
+      "match": true
+    },
+    "scripts/verify_container.py": {
+      "expected": "3f3c38f9636f12e4e17ce390d2c5d464d179e121717971c17b947029035b2b95",
+      "actual": "3f3c38f9636f12e4e17ce390d2c5d464d179e121717971c17b947029035b2b95",
+      "match": true
+    },
+    "scripts/build_remote.py": {
+      "expected": "9978b4cf5c202e38b6476d86f973bd48627650d5395ae90aa70e89429e41d019",
+      "actual": "9978b4cf5c202e38b6476d86f973bd48627650d5395ae90aa70e89429e41d019",
+      "match": true
+    },
+    "scripts/run_build.py": {
+      "expected": "36027513eb7c5dc7493a03bba2ff7b20dbcdb686d6aa8a5d102b37508ad90262",
+      "actual": "36027513eb7c5dc7493a03bba2ff7b20dbcdb686d6aa8a5d102b37508ad90262",
+      "match": true
+    },
+    "scripts/assemble_final.py": {
+      "expected": "2328aa79b6d317d973cc6cbb7b9b2aab27cef76736f154e2672370c560ac1db5",
+      "actual": "2328aa79b6d317d973cc6cbb7b9b2aab27cef76736f154e2672370c560ac1db5",
+      "match": true
+    }
+  },
+  "all_match": true
+}

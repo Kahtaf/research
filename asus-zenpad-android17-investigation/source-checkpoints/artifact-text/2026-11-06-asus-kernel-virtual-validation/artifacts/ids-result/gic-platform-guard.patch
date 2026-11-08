@@ -1,0 +1,25 @@
+From be15c78f96d53b5bf2e3a2db0ed272be803518fd Mon Sep 17 00:00:00 2001
+From: ASUS Android Port <asus-port@localhost>
+Date: Fri, 6 Nov 2026 05:29:59 +0000
+Subject: [PATCH] irqchip: gic-v3: limit MediaTek polarity hook to MediaTek GIC
+
+---
+ drivers/irqchip/irq-gic-v3.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/irqchip/irq-gic-v3.c b/drivers/irqchip/irq-gic-v3.c
+index 728b7948..5e84e874 100644
+--- a/drivers/irqchip/irq-gic-v3.c
++++ b/drivers/irqchip/irq-gic-v3.c
+@@ -304,7 +304,7 @@ static int gic_set_type(struct irq_data *d, unsigned int type)
+ 	if (irq < 16)
+ 		return -EINVAL;
+ 
+-#ifndef CONFIG_MTK_SYSIRQ
++#if defined(CONFIG_MTK_GIC) && !defined(CONFIG_MTK_SYSIRQ)
+ 	/* setup polarity registers */
+ 	if (type & (IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING))
+ 		_mt_irq_set_polarity(irq,
+-- 
+2.43.0
+

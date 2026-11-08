@@ -1,0 +1,171 @@
+--- a/bpf/loader/NetBpfLoad.cpp
++++ b/bpf/loader/NetBpfLoad.cpp
+@@ -397,7 +397,8 @@
+     // This is because the primary failure mode we're trying to detect here
+     // is either a source code misconfiguration (which is likely kernel independent)
+     // or a newly introduced kernel feature/bug (which is unlikely to get backported to 4.9).
+-    if (!isAtLeastKernelVersion(4, 14)) return true;
++    if (!isAtLeastKernelVersion(4, 14) &&
++        !GetBoolProperty("ro.bpf.allow_legacy_kernel", false)) return true;
+ 
+     // Assuming fd is a valid Bpf Map file descriptor then
+     // all the following should always succeed on a 4.14+ kernel.
+@@ -674,9 +675,8 @@
+ // Note: We cannot reopen this BPF map later because of sepolicy limitations.
+ static unique_fd bpfKernelStatsMapFd;
+ 
+-// Local: on legacy (pre-4.14) kernels with ro.bpf.allow_legacy_kernel, log
+-// and skip objects the kernel rejects instead of failing the whole boot.
+-static bool gTolerateLoadFailures = false;
++// The opt-in legacy product uses the ELF loader and qualified kernel backports.
++static bool gLegacyKernel = false;
+ 
+ static int pinMap(const borrowed_fd& fd, const struct bpf_map_def& mapDef) {
+         int ret;
+@@ -740,9 +740,8 @@
+ }
+ 
+ static bool isMapTypeSupported(enum bpf_map_type type) {
+-    // Local: legacy (pre-4.11) kernels get LPM_TRIE maps as HASH (see sanitizeMapType),
+-    // since userspace (BpfNetMaps) requires e.g. local_net_access_map to exist.
+-    if (gTolerateLoadFailures && type == BPF_MAP_TYPE_LPM_TRIE) return true;
++    // The opt-in 4.9 product carries an actual LPM trie backport.
++    if (gLegacyKernel && type == BPF_MAP_TYPE_LPM_TRIE) return true;
+     if (type == BPF_MAP_TYPE_LPM_TRIE && !isAtLeastKernelVersion(4, 14)) {
+         // On Linux Kernels older than 4.14 this map type doesn't exist - autoskip.
+         return false;
+@@ -771,15 +770,10 @@
+         // programs as being 5.4+...
+         return  BPF_MAP_TYPE_HASH;
+     }
+-    if (type == BPF_MAP_TYPE_LPM_TRIE && !isAtLeastKernelVersion(4, 11)) {
+-        // Local: LPM_TRIE is 4.11+. Userspace only reads/writes these maps on legacy
+-        // kernels (no loaded program uses them), so an exact-match HASH suffices.
+-        return BPF_MAP_TYPE_HASH;
+-    }
+     if (type == BPF_MAP_TYPE_LRU_HASH && !isAtLeastKernelVersion(4, 10)) {
+-        // Local: LRU_HASH is 4.10+. HASH has the same userspace and bpf helper
+-        // api, it just doesn't evict (inserts fail once full) - fine for the
+-        // small cache maps that use it.
++        // These two caches only feed 5.10+ ring-buffer reporting/loopback
++        // programs, disabled on this legacy branch. Preserve their userspace
++        // handles; no active legacy policy relies on HASH eviction semantics.
+         return BPF_MAP_TYPE_HASH;
+     }
+     // No sanitization is required.
+@@ -1367,13 +1361,10 @@
+ #define APEXROOT "/apex/com.android.tethering"
+ #define BPFROOT APEXROOT "/etc/bpf/mainline/"
+ 
+-static bool loadObjectOrSkip(const char* const progPath, const bool useLibbpf = true) {
++static bool loadRequiredObject(const char* const progPath, const bool useLibbpf = true) {
+     // libbpf can't load objects on legacy kernels; the ELF loader skips
+     // programs outside the kernel's range instead.
+-    if (loadObject(progPath, gTolerateLoadFailures ? false : useLibbpf)) return true;
+-    if (!gTolerateLoadFailures) return false;
+-    ALOGE("legacy kernel: skipping failed object %s", progPath);
+-    return true;
++    return loadObject(progPath, gLegacyKernel ? false : useLibbpf);
+ }
+ 
+ static bool loadAllObjects() {
+@@ -1381,15 +1372,15 @@
+     // b/494690861: funcs may trigger Real-time Kernel Protection (RKP)
+     bool funcs = isAtLeast26Q2 && isAtLeastKernelVersion(6, 6, 118);
+ 
+-    if (!loadObjectOrSkip(BPFROOT "offload.o", /*libbpf*/false)) return false;
+-    if (!loadObjectOrSkip(BPFROOT "test.o")) return false;
+-    if (!loadObjectOrSkip(BPFROOT "clatd.o")) return false;
++    if (!loadRequiredObject(BPFROOT "offload.o", /*libbpf*/false)) return false;
++    if (!loadRequiredObject(BPFROOT "test.o")) return false;
++    if (!loadRequiredObject(BPFROOT "clatd.o")) return false;
+     if (funcs) {
+-        if (!loadObjectOrSkip(BPFROOT "dscpPolicy@funcs.o")) return false;
+-        if (!loadObjectOrSkip(BPFROOT "netd@funcs.o")) return false;
++        if (!loadRequiredObject(BPFROOT "dscpPolicy@funcs.o")) return false;
++        if (!loadRequiredObject(BPFROOT "netd@funcs.o")) return false;
+     } else {
+-        if (!loadObjectOrSkip(BPFROOT "dscpPolicy.o")) return false;
+-        if (!loadObjectOrSkip(BPFROOT "netd.o")) return false;
++        if (!loadRequiredObject(BPFROOT "dscpPolicy.o")) return false;
++        if (!loadRequiredObject(BPFROOT "netd.o")) return false;
+     }
+     return true;
+ }
+@@ -1867,7 +1858,7 @@
+ 
+     auto start = steady_clock::now();
+     // Load all ELF objects, create programs and maps, and pin them
+-    gTolerateLoadFailures = legacyKernel;
++    gLegacyKernel = legacyKernel;
+     if (!loadAllObjects()) {
+         ALOGE("=== CRITICAL FAILURE LOADING BPF PROGRAMS ===");
+         ALOGE("If this triggers reliably, you're probably missing kernel options or patches.");
+--- a/bpf/netd/BpfHandler.cpp
++++ b/bpf/netd/BpfHandler.cpp
+@@ -152,13 +152,9 @@
+     RETURN_IF_NOT_OK(checkProgramAccessible(XT_BPF_DENYLIST_PROG_PATH));
+     RETURN_IF_NOT_OK(checkProgramAccessible(XT_BPF_EGRESS_PROG_PATH));
+     RETURN_IF_NOT_OK(checkProgramAccessible(XT_BPF_INGRESS_PROG_PATH));
+-    // Local: on legacy kernels the A17 cgroup stats programs (5.4+) aren't built for 4.9.
+-    if (legacyKernel && access(BPF_EGRESS_PROG_PATH, F_OK)) {
+-        ALOGW("legacy kernel: no cgroup egress/ingress stats programs, skipping attach");
+-    } else {
+-        RETURN_IF_NOT_OK(attachProgramToCgroup(BPF_EGRESS_PROG_PATH, cg_fd, BPF_CGROUP_INET_EGRESS));
+-        RETURN_IF_NOT_OK(attachProgramToCgroup(BPF_INGRESS_PROG_PATH, cg_fd, BPF_CGROUP_INET_INGRESS));
+-    }
++    // These programs enforce UID firewall and VPN ingress policy as well as accounting.
++    RETURN_IF_NOT_OK(attachProgramToCgroup(BPF_EGRESS_PROG_PATH, cg_fd, BPF_CGROUP_INET_EGRESS));
++    RETURN_IF_NOT_OK(attachProgramToCgroup(BPF_INGRESS_PROG_PATH, cg_fd, BPF_CGROUP_INET_INGRESS));
+ 
+     // For the devices that support cgroup socket filter, the socket filter
+     // should be loaded successfully by bpfloader. So we attach the filter to
+--- a/bpf/progs/netd.c
++++ b/bpf/progs/netd.c
+@@ -290,7 +290,8 @@
+     //
+     // For similar reasons this will fail with non-offloaded VLAN tags on < 4.19 kernels,
+     // since those extend the ethernet header from 14 to 18 bytes.
+-    return KVER_IS_AT_LEAST(kver, 4, 19)
++    // The opt-in 4.9 product carries helper 68 with the upstream semantics.
++    return (KVER_IS_AT_LEAST(kver, 4, 19) || !KVER_IS_AT_LEAST(kver, 4, 14))
+         ? bpf_skb_load_bytes_relative(skb, L3_off, to, len, BPF_HDR_START_NET)
+         : bpf_skb_load_bytes(skb, L3_off, to, len);
+ }
+@@ -766,7 +767,7 @@
+     // Require 4.19, since earlier kernels don't have bpf_skb_load_bytes_relative() which
+     // provides relative to L3 header reads.  Without that we could fetch the wrong bytes.
+     // Additionally earlier bpf verifiers are much harder to please.
+-    if (!KVER_IS_AT_LEAST(kver, 4, 19)) return false;
++    if (KVER_IS_AT_LEAST(kver, 4, 14) && !KVER_IS_AT_LEAST(kver, 4, 19)) return false;
+ 
+     if (packet->ip_version == 0) return false;
+ 
+@@ -1031,6 +1032,13 @@
+     return bpf_traffic_account(skb, INGRESS, KVER_4_9, API(T));
+ }
+ 
++// Local legacy path: retain UID firewall, VPN ingress filtering and accounting.
++// This branch requires the relative-load helper and LPM trie backports.
++DEFINE_NETD_BPF_PROG_RANGES(ingress, stats, 4_9, 4_14, V, MAXAPI)
++(struct __sk_buff* skb) {
++    return bpf_traffic_account(skb, INGRESS, KVER_4_9, API(25Q2));
++}
++
+ // ----- egress/stats -----
+ 
+ // Android 26Q2+ 6.1+ (full featured)
+@@ -1088,6 +1096,13 @@
+ }
+ 
+ // -----
++
++// Local legacy path: retain UID firewall, VPN ingress filtering and accounting.
++// This branch requires the relative-load helper and LPM trie backports.
++DEFINE_NETD_BPF_PROG_RANGES(egress, stats, 4_9, 4_14, V, MAXAPI)
++(struct __sk_buff* skb) {
++    return bpf_traffic_account(skb, EGRESS, KVER_4_9, API(25Q2));
++}
+ 
+ // WARNING: Android T's non-updatable netd depends on the name of this program.
+ DEFINE_XTBPF_PROG(skfilter, egress_xtbpf)

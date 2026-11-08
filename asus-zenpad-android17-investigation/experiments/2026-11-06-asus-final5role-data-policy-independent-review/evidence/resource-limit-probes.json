@@ -1,0 +1,28 @@
+{
+  "platform": "Darwin",
+  "memory_probes": [
+    {
+      "limit": "RLIMIT_AS",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import resource; r=resource.RLIMIT_AS; resource.setrlimit(r,(1073741824,1073741824)); print(resource.getrlimit(r))\n                                           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: current limit exceeds maximum limit\n"
+    },
+    {
+      "limit": "RLIMIT_DATA",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import resource; r=resource.RLIMIT_DATA; resource.setrlimit(r,(1073741824,1073741824)); print(resource.getrlimit(r))\n                                             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: current limit exceeds maximum limit\n"
+    },
+    {
+      "limit": "RLIMIT_RSS",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import resource; r=resource.RLIMIT_RSS; resource.setrlimit(r,(1073741824,1073741824)); print(resource.getrlimit(r))\n                                            ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: current limit exceeds maximum limit\n"
+    }
+  ],
+  "serial": true,
+  "make_jobs": 1,
+  "affinity_available": false,
+  "hard_affinity_or_memory_quota_claimed": false,
+  "observed_memory_acceptance_bytes": 1073741824
+}

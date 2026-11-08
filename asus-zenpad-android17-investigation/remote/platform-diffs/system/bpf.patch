@@ -1,0 +1,55 @@
+diff --git a/loader/Loader.cpp b/loader/Loader.cpp
+index 08c6b6d..a2ea2d7 100644
+--- a/loader/Loader.cpp
++++ b/loader/Loader.cpp
+@@ -472,7 +472,8 @@ static bool loadCodeSections(const char* elfPath, vector<codeSection>& cs, const
+               .log_buf = ptr_to_u64(log_buf.data()),
+               .log_size = static_cast<__u32>(log_buf.size()),
+             };
+-            strlcpy(req.prog_name, cs[i].name.c_str(), sizeof(req.prog_name));
++            if (kernelVer >= KVER(4, 15, 0))
++                strlcpy(req.prog_name, cs[i].name.c_str(), sizeof(req.prog_name));
+             fd.reset(bpf(BPF_PROG_LOAD, req));
+ 
+             if (!fd.ok()) {
+diff --git a/loader/bpfloader.rs b/loader/bpfloader.rs
+index f23d882..d9c7fcd 100644
+--- a/loader/bpfloader.rs
++++ b/loader/bpfloader.rs
+@@ -205,6 +205,8 @@ struct BpfFileDesc {
+     critical: bool,
+     // If this is true, maps and programs in the bpf object file are not loaded.
+     skip_on_user: bool,
++    // Minimum actual kernel version for this optional feature/test object.
++    min_kver: u32,
+     // If this is true, the file is allowed to be missing.
+     allow_missing: bool,
+     maps: &'static [MapDesc],
+@@ -230,6 +232,7 @@ const BPF_FILE_DESC_DEFAULT: BpfFileDesc = BpfFileDesc {
+     critical: false,
+     skip_on_user: false,
+     allow_missing: false,
++    min_kver: KVER_NONE,
+     maps: &[],
+     progs: &[],
+ };
+@@ -330,6 +333,8 @@ const FILE_ARR: &[BpfFileDesc] = &[
+     },
+     BpfFileDesc {
+         filename: "/system/etc/bpf/bpfRingbufProg.bpf",
++        // A debug-only ring-buffer self-test; ring buffers were added in 5.8.
++        min_kver: kver(5, 8, 0),
+         critical: true,
+         skip_on_user: true,
+         maps: &[MapDesc::new(GID_ROOT, PERM_GRW, "test_ringbuf")],
+@@ -560,6 +565,10 @@ fn is_user_build() -> Result<bool, anyhow::Error> {
+ 
+ fn libbpf_worker(file_desc: &BpfFileDesc) -> Result<(), anyhow::Error> {
+     info!("Loading {}", file_desc.filename);
++    if kernel_version()? < file_desc.min_kver {
++        info!("Skip {} below its kernel minimum", file_desc.filename);
++        return Ok(());
++    }
+     if file_desc.skip_on_user && is_user_build()? {
+         info!("Skip loading {} on user build", file_desc.filename);
+         return Ok(());

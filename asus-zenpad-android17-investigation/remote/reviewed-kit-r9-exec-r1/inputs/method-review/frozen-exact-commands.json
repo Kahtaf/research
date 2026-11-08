@@ -1,0 +1,372 @@
+{
+  "commands": [
+    {
+      "line": 1684,
+      "progress": "52/34686",
+      "text": "PWD=/proc/self/cwd prebuilts/clang/host/linux-x86/clang-r584948b/bin/clang++ -c -nostdlibinc  -Werror=implicit-function-declaration -fstack-clash-protection -D__BIONIC_DEPRECATED_PAGE_SIZE_MACRO -O2 -Wall -Wextra -Wpointer-arith -Wunguarded-availability -Werror=bool-operation -Werror=date-time -Werror=format-security -Werror=int-conversion -Werror=multichar -Werror=pragma-pack -Werror=pragma-pack-suspicious-include -Werror=sizeof-array-div -Werror=sizeof-pointer-memaccess -Werror=string-plus-int -Werror=unreachable-code-loop-increment -Wno-error=deprecated-declarations -Wno-c23-extensions -Wno-c99-designator -Wno-gnu-folding-constant -Wno-inconsistent-missing-override -Wno-error=reorder-init-list -Wno-reorder-init-list -Wno-sign-compare -Wno-unused -DANDROID -DNDEBUG -UDEBUG -D__compiler_offsetof=__builtin_offsetof -D__ANDROID_UNAVAILABLE_SYMBOLS_ARE_WEAK__ -faddrsig -fdebug-default-version=5 -fcolor-diagnostics -ffp-contract=off -fno-exceptions -fno-strict-aliasing -fmessage-length=0 -gsimple-template-names -gz=zstd -no-canonical-prefixes -fdebug-prefix-map=/proc/self/cwd= -ftrivial-auto-var-init=zero -g -ffunction-sections -fdata-sections -fno-short-enums -funwind-tables -Wa,--noexecstack -D_FORTIFY_SOURCE=3 -fstack-protector-strong -Werror=non-virtual-dtor -Werror=address -Werror=sequence-point -march=armv8-a  -target aarch64-linux-android10000 -DANDROID_STRICT -fPIC -Wimplicit-fallthrough -D_LIBCPP_ENABLE_THREAD_SAFETY_ANNOTATIONS -Wno-gnu-include-next -fvisibility-inlines-hidden  -Isystem/vold -DBOARD_RECOVERY_BLDRMSG_OFFSET=0 -D__LIBC_API__=10000 -D__LIBM_API__=10000 -D__LIBDL_API__=10000 -Isystem/memory/libmeminfo/include -Iframeworks/native/libs/binder/ndk/include_cpp -Iframeworks/native/libs/binder/ndk/include_ndk -Iframeworks/native/libs/binder/ndk/include_platform -Ilibnativehelper/include_jni -Iout/soong/.intermediates/hardware/interfaces/security/secureclock/aidl/android.hardware.security.secureclock-V1-ndk-source/gen/include -Iout/soong/.intermediates/hardware/interfaces/security/keymint/aidl/android.hardware.security.keymint-V5-ndk-source/gen/include -Iout/soong/.intermediates/system/hardware/interfaces/keystore2/aidl/android.system.keystore2-V6-ndk-source/gen/include -Iout/soong/.intermediates/system/security/keystore2/aidl/android.security.maintenance-ndk-source/gen/include -Ibionic/libc/async_safe/include -Isystem/logging/liblog/include -Iexternal/avb -Ibootable/recovery/bootloader_message/include -Isystem/fs/fs_mgr/libdm/include -Iexternal/e2fsprogs/lib/uuid -Iexternal/e2fsprogs/lib -Isystem/extras/libfec/include -Isystem/core/libcrypto_utils/include -Isystem/fs/fs_mgr/libfs_avb/include -Isystem/fs/fs_mgr/libfstab/include -Isystem/fs/fs_mgr/include -Isystem/fs/fs_mgr/libfiemap/include -Isystem/logging/logwrapper/include -Isystem/extras/libfscrypt/include -Isystem/fs/fs_mgr/liblp/include -Iout/soong/.intermediates/frameworks/base/core/java/libincremental_aidl-cpp/android_arm64_armv8-a_static/gen/aidl -Isystem/libbase/include -Iexternal/fmtlib/include -Iframeworks/native/libs/binder/include -Isystem/core/libcutils/include -Isystem/core/libprocessgroup/include -Isystem/core/libutils/include -Isystem/core/libsystem/include -Isystem/core/libutils/binder/include -Iout/soong/.intermediates/frameworks/native/libs/binder/libbinder/android_arm64_armv8-a_shared/gen/aidl -Iout/soong/.intermediates/system/vold/libvold_binder/android_arm64_armv8-a_static/gen/aidl -Iout/soong/.intermediates/system/hardware/interfaces/vold/android.system.vold-V1-cpp-source/gen/include -Iout/soong/.intermediates/system/fs/casefolding_remover/libcasefoldingremover/android_arm64_armv8-a_static/gen/aidl -Iout/soong/.intermediates/system/vold/vold_flags_c_lib/android_arm64_armv8-a_static/gen/include -Iprebuilts/clang/host/linux-x86/clang-r584948b/android_libc++/platform/aarch64/include/c++/v1 -Iprebuilts/clang/host/linux-x86/clang-r584948b/include/c++/v1 -Isystem/libhidl/base/include -Isystem/libhidl/transport/include -Isystem/libfmq/base -Isystem/libhwbinder/include -Iout/soong/.intermediates/system/libhidl/transport/manager/1.0/android.hidl.manager@1.0_genc++_headers/gen -Iout/soong/.intermediates/system/libhidl/transport/manager/1.1/android.hidl.manager@1.1_genc++_headers/gen -Iout/soong/.intermediates/system/libhidl/transport/manager/1.2/android.hidl.manager@1.2_genc++_headers/gen -Iout/soong/.intermediates/system/libhidl/transport/base/1.0/android.hidl.base@1.0_genc++_headers/gen -Iout/soong/.intermediates/hardware/interfaces/boot/1.0/android.hardware.boot@1.0_genc++_headers/gen -Iout/soong/.intermediates/hardware/interfaces/boot/aidl/android.hardware.boot-V1-ndk-source/gen/include -Ihardware/interfaces/boot/aidl/client/include -Iexternal/boringssl/src/include -Isystem/extras/ext4_utils/include -Isystem/extras/f2fs_utils -Iexternal/fec -Isystem/gsid/include -Ihardware/libhardware/include_all -Isystem/media/audio/include -Ihardware/libhardware_legacy/include -Isystem/incremental_delivery/incfs/include -Isystem/incremental_delivery/incfs/kernel-headers -Ihardware/interfaces/security/keymint/support/include -Iexternal/selinux/libselinux/include -Isystem/core/libsysutils/include -Isystem/server_configurable_flags/libflags/include -Ibionic/libc/system_properties/include -Isystem/core/property_service/libpropertyinfoparser/include -isystem bionic/libc/include -isystem bionic/libc/kernel/uapi/asm-arm64 -isystem bionic/libc/kernel/uapi -isystem bionic/libc/kernel/android/scsi -isystem bionic/libc/kernel/android/uapi -Wall -Werror -Wextra -Wno-unused-parameter -flto=thin -fsplit-lto-unit -std=gnu++23 -D__ANDROID_DEBUGGABLE__ -fno-rtti -Isystem/core/include -Isystem/logging/liblog/include -Isystem/media/audio/include -Ihardware/libhardware/include -Ihardware/libhardware_legacy/include -Ihardware/ril/include -Iframeworks/native/include -Iframeworks/native/opengl/include -Iframeworks/av/include  -Werror=address-of-temporary -Werror=dangling -Werror=format-insufficient-args -Werror=fortify-source -Werror=incompatible-function-pointer-types -Werror=int-in-bool-context -Werror=int-to-pointer-cast -Werror=null-dereference -Werror=return-type -Werror=xor-used-as-pow -Wno-missing-field-initializers -Wno-packed-non-pod -Wno-error=tautological-constant-compare -Wno-implicit-int-float-conversion -Wno-tautological-overlap-compare -Wno-deprecated-copy -Wno-zero-as-null-pointer-constant -Wno-deprecated-anon-enum-enum-conversion -Wno-deprecated-enum-enum-conversion -Wno-error=pessimizing-move -Wno-non-c-typedef-for-linkage -Wno-align-mismatch -Wno-error=unused-but-set-parameter -Wno-error=deprecated -Wno-error=invalid-offsetof -Wno-nontrivial-memcall -Wno-invalid-specialization -Wno-unterminated-string-initialization -Wno-implicit-int-conversion-on-negation -Wno-default-const-init-field-unsafe -Wno-default-const-init-var-unsafe -Wno-preferred-type-bitfield-enum-conversion -Wno-implicit-enum-enum-cast -Wno-character-conversion -Wno-error=uninitialized-const-pointer -Wno-incompatible-pointer-types -Wno-c2y-extensions -Wno-vla-cxx-extension -Wno-cast-function-type-mismatch  -MD -MF out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/PublicVolume.o.d -o out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/PublicVolume.o system/vold/model/PublicVolume.cpp",
+      "outputs": [
+        "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/PublicVolume.o"
+      ],
+      "sha256": "3bb6a30e4d40c69b1a75616ffb0430e80646dd90a350e876a22a40700cbc284c"
+    },
+    {
+      "line": 1720,
+      "progress": "62/34686",
+      "text": "PWD=/proc/self/cwd  out/host/linux-x86/bin/soong_env -i --allow PWD --allow TMPDIR ANDROID_RUST_VERSION=1.93.1 TARGET_BUILD_VARIANT=userdebug out/host/linux-x86/bin/rustc_wrapper prebuilts/rust-toolchain/linux-x86/1.93.1/bin/rustc -C linker=out/host/linux-x86/bin/rustc_linker -C link-args=\"--android-clang-bin=prebuilts/clang/host/linux-x86/clang-r584948b/bin/clang++ \" -C link-args=@out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader.clang.rsp --emit link -o out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader --emit dep-info=out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader.d.raw system/bpf/loader/bpfloader.rs --extern force:bpf_android_bindgen=out/soong/.intermediates/system/bpf/loader/libbpf_android_bindgen/android_arm64_armv8-a_dylib/unstripped/libbpf_android_bindgen.dylib.so --extern force:android_bpfprogs_flags=out/soong/.intermediates/system/bpfprogs/libandroid_bpfprogs_flags/android_arm64_armv8-a_dylib/unstripped/libandroid_bpfprogs_flags.dylib.so --extern force:backstage_power_flags=out/soong/.intermediates/frameworks/base/libbackstage_power_flags_rust/android_arm64_armv8-a_dylib/unstripped/libbackstage_power_flags_rust.dylib.so --extern force:android_ids=out/soong/.intermediates/system/core/libcutils/libandroid_ids/android_arm64_armv8-a_dylib/unstripped/libandroid_ids.dylib.so --extern force:android_logger=out/soong/.intermediates/external/rust/android-crates-io/crates/android_logger/libandroid_logger/android_arm64_armv8-a_dylib/unstripped/libandroid_logger.dylib.so --extern force:anyhow=out/soong/.intermediates/external/rust/android-crates-io/crates/anyhow/libanyhow/android_arm64_armv8-a_dylib/unstripped/libanyhow.dylib.so --extern force:log=out/soong/.intermediates/external/rust/android-crates-io/crates/log/liblog_rust/android_arm64_armv8-a_dylib/unstripped/liblog_rust.dylib.so --extern force:libbpf_rs=out/soong/.intermediates/external/rust/android-crates-io/crates/libbpf-rs/liblibbpf_rs/android_arm64_armv8-a_dylib/unstripped/liblibbpf_rs.dylib.so --extern force:libbpf_sys=out/soong/.intermediates/external/rust/android-crates-io/crates/libbpf-sys/liblibbpf_sys/android_arm64_armv8-a_dylib/unstripped/liblibbpf_sys.dylib.so --extern force:libc=out/soong/.intermediates/external/rust/android-crates-io/crates/libc/liblibc/android_arm64_armv8-a_dylib/unstripped/liblibc.dylib.so --extern force:rustutils=out/soong/.intermediates/system/librustutils/rustutils/librustutils/android_arm64_armv8-a_dylib/unstripped/librustutils.dylib.so --extern force:std=out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/libstd/android_arm64_armv8-a_dylib/unstripped/libstd.dylib.so -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/libstd/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/bionic/libc/libc/android_arm64_armv8-a_shared_current/ -L out/soong/.intermediates/bionic/libm/libm/android_arm64_armv8-a_shared_current/ -L out/soong/.intermediates/bionic/libdl/libdl/android_arm64_armv8-a_shared_current/ -L out/soong/.intermediates/system/libbase/libbase/android_arm64_armv8-a_shared/ -L out/soong/.intermediates/system/core/libutils/libutils/android_arm64_armv8-a_shared/ -L out/soong/.intermediates/system/logging/liblog/liblog/android_arm64_armv8-a_shared/ -L out/soong/.intermediates/system/bpf/loader/libbpf_android/android_arm64_armv8-a_shared/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/libaddr2line.rust_sysroot/android_arm64_armv8-a_rlib/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/libcompiler_builtins.rust_sysroot/android_arm64_armv8-a_rlib/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/libcore.rust_sysroot/android_arm64_armv8-a_rlib/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/librustc_demangle.rust_sysroot/android_arm64_armv8-a_rlib/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/liblibc.rust_sysroot/android_arm64_armv8-a_rlib/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/libminiz_oxide.rust_sysroot/android_arm64_armv8-a_rlib/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/libobject.rust_sysroot/android_arm64_armv8-a_rlib/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/libcfg_if.rust_sysroot/android_arm64_armv8-a_rlib/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/liballoc.rust_sysroot/android_arm64_armv8-a_rlib/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/libhashbrown.rust_sysroot/android_arm64_armv8-a_rlib/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/libunwind.rust_sysroot/android_arm64_armv8-a_rlib/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/libprofiler_builtins.rust_sysroot/android_arm64_armv8-a_rlib/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/libstd_detect.rust_sysroot/android_arm64_armv8-a_rlib/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/libpanic_abort.rust_sysroot/android_arm64_armv8-a_rlib/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/libgimli.rust_sysroot/android_arm64_armv8-a_rlib/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/libadler2.rust_sysroot/android_arm64_armv8-a_rlib/ -L out/soong/.intermediates/prebuilts/rust-toolchain/linux-x86/libmemchr.rust_sysroot/android_arm64_armv8-a_rlib/ -L prebuilts/clang/host/linux-x86/clang-r584948b/lib/clang/22/lib/linux/ -L out/soong/.intermediates/build/make/tools/aconfig/aconfig_storage_read_api/libaconfig_storage_read_api/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/lazy_static/liblazy_static/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/system/logging/rust/liblogger/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/log/liblog_rust/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/anyhow/libanyhow/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/memmap2/libmemmap2/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/cxx/libcxx/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/thiserror/libthiserror/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/build/make/tools/aconfig/aconfig_storage_file/libaconfig_storage_file/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/libc/liblibc/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/foldhash/libfoldhash/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/prebuilts/clang/host/linux-x86/libc++/android_arm64_armv8-a_shared/ -L out/soong/.intermediates/external/rust/cxx/macro/libcxxbridge_macro/linux_glibc_x86_64/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/thiserror-impl/libthiserror_impl/linux_glibc_x86_64/ -L out/soong/.intermediates/external/rust/cxx/libcxxbridge05/android_arm64_armv8-a_static/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/protobuf/libprotobuf/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/clap/libclap/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/build/make/tools/aconfig/aconfig_storage_file/libaconfig_storage_protos/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/serde/libserde/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/bytes/libbytes/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/once_cell/libonce_cell/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/protobuf-support/libprotobuf_support/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/serde_core/libserde_core/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/serde_derive/libserde_derive/linux_glibc_x86_64/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/clap_builder/libclap_builder/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/clap_derive/libclap_derive/linux_glibc_x86_64/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/anstyle/libanstyle/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/clap_lex/libclap_lex/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/strsim/libstrsim/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/env_filter/libenv_filter/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/env_logger/libenv_logger/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/android_logger/libandroid_logger/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/regex/libregex/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/aho-corasick/libaho_corasick/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/memchr/libmemchr/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/regex-automata/libregex_automata/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/regex-syntax/libregex_syntax/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/android_log-sys/libandroid_log_sys/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/bitflags/libbitflags/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/libbpf-sys/liblibbpf_sys/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/vsprintf/libvsprintf/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/libbpf/libbpf/android_arm64_armv8-a_shared/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/vsprintf/libvsprintf_wrapper/android_arm64_armv8-a_shared/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/nix/libnix/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/system/librustutils/rustutils/libcutils_bindgen/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/system/librustutils/rustutils/libbionic_bindgen/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/system/librustutils/rustutils/libsystem_properties_bindgen_sys/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/system/core/libcutils/libcutils/android_arm64_armv8-a_shared/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/cfg-if/libcfg_if/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/external/rust/android-crates-io/crates/memoffset/libmemoffset/android_arm64_armv8-a_dylib/unstripped/ -L out/soong/.intermediates/bionic/libc/note_memtag_heap_async/android_arm64_armv8-a_static/  -Z unstable-options -Z stack-protector=strong -Z remap-cwd-prefix=. -C debuginfo=2 -C opt-level=3 -C overflow-checks=on -C force-unwind-tables=yes -C symbol-mangling-version=v0 --color=always -Z dylib-lto -Z link-native-libraries=no -Z force-unstable-if-unmarked --cfg soong -C force-frame-pointers=y  -C panic=abort -Z debug-info-for-profiling -Z tls-model=global-dynamic -Z has-thread-local=yes -C relocation-model=pic -C lto=thin -A deprecated -A unknown_lints -D missing-docs -D warnings -D unsafe_op_in_unsafe_fn -A mismatched_lifetime_syntaxes --edition=2021 --crate-type=bin --target=aarch64-linux-android --sysroot=/dev/null -C codegen-units=1 -Zallow-features=\"\" && out/host/linux-x86/bin/depfile_verifier --check-suffix-only out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader.d out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader.soong_deps",
+      "outputs": [
+        "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader"
+      ],
+      "sha256": "0d8a7a650122d20b29fa5a9f95ff2913f81487da50e1d971be0f7ed77c80a693"
+    },
+    {
+      "line": 1870,
+      "progress": "106/34686",
+      "text": "prebuilts/build-tools/path/linux-x86/rm -f out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/libvold.a && prebuilts/clang/host/linux-x86/clang-r584948b/bin/llvm-ar crsPD --format=gnu out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/libvold.a @out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/libvold.a.rsp",
+      "outputs": [],
+      "sha256": "e1e1d16aba7674e60525ba510b50d334a6600fcfc0465057f96defc977ddfcf7"
+    },
+    {
+      "line": 3601,
+      "progress": "667/34686",
+      "text": "XZ=prebuilts/build-tools/linux-x86/bin/xz CREATE_MINIDEBUGINFO=prebuilts/build-tools/linux-x86/bin/create_minidebuginfo CLANG_BIN=prebuilts/clang/host/linux-x86/clang-r584948b/bin build/soong/scripts/strip.sh  --keep-mini-debug-info -i out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader -o out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader -d out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader.d",
+      "outputs": [
+        "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader"
+      ],
+      "sha256": "7193b0cd29f9a72acacadebb7ee4866ded2872cb290309f7875ca5581ae68da5"
+    },
+    {
+      "line": 3781,
+      "progress": "705/34686",
+      "text": "/bin/bash -c \"rm -f out/target/product/p00a/system/bin/bpfloader && cp -f -d out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader out/target/product/p00a/system/bin/bpfloader\"",
+      "outputs": [],
+      "sha256": "27773d77493904c7927da9ab257e9751645b29d1ea7ecd10193e4ecbbb1df4a4"
+    },
+    {
+      "line": 4219,
+      "progress": "799/34686",
+      "text": "prebuilts/build-tools/path/linux-x86/rm -f out/target/product/p00a/symbols/system/bin/bpfloader && prebuilts/build-tools/path/linux-x86/cp  out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader out/target/product/p00a/symbols/system/bin/bpfloader",
+      "outputs": [],
+      "sha256": "1c691f7c7601d48d1f5dadc397472435d7f13fe3af65534d540cb2a9b61b75ca"
+    },
+    {
+      "line": 4226,
+      "progress": "800/34686",
+      "text": "/bin/bash -c \"rm -f out/target/product/p00a/system/bin/vold_prepare_subdirs && cp -f -d out/soong/.intermediates/system/vold/vold_prepare_subdirs/android_arm64_armv8-a/vold_prepare_subdirs out/target/product/p00a/system/bin/vold_prepare_subdirs\"",
+      "outputs": [],
+      "sha256": "d2ecf30cd50d1d1e9df53843405337a8c15d2a94313259d9eb82a479aa9c5710"
+    },
+    {
+      "line": 4296,
+      "progress": "818/34686",
+      "text": "out/host/linux-x86/bin/symbols_map -elf out/target/product/p00a/symbols/system/bin/bpfloader -write_if_changed out/target/product/p00a/obj/PACKAGING/elf_symbol_mapping_intermediates/system/bin/bpfloader.textproto",
+      "outputs": [],
+      "sha256": "7942892a9862ff3c025b7361eae703c6f6bc5bd4ab83cb751d3531eefde2b58a"
+    },
+    {
+      "line": 4492,
+      "progress": "879/34686",
+      "text": "prebuilts/clang/host/linux-x86/clang-r584948b/bin/clang++ out/soong/.intermediates/bionic/libc/crtbegin_dynamic/android_arm64_armv8-a/crtbegin_dynamic.o @out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold.rsp out/soong/.intermediates/bionic/libc/crtend_android/android_arm64_armv8-a/crtend_android.o -o out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold -target aarch64-linux-android10000 -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now -Wl,--build-id=md5 -Wl,--fatal-warnings -Wl,--no-undefined-version -Wl,--exclude-libs,libgcc.a -Wl,--exclude-libs,libgcc_stripped.a -Wl,--exclude-libs,libunwind_llvm.a -Wl,--exclude-libs,libunwind.a -Wl,--compress-debug-sections=zstd -fuse-ld=lld -Wl,--icf=safe -Wl,--no-demangle -Wl,--no-undefined -Wl,-z,separate-code -Wl,-z,separate-loadable-segments -Wl,-z,max-page-size=4096 -Wl,-z,separate-code -Wl,-z,separate-loadable-segments -Wl,-z,max-page-size=4096  -Wl,--pack-dyn-relocs=android+relr -pie -nostdlib -Bdynamic -Wl,--gc-sections -Wl,-z,nocopyreloc -flto=thin -fsplit-lto-unit -Wl,-plugin-opt,-import-instr-limit=5 -Wl,-mllvm,-regalloc-enable-advisor=release -Wl,--exclude-libs=libclang_rt.builtins-aarch64-android.a -Wl,--exclude-libs=libclang_rt.ubsan_minimal-aarch64-android.a -Wl,-dynamic-linker,/system/bin/linker64 ",
+      "outputs": [
+        "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold"
+      ],
+      "sha256": "3c29962f87b9064a4fd4c9307d9b4bf29cded10717e91b58fdc8dac4c79a551f"
+    },
+    {
+      "line": 4499,
+      "progress": "880/34686",
+      "text": "prebuilts/build-tools/path/linux-x86/rm -f out/target/product/p00a/symbols/system/bin/vold && prebuilts/build-tools/path/linux-x86/cp  out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold out/target/product/p00a/symbols/system/bin/vold",
+      "outputs": [],
+      "sha256": "9487c365cabc9cb6094af9f417eec8dd6194c7758c319065597a38d9e8869efc"
+    },
+    {
+      "line": 4504,
+      "progress": "881/34686",
+      "text": "out/host/linux-x86/bin/symbols_map -elf out/target/product/p00a/symbols/system/bin/vold -write_if_changed out/target/product/p00a/obj/PACKAGING/elf_symbol_mapping_intermediates/system/bin/vold.textproto",
+      "outputs": [],
+      "sha256": "c82b8fcd66fc5d6cebf3e0b91f9b18fc791ebd1430f6f2445d10ab64d0d15582"
+    },
+    {
+      "line": 4507,
+      "progress": "882/34686",
+      "text": "XZ=prebuilts/build-tools/linux-x86/bin/xz CREATE_MINIDEBUGINFO=prebuilts/build-tools/linux-x86/bin/create_minidebuginfo CLANG_BIN=prebuilts/clang/host/linux-x86/clang-r584948b/bin build/soong/scripts/strip.sh  --keep-mini-debug-info -i out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold -o out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/vold -d out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/vold.d",
+      "outputs": [
+        "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/vold"
+      ],
+      "sha256": "9f864e412a371c5ae015920f6cd39eac2abf79556ce1479585387b1fb7d61d43"
+    },
+    {
+      "line": 4514,
+      "progress": "883/34686",
+      "text": "/bin/bash -c \"rm -f out/target/product/p00a/system/bin/vold && cp -f -d out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/vold out/target/product/p00a/system/bin/vold\"",
+      "outputs": [],
+      "sha256": "900c67baa693c6bc75a949af2394ed01bd91ac2961058d6a2ab9a209a7332d71"
+    }
+  ],
+  "metrics": [
+    {
+      "line": 13,
+      "value": {
+        "step_id": "6795b57d-7bef-41db-a79b-9cc552caefc1",
+        "rule": "g.cc.cc",
+        "action": "g.cc.cc",
+        "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/PublicVolume.o",
+        "prev_out": "dedup-a41e44024c1cade4",
+        "ready": 20.11,
+        "start": 0.11,
+        "duration": 3.28,
+        "weighted_duration": 0.0,
+        "cmdhash": "O7ajDk1AxpsadWFv+wQw6AZG3ZCjUOh2oipAcAy8KEw=",
+        "is_local": true,
+        "action_start": 20.27,
+        "run": 3.21,
+        "queue": 0.05,
+        "exec_start": 20.27,
+        "exec": 3.21,
+        "action_end": 23.5,
+        "inputs": 2,
+        "outputs": 1,
+        "max_rss": 18251588,
+        "inblock": 8,
+        "oublock": 784,
+        "utime": 2.83,
+        "stime": 0.34
+      }
+    },
+    {
+      "line": 23,
+      "value": {
+        "step_id": "d0c5c9eb-2d52-4409-b86f-3bd5ad7c104a",
+        "rule": "g.rust.rustc",
+        "action": "g.rust.rustc",
+        "output": "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader",
+        "prev_out": "out/soong/.intermediates/system/bpf/loader/libbpf_android_bindgen/android_arm64_armv8-a_dylib/unstripped/libbpf_android_bindgen.dylib.so",
+        "ready": 20.08,
+        "start": 0.01,
+        "duration": 10.47,
+        "weighted_duration": 0.02,
+        "cmdhash": "nlTnKFTc9hpLhwgdG9HB5P2EvUGFCmW50mc4PoKo0L0=",
+        "is_local": true,
+        "action_start": 25.4,
+        "run": 5.17,
+        "queue": 5.04,
+        "exec_start": 25.4,
+        "exec": 5.16,
+        "action_end": 30.57,
+        "inputs": 1393,
+        "outputs": 1,
+        "max_rss": 18384196,
+        "majflt": 118,
+        "inblock": 23624,
+        "oublock": 3760,
+        "utime": 4.31,
+        "stime": 0.42
+      }
+    },
+    {
+      "line": 67,
+      "value": {
+        "step_id": "563b4512-1af3-4801-ac5e-d56ef9ca72a4",
+        "action": "g.cc.ar",
+        "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/libvold.a",
+        "prev": "49fe32fa-5a3c-4677-a71a-129738c653bd",
+        "prev_out": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/KeyStorage.o",
+        "ready": 44.11,
+        "start": 0.0,
+        "duration": 0.5,
+        "weighted_duration": 0.0,
+        "cmdhash": "F2xNZwZqmPZ9Ba9glJjBSdiTRdFIWbWDaaif0HjHPWA=",
+        "is_local": true,
+        "action_start": 44.18,
+        "run": 0.43,
+        "queue": 0.06,
+        "exec_start": 44.18,
+        "exec": 0.41,
+        "action_end": 44.61,
+        "inputs": 46,
+        "outputs": 1,
+        "max_rss": 18414404,
+        "majflt": 142,
+        "inblock": 19344,
+        "oublock": 37424,
+        "utime": 0.07,
+        "stime": 0.08
+      }
+    },
+    {
+      "line": 628,
+      "value": {
+        "step_id": "d53ee3c1-8be3-429c-b336-03e57457859d",
+        "action": "g.cc.strip",
+        "output": "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader",
+        "prev": "d0c5c9eb-2d52-4409-b86f-3bd5ad7c104a",
+        "prev_out": "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader",
+        "ready": 30.57,
+        "start": 0.0,
+        "duration": 45.54,
+        "weighted_duration": 0.06,
+        "cmdhash": "cZOwzSn5pyrKyt67fuSGbe0ocsspAwn3h1ylWBrmjaU=",
+        "is_local": true,
+        "action_start": 76.01,
+        "run": 0.1,
+        "queue": 45.44,
+        "exec_start": 76.01,
+        "exec": 0.09,
+        "action_end": 76.11,
+        "inputs": 8,
+        "outputs": 1,
+        "max_rss": 18675012,
+        "inblock": 8,
+        "oublock": 2072,
+        "utime": 0.02,
+        "stime": 0.05
+      }
+    },
+    {
+      "line": 666,
+      "value": {
+        "step_id": "3350a1ea-0626-4c0b-882a-4c4a5b9e0619",
+        "action": "rule109217",
+        "output": "out/target/product/p00a/system/bin/bpfloader",
+        "prev": "26f79955-bc4e-420b-a5eb-859c91999fa9",
+        "prev_out": "out/target/product/p00a/fake_packages/timeInState.bpf-timestamp",
+        "ready": 76.43,
+        "start": 0.0,
+        "duration": 1.0,
+        "weighted_duration": 0.0,
+        "cmdhash": "J3c9d0k5BMeSfamrJX6XUWRbKdHqfs0QGT5Oy7sd9KQ=",
+        "is_local": true,
+        "action_start": 77.42,
+        "run": 0.01,
+        "queue": 0.98,
+        "exec_start": 77.42,
+        "exec": 0.01,
+        "action_end": 77.44,
+        "inputs": 77,
+        "outputs": 1,
+        "max_rss": 18689220,
+        "oublock": 168,
+        "utime": 0.0,
+        "stime": 0.01
+      }
+    },
+    {
+      "line": 840,
+      "value": {
+        "step_id": "b1b27675-6287-4b9b-908c-ea4a9f1040df",
+        "action": "g.cc.ld",
+        "output": "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold",
+        "prev": "f81e7545-e551-4aa2-a8a9-ec4c480f35ac",
+        "prev_out": "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/obj/system/vold/main.o",
+        "ready": 65.69,
+        "start": 0.0,
+        "duration": 23.79,
+        "weighted_duration": 0.04,
+        "cmdhash": "RzzFOpy1BTudVXSE19gLUkVb1aSH9zEyIHJcCVLzDjg=",
+        "is_local": true,
+        "action_start": 76.67,
+        "run": 12.8,
+        "queue": 10.97,
+        "exec_start": 76.67,
+        "exec": 12.8,
+        "action_end": 89.47,
+        "inputs": 76,
+        "outputs": 1,
+        "max_rss": 18687556,
+        "majflt": 196,
+        "inblock": 47128,
+        "oublock": 10048,
+        "utime": 42.6,
+        "stime": 1.04
+      }
+    },
+    {
+      "line": 843,
+      "value": {
+        "step_id": "30d95e05-88ba-494a-ab68-54e21af905e5",
+        "action": "g.cc.strip",
+        "output": "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/vold",
+        "prev": "b1b27675-6287-4b9b-908c-ea4a9f1040df",
+        "prev_out": "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold",
+        "ready": 89.47,
+        "start": 0.0,
+        "duration": 0.22,
+        "weighted_duration": 0.0,
+        "cmdhash": "n4ZOQSo3HFrgFZIPbNOerCq/eVVs4UeVhTh7H7fWHUM=",
+        "is_local": true,
+        "action_start": 89.48,
+        "run": 0.21,
+        "queue": 0.0,
+        "exec_start": 89.48,
+        "exec": 0.21,
+        "action_end": 89.69,
+        "inputs": 4,
+        "outputs": 1,
+        "max_rss": 18716740,
+        "inblock": 8,
+        "oublock": 28880,
+        "utime": 0.08,
+        "stime": 0.11
+      }
+    },
+    {
+      "line": 844,
+      "value": {
+        "step_id": "2901e86c-d616-47db-a42c-f21adedfa5a3",
+        "action": "rule109905",
+        "output": "out/target/product/p00a/system/bin/vold",
+        "prev": "30d95e05-88ba-494a-ab68-54e21af905e5",
+        "prev_out": "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/vold",
+        "ready": 89.69,
+        "start": 0.0,
+        "duration": 0.01,
+        "cmdhash": "kAxnuqaTxrx1qUmvI5TtAb2RrClhBY1qKrmiCaczLXE=",
+        "is_local": true,
+        "action_start": 89.7,
+        "run": 0.01,
+        "queue": 0.0,
+        "exec_start": 89.7,
+        "exec": 0.01,
+        "action_end": 89.71,
+        "inputs": 66,
+        "outputs": 1,
+        "max_rss": 18717508,
+        "oublock": 2056,
+        "stime": 0.01
+      }
+    }
+  ],
+  "ninja": [
+    {
+      "line": 14,
+      "text": "20272\t23497\t1794007844994910744\tout/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/PublicVolume.o\t1ab3fb4f98888761"
+    },
+    {
+      "line": 24,
+      "text": "25401\t30570\t1794007852067286981\tout/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader\t67826fc8b082dd13"
+    },
+    {
+      "line": 68,
+      "text": "44175\t44610\t1794007866107609835\tout/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/libvold.a\t2604fa8b78dbde86"
+    },
+    {
+      "line": 629,
+      "text": "76009\t76106\t1794007897603540114\tout/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader\t85cbd9230a675136"
+    },
+    {
+      "line": 667,
+      "text": "77418\t77436\t1794007898933091558\tout/target/product/p00a/system/bin/bpfloader\tf5360c32c4ee0fec"
+    },
+    {
+      "line": 841,
+      "text": "76670\t89474\t1794007910971403106\tout/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold\t85aa1dc74b19b2ce"
+    },
+    {
+      "line": 844,
+      "text": "89481\t89694\t1794007911191831174\tout/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/vold\t83334525a05eb259"
+    },
+    {
+      "line": 845,
+      "text": "89697\t89709\t1794007911206222633\tout/target/product/p00a/system/bin/vold\t4b8cfb59f458563b"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+package { default_applicable_licenses: ["p00a_radio_license"], }
+license {
+    name: "p00a_radio_license",
+    visibility: [":__subpackages__"],
+    license_kinds: ["SPDX-license-identifier-MIT"],
+    license_text: ["LICENSE"],
+}
+cc_binary {
+    name: "p00a-wmt",
+    vendor: true,
+    compile_multilib: "64",
+    srcs: ["src/p00a_wmt.c", "src/wmt_protocol.c", "src/bt_record.c"],
+    cflags: ["-Wall", "-Wextra", "-Werror", "-std=c11"],
+    init_rc: ["init.p00a-radio.rc"],
+}
+cc_library_shared {
+    name: "libbtcal",
+    vendor: true,
+    compile_multilib: "32",
+    srcs: ["src/bt_record.c"],
+    cflags: ["-Wall", "-Wextra", "-Werror", "-std=c11"],
+}
+// Generic ASUS libraries: original redistribution terms still apply.
+cc_prebuilt_library_shared {
+    licenses: ["p00a_asus_radio_blobs"],
+    name: "libbluetooth_mtk_p00a",
+    stem: "libbluetooth_mtk",
+    vendor: true,
+    compile_multilib: "32",
+    srcs: ["bluetooth/libbluetooth_mtk.so"],
+    strip: { none: true },
+    shared_libs: ["liblog", "libcutils", "libbtcal", "libc++", "libdl", "libc", "libm"],
+}
+cc_prebuilt_library_shared {
+    licenses: ["p00a_asus_radio_blobs"],
+    name: "libbt-vendor-p00a",
+    stem: "libbt-vendor",
+    vendor: true,
+    compile_multilib: "32",
+    srcs: ["bluetooth/libbt-vendor.so"],
+    strip: { none: true },
+    shared_libs: ["liblog", "libbluetooth_mtk_p00a", "libc++", "libdl", "libc", "libm"],
+}
+
+license {
+    name: "p00a_asus_radio_blobs",
+    visibility: [":__subpackages__"],
+    license_kinds: ["legacy_proprietary"],
+    license_text: ["NOTICE-ASUS-BLOBS"],
+}

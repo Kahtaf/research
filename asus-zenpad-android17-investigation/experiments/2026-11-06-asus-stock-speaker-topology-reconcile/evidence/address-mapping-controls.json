@@ -1,0 +1,26 @@
+{
+  "method": "ARM64 Image header text_offset=0x80000; _stext at image+0x1000; validate virtual-to-file mapping by actual disassembly OF string xrefs. ELF metadata wraps unchanged Image bytes, no instructions assembled or rebuilt.",
+  "controls": [
+    {
+      "image": "stock-public",
+      "referenced_va": "0xffffffc000ea7e10",
+      "file_offset": "0xe27e10",
+      "literal": "mediatek,mt8163-soc-codec-63xx",
+      "exact_match": true
+    },
+    {
+      "image": "stock-public",
+      "referenced_va": "0xffffffc000ea7e30",
+      "file_offset": "0xe27e30",
+      "literal": "extspkamp-gpio",
+      "exact_match": true
+    },
+    {
+      "image": "bmc",
+      "referenced_va": "0xffffff8008d87d40",
+      "file_offset": "0xd07d40",
+      "literal": "switch-mode-delay",
+      "exact_match": true
+    }
+  ]
+}

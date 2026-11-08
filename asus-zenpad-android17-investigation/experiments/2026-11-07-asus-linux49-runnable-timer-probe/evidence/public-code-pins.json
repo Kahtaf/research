@@ -1,0 +1,52 @@
+{
+  "2026-11-06-asus-product-input-build-kit/scripts/remote.py": {
+    "sha256": "c22884576a780cbb1ddf5e1b02f0b6e9d6eb5c25f8d9bc82fb077543f05cf4ab",
+    "bytes": 545,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-ram-before-alarm-probe/source/init.c": {
+    "sha256": "0b01e1f39907cdc17d197a6c410335481b7debe02f1cebdf8ec13e250ecf5dc9",
+    "bytes": 6839,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-ram-before-alarm-probe/scripts/compile_parent_once.py": {
+    "sha256": "5f99900eaedbcc9cc441aa08e6ff6bce4ca8a01f45d09718a7b04b41b99c3394",
+    "bytes": 3036,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-ram-before-alarm-probe/scripts/package.py": {
+    "sha256": "7b5833d73832b8136909cc670b69fd61ec46b7668e04b7fc2f1da542b3e0fb20",
+    "bytes": 9781,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-ram-before-alarm-probe/scripts/plan_only.py": {
+    "sha256": "4bc691544c249a0ef3be1cf7ce1ca44bd6008cc8642ba0b46dfc9dee4bcb25e6",
+    "bytes": 3595,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-polling-idle-probe/source/install.py": {
+    "sha256": "a6ac0b2de7058b6e543999bf4a296cf3f0c44309cedbba6ee278cd9a1ae61020",
+    "bytes": 9999,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-polling-idle-probe/source/bootformat.py": {
+    "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017",
+    "bytes": 3936,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-polling-idle-probe/source/fdt.py": {
+    "sha256": "1bd710a08eae5677689a52042a621f39dcd57e49197749cf2833eead1fc0dcae",
+    "bytes": 3024,
+    "mode": "0o644"
+  },
+  "2026-11-07-asus-linux49-polling-idle-probe/source/adb": {
+    "sha256": "820fd0d66e75ee98701798e385f04e48a026ec7abd22ec6a67e9760ed0829e82",
+    "bytes": 164,
+    "mode": "0o755"
+  },
+  "2026-11-07-asus-linux49-polling-idle-probe/source/legacy_adb.py": {
+    "sha256": "6d00836d7e0cc28834f858b0fd6ab5515ffe7b3ecd37a6da6ba1f66b43597731",
+    "bytes": 1511,
+    "mode": "0o644"
+  }
+}

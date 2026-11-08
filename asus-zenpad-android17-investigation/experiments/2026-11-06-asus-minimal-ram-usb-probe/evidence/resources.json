@@ -1,0 +1,23 @@
+{
+  "cpu_affinity": [
+    0
+  ],
+  "rlimit_as": [
+    1073741824,
+    1073741824
+  ],
+  "rlimit_cpu": [
+    180,
+    180
+  ],
+  "rlimit_fsize": [
+    33554432,
+    33554432
+  ],
+  "owned_bytes": 27592354,
+  "observed_peak_bytes": 27592354,
+  "max_owned_bytes": 268435456,
+  "subprocess_timeout_seconds_max": 120,
+  "parallelism": 1,
+  "device_operations": 0
+}

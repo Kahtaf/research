@@ -1,0 +1,24 @@
+{
+  "outcome": "CURRENT_WRITTEN_SAVED_NONMATCH",
+  "utc": "2026-11-07T22:41:38.450119+00:00",
+  "boot_id": "c62d7755-35bb-4e53-920c-e69d136043f7",
+  "candidate_p10_sha256": "d6949069eaa498fcfbc27be707d01dffd7099992c5eb71e2c7c3926639851355",
+  "image_writes": false,
+  "root_command_reads_only": true,
+  "preserved_helper_staging": true,
+  "no_reboot_retry": true,
+  "helper_exit": 0,
+  "complete_console_read": true,
+  "console_bytes": 150108,
+  "console_sha256": "9cca8bb3aabef0a91f4eec88d226ad2c4b782958bb56f1e750a62458f14de1f2",
+  "saved_fiq": 0,
+  "before_reset_values": [
+    167
+  ],
+  "enforcing_restored": true,
+  "diagnostic_lines": [
+    "[   70.884658] -(0)[1:init]A7_READ=167 ",
+    "WDT status: 2 fiq step: 0  exception type: 0"
+  ],
+  "missing_marker_does_not_prove_linux49_nonexecution": true
+}

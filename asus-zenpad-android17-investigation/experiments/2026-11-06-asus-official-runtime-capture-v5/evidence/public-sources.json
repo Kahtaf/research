@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "files": {
+    "build/make/core/Makefile": {
+      "sha256": "9eb413b3ac0eea5f111698495c8ea8d9631f76f5e6f5a8fe99647ee17d071be2",
+      "bytes": 384570,
+      "matches": [
+        {
+          "line": 832,
+          "text": "apkcerts-list: $(APKCERTS_FILE)\n\n# In unbundled builds, apexkeys.txt is built by soong\nifeq (,$(TARGET_BUILD_APPS))\n\nintermediates := $(call intermediates-dir-for,PACKAGING,apexkeys)"
+        },
+        {
+          "line": 836,
+          "text": "\nintermediates := $(call intermediates-dir-for,PACKAGING,apexkeys)\nAPEX_KEYS_FILE := $(intermediates)/apexkeys.txt\n\nall_apex_keys_files := $(sort $(foreach m,$(call product-installed-modules,$(INTERNAL_PRODUCT)),$(ALL_MODULES.$(m).APEX_KEYS_FILE)))\n$(APEX_KEYS_FILE): $(all_apex_keys_files)"
+        },
+        {
+          "line": 838,
+          "text": "APEX_KEYS_FILE := $(intermediates)/apexkeys.txt\n\nall_apex_keys_files := $(sort $(foreach m,$(call product-installed-modules,$(INTERNAL_PRODUCT)),$(ALL_MODULES.$(m).APEX_KEYS_FILE)))\n$(APEX_KEYS_FILE): $(all_apex_keys_files)\n\t@mkdir -p $(dir $@)\n\t@rm -f $@"
+        },
+        {
+          "line": 839,
+          "text": "\nall_apex_keys_files := $(sort $(foreach m,$(call product-installed-modules,$(INTERNAL_PRODUCT)),$(ALL_MODULES.$(m).APEX_KEYS_FILE)))\n$(APEX_KEYS_FILE): $(all_apex_keys_files)\n\t@mkdir -p $(dir $@)\n\t@rm -f $@\n\t$(hide) touch $@"
+        },
+        {
+          "line": 846,
+          "text": "all_apex_keys_files :=\n\n$(call declare-0p-target,$(APEX_KEYS_FILE))\n\n.PHONY: apexkeys.txt\napexkeys.txt: $(APEX_KEYS_FILE)"
+        },
+        {
+          "line": 848,
+          "text": "$(call declare-0p-target,$(APEX_KEYS_FILE))\n\n.PHONY: apexkeys.txt\napexkeys.txt: $(APEX_KEYS_FILE)\n\nendif # ifeq (,$(TARGET_BUILD_APPS))"
+        },
+        {
+          "line": 849,
+          "text": "\n.PHONY: apexkeys.txt\napexkeys.txt: $(APEX_KEYS_FILE)\n\nendif # ifeq (,$(TARGET_BUILD_APPS))\n"
+        },
+        {
+          "line": 6742,
+          "text": "\t    $(INSTALLED_FASTBOOT_INFO_TARGET) \\\n\t    $(APKCERTS_FILE) \\\n\t    $(APEX_KEYS_FILE) \\\n\t    $(SOONG_ZIP) \\\n\t    $(HOST_OUT_EXECUTABLES)/fs_config \\\n\t    $(HOST_OUT_EXECUTABLES)/map_file_generator \\"
+        },
+        {
+          "line": 6971,
+          "text": "\t$(hide) mkdir -p $(zip_root)/META\n\t$(hide) cp $(APKCERTS_FILE) $(zip_root)/META/apkcerts.txt\n\t$(hide) cp $(APEX_KEYS_FILE) $(zip_root)/META/apexkeys.txt\nifneq ($(tool_extension),)\n\t$(hide) cp $(PRIVATE_TOOL_EXTENSION) $(zip_root)/META/\nendif"
+        },
+        {
+          "line": 7283,
+          "text": "            $(INSTALLED_FASTBOOT_INFO_TARGET) \\\n            $(APKCERTS_FILE) \\\n            $(APEX_KEYS_FILE) \\\n            $(HOST_OUT_EXECUTABLES)/fs_config \\\n            $(HOST_OUT_EXECUTABLES)/map_file_generator \\\n            $(ADD_IMG_TO_TARGET_FILES) \\"
+        }
+      ]
+    },
+    "build/make/core/definitions.mk": {
+      "sha256": "1dd4ddad3f2273a19806069cf4ad57dd6cfde93dc3bd2d05df566d49aab01171",
+      "bytes": 157774,
+      "matches": []
+    },
+    "build/soong/apex/apex.go": {
+      "sha256": "7815cb554147235a4194c0072c50ca1899b385b00acd6f8d34cb054a4c763240",
+      "bytes": 121449,
+      "matches": [
+        {
+          "line": 176,
+          "text": "\tTest_only_force_compression *bool\n\n\t// Put extra tags (signer=<value>) to apexkeys.txt, so that release tools can sign this apex\n\t// with the tool to sign payload contents.\n\tCustom_sign_tool *string\n"
+        },
+        {
+          "line": 559,
+          "text": "\textraInstalledPairs installPairs\n\n\t// fragment for this apex for apexkeys.txt\n\tapexKeysPath android.WritablePath\n\n\t// Installed locations of symlinks for backward compatibility."
+        }
+      ]
+    },
+    "build/soong/apex/builder.go": {
+      "sha256": "72a5a4fd534306a8a61dd075bc05f379ac8255510fd2099e68b65aa12c9a09ba",
+      "bytes": 56523,
+      "matches": []
+    },
+    "build/soong/apex/apex_keys.go": {
+      "missing": true
+    },
+    "external/ninja/src/eval_env.cc": {
+      "missing": true
+    },
+    "external/ninja/src/manifest_parser.cc": {
+      "missing": true
+    },
+    "external/ninja/src/lexer.in.cc": {
+      "missing": true
+    },
+    "external/ninja/src/graph.cc": {
+      "missing": true
+    }
+  },
+  "bytes": 720316,
+  "cpu_count": 1,
+  "address_space_limit_bytes": 1073741824,
+  "cpu_seconds_limit": 30,
+  "elapsed_seconds": 0.059,
+  "max_rss_KiB": 18300
+}

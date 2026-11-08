@@ -1,0 +1,4 @@
+on post-fs-data
+    mkdir /data/vendor/sensors 0771 system system
+    mkdir /data/vendor/sensors/p00a 0700 system system
+    restorecon_recursive /data/vendor/sensors/p00a

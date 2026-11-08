@@ -1,0 +1,161 @@
+--- a/arch/arm64/boot/dts/mediatek/asus-p00a.dts
++++ b/arch/arm64/boot/dts/mediatek/asus-p00a.dts
+@@ -66,7 +66,7 @@
+ 
+ 	/* chosen */
+ 	chosen {
+-		bootargs = "console=ttyMT0,921600n1 root=/dev/ram";
++		bootargs = "androidboot.selinux=permissive bootopt=64S3,32N2,64N2 build_version=3 console=null maxcpus=1 nr_cpus=1";
+ 	};
+ 
+ /* sensor standardization */
+@@ -1203,3 +1203,104 @@
+ 	usb_dpn_sel-gpio = <&pio 24 0>;
+     status="okay";
+ };
++
++/* One RAM-only consumer removal set. Keep all providers and protection nodes. */
++&{/soc/usb@11200000} { status = "disabled"; };
++&{/soc/usb@11270000} { status = "disabled"; };
++&{/soc/mmc@11230000} { status = "disabled"; };
++&{/soc/mmc@11240000} { status = "disabled"; };
++&{/soc/mmc@11250000} { status = "disabled"; };
++&{/lcm} { status = "disabled"; };
++&{/soc/mtkfb@0} { status = "disabled"; };
++&{/soc/mt8163-dispsys} { status = "disabled"; };
++&{/soc/hdmi@1401d000} { status = "disabled"; };
++&{/soc/disp_ovl0@14007000} { status = "disabled"; };
++&{/soc/disp_ovl1@14008000} { status = "disabled"; };
++&{/soc/disp_rdma0@14009000} { status = "disabled"; };
++&{/soc/disp_rdma1@1400a000} { status = "disabled"; };
++&{/soc/disp_wdma0@1400b000} { status = "disabled"; };
++&{/soc/disp_wdma1@14018000} { status = "disabled"; };
++&{/soc/disp_color@1400c000} { status = "disabled"; };
++&{/soc/disp_ccorr@1400d000} { status = "disabled"; };
++&{/soc/disp_aal@1400e000} { status = "disabled"; };
++&{/soc/disp_gamma@1400f000} { status = "disabled"; };
++&{/soc/disp_dither@14010000} { status = "disabled"; };
++&{/soc/disp_ufoe@14011000} { status = "disabled"; };
++&{/soc/disp_dsi0@14012000} { status = "disabled"; };
++&{/soc/disp_dpi0@14013000} { status = "disabled"; };
++&{/soc/disp_dpi1@1401c000} { status = "disabled"; };
++&{/soc/disp_pwm0@14014000} { status = "disabled"; };
++&{/soc/disp_lvds_tx@1401b200} { status = "disabled"; };
++&{/soc/i2c@11007000/lp8557_led@2c} { status = "disabled"; };
++&{/soc/gce@10212000} { status = "disabled"; };
++&{/soc/mdp_rdma@14001000} { status = "disabled"; };
++&{/soc/mdp_rsz0@14002000} { status = "disabled"; };
++&{/soc/mdp_rsz1@14003000} { status = "disabled"; };
++&{/soc/mdp_wdma@14004000} { status = "disabled"; };
++&{/soc/mdp_wrot@14005000} { status = "disabled"; };
++&{/soc/mdp_tdshp@14006000} { status = "disabled"; };
++&{/soc/ispsys@15000000} { status = "disabled"; };
++&{/soc/isp_display} { status = "disabled"; };
++&{/soc/camera1@15008000} { status = "disabled"; };
++&{/soc/camera2@15008000} { status = "disabled"; };
++&{/soc/vdec@16020000} { status = "disabled"; };
++&{/soc/venc@17002000} { status = "disabled"; };
++&{/soc/jpgenc@17003000} { status = "disabled"; };
++&{/soc/isp_pipemgr} { status = "disabled"; };
++&{/soc/isp_sysram} { status = "disabled"; };
++&{/soc/flashlight@} { status = "disabled"; };
++&{/cust_accel@0} { status = "disabled"; };
++&{/cust_mag@0} { status = "disabled"; };
++&{/hall_sensor} { status = "disabled"; };
++&{/soc/i2c@11009000} { status = "disabled"; };
++&{/soc/i2c@11007000/elan@10} { status = "disabled"; };
++&{/soc/i2c@11007000/goodix@14} { status = "disabled"; };
++&{/soc/touch@} { status = "disabled"; };
++&{/soc/hwmsensor@0} { status = "disabled"; };
++&{/soc/gsensor@0} { status = "disabled"; };
++&{/soc/als_ps@0} { status = "disabled"; };
++&{/soc/batchsensor@0} { status = "disabled"; };
++&{/soc/gyroscope@0} { status = "disabled"; };
++&{/soc/barometer@0} { status = "disabled"; };
++&{/soc/msensor@0} { status = "disabled"; };
++&{/soc/orientation@0} { status = "disabled"; };
++&{/soc/consys@18070000} { status = "disabled"; };
++&{/soc/wifi@180f0000} { status = "disabled"; };
++&{/soc/gps} { status = "disabled"; };
++&{/soc/btif@1100c000} { status = "disabled"; };
++&{/soc/btif_tx@11000700} { status = "disabled"; };
++&{/soc/btif_rx@11000780} { status = "disabled"; };
++&{/soc/btcvsd@18000000} { status = "disabled"; };
++&{/soc/pwm@11006000} { status = "disabled"; };
++&{/soc/nfi@1100d000} { status = "disabled"; };
++&{/soc/nfiecc@1100e000} { status = "disabled"; };
++&{/soc/dumchar} { status = "disabled"; };
++&{/soc/mt_soc_dl1_pcm@11220000} { status = "disabled"; };
++&{/soc/mt_soc_ul1_pcm@11220000} { status = "disabled"; };
++&{/soc/mt_soc_voice_md1@11220000} { status = "disabled"; };
++&{/soc/mt_soc_hdmi_pcm@11220000} { status = "disabled"; };
++&{/soc/mt_soc_uldlloopback@11220000} { status = "disabled"; };
++&{/soc/mt_soc_i2s0_pcm@11220000} { status = "disabled"; };
++&{/soc/mt_soc_mrgrx_pcm@11220000} { status = "disabled"; };
++&{/soc/mt_soc_mrgrx_awb_pcm@11220000} { status = "disabled"; };
++&{/soc/mt_soc_fm_i2s_pcm@11220000} { status = "disabled"; };
++&{/soc/mt_soc_fm_i2s_awb_pcm@11220000} { status = "disabled"; };
++&{/soc/mt_soc_i2s0dl1_pcm@11220000} { status = "disabled"; };
++&{/soc/mt_soc_dl1_awb_pcm@11220000} { status = "disabled"; };
++&{/soc/mt_soc_voice_md1_bt@11220000} { status = "disabled"; };
++&{/soc/mt_soc_voip_bt_out@11220000} { status = "disabled"; };
++&{/soc/mt_soc_voip_bt_in@11220000} { status = "disabled"; };
++&{/soc/mt_soc_tdmrx_pcm@11220000} { status = "disabled"; };
++&{/soc/mt_soc_fm_mrgtx_pcm@11220000} { status = "disabled"; };
++&{/soc/mt_soc_ul2_pcm@11220000} { status = "disabled"; };
++&{/soc/mt_soc_i2s0_awb_pcm@11220000} { status = "disabled"; };
++&{/soc/mt_soc_voice_md2@11220000} { status = "disabled"; };
++&{/soc/mt_soc_routing_pcm@11220000} { status = "disabled"; };
++&{/soc/mt_soc_voice_md2_bt@11220000} { status = "disabled"; };
++&{/soc/mt_soc_hp_impedance@11220000} { status = "disabled"; };
++&{/soc/mt_soc_codec_name@11220000} { status = "disabled"; };
++&{/soc/mt_soc_dummy_pcm@11220000} { status = "disabled"; };
++&{/soc/mt_soc_codec_dummy_name@11220000} { status = "disabled"; };
++&{/soc/mt_soc_routing_dai_name@11220000} { status = "disabled"; };
++&{/soc/mt_soc_dai_name@11220000} { status = "disabled"; };
++&{/soc/accdet@} { status = "disabled"; };
+--- a/arch/arm64/kernel/asus_entry_tag.h
++++ b/arch/arm64/kernel/asus_entry_tag.h
+@@ -1,2 +1,3 @@
+-#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=23cdb057-295c-4b42-9ade-a4324162ad02 stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=a49b87313d35d803e3ffaa2be2c60a3c678ccbc46efd5831651d2bd44ae4ee03 cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
+-#define ASUS_ENTRY_TAG_LEN 340
++/* Source metadata for this prepared experiment; no candidate artifact exists. */
++#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=a60fca94-e760-4ce5-a790-5c9a818ce406 stage=stext-preargs release=4.9.337-asus-p00a-experimental-minplat base=97b7e1199d607f852bf52ff7766e8aa079fee92986cd3d473b765a45adbf45fb cfg=04d93e9d2864f23d9fb5a9dcc0958be39e69f07a43d20b1a428042a098893314 dts-source=1c9a09608b33ba219d637eac9b4cb19b0343f1936490ff28a4d392465c26b15b\n"
++#define ASUS_ENTRY_TAG_LEN 336
+--- a/init/main.c
++++ b/init/main.c
+@@ -15,7 +15,6 @@
+ #include <linux/module.h>
+ #include <linux/proc_fs.h>
+ #include <linux/kernel.h>
+-#include <linux/asus_retained_trace.h>
+ #include <linux/syscalls.h>
+ #include <linux/stackprotector.h>
+ #include <linux/string.h>
+@@ -502,7 +501,6 @@
+ 	page_address_init();
+ 	pr_notice("%s", linux_banner);
+ 	setup_arch(&command_line);
+-	asus_retained_trace_mark("02 setup_arch returned");
+ 	mm_init_cpumask(&init_mm);
+ 	setup_command_line(command_line);
+ 	setup_nr_cpu_ids();
+@@ -568,18 +566,14 @@
+ 	radix_tree_init();
+ 	/* init some links before init_ISA_irqs() */
+ 	early_irq_init();
+-	asus_retained_trace_mark("03 before init_IRQ");
+ 	init_IRQ();
+-	asus_retained_trace_mark("04 init_IRQ returned");
+ 	tick_init();
+ 	rcu_init_nohz();
+ 	init_timers();
+ 	hrtimers_init();
+ 	softirq_init();
+ 	timekeeping_init();
+-	asus_retained_trace_mark("05 before time_init");
+ 	time_init();
+-	asus_retained_trace_mark("06 time_init returned");
+ 
+ 	/*
+ 	 * For best initial stack canary entropy, prepare it after:

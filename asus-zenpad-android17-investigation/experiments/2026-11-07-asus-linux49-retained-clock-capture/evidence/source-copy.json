@@ -1,0 +1,28 @@
+{
+  "base": "/srv/android/asus-linux49-calibrated-entry-build-20261107",
+  "owned": "/srv/android/asus-linux49-retained-clock-capture-20261107-fef31ed4",
+  "method": "cp -a --reflink=auto kernel AND out; independent inodes",
+  "scoped_source_pins": {
+    "include/linux/asus_retained_trace.h": {
+      "before": "e9cb0b89b39b04078aad6708f3ea0fbab04a748982ca840562d0844bcd5e132e",
+      "after": "8922d8a5a9fd716c242889fc8d863f9f71fc1c7cd72bf920a81d8c90b3c6f25d"
+    },
+    "arch/arm64/kernel/asus_retained_trace.c": {
+      "before": "76d9ff38bbf47995594a4795fe5af5b22f78b93fa91f6190bb4bbdf1c864721e",
+      "after": "55cac3b4714ee35a8365ca37678f797f54903ac80ae7c8bfcf41ca5b38d72849"
+    },
+    "arch/arm64/kernel/asus_entry_tag.h": {
+      "before": "eab7452d50d8c55403fb31d240f9742532e031472b919db72ee8975dfff0475d",
+      "after": "079c20ce859c8d224da2ba71d4ad0cb9337385a7e334c10a503b528b4ccaa6a8"
+    },
+    "kernel/time/timekeeping.c": {
+      "before": "bc266045616ee0fbf01fe4dc3e3bd05454790615fe0df66edf43004ff9700dd4",
+      "after": "42effa2858ae8683a555757f1d82c7a8b9384f656296e234f88efa4384f77e07"
+    },
+    "drivers/clocksource/arm_arch_timer.c": {
+      "before": "dfec1f39b28dffa4779433e84be9e1a9b13925d80a1bbef0801848857d365b09",
+      "after": "ed5182139af568c73a8c7eb6eb600d647a97ef5d91ce942d52c47260ddbd06c4"
+    }
+  },
+  "full_tree_rehash": false
+}

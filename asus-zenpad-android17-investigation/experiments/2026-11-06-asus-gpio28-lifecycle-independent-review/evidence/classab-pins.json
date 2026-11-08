@@ -1,0 +1,16 @@
+{
+  "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_speaker_63xx.c",
+  "whole_file_sha256": "4781a0c95bbd1f6cd547164b32264ee61745b800bb4cde9cbe2d2b74705613ab",
+  "functions": [
+    {
+      "function": "Speaker_ClassAB_Open",
+      "line": 68,
+      "sha256": "c208e4d5c5a072144f1d9d3fd46df48641dfe583631f973812bbc63b877abbdf"
+    },
+    {
+      "function": "Speaker_ClassAB_close",
+      "line": 89,
+      "sha256": "70c815d03235cdaaa2745f80fd8ba88a7ae8a7bbe21b9dc2a426ac58bead861f"
+    }
+  ]
+}

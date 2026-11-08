@@ -1,0 +1,26 @@
+{
+  "repo": "kaantcp/z380m-alpine",
+  "pin": "7218a276f252a59874ab860683c061fa2b856519",
+  "files": [
+    {
+      "path": "docs/GUIDE.md",
+      "sha256": "372392785f5db6827e5e0f8376e86080f1690ce01c9ec98a7f62185d8182519f"
+    },
+    {
+      "path": "docs/HARDWARE.md",
+      "sha256": "cb992de0cdaa25126814b4017775087ffa264e40fa2aef7ea9b39267acf43e2a"
+    },
+    {
+      "path": "evidence/01_stageA_printgpt_and_boot_write.txt",
+      "sha256": "9d79818a7640ff82a212ae35c43747834a75b9dbc88637f5711faa90c1e45860"
+    },
+    {
+      "path": "evidence/03_tablet_first_boot_report.txt",
+      "sha256": "0d1a168a22eab1a3d1b85909c76de40d6678e065d68b06e2593a258957cad0e6"
+    },
+    {
+      "path": "src/build_boot_v3.py",
+      "sha256": "dca74b69fa88c63ecdcdf472133a9253228436006db061ef14ae6a49f87d8881"
+    }
+  ]
+}

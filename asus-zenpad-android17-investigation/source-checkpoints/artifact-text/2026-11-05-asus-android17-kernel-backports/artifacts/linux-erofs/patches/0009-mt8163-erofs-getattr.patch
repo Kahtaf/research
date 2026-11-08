@@ -1,0 +1,55 @@
+From add92e978303d678681c813e1cc2fd25600e4649 Mon Sep 17 00:00:00 2001
+From: ASUS Android Port <asus-port@localhost>
+Date: Thu, 5 Nov 2026 19:14:05 +0000
+Subject: [PATCH] erofs: retain MT8163 statx-aware getattr API
+
+The MT8163 4.9 baseline already uses the four-argument VFS getattr API. Restore the imported implementation/prototype while retaining the separate 4.9 bio and wakeup compatibility fixes.
+---
+ fs/erofs/inode.c    | 14 ++++++++++----
+ fs/erofs/internal.h |  4 ++--
+ 2 files changed, 12 insertions(+), 6 deletions(-)
+
+diff --git a/fs/erofs/inode.c b/fs/erofs/inode.c
+index 1387fc6..3350ab6 100644
+--- a/fs/erofs/inode.c
++++ b/fs/erofs/inode.c
+@@ -293,11 +293,17 @@ struct inode *erofs_iget(struct super_block *sb,
+ 	return inode;
+ }
+ 
+-/* 4.9 getattr signature; there is no statx attributes field to fill. */
+-int erofs_getattr(struct vfsmount *mnt, struct dentry *dentry,
+-		  struct kstat *stat)
++int erofs_getattr(const struct path *path, struct kstat *stat,
++		  u32 request_mask, unsigned int query_flags)
+ {
+-	struct inode *const inode = d_inode(dentry);
++	struct inode *const inode = d_inode(path->dentry);
++
++	if (erofs_inode_is_data_compressed(EROFS_I(inode)->datalayout))
++		stat->attributes |= STATX_ATTR_COMPRESSED;
++
++	stat->attributes |= STATX_ATTR_IMMUTABLE;
++	stat->attributes_mask |= (STATX_ATTR_COMPRESSED |
++				  STATX_ATTR_IMMUTABLE);
+ 
+ 	generic_fillattr(inode, stat);
+ 	return 0;
+diff --git a/fs/erofs/internal.h b/fs/erofs/internal.h
+index 60158c6..6cfbf4b 100644
+--- a/fs/erofs/internal.h
++++ b/fs/erofs/internal.h
+@@ -388,8 +388,8 @@ extern const struct inode_operations erofs_symlink_iops;
+ extern const struct inode_operations erofs_fast_symlink_iops;
+ 
+ struct inode *erofs_iget(struct super_block *sb, erofs_nid_t nid, bool dir);
+-int erofs_getattr(struct vfsmount *mnt, struct dentry *dentry,
+-		  struct kstat *stat);
++int erofs_getattr(const struct path *path, struct kstat *stat,
++		  u32 request_mask, unsigned int query_flags);
+ 
+ /* namei.c */
+ extern const struct inode_operations erofs_dir_iops;
+-- 
+2.43.0
+

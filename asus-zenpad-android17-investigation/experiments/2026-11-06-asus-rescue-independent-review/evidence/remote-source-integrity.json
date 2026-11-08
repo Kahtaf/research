@@ -1,0 +1,12 @@
+{
+  "mode": "OFFLINE_INTEGRITY_ONLY",
+  "pinned_files": 23,
+  "original_rescue_files_unchanged": [
+    "client.py",
+    "parent_client.py",
+    "manifest.py",
+    "common.h"
+  ],
+  "source_payloads_read": false,
+  "target_used": false
+}

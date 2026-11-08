@@ -1,0 +1,21 @@
+{
+  "utc": "2026-11-07T00:36:42.446222+00:00",
+  "operation": "readonly_source_configuration_check",
+  "mapping_files": {
+    "input/Goodix_Capacitive_TouchScreen.idc": {
+      "sha256": "ff9c53351559ea415c5bbb2aafd3472bbedd6f264646903d20189e41da2d8a55",
+      "bytes": 58
+    },
+    "input/input-mapping.mk": {
+      "sha256": "6ec0030412932f6dcef9795aa9d708425661ff2368282b6b4536e03f743c1a75",
+      "bytes": 354
+    },
+    "input/mtk-kpd.kl": {
+      "sha256": "a940764c7807d582cb04cadeb3140566d6472353cf27a31a52a2e7aefcb0a942",
+      "bytes": 52
+    }
+  },
+  "inherit_count": 1,
+  "source_changed": false,
+  "installed_or_physical_input_qualified": false
+}

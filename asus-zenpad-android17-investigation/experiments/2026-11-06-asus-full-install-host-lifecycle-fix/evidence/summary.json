@@ -1,0 +1,35 @@
+{
+  "tests": 91,
+  "failures": 0,
+  "errors": 0,
+  "final_suite_children": 168,
+  "all_final_children_reaped": true,
+  "all_original_29_review_cases_covered": true,
+  "before_review_failures": 15,
+  "before_review_children_reaped": true,
+  "failed_wait_registry_empty": true,
+  "resources": [
+    {
+      "suite": "original-suite",
+      "tests": 46,
+      "wall_seconds": 9.145,
+      "cpu_seconds": 3.231028,
+      "children": 71,
+      "all_children_reaped": true,
+      "conservative_peak_rss_bytes": 262045696,
+      "hard_memory_limit_enforced": false,
+      "strict_cpu_affinity_enforced": false
+    },
+    {
+      "suite": "regressions",
+      "tests": 45,
+      "wall_seconds": 9.063934041943867,
+      "cpu_seconds": 4.632462,
+      "children": 97,
+      "all_children_reaped": true,
+      "conservative_peak_rss_bytes": 458014720,
+      "hard_memory_limit_enforced": false,
+      "strict_cpu_affinity_enforced": false
+    }
+  ]
+}

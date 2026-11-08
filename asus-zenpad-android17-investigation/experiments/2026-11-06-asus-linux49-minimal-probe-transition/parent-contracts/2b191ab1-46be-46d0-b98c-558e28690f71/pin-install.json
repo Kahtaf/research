@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "run_id": "2b191ab1-46be-46d0-b98c-558e28690f71",
+  "phase": "pin-install",
+  "profile_sha256": "7e79c212f4bcb8df67e25c3a37a3e765fabf67f917d747dafb51ff6ffd07570c",
+  "code_sha256": "2462a2ef11137852fbca68e89d22fce6ebd7dc4b48458ff38a88814f162b6ef3",
+  "parent_technical_review": true,
+  "reviewer": "parent",
+  "reference": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-linux49-minimal-probe-physical-test/evidence/parent-direct-probe-decision.json",
+  "issued_at": 1794025887.6263838,
+  "valid_until": 1794026487.6263838,
+  "maximum_seconds": 600,
+  "supervised_manual_entry_return_plan": true,
+  "nearby_power_fallback_required": true,
+  "install_completion_token": null
+}

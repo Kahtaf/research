@@ -1,0 +1,52 @@
+{
+  "arch/arm64/kernel/head.S": {
+    "remote_path": "/srv/android/asus-early-watchdog-handoff-20261107/kernel/arch/arm64/kernel/head.S",
+    "sha256": "f8cc22696326b68e69b4e858dffbe16940c257520a556cd374ba5abee70762c0",
+    "bytes": 23341
+  },
+  "arch/arm64/kernel/setup.c": {
+    "remote_path": "/srv/android/asus-early-watchdog-handoff-20261107/kernel/arch/arm64/kernel/setup.c",
+    "sha256": "fd3d3040998562d2605eee91086df22b66d8a3da796bafd957853d74acd905fb",
+    "bytes": 10109
+  },
+  "arch/arm64/mm/init.c": {
+    "remote_path": "/srv/android/asus-early-watchdog-handoff-20261107/kernel/arch/arm64/mm/init.c",
+    "sha256": "27442b977fa7a209125f3dcee5f2ae9768fc40f9d4e1aa896ad02cfccdd982de",
+    "bytes": 15250
+  },
+  "arch/arm64/include/asm/memory.h": {
+    "remote_path": "/srv/android/asus-early-watchdog-handoff-20261107/kernel/arch/arm64/include/asm/memory.h",
+    "sha256": "bfd330d12c857e978d9f5b759a672c042e0edb9f4ba4d8a920037bd7eb762bd6",
+    "bytes": 7101
+  },
+  "drivers/of/fdt.c": {
+    "remote_path": "/srv/android/asus-early-watchdog-handoff-20261107/kernel/drivers/of/fdt.c",
+    "sha256": "d16f3132ce3a887ab3e1ff361a0d58f5dd0034073ba64b341decbf85db848c6c",
+    "bytes": 34228
+  },
+  "init/initramfs.c": {
+    "remote_path": "/srv/android/asus-early-watchdog-handoff-20261107/kernel/init/initramfs.c",
+    "sha256": "46e1a36f389ee3d1f7baaaf761d1cdf64399ef28e4353a0eb967cf9f416fb8f0",
+    "bytes": 14541
+  },
+  "init/do_mounts.c": {
+    "remote_path": "/srv/android/asus-early-watchdog-handoff-20261107/kernel/init/do_mounts.c",
+    "sha256": "f68868c20c6ec29abca91f80f1cc84d409c2602fc66ceaacc6a0170d70ba6118",
+    "bytes": 14970
+  },
+  "init/main.c": {
+    "remote_path": "/srv/android/asus-early-watchdog-handoff-20261107/kernel/init/main.c",
+    "sha256": "6780e3143dc45bc1b63df0dd1e96033028008553303e0e382cb1737747d4ac8a",
+    "bytes": 26653
+  },
+  "lib/decompress_inflate.c": {
+    "remote_path": "/srv/android/asus-early-watchdog-handoff-20261107/kernel/lib/decompress_inflate.c",
+    "sha256": "d920fca0b947a1eadb8452eca1221cbac12ffdc0e9aa90af9638857747dd0daa",
+    "bytes": 4524
+  },
+  "arch/arm64/Kconfig": {
+    "remote_path": "/srv/android/asus-early-watchdog-handoff-20261107/kernel/arch/arm64/Kconfig",
+    "sha256": "c6bab5f2ff78de90757e56e5b7e3c5ce8b8f361d76a068b4d7c94b833a118b14",
+    "bytes": 37882
+  }
+}

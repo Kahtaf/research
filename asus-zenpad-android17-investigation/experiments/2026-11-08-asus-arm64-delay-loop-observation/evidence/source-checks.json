@@ -1,0 +1,13 @@
+{
+  "status": "PASS_SMALL_SCOPED_SOURCE",
+  "old_recorder_restores_byte_exact_except_UUID": true,
+  "old_layout_bytes": 26752,
+  "new_fixed_bytes": 2560,
+  "combined_bytes": 29312,
+  "no_new_counter_reads_or_timer_driver_edit": true,
+  "primitive_control": "controls.json; actual base and candidate C bodies",
+  "single_LPJ_operand_and_product": true,
+  "capacity_before_write_logsize_and_readiness": true,
+  "publication_lock_edge": "PM->DL trylock only; DL never acquires PM; all release before original counter/loop",
+  "saturation": "u64 saturates; one sticky overflow publication at U64_MAX; no limit or early return"
+}

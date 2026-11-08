@@ -1,0 +1,7 @@
+{
+  "source": "scripts/observe.py",
+  "sha256": "1d841ddae19394490b3a58b4ef61e6ce24464242af787715daf3b3714a5f0d8b",
+  "bytes": 24017,
+  "offline_tests": 25,
+  "live_execution": false
+}

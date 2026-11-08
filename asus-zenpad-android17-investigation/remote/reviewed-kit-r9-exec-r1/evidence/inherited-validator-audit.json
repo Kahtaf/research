@@ -1,0 +1,52 @@
+{
+  "changed_scripts": [
+    "build.sh",
+    "cache_lineage.py",
+    "integrate.py",
+    "validate_completed_product.py",
+    "verify_product_r3.py",
+    "verify_root_payload.py"
+  ],
+  "new_helpers": [
+    "frozen_channel.py",
+    "graph_context.py",
+    "native_state.py"
+  ],
+  "unchanged_scripts": {
+    "ancestor_continuation.py": "965c8dcdeb024cdc59a365542c1193a4701b68386315b9ad44cb0e9851e70be7",
+    "artifact.py": "58fe1b4a0593f75b89fedc043de5d3090a8054a43446a4658e0bcbfe85d28d01",
+    "capture_build_evidence.py": "4a0b76fb849cc3da930b102bc3c4f90ebfd18a2e217558083652efcdb30bf9a2",
+    "check_launch.py": "28bcc231febd91e95f0f6ca0628ce45b9b16c18b90515811d4118aa88f58cfc7",
+    "compiler_channel.py": "f0015e77ac572d88dce5876b4a6999d829090cacfe487b3738cb9b3b37ce5814",
+    "continuation.py": "e18d5b89e09d4100df7b06cd0f3906ff04c9d302f716da2196063eb9958cdd51",
+    "r3_inputs.py": "5836613ce2b120b0be25744e16db7eb941bd3862a355724438ff1af10fad8ee9",
+    "r8_continuation.py": "1e6260a675dc3f7025cb97681a81e5ed0ac36f5d23f8eb0b28c0e46546e549fb",
+    "remote.py": "c22884576a780cbb1ddf5e1b02f0b6e9d6eb5c25f8d9bc82fb077543f05cf4ab",
+    "run_tests.py": "46540e97af1e9711dcbffb5fc87bee896d885b161edd230d3bf8e558a0f6108b",
+    "seal.py": "d5cc8de58cec9548558a1db430ae5c281913749036ddb63c22f94bf37abdff68",
+    "verify_config_paths.py": "a6619a1e1c1920e9802846b367783fe8fda629d658ded2d7226bfbdd0f3b1cc6",
+    "verify_full_images.py": "fdf966f051d6814332a7dfc9d84db37644064e8179469afecde2a7647407cc41",
+    "verify_google_payload.py": "f5ee265b1534b8d9337254c2672ea1bcc56b3e94609f183cb7fedcd2224cb70e",
+    "verify_google_transformed.py": "d267fc46faf47655df28efa79bf7c00e206f9e169cb979ca2ce8155edb33aeae",
+    "verify_input_payload.py": "1d1a7bb1ae24ddc1a73938e01cc6297b2c30ec669db177c8afd1a66475e4862a",
+    "verify_zram_context.py": "4580127a2317515e20a092e20d0b0373c55722019bec2b3866cecce94228592f"
+  },
+  "unchanged_core_product_functions": [
+    "elf",
+    "image_hash",
+    "installed",
+    "chain"
+  ],
+  "source_delta": "exact arm64 WebView pointer materialization only",
+  "root_property_path_fix": {
+    "source": "2026-11-06-asus-r8-continuation-kit/scripts/verify_root_payload.py",
+    "preimage_sha256": "679eafacaa685fd0869b2793e99de726870ba424bff44105fb3e5fe4e707e63d",
+    "postimage_sha256": "c819e17595d14531d065fbafdab4a44871f34cfb7120490a75e488083e0e74f7",
+    "changes": [
+      "system_ext/etc/build.prop",
+      "product/etc/build.prop"
+    ],
+    "scope": "host validation paths only"
+  },
+  "no_integration_or_native_launch": true
+}

@@ -1,0 +1,58 @@
+{
+  "inputs/file_contexts": {
+    "bytes": 49597,
+    "sha256": "8edd2720728edcac617d78c1a70b160562e26f44802553a794b3f97b5613cfd5"
+  },
+  "inputs/libselinux-android-7.1.2_r39.tar.gz": {
+    "bytes": 62164,
+    "sha256": "8a8b5ef512bd4aa7ac8cdb8e1f7f64644ad340d75f5280f77c9c912d53970b9b"
+  },
+  "inputs/restore-sepolicy": {
+    "bytes": 390383,
+    "sha256": "16f6ce7f25c1b56aba9e4179573c49a6c55f9b9fe3f18336029f6d83b5b4b2c2"
+  },
+  "inputs/frozen-effective-policy.json": {
+    "bytes": 54462,
+    "sha256": "af6052ded1c4feb801825bfb2c1629cd810b32e592b1f1007bac579949844eff"
+  },
+  "inputs/pcre-android-7.1.2_r39.tar.gz": {
+    "bytes": 2049359,
+    "sha256": "fb5d81e0e32b5047b2095ca865c75690aba079d5c8cb28497362deda95ab4947"
+  },
+  "inputs/file_contexts.bin": {
+    "bytes": 223569,
+    "sha256": "d82c9ca28d1d9017aea5f58d1cb9b46f6122ef22953ab32b7b4a3a8ccd07186c"
+  },
+  "inputs/reviewed-policy": {
+    "bytes": 390437,
+    "sha256": "3d982859fdbf06336d6274e7e700ca64a2551effd769a8cb119b4fed97388815"
+  },
+  "inputs/base-policy": {
+    "bytes": 389688,
+    "sha256": "189c477ac73ecb161a6527f7f98a6fec76a913b0d5cf8d11591d440dc79af842"
+  },
+  "inputs/libsepol-android-7.1.2_r39.tar.gz": {
+    "bytes": 452022,
+    "sha256": "c17c444d73f1080a8959cfda2d4bdb529efd88f5af58a9e571917f473f83ff27"
+  },
+  "baseline/source/policy_build.c": {
+    "bytes": 5562,
+    "sha256": "1fbb9b714f630c7d058f583b3d42242814413988ee41b188463c1291dda56fdf"
+  },
+  "baseline/source/policy_audit.c": {
+    "bytes": 3512,
+    "sha256": "a8419a1ff771646dc28c96fa342f87ce4d949ee6368660bcd962f4d3053d9333"
+  },
+  "baseline/tests/policy_checks.py": {
+    "bytes": 3690,
+    "sha256": "0a367f27a483ef0918d95a984efae0cde307d2920b3f42e998d8b11cb00ecca9"
+  },
+  "patches/offline-xperm-test-support.patch": {
+    "bytes": 2848,
+    "sha256": "4af62387c3fd3863006872f6d6aea0151970030eb282b2d2f2da361101f8c7dd"
+  },
+  "patches/three-file-policy-correction.patch": {
+    "bytes": 14910,
+    "sha256": "15693b16ca33055a8c854286270a40af61802239c6a9b5d9e262ada661143937"
+  }
+}

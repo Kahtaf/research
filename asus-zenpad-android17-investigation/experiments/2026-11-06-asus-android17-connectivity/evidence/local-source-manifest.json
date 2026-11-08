@@ -1,0 +1,86 @@
+{
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/Makefile": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/Makefile",
+    "sha256": "a5444d3c6435adc0401ed0028d067bf765a3e42e212b2af800d0278450a4d050"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/common/Makefile": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/common/Makefile",
+    "sha256": "f95d0abe7d21a5b7a4e552aeb13d2369dd6b6357f6d50a1ed9235b6b08240b8f"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/Makefile": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/Makefile",
+    "sha256": "03ab1cd8e5238e6e78d9746c0617490554a011d23563021bfaa0acdb437ba7e0"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/Makefile": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/Makefile",
+    "sha256": "997058aed92fcc9675e114dadb6a1b47e7dc1ac619746040964a802f3a0be638"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/common/common_detect/Makefile": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/common/common_detect/Makefile",
+    "sha256": "da9acebcc8bf971429abd2fa5527a89b3f9f74b2e2035207198298d766e32b37"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/wmt_dev.c": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pri/wmt_dev.c",
+    "sha256": "0d7d5ac5e867c1e55108388de18a03686a1ae1f4bf89f582937029d1246d023f"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/stp_chrdev_bt.c": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/stp_chrdev_bt.c",
+    "sha256": "e534a99d3f895b8cc00991aa1b45fe4f7cf832384e62b4c23f6cf2dbac00957d"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/wmt_chrdev_wifi.c": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/linux/pub/wmt_chrdev_wifi.c",
+    "sha256": "559def0351c7ed77c9129903d25aa3aea7485d58446516dc2a6acf43d5ba088f"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/wmt_ic_soc.c": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/wmt_ic_soc.c",
+    "sha256": "02ee849a2c9ab6a08ecc8fcbffd36e97c3ce6f6735527ccf425ef1bf44137d2c"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/wmt_conf.c": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/wmt_conf.c",
+    "sha256": "309cc53a19893a9cfe22e214ac65e473111eb6e54e0af15f445fa94200ddc450"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/include/wmt_conf.h": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/include/wmt_conf.h",
+    "sha256": "6fa30d7d61d065759e595cb9f8080838bb469ed0d0943ba17e6f9c3811a5227f"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/include/wmt_lib.h": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/common/conn_soc/core/include/wmt_lib.h",
+    "sha256": "2d5aa40a92bb93809286c15c6dfdebbcd09cc225449749e81349343c38e1c84b"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/wlan/Makefile": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/wlan/Makefile",
+    "sha256": "f2095d558441b8734bc50d3911e39288a38332426aa4b7d579bea2270706b93f"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/Makefile": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/Makefile",
+    "sha256": "8baf548e4472f3d7215ff485011e579ce733a45ff45dbf54f6a70f79338727c4"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/platform.c": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/platform.c",
+    "sha256": "a57436a2062cd444972d288db01f2fd60d46b2966aef68b21c5b40b14789a66b"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_wext_priv.c": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_wext_priv.c",
+    "sha256": "10beed12ba3bbc3c6b520af578c46e004ecbfd410abbfbe8bb30f50e2253128f"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_init.c": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_init.c",
+    "sha256": "884fdae2c904e218361397c912cd8ac231461421b702f3949a941d170de9e109"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_kal.c": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/os/linux/gl_kal.c",
+    "sha256": "750290654309f904a37a255894792b6b4e12160932e44a051cf7bd9f185aaf4f"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/CFG_Wifi_File.h": {
+    "local": "sources/asus-gpl/kernel-3.18/drivers/misc/mediatek/connectivity/wlan/gen2/include/CFG_Wifi_File.h",
+    "sha256": "d7df54e6bd007b93aba4ab59188b31c18918f3ffc53509969f27ddbb5145a953"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/COPYING": {
+    "local": "sources/asus-gpl/kernel-3.18/COPYING",
+    "sha256": "af8067302947c01fd9eee72befa54c7e3ef8a48fecde7fd71277f2290b2bf0f7"
+  },
+  "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/arch/arm64/configs/asus8163_tb_380_m_defconfig": {
+    "local": "sources/asus-gpl/kernel-3.18/arch/arm64/configs/asus8163_tb_380_m_defconfig",
+    "sha256": "d78fb9f2c6e0e926c1c3b3e31cdc609ce03242446dba685db98c8a4ab25e74a3"
+  }
+}

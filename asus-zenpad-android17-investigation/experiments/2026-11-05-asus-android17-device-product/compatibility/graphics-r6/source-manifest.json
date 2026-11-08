@@ -1,0 +1,30 @@
+{
+  "Android.bp": {
+    "before_sha256": "c836e070f73d85e2d73fd9e483a7dd704016251480f41c485d6219622d72a53f",
+    "after_sha256": "57277b30858348bd378016568f0883b5da1acbf17b09599c42c872e31ad2817f"
+  },
+  "modules/environment.cc": {
+    "before_sha256": "35150938555a8dccab59c2ebe71c1a7d576a5580ea6c2310e600162db5320462",
+    "after_sha256": "5b54f7fe5f556d76ceff41d292a0e0dc237c9aa116fe2de5b47e1987ed178030"
+  },
+  "modules/include/linkerconfig/environment.h": {
+    "before_sha256": "b6d70f891d5907761b78ca01f31b03623ffa22a7777033c2c46561d04c653724",
+    "after_sha256": "cf77175924724ab87dfe986bf49fe0866069119359410788efeb690178912ca3"
+  },
+  "contents/namespace/sphal.cc": {
+    "before_sha256": "4e9fefabf581b985f3f964856baa9c6af6afad1b0414ee74336af51b4728f09e",
+    "after_sha256": "97538b36b3a541e8aac2206ddacf7ec4188fc3eb459f6df94bd906a4b1210c79"
+  },
+  "contents/namespace/systemdefault.cc": {
+    "before_sha256": "2efecc9954d97d286359a9ccd30a07f291439da1a358a7e4f5c831b3b2ff9e5b",
+    "after_sha256": "2f0851395a0bbdf3c54f0f59b7d9e76894274f493e6ae73e40783905b610d34f"
+  },
+  "contents/namespace/vendordefault.cc": {
+    "before_sha256": "276613ce47c4110c169af136bc13b88ca5803b1fd1824748efad50ade1dee04b",
+    "after_sha256": "4f26fc3e7df85c1028c1923ab715b2043efa5585e731f7c25b6c8c894e1ecbdc"
+  },
+  "contents/tests/configuration/p00a_legacy_graphics_test.cc": {
+    "before_sha256": null,
+    "after_sha256": "93de86c9f37862940619692528d366e83c7a71f40dae7be6162800af794d1792"
+  }
+}

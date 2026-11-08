@@ -1,0 +1,8 @@
+{
+  "2026-11-07-asus-linux49-short-log-trial/evidence/RESULT.json": "6237df537b5da80b3d01a51accadd2636f359cfa534e86ab59b72d8942ac9ab3",
+  "2026-11-07-asus-linux49-short-log-trial/evidence/PID1-OBSERVATIONS.txt": "18aa3300feb12fc5c59b1490119183c1eedfd0f3fc6c94f51cc6c2e302ea4876",
+  "2026-11-07-asus-linux49-short-log-trial/evidence/timer-kernel-observations.txt": "c6277f506106c103b313dad5165b4eab4e5371ce28299112558cade1a25cf2c9",
+  "2026-11-07-asus-linux49-short-log-trial/evidence/candidate-timer-DT.json": "deed41765b07674224740c7435b6ec625d6bc661f3f788b5dfbcfb371bfb3b4a",
+  "2026-11-07-asus-linux49-short-log-trial/evidence/stock-timer-interrupts.json": "a80e4d9c132b32875d61686c8201e185d0728a231a922848fe9fb0e552657b9b",
+  "2026-11-07-asus-linux49-polling-idle-trial/evidence/RESULT.json": "2566856db5185f2af71364f37d7dce3cb71ccebe209b6e319bd91cf1c16edb37"
+}

@@ -1,0 +1,170 @@
+{
+  "README.md": {
+    "bytes": 6191,
+    "sha256": "98febd021de660478835765a7cb393033798d94b8d177b11a49e24ea301c03e0"
+  },
+  "artifacts/Image.gz-dtb": {
+    "bytes": 7715602,
+    "sha256": "804ad2c23885e1603ac7c3871fbb0bc9a793521ea106ad7d0f95331a6d5ef55e"
+  },
+  "artifacts/System.map.gz": {
+    "bytes": 877822,
+    "sha256": "a3b222f42212d18494d423f1d2d44f2a6d9c65d1a1229c75102620d5e0c278de"
+  },
+  "artifacts/candidate.img": {
+    "bytes": 7976960,
+    "sha256": "6da771cdc3788487637eba685e254d6153271a0084076f94a69bbb325ee290b4"
+  },
+  "artifacts/candidate.p10.raw": {
+    "bytes": 16740352,
+    "sha256": "5f07084ea1c5df8c6d6e76f99be264149c19b77a0a9265cc6a05db3b6258a412"
+  },
+  "artifacts/ramdisk.wrapped": {
+    "bytes": 256984,
+    "sha256": "df6406bd884126190ce05c26f097f9d84a36c64e332286fa5aee6225670857d3"
+  },
+  "artifacts/resolved.config": {
+    "bytes": 126443,
+    "sha256": "708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1"
+  },
+  "artifacts/runtime.dtb": {
+    "bytes": 63737,
+    "sha256": "7d8e0c2bd787ad756db9f1bb8b60efc5277fc78c8d401d2b60bafc8dfa7618f2"
+  },
+  "evidence/handoff.json": {
+    "bytes": 1402,
+    "sha256": "696e67e0cebcacbf7cf5d052b22f83fd78d9660c5dae3f4adc74ee0da346cee6"
+  },
+  "evidence/registration-branch-check.json": {
+    "bytes": 3478,
+    "sha256": "f3387b18b038d00cd0625db24fbce5dc72229a2d39e47b9c6ecd7e9904989a10"
+  },
+  "scripts/build_remote.py": {
+    "bytes": 2780,
+    "sha256": "699170e225b31563d7efd8493a76d4baf79a592c911c129f07ba84663b144ec6"
+  },
+  "scripts/check_dt_modules.py": {
+    "bytes": 2040,
+    "sha256": "4ddc3f088061f12cc46bcffd2a6593543f8030ba8527b47b4997b855840a5ac4"
+  },
+  "scripts/check_linked_branch.py": {
+    "bytes": 4160,
+    "sha256": "1deb043cc7480e374bf4bf2681cec3fa21ac85410d741f783c641a937b592146"
+  },
+  "scripts/check_predicate.py": {
+    "bytes": 2107,
+    "sha256": "fdbbba245605557553cc3315a3760a194c3a5a1b8a15065a8ddd298a3d2811ef"
+  },
+  "scripts/decode.py": {
+    "bytes": 4102,
+    "sha256": "65558d4cdcbcd204abacba47dc15f0b35568db012c6cbd56401381f34b2f78a7"
+  },
+  "scripts/dispatch.py": {
+    "bytes": 3013,
+    "sha256": "e28af8ab503789ee22086243c1cbd276c3749c8832ea26c7e605b28955b47f7a"
+  },
+  "scripts/establish_master.py": {
+    "bytes": 1046,
+    "sha256": "b71b3d5fbd11503aaacdc95ef0e36215bc70d1e9c53eab69a67ce84e067f75cd"
+  },
+  "scripts/fetch_verify.py": {
+    "bytes": 2247,
+    "sha256": "55d3a22a1e2719eeafad2f58d769280820327c72457cfbc834b4a28a14f8ffdb"
+  },
+  "scripts/finalize.py": {
+    "bytes": 7851,
+    "sha256": "bfe02c13f29c8e71fc3884eb76bd65ff1ee533c0f39fd7c3f1d62ffda1a81366"
+  },
+  "scripts/inspect_extra_remote.py": {
+    "bytes": 440,
+    "sha256": "c6db087ef7296db552f24a6c530f7b4fad2d5756793628e717122fc185833916"
+  },
+  "scripts/inspect_remote.py": {
+    "bytes": 679,
+    "sha256": "935bd0163e13fe7396b2cb2aa72831bcffc6f7ce916f93483ecde7f540157cd9"
+  },
+  "scripts/package.py": {
+    "bytes": 8289,
+    "sha256": "8b5128fff3ab375188e5ab26c1f60a86d06469fc33920fa5b631ed4e92832f93"
+  },
+  "scripts/plan_only.py": {
+    "bytes": 3593,
+    "sha256": "6ad4d184aa7927cf08b0dfa176736e802ea425b98f95ea9fbcb0b55c8ccdf2ed"
+  },
+  "scripts/remote_call.py": {
+    "bytes": 365,
+    "sha256": "d3a685db45f19891fda943ed82d0910a89359e76aa0363b1c03e7ef34c81d575"
+  },
+  "scripts/status_remote.py": {
+    "bytes": 308,
+    "sha256": "148b08e8379a1ddb234b4ad7fc21f2d56504cda50850bd704691f3c863a9a563"
+  },
+  "scripts/verify_remote.py": {
+    "bytes": 5570,
+    "sha256": "12cf1de1bf1ad54a8b6b6e3f6385fe97653d25e1ebcf4d1e73e4c1a9ea580952"
+  },
+  "scripts/vm.py": {
+    "bytes": 2374,
+    "sha256": "83a01d1e7646e741b3a7a25e59c13603cfa00a889c924e374f4f0acd2a94b85f"
+  },
+  "source/adb": {
+    "bytes": 164,
+    "sha256": "820fd0d66e75ee98701798e385f04e48a026ec7abd22ec6a67e9760ed0829e82"
+  },
+  "source/arch/arm64/kernel/asus_entry_tag.h": {
+    "bytes": 513,
+    "sha256": "2d87e25d84daa61447c82568ac19c8a44df7ee2bc7d281a93da6113630f40826"
+  },
+  "source/base/arch/arm64/kernel/asus_entry_tag.h": {
+    "bytes": 513,
+    "sha256": "079c20ce859c8d224da2ba71d4ad0cb9337385a7e334c10a503b528b4ccaa6a8"
+  },
+  "source/base/drivers/misc/mediatek/video/mt8163/dispsys/ddp_drv.c": {
+    "bytes": 15080,
+    "sha256": "b19001ffd37cd83acf48de05cd369ab23fe4fc06b4868ef7b1d8a4829fe9aacb"
+  },
+  "source/base/drivers/misc/mediatek/video/mt8163/dispsys/ddp_hal.h": {
+    "bytes": 3523,
+    "sha256": "58dbb03c6163c749489f585929e0ed371e8264302497c933bd043eaa5384c209"
+  },
+  "source/base/drivers/misc/mediatek/video/mt8163/dispsys/ddp_info.c": {
+    "bytes": 6561,
+    "sha256": "e0e5d5f64133a9e928c6801f83837ceaa50f585ac0a73239a3cee162f8191349"
+  },
+  "source/base/drivers/misc/mediatek/video/mt8163/dispsys/ddp_irq.c": {
+    "bytes": 22325,
+    "sha256": "3fc971c52a4157edca6f8bdc0c6baf96d99036fca9e07296047df7dffdbb4a51"
+  },
+  "source/base/drivers/misc/mediatek/video/mt8163/dispsys/ddp_reg.h": {
+    "bytes": 115364,
+    "sha256": "f79d539c5b4cd4e228b19f8f88b0c4ae125eff5d5d39eba593e1f9c5741ee31d"
+  },
+  "source/bootformat.py": {
+    "bytes": 3936,
+    "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017"
+  },
+  "source/changes.patch": {
+    "bytes": 1704,
+    "sha256": "ca0f528b76e5f2c9e1c825b890c6a02eb16670855a19a11686cd6dc879aa9c44"
+  },
+  "source/drivers/misc/mediatek/video/mt8163/dispsys/ddp_drv.c": {
+    "bytes": 15259,
+    "sha256": "221a7e8f1bcceaec04b63fce1ace55d3739d1f3e7ebfe6c638c6f3bc84dec042"
+  },
+  "source/fdt.py": {
+    "bytes": 3024,
+    "sha256": "1bd710a08eae5677689a52042a621f39dcd57e49197749cf2833eead1fc0dcae"
+  },
+  "source/install.diff": {
+    "bytes": 4586,
+    "sha256": "5ee1affe8d4d6802a819ef3eceb78591b2e6c8ee5a879433e0914b7abc5fe896"
+  },
+  "source/install.py": {
+    "bytes": 10340,
+    "sha256": "62b874d1ce3ee05c400e0b702ad2c999860c5c5012118e88b33549657f784cb3"
+  },
+  "source/legacy_adb.py": {
+    "bytes": 1511,
+    "sha256": "6d00836d7e0cc28834f858b0fd6ab5515ffe7b3ecd37a6da6ba1f66b43597731"
+  }
+}

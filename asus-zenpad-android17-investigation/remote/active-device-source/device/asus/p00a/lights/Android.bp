@@ -1,0 +1,27 @@
+// SPDX-License-Identifier: Apache-2.0
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_binary {
+    name: "android.hardware.lights-service.asus-p00a",
+    vendor: true,
+    relative_install_path: "hw",
+    srcs: ["Lights.cpp"],
+    shared_libs: [
+        "android.hardware.light-V2-ndk",
+        "libbase",
+        "libbinder_ndk",
+        "liblog",
+    ],
+    init_rc: ["lights.rc"],
+    vintf_fragments: ["lights.xml"],
+    cflags: ["-Wall", "-Wextra", "-Werror"],
+}
+
+cc_library_shared {
+    name: "libp00a_legacy_memory",
+    compile_multilib: "both",
+    srcs: ["legacy_memory.cpp"],
+    cflags: ["-Wall", "-Wextra", "-Werror"],
+}

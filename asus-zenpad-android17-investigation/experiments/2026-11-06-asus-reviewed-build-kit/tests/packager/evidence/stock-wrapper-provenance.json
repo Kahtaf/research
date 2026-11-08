@@ -1,0 +1,6 @@
+{
+  "stock_boot_sha256": "a175ed39c9e9642756dd28f1d006b39937d17f290da6af69dda6d4b52d6f910d",
+  "kernel_wrapper_sha256": "95551a5693e175ffcde981848ea2f98183d141355cfb2febe6d35f6a1bc34552",
+  "ramdisk_wrapper_sha256": "07eccc6a7fb7a07a2989f2aabbefadea011dded4dd16934ec03f552c488d3fd0",
+  "no_private_device_data": true
+}

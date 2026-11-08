@@ -1,0 +1,38 @@
+{
+  "pid": 1546715,
+  "prior": {
+    "observed": {
+      "exit_code": 1,
+      "files": {
+        "exit-code": {
+          "bytes": 2,
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+        },
+        "finished": {
+          "bytes": 26,
+          "sha256": "28fe7f126dce2c10f71e6c2ac6b46de3db0d1e211b25be55599fd750084aaf49"
+        },
+        "log": {
+          "bytes": 22563352,
+          "sha256": "4f317efdc2a8583190ca275084ccf976632573fe32a5c57e274d04d10e7570b2"
+        },
+        "pid": {
+          "bytes": 6,
+          "sha256": "bc5bd66933c91178b8690af15f4d344b0e7a7814b6b35f28f1ca34ccd8f085de"
+        },
+        "started": {
+          "bytes": 26,
+          "sha256": "4e3bc24f179c505824a545f73b3f9215fc55146f1db6e3b0be39a922d8fa5cee"
+        },
+        "vars": {
+          "bytes": 20863,
+          "sha256": "a78bfa9a87c674f2794e97c185303163ade7235f185e85ec3785dfea6a602855"
+        }
+      },
+      "images": {}
+    },
+    "parent_review_sha256": "6926036f1c0cc7f58905fc5c8e3a5196ee47d1efe4861d6d97cdb9b99a035247",
+    "terminal_kind": "FAILED_REVIEWED_FOR_NEW_PRODUCT"
+  },
+  "utc": "2026-11-06T22:25:38.570549+00:00"
+}

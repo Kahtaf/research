@@ -1,0 +1,33 @@
+import os,resource,pathlib,json,hashlib,subprocess,stat,gzip,time
+os.sched_setaffinity(0,{min(os.sched_getaffinity(0))});resource.setrlimit(resource.RLIMIT_AS,(1024**3,1024**3));resource.setrlimit(resource.RLIMIT_CPU,(120,120))
+P=pathlib.Path;F=P('/srv/android/asus-sdk37-system-ext4-qualification-20261106/fixture-r2');O=F/'runtime-r3';O.mkdir();os.environ.update(LD_LIBRARY_PATH=str(F/'lib64'),TMPDIR=str(F/'tmp'))
+SOURCE = '#define _GNU_SOURCE\n#include <errno.h>\n#include <fcntl.h>\n#include <stdint.h>\n#include <stdio.h>\n#include <string.h>\n#include <sys/mount.h>\n#include <sys/reboot.h>\n#include <sys/stat.h>\n#include <sys/statvfs.h>\n#include <sys/utsname.h>\n#include <sys/xattr.h>\n#include <unistd.h>\nstatic int failures;\nstatic void check(const char *name,int ok) { printf("CHECK %s %s errno=%d\\n",name,ok?"PASS":"FAIL",errno); if(!ok) failures++; }\nstatic void content(const char *path,const char *expected) {\n char b[128]={0};int fd=open(path,O_RDONLY);ssize_t n=fd<0?-1:read(fd,b,sizeof b);if(fd>=0)close(fd);\n check(path,n==(ssize_t)strlen(expected)&&memcmp(b,expected,strlen(expected))==0);\n}\nstatic void attr(const char *path,const char *name,const void *expected,size_t size) {\n unsigned char b[256];ssize_t n=getxattr(path,name,b,sizeof b);\n printf("XATTR %s %s size=%zd hex=",path,name,n);for(ssize_t i=0;i<n;i++)printf("%02x",b[i]);puts("");\n check(name,n==(ssize_t)size&&memcmp(b,expected,size)==0);\n}\nint main(void) {\n setvbuf(stdout,NULL,_IONBF,0);mkdir("/dev",0755);mkdir("/proc",0755);mkdir("/sys",0755);mkdir("/mnt",0755);\n check("devtmpfs",mount("devtmpfs","/dev","devtmpfs",0,NULL)==0);\n check("proc",mount("proc","/proc","proc",0,NULL)==0);check("sysfs",mount("sysfs","/sys","sysfs",0,NULL)==0);\n struct utsname u;if(uname(&u)==0)printf("KERNEL %s %s\\n",u.release,u.machine);\n for(int i=0;i<100 && access("/dev/vdb",F_OK)!=0;i++)usleep(10000);\n errno=0;int r=mount("/dev/vdb","/mnt","ext4",MS_RDONLY,NULL);int e=errno;\n printf("NEGATIVE unknown_incompat_80000000 rc=%d errno=%d\\n",r,e);check("unsupported_feature_rejected",r==-1&&e==EINVAL);if(r==0)umount("/mnt");\n errno=0;r=mount("/dev/vda","/mnt","ext4",MS_RDONLY,NULL);check("real_ext4_readonly_mount",r==0);\n if(r==0) {\n  struct statvfs v;check("statvfs_4k_readonly",statvfs("/mnt",&v)==0&&v.f_bsize==4096&&(v.f_flag&ST_RDONLY));\n  struct stat st;check("run_as_uid_gid_mode",stat("/mnt/system/bin/run-as",&st)==0&&st.st_uid==0&&st.st_gid==2000&&(st.st_mode&07777)==0750);\n  content("/mnt/system/etc/fixture.txt","SDK37 SYSTEM ext4 fixture\\n");\n  content("/mnt/system/bin/run-as","nonexecutable fixture content\\n");content("/mnt/system/bin/ping","capability fixture content\\n");\n  content("/mnt/system/bin/link","SDK37 SYSTEM ext4 fixture\\n");\n  const char label[]="u:object_r:system_file:s0";\n  const unsigned char cap[20]={1,0,0,2,0xc0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};\n  attr("/mnt/system/bin/run-as","security.selinux",label,sizeof label);attr("/mnt/system/bin/run-as","security.capability",cap,sizeof cap);\n  errno=0;int fd=open("/mnt/system/etc/fixture.txt",O_WRONLY);e=errno;if(fd>=0)close(fd);check("readonly_write_denied",fd==-1&&e==EROFS);\n  check("clean_unmount",umount("/mnt")==0);\n }\n printf("SYSTEM_EXT4_RESULT failures=%d\\n",failures);sync();reboot(RB_POWER_OFF);for(;;)pause();\n}\n'
+(O/'guest_init.c').write_text(SOURCE)
+def sha(p):return hashlib.sha256(P(p).read_bytes()).hexdigest()
+def bounded():
+ resource.setrlimit(resource.RLIMIT_AS,(1024**3,1024**3));resource.setrlimit(resource.RLIMIT_CPU,(60,60));os.sched_setaffinity(0,{min(os.sched_getaffinity(0))})
+def run(cmd,name,limit=60):
+ with (O/(name+'.log')).open('w') as log:
+  log.write(json.dumps(cmd)+'\n');log.flush();p=subprocess.run(cmd,stdout=log,stderr=subprocess.STDOUT,stdin=subprocess.DEVNULL,timeout=limit,preexec_fn=bounded)
+ return p.returncode
+cmd=[str(F/'bin/aarch64-linux-gnu-gcc'),'-B'+str(F/'compiler-bin')+'/', '-B/usr/lib/gcc-cross/aarch64-linux-gnu/13/', '-B/usr/aarch64-linux-gnu/lib/','-isystem','/usr/aarch64-linux-gnu/include','-L/usr/aarch64-linux-gnu/lib','-static','-O2','-Wall','-Wextra','-Werror','-v',str(O/'guest_init.c'),'-o',str(O/'init')]
+assert run(cmd,'compile')==0,(O/'compile.log').read_text()
+with gzip.GzipFile(filename=str(O/'initramfs.cpio.gz'),mode='wb',compresslevel=1,mtime=0) as out:
+ offset=0
+ def entry(name,mode,data=b'',major=0,minor=0):
+  global offset
+  n=name.encode()+b'\0';fields=[1,mode,0,0,1,0,len(data),0,0,major,minor,len(n),0];h=b'070701'+''.join(f'{x:08x}'for x in fields).encode()+n;out.write(h);offset+=len(h);pad=-offset%4;out.write(bytes(pad));offset+=pad;out.write(data);offset+=len(data);pad=-offset%4;out.write(bytes(pad));offset+=pad
+ for n in ['dev','proc','sys','mnt']:entry(n,stat.S_IFDIR|0o755)
+ entry('dev/console',stat.S_IFCHR|0o600,major=5,minor=1);entry('init',stat.S_IFREG|0o755,(O/'init').read_bytes());entry('TRAILER!!!',0)
+images=[F/'system-restored.raw',F/'unsupported.raw'];before={str(p):sha(p)for p in images}
+cmd=[str(F/'bin/qemu-system-aarch64'),'-machine','virt,gic-version=3','-cpu','cortex-a53','-accel','tcg,thread=single,tb-size=16','-smp','1','-m','384','-nographic','-monitor','none','-no-reboot','-nic','none','-kernel',str(F/'Image'),'-initrd',str(O/'initramfs.cpio.gz')]
+for i,p in enumerate(images):cmd+=['-drive',f'file={p},format=raw,if=none,id=fs{i},readonly=on,cache=none','-device',f'virtio-blk-device,drive=fs{i}']
+cmd+=['-append','console=ttyAMA0 rdinit=/init panic=-1 loglevel=7 selinux=0']
+(O/'qemu-argv.json').write_text(json.dumps(cmd,indent=2));start=time.monotonic()
+try:rc=run(cmd,'serial',90);timed_out=False
+except subprocess.TimeoutExpired:rc=None;timed_out=True
+serial=(O/'serial.log').read_text(errors='replace');fsckrc=run([str(F/'bin/e2fsck'),'-f','-n',str(images[0])],'e2fsck-after')
+after={str(p):sha(p)for p in images}
+result=dict(qemu_exit=rc,timed_out=timed_out,elapsed_seconds=time.monotonic()-start,e2fsck_after_exit=fsckrc,before=before,after=after,images_unchanged=before==after,guest_pass='SYSTEM_EXT4_RESULT failures=0' in serial,negative_kernel_error='unsupported optional features (80000000)' in serial,kernel_sha256=sha(F/'Image'),config_sha256=sha(F/'sources/.config'),init_sha256=sha(O/'init'),initramfs_sha256=sha(O/'initramfs.cpio.gz'),limits=dict(host_cpus=1,host_address_space_bytes=1024**3,child_cpu_seconds=60,guest_mib=384,guest_vcpus=1,guest_nic=False),logs={p.name:p.read_text(errors='replace')for p in O.glob('*.log')})
+result['passed']=rc==0 and not timed_out and fsckrc==0 and before==after and result['guest_pass'] and result['negative_kernel_error']
+(O/'result.json').write_text(json.dumps(result,indent=2));print(json.dumps(result,indent=2))

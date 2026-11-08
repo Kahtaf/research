@@ -1,0 +1,22 @@
+{
+  "status": "ONE_CANDIDATE_READY_FOR_PARENT_REVIEW_NO_PHYSICAL_GO",
+  "pid1_run_uuid": "83cc6715-05b7-48be-aaff-44ea5186ba8a",
+  "helper_compile_invocations": 1,
+  "compile_exit": 0,
+  "compile_warnings": 0,
+  "packaged_candidates": 1,
+  "package_assertion_corrections_before_payload_generation": 1,
+  "isolated_actual_default_PLAN_calls": 1,
+  "device_or_ADB_commands": false,
+  "private_factory_or_raw_kernel_logs_accessed": false,
+  "remote_kernel_or_product_build": false,
+  "cloud_new_resources": false,
+  "resource_caps_changed": false,
+  "VM_id": "8549823276971553556",
+  "VM_status": "TERMINATED",
+  "VM_start_stop_cycles": 1,
+  "SSH_readiness_probes": 3,
+  "physical_result": "NOT_OBSERVED",
+  "saved_PL_reset32_meaning": "UNKNOWN",
+  "next_variant": false
+}

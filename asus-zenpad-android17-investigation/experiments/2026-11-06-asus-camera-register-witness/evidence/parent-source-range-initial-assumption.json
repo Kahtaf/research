@@ -1,0 +1,183 @@
+{
+  "utc": "2026-11-06T22:54:44.954327+00:00",
+  "decision": "source-range verification needs reconciliation",
+  "delivery_hashes_verified": 91,
+  "artifact_hashes_verified": 58,
+  "original_source_hashes_verified": 4,
+  "function_source_ranges": [
+    {
+      "sensor": "ov5670",
+      "function": "set_dummy",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov5670",
+      "function": "set_max_framerate",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov5670",
+      "function": "preview_setting",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov5670",
+      "function": "capture_setting",
+      "source_range_hash_matches": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "normal_video_setting",
+      "source_range_hash_matches": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "hs_video_setting",
+      "source_range_hash_matches": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "slim_video_setting",
+      "source_range_hash_matches": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "custom1_setting",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov5670",
+      "function": "preview",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov5670",
+      "function": "capture",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov5670",
+      "function": "normal_video",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov5670",
+      "function": "hs_video",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov5670",
+      "function": "slim_video",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov5670",
+      "function": "custom1",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov5670",
+      "function": "control",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov5670",
+      "function": "set_video_mode",
+      "source_range_hash_matches": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "set_max_framerate_by_scenario",
+      "source_range_hash_matches": true
+    },
+    {
+      "sensor": "ov5670",
+      "function": "get_default_framerate_by_scenario",
+      "source_range_hash_matches": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "set_dummy",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov2680",
+      "function": "set_max_framerate",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov2680",
+      "function": "preview_setting",
+      "source_range_hash_matches": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "capture_setting",
+      "source_range_hash_matches": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "normal_video_setting",
+      "source_range_hash_matches": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "hs_video_setting",
+      "source_range_hash_matches": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "slim_video_setting",
+      "source_range_hash_matches": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "preview",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov2680",
+      "function": "capture",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov2680",
+      "function": "normal_video",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov2680",
+      "function": "hs_video",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov2680",
+      "function": "slim_video",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov2680",
+      "function": "control",
+      "source_range_hash_matches": false
+    },
+    {
+      "sensor": "ov2680",
+      "function": "set_video_mode",
+      "source_range_hash_matches": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "set_max_framerate_by_scenario",
+      "source_range_hash_matches": true
+    },
+    {
+      "sensor": "ov2680",
+      "function": "get_default_framerate_by_scenario",
+      "source_range_hash_matches": true
+    }
+  ],
+  "all_ranges_match": false,
+  "scope": "Source register programs/state arithmetic only; no HAL3 metadata or hardware proof",
+  "hardware_qualified": false,
+  "camera_enabled": false
+}

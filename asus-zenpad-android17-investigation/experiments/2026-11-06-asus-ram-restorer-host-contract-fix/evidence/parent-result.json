@@ -1,0 +1,24 @@
+{
+  "status": "offline_host_contract_fixed",
+  "local_regression_methods": 7,
+  "remote_regression_methods": 7,
+  "remote_production_session_cases": 16,
+  "remote_durability_source_cases": 5,
+  "original_source_files_preserved": 41,
+  "source_sha256": "2d6acd11f5b46585bec820188463e4ecb863ec19a6f106a83320f14c24c479d9",
+  "phase_timings_physically_qualified": false,
+  "armed": false,
+  "device_contacted": false,
+  "target_binaries_changed": false,
+  "physical_go": false,
+  "files": {
+    "source/host.py": "2d6acd11f5b46585bec820188463e4ecb863ec19a6f106a83320f14c24c479d9",
+    "source/generated_host_binding.py": "ad07c65143a15699012716ecc8d78606ea2a18aa870ae2d9d288ea1e316cec67",
+    "tests/host_tests.py": "360613e0447d0f21cede9d80ff5074c4a20f40e92839c861b8478e53a0560cdf",
+    "tests/host_durability.py": "e932b96d9ca061ba99c48d664d9dfc769feb136026ca2d4e9c1979dbb7095a3b",
+    "tests/contract_tests.py": "0cda8a0c222e33e3d6919c0d43a1891d9c0c627c8add255a8667d1da4e47ae04",
+    "scripts/replay_remote.py": "2a711e9cb5546540aff7086acb3b6619d8fad2aaaeb314aa6053e28884e761d7",
+    "inputs/original-source-pins.json": "5d742ea22cc3babb4ad51368a1ab68f0732c59c1bd1232483b0254f28c22ed23",
+    "inputs/host-reviewed.py": "7830374c08c78db915099f12c7d635c7df9280fc153e12b165ef54a1d98d6dd3"
+  }
+}

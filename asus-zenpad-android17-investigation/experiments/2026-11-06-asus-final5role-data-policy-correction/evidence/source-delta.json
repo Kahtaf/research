@@ -1,0 +1,44 @@
+{
+  "modified_integration_files": {
+    "source/policy_build.c": {
+      "before": {
+        "bytes": 5562,
+        "sha256": "1fbb9b714f630c7d058f583b3d42242814413988ee41b188463c1291dda56fdf"
+      },
+      "after": {
+        "bytes": 5688,
+        "sha256": "c50f6487807192a27023f6f2e5522159f6f1ed3c2e0ec975d7b43f9f8d0b7422"
+      }
+    },
+    "source/policy_audit.c": {
+      "before": {
+        "bytes": 3512,
+        "sha256": "a8419a1ff771646dc28c96fa342f87ce4d949ee6368660bcd962f4d3053d9333"
+      },
+      "after": {
+        "bytes": 6564,
+        "sha256": "3b8ac244ff2d2d2b928f30ff9263199608581702e14835984c38752988488ec2"
+      }
+    },
+    "tests/policy_checks.py": {
+      "before": {
+        "bytes": 3690,
+        "sha256": "0a367f27a483ef0918d95a984efae0cde307d2920b3f42e998d8b11cb00ecca9"
+      },
+      "after": {
+        "bytes": 6628,
+        "sha256": "ca9aed70720a6f590e98325d52e2934473beb783e85ee14f91a7aff213ca3077"
+      }
+    }
+  },
+  "new_test_support": {
+    "tests/policy_xperms.c": {
+      "bytes": 2759,
+      "sha256": "970953ce0ec3432ff49387d23d631172817b9e57ab5a9e7dace6d0d0eafe716e"
+    }
+  },
+  "unchanged_context_parser": {
+    "bytes": 1657,
+    "sha256": "012a4f0a71f49772a12e537721b5aca3e5de1b201b2dc5aaa07a26e07cdb650c"
+  }
+}

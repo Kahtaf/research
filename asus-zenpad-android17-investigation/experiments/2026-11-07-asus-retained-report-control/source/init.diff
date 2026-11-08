@@ -1,0 +1,66 @@
+--- working-sd/init.c
++++ retained-control/init.c
+@@ -12,6 +12,7 @@
+ #include <sys/statfs.h>
+ #include <sys/sysmacros.h>
+ #include <sys/utsname.h>
++#include <sys/klog.h>
+ #include <time.h>
+ #include <unistd.h>
+ 
+@@ -24,6 +25,31 @@
+ #define SD "/sd"
+ #define SAFE_FLAGS (MS_NOSUID|MS_NODEV|MS_NOEXEC)
+ #define MSDOS_MAGIC 0x4d44
++
++
++#define RETAINED_MARKER "ASUS-stock-retained-control-20261107-v1 1fd4c968-c0b4-49ab-851a-b0ea4c50c01d"
++static struct {
++ int level_rc, level_errno, node_errno, open_errno, write_errno, close_errno;
++ ssize_t written;
++} retained = {.level_rc=-1, .written=-1};
++static void retained_marker(void){
++ const char msg[]="<0>" RETAINED_MARKER " pid1 /dev/kmsg\n";
++ struct stat st;
++ errno=0;retained.level_rc=klogctl(8,NULL,1);retained.level_errno=errno;
++ /* Only the private /dev tmpfs is changed; major 1 minor 11 is kmsg. */
++ if(mknod("/dev/kmsg",S_IFCHR|0600,makedev(1,11))||
++    lstat("/dev/kmsg",&st)||!S_ISCHR(st.st_mode)||st.st_rdev!=makedev(1,11)){
++  retained.node_errno=errno?errno:EINVAL;return;
++ }
++ int fd=open("/dev/kmsg",O_WRONLY|O_CLOEXEC|O_NOFOLLOW);
++ if(fd<0){retained.open_errno=errno;return;}
++ if(fstat(fd,&st)||!S_ISCHR(st.st_mode)||st.st_rdev!=makedev(1,11)){
++  retained.open_errno=errno?errno:EINVAL;(void)close(fd);return;
++ }
++ /* One bounded record; do not split it or retry an ambiguous short write. */
++ errno=0;retained.written=write(fd,msg,sizeof(msg)-1);retained.write_errno=errno;
++ if(close(fd))retained.close_errno=errno;
++}
+ 
+ static int arm_watchdog(void);
+ struct operations {
+@@ -129,7 +155,7 @@
+   size_t n=strnlen(s[j],65);if(!n||n==65)return -1;
+   for(size_t i=0;i<n;i++)if((unsigned char)s[j][i]<32||(unsigned char)s[j][i]>126)return -1;
+  }
+- int n=snprintf(report,cap,"run_id=%s\npid1=1\nsysname=%s\nrelease=%s\nversion=%s\nmachine=%s\nstatus=pid1_uname_observed\n",RUN_ID,u.sysname,u.release,u.version,u.machine);
++ int n=snprintf(report,cap,"run_id=%s\npid1=1\nsysname=%s\nrelease=%s\nversion=%s\nmachine=%s\nstatus=pid1_uname_observed\nretained_marker=%s\nkmsg_level_rc=%d\nkmsg_level_errno=%d\nkmsg_node_errno=%d\nkmsg_open_errno=%d\nkmsg_written=%ld\nkmsg_expected=%zu\nkmsg_write_errno=%d\nkmsg_close_errno=%d\n",RUN_ID,u.sysname,u.release,u.version,u.machine,RETAINED_MARKER,retained.level_rc,retained.level_errno,retained.node_errno,retained.open_errno,(long)retained.written,sizeof("<0>" RETAINED_MARKER " pid1 /dev/kmsg\n")-1,retained.write_errno,retained.close_errno);
+  return n>0&&(size_t)n<cap?n:-1;
+ }
+ static int sd_root(int fd,dev_t dev,int readonly){
+@@ -163,11 +189,13 @@
+  return rc;
+ }
+ static int setup(void){
+- char report[1024];int n=make_report(report,sizeof(report));if(n<0)return -1;
++ char report[1024];int n;
+  /* Device-enabled, private tmpfs: only one verified partition node is created. */
+  if(op.mount("tmpfs","/dev","tmpfs",MS_NOSUID|MS_NOEXEC,"mode=0700,size=64k")||
+     op.mount("proc","/proc","proc",SAFE_FLAGS,NULL)||
+     op.mount("sysfs","/sys","sysfs",SAFE_FLAGS|MS_RDONLY,NULL))return -1;
++ retained_marker();
++ n=make_report(report,sizeof(report));if(n<0)return -1;
+  struct binding b;struct stat st;
+  if(discover(&b)||op.mknod(NODE,S_IFBLK|0600,b.dev)||op.lstat(NODE,&st)||!S_ISBLK(st.st_mode)||st.st_rdev!=b.dev||same_card(&b))return -1;
+  if(op.mount(NODE,SD,"vfat",SAFE_FLAGS|MS_RDONLY,"errors=remount-ro"))return -1;

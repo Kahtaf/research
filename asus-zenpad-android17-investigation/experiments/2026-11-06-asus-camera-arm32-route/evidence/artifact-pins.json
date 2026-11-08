@@ -1,0 +1,50 @@
+[
+  {
+    "path": "abi-out/camera_abi_probe.o",
+    "bytes": 3916,
+    "sha256": "78fafbfacd226b951594ccef2f0afa5340a31ec89691a5cde6ceaa7e9a7233df",
+    "local": "fixture/abi-out/camera_abi_probe.o"
+  },
+  {
+    "path": "abi-out/libp00a_camera_abi_probe.so",
+    "bytes": 8412,
+    "sha256": "f53f8f95230fc09b2dd255554e3a8bd135f03959c4fe2f8e117128189f06f786",
+    "local": "fixture/abi-out/libp00a_camera_abi_probe.so"
+  },
+  {
+    "path": "abi-out/input-pins.json",
+    "bytes": 21098,
+    "sha256": "29dd43015ad3e5163f3e162fa099e4e73a61a682934b2009b67ea0369f8b843b",
+    "local": "fixture/abi-out/input-pins.json"
+  },
+  {
+    "path": "abi-out/compile.json",
+    "bytes": 19355,
+    "sha256": "b64c1204a14a086b195f628e181cc339ebc29ab4bfa63cea6a8759b7f4862310",
+    "local": "fixture/abi-out/compile.json"
+  },
+  {
+    "path": "cpp-out/layout.cpp",
+    "bytes": 222,
+    "sha256": "6abb67f5e605f13e37d0458a637b1af21ce501b13e5e4974a58f1cf0937eb44f",
+    "local": "fixture/cpp-out/layout.cpp"
+  },
+  {
+    "path": "cpp-out/layout.o",
+    "bytes": 36596,
+    "sha256": "8b83c9210784bd926f2ec9981aed32f2b0373024f9dce61f6e6924a25f1c5cc4",
+    "local": "fixture/cpp-out/layout.o"
+  },
+  {
+    "path": "cpp-out/pins.json",
+    "bytes": 252398,
+    "sha256": "fbe0e3b4241f2e3e9e83a0ee7b277941391a8af8b65ae63418a1ac2ccf65362b",
+    "local": "fixture/cpp-out/pins.json"
+  },
+  {
+    "path": "cpp-out/commands.json",
+    "bytes": 951223,
+    "sha256": "0f61191a396b970d3f83168d1b41530eb53ff16025a31d0d4d90e730f163d10e",
+    "local": "fixture/cpp-out/commands.json"
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "arch/arm64/kernel/asus_retained_trace.c": {
+    "before": "45627f898c09748318497ac5e4e3c8fb85e1aff539409034a120061137fef264",
+    "after": "628317a7b1a1ed096ffd053db4f0dd0332d849071d769fc6ef689020c0330a00"
+  },
+  "arch/arm64/kernel/asus_entry_tag.h": {
+    "before": "ce826ab519da3d1ba5fcff83aa4254e80ae1cd9b77af1c0d24707be60e23ea8f",
+    "after": "78ac0405ff8003f589d23ad385b4644b4322a12e041554863f3c2f6fb171984a"
+  }
+}

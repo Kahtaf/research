@@ -1,0 +1,16 @@
+{
+  "scope": "offlinefixedreportbinding",
+  "files": {
+    "2026-11-06-asus-linux49-minimal-probe-observer/scripts/observe.py": "776f9f90c748187cbc3e55935a2c8c51a10ae5790500e39d7b22437c08ad16e5",
+    "2026-11-06-asus-linux49-minimal-probe-observer/evidence/host-acceptance.json": "1d9238d284ab0fc7bbbb1ba3357e8e4f0198ad1fa319b9d522b8788a12cc6e74",
+    "2026-11-06-asus-linux49-minimal-probe-observer/tests/test_observe.py": "f368d60203fc295676b3dd6d8f62a3a03450b8a1e5784b6f77e56aa9c2e839c4",
+    "2026-11-06-asus-minimal-probe-observer/scripts/observe.py": "776f9f90c748187cbc3e55935a2c8c51a10ae5790500e39d7b22437c08ad16e5",
+    "2026-11-06-asus-minimal-probe-observer/tests/test_observe.py": "76b68700c12d92201a15503d1353660973643fbe62aaa3bce8bae294a18a9d00",
+    "2026-11-06-asus-linux49-minimal-ram-probe/evidence/manifest.json": "b4710d5f6facbb04129108e4080ddb0522e6892114a334b74e3d3841d249164e",
+    "2026-11-06-asus-linux49-minimal-ram-probe/inputs/utsrelease.h": "d60cbc6c658fd4a940da9269479b2be18f2d07caef569e3db8410a274d56d4fa",
+    "2026-11-06-asus-linux49-minimal-ram-probe/inputs/compile.h": "31f9e7dc8baa5fa8921ea2d8e624a5c1bfd49b83735bf5ba4f3bbc346ebf4f20",
+    "2026-11-06-asus-linux49-minimal-probe-observer/tests/test_interface_nubs.py": "c8d11f982514ea836d4d5622e4db2614f0c7d4caa7aff1f9c1eb5a65c36d2478"
+  },
+  "device_contacted": false,
+  "interface_fix_receipt": "evidence/interface-fix-pins.json"
+}

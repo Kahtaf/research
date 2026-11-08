@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://android.googlesource.com/platform/system/extras/+/android-7.0.0_r1/ext4_utils/ext4_utils.h?format=TEXT",
+    "file": "aosp7__ext4_utils_ext4_utils.h",
+    "sha256": "b583dd2909993e24d681f7775d15eb287c306ae4d651523e45ba746bc61b1275",
+    "bytes": 4873
+  },
+  {
+    "url": "https://android.googlesource.com/platform/system/extras/+/android-7.0.0_r1/ext4_utils/make_ext4fs.c?format=TEXT",
+    "file": "aosp7__ext4_utils_make_ext4fs.c",
+    "sha256": "a680a30f5bd7169b4d73fc5dc9c892e4ec79dab20e607dca35db1e531a180ded",
+    "bytes": 25317
+  },
+  {
+    "url": "https://android.googlesource.com/platform/system/extras/+/android-7.0.0_r1/ext4_utils/ext4_utils.c?format=TEXT",
+    "file": "aosp7__ext4_utils_ext4_utils.c",
+    "sha256": "39a198ef92fef12a70e073d8e8655d0d173535c9efc383694c7a922c0782bd56",
+    "bytes": 18126
+  },
+  {
+    "url": "https://android.googlesource.com/platform/system/core/+/android-7.0.0_r1/fs_mgr/fs_mgr.c?format=TEXT",
+    "file": "aosp7__fs_mgr_fs_mgr.c",
+    "sha256": "bcf937c9391af5d53dec132fe20efeb9bdc9aaf087f495df1bb89d60a12c943a",
+    "bytes": 29370
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bootable/recovery/+/android-7.0.0_r1/device.cpp?format=TEXT",
+    "file": "aosp7__device.cpp",
+    "sha256": "978c5b7ed1a3f3f25536a3d90c238de82c465d5083ac088abfc717d1fc45eced",
+    "bytes": 2027
+  },
+  {
+    "url": "https://android.googlesource.com/platform/bootable/recovery/+/android-7.0.0_r1/ui.cpp?format=TEXT",
+    "file": "aosp7__ui.cpp",
+    "sha256": "bbab1ea5c25e039ec3d248010424a9f0c61352cab5979f6894c288bb0eca9ff7",
+    "bytes": 10112
+  }
+]

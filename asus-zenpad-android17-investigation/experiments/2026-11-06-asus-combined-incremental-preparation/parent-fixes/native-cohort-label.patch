@@ -1,0 +1,18 @@
+--- a/scripts/native_adapter.py
++++ b/scripts/native_adapter.py
+@@ -28,8 +28,13 @@
+         result = super().record(target, source)
+         execution = result.get('execution')
+         if execution:
+-            result['actual_execution_cohort'] = ('ROOT_ENABLED_INCREMENTAL' if
+-                Path(execution['phase_path']).is_relative_to(OWN) else 'RETAINED_REVIEWED_R9_OR_R8')
++            phase = Path(execution['phase_path'])
++            if phase.is_relative_to(OWN):
++                result['actual_execution_cohort'] = 'COMBINED_INCREMENTAL'
++            elif phase.is_relative_to(BASE):
++                result['actual_execution_cohort'] = 'ROOT_ENABLED_INCREMENTAL'
++            else:
++                result['actual_execution_cohort'] = 'RETAINED_REVIEWED_R9_OR_R8'
+         return result
+ 
+     def final_closure(self):

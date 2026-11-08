@@ -1,0 +1,56 @@
+[
+  {
+    "publication_path": "experiment-index.json",
+    "sha256": "fb0708554c49031ed4199cdc6869c7624ca1d76439b2bf602009c952a017312b",
+    "bytes": 411859,
+    "role": "local checkpoint metadata, annotated/reindexed for publication where needed"
+  },
+  {
+    "publication_path": "EXPERIMENT-LEDGER.md",
+    "sha256": "9a7705dd2844a38da345fdc5316ceeab0492f11bedb7373fc521d1f867e433b2",
+    "bytes": 86001,
+    "role": "local checkpoint metadata, annotated/reindexed for publication where needed"
+  },
+  {
+    "publication_path": "STATE-AND-RESUME.md",
+    "sha256": "5bd19f20caa50e7291d0b30d1b0b86f070611e906200a0d3c7c98ba5c7b62c7b",
+    "bytes": 4820,
+    "role": "local checkpoint metadata, annotated/reindexed for publication where needed"
+  },
+  {
+    "publication_path": "known-image-identities.json",
+    "sha256": "9d9e9400c233a102ae9b2bca0450c1d54c5d3be0ecf67b1b1590784eff422409",
+    "bytes": 972,
+    "role": "local checkpoint metadata, annotated/reindexed for publication where needed"
+  },
+  {
+    "publication_path": "SOURCE-PRESERVATION.json",
+    "sha256": "bc789ac1bbda276b42b695c419878dac65c6900d430ffb5d9ffef87f08efebbb",
+    "bytes": 762,
+    "role": "local checkpoint metadata, annotated/reindexed for publication where needed"
+  },
+  {
+    "publication_path": "source-checkpoints/source-bundles.json",
+    "sha256": "3e649f361c3109283d2be6e1170cad89b09084112ddbad360995abca94ab5520",
+    "bytes": 654,
+    "role": "local checkpoint metadata, annotated/reindexed for publication where needed"
+  },
+  {
+    "publication_path": "selection.py",
+    "sha256": "2a385b7d7714c46ac90ec2dacfb10cb80438ce1998a3ac0cdf669432526f9a5c",
+    "bytes": 5056,
+    "role": "generated publication selection metadata"
+  },
+  {
+    "publication_path": "publication-mapping.json",
+    "sha256": "2203fb25b9f638bede2a680a792c111c509bf6b3ebd651e7826a34482b7da5c0",
+    "bytes": 4977958,
+    "role": "generated publication selection metadata"
+  },
+  {
+    "publication_path": "publication-selection.json",
+    "sha256": "3afcaedc517a8e1bb196eb8ba59309122e74de9c0dcb4bee6706d12bc559b684",
+    "bytes": 1646,
+    "role": "generated publication selection metadata"
+  }
+]

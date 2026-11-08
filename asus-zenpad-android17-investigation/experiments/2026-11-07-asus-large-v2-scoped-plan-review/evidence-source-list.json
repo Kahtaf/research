@@ -1,0 +1,12 @@
+{
+  "public_sources": [
+    "2026-11-07-asus-stock-entry-writer-physical-trial/evidence/RESULT.json",
+    "2026-11-07-asus-linux49-entry-text-r2-trial/evidence/RESULT.json",
+    "2026-11-07-asus-runtime-memory-contract/evidence/parent-runtime-admission.json",
+    "2026-11-07-asus-stock-checkpoint-reset-loss/README.md",
+    "2026-11-07-asus-stock-entry-writer-control-r2/README.md"
+  ],
+  "current_sol_task": "0211a268-d41d-4b78-a452-4fc2a5a56c25",
+  "tools_allowed": false,
+  "model": "abliteration-ai/abliterated-model-large-v2"
+}

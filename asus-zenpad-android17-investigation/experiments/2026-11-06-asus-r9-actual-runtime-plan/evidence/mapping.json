@@ -1,0 +1,87 @@
+{
+  "raw": {
+    "ls -l /": {
+      "exit": 0,
+      "stdout": "      2   40755 (2)      0      0    4096  7-Nov-2026 02:09 .\n      2   40755 (2)      0      0    4096  7-Nov-2026 02:09 ..\n     11   40700 (2)      0      0   16384  7-Nov-2026 02:09 lost+found\n     12  120644 (7)      0      0      30  7-Nov-2026 02:02 adb_keys\n     13   40755 (2)      0      0    4096  7-Nov-2026 02:02 apex\n     14  120644 (7)      0      0      11  7-Nov-2026 02:02 bin\n     15   40755 (2)      0      0    4096  7-Nov-2026 02:02 bootstrap-apex\n     16  120644 (7)      0      0      50  7-Nov-2026 02:02 bugreports\n     17  120644 (7)      0      0      11  7-Nov-2026 02:02 cache\n     18   40555 (2)      0      0    4096  7-Nov-2026 02:02 config\n     19  120644 (7)      0      0      17  7-Nov-2026 02:02 d\n     20   40771 (2)   1000   1000    4096  7-Nov-2026 02:02 data\n     21   40755 (2)      0      0    4096  7-Nov-2026 02:02 data_mirror\n     22   40755 (2)      0      0    4096  7-Nov-2026 02:02 debug_ramdisk\n     23   40755 (2)      0      0    4096  7-Nov-2026 02:02 dev\n     24  120644 (7)      0      0      11  7-Nov-2026 02:02 etc\n     25  120750 (7)      0   2000      16  7-Nov-2026 02:02 init\n     26  100750 (1)      0   2000     621  7-Nov-2026 02:02 init.environ.rc\n     27   40755 (2)      0      0    4096  7-Nov-2026 02:02 linkerconfig\n     28   40755 (2)      0   1000    4096  7-Nov-2026 02:02 mnt\n     29   40755 (2)      0      0    4096  7-Nov-2026 02:02 odm\n     41   40755 (2)      0      0    4096  7-Nov-2026 02:02 odm_dlkm\n     43   40755 (2)      0      0    4096  7-Nov-2026 02:02 oem\n     44   40755 (2)      0      0    4096  7-Nov-2026 02:02 postinstall\n     45   40755 (2)      0      0    4096  7-Nov-2026 02:02 proc\n     46  120644 (7)      0      0      15  7-Nov-2026 02:02 product\n     47  120644 (7)      0      0      21  7-Nov-2026 02:02 sdcard\n     48   40755 (2)      0      0    4096  7-Nov-2026 02:02 second_stage_resources\n     49   40751 (2)      0   1028    4096  7-Nov-2026 02:02 storage\n     50   40755 (2)      0      0    4096  7-Nov-2026 02:02 sys\n     51   40755 (2)      0      0    4096  7-Nov-2026 02:09 system\n   8154   40755 (2)      0      0    4096  7-Nov-2026 02:02 system_dlkm\n   8155  120644 (7)      0      0      18  7-Nov-2026 02:02 system_ext\n   8156   40755 (2)      0      0    4096  7-Nov-2026 02:02 tmp\n   8157  120644 (7)      0      0      14  7-Nov-2026 02:02 vendor\n   8158   40755 (2)      0      0    4096  7-Nov-2026 02:02 vendor_dlkm\n\n",
+      "stderr": "debugfs 1.47.2 (1-Jan-2025)\n"
+    },
+    "cat fstab.mt8163": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "debugfs 1.47.2 (1-Jan-2025)\nfstab.mt8163: File not found by ext2_lookup \n"
+    },
+    "cat init.mt8163.rc": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "debugfs 1.47.2 (1-Jan-2025)\ninit.mt8163.rc: File not found by ext2_lookup \n"
+    },
+    "cat system/vendor/etc/init/hw/init.mt8163.rc": {
+      "exit": 0,
+      "stdout": "# SPDX-License-Identifier: Apache-2.0\n# Loaded by Android 17 init.rc through ro.hardware=mt8163.\nimport /vendor/etc/init/hw/init.mt8163.usb.rc\n\non fs\n    # /system was mounted by first-stage init; skip latemount userdata here.\n    mount_all /vendor/etc/fstab.mt8163 --early\n\non late-fs\n    # Requires separately prepared, backed-up ext4 data. Never formats or\n    # decrypts the stock FDE volume. A failed mount is a boot blocker.\n    mount_all /vendor/etc/fstab.mt8163 --late\n\non post-fs\n    # Configure the compressor before fs_mgr sets disksize and runs mkswap.\n    # No backing device is used, so /data and APEX activation are not needed.\n    write /sys/block/zram0/comp_algorithm lz4\n    swapon_all /vendor/etc/fstab.mt8163\n\non boot\n    # The new kernel's LP8557 bridge exposes the normal LED class backlight.\n    chown system system /sys/class/leds/lcd-backlight/brightness\n    chmod 0660 /sys/class/leds/lcd-backlight/brightness\n",
+      "stderr": "debugfs 1.47.2 (1-Jan-2025)\n"
+    },
+    "cat system/vendor/etc/fstab.mt8163": {
+      "exit": 0,
+      "stdout": "# Header-0 ramdisk, no super/vendor/product partitions on this tablet.\n/dev/block/platform/soc/11230000.mmc/by-name/system /system ext4 ro wait,first_stage_mount\n\n# Original userdata is FDE encrypted. This does not decrypt or format it.\n# A separate data migration decision and backup are required before hardware boot.\n/dev/block/platform/soc/11230000.mmc/by-name/userdata /data ext4 noatime,nosuid,nodev,noauto_da_alloc,errors=remount-ro wait,check,latemount\n\n# 512 MiB logical swap, bounded even if pages do not compress. No backing file,\n# writeback, userdata allocation or percentage-of-RAM expansion.\n/dev/block/zram0 none swap defaults wait,zramsize=536870912\n",
+      "stderr": "debugfs 1.47.2 (1-Jan-2025)\n"
+    },
+    "ls -l system/etc/security/apex": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "debugfs 1.47.2 (1-Jan-2025)\nsystem/etc/security/apex: File not found by ext2_lookup \n"
+    },
+    "stat system/etc/security/apexkeys.txt": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "debugfs 1.47.2 (1-Jan-2025)\nsystem/etc/security/apexkeys.txt: File not found by ext2_lookup \n"
+    },
+    "stat system/etc/apexkeys.txt": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "debugfs 1.47.2 (1-Jan-2025)\nsystem/etc/apexkeys.txt: File not found by ext2_lookup \n"
+    },
+    "cat system/etc/init/apexd.rc": {
+      "exit": 0,
+      "stdout": "service apexd /system/bin/apexd\n    interface aidl apexservice\n    class core\n    user root\n    group system\n    oneshot\n    disabled # does not start with the core class\n    reboot_on_failure reboot,apexd-failed\n    # CAP_CHOWN, CAP_DAC_OVERRIDE, CAP_DAC_READ_SEARCH required for apexdata snapshot & restore\n    # CAP_SYS_ADMIN is required to access device-mapper and to use mount syscall\n    capabilities CHOWN DAC_OVERRIDE DAC_READ_SEARCH FOWNER SYS_ADMIN MKNOD\n\nservice apexd-bootstrap /system/bin/apexd --bootstrap\n    user root\n    group system\n    oneshot\n    disabled\n    reboot_on_failure reboot,bootloader,bootstrap-apexd-failed\n    # CAP_SYS_ADMIN is required to access device-mapper and to use mount syscall\n    # apexd-bootstrap doesn't manage apexdata snapshot & restore, hence no need for other capabilities.\n    capabilities SYS_ADMIN MKNOD\n\nservice apexd-snapshotde /system/bin/apexd --snapshotde\n    user root\n    group system\n    oneshot\n    disabled\n    # CAP_CHOWN, CAP_DAC_OVERRIDE, CAP_DAC_READ_SEARCH required for apexdata snapshot & restore\n    # apexd-snapshotde doesn't mount APEXes, hence no need for SYS_ADMIN capability\n    capabilities CHOWN DAC_OVERRIDE DAC_READ_SEARCH FOWNER\n\non property:apexd.debug.lsof=*\n    exec u:r:su:s0 root root -- /system/bin/sh /system/bin/apexd-lsof.sh ${apexd.debug.lsof}\n",
+      "stderr": "debugfs 1.47.2 (1-Jan-2025)\n"
+    },
+    "cat system/etc/init/hw/init.boringssl.zygote64_32.rc": {
+      "exit": 0,
+      "stdout": "on init && property:ro.product.cpu.abilist32=*\n    exec_start boringssl_self_test32\non init && property:ro.product.cpu.abilist64=*\n    exec_start boringssl_self_test64\non property:apexd.status=ready && property:ro.product.cpu.abilist32=*\n    exec_start boringssl_self_test_apex32\non property:apexd.status=ready && property:ro.product.cpu.abilist64=*\n    exec_start boringssl_self_test_apex64\n",
+      "stderr": "debugfs 1.47.2 (1-Jan-2025)\n"
+    }
+  },
+  "installed_small_paths": {
+    "apexkeys.txt": {
+      "path": "/srv/android/lineage24/out/target/product/p00a/apexkeys.txt",
+      "exists": false,
+      "symlink": false
+    },
+    "system/etc/security/apexkeys.txt": {
+      "path": "/srv/android/lineage24/out/target/product/p00a/system/etc/security/apexkeys.txt",
+      "exists": false,
+      "symlink": false
+    },
+    "system/etc/apexkeys.txt": {
+      "path": "/srv/android/lineage24/out/target/product/p00a/system/etc/apexkeys.txt",
+      "exists": false,
+      "symlink": false
+    },
+    "system/etc/security/apex/com.android.runtime.avbpubkey": {
+      "path": "/srv/android/lineage24/out/target/product/p00a/system/etc/security/apex/com.android.runtime.avbpubkey",
+      "exists": false,
+      "symlink": false
+    },
+    "system/vendor/etc/fstab.mt8163": {
+      "path": "/srv/android/lineage24/out/target/product/p00a/system/vendor/etc/fstab.mt8163",
+      "exists": true,
+      "symlink": false,
+      "bytes": 667,
+      "sha256": "04179d23e76be8755f6452319e05cc89f2438b51fcc539cb76695c9c65c57e75"
+    }
+  },
+  "old_observer": {
+    "system/vendor/etc/fstab.mt8163": "# Header-0 ramdisk, no super/vendor/product partitions on this tablet.\n/dev/block/vdb /system ext4 ro wait,first_stage_mount\n\n# Original userdata is FDE encrypted. This does not decrypt or format it.\n# A separate data migration decision and backup are required before hardware boot.\n/dev/block/vda /data ext4 noatime,nosuid,nodev,noauto_da_alloc,errors=remount-ro wait,check,latemount\n\n# 512 MiB logical swap, bounded even if pages do not compress. No backing file,\n# writeback, userdata allocation or percentage-of-RAM expansion.\n/dev/block/zram0 none swap defaults wait,zramsize=536870912\n",
+    "system/vendor/etc/init/hw/init.mt8163.rc": "# SPDX-License-Identifier: Apache-2.0\n# Loaded by Android 17 init.rc through ro.hardware=mt8163.\nimport /vendor/etc/init/hw/init.mt8163.usb.rc\n\non fs\n    # /system was mounted by first-stage init; skip latemount userdata here.\n    mount_all /vendor/etc/fstab.mt8163 --early\n\non late-fs\n    # Requires separately prepared, backed-up ext4 data. Never formats or\n    # decrypts the stock FDE volume. A failed mount is a boot blocker.\n    mount_all /vendor/etc/fstab.mt8163 --late\n\non post-fs\n    # Configure the compressor before fs_mgr sets disksize and runs mkswap.\n    # No backing device is used, so /data and APEX activation are not needed.\n    write /sys/block/zram0/comp_algorithm lz4\n    swapon_all /vendor/etc/fstab.mt8163\n\non boot\n    # The new kernel's LP8557 bridge exposes the normal LED class backlight.\n    chown system system /sys/class/leds/lcd-backlight/brightness\n    chmod 0660 /sys/class/leds/lcd-backlight/brightness\n"
+  }
+}

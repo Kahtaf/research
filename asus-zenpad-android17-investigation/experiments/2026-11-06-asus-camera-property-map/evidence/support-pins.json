@@ -1,0 +1,149 @@
+[
+  {
+    "commit": "a6116961338548409b14076eefbef211afc8c3fe",
+    "url": "https://android.googlesource.com/platform/system/core/+/a6116961338548409b14076eefbef211afc8c3fe/include/utils/String8.h?format=TEXT",
+    "path": "include/utils/String8.h",
+    "sha256": "b99516e7575092489777f9132b06a7f20cfb35e23a51831649ed144db6347bc7",
+    "bytes": 12597
+  },
+  {
+    "commit": "a6116961338548409b14076eefbef211afc8c3fe",
+    "url": "https://android.googlesource.com/platform/system/core/+/a6116961338548409b14076eefbef211afc8c3fe/include/utils/VectorImpl.h?format=TEXT",
+    "path": "include/utils/VectorImpl.h",
+    "sha256": "bf1a313a1a21064845e10050ed01c34e6b3eb9fd8bc478708f0a1cd5653ce266",
+    "bytes": 7409
+  },
+  {
+    "commit": "a6116961338548409b14076eefbef211afc8c3fe",
+    "url": "https://android.googlesource.com/platform/system/core/+/a6116961338548409b14076eefbef211afc8c3fe/include/utils/SortedVector.h?format=TEXT",
+    "path": "include/utils/SortedVector.h",
+    "sha256": "e9a306e7e6b5c338a2c221516d9dc0b92ef29753a75f8b7dcc7463126f53b99a",
+    "bytes": 9447
+  },
+  {
+    "commit": "a6116961338548409b14076eefbef211afc8c3fe",
+    "url": "https://android.googlesource.com/platform/system/core/+/a6116961338548409b14076eefbef211afc8c3fe/include/utils/KeyedVector.h?format=TEXT",
+    "path": "include/utils/KeyedVector.h",
+    "sha256": "2d68b26a35e2084575a5253706bcd3c843884c3eab02cc9b0f4b7b5ecb6a2dd8",
+    "bytes": 7265
+  },
+  {
+    "commit": "a6116961338548409b14076eefbef211afc8c3fe",
+    "url": "https://android.googlesource.com/platform/system/core/+/a6116961338548409b14076eefbef211afc8c3fe/include/utils/TypeHelpers.h?format=TEXT",
+    "path": "include/utils/TypeHelpers.h",
+    "sha256": "c88e1e955cb8a34f06b8164b9d3eb8dfc2d067b286614da7107527870691a6f8",
+    "bytes": 9146
+  },
+  {
+    "commit": "a6116961338548409b14076eefbef211afc8c3fe",
+    "url": "https://android.googlesource.com/platform/system/core/+/a6116961338548409b14076eefbef211afc8c3fe/include/utils/SharedBuffer.h?format=TEXT",
+    "path": "include/utils/SharedBuffer.h",
+    "sha256": "b2d7a3909b2e60b2e2a1d3ba7ef64f3a31dd23d6d7257c1bac952fd94644a6d4",
+    "bytes": 4334
+  },
+  {
+    "commit": "a6116961338548409b14076eefbef211afc8c3fe",
+    "url": "https://android.googlesource.com/platform/system/core/+/a6116961338548409b14076eefbef211afc8c3fe/include/utils/Vector.h?format=TEXT",
+    "path": "include/utils/Vector.h",
+    "sha256": "b8443fdb99ee4f6c321e7dfb52e0dedb95f17759a969a6df9c56d467c65478e1",
+    "bytes": 13846
+  },
+  {
+    "commit": "a6116961338548409b14076eefbef211afc8c3fe",
+    "url": "https://android.googlesource.com/platform/system/core/+/a6116961338548409b14076eefbef211afc8c3fe/libutils/String8.cpp?format=TEXT",
+    "path": "libutils/String8.cpp",
+    "sha256": "157230fcf04f73dfdc9389e432de08c5cfc4bded9947323d55330a074dbc8efe",
+    "bytes": 15310
+  },
+  {
+    "commit": "a6116961338548409b14076eefbef211afc8c3fe",
+    "url": "https://android.googlesource.com/platform/system/core/+/a6116961338548409b14076eefbef211afc8c3fe/libutils/VectorImpl.cpp?format=TEXT",
+    "path": "libutils/VectorImpl.cpp",
+    "sha256": "f76d83fe6dbb3bb6064d8814f14ccd7f0f4304a6f05111b054eccef75cd59c77",
+    "bytes": 19988
+  },
+  {
+    "commit": "a6116961338548409b14076eefbef211afc8c3fe",
+    "url": "https://android.googlesource.com/platform/system/core/+/a6116961338548409b14076eefbef211afc8c3fe/libutils/SharedBuffer.cpp?format=TEXT",
+    "path": "libutils/SharedBuffer.cpp",
+    "sha256": "307cad0eeeb3fb2b7dd203a60e2d50de83849686a12410e91d5741567dda61aa",
+    "bytes": 3339
+  },
+  {
+    "commit": "a6116961338548409b14076eefbef211afc8c3fe",
+    "url": "https://android.googlesource.com/platform/system/core/+/a6116961338548409b14076eefbef211afc8c3fe/libutils/Unicode.cpp?format=TEXT",
+    "path": "libutils/Unicode.cpp",
+    "sha256": "e720669a5244e767de61fe9ee4bdcd64dd43269635bba33425163b9435bcf2d6",
+    "bytes": 16224
+  },
+  {
+    "commit": "a3b721a32242006b59cb12bd62c9133632af3a2d",
+    "url": "https://android.googlesource.com/platform/system/core/+/a3b721a32242006b59cb12bd62c9133632af3a2d/libutils/binder/VectorImpl.cpp?format=TEXT",
+    "path": "backend/VectorImpl.cpp",
+    "sha256": "75e3f36b79356f6b332aea74ba70fbe7f6e5d865ec30859306986729e07dce26",
+    "bytes": 20284
+  },
+  {
+    "commit": "a3b721a32242006b59cb12bd62c9133632af3a2d",
+    "url": "https://android.googlesource.com/platform/system/core/+/a3b721a32242006b59cb12bd62c9133632af3a2d/libutils/binder/String8.cpp?format=TEXT",
+    "path": "backend/String8.cpp",
+    "sha256": "a270d8e6d9927118f300f91ab68b22ea753eba0d3e14c691afeead09f255360b",
+    "bytes": 11333
+  },
+  {
+    "commit": "a3b721a32242006b59cb12bd62c9133632af3a2d",
+    "url": "https://android.googlesource.com/platform/system/core/+/a3b721a32242006b59cb12bd62c9133632af3a2d/libutils/binder/SharedBuffer.cpp?format=TEXT",
+    "path": "backend/SharedBuffer.cpp",
+    "sha256": "e464121e103a4be47aa48b187c6d880b19d0909a4a59de26d646f79b689c692c",
+    "bytes": 4011
+  },
+  {
+    "commit": "a3b721a32242006b59cb12bd62c9133632af3a2d",
+    "url": "https://android.googlesource.com/platform/system/core/+/a3b721a32242006b59cb12bd62c9133632af3a2d/libutils/binder/SharedBuffer.h?format=TEXT",
+    "path": "backend/SharedBuffer.h",
+    "sha256": "996a2b4a2afbffeaa0fdfbf6d593111b0567df59d14ffd2e92be643d5707abb1",
+    "bytes": 4923
+  },
+  {
+    "commit": "a3b721a32242006b59cb12bd62c9133632af3a2d",
+    "url": "https://android.googlesource.com/platform/system/core/+/a3b721a32242006b59cb12bd62c9133632af3a2d/libutils/binder/Unicode.cpp?format=TEXT",
+    "path": "backend/Unicode.cpp",
+    "sha256": "a8a7c7cb1b1995ae10a13472c467047d3aaacdc6303257a6a0fd9ab4a24f817c",
+    "bytes": 16622
+  },
+  {
+    "commit": "a3b721a32242006b59cb12bd62c9133632af3a2d",
+    "url": "https://android.googlesource.com/platform/system/core/+/a3b721a32242006b59cb12bd62c9133632af3a2d/libutils/binder/include/utils/VectorImpl.h?format=TEXT",
+    "path": "backend/include/utils/VectorImpl.h",
+    "sha256": "2c0d7bff0eb9e8aee019ec5c2a939951200104068ece641485014f0c5f4c2bf2",
+    "bytes": 7414
+  },
+  {
+    "commit": "a3b721a32242006b59cb12bd62c9133632af3a2d",
+    "url": "https://android.googlesource.com/platform/system/core/+/a3b721a32242006b59cb12bd62c9133632af3a2d/libutils/binder/include/utils/String8.h?format=TEXT",
+    "path": "backend/include/utils/String8.h",
+    "sha256": "c763629bd69fe6959a9c5b1cdb5cf12ffb5fadbb230aa68b126c913de5d0afbb",
+    "bytes": 10807
+  },
+  {
+    "commit": "a3b721a32242006b59cb12bd62c9133632af3a2d",
+    "url": "https://android.googlesource.com/platform/system/core/+/a3b721a32242006b59cb12bd62c9133632af3a2d/libutils/binder/include/utils/TypeHelpers.h?format=TEXT",
+    "path": "backend/include/utils/TypeHelpers.h",
+    "sha256": "36973dcbd99139f3af9c1d4a9487d1e0315c0c2555eebd6aecedd2185ee27107",
+    "bytes": 10256
+  },
+  {
+    "commit": "a6116961338548409b14076eefbef211afc8c3fe",
+    "url": "https://android.googlesource.com/platform/system/core/+/a6116961338548409b14076eefbef211afc8c3fe/include/cutils/log.h?format=TEXT",
+    "path": "include/cutils/log.h",
+    "sha256": "73abb3a501626b16b0dc2eb77947aec6ab27f294f478b5f3828e4eada2dd601e",
+    "bytes": 21
+  },
+  {
+    "commit": "a6116961338548409b14076eefbef211afc8c3fe",
+    "url": "https://android.googlesource.com/platform/system/core/+/a6116961338548409b14076eefbef211afc8c3fe/include/utils/Tokenizer.h?format=TEXT",
+    "path": "include/utils/Tokenizer.h",
+    "sha256": "8df5e4dfbe6fb974a7131ce6705a6fffad737e58222d3da907aa468a1fda13ec",
+    "bytes": 3906
+  }
+]

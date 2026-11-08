@@ -1,0 +1,26 @@
+{
+  "command": [
+    "make",
+    "-C",
+    "/srv/android/asus-minimal-platform-build-20261108/kernel",
+    "O=/srv/android/asus-minimal-platform-build-20261108/out",
+    "ARCH=arm64",
+    "CROSS_COMPILE=aarch64-linux-gnu-",
+    "HOSTCC=gcc",
+    "HOSTCXX=g++",
+    "LOCALVERSION=-minplat",
+    "-j8",
+    "Image.gz-dtb"
+  ],
+  "attempts": 1,
+  "max_jobs": 8,
+  "started": "2026-11-08T14:25:55.824184+00:00",
+  "timeout": null,
+  "rlimit_as": [
+    -1,
+    -1
+  ],
+  "exit": 2,
+  "finished": "2026-11-08T14:26:54.509131+00:00",
+  "status": "failed"
+}

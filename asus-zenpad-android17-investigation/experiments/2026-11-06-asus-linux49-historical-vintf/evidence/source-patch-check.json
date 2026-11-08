@@ -1,0 +1,31 @@
+{
+  "sources": {
+    "device/asus/p00a/device.mk": {
+      "before": "788d0a4a0bebf492886651d8fb3ef3020654c063e704231c5baa282281c6fc14",
+      "after": "788d0a4a0bebf492886651d8fb3ef3020654c063e704231c5baa282281c6fc14"
+    },
+    "device/asus/p00a/manifest.xml": {
+      "before": "320a21a0778bed69082a08bc457d58969352471130bf57ab241cbd71653fe0a6",
+      "after": "320a21a0778bed69082a08bc457d58969352471130bf57ab241cbd71653fe0a6"
+    },
+    "device/asus/p00a/BoardConfig.mk": {
+      "before": "e5296e182b457ec662694e044fffd322bdc246d556783743d080c23f5e4bde55",
+      "after": "e5296e182b457ec662694e044fffd322bdc246d556783743d080c23f5e4bde55"
+    }
+  },
+  "all_source_preimages_unchanged": true,
+  "source_manifest_assemble_argv": [
+    "/srv/android/asus-linux49-historical-vintf-20261106/tools/bin/assemble_vintf",
+    "-i",
+    "/srv/android/asus-linux49-historical-vintf-20261106/candidate-source/device/asus/p00a/manifest.xml",
+    "-o",
+    "/srv/android/asus-linux49-historical-vintf-20261106/work-p/source-primary-manifest.xml"
+  ],
+  "source_manifest_assemble_env": {
+    "PATH": "/usr/bin:/bin",
+    "BOARD_SEPOLICY_VERS": "202704"
+  },
+  "source_manifest_assemble_exit": 0,
+  "source_manifest_assemble_log": "",
+  "output": "<!--\n    Input:\n        /srv/android/asus-linux49-historical-vintf-20261106/candidate-source/device/asus/p00a/manifest.xml\n-->\n<manifest version=\"9.0\" type=\"device\" target-level=\"3\">\n    <hal format=\"hidl\">\n        <name>android.hardware.graphics.allocator</name>\n        <transport>hwbinder</transport>\n        <fqname>@2.0::IAllocator/default</fqname>\n    </hal>\n    <hal format=\"hidl\">\n        <name>android.hardware.graphics.composer</name>\n        <transport>hwbinder</transport>\n        <fqname>@2.1::IComposer/default</fqname>\n    </hal>\n    <hal format=\"hidl\">\n        <name>android.hardware.graphics.mapper</name>\n        <transport arch=\"32+64\">passthrough</transport>\n        <fqname>@2.0::IMapper/default</fqname>\n    </hal>\n    <sepolicy>\n        <version>202704</version>\n    </sepolicy>\n    <kernel target-level=\"3\"/>\n</manifest>\n"
+}

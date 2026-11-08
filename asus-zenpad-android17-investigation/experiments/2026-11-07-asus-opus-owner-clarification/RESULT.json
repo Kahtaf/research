@@ -1,0 +1,13 @@
+{
+  "utc": "2026-11-07T20:42:20.365360+00:00",
+  "requested_model": "Opus5.5",
+  "owner_clarification_submitted": true,
+  "provider_declined5_5": true,
+  "automatic_fallback": "Opus4.8",
+  "fallback_preceded_first_answer": true,
+  "fallback_session_cancelled": true,
+  "verified5_5_assessment_available": false,
+  "unrequested_response_not_attributed_to5_5": true,
+  "device_changes": false,
+  "VM_restarted": false
+}

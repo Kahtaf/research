@@ -1,0 +1,57 @@
+{
+  "utc": "2026-11-07T00:30:56.743591+00:00",
+  "scope": "parent reviewed actual r8 terminal failure only",
+  "r8_kit_seal": "f55aedf8ac9d2a513e3663230db0b9d802e72b5df512fc0db6b3714331a7efa4",
+  "original_lock_inode": 15018964,
+  "exit_code": 1,
+  "finished": "2026-11-06T23:48:28.389783+00:00",
+  "terminal_log": {
+    "bytes": 2347961,
+    "sha256": "dde9978375f6e34e8b09676a2cb3245e866486ee254cf5405204b85893b37c38"
+  },
+  "failed_receipt": {
+    "error": "Build/validation failed; preserve attempt, no retry",
+    "partial_state_preserved": true,
+    "retry_allowed": false
+  },
+  "phase_receipts": {
+    "host_init_verifier": {
+      "path": "/srv/android/asus-reviewed-build-kit/r8/attempt/native-evidence/host_init_verifier/receipt.json",
+      "bytes": 1079,
+      "sha256": "0e06bbee948f7413eaa0b54f6be95d8374750c0ece2646526864733ea6204660",
+      "exit_code": 0
+    },
+    "bootimage": {
+      "path": "/srv/android/asus-reviewed-build-kit/r8/attempt/native-evidence/bootimage/receipt.json",
+      "bytes": 1219,
+      "sha256": "06a73e6125819f5dd7e7449cbd95e1ac128beb483be6f5b194d5c7324933a2b2",
+      "exit_code": 1
+    }
+  },
+  "selected_source_state": {
+    "external/chromium-webview/prebuilt/arm64/webview.apk": {
+      "bytes": 134,
+      "sha256": "a7b12c1895a3b354a91997fffe0e383a88e5b0e0d4371f8fdc090c71f62aade7"
+    }
+  },
+  "original_pid_presence": {
+    "1580911": false,
+    "1581077": false
+  },
+  "retry": false,
+  "new_revision_authorized": false,
+  "source_out_or_logs_changed": false,
+  "reviewed_r8_delta_sources": {
+    "utc": "2026-11-07T00:32:29.796860+00:00",
+    "rows": {
+      "/srv/android/lineage24/device/asus/p00a/connectivity/src/driver_cmd_p00a.c": {
+        "bytes": 2168,
+        "sha256": "b43ef55923de00f5ce9f087640f5b8b962d86baa2b9d865fcb852e0ae21a16e1"
+      },
+      "/srv/android/lineage24/device/asus/p00a/sepolicy/vendor/file_contexts": {
+        "bytes": 556,
+        "sha256": "f7d5656f54655442056e607a620b3bcd37d8818f1f3b9116bbbb190212241f42"
+      }
+    }
+  }
+}

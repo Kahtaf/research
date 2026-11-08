@@ -1,0 +1,31 @@
+[
+  {
+    "name": "bionic-libc_init_dynamic.cpp",
+    "url": "https://android.googlesource.com/platform/bionic/+/refs/tags/android-17.0.0_r1/libc/bionic/libc_init_dynamic.cpp?format=TEXT",
+    "bytes": 7222,
+    "status": "downloaded"
+  },
+  {
+    "name": "init-first_stage_init.cpp",
+    "url": "https://android.googlesource.com/platform/system/core/+/refs/tags/android-17.0.0_r1/init/first_stage_init.cpp?format=TEXT",
+    "bytes": 23491,
+    "status": "downloaded"
+  },
+  {
+    "name": "bpfloader.cpp",
+    "url": "https://android.googlesource.com/platform/system/bpf/+/refs/tags/android-17.0.0_r1/bpfloader/BpfLoader.cpp?format=TEXT",
+    "status": "HTTP Error 404: Not Found"
+  },
+  {
+    "name": "framework-manifest.xml",
+    "url": "https://android.googlesource.com/platform/manifest/+/refs/tags/android-17.0.0_r1/default.xml?format=TEXT",
+    "bytes": 111646,
+    "status": "downloaded"
+  },
+  {
+    "name": "lineage24-default.xml",
+    "url": "https://raw.githubusercontent.com/LineageOS/android/lineage-24.0/default.xml",
+    "bytes": 124111,
+    "status": "downloaded"
+  }
+]

@@ -1,0 +1,296 @@
+[
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "SetAnalogSuspend",
+    "line": 244,
+    "sha256": "57a3305745ca6ef8198dc6c881c0841b1c817b3688c71f17dc4227c5287d0846"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "audckbufEnable",
+    "line": 259,
+    "sha256": "c79f7ea237dc1e163b0d824391ed702f7fe637eb676cb1d6445058d13212f5c6"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "Topck_Enable",
+    "line": 295,
+    "sha256": "438552d05936f5909852e3ebfb5d2c2abf18e3ab99742b641d6422d8de2ffc8d"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "OpenAnalogHeadphone",
+    "line": 492,
+    "sha256": "a77caa466ffab890aa5a3f041eabcd52a5f8f4637b1313024ca7e203d57878aa"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "UpdateHeadsetGain",
+    "line": 1086,
+    "sha256": "bbb068d5383dfa6e8a774c4001403184e1a125fdc8fe11ec4847b281ed32a7b7"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "Audio_AmpL_Set",
+    "line": 1216,
+    "sha256": "f13e68473d290edc2f57ee1a7b46763e58ba16709c1ca12b27de061862a21edf"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "Audio_AmpR_Set",
+    "line": 1259,
+    "sha256": "59169c4027772d99b561a1704035cd89f32b774f446ad276e4efd7306ad3c2ba"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "Voice_Amp_Set",
+    "line": 1378,
+    "sha256": "99bd89c96f6bafa929e89424111f6475f4fc7d70aa9a2d986bd9a5b3cfce2ec5"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "Headphone_Speaker_Mux_Set",
+    "line": 1858,
+    "sha256": "97f4eba00759ac0569ec696102aa1d597b556c09cc46dba23e791dd10f6cc191"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "Ext_Headphone_Amp_Set",
+    "line": 1912,
+    "sha256": "f053c6eec0375cd682b3e429cb43051843b49c7f5811d1531d1c71a10048270e"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "Audio_Speaker_Class_Set",
+    "line": 2117,
+    "sha256": "b4f6e2046c3144915b071aa538cac393b414f838294c321234615c2846e42e70"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "Audio_AMIC_Set",
+    "line": 2865,
+    "sha256": "698d6301226a593ed76cf87ec3db78e492c9b37bd216d6c13c9720a0b0aef656"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "Audio_ADC1_Set",
+    "line": 2898,
+    "sha256": "7b88be7938b3bdc24cff807031f107ad9187eea01afe5e873222e59255054501"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "Audio_ADC2_Set",
+    "line": 2954,
+    "sha256": "9e2b86c8e7f7033f43fef15878f907171753a4f5954a61b38c175802da40e571"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "mt6323_codec_probe",
+    "line": 4113,
+    "sha256": "fc3933c1882dadd554346a0ee8639f2b731347558d3e469b7c92f12acea911d4"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "mt6323_codec_remove",
+    "line": 4143,
+    "sha256": "513d8636a6830e4dce754d8a89583b154c1ef6d0dcb057a2ba24df5b53dfc953"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "mtk_mt6323_codec_dev_remove",
+    "line": 4216,
+    "sha256": "745e23c53c45b9d5b775aad691fc441a22c088a65a0883446682ec1eda6c9f03"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "function": "mtk_mt6323_codec_dev_shutdown",
+    "line": 4229,
+    "sha256": "8557fc5dc19554ba64aaaad010dde885fb4089058e982667522eee80bcc9a116"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c",
+    "function": "AudDrv_GPIO_EXTAMP_Select",
+    "line": 364,
+    "sha256": "281547d037d0d17a61476f4bfddbe754ffcd29c1b2ae4c7c4ce99aca1358a124"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c",
+    "function": "AudDrv_GPIO_EXTHPAMP_Select",
+    "line": 376,
+    "sha256": "4db9f75924a21043085f1e02495b4c2c75822b17e50ca78c82a95873ea09d94f"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c",
+    "function": "AudDrv_GPIO_Headset_Changed",
+    "line": 388,
+    "sha256": "be08b6f4e987453c63d1aef26d1af9d8b95496b07abe036230faa8acfd5913d8"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/p00a_stock_gate.h",
+    "function": "p00a_gate_set",
+    "line": 67,
+    "sha256": "acb3cd16393bccd0ef7a70570ee8c370fc3278f50ff04f0014fec890c4c143b0"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/p00a_stock_gate.h",
+    "function": "p00a_gate_get",
+    "line": 79,
+    "sha256": "be29a3afc7fe3d93228723633f4684e4939a42cad18d9c762653f068c4a23009"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/p00a_stock_gate.h",
+    "function": "p00a_gate_suspend",
+    "line": 91,
+    "sha256": "c51581a157882d4854bd3d96649a5a5adff1bdd38818843409a0f022453c8323"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/p00a_stock_gate.h",
+    "function": "p00a_gate_stop",
+    "line": 104,
+    "sha256": "9da91ead279d1ca1c4333d774d90f022f9d04e816c1b5e9424f8c33ae9070371"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/p00a_stock_gate.h",
+    "function": "p00a_gate_release",
+    "line": 119,
+    "sha256": "98e37c7efab77c2a55ce866105508c49c1254c3d4bbcdac5ee397ead7927110b"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/candidate/sound/soc/mediatek/mt_soc_audio_8163/p00a_stock_gate.h",
+    "function": "p00a_gate_probe",
+    "line": 134,
+    "sha256": "c98fc81371ca9976350307dec32d914538c705691158fb1d36f633ddb7a0be66"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/sound/core/control.c",
+    "function": "snd_ctl_add",
+    "line": 397,
+    "sha256": "4af89438aae9880759dbc268f0ea0405ba84705b17fd08a8180235736cf9f8e0"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/sound/core/control.c",
+    "function": "snd_ctl_elem_read",
+    "line": 904,
+    "sha256": "001e39732ac3310a01bb2c58abea8f8c3b2fd299493d03cd2c64a7153c50a233"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/sound/core/control.c",
+    "function": "snd_ctl_elem_read_user",
+    "line": 924,
+    "sha256": "25de6d799d5d2b359d33161431f69e6b253ed281928c0769d6a64fabc53d30be"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/sound/core/control.c",
+    "function": "snd_ctl_elem_write",
+    "line": 949,
+    "sha256": "a64fa860ca370105935daae7807fd3e90c7ea5fb2c6af53b50bca2d04503f23e"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/sound/core/control.c",
+    "function": "snd_ctl_elem_write_user",
+    "line": 981,
+    "sha256": "eeebc3b03d7c3a8b36332082a1be094f384272350b2a636c5324cbc972ba7571"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/sound/soc/soc-core.c",
+    "function": "snd_soc_add_controls",
+    "line": 2203,
+    "sha256": "3b6ecfd40ba748fccc02e1bb477341e95ef1f78ae4bdc66fda0dc1365e8bf0a9"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/sound/soc/soc-core.c",
+    "function": "snd_soc_add_component_controls",
+    "line": 2248,
+    "sha256": "e73baca561acae164cbb337c8feb9ac76957f6cbcf4d246a1d512da88e05262b"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/sound/soc/soc-core.c",
+    "function": "snd_soc_add_codec_controls",
+    "line": 2269,
+    "sha256": "0dfcbfd0aed2c2403c510f3a1233d37d303c06bea26ba798e77214c8346f7cdf"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/drivers/gpio/gpiolib.c",
+    "function": "__gpiod_request",
+    "line": 1967,
+    "sha256": "5112dfe0c2ab20c3162bdc73c3d3fe0021002b14f6138349e0ef9832308b1a8a"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/drivers/gpio/gpiolib.c",
+    "function": "gpiod_request",
+    "line": 2051,
+    "sha256": "d353260c983f0ac10a0bbdbc4f36101dacd80d2586b5bcd189dd16b41d6d0d29"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/drivers/gpio/gpiolib.c",
+    "function": "_gpiod_direction_output_raw",
+    "line": 2232,
+    "sha256": "5a99bafea9b45099cb9fe95987bb77dd0bc669eb36b1fc3149cd17c31562cf17"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/drivers/gpio/gpiolib.c",
+    "function": "gpiod_direction_output_raw",
+    "line": 2302,
+    "sha256": "b4e3a3cb2e013eade91ac9f251ecb6376a972274c82abbee79062d58bd5de783"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/drivers/base/devres.c",
+    "function": "release_nodes",
+    "line": 477,
+    "sha256": "0bc61338798c879e6442ee86240a0e27ead868dbc612457d652c4892a5f31847"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/drivers/base/devres.c",
+    "function": "devres_release_all",
+    "line": 508,
+    "sha256": "589144de7457c3dc1a56a24a490893973834bd48ab6e1adc998056b930766193"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/drivers/pinctrl/core.c",
+    "function": "pinctrl_request_gpio",
+    "line": 583,
+    "sha256": "8258298775da9c841774df4412ad96fc5621a0161f59e3980df5edf793f78cbe"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/drivers/pinctrl/core.c",
+    "function": "pinctrl_gpio_direction",
+    "line": 640,
+    "sha256": "19d8bfc03ef88fa5201d4fe4eeb8bbca9bfedb51bf642085178f4ad6ffe8c01e"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/drivers/pinctrl/core.c",
+    "function": "pinctrl_gpio_direction_output",
+    "line": 685,
+    "sha256": "9cd23a672d5ec920c2fb73df1ea06e18002f214c3490056da6abc27faf695be6"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/drivers/pinctrl/core.c",
+    "function": "pinctrl_commit_state",
+    "line": 999,
+    "sha256": "d0d1fb845fef13da08c7107f7b9e0fb0470fe90e43651fd70bc690f25dc085f4"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/drivers/pinctrl/core.c",
+    "function": "pinctrl_select_state",
+    "line": 1074,
+    "sha256": "29a77f98aa214731e6da41876c356f2b239f56388e4727d918fd088bb463bccd"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/drivers/pinctrl/mediatek/pinctrl-mtk-common.c",
+    "function": "mtk_pmx_gpio_set_direction",
+    "line": 314,
+    "sha256": "166a939f5d5537a9ec142e3c301b7f664052b37bbeb1494652c71c5c57b7a8f4"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/drivers/pinctrl/mediatek/pinctrl-mtk-common.c",
+    "function": "mtk_gpio_set",
+    "line": 343,
+    "sha256": "a6f556f69e85880117d5ec22aea2e6807d18ad496cf8bf04f8fb741a107960ba"
+  },
+  {
+    "source": "2026-11-06-asus-gpio28-lifecycle-fix/inputs/api/drivers/pinctrl/mediatek/pinctrl-mtk-common.c",
+    "function": "mtk_gpio_direction_output",
+    "line": 1080,
+    "sha256": "8ae6958ef6c385a751bcd7e6f72f0c1324d0be7f1937b405619e492e8da9b68d"
+  }
+]

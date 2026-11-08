@@ -1,0 +1,7 @@
+{
+  "preimage_sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017",
+  "postimage_sha256": "4f38f11a5b92437f57f17d644b9d97c9596f1116ce7f53a5da73c82e82ddc030",
+  "source_boot_sha256": "4b83266cc1f7f14a95d6e8ad5da490e1d358a4a1cebbdb2354454790a0d05b51",
+  "compressed_ramdisk_sha256": "95f5c2a8aded2e081e30e72ebd37322a24aa895bbe7e334c79c1381bcd3fe240",
+  "scope": "Reader accepts exactly one repeated root-owned empty dev directory mode 0755 matching its first record. All file duplicates, other names, metadata differences and further duplicates remain rejected. Compressed bytes are never changed."
+}

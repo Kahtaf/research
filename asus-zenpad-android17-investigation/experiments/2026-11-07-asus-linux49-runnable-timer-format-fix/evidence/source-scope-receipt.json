@@ -1,0 +1,39 @@
+{
+  "source_sha256": "d6cf66e19d1f2638941b0f14b0a3428db74b6867bf1761c3491d14188db8e4ad",
+  "prior_source_sha256": "0b01e1f39907cdc17d197a6c410335481b7debe02f1cebdf8ec13e250ecf5dc9",
+  "unchanged_functions": [
+    "begin",
+    "end",
+    "park",
+    "names",
+    "metadata"
+  ],
+  "sink_change": "phase label only",
+  "clock_sample_change": "restore captured errno",
+  "unchanged_main_setup": true,
+  "mmc_body_exact_extraction": true,
+  "explicit_main_observation_tail": true,
+  "new_functions_pinned": {
+    "alarm_handler": "9a0a38ad10faafc4b6e0ced206a13b86ce861330019dff37c209539b8c2c2546",
+    "finish": "71008d40b8f07adae5a18b68651355c029338e5923c5c7d369a21ce542740dc1",
+    "number": "0c0b425af0e50837f1bfc516e0f3b4dbfaccc9f0521cf44c9268f1d16b475657",
+    "timer_line": "fc1a485fb103c3c3dcec57c6f5e77da80546c3ab0ba5a0d376e9d6c88f74f510",
+    "timer_snapshot": "988935a4004d4206a55ee0a7b957090c303ef43e87fa58b07172a59e09ff5aaa",
+    "observe": "27b925002a69dcab476fb4ddf0d04fba1403c9bee3427085431dcc3ec999bbaf"
+  },
+  "interrupt_bounds": {
+    "bytes": 32768,
+    "read_calls": 8,
+    "lines": 256,
+    "arch_lines": 8,
+    "cpu_counters": 16
+  },
+  "loop_bounds": {
+    "iterations": 2000000,
+    "counter_delta_ns": 1500000000
+  },
+  "only_handler_side_effects": "sig_atomic_t flag, one nonblocking write, errno preservation",
+  "no_handler_reboot": true,
+  "one_normal_reboot": true,
+  "power_fallback_required": true
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "path": "hardware/interfaces/camera/common/default/CameraModule.cpp",
+    "sha256": "0210898466c2f78f06ddae3644091330d24556ba9aefcd60d3ad0a7439a207c0"
+  },
+  {
+    "path": "hardware/interfaces/camera/common/default/include/CameraModule.h",
+    "sha256": "bda2fd306e464450348860847b8d18f0c0d64a065cc2d980fc340af99c72e7a2"
+  },
+  {
+    "path": "frameworks/av/services/camera/libcameraservice/common/CameraProviderInfoTemplated.h",
+    "sha256": "14d7ddc3bc5aa4ae883a9f5dd672a28dad6dee89696b5d21f3c0a1613f96f522"
+  },
+  {
+    "path": "frameworks/av/camera/aidl/android/hardware/ICameraService.aidl",
+    "sha256": "2d7ff5adc8d761a4460022001efbfc1b936e8e9f3c43090f94584cf48a737803"
+  },
+  {
+    "path": "frameworks/av/camera/aidl/android/hardware/camera2/ICameraDeviceUser.aidl",
+    "sha256": "dda5f9e0c432e4ec350854ce258ab24e54d636f69fccbd085894483779c7656a"
+  },
+  {
+    "path": "frameworks/av/camera/aidl/android/hardware/camera2/ICameraDeviceCallbacks.aidl",
+    "sha256": "ba8de4636be47fe380efa2b71f98b9b2f1b30a28e96f37240367f2d451d38ade"
+  },
+  {
+    "path": "frameworks/av/camera/aidl/android/hardware/ICamera.aidl",
+    "sha256": "e8458ccabacf4ca816abe592c4ee09d2bbd57c82920da50e9886d57247764002"
+  },
+  {
+    "path": "kernel/asus/p00a-fd/drivers/misc/mediatek/imgsensor/inc/kd_imgsensor.h",
+    "sha256": "b2a93edcb7f7a79a959f1061aa7ebb53ecd34f970af531148d26d7a96203b608"
+  },
+  {
+    "path": "kernel/asus/p00a-fd/drivers/misc/mediatek/imgsensor/inc/kd_imgsensor_define.h",
+    "sha256": "fb2aed3d7f6b28234c36277af14c6fc6defc4b48ac9879c8f01e24605fc47cf8"
+  },
+  {
+    "path": "kernel/asus/p00a-fd/drivers/misc/mediatek/cameraisp/src/mt8163/inc/camera_isp_FrmB.h",
+    "sha256": "d04e379ad96a28442dc2252b8974bf244df0641a56f3eb8bb608d44c23502823"
+  },
+  {
+    "path": "kernel/asus/p00a-fd/drivers/misc/mediatek/cameraisp/src/mt8163/inc/camera_isp.h",
+    "sha256": "4493e13f8511001397625c773d6ee871db9226d9869c0ea4cc893382ee11a03e"
+  },
+  {
+    "path": "kernel/asus/p00a-fd/drivers/misc/mediatek/cam_cal/inc/cam_cal.h",
+    "sha256": "3ea5a48bb8ff989edd0641802567927412fd2c975d686630b4a357fc8b077706"
+  },
+  {
+    "path": "kernel/asus/p00a-fd/drivers/misc/mediatek/m4u/mt8163/m4u_priv.h",
+    "sha256": "6aeff18f1b3fb36ae212865ba4b76163b957d0d7d06072ad56a8ae1f1cc0f354"
+  },
+  {
+    "path": "kernel/asus/p00a-fd/drivers/misc/mediatek/m4u/mt8163/m4u.h",
+    "sha256": "45d72b4681f2b940cd86df0975424d35ebae506a2971f3528f4057f263c4432f"
+  },
+  {
+    "path": "kernel/asus/p00a-fd/drivers/misc/mediatek/m4u/mt8163/m4u_port.h",
+    "sha256": "6da8e8616154dc7139c9c474b6bb6c8fcac8a724076762b5464239912df8ed2b"
+  }
+]

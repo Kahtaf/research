@@ -1,0 +1,78 @@
+{
+  "pins": {
+    "kernel": {
+      "path": "/srv/android/asus-genuine-service-runtime/inputs/kernel-r7/Image",
+      "dev": 2049,
+      "inode": 26288752,
+      "bytes": 5785608,
+      "mtime_ns": 1793990105501631062,
+      "ctime_ns": 1794003602874340451,
+      "mode": "0o775",
+      "sha256": "95a62a8bccd3085d682a89b6c74c7afd0961cebd1e3137b256229849920b549b"
+    },
+    "config": {
+      "path": "/srv/android/asus-genuine-service-runtime/inputs/kernel-r7/config",
+      "dev": 2049,
+      "inode": 26288768,
+      "bytes": 56079,
+      "mtime_ns": 1793989489571194906,
+      "ctime_ns": 1794003602887683297,
+      "mode": "0o664",
+      "sha256": "c2ea1277e1574da39d1d55d31bde7bda439ab624561ad3c6a6f4730e38f57834"
+    },
+    "boot": {
+      "path": "/srv/android/asus-r9-independent-packaging-r2/checks/UNTESTED-ROOT-ROUTE-FAILED-sdk37-combined-boot.img",
+      "dev": 2049,
+      "inode": 27264985,
+      "bytes": 9242624,
+      "mtime_ns": 1794020148678509311,
+      "ctime_ns": 1794020195726260071,
+      "mode": "0o444",
+      "sha256": "784d4dc565e7742ea607683d2a67d1fdb066764bddfa369895cbaaf6f048b435"
+    },
+    "seed-exec": {
+      "path": "/srv/android/asus-genuine-service-runtime/run-boot-r9/seed-exec",
+      "dev": 2049,
+      "inode": 26482501,
+      "bytes": 704264,
+      "mtime_ns": 1794004493614661152,
+      "ctime_ns": 1794004493614685402,
+      "mode": "0o775",
+      "sha256": "eddd78f4558e38ba1a1b5f2d9a8420111859e70a1d9c0d3b9cd837a4207ecf60"
+    }
+  },
+  "raw": {
+    "path": "/srv/android/asus-r9-postbuild-validation-r2/validation/system-partition.raw",
+    "dev": 2049,
+    "inode": 27263347,
+    "bytes": 3753902080,
+    "mtime_ns": 1794019280920581777,
+    "ctime_ns": 1794019538990926800,
+    "mode": "0o444",
+    "sha256_inherited": "baa69560ace09a478c902077d8ff926d7a079ecb9b9f1632e4c330169b243798"
+  },
+  "raw_hash_basis": "prior qualified mount plus exact unchanged identity; no additional fullraw hash",
+  "unchanged_identity": true,
+  "new_files": {
+    "observer": {
+      "bytes": 17952,
+      "sha256": "14a67c50979def568d8da90fffcf95a5e3bb888fb7ed60ba9c27ce7df527bd7f"
+    },
+    "observer.rc": {
+      "bytes": 245,
+      "sha256": "58120da3473dd05e369735f0890852b8d838f7fcf688d3b6b0e112718a4c6344"
+    },
+    "boot.fstab": {
+      "bytes": 591,
+      "sha256": "3f8bb6439ad32e4c110585f6a94eb50a6a1f571543efa9fa5f826efc455cb3f8"
+    },
+    "vendor.fstab": {
+      "bytes": 591,
+      "sha256": "3f8bb6439ad32e4c110585f6a94eb50a6a1f571543efa9fa5f826efc455cb3f8"
+    },
+    "patcher": {
+      "bytes": 706144,
+      "sha256": "70a20a4f0404ec6c5f5ebde15212309d9e150edac968450ef940f1df4c6127ad"
+    }
+  }
+}

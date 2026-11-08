@@ -1,0 +1,122 @@
+from pathlib import Path
+import difflib
+R=Path(__file__).resolve().parents[1]
+s=(R.parent/'2026-11-07-asus-stock-usb-reporter-failure-log/source/init.c').read_text(); old=s
+s=s.replace('#include <stdint.h>', '#include <stdint.h>\n#include <stdlib.h>\n#include <limits.h>')
+s=s.replace('#define G "/config/usb_gadget/g1/"\n#define LUN G "functions/mass_storage.usb0/lun.0/"', '''/* Explicit STOCK 3.18.35 backend; the configfs reporter remains separate. */
+#define A "/sys/class/android_usb/android0/"
+#define MASS "/sys/class/android_usb/f_mass_storage"
+#define LUN MASS "/lun/"
+#define SYSFS_MAGIC 0x62656572
+static volatile sig_atomic_t legacy_owned;
+static int legacy_disable_fd=-1;
+static struct stat ram_created;''')
+s=s.replace(' rc=0;\n done:', ' ram_created=st;rc=0;\n done:')
+start=s.index('static int setup(void)')
+end=s.index('static void watchdog_signal',start)
+s=s[:start]+r'''/* All following paths are fixed kernel sysfs paths, never caller input. */
+static int kernel_dir(const char *path,const char *exact){
+ char resolved[PATH_MAX];struct stat st;struct statfs fs;
+ if(!realpath(path,resolved)){log_event("fail","legacy.realpath",path,errno);return -1;}
+ if(log_guard("legacy.kernelpath",path,exact?strcmp(resolved,exact)!=0:strncmp(resolved,"/sys/devices/",13)!=0)||
+    log_call("legacy.stat",path,stat(resolved,&st))||
+    log_guard("legacy.dir",path,!S_ISDIR(st.st_mode)||st.st_uid!=0||(st.st_mode&0022))||
+    log_call("legacy.statfs",path,statfs(resolved,&fs))||
+    log_guard("legacy.sysfs",path,fs.f_type!=SYSFS_MAGIC))return -1;
+ return 0;
+}
+static int kernel_attr(const char *path,uid_t uid,gid_t gid,mode_t mode){
+ struct stat st;struct statfs fs;
+ if(log_call("legacy.lstat",path,lstat(path,&st))||
+    log_guard("legacy.attr",path,!S_ISREG(st.st_mode)||!((st.st_uid==uid&&st.st_gid==gid&&(st.st_mode&0777)==mode)||(st.st_uid==0&&st.st_gid==0&&(st.st_mode&0777)==0644)))||
+    log_call("legacy.statfs",path,statfs(path,&fs))||
+    log_guard("legacy.sysfs",path,fs.f_type!=SYSFS_MAGIC))return -1;
+ return 0;
+}
+static int legacy_paths(void){
+ if(kernel_dir(A,"/sys/devices/virtual/android_usb/android0")||
+    kernel_dir(MASS,"/sys/devices/virtual/android_usb/android0/f_mass_storage")||kernel_dir(LUN,NULL))return -1;
+ const char *attrs[]={A "enable",A "functions",A "idVendor",A "idProduct",A "iManufacturer",A "iProduct",LUN "ro",LUN "nofua"};
+ for(unsigned i=0;i<sizeof(attrs)/sizeof(attrs[0]);i++)if(kernel_attr(attrs[i],0,0,0644))return -1;
+ if(kernel_attr(A "iSerial",0,1000,0664)||kernel_attr(LUN "file",1000,1000,0660))return -1;
+ DIR *d=opendir(MASS);if(!d){log_event("fail","legacy.opendir",MASS,errno);return -1;}
+ int bad=0;struct dirent *e;errno=0;
+ while((e=readdir(d)))if(!strncmp(e->d_name,"lun",3)&&strcmp(e->d_name,"lun"))bad=1;
+ if(errno){log_event("fail","legacy.readdir",MASS,errno);bad=1;}
+ if(log_call("legacy.closedir",MASS,closedir(d)))bad=1;
+ return log_guard("legacy.sole_lun",MASS,bad)?-1:0;
+}
+static int verified_ram(void){
+ struct stat st,dir;struct statfs fs;
+ int fd=open(RAMFILE,O_RDONLY|O_NOFOLLOW|O_CLOEXEC);
+ if(fd<0){log_event("fail","ram.reopen",RAMFILE,errno);return -1;}
+ int bad=log_call("ram.fstat",RAMFILE,fstat(fd,&st))||
+    log_call("ram.fstatfs",RAMFILE,fstatfs(fd,&fs))||
+    log_call("ram.lstat","/ram",lstat("/ram",&dir))||
+    log_guard("ram.private","/ram",!S_ISDIR(dir.st_mode)||dir.st_uid!=0||(dir.st_mode&0777)!=0700)||
+    log_guard("ram.verify",RAMFILE,!S_ISREG(st.st_mode)||st.st_uid!=0||st.st_nlink!=1||st.st_size!=FAT_BYTES||
+      (st.st_mode&07777)!=0444||fs.f_type!=TMPFS_MAGIC||st.st_dev!=ram_created.st_dev||st.st_ino!=ram_created.st_ino);
+ if(log_call("ram.close",RAMFILE,close(fd)))bad=1;
+ return bad?-1:0;
+}
+static int legacy_identity(void){
+ return equals(A "functions","mass_storage")||equals(A "idVendor","0b05")||equals(A "idProduct","4a49")||
+    equals(A "iManufacturer","ASUS RAM PID1 Diagnostic")||equals(A "iProduct",product)||equals(A "iSerial",USB_SERIAL);
+}
+static int setup(void){
+ char udc[256],uevent[320];struct utsname u;
+ log_event("stage","setup.entry","-",0);
+ if(log_guard("pid1","-",getpid()!=1))return -1;
+ if(log_call("mount","/",mount(NULL,"/",NULL,MS_REC|MS_PRIVATE,NULL))||
+    log_call("mount","/dev",mount("tmpfs","/dev","tmpfs",MS_NOSUID|MS_NODEV|MS_NOEXEC,"mode=0755,size=1m"))||
+    log_call("mount","/ram",mount("tmpfs","/ram","tmpfs",MS_NOSUID|MS_NODEV|MS_NOEXEC,"mode=0700,size=4m"))||
+    log_call("mount","/proc",mount("proc","/proc","proc",MS_NOSUID|MS_NODEV|MS_NOEXEC,NULL))||
+    log_call("mount","/sys",mount("sysfs","/sys","sysfs",MS_NOSUID|MS_NODEV|MS_NOEXEC,NULL)))return -1;
+ log_event("stage","mounts.ready","-",0);
+ if(log_call("uname","-",uname(&u))||log_guard("legacy.stock_uname","-",strcmp(u.sysname,"Linux")||strcmp(u.release,"3.18.35")||strcmp(u.machine,"aarch64")))return -1;
+ if(make_fat()||ram_report()||verified_ram())return -1;
+ log_event("stage","ram.ready",RAMFILE,0);
+ if(unique_udc(udc,sizeof(udc)))return -1;
+ if(log_guard("legacy.stock_udc","/sys/class/udc",strcmp(udc,"musb-hdrc.0.auto")))return -1;
+ int n=snprintf(uevent,sizeof(uevent),"/sys/class/udc/%s/uevent",udc);
+ if(log_guard("legacy.uevent.bound","-",n<=0||(size_t)n>=sizeof(uevent))||
+    equals(uevent,"DRIVER=android_usb\nUSB_UDC_NAME=musb-hdrc\nUSB_UDC_DRIVER=android_usb")||legacy_paths())return -1;
+ log_event("stage","legacy.owner.verified",A,0);
+ /* Fresh RAM PID1 defaults only; never clear an inherited function or medium. */
+ if(equals(A "enable","0")||equals(A "functions","")||equals(LUN "file",""))return -1;
+ if(put(A "enable","0")||equals(A "enable","0")||put(A "functions","mass_storage")||equals(A "functions","mass_storage"))return -1;
+ log_event("stage","legacy.disabled",A "enable",0);
+ /* Shipped string stores use strlcpy; raw bytes, no newline or NUL in write. */
+ if(put(A "idVendor","0b05")||put(A "idProduct","4a49")||
+    put(A "iManufacturer","ASUS RAM PID1 Diagnostic")||put(A "iProduct",product)||put(A "iSerial",USB_SERIAL)||legacy_identity())return -1;
+ log_event("stage","descriptors.ready",A,0);
+ if(equals(A "enable","0")||equals(LUN "file","")||put(LUN "ro","1")||equals(LUN "ro","1")||
+    put(LUN "nofua","0")||equals(LUN "nofua","0")||verified_ram()||equals(LUN "ro","1"))return -1;
+ log_event("stage","lun.attach",LUN "file",0);
+ if(put(LUN "file",RAMFILE)||equals(LUN "file",RAMFILE)||equals(LUN "ro","1")||
+    equals(LUN "nofua","0")||verified_ram()||legacy_identity()||equals(A "enable","0"))return -1;
+ /* Preopen only our checked enable attribute for async-signal-safe deadline disable. */
+ legacy_disable_fd=open(A "enable",O_WRONLY|O_CLOEXEC|O_NOFOLLOW);
+ if(legacy_disable_fd<0){log_event("fail","legacy.disable.open",A "enable",errno);return -1;}
+ legacy_owned=1;
+ log_event("stage","legacy.enable",A "enable",0);
+ if(put(A "enable","1")||equals(A "enable","1"))return -1;
+ log_event("stage","legacy.enabled",A "enable",0);return 0;
+}
+static void disable(void){
+ if(!legacy_owned)return;
+ log_event("stage","disable",A "enable",0);
+ if(legacy_paths()||legacy_identity()||equals(LUN "file",RAMFILE)||equals(LUN "ro","1"))return;
+ if(!put(A "enable","0")&&!equals(A "enable","0"))legacy_owned=0;
+}
+static void watchdog_disable(void){
+ if(legacy_owned&&legacy_disable_fd>=0){
+  static const char line[]="<6>" LOG_REV " event=stage op=disable.SIGALRM path=" A "enable errno=0\n";
+  ssize_t w=write(legacy_disable_fd,"0",1);if(w!=1)log_sink_errno=w<0?errno:EIO;
+  if(logfd>=0){w=write(logfd,line,sizeof(line)-1);if(w<0)log_sink_errno=errno;}
+ }
+}
+''' +s[end:]
+s=s.replace('(void)signo;log_watchdog();','(void)signo;watchdog_disable();log_watchdog();')
+(R/'source/init.c').write_text(s)
+(R/'source/init.diff').write_text(''.join(difflib.unified_diff(old.splitlines(True),s.splitlines(True),fromfile='failure-log/source/init.c',tofile='stock-legacy/source/init.c')))

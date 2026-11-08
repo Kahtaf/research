@@ -1,0 +1,13 @@
+{
+  "baseline_tests": 46,
+  "lifecycle_regressions": 45,
+  "focused_tests": 14,
+  "focused_before_failures": 2,
+  "after_failures": 0,
+  "all_after_children_reaped": true,
+  "after_child_count": 204,
+  "scope": "one newline recovery framing correction; fresh review pending; no device/network",
+  "test_reader_adaptation": "two copied journal list comprehensions ignore empty framing lines only; nonempty malformed lines and all semantic assertions remain strict",
+  "retained_failed_qa": "Initial source fix passed14 focused and46 baseline;45 regressions had one old reader blank-line JSON error; first reader-edit count assertion failed before mutation and old regressions reran; all children reaped; logs retained.",
+  "limits": "Original finite CPU/wall/child limits and Darwin disclosures retained; no hard aggregate memory/affinity guarantee."
+}

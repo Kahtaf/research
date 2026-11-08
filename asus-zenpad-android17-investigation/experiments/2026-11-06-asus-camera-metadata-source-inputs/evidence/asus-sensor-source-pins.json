@@ -1,0 +1,27 @@
+{
+  "utc": "2026-11-06T22:39:24.131313+00:00",
+  "files": [
+    {
+      "path": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/imgsensor/src/mt8163/ov5670_mipi_raw/ov5670mipi_Sensor.c",
+      "bytes": 72751,
+      "sha256": "aad8723995f1e02d3202bd9b0d085eaeca98cd93829379c8550d69fd29cfd7fc"
+    },
+    {
+      "path": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/imgsensor/src/mt8163/ov5670_mipi_raw/ov5670mipi_Sensor.h",
+      "bytes": 5052,
+      "sha256": "b5ee4568eae2903d72cb99d13ddbfa57f9c100e7cebb0338f72219bad6cdba4a"
+    },
+    {
+      "path": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/imgsensor/src/mt8163/ov2680_mipi_raw/ov2680mipi_Sensor.c",
+      "bytes": 51737,
+      "sha256": "e0d768a30788e0027df9160c95024f9e4d418438915efb68f7c3263d896eabff"
+    },
+    {
+      "path": "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/imgsensor/src/mt8163/ov2680_mipi_raw/ov2680mipi_Sensor.h",
+      "bytes": 5019,
+      "sha256": "a40bfc5dfb8bf387bf9ffb91096a36cf80d45cbd2876df86074df93eeca88398"
+    }
+  ],
+  "source_facts_only": true,
+  "hardware_qualified": false
+}

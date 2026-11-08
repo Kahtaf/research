@@ -1,0 +1,10 @@
+{
+  "utc": "2026-11-07T06:07:45.885349+00:00",
+  "wifi_connected": true,
+  "persistence_enabled": false,
+  "image_writes": false,
+  "error_type": "RuntimeError",
+  "error": "ADB operation did not complete successfully",
+  "automatic_retry": false,
+  "attempt": "a8552ef2-a818-488a-a57a-a34cd9600dc7"
+}

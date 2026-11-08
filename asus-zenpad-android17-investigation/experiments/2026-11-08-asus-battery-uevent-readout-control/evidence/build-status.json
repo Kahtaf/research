@@ -1,0 +1,18 @@
+{
+  "status": "complete",
+  "kernel_builds": 1,
+  "helper_compiles": 0,
+  "kernel_command": [
+    "make",
+    "-C",
+    "/srv/android/asus-battery-uevent-readout-20261108-493581ca/kernel",
+    "O=/srv/android/asus-battery-uevent-readout-20261108-493581ca/out",
+    "ARCH=arm64",
+    "CROSS_COMPILE=aarch64-linux-gnu-",
+    "HOSTCC=gcc",
+    "HOSTCXX=g++",
+    "LOCALVERSION=-g717bb3c9e13c-dirty",
+    "-j8",
+    "Image.gz-dtb"
+  ]
+}

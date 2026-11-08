@@ -1,0 +1,21 @@
+{
+  "status": "READ_ONLY_REFERENCE_PINS",
+  "sources": {
+    "2026-11-06-asus-minimal-ram-usb-probe/source/init.c": "fa59fb09cb5b1d7201f84d9094ad2488647e2fde80f33b50a133c42724c092e0",
+    "2026-11-06-asus-minimal-ram-usb-probe/source/test_init.c": "c77fe3dafff97464b90c9a5b2a073766c68d7c8a6d3a3906e8815bc592c778a1",
+    "2026-11-06-asus-minimal-ram-usb-probe/source/bootformat.py": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017",
+    "2026-11-06-asus-minimal-ram-usb-probe/scripts/build.py": "07a1fb99f998c26c3f3e058c64a42b7e2c758180ca6e58721bf3e3a50698a6ae",
+    "2026-11-06-asus-minimal-ram-usb-probe/scripts/verify.py": "a68e2b19587ba6ecc8eadf758a56090ba1c9655c14d1cca79f90a3f44e7121cd",
+    "2026-11-06-asus-minimal-ram-usb-probe/scripts/local_driver.py": "bbd44eede3d755972dc68546e33a1c9c11202ee4e5df6ae1d85e5de21de4ebfe",
+    "2026-11-06-asus-full-boot-lk-contract/scripts/fdt.py": "1bd710a08eae5677689a52042a621f39dcd57e49197749cf2833eead1fc0dcae",
+    "2026-11-06-asus-full-boot-lk-contract/scripts/lk_contract.py": "34331d6eef8254e2b17b8464dc73997bd582826f6008bf2efd8a5561879b32d7",
+    "2026-11-06-asus-full-boot-lk-contract/scripts/boot_memory.py": "4efe28cf150856c86b7b851464b40ad9dd05fa0daaab6502694fa1083cf37575",
+    "2026-11-06-asus-linux49-r3-transport/source/reproduce.py": "29cef7d401d34c49ef562d0395958ac3c241b9b60d1debf4a78223df903a4a81",
+    "2026-11-06-asus-linux49-probe-initrd-fix/source/build.py": "4e54aaf22d75ebc6a2a8fe956e0bb60534c342d9ca94b2a216e78c4b4287207e",
+    "2026-11-06-asus-android17-build-continuation/probe/package.py": "20e835201a2abf35538a7fbd85ce99048a68159a338dc6e30b74c52b9fe834a8",
+    "2026-11-06-asus-android17-build-continuation/probe/init.rc": "632aac52bb002b89312f180145decd809b2139bbd3bd57209ab6b8f0a73ab106",
+    "2026-11-06-asus-stock-only-ram-rescue-build/scripts/remote.py": "d7246fe2ac1bb9a9ef73d1520703911dc782673432888f3aa2b1dce0197569cc",
+    "2026-11-06-asus-bmc156-full-kernel/artifacts/Image.gz-dtb": "e9cde06e85e752aec0433ea37fa926c31b4f7a72cd55453762ec6870e5bb5bf1",
+    "2026-11-06-asus-bmc156-full-kernel/artifacts/resolved.config": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2"
+  }
+}

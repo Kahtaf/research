@@ -1,0 +1,18 @@
+{
+  "arch/arm64/lib/delay.c": {
+    "before": "0da96215d269330ff97e542421ed95178f8d6085a3df9b58d791f11fe308dda5",
+    "after": "964b155f79a2d764a8f22955098b9573221b3a325fec2b71d81d03f7e35dcff4"
+  },
+  "include/linux/asus_retained_trace.h": {
+    "before": "ab1072598f740f6e529167931d270cb2f79f18eefa41b7a487030f4899dec982",
+    "after": "3ea8d22e66069543ab4073b7e9b2907fec85ff0a5fcdba0015ec9acb4d4c9a3e"
+  },
+  "arch/arm64/kernel/asus_entry_tag.h": {
+    "before": "a53c4e8680ec6463c6548a168d2edf47192b444eb899654b266ff84c924f2e1e",
+    "after": "ce826ab519da3d1ba5fcff83aa4254e80ae1cd9b77af1c0d24707be60e23ea8f"
+  },
+  "arch/arm64/kernel/asus_retained_trace.c": {
+    "before": "4e270ea5e201e4b3ced5e2f0c03169b6326e9e84d0c5a742df5139437a856bf8",
+    "after": "45627f898c09748318497ac5e4e3c8fb85e1aff539409034a120061137fef264"
+  }
+}

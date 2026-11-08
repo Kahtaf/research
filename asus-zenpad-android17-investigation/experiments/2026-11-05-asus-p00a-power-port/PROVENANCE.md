@@ -1,0 +1,17 @@
+# Power-port source and policy provenance
+
+- Linux 4.9.337 baseline: amazon-oss/android_kernel_amazon_mt8163 at dc63af1741072236efb511499f1f0b9dd281d694, plus the replay-verified build/ASUS patches from the preceding kernel bring-up. The source snapshot here uses APFS copy-on-write cloning; edits do not mutate that preceding spike.
+- ASUS normal-pad routing and upper operating limits: original GPL archive's drivers/misc/mediatek/power/mt8163/bq25896.c and charging_hw_bq25896.c, Z380M branches. Normal routing calls charger_set_gpio(0, 0, 1, 0); the function arguments are USB_BUS_on_NUM, Cover_BUS_on, Cover_BUS_off, and a Z300M-only fourth argument. PG_OTG_EN_SOC remains low; I2C_POWER_EN (GPIO85) is high and owned by the touch driver in this port.
+- Register encoding and device identification: [TI BQ25896 datasheet SLUSC76C, revision C](https://www.ti.com/lit/ds/symlink/bq25896.pdf), register tables 6–26. The new register interface uses Linux regmap, preserving unrelated register bits and propagating I/O errors.
+- Unit limits and thermal hysteresis: the actual ASUS board's battery DTS settings and the old Z380M charging branch. The software guard conservatively uses 0/50 C stop boundaries and 6/47 C restart boundaries; warm charge voltage also respects the original TS ADC threshold. Charging requests remain inhibited unless a future validated device-tree configuration explicitly permits them. OTG and powered covers are not implemented.
+- New command integration uses the 4.9 charging.h enum names; it does not reuse the old positional array.
+- Read-only stock observations are retained in evidence/stock-charger-readback.txt: ID register 0x06; normal GPIO routing 0,0,1; stock charge current field 0x1e, voltage field 0x20, and input field 0x08. This validates selected source assumptions, not the new driver's runtime behavior.
+
+The driver is new integration code. It does not include the original factory register-writing sysfs controls, cover state machine or old kernel type shims. Kernel build, boundary tests, actual ADC/NTC behavior, suspend, reset, power routing and recovery remain distinct acceptance gates.
+
+
+Board services: thermistor parameters/curve 6 and LP8557 register sequence come from the original ASUS GPL source. Live DT identifies GPIO85 touch power, GPIO43 backlight enable, AUXADC0, GPU address/interrupts, the usable RAM bank and reserved regions. The original ASUS defconfig enables CMA; the 4.9 dependency must be selected explicitly. The new code's hardware behavior has not been observed.
+
+GPU: the stock ELF is from this tablet's vendor partition; focused instruction excerpts retain the literal 10.2 request and legacy ioctl. Existing r20p0 code in the pinned Amazon source supplies its legacy dispatch and BASE_LEGACY_UK10_2_SUPPORT. The [Google Nest GPL mirror at 268e43036ceb1097d004fa09786438f2319a2a0e](https://nest-open-source.googlesource.com/manifest_repos/mali-driver/+/268e43036ceb1097d004fa09786438f2319a2a0e/midgard/r12p0/kernel/drivers/gpu/arm/midgard/) independently provides the older API definitions; only reference files were downloaded. No proprietary GPU library is executed on the host.
+
+Filesystem correction: 12 case-colliding file groups in the original source archive invalidate the case-insensitive Mac source as a complete source/build baseline. The Linux builder extracts the immutable archive and applies the patches afresh, preserving all filenames.

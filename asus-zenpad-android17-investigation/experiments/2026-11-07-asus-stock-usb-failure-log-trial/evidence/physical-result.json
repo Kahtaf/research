@@ -1,0 +1,18 @@
+{
+  "utc": "2026-11-07T19:58:32.192475+00:00",
+  "outcome": "stock_reporter_fails_configfs_UDC_bind_EBUSY",
+  "one_recovery_entry": true,
+  "normal_android_return_proven": true,
+  "boot_id": "69f79cc9-b122-472d-90c9-8cf401bac5e1",
+  "installed_p10_sha256": "a647247d220a0a33fc23ee125744847b836f20908539d9f150054aa20f1ce20d",
+  "retained_log_sha256": "eac943c09779e86653b6ed0a9ae5bd24fc46a9978107f38cd9c5f42e197954b8",
+  "first_failure": "[    2.128734]  (0)[1:init]ASUS-RAM-FAILLOG-20261107-R1 event=fail op=put.write path=/config/usb_gadget/g1/UDC errno=16",
+  "later_disable_failure_is_separate": true,
+  "runtime_owner": "android_usb",
+  "owner_receipt": "evidence/stock-udc-owner-root.json",
+  "legacy_attributes_receipt": "evidence/stock-legacy-usb-attributes.json",
+  "kernel_changed": false,
+  "normal_OS_partition_writes": false,
+  "linux49_same_failure_proven": false,
+  "next": "Use existing stock legacy android_usb mass_storage interface for a RAM-only stock reporter; no speculative4.9 kernel change."
+}

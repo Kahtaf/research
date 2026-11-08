@@ -1,0 +1,53 @@
+--- frozen/decode_boundary.py
++++ diagnostic/decode_boundary.py
+@@ -3,6 +3,8 @@
+ import argparse,json,re
+ R=Path(__file__).resolve().parents[1]
+ I=json.loads((R/'evidence/identity.json').read_text())
++BUEV='ASUS49-BUEV run='+I['kernel_uuid']+' v=1 '
++SKIP=re.compile(re.escape(BUEV)+r'SKIP first=(0|[1-9][0-9]{0,9}) before=(0|[1-9][0-9]{0,9}) after=(0|[1-9][0-9]{0,9}) same_task=1 uevent_rc=(0|-?[1-9][0-9]{0,9})')
+ PWRAP='ASUS49-PWRAP run='+I['kernel_uuid']+' v=1 '
+ BUDGET=re.compile(re.escape(PWRAP)+r'EXHAUST start=(0|[1-9][0-9]{0,19}) last=(0|[1-9][0-9]{0,19}) iterations=16777216 wait=([012]) ready=([01]) rc=(0|-110)')
+ PREFIX='ASUS49-KMSG run='+I['kernel_uuid']+' v=1 '
+@@ -18,8 +20,9 @@
+  p=json.loads((R/'evidence/packaging-receipt.json').read_text())
+  bound=installed_full_sha256==p['full_p10']['sha256'] and bool(fresh_boot_reference and fresh_boot_reference.strip() and complete_console_reference and complete_console_reference.strip())
+  result=dict(status='UNKNOWN_STOP',integrity='UNKNOWN',physical_binding=dict(exact_full_p10=installed_full_sha256==p['full_p10']['sha256'],fresh_stock_boot_reference=fresh_boot_reference,complete_console_reference=complete_console_reference,parent_attestations_only=True),calibration=dict(initial_clock_begin='UNKNOWN',initial_clock='UNKNOWN',normal_policy='UNKNOWN',frozen_control='UNKNOWN'),observed_boundaries=[],signal_handler_writes=[],limit=LIMIT)
+- pairs=[];active=None;nextseq=1;errors=[];mode=False;alarm_count=0;budget_records=[]
++ pairs=[];active=None;nextseq=1;errors=[];mode=False;alarm_count=0;budget_records=[];skip_records=[]
+  result['pwrap_backstop']=dict(status='NOT_OBSERVED_UNKNOWN',records=budget_records,limit='Only captured samples; iterations are not elapsed time. Missing or undrained record cannot exclude poll/counter/read/delay nonprogress. Exhaustion plus later sustained normal progress supports this intervention, not hardware cause.')
++ result['battery_uevent_omission']=dict(status='NOT_OBSERVED_UNKNOWN',records=skip_records,limit='Only a record correlated to the armed worker call establishes omission plus kobject return. Missing/stale/refused/undrained remains UNKNOWN; other AUXADC readers are preserved.')
+  def fail(s):
+   if s not in errors:errors.append(s)
+  if installed_full_sha256 is not None and installed_full_sha256!=p['full_p10']['sha256']:fail('wrong installed full-p10 binding')
+@@ -32,6 +35,16 @@
+   if line.startswith('ASUS49-MODE'):
+    if line!=I['mode'] or active is not None:fail('wrong mode/order')
+    mode=line==I['mode'];continue
++  if 'ASUS49-BUEV' in line:
++   m=SKIP.fullmatch(line)
++   if not m or not mode or skip_records:
++    fail('unknown/stale/malformed/duplicate battery omission record');continue
++   first,before,after,rc=map(int,m.groups())
++   if not 0<=before<first<=after<=2**32-1 or not -(2**31)<=rc<=2**31-1:
++    fail('battery omission count/correlation/return range mismatch');continue
++   skip_records.append(dict(line=pos,first_scoped_omission=first,before_call=before,after_return=after,omissions_in_interval=after-before,same_task=True,actual_kobject_call_returned=True,kobject_uevent_rc=rc,battery_property_getters_omitted=True))
++   result['battery_uevent_omission']['status']='OMISSION_AND_KOBJECT_RETURN_CAPTURED'
++   continue
+   if 'ASUS49-PWRAP' in line:
+    m=BUDGET.fullmatch(line)
+    if not m or not mode or budget_records:
+@@ -103,7 +116,13 @@
+  if completion and (len(completion)!=1 or completion[0][1]['rc']!=0 or completion[0][1]['errno']!=0 or completion[0][1]['value']!='control='+I['control_uuid']+' iterations=2000000 checksum=e4ca7075 reason=compute-cap'):fail('stale/malformed final completion')
+  if rows('runnable.progress') or rows('clock_gettime.final') or any(e.get('op','').startswith(('sched.boost','sched.restore')) for _,e in events):fail('prior helper variant facts')
+  if active:fail('incomplete final write; missing boundary UNKNOWN')
++ # Execution observations are separate from omission and from C/syscall return.
++ def facts(predicate):
++  return [dict(seq=w['seq'],phase=e.get('phase'),stage=e.get('stage'),op=e.get('op'),path=e.get('path'),rc=e.get('rc'),errno=e.get('errno'),value=e.get('value'),WRET_before_C_return='return_line' in w) for w,e in events if predicate(e)]
++ result['execution_facts']=dict(compute_completion=facts(lambda e:e.get('op')=='runnable.loop'),afterIRQ=facts(lambda e:e.get('phase')=='after' and e.get('op','').startswith('interrupts.')),alarm_handler_count=alarm_count,finish=facts(lambda e:e.get('phase')=='finish'),limit='Fast 2M completion is not 30-second stability. Alarm can remain unfired before normal finish. WRET remains pre-C-return; absence exonerates neither execution nor reporting. Positive skip plus compute/afterIRQ supports workload dependence, not a unique mechanism; a negative with skip weakens this trigger only.')
+  result['errors']=errors
++ if errors:
++  result['battery_uevent_omission']['status']='INVALID_CONSOLE_UNKNOWN'
+  if not errors:result['integrity']='OBSERVED_RECORD_ORDER_VALID_NO_VISIBLE_GAP'
+  allcal=all(v!='UNKNOWN' for v in result['calibration'].values())
+  if not errors and allcal and bound:result['status']='CALIBRATED_BOUNDARY_FACTS_STOP'

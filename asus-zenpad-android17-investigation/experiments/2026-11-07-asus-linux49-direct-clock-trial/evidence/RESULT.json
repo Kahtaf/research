@@ -1,0 +1,38 @@
+{
+  "at": "2026-11-08T02:31:02.569991+00:00",
+  "helper_uuid": "f0c3c82c-d639-4d8a-90f2-155fd4224ceb",
+  "record_count": 101,
+  "last_record": "ASUS49-SYSCLOCK run=f0c3c82c-d639-4d8a-90f2-155fd4224ceb phase=observe stage=end op=clock_gettime path=loop.initial rc=0 errno=0 value=0.674857768",
+  "complete_log_bytes": 45289,
+  "complete_log_sha256": "bafff5b9105bcf8ac90834403f6adfe8dc35191485a3e40ee60b5b3d352d55cd",
+  "stock_return_verified": true,
+  "new_stock_boot_id": "e2c600f7-65d5-4451-89a4-eec71bd1fe42",
+  "OS_partitions_changed": false,
+  "outcome": "DIRECT_CLOCK_SYSCALL_REPRODUCES_UNFINISHED_LOOP",
+  "explicit_kernel_syscall_path_observed": true,
+  "loop_completed": false,
+  "after_snapshot_observed": false,
+  "alarm_handler_observed": false,
+  "initial_monotonic": "0.674857768",
+  "accepted_before_timer_counts": [
+    {
+      "hardware_irq": 29,
+      "cpu_counts": [
+        0,
+        0
+      ]
+    },
+    {
+      "hardware_irq": 30,
+      "cpu_counts": [
+        184,
+        23
+      ]
+    }
+  ],
+  "observed_online_cpu_columns": 2,
+  "maxcpus1_did_not_keep_only_one_cpu_online": true,
+  "first_counter_read_returned": true,
+  "counter_progress_after_first_read": "UNKNOWN",
+  "interpretation": "vDSO/user clock fast path is unnecessary to reproduce. Initial timer servicing exists on two online CPUs. Missing loop completion does not identify exact stopping iteration or kernel cause."
+}

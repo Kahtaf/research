@@ -1,0 +1,26 @@
+{
+  "full_log_remote": "/srv/android/asus-early-uart-disabled-kernel-20261107/evidence/Image.gz-dtb.log",
+  "full_log_bytes": 151115,
+  "full_log_sha256": "4a93b81cc4e364aa5f41cfe67d048a6dcba2b5bc477b263ecdf7f306c3ce2b63",
+  "warning_count": 24,
+  "error_count": 0,
+  "tail": [
+    "aarch64-linux-gnu-ld: warning: .tmp_vmlinux1 has a LOAD segment with RWX permissions",
+    "  KSYM    .tmp_kallsyms1.o",
+    "aarch64-linux-gnu-ld: warning: -z norelro ignored",
+    "aarch64-linux-gnu-ld: warning: .tmp_vmlinux2 has a LOAD segment with RWX permissions",
+    "  KSYM    .tmp_kallsyms2.o",
+    "  LD      vmlinux",
+    "aarch64-linux-gnu-ld: warning: -z norelro ignored",
+    "aarch64-linux-gnu-ld: warning: vmlinux has a LOAD segment with RWX permissions",
+    "  SORTEX  vmlinux",
+    "  SYSMAP  System.map",
+    "  OBJCOPY arch/arm64/boot/Image",
+    "  DTC     arch/arm64/boot/dts/mediatek/asus-p00a.dtb",
+    "  GZIP    arch/arm64/boot/Image.gz",
+    "  CAT     arch/arm64/boot/Image.gz-dtb",
+    "make[1]: Leaving directory '/srv/android/asus-early-uart-disabled-kernel-20261107/out'",
+    "make: Leaving directory '/srv/android/asus-early-uart-disabled-kernel-20261107/kernel'"
+  ],
+  "compile_exit": 0
+}

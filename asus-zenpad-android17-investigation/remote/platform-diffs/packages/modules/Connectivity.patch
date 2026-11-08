@@ -1,0 +1,314 @@
+diff --git a/bpf/loader/NetBpfLoad.cpp b/bpf/loader/NetBpfLoad.cpp
+index 7ba3247..13cb83f 100644
+--- a/bpf/loader/NetBpfLoad.cpp
++++ b/bpf/loader/NetBpfLoad.cpp
+@@ -67,6 +67,7 @@
+ #include "bpf_map_def.h"
+ 
+ using android::base::borrowed_fd;
++using android::base::GetBoolProperty;
+ using android::base::GetIntProperty;
+ using android::base::GetProperty;
+ using android::base::InitLogging;
+@@ -396,7 +397,8 @@ static bool mapMatchesExpectations(const unique_fd& fd,
+     // This is because the primary failure mode we're trying to detect here
+     // is either a source code misconfiguration (which is likely kernel independent)
+     // or a newly introduced kernel feature/bug (which is unlikely to get backported to 4.9).
+-    if (!isAtLeastKernelVersion(4, 14)) return true;
++    if (!isAtLeastKernelVersion(4, 14) &&
++        !GetBoolProperty("ro.bpf.allow_legacy_kernel", false)) return true;
+ 
+     // Assuming fd is a valid Bpf Map file descriptor then
+     // all the following should always succeed on a 4.14+ kernel.
+@@ -673,6 +675,9 @@ static bool isBtfSupported(enum bpf_map_type type) {
+ // Note: We cannot reopen this BPF map later because of sepolicy limitations.
+ static unique_fd bpfKernelStatsMapFd;
+ 
++// The opt-in legacy product uses the ELF loader and qualified kernel backports.
++static bool gLegacyKernel = false;
++
+ static int pinMap(const borrowed_fd& fd, const struct bpf_map_def& mapDef) {
+         int ret;
+         if (mapDef.create_location[0]) {
+@@ -735,6 +740,8 @@ static int pinMap(const borrowed_fd& fd, const struct bpf_map_def& mapDef) {
+ }
+ 
+ static bool isMapTypeSupported(enum bpf_map_type type) {
++    // The opt-in 4.9 product carries an actual LPM trie backport.
++    if (gLegacyKernel && type == BPF_MAP_TYPE_LPM_TRIE) return true;
+     if (type == BPF_MAP_TYPE_LPM_TRIE && !isAtLeastKernelVersion(4, 14)) {
+         // On Linux Kernels older than 4.14 this map type doesn't exist - autoskip.
+         return false;
+@@ -763,6 +770,12 @@ static enum bpf_map_type sanitizeMapType(enum bpf_map_type type) {
+         // programs as being 5.4+...
+         return  BPF_MAP_TYPE_HASH;
+     }
++    if (type == BPF_MAP_TYPE_LRU_HASH && !isAtLeastKernelVersion(4, 10)) {
++        // These two caches only feed 5.10+ ring-buffer reporting/loopback
++        // programs, disabled on this legacy branch. Preserve their userspace
++        // handles; no active legacy policy relies on HASH eviction semantics.
++        return BPF_MAP_TYPE_HASH;
++    }
+     // No sanitization is required.
+     return type;
+ }
+@@ -1348,20 +1361,26 @@ static bool loadObject(const char* const progPath, const bool useLibbpf = true)
+ #define APEXROOT "/apex/com.android.tethering"
+ #define BPFROOT APEXROOT "/etc/bpf/mainline/"
+ 
++static bool loadRequiredObject(const char* const progPath, const bool useLibbpf = true) {
++    // libbpf can't load objects on legacy kernels; the ELF loader skips
++    // programs outside the kernel's range instead.
++    return loadObject(progPath, gLegacyKernel ? false : useLibbpf);
++}
++
+ static bool loadAllObjects() {
+     // Enable on kernels that have the BPF CFI backports, see: b/488034908
+     // b/494690861: funcs may trigger Real-time Kernel Protection (RKP)
+     bool funcs = isAtLeast26Q2 && isAtLeastKernelVersion(6, 6, 118);
+ 
+-    if (!loadObject(BPFROOT "offload.o", /*libbpf*/false)) return false;
+-    if (!loadObject(BPFROOT "test.o")) return false;
+-    if (!loadObject(BPFROOT "clatd.o")) return false;
++    if (!loadRequiredObject(BPFROOT "offload.o", /*libbpf*/false)) return false;
++    if (!loadRequiredObject(BPFROOT "test.o")) return false;
++    if (!loadRequiredObject(BPFROOT "clatd.o")) return false;
+     if (funcs) {
+-        if (!loadObject(BPFROOT "dscpPolicy@funcs.o")) return false;
+-        if (!loadObject(BPFROOT "netd@funcs.o")) return false;
++        if (!loadRequiredObject(BPFROOT "dscpPolicy@funcs.o")) return false;
++        if (!loadRequiredObject(BPFROOT "netd@funcs.o")) return false;
+     } else {
+-        if (!loadObject(BPFROOT "dscpPolicy.o")) return false;
+-        if (!loadObject(BPFROOT "netd.o")) return false;
++        if (!loadRequiredObject(BPFROOT "dscpPolicy.o")) return false;
++        if (!loadRequiredObject(BPFROOT "netd.o")) return false;
+     }
+     return true;
+ }
+@@ -1514,6 +1533,14 @@ static int doLoad(char** argv, char * const envp[]) {
+ 
+     const bool runningAsRoot = !getuid();  // true iff U QPR3 or V+
+ 
++    // Opt-in for legacy devices stuck on a 4.9 kernel (e.g. MT6765 with a
++    // prebuilt vendor): skip the minimum-kernel gates and the 4.14+ only
++    // sanity checks below. Programs and maps still load based on the real
++    // kernel version, so 4.14+ ones are skipped and eBPF features degrade.
++    const bool legacyKernel = !isAtLeastKernelVersion(4, 14) &&
++            GetBoolProperty("ro.bpf.allow_legacy_kernel", false);
++    if (legacyKernel) ALOGW("ro.bpf.allow_legacy_kernel set: running on a pre-4.14 kernel.");
++
+     const int first_api_level = GetIntProperty("ro.board.first_api_level", api_level_full / 100);
+ 
+     // last in U QPR2 beta1
+@@ -1554,34 +1581,34 @@ static int doLoad(char** argv, char * const envp[]) {
+     }
+ 
+     // U bumps the kernel requirement up to 4.14
+-    if (isAtLeastU && !isAtLeastKernelVersion(4, 14)) {
++    if (!legacyKernel && isAtLeastU && !isAtLeastKernelVersion(4, 14)) {
+         ALOGE("Android U requires kernel 4.14.");
+         return 4;
+     }
+ 
+     // V bumps the kernel requirement up to 4.19
+     // see also: //system/netd/tests/kernel_test.cpp TestKernel419
+-    if (isAtLeastV && !isAtLeastKernelVersion(4, 19)) {
++    if (!legacyKernel && isAtLeastV && !isAtLeastKernelVersion(4, 19)) {
+         ALOGE("Android V requires kernel 4.19.");
+         return 5;
+     }
+ 
+     // 25Q2 bumps the kernel requirement up to 5.4
+     // see also: //system/netd/tests/kernel_test.cpp TestKernel54
+-    if (isAtLeast25Q2 && !isAtLeastKernelVersion(5, 4)) {
++    if (!legacyKernel && isAtLeast25Q2 && !isAtLeastKernelVersion(5, 4)) {
+         ALOGE("Android 25Q2 requires kernel 5.4.");
+         return 6;
+     }
+ 
+     // 25Q4 bumps the kernel requirement up to 5.10
+     // see also: //system/netd/tests/kernel_test.cpp TestKernel510
+-    if (isAtLeast25Q4 && !isAtLeastKernelVersion(5, 10)) {
++    if (!legacyKernel && isAtLeast25Q4 && !isAtLeastKernelVersion(5, 10)) {
+         ALOGE("Android 25Q4 requires kernel 5.10.");
+         return 7;
+     }
+ 
+     // 26Q4 bumps the kernel requirement up to 5.15
+-    if (isAtLeast26Q4 && !isAtLeastKernelVersion(5, 15)) {
++    if (!legacyKernel && isAtLeast26Q4 && !isAtLeastKernelVersion(5, 15)) {
+         ALOGE("Android 26Q4 requires kernel 5.15.");
+         return 7;
+     }
+@@ -1754,12 +1781,12 @@ static int doLoad(char** argv, char * const envp[]) {
+         //  kernel does not have CONFIG_BPF_JIT=y)
+         // BPF_JIT is required by R VINTF (which means 4.14/4.19/5.4 kernels),
+         // but 4.14/4.19 were released with P & Q, and only 5.4 is new in R+.
+-        if (!writeFile("/proc/sys/net/core/bpf_jit_enable", "1\n")) return 24;
++        if (!writeFile("/proc/sys/net/core/bpf_jit_enable", "1\n") && !legacyKernel) return 24;
+ 
+         // Enable JIT kallsyms export for privileged users only
+         // (Note: this (open) will fail with ENOENT 'No such file or directory' if
+         //  kernel does not have CONFIG_HAVE_EBPF_JIT=y)
+-        if (!writeFile("/proc/sys/net/core/bpf_jit_kallsyms", "1\n")) return 25;
++        if (!writeFile("/proc/sys/net/core/bpf_jit_kallsyms", "1\n") && !legacyKernel) return 25;
+     }
+ 
+     // Create all the pin subdirectories
+@@ -1779,7 +1806,7 @@ static int doLoad(char** argv, char * const envp[]) {
+         if (!createDir("/sys/fs/bpf/loader")) return 31;
+     }
+ 
+-    if (runningAsRoot) {  // implies U QPR3+ and kernel 4.14+
++    if (runningAsRoot && !legacyKernel) {  // implies U QPR3+ and kernel 4.14+
+         // There should not be any programs or maps yet
+         errno = 0;
+         uint32_t progId = bpfGetNextProgId(0);  // expect 0 with errno == ENOENT
+@@ -1831,6 +1858,7 @@ static int doLoad(char** argv, char * const envp[]) {
+ 
+     auto start = steady_clock::now();
+     // Load all ELF objects, create programs and maps, and pin them
++    gLegacyKernel = legacyKernel;
+     if (!loadAllObjects()) {
+         ALOGE("=== CRITICAL FAILURE LOADING BPF PROGRAMS ===");
+         ALOGE("If this triggers reliably, you're probably missing kernel options or patches.");
+@@ -1844,7 +1872,9 @@ static int doLoad(char** argv, char * const envp[]) {
+     auto end = steady_clock::now();
+     auto timeTaken = duration_cast<milliseconds>(end - start).count();
+     ALOGD("Loaded total objects took %lld ms", timeTaken);
+-    {
++    if (legacyKernel && !bpfKernelStatsMapFd.ok()) {
++        ALOGE("legacy kernel: kernel stats map unavailable, skipping load-time stats");
++    } else {
+         uint32_t key = BPF_KERNEL_STATS_MAP_KEY_TOTAL_OBJS_LOAD_TIME_MS;
+         if (writeToMapEntry(bpfKernelStatsMapFd, &key, &timeTaken, BPF_ANY)) {
+             ALOGE("Failed to write object load time to kernel stats map, err: [%d, %s]",
+diff --git a/bpf/netd/BpfHandler.cpp b/bpf/netd/BpfHandler.cpp
+index 9b57548..88f1b7c 100644
+--- a/bpf/netd/BpfHandler.cpp
++++ b/bpf/netd/BpfHandler.cpp
+@@ -21,6 +21,7 @@
+ #include <linux/bpf.h>
+ #include <inttypes.h>
+ 
++#include <android-base/properties.h>
+ #include <android-base/result.h>
+ #include <android-base/unique_fd.h>
+ #include <bpf/WaitForProgsLoaded.h>
+@@ -119,8 +120,13 @@ static Result<void> initPrograms(const char* cg2_path) {
+         return Error() << "kernel version < 4.9.0 is unsupported";
+     }
+ 
++    // Local: legacy 4.9 devices opt in via the same prop as NetBpfLoad.
++    const bool legacyKernel = !isAtLeastKernelVersion(4, 14) &&
++            android::base::GetBoolProperty("ro.bpf.allow_legacy_kernel", false);
++    if (legacyKernel) ALOGW("ro.bpf.allow_legacy_kernel set: running on a pre-4.14 kernel.");
++
+     // U bumps the kernel requirement up to 4.14
+-    if (isAtLeastU && !isAtLeastKernelVersion(4, 14)) {
++    if (!legacyKernel && isAtLeastU && !isAtLeastKernelVersion(4, 14)) {
+         return Error() << "U+ platform with kernel version < 4.14.0 is unsupported";
+     }
+ 
+@@ -130,12 +136,12 @@ static Result<void> initPrograms(const char* cg2_path) {
+     }
+ 
+     // V bumps the kernel requirement up to 4.19
+-    if (isAtLeastV && !isAtLeastKernelVersion(4, 19)) {
++    if (!legacyKernel && isAtLeastV && !isAtLeastKernelVersion(4, 19)) {
+         return Error() << "V+ platform with kernel version < 4.19.0 is unsupported";
+     }
+ 
+     // 25Q2 bumps the kernel requirement up to 5.4
+-    if (isAtLeast25Q2 && !isAtLeastKernelVersion(5, 4)) {
++    if (!legacyKernel && isAtLeast25Q2 && !isAtLeastKernelVersion(5, 4)) {
+         return Error() << "25Q2+ platform with kernel version < 5.4.0 is unsupported";
+     }
+ 
+@@ -146,6 +152,7 @@ static Result<void> initPrograms(const char* cg2_path) {
+     RETURN_IF_NOT_OK(checkProgramAccessible(XT_BPF_DENYLIST_PROG_PATH));
+     RETURN_IF_NOT_OK(checkProgramAccessible(XT_BPF_EGRESS_PROG_PATH));
+     RETURN_IF_NOT_OK(checkProgramAccessible(XT_BPF_INGRESS_PROG_PATH));
++    // These programs enforce UID firewall and VPN ingress policy as well as accounting.
+     RETURN_IF_NOT_OK(attachProgramToCgroup(BPF_EGRESS_PROG_PATH, cg_fd, BPF_CGROUP_INET_EGRESS));
+     RETURN_IF_NOT_OK(attachProgramToCgroup(BPF_INGRESS_PROG_PATH, cg_fd, BPF_CGROUP_INET_INGRESS));
+ 
+diff --git a/bpf/progs/netd.c b/bpf/progs/netd.c
+index e4cd7c9..e1f699c 100644
+--- a/bpf/progs/netd.c
++++ b/bpf/progs/netd.c
+@@ -290,7 +290,8 @@ function long bpf_skb_load_bytes_net(const struct __sk_buff* const skb,
+     //
+     // For similar reasons this will fail with non-offloaded VLAN tags on < 4.19 kernels,
+     // since those extend the ethernet header from 14 to 18 bytes.
+-    return KVER_IS_AT_LEAST(kver, 4, 19)
++    // The opt-in 4.9 product carries helper 68 with the upstream semantics.
++    return (KVER_IS_AT_LEAST(kver, 4, 19) || !KVER_IS_AT_LEAST(kver, 4, 14))
+         ? bpf_skb_load_bytes_relative(skb, L3_off, to, len, BPF_HDR_START_NET)
+         : bpf_skb_load_bytes(skb, L3_off, to, len);
+ }
+@@ -766,7 +767,7 @@ function bool ingress_should_discard(const SkbIpPacketData* const packet,
+     // Require 4.19, since earlier kernels don't have bpf_skb_load_bytes_relative() which
+     // provides relative to L3 header reads.  Without that we could fetch the wrong bytes.
+     // Additionally earlier bpf verifiers are much harder to please.
+-    if (!KVER_IS_AT_LEAST(kver, 4, 19)) return false;
++    if (KVER_IS_AT_LEAST(kver, 4, 14) && !KVER_IS_AT_LEAST(kver, 4, 19)) return false;
+ 
+     if (packet->ip_version == 0) return false;
+ 
+@@ -1031,6 +1032,13 @@ DEFINE_NETD_BPF_PROG_RANGES(ingress, stats, 4_9, 4_19, T, V)
+     return bpf_traffic_account(skb, INGRESS, KVER_4_9, API(T));
+ }
+ 
++// Local legacy path: retain UID firewall, VPN ingress filtering and accounting.
++// This branch requires the relative-load helper and LPM trie backports.
++DEFINE_NETD_BPF_PROG_RANGES(ingress, stats, 4_9, 4_14, V, MAXAPI)
++(struct __sk_buff* skb) {
++    return bpf_traffic_account(skb, INGRESS, KVER_4_9, API(25Q2));
++}
++
+ // ----- egress/stats -----
+ 
+ // Android 26Q2+ 6.1+ (full featured)
+@@ -1089,6 +1097,13 @@ DEFINE_NETD_BPF_PROG_RANGES(egress, stats, 4_9, 4_19, T, V)
+ 
+ // -----
+ 
++// Local legacy path: retain UID firewall, VPN ingress filtering and accounting.
++// This branch requires the relative-load helper and LPM trie backports.
++DEFINE_NETD_BPF_PROG_RANGES(egress, stats, 4_9, 4_14, V, MAXAPI)
++(struct __sk_buff* skb) {
++    return bpf_traffic_account(skb, EGRESS, KVER_4_9, API(25Q2));
++}
++
+ // WARNING: Android T's non-updatable netd depends on the name of this program.
+ DEFINE_XTBPF_PROG(skfilter, egress_xtbpf)
+ (struct __sk_buff* skb) {
+diff --git a/service/src/com/android/server/ConnectivityService.java b/service/src/com/android/server/ConnectivityService.java
+index 7682d50..3dcc919 100644
+--- a/service/src/com/android/server/ConnectivityService.java
++++ b/service/src/com/android/server/ConnectivityService.java
+@@ -2655,7 +2655,10 @@ public class ConnectivityService extends IConnectivityManager.Stub
+                 ? mDeps.makeMultiProxyTracker(mContext, mHandler)
+                 : mDeps.makeProxyTracker(mContext, mHandler);
+ 
+-        if (mDeps.isAtLeastB()) {
++        // Local: legacy (<5.8) kernels have no ringbuf maps, and opening the
++        // missing local_net_note_op ringbuf aborts natively - skip the listener.
++        if (mDeps.isAtLeastB() && new java.io.File(
++                "/sys/fs/bpf/netd_shared/map_netd_local_net_note_op_ringbuf").exists()) {
+             mLocalNetEventListener = mDeps.getLocalNetEventListener(
+                     mContext,
+                     mHandler.getLooper(),
+@@ -5082,7 +5085,9 @@ public class ConnectivityService extends IConnectivityManager.Stub
+             mSatisfiedByLocalNetworkMetrics.start();
+         }
+ 
+-        if (mBpfNetMaps.isLoopbackAccessMetricsEnabled()) {
++        // Local: needs the loopback_access ringbuf, which legacy (<5.8) kernels don't have.
++        if (mBpfNetMaps.isLoopbackAccessMetricsEnabled() && new java.io.File(
++                "/sys/fs/bpf/netd_shared/map_netd_loopback_access_ringbuf").exists()) {
+             BpfEventPoller.nativeInitLoopbackEventConsumer();
+         }
+ 

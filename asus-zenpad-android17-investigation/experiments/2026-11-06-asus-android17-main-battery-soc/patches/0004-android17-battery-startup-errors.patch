@@ -1,0 +1,46 @@
+diff --git a/services/core/java/com/android/server/BatteryService.java b/services/core/java/com/android/server/BatteryService.java
+index 0256c33cee64e3a94c85e154de9334ae05b95237..f76daeec405e2076321061b814858362e93cfdd8 100644
+--- a/services/core/java/com/android/server/BatteryService.java
++++ b/services/core/java/com/android/server/BatteryService.java
+@@ -570,9 +570,15 @@ public final class BatteryService extends SystemService {
+         // existing service in a near future. Wait for this.update() to instantiate
+         // the initial mHealthInfo.
+         long beforeWait = SystemClock.uptimeMillis();
+-        if (mHealthInfo == null) {
+-            Slog.i(TAG, "health: Waited " + (SystemClock.uptimeMillis() - beforeWait)
+-                    + "ms for callbacks. Waiting another " + HEALTH_HAL_WAIT_MS + " ms...");
++        while (true) {
++            synchronized (mLock) {
++                if (mHealthInfo != null) {
++                    break;
++                }
++            }
++            Slog.w(TAG, "health: No valid initial battery sample after "
++                    + (SystemClock.uptimeMillis() - beforeWait)
++                    + "ms; waiting another " + HEALTH_HAL_WAIT_MS + " ms");
+             mConditionVariable.block(HEALTH_HAL_WAIT_MS);
+         }
+ 
+diff --git a/services/core/java/com/android/server/health/HealthRegCallbackAidl.java b/services/core/java/com/android/server/health/HealthRegCallbackAidl.java
+index 90a2f480643de986b49b505dfc88c181c1b83193..9a554e839fc8c41bcb37037b5458928e7834cfa4 100644
+--- a/services/core/java/com/android/server/health/HealthRegCallbackAidl.java
++++ b/services/core/java/com/android/server/health/HealthRegCallbackAidl.java
+@@ -22,6 +22,7 @@ import android.hardware.health.HealthInfo;
+ import android.hardware.health.IHealth;
+ import android.hardware.health.IHealthInfoCallback;
+ import android.os.RemoteException;
++import android.os.ServiceSpecificException;
+ import android.os.Trace;
+ import android.util.Slog;
+ 
+@@ -105,7 +106,9 @@ public class HealthRegCallbackAidl {
+         // manual update here.
+         try {
+             newService.update();
+-        } catch (RemoteException e) {
++        } catch (RemoteException | ServiceSpecificException e) {
++            // Registration remains active. The HAL loop retries and sends the
++            // first valid sample when the measurement/model recovers.
+             Slog.e(TAG, "health: cannot update after registering health info callback", e);
+         }
+     }

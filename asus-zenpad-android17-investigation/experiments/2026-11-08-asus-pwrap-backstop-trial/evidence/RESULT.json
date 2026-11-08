@@ -1,0 +1,48 @@
+{
+  "status": "ONE_BACKSTOP_TRIAL_NO_PROGRESS_NO_EXHAUSTION_RECORD_OBSERVED",
+  "candidate_p10_sha256": "00f163a6a2500ec61b286be7bc6a3fa70f5bb707f2c554a217757649e1f4410e",
+  "normal_android_return_proven": true,
+  "one_recovery_dispatch": true,
+  "fresh_mode": [
+    "ASUS49-MODE run=09abbded-4301-486b-8945-b8748248f2d2 profile=pwrap-finite-v1 format=1 poll_budget=16777216 pid1_write_budget=768 hot=disabled ordinary_printk=filtered delay=original-virtual"
+  ],
+  "console": {
+    "bytes": 19307,
+    "sha256": "a97ce5f248b071536eb40102b8f58a672ee048b137b7e7965459918b25345304"
+  },
+  "calibration": {
+    "initial_clock_begin": "TRIPLE_OBSERVED",
+    "initial_clock": "TRIPLE_OBSERVED",
+    "normal_policy": "TRIPLE_OBSERVED_POLICY0_PRIORITY0",
+    "frozen_control": "TRIPLE_OBSERVED_REUSED_HELPER_CONTROL"
+  },
+  "paired_writes": 100,
+  "last_boundary": {
+    "seq": 100,
+    "input_length": 176,
+    "WENT": true,
+    "LOG": true,
+    "WRET": true,
+    "rc": 176,
+    "later_PID1_write_entry": null,
+    "signal_handler": "MAIN_FLOW_LOG",
+    "span": "WRET_REACHED_BEFORE_C_RETURN",
+    "helper_LOG": "ASUS49-SYSCLOCK run=ef56ad88-6904-4452-90a1-3744beaa3c78 phase=observe stage=actual op=sched.original path=pid0 rc=0 errno=0 value=getparam_rc=0 getparam_errno=0 priority=0"
+  },
+  "pwrap_backstop": {
+    "status": "NOT_OBSERVED_UNKNOWN",
+    "records": [],
+    "limit": "Only captured samples; iterations are not elapsed time. Missing or undrained record cannot exclude poll/counter/read/delay nonprogress. Exhaustion plus later sustained normal progress supports this intervention, not hardware cause."
+  },
+  "parser_status": "UNKNOWN_STOP",
+  "parser_errors": [
+    "fresh exact entry must be first console line"
+  ],
+  "interpretation": "No intervention benefit observed in this exposure. Absence of exhaustion cannot exclude a stuck/undrained poll, counter/MMIO read, delay, lock or publication. No retuning/repeat follows.",
+  "limits": [
+    "WRET before Creturn, not userresumption.",
+    "Strict decoder flags unchanged OEMproc framing; originalraw/refusal preserved, observedfacts separately bound.",
+    "No2M/afterIRQ/alarm or storageadvance.",
+    "BOOT/SYSTEM/DATA unchanged; recoveryonly."
+  ]
+}

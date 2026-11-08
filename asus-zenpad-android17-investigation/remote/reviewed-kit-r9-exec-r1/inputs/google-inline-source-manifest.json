@@ -1,0 +1,1133 @@
+{
+  "adaptations": [
+    "libjni_latinimegoogle compile_multilib=64",
+    "remove tangorpro-only VelvetTitan module/genrule/product conditional",
+    "add guarded ASUS product inheritance wrapper"
+  ],
+  "commit": "822ff6a805533792ae43a9c3f2a159222da22a6f",
+  "excluded_upstream_blobs": [
+    "arm64/proprietary/product/priv-app/VelvetTitan/VelvetTitan.apk.00",
+    "arm64/proprietary/product/priv-app/VelvetTitan/VelvetTitan.apk.01",
+    "arm64/proprietary/product/priv-app/VelvetTitan/VelvetTitan.apk.02",
+    "arm64/proprietary/product/priv-app/VelvetTitan/VelvetTitan.apk.03"
+  ],
+  "metadata_inputs": {
+    ".gitignore": {
+      "git_blob_sha1": "2e6b9f437fd53fd5c2790b929701a40c13d54869",
+      "mode": "100644",
+      "sha256": "6d5d84bd0ea0f081da0a95e81864b1508ff8ed098ee91d393ca0bbd532e0b619",
+      "size": 102,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/.gitignore"
+    },
+    "LICENSE": {
+      "git_blob_sha1": "62bff6eb027c8338bc4d4d7aac7e617bee42490e",
+      "mode": "100644",
+      "sha256": "592e23dd570d1ecaab3029611ec998a8fbc05db41082b5d60c66ea4fb44fee91",
+      "size": 393,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/LICENSE"
+    },
+    "README.md": {
+      "git_blob_sha1": "5556242954ddb2753eae17decf05e01b53659e60",
+      "mode": "100644",
+      "sha256": "5b0831edd83e2813f95a69c91eb5eb83279bf802bd4e49e914ee223e9361cc50",
+      "size": 2655,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/README.md"
+    },
+    "arm64/Android.bp": {
+      "git_blob_sha1": "589cf584154207bf2bf511dd4a37943fe7c7a30f",
+      "mode": "100644",
+      "sha256": "509414abb3d0489d31a2b5ec292b6c3146709a4f1eb9ed7fbd3f5af5d0554e95",
+      "size": 3697,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/arm64/Android.bp"
+    },
+    "arm64/BoardConfigVendor.mk": {
+      "git_blob_sha1": "733a8bff959290313b01e756d979fea34769457f",
+      "mode": "100644",
+      "sha256": "cedf29e5a7361236cd88073eb5402349c323b13a9c7d4c9370fe60fadcf93d4f",
+      "size": 48,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/arm64/BoardConfigVendor.mk"
+    },
+    "arm64/arm64-vendor.mk": {
+      "git_blob_sha1": "fcf46ff542281467698a40e8ffa54a0288914686",
+      "mode": "100644",
+      "sha256": "702220003cbe6ee3366626d376771de9e375ffb4ee0eaaeb7b5a985963e24e54",
+      "size": 524,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/arm64/arm64-vendor.mk"
+    },
+    "common/Android.bp": {
+      "git_blob_sha1": "f84d5a294c8c6e78885ab95cde5819861cea532a",
+      "mode": "100644",
+      "sha256": "7742617cdcea5cd44920c20b9562868ec7a41d42a183e77042a15a499ff265ca",
+      "size": 6227,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/common/Android.bp"
+    },
+    "common/BoardConfigVendor.mk": {
+      "git_blob_sha1": "733a8bff959290313b01e756d979fea34769457f",
+      "mode": "100644",
+      "sha256": "cedf29e5a7361236cd88073eb5402349c323b13a9c7d4c9370fe60fadcf93d4f",
+      "size": 48,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/common/BoardConfigVendor.mk"
+    },
+    "common/common-vendor.mk": {
+      "git_blob_sha1": "ea614723a29fc1ef6db83489c5f7b4311460dbaa",
+      "mode": "100644",
+      "sha256": "e0e238319851cc844658dfe454a7cd3edd07eafee68abaf28bae38e20eac8805",
+      "size": 1124,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/common/common-vendor.mk"
+    },
+    "dummy-apps/Android.bp": {
+      "git_blob_sha1": "f92ad7433ba297237dc5b3026c084f29fdfbc8e8",
+      "mode": "100644",
+      "sha256": "dd5e58b4696ddd4cd6cec9dc0ccc4e1d34b0743bff2301c20cc3cf3e69590e79",
+      "size": 83,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/dummy-apps/Android.bp"
+    },
+    "dummy-apps/AndroidManifest.xml": {
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/dummy-apps/AndroidManifest.xml"
+    },
+    "overlay/GmsOverlay/Android.bp": {
+      "git_blob_sha1": "8151e729c074fb206c2e0242aa2be81d2db1ac3b",
+      "mode": "100644",
+      "sha256": "e8c8842a84fa8fb627e777fdc8f6bfef877604f3e37948015152f71334c4a4ef",
+      "size": 80,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/overlay/GmsOverlay/Android.bp"
+    },
+    "overlay/GmsOverlay/AndroidManifest.xml": {
+      "git_blob_sha1": "1132cd1c8e2e149a6971ade96b8a771f7cc45ea3",
+      "mode": "100644",
+      "sha256": "216fbec910930dd392fe1bf4713164a5fb8266e8119a0141265b78b5646bc781",
+      "size": 326,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/overlay/GmsOverlay/AndroidManifest.xml"
+    },
+    "overlay/GmsOverlay/apktool.yml": {
+      "git_blob_sha1": "8198c2d6e0c648de9ffa7b7ce36032d4dd81b775",
+      "mode": "100644",
+      "sha256": "9d58895bdff616483748c3e6acb827ce14336106d7a5f276da5b2cfc54146191",
+      "size": 226,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/overlay/GmsOverlay/apktool.yml"
+    },
+    "overlay/GmsOverlay/res/values/config.xml": {
+      "git_blob_sha1": "44763dea6ad2946db2e4572b2a0bcee8b03ce685",
+      "mode": "100644",
+      "sha256": "bac253cb4e9ef7ece3c3d177ef4802e83b0f8b706b56c2998726c1eaa9f3a1fa",
+      "size": 8819,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/overlay/GmsOverlay/res/values/config.xml"
+    },
+    "overlay/GmsSettingsOverlay/Android.bp": {
+      "git_blob_sha1": "6e6cf6dda4f05f3d6459c5ca117bcb19ffc4291b",
+      "mode": "100644",
+      "sha256": "05a562621f17beb2037b0117cee39e588292a06c033b18bcb37f19184f9dd576",
+      "size": 88,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/overlay/GmsSettingsOverlay/Android.bp"
+    },
+    "overlay/GmsSettingsOverlay/AndroidManifest.xml": {
+      "git_blob_sha1": "8103aa176279bf44a189d2005e3f459f05071fa8",
+      "mode": "100644",
+      "sha256": "eb4f6efb048b68f85f882813fbb5e4ba87dedcc1166d764f09ec359fec4b34e9",
+      "size": 347,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/overlay/GmsSettingsOverlay/AndroidManifest.xml"
+    },
+    "overlay/GmsSettingsOverlay/apktool.yml": {
+      "git_blob_sha1": "b7783aaeee864836f525df7fe615859c933d7b1e",
+      "mode": "100644",
+      "sha256": "41bfece8d293259156e1c8d561fa0bad78c22b1b59c1ce9560de63fd620716c4",
+      "size": 234,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/overlay/GmsSettingsOverlay/apktool.yml"
+    },
+    "overlay/GmsSettingsOverlay/res/values/config.xml": {
+      "git_blob_sha1": "eff6315dfc278487a55f51a21f5869deae7fea77",
+      "mode": "100644",
+      "sha256": "4695125fe07050b7e98c3b987b6ef87a74ca073d9f6992bc6ea46827ee11c756",
+      "size": 1319,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/overlay/GmsSettingsOverlay/res/values/config.xml"
+    },
+    "overlay/GmsSettingsProviderOverlay/Android.bp": {
+      "git_blob_sha1": "8bb0fc66e498be57062bdf9b1ff99215059552e1",
+      "mode": "100644",
+      "sha256": "1c01949936b92a2e83e350a2671723bedaa54f4015a8c5c5de09899d90762770",
+      "size": 96,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/overlay/GmsSettingsProviderOverlay/Android.bp"
+    },
+    "overlay/GmsSettingsProviderOverlay/AndroidManifest.xml": {
+      "git_blob_sha1": "ccd2a0dff18255a802231fd95aca4d7db460c0f4",
+      "mode": "100644",
+      "sha256": "9f059e31b8fed8a38bc753b7d5f00ffe7645b2b6f079132193913e72e4f039c2",
+      "size": 365,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/overlay/GmsSettingsProviderOverlay/AndroidManifest.xml"
+    },
+    "overlay/GmsSettingsProviderOverlay/apktool.yml": {
+      "git_blob_sha1": "b64e7458a0905c6dc5b415f83eca20dbc0f3c73d",
+      "mode": "100644",
+      "sha256": "45aa38219db1dbd05f1264b007eac1c5c12142e16b70c992bcd12d28fd13c4ea",
+      "size": 242,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/overlay/GmsSettingsProviderOverlay/apktool.yml"
+    },
+    "overlay/GmsSettingsProviderOverlay/res/values/defaults.xml": {
+      "git_blob_sha1": "70a81d31478dd00587caee9477c05b291c367376",
+      "mode": "100644",
+      "sha256": "9244a0445865c23e1e85645ab57f2b7c71e53bb3392589dcf0bc815a95f0f3b8",
+      "size": 188,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/overlay/GmsSettingsProviderOverlay/res/values/defaults.xml"
+    },
+    "overlay/GmsSetupWizardOverlay/Android.bp": {
+      "git_blob_sha1": "21a1cc3acab3625996a1f5819c8f264484874127",
+      "mode": "100644",
+      "sha256": "7f726726386cbaa613e33bad396cf04f0ef888367df6549d26c673c70b9cf32c",
+      "size": 91,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/overlay/GmsSetupWizardOverlay/Android.bp"
+    },
+    "overlay/GmsSetupWizardOverlay/AndroidManifest.xml": {
+      "git_blob_sha1": "d94b6b24d096f4a887c9e97914a66be5d7895224",
+      "mode": "100644",
+      "sha256": "d81ec7c41f2502960217d25d7fb71e21604a1dd00e32b10041f9973817f876a4",
+      "size": 355,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/overlay/GmsSetupWizardOverlay/AndroidManifest.xml"
+    },
+    "overlay/GmsSetupWizardOverlay/apktool.yml": {
+      "git_blob_sha1": "f2614ba978073bad93d2db0f0aeeb2ae9c7aa313",
+      "mode": "100644",
+      "sha256": "0591e7341b3c89700a98b5853f63f001c387a31f435eb748ddd9b78e32b3e76d",
+      "size": 237,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/overlay/GmsSetupWizardOverlay/apktool.yml"
+    },
+    "overlay/GmsSetupWizardOverlay/res/values/bools.xml": {
+      "git_blob_sha1": "083f367683a11b4a141323601f87201e7838ed69",
+      "mode": "100644",
+      "sha256": "d2ec5d8f7121dc3b7b1ed1aabf7219412677e21871277cbf8f09682463e2f55e",
+      "size": 354,
+      "source": "https://raw.githubusercontent.com/MindTheGapps/vendor_gapps/822ff6a805533792ae43a9c3f2a159222da22a6f/overlay/GmsSetupWizardOverlay/res/values/bools.xml"
+    }
+  },
+  "outputs": {
+    ".gitignore": {
+      "git_blob_sha1": "2e6b9f437fd53fd5c2790b929701a40c13d54869",
+      "mode": "100644",
+      "sha256": "6d5d84bd0ea0f081da0a95e81864b1508ff8ed098ee91d393ca0bbd532e0b619",
+      "size": 102,
+      "source": "upstream"
+    },
+    "LICENSE": {
+      "git_blob_sha1": "62bff6eb027c8338bc4d4d7aac7e617bee42490e",
+      "mode": "100644",
+      "sha256": "592e23dd570d1ecaab3029611ec998a8fbc05db41082b5d60c66ea4fb44fee91",
+      "size": 393,
+      "source": "upstream"
+    },
+    "README.md": {
+      "git_blob_sha1": "5556242954ddb2753eae17decf05e01b53659e60",
+      "mode": "100644",
+      "sha256": "5b0831edd83e2813f95a69c91eb5eb83279bf802bd4e49e914ee223e9361cc50",
+      "size": 2655,
+      "source": "upstream"
+    },
+    "arm64/Android.bp": {
+      "git_blob_sha1": "38f75d552f2bfb3d69565b46a2ee08585ca1352b",
+      "mode": "100644",
+      "sha256": "ff6f3556635f35a61e9a3bd102845fa990d0b4402b854d6716b43dd7c6d8dca7",
+      "size": 3073,
+      "source": "upstream+documented-adaptation"
+    },
+    "arm64/BoardConfigVendor.mk": {
+      "git_blob_sha1": "733a8bff959290313b01e756d979fea34769457f",
+      "mode": "100644",
+      "sha256": "cedf29e5a7361236cd88073eb5402349c323b13a9c7d4c9370fe60fadcf93d4f",
+      "size": 48,
+      "source": "upstream"
+    },
+    "arm64/arm64-vendor.mk": {
+      "git_blob_sha1": "d225e10fa242cfffd8b49edf318fb8e88e45e02d",
+      "mode": "100644",
+      "sha256": "da1dffeb3082a444f5c4c532173552d05fac364f3c805eec888390acd758bf58",
+      "size": 431,
+      "source": "upstream+documented-adaptation"
+    },
+    "arm64/proprietary/product/apex/com.google.android.gmssystem.prodvic.apex.00": {
+      "git_blob_sha1": "20dade4ee686624530a399a3429adf0afed4f6dc",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "8a5845057adef8ffd76e316ec2f001e277cbdbb63cf503f64dff7a09420660e1",
+      "size": 103809024,
+      "source": "release-zip",
+      "zip_member": "system/product/apex/com.google.android.gmssystem.prodvic.apex"
+    },
+    "arm64/proprietary/product/apex/com.google.android.gmssystem.prodvic.apex.01": {
+      "git_blob_sha1": "fc407bb80978e7bd8ac763a9925774e206910399",
+      "mode": "100644",
+      "offset": 103809024,
+      "sha256": "11eade1ff66f7b11124402b16146808935813ada184026e0479cbe954bd1e7b3",
+      "size": 42692608,
+      "source": "release-zip",
+      "zip_member": "system/product/apex/com.google.android.gmssystem.prodvic.apex"
+    },
+    "arm64/proprietary/product/app/SpeechServicesByGoogle/SpeechServicesByGoogle.apk": {
+      "git_blob_sha1": "16f79f7a184a8e76a89eb64cbf83efbc14437000",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "db98860a224c8f6a2439d467bfd0a9ca411b2562a759fd45a072269d309cacda",
+      "size": 74981363,
+      "source": "release-zip",
+      "zip_member": "system/product/app/SpeechServicesByGoogle/SpeechServicesByGoogle.apk"
+    },
+    "arm64/proprietary/product/app/talkback/talkback.apk": {
+      "git_blob_sha1": "dfac8c5d46472c4094700d29e14a3df9aff5e843",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "d6c5a7848dab3c5a47d4ed05cbeee6536cf7e841c74a0ba5b69bf11eb83b671e",
+      "size": 44435283,
+      "source": "release-zip",
+      "zip_member": "system/product/app/talkback/talkback.apk"
+    },
+    "arm64/proprietary/product/lib64/libjni_latinimegoogle.so": {
+      "git_blob_sha1": "6ece70fd208ab8039acd97876cd3e916c21c8e5b",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "41a39a7410dfe3e90d530aeca84cb4dfbe2c2e411ca7470cb32e93625a5f33e0",
+      "size": 1112352,
+      "source": "release-zip",
+      "zip_member": "system/product/lib64/libjni_latinimegoogle.so"
+    },
+    "arm64/proprietary/product/priv-app/FamilyLinkParentalControls/FamilyLinkParentalControls.apk": {
+      "git_blob_sha1": "edd6f485ce6491e092fd059dfca9fa7ed3642b99",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "0e57780e7a16aca3421c5cd7f1089e6b231f7e42f4ff0c61b84c56abeea0bb21",
+      "size": 31345884,
+      "source": "release-zip",
+      "zip_member": "system/product/priv-app/FamilyLinkParentalControls/FamilyLinkParentalControls.apk"
+    },
+    "arm64/proprietary/product/priv-app/Phonesky/Phonesky.apk.00": {
+      "git_blob_sha1": "7422bd3f4949b6f1acf0c58730d56a061e3a53fe",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "ba9b2c2f1921dd4b4bbb1c66d0b07990a792086f31a5e0b18455637f5e3dc7ff",
+      "size": 103809024,
+      "source": "release-zip",
+      "zip_member": "system/product/priv-app/Phonesky/Phonesky.apk"
+    },
+    "arm64/proprietary/product/priv-app/Phonesky/Phonesky.apk.01": {
+      "git_blob_sha1": "02fe205ae215a4f441c2a19998a3f28fdd8b7707",
+      "mode": "100644",
+      "offset": 103809024,
+      "sha256": "806e5d8bc4a3cd7c18c3a2a172b8fe1cfd3c5fcb8901c360bfff88e7f3ecb139",
+      "size": 3163002,
+      "source": "release-zip",
+      "zip_member": "system/product/priv-app/Phonesky/Phonesky.apk"
+    },
+    "arm64/proprietary/product/priv-app/Velvet/Velvet.apk.00": {
+      "git_blob_sha1": "dc34917b0936b5a0699ac45ea5fc884a5d9eda57",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "31852761e668e090441b886cac2cd442808e9feb5be7d2b4cffa0de5df42c0d3",
+      "size": 103809024,
+      "source": "release-zip",
+      "zip_member": "system/product/priv-app/Velvet/Velvet.apk"
+    },
+    "arm64/proprietary/product/priv-app/Velvet/Velvet.apk.01": {
+      "git_blob_sha1": "7f88a11189369097758defe516014e1c3b789832",
+      "mode": "100644",
+      "offset": 103809024,
+      "sha256": "2c205a1cbf979e51931312a0598048833cc9c5219bba49d338b12a418ba02916",
+      "size": 103809024,
+      "source": "release-zip",
+      "zip_member": "system/product/priv-app/Velvet/Velvet.apk"
+    },
+    "arm64/proprietary/product/priv-app/Velvet/Velvet.apk.02": {
+      "git_blob_sha1": "ca39a2c87dde27da073923766498fc87e693683e",
+      "mode": "100644",
+      "offset": 207618048,
+      "sha256": "aa7cae8b989c9d1f58a77ac0fd7786f89a9e3c2f33e2d2cb999b297835993bc3",
+      "size": 36065655,
+      "source": "release-zip",
+      "zip_member": "system/product/priv-app/Velvet/Velvet.apk"
+    },
+    "arm64/proprietary/system_ext/priv-app/SetupWizard/SetupWizard.apk": {
+      "git_blob_sha1": "0fead3e11e8af3bd9f10e39f99ef48cd8b2adefe",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "77b0c64143480ef85143b36640428edcf20247dac552f3613a095ecc165dce18",
+      "size": 18296854,
+      "source": "release-zip",
+      "zip_member": "system/system_ext/priv-app/SetupWizard/SetupWizard.apk"
+    },
+    "asus-p00a-google.mk": {
+      "git_blob_sha1": "c6c0dfc15a5c0f5c50ba6c609c9e16d0ad49776e",
+      "mode": "100644",
+      "sha256": "9411d778c2db28eba9860bbd6e9c527f1967f186e4c47fb7db38336ecb932470",
+      "size": 670,
+      "source": "local-profile"
+    },
+    "common/Android.bp": {
+      "git_blob_sha1": "f84d5a294c8c6e78885ab95cde5819861cea532a",
+      "mode": "100644",
+      "sha256": "7742617cdcea5cd44920c20b9562868ec7a41d42a183e77042a15a499ff265ca",
+      "size": 6227,
+      "source": "upstream"
+    },
+    "common/BoardConfigVendor.mk": {
+      "git_blob_sha1": "733a8bff959290313b01e756d979fea34769457f",
+      "mode": "100644",
+      "sha256": "cedf29e5a7361236cd88073eb5402349c323b13a9c7d4c9370fe60fadcf93d4f",
+      "size": 48,
+      "source": "upstream"
+    },
+    "common/common-vendor.mk": {
+      "git_blob_sha1": "ea614723a29fc1ef6db83489c5f7b4311460dbaa",
+      "mode": "100644",
+      "sha256": "e0e238319851cc844658dfe454a7cd3edd07eafee68abaf28bae38e20eac8805",
+      "size": 1124,
+      "source": "upstream"
+    },
+    "common/proprietary/product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk": {
+      "git_blob_sha1": "b903f75351eb7f9818d76aa77323b3b8468b6498",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "0b3aa6f8d4bc16645b26136dbc228f3a0fe503c01f54892f577715f61e3ef5a7",
+      "size": 3117863,
+      "source": "release-zip",
+      "zip_member": "system/product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk"
+    },
+    "common/proprietary/product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk": {
+      "git_blob_sha1": "081fa5b22e195b4e7ddff95c52672a50a531f74a",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "5396a4ddf818f69a51d34a10ab23c8356add171ef2394f5bbca9e63b74594f4e",
+      "size": 1505961,
+      "source": "release-zip",
+      "zip_member": "system/product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk"
+    },
+    "common/proprietary/product/app/PrebuiltExchange3Google/PrebuiltExchange3Google.apk": {
+      "git_blob_sha1": "9173e9db0450b1668564b6a30c810a3e256418dc",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "3f65c5fb9da1e341590373497a520c18b286eb44946d0b1b6a8e588e6985acdb",
+      "size": 491242,
+      "source": "release-zip",
+      "zip_member": "system/product/app/PrebuiltExchange3Google/PrebuiltExchange3Google.apk"
+    },
+    "common/proprietary/product/etc/default-permissions/default-permissions-google.xml": {
+      "git_blob_sha1": "de75a4eeba17043bb642ccfc83e4426acfb0d268",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "75aed46d9b30bdf9371bd9e713ab3ef191f90ea476b45952e31cc326e7ee1354",
+      "size": 4238,
+      "source": "release-zip",
+      "zip_member": "system/product/etc/default-permissions/default-permissions-google.xml"
+    },
+    "common/proprietary/product/etc/default-permissions/default-permissions-mtg.xml": {
+      "git_blob_sha1": "b093d83d379caa3663a63cdb61b6e8cef3bd4590",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "250a22a5b0fd63140ae3842404d3ea85b5f390962d8350c96ff4b7ce4029a4f3",
+      "size": 1453,
+      "source": "release-zip",
+      "zip_member": "system/product/etc/default-permissions/default-permissions-mtg.xml"
+    },
+    "common/proprietary/product/etc/init/gapps.rc": {
+      "git_blob_sha1": "07809665013a9b9e29bce00222f23aa4ef7a3bd0",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "c39439ea6fe0b6971ca360f1e7c4412248959f39044075d9f14ad1ac20cbf62d",
+      "size": 95,
+      "source": "release-zip",
+      "zip_member": "system/product/etc/init/gapps.rc"
+    },
+    "common/proprietary/product/etc/permissions/com.google.android.dialer.support.xml": {
+      "git_blob_sha1": "eb53e32953267b69493dac21234ae3bc100a828f",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "b3b530828259e81adffbd78cd64735afe65849f78dc2bb09b62e14b8ddef3244",
+      "size": 610,
+      "source": "release-zip",
+      "zip_member": "system/product/etc/permissions/com.google.android.dialer.support.xml"
+    },
+    "common/proprietary/product/etc/permissions/privapp-permissions-google-product.xml": {
+      "git_blob_sha1": "cdc77991f5afe28be8a4cc8520413de40c96591c",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "dd6b89032c052a53f77954aa2762cfe98ebf23af8969321d0bc5443d1b31dafc",
+      "size": 34943,
+      "source": "release-zip",
+      "zip_member": "system/product/etc/permissions/privapp-permissions-google-product.xml"
+    },
+    "common/proprietary/product/etc/permissions/privapp-permissions-mtg.xml": {
+      "git_blob_sha1": "1a92a2bf7505984e191f1028d6e178886f95a981",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "44da0c634eb9ef97d43b5783b68c6dedd00232b03ebe66556e696c9855507d9d",
+      "size": 561,
+      "source": "release-zip",
+      "zip_member": "system/product/etc/permissions/privapp-permissions-mtg.xml"
+    },
+    "common/proprietary/product/etc/security/fsverity/gms_fsverity_cert.der": {
+      "git_blob_sha1": "4f37e1ad9b623d7af15b765e3e0d627b989fd7df",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "1a78f5d70b87441c7d13384179e377f4f3105be25814eef05cd95d1b736775b9",
+      "size": 1484,
+      "source": "release-zip",
+      "zip_member": "system/product/etc/security/fsverity/gms_fsverity_cert.der"
+    },
+    "common/proprietary/product/etc/sysconfig/allowed_apex_com.google.android.gmssystem.xml": {
+      "git_blob_sha1": "bee70002fe589bd86acbea2a233124754734f46a",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "741b47e0fbbbac2ea9ff684698ddb7963dcd2e6c929012bcc5ac46f93d219595",
+      "size": 616,
+      "source": "release-zip",
+      "zip_member": "system/product/etc/sysconfig/allowed_apex_com.google.android.gmssystem.xml"
+    },
+    "common/proprietary/product/etc/sysconfig/d2d_cable_migration_feature.xml": {
+      "git_blob_sha1": "cbe323d716a93547a6e3453658ffab6d2b6e99b3",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "364372d5bb87bbf22b2628b14e2b56d521fb17ce27df804713c6fbea2eb2088c",
+      "size": 136,
+      "source": "release-zip",
+      "zip_member": "system/product/etc/sysconfig/d2d_cable_migration_feature.xml"
+    },
+    "common/proprietary/product/etc/sysconfig/google-hiddenapi-package-allowlist.xml": {
+      "git_blob_sha1": "af5c121366cf920ae8b0d8391be75852073857cd",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "101de8a2abfbcd1f08712eedd5b123c72b81e9fef701f0cbf6b29ccb81c24c45",
+      "size": 4193,
+      "source": "release-zip",
+      "zip_member": "system/product/etc/sysconfig/google-hiddenapi-package-allowlist.xml"
+    },
+    "common/proprietary/product/etc/sysconfig/google.xml": {
+      "git_blob_sha1": "a04d5ff2965e863bdcd2f7d94e87e95f657a176f",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "863fa3b4623dfa8b6c2a33dd69ffa32de9156900a8a73048b6b26f368b3973be",
+      "size": 6247,
+      "source": "release-zip",
+      "zip_member": "system/product/etc/sysconfig/google.xml"
+    },
+    "common/proprietary/product/etc/sysconfig/sysconfig-mtg.xml": {
+      "git_blob_sha1": "1cfdbc48b0baad0c30259c45d87efc0894436b6a",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "c37f9eaf1d708b3f7ccb262c1378e7c7e742bb45150087d84db4b008fe2ce318",
+      "size": 440,
+      "source": "release-zip",
+      "zip_member": "system/product/etc/sysconfig/sysconfig-mtg.xml"
+    },
+    "common/proprietary/product/etc/sysconfig/wellbeing.xml": {
+      "git_blob_sha1": "332da495a5af4706be5011105fccd9469a346203",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "eb737eb93ffa855638793cf898c9bb73dff81fa48fa0ecaf7707280a9f1b2753",
+      "size": 118,
+      "source": "release-zip",
+      "zip_member": "system/product/etc/sysconfig/wellbeing.xml"
+    },
+    "common/proprietary/product/framework/com.google.android.dialer.support.jar": {
+      "git_blob_sha1": "83bfbfa60b34d811b05db5589adf8a822a0317a5",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "584859f94fe2dd0c4aec65f514a990b6f4fc8290bfd7565e2fe036d761aee89e",
+      "size": 946,
+      "source": "release-zip",
+      "zip_member": "system/product/framework/com.google.android.dialer.support.jar"
+    },
+    "common/proprietary/product/priv-app/AndroidAutoStub/AndroidAutoStub.apk": {
+      "git_blob_sha1": "aeba2356a7eae98b2de099464245f657d90eee85",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "8cd34781445d122621f1ecc75eb92e71c519cb73a40585c46107543f7ca85345",
+      "size": 4097016,
+      "source": "release-zip",
+      "zip_member": "system/product/priv-app/AndroidAutoStub/AndroidAutoStub.apk"
+    },
+    "common/proprietary/product/priv-app/GooglePartnerSetup/GooglePartnerSetup.apk": {
+      "git_blob_sha1": "8782c7c58d6cae40c14b1f525d34eb7f1e1809c1",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "6ee2ea824e1c39eed76f815929a29848b66f26457a6c88398aee0fefb92c81f2",
+      "size": 1731178,
+      "source": "release-zip",
+      "zip_member": "system/product/priv-app/GooglePartnerSetup/GooglePartnerSetup.apk"
+    },
+    "common/proprietary/product/priv-app/GoogleRestore/GoogleRestore.apk": {
+      "git_blob_sha1": "fabe0ae536f58b95161edb054988b3060af5f57c",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "7abf24869a15847fdf2a5abb1e73c68a3f27242ee6c4f09c15530ca04f9108cc",
+      "size": 29047122,
+      "source": "release-zip",
+      "zip_member": "system/product/priv-app/GoogleRestore/GoogleRestore.apk"
+    },
+    "common/proprietary/product/priv-app/Wellbeing/Wellbeing.apk": {
+      "git_blob_sha1": "900400838b99c98de8610ae90a2517e9e5fd029b",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "9bb424cf2267e7739bcafc68c3bd87746bc261b378e0b00710b3a8851e2afccd",
+      "size": 25691319,
+      "source": "release-zip",
+      "zip_member": "system/product/priv-app/Wellbeing/Wellbeing.apk"
+    },
+    "common/proprietary/system_ext/etc/permissions/privapp-permissions-google-system_ext.xml": {
+      "git_blob_sha1": "2b861479376841cb8001111a814ae54f24e706bf",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "e22d9050b622d139eac56b80fb551786b2a212d791225d8c248e63b108cc9982",
+      "size": 4644,
+      "source": "release-zip",
+      "zip_member": "system/system_ext/etc/permissions/privapp-permissions-google-system_ext.xml"
+    },
+    "common/proprietary/system_ext/priv-app/GoogleFeedback/GoogleFeedback.apk": {
+      "git_blob_sha1": "56c4bc363969b48a2710218a847e7387b2ccde81",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "6478956cd0e39fd7ab6dc175e6a5f5c086c12dd0e51e9b8b6f0a8f576ee1da13",
+      "size": 544588,
+      "source": "release-zip",
+      "zip_member": "system/system_ext/priv-app/GoogleFeedback/GoogleFeedback.apk"
+    },
+    "common/proprietary/system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk": {
+      "git_blob_sha1": "858826615c85377eda18aa9caf913cc18e8c8deb",
+      "mode": "100644",
+      "offset": 0,
+      "sha256": "a923583e561945309599a8117cad54de2896f4f93b333e50789dc7b3f2cc30eb",
+      "size": 1124332,
+      "source": "release-zip",
+      "zip_member": "system/system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk"
+    },
+    "dummy-apps/Android.bp": {
+      "git_blob_sha1": "f92ad7433ba297237dc5b3026c084f29fdfbc8e8",
+      "mode": "100644",
+      "sha256": "dd5e58b4696ddd4cd6cec9dc0ccc4e1d34b0743bff2301c20cc3cf3e69590e79",
+      "size": 83,
+      "source": "upstream"
+    },
+    "dummy-apps/AndroidManifest.xml": {
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "source": "upstream"
+    },
+    "overlay/GmsOverlay/Android.bp": {
+      "git_blob_sha1": "8151e729c074fb206c2e0242aa2be81d2db1ac3b",
+      "mode": "100644",
+      "sha256": "e8c8842a84fa8fb627e777fdc8f6bfef877604f3e37948015152f71334c4a4ef",
+      "size": 80,
+      "source": "upstream"
+    },
+    "overlay/GmsOverlay/AndroidManifest.xml": {
+      "git_blob_sha1": "1132cd1c8e2e149a6971ade96b8a771f7cc45ea3",
+      "mode": "100644",
+      "sha256": "216fbec910930dd392fe1bf4713164a5fb8266e8119a0141265b78b5646bc781",
+      "size": 326,
+      "source": "upstream"
+    },
+    "overlay/GmsOverlay/apktool.yml": {
+      "git_blob_sha1": "8198c2d6e0c648de9ffa7b7ce36032d4dd81b775",
+      "mode": "100644",
+      "sha256": "9d58895bdff616483748c3e6acb827ce14336106d7a5f276da5b2cfc54146191",
+      "size": 226,
+      "source": "upstream"
+    },
+    "overlay/GmsOverlay/res/values/config.xml": {
+      "git_blob_sha1": "44763dea6ad2946db2e4572b2a0bcee8b03ce685",
+      "mode": "100644",
+      "sha256": "bac253cb4e9ef7ece3c3d177ef4802e83b0f8b706b56c2998726c1eaa9f3a1fa",
+      "size": 8819,
+      "source": "upstream"
+    },
+    "overlay/GmsSettingsOverlay/Android.bp": {
+      "git_blob_sha1": "6e6cf6dda4f05f3d6459c5ca117bcb19ffc4291b",
+      "mode": "100644",
+      "sha256": "05a562621f17beb2037b0117cee39e588292a06c033b18bcb37f19184f9dd576",
+      "size": 88,
+      "source": "upstream"
+    },
+    "overlay/GmsSettingsOverlay/AndroidManifest.xml": {
+      "git_blob_sha1": "8103aa176279bf44a189d2005e3f459f05071fa8",
+      "mode": "100644",
+      "sha256": "eb4f6efb048b68f85f882813fbb5e4ba87dedcc1166d764f09ec359fec4b34e9",
+      "size": 347,
+      "source": "upstream"
+    },
+    "overlay/GmsSettingsOverlay/apktool.yml": {
+      "git_blob_sha1": "b7783aaeee864836f525df7fe615859c933d7b1e",
+      "mode": "100644",
+      "sha256": "41bfece8d293259156e1c8d561fa0bad78c22b1b59c1ce9560de63fd620716c4",
+      "size": 234,
+      "source": "upstream"
+    },
+    "overlay/GmsSettingsOverlay/res/values/config.xml": {
+      "git_blob_sha1": "eff6315dfc278487a55f51a21f5869deae7fea77",
+      "mode": "100644",
+      "sha256": "4695125fe07050b7e98c3b987b6ef87a74ca073d9f6992bc6ea46827ee11c756",
+      "size": 1319,
+      "source": "upstream"
+    },
+    "overlay/GmsSettingsProviderOverlay/Android.bp": {
+      "git_blob_sha1": "8bb0fc66e498be57062bdf9b1ff99215059552e1",
+      "mode": "100644",
+      "sha256": "1c01949936b92a2e83e350a2671723bedaa54f4015a8c5c5de09899d90762770",
+      "size": 96,
+      "source": "upstream"
+    },
+    "overlay/GmsSettingsProviderOverlay/AndroidManifest.xml": {
+      "git_blob_sha1": "ccd2a0dff18255a802231fd95aca4d7db460c0f4",
+      "mode": "100644",
+      "sha256": "9f059e31b8fed8a38bc753b7d5f00ffe7645b2b6f079132193913e72e4f039c2",
+      "size": 365,
+      "source": "upstream"
+    },
+    "overlay/GmsSettingsProviderOverlay/apktool.yml": {
+      "git_blob_sha1": "b64e7458a0905c6dc5b415f83eca20dbc0f3c73d",
+      "mode": "100644",
+      "sha256": "45aa38219db1dbd05f1264b007eac1c5c12142e16b70c992bcd12d28fd13c4ea",
+      "size": 242,
+      "source": "upstream"
+    },
+    "overlay/GmsSettingsProviderOverlay/res/values/defaults.xml": {
+      "git_blob_sha1": "70a81d31478dd00587caee9477c05b291c367376",
+      "mode": "100644",
+      "sha256": "9244a0445865c23e1e85645ab57f2b7c71e53bb3392589dcf0bc815a95f0f3b8",
+      "size": 188,
+      "source": "upstream"
+    },
+    "overlay/GmsSetupWizardOverlay/Android.bp": {
+      "git_blob_sha1": "21a1cc3acab3625996a1f5819c8f264484874127",
+      "mode": "100644",
+      "sha256": "7f726726386cbaa613e33bad396cf04f0ef888367df6549d26c673c70b9cf32c",
+      "size": 91,
+      "source": "upstream"
+    },
+    "overlay/GmsSetupWizardOverlay/AndroidManifest.xml": {
+      "git_blob_sha1": "d94b6b24d096f4a887c9e97914a66be5d7895224",
+      "mode": "100644",
+      "sha256": "d81ec7c41f2502960217d25d7fb71e21604a1dd00e32b10041f9973817f876a4",
+      "size": 355,
+      "source": "upstream"
+    },
+    "overlay/GmsSetupWizardOverlay/apktool.yml": {
+      "git_blob_sha1": "f2614ba978073bad93d2db0f0aeeb2ae9c7aa313",
+      "mode": "100644",
+      "sha256": "0591e7341b3c89700a98b5853f63f001c387a31f435eb748ddd9b78e32b3e76d",
+      "size": 237,
+      "source": "upstream"
+    },
+    "overlay/GmsSetupWizardOverlay/res/values/bools.xml": {
+      "git_blob_sha1": "083f367683a11b4a141323601f87201e7838ed69",
+      "mode": "100644",
+      "sha256": "d2ec5d8f7121dc3b7b1ed1aabf7219412677e21871277cbf8f09682463e2f55e",
+      "size": 354,
+      "source": "upstream"
+    }
+  },
+  "payload_bytes": 734740442,
+  "payload_members": {
+    "system/product/apex/com.google.android.gmssystem.prodvic.apex": {
+      "sha256": "fd56d1e45eb46c9a56253129242231c0d47555e568870ae39c1317ca818efa4c",
+      "size": 146501632
+    },
+    "system/product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk": {
+      "sha256": "0b3aa6f8d4bc16645b26136dbc228f3a0fe503c01f54892f577715f61e3ef5a7",
+      "size": 3117863
+    },
+    "system/product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk": {
+      "sha256": "5396a4ddf818f69a51d34a10ab23c8356add171ef2394f5bbca9e63b74594f4e",
+      "size": 1505961
+    },
+    "system/product/app/PrebuiltExchange3Google/PrebuiltExchange3Google.apk": {
+      "sha256": "3f65c5fb9da1e341590373497a520c18b286eb44946d0b1b6a8e588e6985acdb",
+      "size": 491242
+    },
+    "system/product/app/SpeechServicesByGoogle/SpeechServicesByGoogle.apk": {
+      "sha256": "db98860a224c8f6a2439d467bfd0a9ca411b2562a759fd45a072269d309cacda",
+      "size": 74981363
+    },
+    "system/product/app/talkback/talkback.apk": {
+      "sha256": "d6c5a7848dab3c5a47d4ed05cbeee6536cf7e841c74a0ba5b69bf11eb83b671e",
+      "size": 44435283
+    },
+    "system/product/etc/default-permissions/default-permissions-google.xml": {
+      "sha256": "75aed46d9b30bdf9371bd9e713ab3ef191f90ea476b45952e31cc326e7ee1354",
+      "size": 4238
+    },
+    "system/product/etc/default-permissions/default-permissions-mtg.xml": {
+      "sha256": "250a22a5b0fd63140ae3842404d3ea85b5f390962d8350c96ff4b7ce4029a4f3",
+      "size": 1453
+    },
+    "system/product/etc/init/gapps.rc": {
+      "sha256": "c39439ea6fe0b6971ca360f1e7c4412248959f39044075d9f14ad1ac20cbf62d",
+      "size": 95
+    },
+    "system/product/etc/permissions/com.google.android.dialer.support.xml": {
+      "sha256": "b3b530828259e81adffbd78cd64735afe65849f78dc2bb09b62e14b8ddef3244",
+      "size": 610
+    },
+    "system/product/etc/permissions/privapp-permissions-google-product.xml": {
+      "sha256": "dd6b89032c052a53f77954aa2762cfe98ebf23af8969321d0bc5443d1b31dafc",
+      "size": 34943
+    },
+    "system/product/etc/permissions/privapp-permissions-mtg.xml": {
+      "sha256": "44da0c634eb9ef97d43b5783b68c6dedd00232b03ebe66556e696c9855507d9d",
+      "size": 561
+    },
+    "system/product/etc/security/fsverity/gms_fsverity_cert.der": {
+      "sha256": "1a78f5d70b87441c7d13384179e377f4f3105be25814eef05cd95d1b736775b9",
+      "size": 1484
+    },
+    "system/product/etc/sysconfig/allowed_apex_com.google.android.gmssystem.xml": {
+      "sha256": "741b47e0fbbbac2ea9ff684698ddb7963dcd2e6c929012bcc5ac46f93d219595",
+      "size": 616
+    },
+    "system/product/etc/sysconfig/d2d_cable_migration_feature.xml": {
+      "sha256": "364372d5bb87bbf22b2628b14e2b56d521fb17ce27df804713c6fbea2eb2088c",
+      "size": 136
+    },
+    "system/product/etc/sysconfig/google-hiddenapi-package-allowlist.xml": {
+      "sha256": "101de8a2abfbcd1f08712eedd5b123c72b81e9fef701f0cbf6b29ccb81c24c45",
+      "size": 4193
+    },
+    "system/product/etc/sysconfig/google.xml": {
+      "sha256": "863fa3b4623dfa8b6c2a33dd69ffa32de9156900a8a73048b6b26f368b3973be",
+      "size": 6247
+    },
+    "system/product/etc/sysconfig/sysconfig-mtg.xml": {
+      "sha256": "c37f9eaf1d708b3f7ccb262c1378e7c7e742bb45150087d84db4b008fe2ce318",
+      "size": 440
+    },
+    "system/product/etc/sysconfig/wellbeing.xml": {
+      "sha256": "eb737eb93ffa855638793cf898c9bb73dff81fa48fa0ecaf7707280a9f1b2753",
+      "size": 118
+    },
+    "system/product/framework/com.google.android.dialer.support.jar": {
+      "sha256": "584859f94fe2dd0c4aec65f514a990b6f4fc8290bfd7565e2fe036d761aee89e",
+      "size": 946
+    },
+    "system/product/lib64/libjni_latinimegoogle.so": {
+      "sha256": "41a39a7410dfe3e90d530aeca84cb4dfbe2c2e411ca7470cb32e93625a5f33e0",
+      "size": 1112352
+    },
+    "system/product/priv-app/AndroidAutoStub/AndroidAutoStub.apk": {
+      "sha256": "8cd34781445d122621f1ecc75eb92e71c519cb73a40585c46107543f7ca85345",
+      "size": 4097016
+    },
+    "system/product/priv-app/FamilyLinkParentalControls/FamilyLinkParentalControls.apk": {
+      "sha256": "0e57780e7a16aca3421c5cd7f1089e6b231f7e42f4ff0c61b84c56abeea0bb21",
+      "size": 31345884
+    },
+    "system/product/priv-app/GooglePartnerSetup/GooglePartnerSetup.apk": {
+      "sha256": "6ee2ea824e1c39eed76f815929a29848b66f26457a6c88398aee0fefb92c81f2",
+      "size": 1731178
+    },
+    "system/product/priv-app/GoogleRestore/GoogleRestore.apk": {
+      "sha256": "7abf24869a15847fdf2a5abb1e73c68a3f27242ee6c4f09c15530ca04f9108cc",
+      "size": 29047122
+    },
+    "system/product/priv-app/Phonesky/Phonesky.apk": {
+      "sha256": "259bdd44ebaed8a0378b9773d5b838e9cb45383ae084458b3ec44e06a88c1039",
+      "size": 106972026
+    },
+    "system/product/priv-app/Velvet/Velvet.apk": {
+      "sha256": "edf7bcc2c818a529d19cb8c2316fc3c82fec08cd431a1d44c21f68de1085c5d3",
+      "size": 243683703
+    },
+    "system/product/priv-app/Wellbeing/Wellbeing.apk": {
+      "sha256": "9bb424cf2267e7739bcafc68c3bd87746bc261b378e0b00710b3a8851e2afccd",
+      "size": 25691319
+    },
+    "system/system_ext/etc/permissions/privapp-permissions-google-system_ext.xml": {
+      "sha256": "e22d9050b622d139eac56b80fb551786b2a212d791225d8c248e63b108cc9982",
+      "size": 4644
+    },
+    "system/system_ext/priv-app/GoogleFeedback/GoogleFeedback.apk": {
+      "sha256": "6478956cd0e39fd7ab6dc175e6a5f5c086c12dd0e51e9b8b6f0a8f576ee1da13",
+      "size": 544588
+    },
+    "system/system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk": {
+      "sha256": "a923583e561945309599a8117cad54de2896f4f93b333e50789dc7b3f2cc30eb",
+      "size": 1124332
+    },
+    "system/system_ext/priv-app/SetupWizard/SetupWizard.apk": {
+      "sha256": "77b0c64143480ef85143b36640428edcf20247dac552f3613a095ecc165dce18",
+      "size": 18296854
+    }
+  },
+  "profile": "asus-p00a-arm64-normal-tablet",
+  "schema": 1,
+  "tree_sha256": "d0ae19c4ffac28f98358a4e2d7fd48f208b9b81c87238d08a8b1d5974f68d02b",
+  "verification": "release SHA256 + all selected upstream blob sizes/Git SHA1 + output SHA256 passed",
+  "zip": {
+    "name": "MindTheGapps-17.0.0-arm64-20261022_132445.zip",
+    "sha256": "a6844eeb2613541558237e467b20feb01f8b45b2ebab0109834140ea59b6ca4d",
+    "size": 544284463
+  },
+  "zip_inventory": {
+    "META-INF/com/android/otacert": {
+      "compressed_size": 1022,
+      "crc32": "c817c7b1",
+      "disposition": "standalone-installer-only; not an inline build input",
+      "size": 1464
+    },
+    "META-INF/com/google/android/update-binary": {
+      "compressed_size": 2736,
+      "crc32": "870d60f6",
+      "disposition": "standalone-installer-only; not an inline build input",
+      "size": 9056
+    },
+    "META-INF/com/google/android/updater-script": {
+      "compressed_size": 70,
+      "crc32": "d616962d",
+      "disposition": "standalone-installer-only; not an inline build input",
+      "size": 79
+    },
+    "build.prop": {
+      "compressed_size": 37,
+      "crc32": "1ad45f1c",
+      "disposition": "standalone-installer-only; not an inline build input",
+      "size": 42
+    },
+    "system/addon.d/addond_head": {
+      "compressed_size": 116,
+      "crc32": "f9a5dcc0",
+      "disposition": "standalone-installer-only; not an inline build input",
+      "size": 120
+    },
+    "system/addon.d/addond_tail": {
+      "compressed_size": 269,
+      "crc32": "c6630626",
+      "disposition": "standalone-installer-only; not an inline build input",
+      "size": 572
+    },
+    "system/product/apex/com.google.android.gmssystem.prodvic.apex": {
+      "compressed_size": 118437110,
+      "crc32": "c5ab193b",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 146501632
+    },
+    "system/product/app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk": {
+      "compressed_size": 2635097,
+      "crc32": "a6bfab85",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 3117863
+    },
+    "system/product/app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk": {
+      "compressed_size": 1195208,
+      "crc32": "03c5f6cc",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 1505961
+    },
+    "system/product/app/PrebuiltExchange3Google/PrebuiltExchange3Google.apk": {
+      "compressed_size": 220416,
+      "crc32": "b7df056c",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 491242
+    },
+    "system/product/app/SpeechServicesByGoogle/SpeechServicesByGoogle.apk": {
+      "compressed_size": 40319103,
+      "crc32": "a9fde21c",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 74981363
+    },
+    "system/product/app/talkback/talkback.apk": {
+      "compressed_size": 18697286,
+      "crc32": "3a13ddcd",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 44435283
+    },
+    "system/product/etc/default-permissions/default-permissions-google.xml": {
+      "compressed_size": 1137,
+      "crc32": "7154c49f",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 4238
+    },
+    "system/product/etc/default-permissions/default-permissions-mtg.xml": {
+      "compressed_size": 428,
+      "crc32": "108ee9ad",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 1453
+    },
+    "system/product/etc/init/gapps.rc": {
+      "compressed_size": 76,
+      "crc32": "cb1df0de",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 95
+    },
+    "system/product/etc/permissions/com.google.android.dialer.support.xml": {
+      "compressed_size": 312,
+      "crc32": "6f7cae84",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 610
+    },
+    "system/product/etc/permissions/privapp-permissions-google-product.xml": {
+      "compressed_size": 3550,
+      "crc32": "bb5e03a6",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 34943
+    },
+    "system/product/etc/permissions/privapp-permissions-mtg.xml": {
+      "compressed_size": 225,
+      "crc32": "e4b76b04",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 561
+    },
+    "system/product/etc/security/fsverity/gms_fsverity_cert.der": {
+      "compressed_size": 1347,
+      "crc32": "83f4f0e6",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 1484
+    },
+    "system/product/etc/sysconfig/allowed_apex_com.google.android.gmssystem.xml": {
+      "compressed_size": 356,
+      "crc32": "c91af0c0",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 616
+    },
+    "system/product/etc/sysconfig/d2d_cable_migration_feature.xml": {
+      "compressed_size": 124,
+      "crc32": "87c94094",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 136
+    },
+    "system/product/etc/sysconfig/google-hiddenapi-package-allowlist.xml": {
+      "compressed_size": 711,
+      "crc32": "ee907046",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 4193
+    },
+    "system/product/etc/sysconfig/google.xml": {
+      "compressed_size": 1551,
+      "crc32": "595d6554",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 6247
+    },
+    "system/product/etc/sysconfig/sysconfig-mtg.xml": {
+      "compressed_size": 186,
+      "crc32": "3d272dd7",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 440
+    },
+    "system/product/etc/sysconfig/wellbeing.xml": {
+      "compressed_size": 106,
+      "crc32": "241c18aa",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 118
+    },
+    "system/product/framework/com.google.android.dialer.support.jar": {
+      "compressed_size": 563,
+      "crc32": "d026ea7b",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 946
+    },
+    "system/product/lib64/libjni_latinimegoogle.so": {
+      "compressed_size": 355925,
+      "crc32": "09455d67",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 1112352
+    },
+    "system/product/overlay/GmsOverlay.apk": {
+      "compressed_size": 5421,
+      "crc32": "f8ae8e39",
+      "disposition": "reference-only; inline overlay rebuilt from exact upstream source",
+      "size": 12632
+    },
+    "system/product/overlay/GmsSettingsOverlay.apk": {
+      "compressed_size": 4239,
+      "crc32": "5c4cbfb6",
+      "disposition": "reference-only; inline overlay rebuilt from exact upstream source",
+      "size": 8536
+    },
+    "system/product/overlay/GmsSettingsProviderOverlay.apk": {
+      "compressed_size": 4102,
+      "crc32": "caa40fc9",
+      "disposition": "reference-only; inline overlay rebuilt from exact upstream source",
+      "size": 8536
+    },
+    "system/product/overlay/GmsSetupWizardOverlay.apk": {
+      "compressed_size": 4184,
+      "crc32": "8235ea9b",
+      "disposition": "reference-only; inline overlay rebuilt from exact upstream source",
+      "size": 8536
+    },
+    "system/product/priv-app/AndroidAutoStub/AndroidAutoStub.apk": {
+      "compressed_size": 1623957,
+      "crc32": "815723ff",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 4097016
+    },
+    "system/product/priv-app/FamilyLinkParentalControls/FamilyLinkParentalControls.apk": {
+      "compressed_size": 11542496,
+      "crc32": "8a6817a0",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 31345884
+    },
+    "system/product/priv-app/GooglePartnerSetup/GooglePartnerSetup.apk": {
+      "compressed_size": 751346,
+      "crc32": "15021fe7",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 1731178
+    },
+    "system/product/priv-app/GoogleRestore/GoogleRestore.apk": {
+      "compressed_size": 9206554,
+      "crc32": "2b91da94",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 29047122
+    },
+    "system/product/priv-app/Phonesky/Phonesky.apk": {
+      "compressed_size": 39762139,
+      "crc32": "9cbc3603",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 106972026
+    },
+    "system/product/priv-app/Velvet/Velvet.apk": {
+      "compressed_size": 94547116,
+      "crc32": "34cee245",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 243683703
+    },
+    "system/product/priv-app/VelvetTitan/VelvetTitan.apk": {
+      "compressed_size": 187721558,
+      "crc32": "64fd7b4d",
+      "disposition": "excluded; upstream tangorpro-only",
+      "size": 396053298
+    },
+    "system/product/priv-app/Wellbeing/Wellbeing.apk": {
+      "compressed_size": 9006438,
+      "crc32": "0087bb8b",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 25691319
+    },
+    "system/system_ext/etc/permissions/privapp-permissions-google-system_ext.xml": {
+      "compressed_size": 904,
+      "crc32": "64625ee0",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 4644
+    },
+    "system/system_ext/priv-app/GoogleFeedback/GoogleFeedback.apk": {
+      "compressed_size": 218119,
+      "crc32": "1b27eb46",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 544588
+    },
+    "system/system_ext/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk": {
+      "compressed_size": 429595,
+      "crc32": "f0cce8fa",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 1124332
+    },
+    "system/system_ext/priv-app/SetupWizard/SetupWizard.apk": {
+      "compressed_size": 6810866,
+      "crc32": "8c1bf6da",
+      "disposition": "reconstruct-upstream-blobs",
+      "size": 18296854
+    },
+    "toybox": {
+      "compressed_size": 760052,
+      "crc32": "cee466c9",
+      "disposition": "standalone-installer-only; not an inline build input",
+      "size": 1579256
+    }
+  }
+}

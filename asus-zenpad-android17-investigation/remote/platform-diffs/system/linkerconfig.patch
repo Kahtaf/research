@@ -1,0 +1,247 @@
+diff --git a/Android.bp b/Android.bp
+index 1459eb5..b49d2c8 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -20,7 +20,10 @@ package {
+ 
+ cc_defaults {
+     name: "linkerconfig_defaults",
+-    cflags: [
++    cflags: select(soong_config_variable("p00a", "legacy_graphics"), {
++        true: ["-DP00A_LEGACY_GRAPHICS"],
++        default: [],
++    }) + [
+         "-Wall",
+         "-Werror",
+         "-Wextra",
+diff --git a/contents/namespace/productdefault.cc b/contents/namespace/productdefault.cc
+index 52f9fed..87d2f1c 100644
+--- a/contents/namespace/productdefault.cc
++++ b/contents/namespace/productdefault.cc
+@@ -41,17 +41,17 @@ Namespace BuildProductNamespace(const Context& ctx, const std::string& name) {
+   AddLlndkLibraries(ctx, &ns, VndkUserPartition::Product);
+   if (android::linkerconfig::modules::IsProductVndkVersionDefined()) {
+     ns.GetLink(ctx.GetSystemNamespaceName())
+-        .AddSharedLib(Var("SANITIZER_DEFAULT_PRODUCT"));
++        .AddSharedLib(Var("SANITIZER_DEFAULT_PRODUCT", ""));
+     if (ctx.IsSystemSection() || ctx.IsUnrestrictedSection()) {
+       ns.GetLink("vndk_product")
+-          .AddSharedLib(Var("VNDK_SAMEPROCESS_LIBRARIES_PRODUCT"));
++          .AddSharedLib(Var("VNDK_SAMEPROCESS_LIBRARIES_PRODUCT", ""));
+     } else {
+       ns.GetLink("vndk").AddSharedLib(
+-          {Var("VNDK_SAMEPROCESS_LIBRARIES_PRODUCT"),
+-           Var("VNDK_CORE_LIBRARIES_PRODUCT")});
++          {Var("VNDK_SAMEPROCESS_LIBRARIES_PRODUCT", ""),
++           Var("VNDK_CORE_LIBRARIES_PRODUCT", "")});
+       if (android::linkerconfig::modules::IsVndkInSystemNamespace()) {
+         ns.GetLink("vndk_in_system")
+-            .AddSharedLib(Var("VNDK_USING_CORE_VARIANT_LIBRARIES"));
++            .AddSharedLib(Var("VNDK_USING_CORE_VARIANT_LIBRARIES", ""));
+       }
+     }
+   }
+diff --git a/contents/namespace/sphal.cc b/contents/namespace/sphal.cc
+index 76319c0..e4da653 100644
+--- a/contents/namespace/sphal.cc
++++ b/contents/namespace/sphal.cc
+@@ -36,6 +36,16 @@ namespace android {
+ namespace linkerconfig {
+ namespace contents {
+ Namespace BuildSphalNamespace([[maybe_unused]] const Context& ctx) {
++  if (ctx.IsDefaultConfig() &&
++      (ctx.IsSystemSection() || ctx.IsUnrestrictedSection()) &&
++      modules::IsP00aLegacyGraphics()) {
++    // Forward HAL loads to the core namespace, sharing Binder and C++ state.
++    // Keep this namespace isolated, visible, and without its own search paths.
++    Namespace ns("sphal", /*is_isolated=*/true, /*is_visible=*/true);
++    ns.GetLink(ctx.GetSystemNamespaceName()).AllowAllSharedLibs();
++    return ns;
++  }
++
+   // Visible to allow use with android_dlopen_ext, and with
+   // android_link_namespaces in libnativeloader.
+   Namespace ns("sphal",
+diff --git a/contents/namespace/systemdefault.cc b/contents/namespace/systemdefault.cc
+index 842fd83..c25a827 100644
+--- a/contents/namespace/systemdefault.cc
++++ b/contents/namespace/systemdefault.cc
+@@ -95,8 +95,23 @@ Namespace BuildSystemDefaultNamespace([[maybe_unused]] const Context& ctx) {
+ 
+   SetupSystemPermittedPaths(&ns);
+ 
++  if (ctx.IsDefaultConfig() && modules::IsP00aLegacyGraphics()) {
++    // Pre-Treble graphics use one core ABI. Core paths stay first, with vendor
++    // paths retained for the current HIDL passthrough adapters and EGL alias.
++    ns.AddSearchPath("/vendor/${LIB}");
++    ns.AddSearchPath("/vendor/${LIB}/hw");
++    ns.AddPermittedPath("/system/${LIB}/egl");
++    ns.AddPermittedPath("/vendor/${LIB}");
++    ns.AddPermittedPath("/system/vendor/${LIB}");
++  }
++
+   ns.AddRequires(ctx.GetSystemRequireLibs());
+-  ns.AddProvides(ctx.GetSystemProvideLibs());
++  // The legacy vendor default shares core search paths, but BuildVendorSection
++  // also creates the system namespace, which owns the SYSTEM provider records.
++  if (!(ctx.IsDefaultConfig() && ctx.IsVendorSection() &&
++        modules::IsP00aLegacyGraphics())) {
++    ns.AddProvides(ctx.GetSystemProvideLibs());
++  }
+   return ns;
+ }
+ 
+diff --git a/contents/namespace/vendordefault.cc b/contents/namespace/vendordefault.cc
+index a866839..692cabb 100644
+--- a/contents/namespace/vendordefault.cc
++++ b/contents/namespace/vendordefault.cc
+@@ -33,6 +33,11 @@ namespace android {
+ namespace linkerconfig {
+ namespace contents {
+ Namespace BuildVendorDefaultNamespace(const Context& ctx) {
++  if (ctx.IsDefaultConfig() && modules::IsP00aLegacyGraphics()) {
++    // The legacy product has no VNDK contract. Vendor services must use the
++    // same core Binder/libutils ABI as its system-installed gralloc closure.
++    return BuildSystemDefaultNamespace(ctx);
++  }
+   return BuildVendorNamespace(ctx, "default");
+ }
+ 
+@@ -54,12 +59,12 @@ Namespace BuildVendorNamespace([[maybe_unused]] const Context& ctx,
+ 
+   if (android::linkerconfig::modules::IsVendorVndkVersionDefined()) {
+     ns.GetLink(ctx.GetSystemNamespaceName())
+-        .AddSharedLib(Var("SANITIZER_DEFAULT_VENDOR"));
+-    ns.GetLink("vndk").AddSharedLib({Var("VNDK_SAMEPROCESS_LIBRARIES_VENDOR"),
+-                                     Var("VNDK_CORE_LIBRARIES_VENDOR")});
++        .AddSharedLib(Var("SANITIZER_DEFAULT_VENDOR", ""));
++    ns.GetLink("vndk").AddSharedLib({Var("VNDK_SAMEPROCESS_LIBRARIES_VENDOR", ""),
++                                     Var("VNDK_CORE_LIBRARIES_VENDOR", "")});
+     if (android::linkerconfig::modules::IsVndkInSystemNamespace()) {
+       ns.GetLink("vndk_in_system")
+-          .AddSharedLib(Var("VNDK_USING_CORE_VARIANT_LIBRARIES"));
++          .AddSharedLib(Var("VNDK_USING_CORE_VARIANT_LIBRARIES", ""));
+     }
+   }
+ 
+diff --git a/contents/namespace/vndk.cc b/contents/namespace/vndk.cc
+index d821eb7..b306923 100644
+--- a/contents/namespace/vndk.cc
++++ b/contents/namespace/vndk.cc
+@@ -112,7 +112,7 @@ Namespace BuildVndkNamespace([[maybe_unused]] const Context& ctx,
+   if (ctx.IsProductSection() || ctx.IsVendorSection()) {
+     if (android::linkerconfig::modules::IsVndkInSystemNamespace()) {
+       ns.GetLink("vndk_in_system")
+-          .AddSharedLib(Var("VNDK_USING_CORE_VARIANT_LIBRARIES"));
++          .AddSharedLib(Var("VNDK_USING_CORE_VARIANT_LIBRARIES", ""));
+     }
+   }
+ 
+diff --git a/contents/namespace/vndkinsystem.cc b/contents/namespace/vndkinsystem.cc
+index 3b3bde9..47c503d 100644
+--- a/contents/namespace/vndkinsystem.cc
++++ b/contents/namespace/vndkinsystem.cc
+@@ -46,7 +46,7 @@ Namespace BuildVndkInSystemNamespace([[maybe_unused]] const Context& ctx) {
+   ns.AddSearchPath(Var("SYSTEM_EXT") + "/${LIB}");
+ 
+   if (android::linkerconfig::modules::IsVndkInSystemNamespace()) {
+-    ns.AddAllowedLib(Var("VNDK_USING_CORE_VARIANT_LIBRARIES"));
++    ns.AddAllowedLib(Var("VNDK_USING_CORE_VARIANT_LIBRARIES", ""));
+   }
+ 
+   AddLlndkLibraries(ctx,
+diff --git a/contents/section/apexdefault.cc b/contents/section/apexdefault.cc
+index ea9753b..69e28c5 100644
+--- a/contents/section/apexdefault.cc
++++ b/contents/section/apexdefault.cc
+@@ -144,13 +144,13 @@ Section BuildApexDefaultSection(Context& ctx, const ApexInfo& apex_info) {
+         ctx.GetSystemNamespaceName(),
+         std::bind(BuildApexPlatformNamespace,
+                   ctx),  // "system" should be available
+-        SharedLibs{{Var("SANITIZER_DEFAULT_" + user_partition_suffix)}},
++        SharedLibs{{Var("SANITIZER_DEFAULT_" + user_partition_suffix, "")}},
+     }};
+     libs_providers[":vndk"] = GetVndkProvider(ctx, user_partition);
+     libs_providers[":vndksp"] = {LibProvider{
+         "vndk",
+         std::bind(BuildVndkNamespace, ctx, user_partition),
+-        SharedLibs{{Var("VNDK_SAMEPROCESS_LIBRARIES_" + user_partition_suffix)}},
++        SharedLibs{{Var("VNDK_SAMEPROCESS_LIBRARIES_" + user_partition_suffix, "")}},
+     }};
+   } else if (apex_info.InProduct() || apex_info.InVendor()) {
+     // vendor or product partitions don't need this because they link LLNDK
+@@ -160,7 +160,7 @@ Section BuildApexDefaultSection(Context& ctx, const ApexInfo& apex_info) {
+         ctx.GetSystemNamespaceName(),
+         std::bind(BuildApexPlatformNamespace,
+                   ctx),  // "system" should be available
+-        SharedLibs{{Var("SANITIZER_LIBRARIES_LLNDK")}},
++        SharedLibs{{Var("SANITIZER_LIBRARIES_LLNDK", "")}},
+     }};
+   }
+ 
+diff --git a/contents/section/sectionbuilder.cc b/contents/section/sectionbuilder.cc
+index c314948..5772756 100644
+--- a/contents/section/sectionbuilder.cc
++++ b/contents/section/sectionbuilder.cc
+@@ -74,14 +74,14 @@ std::vector<LibProvider> GetVndkProvider(const Context& ctx,
+       "vndk",
+       std::bind(BuildVndkNamespace, ctx, partition),
+       SharedLibs{
+-          std::vector{Var("VNDK_SAMEPROCESS_LIBRARIES_" + partition_suffix),
+-                      Var("VNDK_CORE_LIBRARIES_" + partition_suffix)}},
++          std::vector{Var("VNDK_SAMEPROCESS_LIBRARIES_" + partition_suffix, ""),
++                      Var("VNDK_CORE_LIBRARIES_" + partition_suffix, "")}},
+   });
+   if (modules::IsVndkInSystemNamespace()) {
+     provider.push_back(LibProvider{
+         "vndk_in_system",
+         std::bind(BuildVndkInSystemNamespace, ctx),
+-        SharedLibs{std::vector{Var("VNDK_USING_CORE_VARIANT_LIBRARIES")}},
++        SharedLibs{std::vector{Var("VNDK_USING_CORE_VARIANT_LIBRARIES", "")}},
+     });
+   }
+   return provider;
+diff --git a/modules/environment.cc b/modules/environment.cc
+index 559a5ec..8a58f04 100644
+--- a/modules/environment.cc
++++ b/modules/environment.cc
+@@ -17,6 +17,7 @@
+ #include "linkerconfig/environment.h"
+ 
+ #include <unistd.h>
++#include <android-base/parseint.h>
+ 
+ #include "linkerconfig/variables.h"
+ 
+@@ -24,6 +25,19 @@ namespace android {
+ namespace linkerconfig {
+ namespace modules {
+ 
++bool IsP00aLegacyGraphics() {
++#ifdef P00A_LEGACY_GRAPHICS
++  unsigned int first_api = 0;
++  return android::base::ParseUint(
++             Variables::GetValue("ro.product.first_api_level").value_or(""),
++             &first_api) &&
++         first_api > 0 && first_api < 26 &&
++         !IsVendorVndkVersionDefined() && !IsProductVndkVersionDefined();
++#else
++  return false;
++#endif
++}
++
+ bool IsVndkLiteDevice() {
+   return Variables::GetValue("ro.vndk.lite").value_or("") == "true";
+ }
+diff --git a/modules/include/linkerconfig/environment.h b/modules/include/linkerconfig/environment.h
+index c5af872..3aad8c7 100644
+--- a/modules/include/linkerconfig/environment.h
++++ b/modules/include/linkerconfig/environment.h
+@@ -19,6 +19,7 @@
+ namespace android {
+ namespace linkerconfig {
+ namespace modules {
++bool IsP00aLegacyGraphics();
+ bool IsVndkLiteDevice();
+ bool IsVndkInSystemNamespace();
+ std::string GetVendorVndkVersion();

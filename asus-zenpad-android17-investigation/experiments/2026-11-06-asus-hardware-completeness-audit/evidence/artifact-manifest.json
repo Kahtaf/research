@@ -1,0 +1,171 @@
+{
+  "utc": "2026-11-06T19:39:24.212534+00:00",
+  "link_checks": [
+    {
+      "file": "HARDWARE-MATRIX.md",
+      "resolved_reference_links": 15
+    },
+    {
+      "file": "CALIBRATION-PRESERVATION.md",
+      "resolved_reference_links": 4
+    }
+  ],
+  "files": {
+    "README.md": {
+      "bytes": 2494,
+      "sha256": "cc54e0359c5acac183b0e4714b7707c266a696f588a24f4b9df68272bf34bd14"
+    },
+    "evidence/abi-details.txt": {
+      "bytes": 64610,
+      "sha256": "1ca487fc67f16aa1360279c2b50338ded424cc64c17ed5cd068a847208bb8299"
+    },
+    "evidence/details-r2.txt": {
+      "bytes": 67185,
+      "sha256": "1d2acaff82aa8920606c260381cb691787c12a6b75a161bc969d97e63888f007"
+    },
+    "evidence/details.txt": {
+      "bytes": 65060,
+      "sha256": "64c4c48fecf24ba022819f19de43b77f08aba09dc9a663d50c64f32d7bd07f60"
+    },
+    "evidence/final-source-checks.txt": {
+      "bytes": 44969,
+      "sha256": "32d78fad6a51ea32df5bf63fdabac2ad099244d0bfb767483bb169ce3ea4a4a3"
+    },
+    "evidence/interface-audit.txt": {
+      "bytes": 9869,
+      "sha256": "e3867e196fad9dc2001147cd5df211b9c0263ab843d00da3833700c05deefd30"
+    },
+    "evidence/local-public-source.txt": {
+      "bytes": 6910,
+      "sha256": "5d41024d5ad0468c090738c66d1bab4022a85db238d0d110773954cd847446db"
+    },
+    "evidence/nvram-table-probe.txt": {
+      "bytes": 11724,
+      "sha256": "5508c7493563e49edd20e38ea14c36cf69571932b472ea71fd6a0e05476acddd"
+    },
+    "evidence/nvram-tables.txt": {
+      "bytes": 64339,
+      "sha256": "8e9214c9b93f72a2530e35773fa9e4da7d80cecf87caa8064eabda9f4c861957"
+    },
+    "evidence/prior-stock-hardware-facts.txt": {
+      "bytes": 803,
+      "sha256": "8a36b4dc5295fbf10f88f2ff267364bae7983bd96d8c94c5ea7f6ee5669f8277"
+    },
+    "evidence/product-snapshot.json": {
+      "bytes": 64406,
+      "sha256": "c53aba99a5d03422a8fc39a0d7b539e8813dcc95c72f12612817be977d662e90"
+    },
+    "evidence/public-locations.txt": {
+      "bytes": 23616,
+      "sha256": "cd9fb4a74d5e53dcfd3a78bbbe54fdd3c6a9bafe8a84e21598f3f8f01dd07ce9"
+    },
+    "evidence/remote-products.txt": {
+      "bytes": 55518,
+      "sha256": "7e27e908085d5f220c965c5eb960d804d301db178307d62f953a0e7be33ed1a3"
+    },
+    "evidence/source-audit.txt": {
+      "bytes": 52144,
+      "sha256": "01a2f110d75f75026962e7c0f33b0912d7be9dcd3b8f98b4515fa1a114474d5a"
+    },
+    "evidence/stock-elf-and-config.txt": {
+      "bytes": 115699,
+      "sha256": "31c9d8735de0b45c46d93a33074dc67efd340fcee71adfa9e66baf0cbb89798c"
+    },
+    "evidence/stock-inventory.txt": {
+      "bytes": 24881,
+      "sha256": "3a4cdad3f661bed18ec9e90ea51bdd8ddc47e53880c56f639b2fd423bbb32877"
+    },
+    "evidence/vendor-packages.txt": {
+      "bytes": 8429,
+      "sha256": "5cef6c66d6d48e428b466fbbb05c15e673fc03e22d97d40002d2fec114bec85a"
+    },
+    "evidence/verification.json": {
+      "bytes": 3315,
+      "sha256": "bb6838bd409e8c165f1270b061288cda42b3af3e87fa14d4e60c3954b198c233"
+    },
+    "report/CALIBRATION-PRESERVATION.md": {
+      "bytes": 9127,
+      "sha256": "6548344f844b55232376e0c6d947255755cf715ed122af4be49a38e09c2aea1c"
+    },
+    "report/HANDOFF.md": {
+      "bytes": 3124,
+      "sha256": "d15e58d0c837fad9b728ddef87c2c3e22467ebd2e66286903bb77c9a2a3b256a"
+    },
+    "report/HARDWARE-MATRIX.md": {
+      "bytes": 16902,
+      "sha256": "17f9307d205f4830772bcbe4d2f00b77c0df325432cedd4758cf727167373307"
+    },
+    "report/calibration-records.json": {
+      "bytes": 17649,
+      "sha256": "394519080ca7e67acf9642e4626698fbe086f8edc14b8025c4907c01b62d673c"
+    },
+    "report/coverage.html": {
+      "bytes": 2351,
+      "sha256": "35672746760d2a140040e2cd46edcea4c8d2cd242801ede4db285061ebdb8298"
+    },
+    "scripts/abi_details.py": {
+      "bytes": 1915,
+      "sha256": "43db5cf7e8de859109a2047bb7d3e5d8fc2c1130cafd4041a3d7dcd7f33e9fbf"
+    },
+    "scripts/capture_local.py": {
+      "bytes": 2517,
+      "sha256": "bab20ac9b69f047644fffd2fa3ed9acd8fae53f00f4a529bbb6763ab236977ac"
+    },
+    "scripts/details.py": {
+      "bytes": 1815,
+      "sha256": "175c224b4a416f99e6e6892db6a25f024552ae8d1748d8367ef06a13d7e699de"
+    },
+    "scripts/discover.py": {
+      "bytes": 654,
+      "sha256": "04c9ba3bf2c2d76c52758a29235ce2b6e2663a5ccc8a56672b18ab8df3d97cda"
+    },
+    "scripts/final_source_checks.py": {
+      "bytes": 2454,
+      "sha256": "b3581bfefe193571cf57f21faea17d8b050b9c3a70201b8c0089b44ef4f36785"
+    },
+    "scripts/interface_audit.py": {
+      "bytes": 2035,
+      "sha256": "8806f35f96a585e71ef4f63f297ef24579bddc809f87f5b72318647860a407f3"
+    },
+    "scripts/locate_public.py": {
+      "bytes": 487,
+      "sha256": "5577b9b8886e622c6808a03ece4a7ba0fcd82d0ae0f6297f988049e545afd87d"
+    },
+    "scripts/nvram_table_probe.py": {
+      "bytes": 768,
+      "sha256": "3508dde2b39c237fe905a39736506cca85025ba26c586ca3c5bf452046ab8c91"
+    },
+    "scripts/nvram_tables.py": {
+      "bytes": 2331,
+      "sha256": "f9e14834e7da97f2c63084cb791b4114c82e7afdbff828f773bf73b638269e7b"
+    },
+    "scripts/product_snapshot.py": {
+      "bytes": 1562,
+      "sha256": "ff2125ccb58c9cc0352d847f7ee97b2ce9526647ffd4bf415c2e120b88661c9d"
+    },
+    "scripts/remote_read.py": {
+      "bytes": 691,
+      "sha256": "0bb43cf366897f4b1c0798b44e0beb64dfc5bef40c587b4c8ca5e6d255e4bf6d"
+    },
+    "scripts/source_audit.py": {
+      "bytes": 1864,
+      "sha256": "45aa0d511bc1e7a6709f0028b297941236402d03aac6644eba345f8090e1e062"
+    },
+    "scripts/stock_elf.py": {
+      "bytes": 2011,
+      "sha256": "571ea415927dfa475cf65599d2df95c414ea50d794bdd89a830679cfce6aa2ba"
+    },
+    "scripts/stock_inventory.py": {
+      "bytes": 501,
+      "sha256": "fedf26c2a4c71cc685fc802a7d90233edf3bf673c3fa3de37630287ddc8905be"
+    },
+    "scripts/vendor_packages.py": {
+      "bytes": 544,
+      "sha256": "29e66fecb432b074c55c9caf19cce2bb50a030bfdb66fe513bea6a9afecb7598"
+    },
+    "scripts/verify_evidence.py": {
+      "bytes": 3817,
+      "sha256": "fc840238964043bb7844c6a6d88ef660242cf12a49872916a00a7f746eff362f"
+    }
+  }
+}

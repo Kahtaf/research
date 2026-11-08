@@ -1,0 +1,1 @@
+The first invocation refused locally before starting any model because mcpServers used an object instead of the ACP array. Preserved under superseded-invalid-mcp. Corrected to the same empty-array schema used in the earlier successful consultation. Model target, supplied evidence and no-tool restrictions unchanged.

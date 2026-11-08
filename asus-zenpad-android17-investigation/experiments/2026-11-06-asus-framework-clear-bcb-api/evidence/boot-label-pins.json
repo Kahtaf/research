@@ -1,0 +1,23 @@
+{
+  "boot_sha256": "7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316",
+  "files": [
+    {
+      "file": "inputs/boot__service_contexts",
+      "bytes": 15138,
+      "sha256": "c043331210d5d832e909e8fa1a396a6a1810505c377039d33aff7bcff3572a24",
+      "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-local-stock-rollback/artifacts/stock-rollback/boot.img#service_contexts"
+    },
+    {
+      "file": "inputs/boot__property_contexts",
+      "bytes": 18471,
+      "sha256": "d0cd0317d86e6204e9946f1c9d635610ec03043896f5abaf80457147c197209d",
+      "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-local-stock-rollback/artifacts/stock-rollback/boot.img#property_contexts"
+    },
+    {
+      "file": "inputs/boot__file_contexts.bin",
+      "bytes": 220034,
+      "sha256": "ae49fd36f2803f13fd521c93f02d473d99774e7b5122012fbeabd6a31ab5c04c",
+      "source": "/OWNER_HOME/Documents/workspace/ideas/2026-11-06-asus-local-stock-rollback/artifacts/stock-rollback/boot.img#file_contexts.bin"
+    }
+  ]
+}

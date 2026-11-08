@@ -1,0 +1,23 @@
+{
+  "note": "Historical hashes only; no image payload in this repository. Survival outside repository must be checked independently after cloud cleanup. Sizes were not supplied in final owner handoff; null means unknown, not zero.",
+  "artifacts": [
+    {
+      "name": "latest-full-SYSTEM",
+      "sha256": "fa41395749229849344b216a8fa55de3c0a9fd029bc90f05543f6ba0cc8550f5",
+      "bytes": null,
+      "payload_status": "VM-only output at archive preparation; excluded, rebuild allowed"
+    },
+    {
+      "name": "latest-full-BOOT",
+      "sha256": "784d4dc565e7742ea607683d2a67d1fdb066764bddfa369895cbaaf6f048b435",
+      "bytes": null,
+      "payload_status": "VM-only output at archive preparation; excluded, rebuild allowed"
+    },
+    {
+      "name": "device-current-p10",
+      "sha256": "b3ff63a119f791e8d38ab75d2586aba52cf77086026cdfb7ff3fab706d1474c1",
+      "bytes": null,
+      "payload_status": "device stock state identity; no payload included"
+    }
+  ]
+}

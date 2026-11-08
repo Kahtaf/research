@@ -1,0 +1,21 @@
+{
+  "raw_sha256": "e22ab1b87d2e61e20edc6a09b7f6779739f4c4a4b261a08dab6d4093d4abd99a",
+  "raw_bytes": 16737,
+  "fresh_entry_count": 1,
+  "delay_exhaustion_records": 0,
+  "compute_end_records": 0,
+  "timer_records": 0,
+  "panic_text_present": false,
+  "records": [
+    "ASUS49-ENTRY run=a4e847a5-f502-4562-8e6a-c9a358e3f22f stage=stext-preargs release=4.9.337-asus-p00a-experimental-minplat base=97b7e1199d607f852bf52ff7766e8aa079fee92986cd3d473b765a45adbf45fb cfg=01d6729f825798899e21192e6c33f96a80b47ccbedd5dc6cab10f78c1f9c7f31 dts-source=2d0c95c12d0fce6629dede4e0eff6590725de9ef5dbbb1f0acc0f3e63fca41b6",
+    "ASUS-MINPLAT run=a60fca94-e760-4ce5-a790-5c9a818ce406 event=entry pid=1",
+    "ASUS-MINPLAT run=a60fca94-e760-4ce5-a790-5c9a818ce406 event=uname sysname=Linux release=4.9.337-asus-p00a-experimental-minplat version=#1 SMP PREEMPT Sun Nov 8 14:26:02 UTC 2026 machine=aarch64",
+    "ASUS-MINPLAT run=a60fca94-e760-4ce5-a790-5c9a818ce406 event=scheduler policy=0 priority=0 nice=0",
+    "ASUS-MINPLAT run=a60fca94-e760-4ce5-a790-5c9a818ce406 event=compute-begin iterations=2000000"
+  ],
+  "after_compute_record_count": 2,
+  "normal_stock_return_proven": true,
+  "stock_boot_id": "085392d3-3183-407f-827c-ddefe1308613",
+  "outcome": "UNKNOWN",
+  "absence_is_not_negative": true
+}

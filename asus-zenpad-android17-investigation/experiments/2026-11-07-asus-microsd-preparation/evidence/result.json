@@ -1,0 +1,16 @@
+{
+  "utc": "2026-11-07T05:35:08.825764+00:00",
+  "outcome": "fat32_marker_verified_card_ejected",
+  "card_bytes": 15931539456,
+  "partition_scheme": "MBR",
+  "filesystem": "FAT32",
+  "volume": "ASUS17",
+  "marker": "PROBE.ID",
+  "marker_bytes": 37,
+  "marker_sha256": "3702ec5f4c325d7a37c987066d5276f1f899bf24f891be5c0dd1ab540f7be3df",
+  "report_must_be_absent": "PROBE.TXT",
+  "directory_fsync": "completed",
+  "free_bytes": 15913058304,
+  "eject_verified": true,
+  "asus_image_operations": false
+}

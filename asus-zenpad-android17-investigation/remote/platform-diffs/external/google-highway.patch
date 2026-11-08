@@ -1,0 +1,12 @@
+diff --git a/Android.bp b/Android.bp
+index b2febd1..0754985 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -34,6 +34,7 @@ cc_library_headers {
+ 
+ cc_library {
+     name: "libhwy",
++    vendor_available: true,
+     host_supported: true,
+     sdk_version: "current",
+     stl: "c++_shared",

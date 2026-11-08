@@ -1,0 +1,17 @@
+{
+  "README.md": "a4926521f95f18ab7d05e2768ea84974233bf8a7b3a6a880f60f2e5d90a6f23e",
+  "artifacts/importer-needed-only.so": "dd4cb852bc0d245d9a1a3a580cc5978e443293c7f5e8efdedc0c5e62c92e5a43",
+  "artifacts/libcam_utils.property-map-CORRECTED-WITNESS.so": "40a9407f70f797552b4c5c5a4b034c04589fb8fedc65538ccf64da50831e59b4",
+  "evidence/add-needed.json": "25624e2138f7d2dcb8483c1e3f40918cc47b9f52cff9a6b9aa9192fcc13d9084",
+  "evidence/corrected-comparison.json": "a14ece1cf9bd280e408e470f5406ad1eedbc2a541da290b0529b5c2431382423",
+  "evidence/known-bad-comparison.json": "9c67090a2efdba0dbd86f97994204a1aa15571e9e960e033a3d00d4d7efdb9ec",
+  "evidence/original-input-pins.json": "a9e7d18db5085dd87e817bfa358b4ea15239d081c6141c3f51c4f537bb22c230",
+  "evidence/remote-budget.json": "aa61d0a640005a9e763f88317f55afea40caabffa1242e7f8fb51bbe40185301",
+  "evidence/rewrite.json": "3507ab0cf8908e56abd422dadf4de2a341fedf218460b20998919572946456c7",
+  "evidence/verification.json": "de1a5ce5deaebf0d7ff698dda6b45d0974021aefd9537c43974904600a914054",
+  "scripts/add_needed_remote.py": "9cd6515faf0c90e6dd96967deb6750e8434b9946ae3c80f753bf1d8f010d4169",
+  "scripts/elf32.py": "cbc0beddd6863c1304d7a567450e03419b87fa9bc93f78a9e9436fecc990d22e",
+  "scripts/integrity.py": "00bee6c784edf4e73cf369dac8eae1fd328dfff1c002409d9db2fe39ec7c7cb1",
+  "scripts/stage_importer.py": "5071ffce94ca1aad41032d27d5bdb747a16404e5291fb038a2f0cd7459dcc6d0",
+  "scripts/verify.py": "1eb4b036e6be0658b559bc6df560dfef492fd4ee5d4620f732aa02e4663baaf8"
+}

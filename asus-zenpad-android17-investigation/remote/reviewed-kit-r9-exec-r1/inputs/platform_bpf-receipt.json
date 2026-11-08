@@ -1,0 +1,13 @@
+{
+  "files": {
+    "loader/bpfloader.rs": {
+      "after": "babbccf603e600a2b77f5c71cbf6b1b978f72c176fd33bfab610ff2ba8956250",
+      "before": "1548dffa03b5091bbb9b7cfcce92495ee2167f417e90b431117cf31ea77b4bd2"
+    }
+  },
+  "fixture_binary_is_shipping_input": false,
+  "native_product_rebuild_required": true,
+  "patch_sha256": "2ffaf6c9349c06394d8d5e2e4e2bd70104725a2665f644dc0f1ae4f07988d502",
+  "root": "/srv/android/lineage24/system/bpf",
+  "staged_root": "/srv/android/asus-product-integration-staging/r3/platform-bpf"
+}

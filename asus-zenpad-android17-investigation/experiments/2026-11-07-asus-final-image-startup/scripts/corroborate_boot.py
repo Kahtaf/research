@@ -1,0 +1,5 @@
+from pathlib import Path
+import struct,hashlib,json,gzip
+R=Path('/srv/android/asus-final-image-startup-20261107');b=Path('/srv/android/asus-radio-trigger-build-r4/checks/r3/UNTESTED-combined-MTKBOOT.img').read_bytes();assert b[:8]==b'ANDROID!';ks,ka,rs,ra,ss,sa,ta,page=struct.unpack_from('<8I',b,8);off=page+(ks+page-1)//page*page;ram=b[off:off+rs];assert ram[:4]==bytes.fromhex('88168858');ram=ram[512:];old=Path('/srv/android/asus-r9-actual-early-runtime-20261106/inputs/actual-ramdisk.cpio.gz').read_bytes()
+# Different gzip container encoding is permitted only if complete uncompressed CPIO bytes match.
+d=dict(final_boot_ramdisk_sha256=hashlib.sha256(ram).hexdigest(),reference_ramdisk_sha256=hashlib.sha256(old).hexdigest(),compressed_identical=ram==old,cpio_identical=gzip.decompress(ram)==gzip.decompress(old),reference_sha256_previously_admitted='95f5c2a8aded2e081e30e72ebd37322a24aa895bbe7e334c79c1381bcd3fe240');assert d['cpio_identical'];(R/'evidence/boot-ramdisk-corroboration.json').write_text(json.dumps(d,indent=2));print(json.dumps(d,indent=2))

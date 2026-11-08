@@ -1,0 +1,45 @@
+{
+  "utc": "2026-11-06T18:59:05.082030+00:00",
+  "files": {
+    "/srv/android/asus-build-continuation/evidence/snapshot.json": {
+      "bytes": 6926065,
+      "sha256": "e219c0e87d2cfca252088e06839dbf9cedaa794b3832e3829cf5c96021717315"
+    },
+    "/srv/android/asus-build-continuation/evidence/combined-source-receipt.json": {
+      "bytes": 49724,
+      "sha256": "c5bed5566898060da79c7dbe71618da7888f7733da487a96d2ef37c3093a11f4"
+    },
+    "/srv/android/asus-build-continuation/evidence/combined-release.json": {
+      "bytes": 4517,
+      "sha256": "3b092987da7e646878bc07ce6a0420e84baa1f1d50277f06e3011b7c4ca919a4"
+    },
+    "/srv/android/asus-build-continuation/evidence/runtime-source-baseline.json": {
+      "bytes": 59045,
+      "sha256": "76caf8794f63617b4d3f90eec8cf9453768d76278d07d77bf631cbef60c277b1"
+    },
+    "/srv/android/asus-build-continuation/evidence/runtime-config-baseline.json": {
+      "bytes": 5446,
+      "sha256": "217a0da4b721ccd504ec9f068f6d7a3ffa6a2cee6582299714aea41729747fa8"
+    },
+    "/srv/android/asus-build-continuation/evidence/firstboot-cgroups-applied.json": {
+      "bytes": 1697,
+      "sha256": "ae89f8b0a3907ac812d0cdb97267b65f614db9455e8d238c86c3725a8cfa8f0f"
+    },
+    "/srv/android/asus-build-continuation/evidence/network-staging.json": {
+      "bytes": 2807,
+      "sha256": "4520727f074af32056e04a72ae8bb8b262a7d0fdcb56c7ef90a725aca20770b6"
+    },
+    "/srv/android/asus-build-continuation/evidence/cgroup-r4-config-delta.json": {
+      "bytes": 291,
+      "sha256": "1a17bf699463971eeb190f68a605a495ea87a3e1a835862012e1a0853347a056"
+    },
+    "/srv/android/asus-build-continuation/build_combined.sh": {
+      "bytes": 1190,
+      "sha256": "3f13fcc1e533c25112bbf81cf8dd01c9ddb6e40541c2542317098e407bbed39d"
+    },
+    "/srv/android/asus-build-continuation/scripts/verify_kernel.py": {
+      "bytes": 4278,
+      "sha256": "ecf64c1c9e4a6c301d8620bdd42d03a68793deedc6fdeaf7049545564fc1d085"
+    }
+  }
+}

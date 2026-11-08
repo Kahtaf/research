@@ -1,0 +1,158 @@
+{
+  "source/file_contexts.py": {
+    "bytes": 1657,
+    "sha256": "012a4f0a71f49772a12e537721b5aca3e5de1b201b2dc5aaa07a26e07cdb650c"
+  },
+  "source/policy_build.c": {
+    "bytes": 5688,
+    "sha256": "c50f6487807192a27023f6f2e5522159f6f1ed3c2e0ec975d7b43f9f8d0b7422"
+  },
+  "source/policy_audit.c": {
+    "bytes": 6564,
+    "sha256": "3b8ac244ff2d2d2b928f30ff9263199608581702e14835984c38752988488ec2"
+  },
+  "tests/mutate_policy.c": {
+    "bytes": 4088,
+    "sha256": "240abcd00caf0e5371d71e69f9b481d1cc2ba0514b204d81ff8a89a075beda7e"
+  },
+  "tests/policy_xperms.c": {
+    "bytes": 2759,
+    "sha256": "970953ce0ec3432ff49387d23d631172817b9e57ab5a9e7dace6d0d0eafe716e"
+  },
+  "tests/policy_query.c": {
+    "bytes": 2117,
+    "sha256": "630a63ac4218dee09f94f1ac0b2ef2104f9a73f74d6cd11aac28f80b3ac5e461"
+  },
+  "tests/policy_checks.py": {
+    "bytes": 6628,
+    "sha256": "ca9aed70720a6f590e98325d52e2934473beb783e85ee14f91a7aff213ca3077"
+  },
+  "tests/policy_reachability.c": {
+    "bytes": 2089,
+    "sha256": "e5ea3443379bd22e8021d52a5c033dbe27a3d32036b5d15fb2692e7c2a375660"
+  },
+  "tests/policy_constraints.c": {
+    "bytes": 1808,
+    "sha256": "ed7a4d6fba45f79009213a794b1c001aca3925655f8de41d5d79ee5649576b4d"
+  },
+  "tests/context_lookup.c": {
+    "bytes": 610,
+    "sha256": "d4dff8d426e30bf05a5291ebe2a981d0b39866726d31c180d788958a61d9f564"
+  },
+  "scripts/generate_policy.py": {
+    "bytes": 1446,
+    "sha256": "e964d058035eeb0fd0d236c06d21a43a748e2b77cd08db4c2350fc4147167961"
+  },
+  "scripts/bounded.py": {
+    "bytes": 2504,
+    "sha256": "f2a5ad7e0815a49e1e865a63186374ebd4c410944cc3011c3ea1e99aedaa0dae"
+  },
+  "scripts/seal_evidence.py": {
+    "bytes": 6252,
+    "sha256": "2d9be0343e4445a4a56d81a57ba7ab81205198d82c483b2c978418510eba7baf"
+  },
+  "scripts/build_context_host.py": {
+    "bytes": 1086,
+    "sha256": "8effc8c7c6a231a125b97b3a31048a7bb28995b559c07e72f1e9769916ca8389"
+  },
+  "scripts/build_host.py": {
+    "bytes": 795,
+    "sha256": "0f5b5f5b0fcaeb1f6dceecafe848d93bf730e6c722aa4069f07c369e8f5e35b1"
+  },
+  "scripts/negative_fixtures.py": {
+    "bytes": 2566,
+    "sha256": "8cd2fbc49b7c9c2c20ae194cb2d4a6b6584225e596d6af6cffc68bd30507eddf"
+  },
+  "scripts/query_matrix.py": {
+    "bytes": 1666,
+    "sha256": "3b7b8ea5119f6322172ebb4a8dc6ae9a856ce02b9b71c4fa58e9a1ac193e2adf"
+  },
+  "scripts/verify_patch.py": {
+    "bytes": 818,
+    "sha256": "391726b722af63e9e6a0dfb48083a40b45e6afa6ef32d33e512b03744acf2822"
+  },
+  "scripts/final_qa.py": {
+    "bytes": 898,
+    "sha256": "7bb71b219e2fd76abdc4a1c1fd2de7179cae8bf71cab2b7a827bea29cb12233a"
+  },
+  "scripts/verify_delivery.py": {
+    "bytes": 1037,
+    "sha256": "4999a15321afa275ae2cd63806b4b864ccd6cc76f8ec04bc8549426b65251042"
+  },
+  "scripts/reproduce_clean.py": {
+    "bytes": 1184,
+    "sha256": "461dc40b20d53d849ecad6152bf380019c9edf2d1743844b738710d02983c8d5"
+  },
+  "baseline/source/policy_build.c": {
+    "bytes": 5562,
+    "sha256": "1fbb9b714f630c7d058f583b3d42242814413988ee41b188463c1291dda56fdf"
+  },
+  "baseline/source/policy_audit.c": {
+    "bytes": 3512,
+    "sha256": "a8419a1ff771646dc28c96fa342f87ce4d949ee6368660bcd962f4d3053d9333"
+  },
+  "baseline/tests/policy_checks.py": {
+    "bytes": 3690,
+    "sha256": "0a367f27a483ef0918d95a984efae0cde307d2920b3f42e998d8b11cb00ecca9"
+  },
+  "inputs/file_contexts": {
+    "bytes": 49597,
+    "sha256": "8edd2720728edcac617d78c1a70b160562e26f44802553a794b3f97b5613cfd5"
+  },
+  "inputs/libselinux-android-7.1.2_r39.tar.gz": {
+    "bytes": 62164,
+    "sha256": "8a8b5ef512bd4aa7ac8cdb8e1f7f64644ad340d75f5280f77c9c912d53970b9b"
+  },
+  "inputs/restore-sepolicy": {
+    "bytes": 390383,
+    "sha256": "16f6ce7f25c1b56aba9e4179573c49a6c55f9b9fe3f18336029f6d83b5b4b2c2"
+  },
+  "inputs/frozen-effective-policy.json": {
+    "bytes": 54462,
+    "sha256": "af6052ded1c4feb801825bfb2c1629cd810b32e592b1f1007bac579949844eff"
+  },
+  "inputs/pcre-android-7.1.2_r39.tar.gz": {
+    "bytes": 2049359,
+    "sha256": "fb5d81e0e32b5047b2095ca865c75690aba079d5c8cb28497362deda95ab4947"
+  },
+  "inputs/file_contexts.bin": {
+    "bytes": 223569,
+    "sha256": "d82c9ca28d1d9017aea5f58d1cb9b46f6122ef22953ab32b7b4a3a8ccd07186c"
+  },
+  "inputs/base-policy": {
+    "bytes": 389688,
+    "sha256": "189c477ac73ecb161a6527f7f98a6fec76a913b0d5cf8d11591d440dc79af842"
+  },
+  "inputs/libsepol-android-7.1.2_r39.tar.gz": {
+    "bytes": 452022,
+    "sha256": "c17c444d73f1080a8959cfda2d4bdb529efd88f5af58a9e571917f473f83ff27"
+  },
+  "inputs/review/HANDOFF.json": {
+    "bytes": 1919,
+    "sha256": "ff75b0d06eb2dd6287c79065c02bb14fa9392a102530ebc57c8de857bd88d10c"
+  },
+  "inputs/review/REPORT.md": {
+    "bytes": 16183,
+    "sha256": "4f4823723a24f8573137dee63a3ff8d38497f41348ce793478ee21907efc3962"
+  },
+  "inputs/parent/CONTRACT.md": {
+    "bytes": 24343,
+    "sha256": "9cb432e4c2ad14bdcfd9779bae78743784a138833ffce786adfe207116ad1b72"
+  },
+  "inputs/parent/WORK_AND_ACCEPTANCE.md": {
+    "bytes": 17544,
+    "sha256": "337ba0b5e7dce3eae9555938a9bbbc5ef667b4f4a06c43d93d823a50d7a7ef6e"
+  },
+  "inputs/parent/PARENT-POLICY-CORRECTION.json": {
+    "bytes": 1080,
+    "sha256": "68145131a1a95830d3f51c2ff139df7eb6a9f13b8a886320086cc9aec0799e7f"
+  },
+  "inputs/parent/evidence/parent-before-policy-correction/CONTRACT.md": {
+    "bytes": 23745,
+    "sha256": "fdf6b08a5f6f3c69e89ac6175b72e8e7af9a303fd26baccf13af178aefaa41e9"
+  },
+  "inputs/parent/evidence/parent-before-policy-correction/WORK_AND_ACCEPTANCE.md": {
+    "bytes": 16805,
+    "sha256": "8407d89eee366ca9f918a32b0f08454cdf736d592014f52ac68dde8dfc11261e"
+  }
+}

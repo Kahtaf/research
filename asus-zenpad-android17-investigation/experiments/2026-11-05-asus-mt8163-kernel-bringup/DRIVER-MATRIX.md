@@ -1,0 +1,20 @@
+# ASUS P00A hardware dependency matrix
+
+All runtime observations are from the stock connected unit. A compile result is not a hardware test. Android 17 remains the final platform target.
+
+| Subsystem | Actual ASUS evidence | MT8163 4.9 foundation | Work in this experiment / remaining gate |
+|---|---|---|---|
+| Board and memory | P00A_2; HW_ID 3, PCB 536; live DT reports usable RAM `0x7d600000` at `0x40000000` | MediaTek MT8163 vendor SoC description and ARM64 boot | Import original ASUS board DTS; compile against 4.9 SoC nodes. Original static memory placeholder requires bootloader fix-up as stock did; no live identifiers copied into source. |
+| Panel | Bootloader videolfb property names `z380m_kd_rm68200g01`; 800×1280 | Compatible legacy MediaTek LCM framework, different Amazon panels | Import this exact ASUS panel driver. Remove EVB selection only for the observed production board and use existing 4.9 boot-panel lookup; compile and inspect dependencies. GPIO/regulator sequencing still needs hardware validation. |
+| Touch | I2C 0-0014, GT6108; firmware `6108_101e-82`; display and touch IDs 0 | Generic Goodix driver; same 0x814e coordinates, 0x8140 version, 0x8047 config and 240-byte config buffer | Add GT6108 compatible and ASUS GPIO aliases as an experimental candidate. Skip firmware configuration loading for GT6108. Reset/power/interrupt behavior and touch coordinates remain untested. Full stock driver includes ASUS factory/firmware interfaces and is not blindly imported. |
+| Backlight | I2C 0-002c reports LP8557-led | Generic LP855x plus different MediaTek legacy brightness path | Stock custom LP8557 control lives in MediaTek LEDs code. Must reconcile register initialization and brightness callback; panel compile alone does not port backlight. |
+| Charger / main battery | BQ25896 at 0-006b; main battery is MediaTek platform supply | Amazon BQ24297 and BQ25601 drivers and battery policy | Disable incorrect charger choices in ASUS config. Need a real BQ25896 charging-control port with ASUS wiring, temperature/voltage limits and battery model. Do not fake required link symbols or retain wrong charger drivers to get an image. |
+| Cover battery | UG31xx at 0-0070 belongs to `pack_bat`, currently PRESENT=0; SMB3xx `pack_ac` | Different Amazon accessory support | This is an optional cover gauge, not evidence for the main battery gauge. Do not make cover support a prerequisite to the pad-only first port. |
+| PMIC / thermal | MT6323 in stock DT; ASUS battery and thermal policy | MT6323 driver, SoC DVFS/thermal plus Amazon board-specific policy | Preserve ASUS regulator constraints. Amazon thermal selection is not validated for ASUS and must be replaced/checked before a boot attempt. |
+| GPU | Stock Mali-T720 r12p1; Android 7 proprietary libraries | Mali Midgard r26p0 in candidate | Kernel/user driver API compatibility is unproven. Check ioctl version negotiation and alloc/sync paths against pulled stock libraries; no accelerated UI claim. |
+| Storage | Exact live GPT and 16,740,352-byte boot/recovery partitions from prior audit | MT8163 MMC driver | ASUS eMMC/SD pinctrl and regulator wiring imported with original board DTS; driver timing/bootloader fix-ups need verification. No repartitioning. |
+| USB / diagnostics | Stock MediaTek USB peripheral works over ADB | MT8163 USB vendor driver | ASUS pinctrl and controller wiring imported. Need early diagnostics and initramfs after a complete kernel link; no borrowed Amazon initramfs. |
+| Wi-Fi / Bluetooth | ASUS CONSYS_8163 vendor support and public firmware in prior evidence | Same-SoC connectivity family | Compare firmware and chip/transport versions; same SoC does not prove firmware/driver compatibility. Not validated. |
+| Modern Android features | Stock 3.18 lacks observed modern runtime nodes | 4.9.337 baseline; lineage-22.2 BPF branch fails missing refcount.h | First establish hardware kernel. Port a coherent Android 17 feature series with tests; version overrides do not implement missing features. |
+
+Source provenance and compile logs are under `evidence/`. See STATUS.md for actual build outcomes and boot eligibility.

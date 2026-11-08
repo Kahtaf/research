@@ -1,0 +1,78 @@
+{
+  "cloud-retirement-receipt.json": {
+    "bytes": 736,
+    "sha256": "448fa3a2b2ca45c69297cdab83e72b920a09bfda66887dfac041fa0c12f7c811"
+  },
+  "known-image-identities.json": {
+    "bytes": 972,
+    "sha256": "9d9e9400c233a102ae9b2bca0450c1d54c5d3be0ecf67b1b1590784eff422409"
+  },
+  "CLOUD-RETIREMENT.md": {
+    "bytes": 1298,
+    "sha256": "eb64cd0e0017eb45a0032623ea8882cc27a6b6ccf4fad7b5b9caccc9eb7e02f6"
+  },
+  "STATE-AND-RESUME.md": {
+    "bytes": 4820,
+    "sha256": "5bd19f20caa50e7291d0b30d1b0b86f070611e906200a0d3c7c98ba5c7b62c7b"
+  },
+  "publication-validation.json": {
+    "bytes": 621,
+    "sha256": "4ddddd8e0560317576b31551db26498207e9c44b90e69995a7ce4d8f3cd85b37"
+  },
+  "publication-mapping.json": {
+    "bytes": 4978902,
+    "sha256": "cce20bab06f1cb519761c43de14a8bf5292fc2fb0ed2b6a83dc6997349a3d4fd"
+  },
+  "publication-metadata-original.json": {
+    "bytes": 2164,
+    "sha256": "9df44dfd796e6c4221747c5ff4075c3a906ef0e1ef6221b90c959d802af18776"
+  },
+  "README.md": {
+    "bytes": 6826,
+    "sha256": "76c9b2a5d4a928d09becc3e38b056850e9172f7741114c39457b8de1c801ca4f"
+  },
+  "LESSONS.md": {
+    "bytes": 4489,
+    "sha256": "15d5523a08448cb214cd91751025105526ba95abd563e46b7e9a86677b091fd5"
+  },
+  "SOURCE-PRESERVATION.json": {
+    "bytes": 762,
+    "sha256": "bc789ac1bbda276b42b695c419878dac65c6900d430ffb5d9ffef87f08efebbb"
+  },
+  "FAILED-EXPERIMENTS.md": {
+    "bytes": 6322,
+    "sha256": "3838aeaf78caabfb0a1b715a2eb0a544800ff989b8761a2d77886a6a20fce8ec"
+  },
+  "manifest.json": {
+    "bytes": 3839918,
+    "sha256": "75d7cadfcf8fe4c2dacae8c60bb0cf0e3cae88872f50880a6759a55a64168135"
+  },
+  "FINDINGS.md": {
+    "bytes": 10524,
+    "sha256": "e7a5e7cb7eb1a83d9deae1218ddd1129697d35454e6b8af9183f9774ec1741d0"
+  },
+  "experiment-index.json": {
+    "bytes": 411859,
+    "sha256": "fb0708554c49031ed4199cdc6869c7624ca1d76439b2bf602009c952a017312b"
+  },
+  "selection.py": {
+    "bytes": 5292,
+    "sha256": "9a7ede51835c91f7ea056291366da4b3372d5475e0f1df0a0cf4ba4f7ea571bb"
+  },
+  "EXPERIMENT-LEDGER.md": {
+    "bytes": 86001,
+    "sha256": "9a7705dd2844a38da345fdc5316ceeab0492f11bedb7373fc521d1f867e433b2"
+  },
+  "notes.md": {
+    "bytes": 4133,
+    "sha256": "aa1b9e72df9462f3c4a74b0e3fc3337e9d3736838e1cfb904c5c81c6e5eeb5c3"
+  },
+  "publication-selection.json": {
+    "bytes": 1646,
+    "sha256": "3afcaedc517a8e1bb196eb8ba59309122e74de9c0dcb4bee6706d12bc559b684"
+  },
+  "publication-adjustments.json": {
+    "bytes": 1710,
+    "sha256": "d62978c477e67743d277fd6d11363ae82ebbf0651cf7c2303613ed5612c70077"
+  }
+}

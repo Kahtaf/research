@@ -1,0 +1,7 @@
+{
+  "source/arch/arm64/kernel/asus_entry_tag.h": "eab7452d50d8c55403fb31d240f9742532e031472b919db72ee8975dfff0475d",
+  "source/arch/arm64/kernel/asus_entry_text.S": "e56fffecd0f825439d3711ab931180d58a5a320e70ebb8b30fcc5e8442cd631d",
+  "source/arch/arm64/kernel/asus_retained_trace.c": "76d9ff38bbf47995594a4795fe5af5b22f78b93fa91f6190bb4bbdf1c864721e",
+  "source/arch/arm64/kernel/head.S": "7d9b202bd8001d4c9ef2537733eef3989101f1dc132050ddb9c7e3cb460c3659",
+  "scripts/verify_remote.py": "d5ca6585324a8796abbeec50fc36b278a873f50749ae2cff88c57b26c0f2e730"
+}

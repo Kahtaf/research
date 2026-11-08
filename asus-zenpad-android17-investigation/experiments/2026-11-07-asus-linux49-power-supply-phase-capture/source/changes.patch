@@ -1,0 +1,435 @@
+--- base/drivers/power/supply/power_supply_core.c
++++ candidate/drivers/power/supply/power_supply_core.c
+@@ -10,6 +10,7 @@
+  *  You may use this code as per GPL version 2
+  */
+ 
++#include <linux/asus_retained_trace.h>
+ #include <linux/module.h>
+ #include <linux/types.h>
+ #include <linux/init.h>
+@@ -63,10 +64,17 @@
+ {
+ 	struct power_supply *psy = data;
+ 	struct power_supply *pst = dev_get_drvdata(dev);
++	struct asus_ps_capture capture;
+ 
+ 	if (__power_supply_is_supplied_by(psy, pst)) {
+-		if (pst->desc->external_power_changed)
++		if (pst->desc->external_power_changed) {
++			asus_capture_ps_begin(&capture, 50, 0, (unsigned long)pst,
++				pst->desc->name,
++				(unsigned long)READ_ONCE(pst->desc->external_power_changed),
++				0, (unsigned long)psy, psy->desc->name);
+ 			pst->desc->external_power_changed(pst);
++			asus_capture_ps_step(&capture, 51, 0, U64_MAX);
++		}
+ 	}
+ 
+ 	return 0;
+@@ -75,12 +83,18 @@
+ static void power_supply_changed_work(struct work_struct *work)
+ {
+ 	unsigned long flags;
++	struct asus_ps_capture capture;
++	int capture_ret;
+ 	struct power_supply *psy = container_of(work, struct power_supply,
+ 						changed_work);
+ 
++	asus_capture_ps_begin(&capture, 1, (unsigned long)work,
++		(unsigned long)psy, psy->desc->name, 0, READ_ONCE(psy->changed), 0, NULL);
+ 	dev_dbg(&psy->dev, "%s\n", __func__);
+ 
++	asus_capture_ps_step(&capture, 2, 0, U64_MAX);
+ 	spin_lock_irqsave(&psy->changed_lock, flags);
++	asus_capture_ps_step(&capture, 3, READ_ONCE(psy->changed), U64_MAX);
+ 	/*
+ 	 * Check 'changed' here to avoid issues due to race between
+ 	 * power_supply_changed() and this routine. In worst case
+@@ -90,14 +104,28 @@
+ 	 */
+ 	if (likely(psy->changed)) {
+ 		psy->changed = false;
++		asus_capture_ps_step(&capture, 4, 0, U64_MAX);
+ 		spin_unlock_irqrestore(&psy->changed_lock, flags);
+-		class_for_each_device(power_supply_class, NULL, psy,
++		asus_capture_ps_step(&capture, 5, 0, U64_MAX);
++		asus_capture_ps_step(&capture, 6, 0, U64_MAX);
++		capture_ret = class_for_each_device(power_supply_class, NULL, psy,
+ 				      __power_supply_changed_work);
++		asus_capture_ps_step(&capture, 7, 0, (u32)capture_ret);
++		asus_capture_ps_step(&capture, 8, 0, U64_MAX);
+ 		power_supply_update_leds(psy);
+-		atomic_notifier_call_chain(&power_supply_notifier,
++		asus_capture_ps_step(&capture, 9, 0, U64_MAX);
++		asus_capture_ps_step(&capture, 10, 0, U64_MAX);
++		capture_ret = atomic_notifier_call_chain(&power_supply_notifier,
+ 				PSY_EVENT_PROP_CHANGED, psy);
+-		kobject_uevent(&psy->dev.kobj, KOBJ_CHANGE);
++		asus_capture_ps_step(&capture, 11, 0, (u32)capture_ret);
++		asus_capture_ps_step(&capture, 12, 0, U64_MAX);
++		capture_ret = kobject_uevent(&psy->dev.kobj, KOBJ_CHANGE);
++		asus_capture_ps_step(&capture, 13, 0, (u32)capture_ret);
++		asus_capture_ps_step(&capture, 14, 0, U64_MAX);
+ 		spin_lock_irqsave(&psy->changed_lock, flags);
++		asus_capture_ps_step(&capture, 15, READ_ONCE(psy->changed), U64_MAX);
++	} else {
++		asus_capture_ps_step(&capture, 21, 0, U64_MAX);
+ 	}
+ 
+ 	/*
+@@ -105,9 +133,15 @@
+ 	 * power_supply_changed() might have called again and have set 'changed'
+ 	 * to true.
+ 	 */
+-	if (likely(!psy->changed))
++	asus_capture_ps_step(&capture, 16, READ_ONCE(psy->changed), U64_MAX);
++	if (likely(!psy->changed)) {
++		asus_capture_ps_step(&capture, 17, 0, U64_MAX);
+ 		pm_relax(&psy->dev);
++		asus_capture_ps_step(&capture, 18, 0, U64_MAX);
++	}
++	asus_capture_ps_step(&capture, 19, 0, U64_MAX);
+ 	spin_unlock_irqrestore(&psy->changed_lock, flags);
++	asus_capture_ps_step(&capture, 20, 0, U64_MAX);
+ }
+ 
+ void power_supply_changed(struct power_supply *psy)
+@@ -497,13 +531,21 @@
+ 			    enum power_supply_property psp,
+ 			    union power_supply_propval *val)
+ {
++	struct asus_ps_capture capture;
++	int capture_ret;
++
+ 	if (atomic_read(&psy->use_cnt) <= 0) {
+ 		if (!psy->initialized)
+ 			return -EAGAIN;
+ 		return -ENODEV;
+ 	}
+ 
+-	return psy->desc->get_property(psy, psp, val);
++	asus_capture_ps_begin(&capture, 40, 0, (unsigned long)psy,
++		psy->desc->name, (unsigned long)READ_ONCE(psy->desc->get_property),
++		(u32)psp, 0, NULL);
++	capture_ret = psy->desc->get_property(psy, psp, val);
++	asus_capture_ps_step(&capture, 41, (u32)psp, (u32)capture_ret);
++	return capture_ret;
+ }
+ EXPORT_SYMBOL_GPL(power_supply_get_property);
+ 
+--- base/arch/arm64/kernel/asus_retained_trace.c
++++ candidate/arch/arm64/kernel/asus_retained_trace.c
+@@ -114,8 +114,8 @@
+ static char *sw_area, *sw_storage;
+ static u64 sw_total;
+ static bool sw_busy;
+-static const char sw_guard_a[] = "A49SGUARD BEGIN b4702f9a-6b32-423f-b789-d2bd515c0707           \n";
+-static const char sw_guard_z[] = "A49SGUARD END   b4702f9a-6b32-423f-b789-d2bd515c0707           \n";
++static const char sw_guard_a[] = "A49SGUARD BEGIN 431dfb9c-8b78-4c8c-bd74-cc556adcf8b0           \n";
++static const char sw_guard_z[] = "A49SGUARD END   431dfb9c-8b78-4c8c-bd74-cc556adcf8b0           \n";
+ 
+ /* Each line is cache-line aligned; cache clean helper ends in dsb sy. */
+ static void sw_commit(char *dest, char *line, unsigned int size)
+@@ -161,7 +161,7 @@
+  char line[SW_ROW_SIZE];
+  BUILD_BUG_ON(SW_SIZE != 3648);
+  memset(dest, ' ', SW_SIZE);
+- memcpy(dest, "A49SW2 uuid=b4702f9a-6b32-423f-b789-d2bd515c0707", 48);
++ memcpy(dest, "A49SW2 uuid=431dfb9c-8b78-4c8c-bd74-cc556adcf8b0", 48);
+  dest[63] = '\n';
+  memcpy(dest + 256, "A49SLOSS 0 guard=0 busy=0 admission=0 overflow=0", 48);
+  dest[319] = '\n';
+@@ -259,8 +259,8 @@
+ static char *wd_area, *wd_storage;
+ static u64 wd_total, wd_entries;
+ static DEFINE_RAW_SPINLOCK(wd_lock);
+-static const char wd_guard_a[] = "A49WGUARD BEGIN b4702f9a-6b32-423f-b789-d2bd515c0707           \n";
+-static const char wd_guard_z[] = "A49WGUARD END   b4702f9a-6b32-423f-b789-d2bd515c0707           \n";
++static const char wd_guard_a[] = "A49WGUARD BEGIN 431dfb9c-8b78-4c8c-bd74-cc556adcf8b0           \n";
++static const char wd_guard_z[] = "A49WGUARD END   431dfb9c-8b78-4c8c-bd74-cc556adcf8b0           \n";
+ 
+ static void wd_fault(unsigned int offset)
+ {
+@@ -295,7 +295,7 @@
+  char line[WD_ROW_SIZE];
+  BUILD_BUG_ON(WD_SIZE != 5568);
+  memset(dest, ' ', WD_SIZE);
+- memcpy(dest, "A49WD1 uuid=b4702f9a-6b32-423f-b789-d2bd515c0707", 48);
++ memcpy(dest, "A49WD1 uuid=431dfb9c-8b78-4c8c-bd74-cc556adcf8b0", 48);
+  dest[63] = '\n';
+  memcpy(dest + 256, "A49WLOSS 0 guard=0 busy=0 admission=0 overflow=0", 48);
+  dest[319] = '\n';
+@@ -399,6 +399,202 @@
+   wd_record(token, 0, 0, 2); /* Never dereference the possibly freed work. */
+ }
+ 
++/* One independent publication lock, never held across an original operation. */
++#define PS_RING 8
++#define PS_ROW_SIZE 448
++#define PS_ROW_OFFSET 384
++#define PS_ROWS (PS_RING + 3)
++#define PS_SIZE (PS_ROW_OFFSET + PS_ROWS * PS_ROW_SIZE + 64)
++static char *ps_area, *ps_storage;
++static u64 ps_total;
++static DEFINE_RAW_SPINLOCK(ps_lock);
++static struct asus_ps_capture ps_body;
++static u32 ps_body_pid, ps_body_phase;
++static const char ps_guard_a[] = "A49PGUARD BEGIN 431dfb9c-8b78-4c8c-bd74-cc556adcf8b0           \n";
++static const char ps_guard_z[] = "A49PGUARD END   431dfb9c-8b78-4c8c-bd74-cc556adcf8b0           \n";
++
++static void ps_fault(unsigned int offset)
++{
++ char *area = READ_ONCE(ps_area);
++ if (!area)
++  return;
++ WRITE_ONCE(area[256 + 9], '1');
++ WRITE_ONCE(area[256 + offset], '1');
++ __clean_dcache_area_poc(area + 256, 64);
++}
++
++static void ps_header(void)
++{
++ char line[192];
++ u64 f[] = {ps_total + 1, ps_total,
++  ps_total > PS_RING ? ps_total - PS_RING + 1 : !!ps_total,
++  ps_total, ps_total ? (ps_total - 1) / PS_RING : 0,
++  min_t(u64, ps_total, PS_RING), 0, nr_cpu_ids};
++ unsigned int i;
++ memset(line, ' ', sizeof(line));
++ memcpy(line, "!A49PH ", 7);
++ for (i = 0; i < ARRAY_SIZE(f); ++i)
++  cap_hex(line + 9 + i * 17, f[i], 16);
++ cap_hex(line + 160, f[0], 16);
++ line[191] = '\n';
++ sw_commit(ps_storage + 64, line, sizeof(line));
++}
++
++static void __init ps_init(char *dest)
++{
++ unsigned int i, j;
++ char line[PS_ROW_SIZE];
++ BUILD_BUG_ON(PS_SIZE != 5376);
++ memset(dest, ' ', PS_SIZE);
++ memcpy(dest, "A49PS1 uuid=431dfb9c-8b78-4c8c-bd74-cc556adcf8b0", 48);
++ dest[63] = '\n';
++ memcpy(dest + 256, "A49PLOSS 0 guard=0 busy=0 admission=0 overflow=0", 48);
++ dest[319] = '\n';
++ memcpy(dest + 320, ps_guard_a, sizeof(ps_guard_a) - 1);
++ dest[383] = '\n';
++ memcpy(dest + PS_SIZE - 64, ps_guard_z, sizeof(ps_guard_z) - 1);
++ dest[PS_SIZE - 1] = '\n';
++ ps_storage = dest;
++ for (i = 0; i < PS_ROWS; ++i) {
++  memset(line, ' ', sizeof(line));
++  memcpy(line, "!A49P ", 6);
++  cap_hex(line + 6, i, 2);
++  for (j = 0; j < 20; ++j)
++   cap_hex(line + 9 + j * 17, 0, 16);
++  memset(line + 352, '0', 64);
++  cap_hex(line + 424, 0, 16);
++  line[PS_ROW_SIZE - 1] = '\n';
++  sw_commit(dest + PS_ROW_OFFSET + i * PS_ROW_SIZE, line, sizeof(line));
++ }
++ ps_header();
++ __clean_dcache_area_poc(dest, PS_SIZE);
++}
++
++static void ps_name(char *dest, const char *name)
++{
++ size_t len;
++ memset(dest, 0, 16);
++ if (!name)
++  return;
++ len = strnlen(name, 16);
++ memcpy(dest, name, len); /* Never read beyond a short literal's NUL. */
++}
++
++static noinline void ps_record(struct asus_ps_capture *c, unsigned int code,
++                               u32 detail, u64 result, bool begin)
++{
++ char line[PS_ROW_SIZE];
++ u64 f[20], raw;
++ unsigned long flags;
++ unsigned int i, row, snapshot, pc, context;
++ if (!smp_load_acquire(&ps_area))
++  return;
++ if (in_nmi()) { ps_fault(36); return; }
++ pc = preempt_count();
++ context = irqs_disabled() | (in_task() ? 4 : 0) |
++           (in_irq() ? 16 : 0) | (in_serving_softirq() ? 32 : 0);
++ if (!raw_spin_trylock_irqsave(&ps_lock, flags)) {
++  ps_fault(24); return;
++ }
++ /* UP + IRQ masking serializes read-only old anchors. No old recorder or
++  * changed_lock/class/notifier lock is acquired here; the only edge is from
++  * an original lock to a nonblocking trylock, never the reverse edge.
++  */
++ if (nr_cpu_ids != 1 || raw_smp_processor_id()) {
++  ps_fault(36); goto out;
++ }
++ if (memcmp(ps_storage + 320, ps_guard_a, sizeof(ps_guard_a) - 1) ||
++     memcmp(ps_storage + PS_SIZE - 64, ps_guard_z, sizeof(ps_guard_z) - 1)) {
++  ps_fault(17); goto out;
++ }
++ if (ps_total == U64_MAX - 1) { ps_fault(47); goto out; }
++ asm volatile("isb; mrs %0, cntvct_el0" : "=r" (raw));
++ if (begin) {
++  c->token = ps_total + 1;
++  c->entry_seq = c->token;
++  c->entry_raw = raw;
++  if (code == 1) {
++   c->body_token = c->token;
++   c->body_code = 1;
++  } else if (in_task() && ps_body.token && ps_body_phase != 20 &&
++             ps_body_pid == (u32)current->pid) {
++   c->body_token = ps_body.token;
++   c->body_code = ps_body_phase;
++   c->work = ps_body.work;
++  }
++ } else if (!c->token || c->token > ps_total) {
++  ps_fault(36); goto out;
++ }
++ f[0] = ++ps_total;
++ f[1] = c->token;
++ f[2] = code;
++ f[3] = raw;
++ f[4] = (u32)current->pid;
++ f[5] = c->work;
++ f[6] = c->psy;
++ f[7] = c->callback;
++ f[8] = detail;
++ f[9] = pc;
++ f[10] = context | 2 | 8; /* writer IRQ-off and ready, plus actual context */
++ f[11] = READ_ONCE(cap_serial);
++ f[12] = READ_ONCE(sw_total);
++ f[13] = READ_ONCE(wd_total);
++ f[14] = c->body_token;
++ f[15] = c->entry_raw;
++ f[16] = c->entry_seq;
++ f[17] = c->body_code;
++ f[18] = c->peer;
++ f[19] = result;
++ memset(line, ' ', sizeof(line));
++ memcpy(line, "!A49P ", 6);
++ for (i = 0; i < ARRAY_SIZE(f); ++i)
++  cap_hex(line + 9 + i * 17, f[i], 16);
++ for (i = 0; i < 16; ++i) {
++  cap_hex(line + 352 + i * 2, (unsigned char)c->name[i], 2);
++  cap_hex(line + 384 + i * 2, (unsigned char)c->peer_name[i], 2);
++ }
++ cap_hex(line + 424, f[0], 16);
++ line[PS_ROW_SIZE - 1] = '\n';
++ row = (ps_total - 1) % PS_RING;
++ cap_hex(line + 6, row, 2);
++ sw_commit(ps_storage + PS_ROW_OFFSET + row * PS_ROW_SIZE, line, sizeof(line));
++ snapshot = code < 40 ? PS_RING : (code < 50 ? PS_RING + 1 : PS_RING + 2);
++ cap_hex(line + 6, snapshot, 2);
++ sw_commit(ps_storage + PS_ROW_OFFSET + snapshot * PS_ROW_SIZE, line, sizeof(line));
++ if (code < 40) {
++  ps_body = *c;
++  ps_body_pid = f[4];
++  ps_body_phase = code;
++ }
++ ps_header();
++out:
++ raw_spin_unlock_irqrestore(&ps_lock, flags);
++}
++
++noinline void asus_capture_ps_begin(struct asus_ps_capture *c, unsigned int code,
++ unsigned long work, unsigned long psy, const char *name,
++ unsigned long callback, u32 detail, unsigned long peer, const char *peer_name)
++{
++ memset(c, 0, sizeof(*c));
++ if (!smp_load_acquire(&ps_area))
++  return;
++ c->work = work;
++ c->psy = psy;
++ c->callback = callback;
++ c->peer = peer;
++ c->detail = detail;
++ ps_name(c->name, name);
++ ps_name(c->peer_name, peer_name);
++ ps_record(c, code, detail, U64_MAX, true);
++}
++
++noinline void asus_capture_ps_step(struct asus_ps_capture *c, unsigned int code,
++ u32 detail, u64 result)
++{
++ if (c->token)
++  ps_record(c, code, detail, result, false);
++}
++
+ static void __init cap_init(struct trace_header *h)
+ {
+  unsigned long flags;
+@@ -409,10 +605,11 @@
+  BUILD_BUG_ON(CAP_SIZE % 64);
+  BUILD_BUG_ON(SW_SIZE % 64);
+  BUILD_BUG_ON(WD_SIZE % 64);
++ BUILD_BUG_ON(PS_SIZE % 64);
+  if (!raw_spin_trylock_irqsave(&trace_lock, flags))
+   return;
+  pos = ALIGN(h->log_size, 64);
+- if (pos > h->sz_console || CAP_SIZE + SW_SIZE + WD_SIZE > h->sz_console - pos)
++ if (pos > h->sz_console || CAP_SIZE + SW_SIZE + WD_SIZE + PS_SIZE > h->sz_console - pos)
+   goto out;
+  dest = (char *)h + h->off_console + pos;
+  /* Console-relative alignment need not be physical cache-line alignment.
+@@ -435,13 +632,15 @@
+  }
+  sw_init(dest + CAP_SIZE);
+  wd_init(dest + CAP_SIZE + SW_SIZE);
++ ps_init(dest + CAP_SIZE + SW_SIZE + WD_SIZE);
+  __clean_dcache_area_poc((char *)h + h->off_console + h->log_size,
+-                         pos + CAP_SIZE + SW_SIZE + WD_SIZE - h->log_size);
+- WRITE_ONCE(h->log_size, pos + CAP_SIZE + SW_SIZE + WD_SIZE);
++                         pos + CAP_SIZE + SW_SIZE + WD_SIZE + PS_SIZE - h->log_size);
++ WRITE_ONCE(h->log_size, pos + CAP_SIZE + SW_SIZE + WD_SIZE + PS_SIZE);
+  __clean_dcache_area_poc(h, sizeof(*h));
+  smp_store_release(&cap_area, dest);
+  smp_store_release(&sw_area, dest + CAP_SIZE);
+  smp_store_release(&wd_area, dest + CAP_SIZE + SW_SIZE);
++ smp_store_release(&ps_area, dest + CAP_SIZE + SW_SIZE + WD_SIZE);
+ out:
+  raw_spin_unlock_irqrestore(&trace_lock, flags);
+ }
+--- base/include/linux/asus_retained_trace.h
++++ candidate/include/linux/asus_retained_trace.h
+@@ -5,6 +5,27 @@
+ #include <linux/types.h>
+ #include <linux/string.h>
+ struct task_struct;
++/* Caller-local identity; return hooks never follow supply/driver pointers. */
++struct asus_ps_capture {
++ u64 token, entry_raw, entry_seq, body_token, body_code;
++ unsigned long work, psy, callback, peer;
++ u32 detail;
++ char name[16], peer_name[16];
++};
++#ifdef CONFIG_ASUS_P00A_RETAINED_BOOT_TRACE
++void asus_capture_ps_begin(struct asus_ps_capture *c, unsigned int code,
++ unsigned long work, unsigned long psy, const char *name,
++ unsigned long callback, u32 detail, unsigned long peer, const char *peer_name);
++void asus_capture_ps_step(struct asus_ps_capture *c, unsigned int code,
++ u32 detail, u64 result);
++#else
++static inline void asus_capture_ps_begin(struct asus_ps_capture *c, unsigned int code,
++ unsigned long work, unsigned long psy, const char *name,
++ unsigned long callback, u32 detail, unsigned long peer, const char *peer_name) { }
++static inline void asus_capture_ps_step(struct asus_ps_capture *c, unsigned int code,
++ u32 detail, u64 result) { }
++#endif
++
+ #ifdef CONFIG_ASUS_P00A_RETAINED_BOOT_TRACE
+ u64 asus_capture_work_enter(unsigned long fn, unsigned long work);
+ void asus_capture_work_return(u64 token);
+--- base/arch/arm64/kernel/asus_entry_tag.h
++++ candidate/arch/arm64/kernel/asus_entry_tag.h
+@@ -1,4 +1,4 @@
+-#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=b4702f9a-6b32-423f-b789-d2bd515c0707 stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=a3ce18e1e0d1f38307a2a63e783af3cb2b633c26a706366e6714b24ae36302b4 cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
++#define ASUS_ENTRY_TAG "ASUS49-ENTRY run=431dfb9c-8b78-4c8c-bd74-cc556adcf8b0 stage=stext-preargs release=4.9.337-asus-p00a-experimental-g717bb3c9e13c-dirty base=2d64022664c5ff61296446a41a55186f24247fe9287f03a0ca398a6c26e2e3ab cfg=708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1 dt=94cdeca7ad226e1e34fc1d0abc3fc3f4806eef8b8d9aa3904cda1f92024639c0\n"
+ #define ASUS_ENTRY_TAG_LEN 340
+ 
+-#define ASUS_CAPTURE_TAG "A49CAP1 uuid=b4702f9a-6b32-423f-b789-d2bd515c0707 rows=15 row=384 fields=17 header=192"
++#define ASUS_CAPTURE_TAG "A49CAP1 uuid=431dfb9c-8b78-4c8c-bd74-cc556adcf8b0 rows=15 row=384 fields=17 header=192"

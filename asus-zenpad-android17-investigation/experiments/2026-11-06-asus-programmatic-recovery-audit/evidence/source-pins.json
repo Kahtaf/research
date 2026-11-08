@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-06T17:09:19.092332+00:00",
+  "files": {
+    "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/watchdog/mediatek/wdk/wd_api.c": "80607c145b5bab2587947014cba6d474dd27b1168222daff67bad5f6e64996e3",
+    "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/rtc/mtk_rtc_common.c": "3fcb5470fbd5ffdfd743b7ac756effcdcb38defb4aacabc227505ddfc13ce258",
+    "2026-11-05-asus-latest-android-feasibility/sources/asus-original/kernel-3.18/drivers/misc/mediatek/rtc/mt6323/mtk_rtc_hal.c": "e3f4437fe8ab604b0b1511f5771e888344c80a3903f23d4320097eadf229f59e"
+  },
+  "device_operation": false,
+  "conclusion": "stock GPL restart recovery marks RTC_FAC_RESET; consuming and clearing that bit in exact boot chain not yet proved"
+}

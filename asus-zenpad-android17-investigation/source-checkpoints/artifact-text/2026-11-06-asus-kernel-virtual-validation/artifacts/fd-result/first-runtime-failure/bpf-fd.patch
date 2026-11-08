@@ -1,0 +1,294 @@
+From 83e07819d5fece96a2c62bf44f9da759067bbe6b Mon Sep 17 00:00:00 2001
+From: ASUS Android Port <asus-port@localhost>
+Date: Fri, 6 Nov 2026 06:00:27 +0000
+Subject: [PATCH] bpf: add ID lookup with reference-safe creation failure
+ cleanup
+
+---
+ include/uapi/linux/bpf.h |   8 +-
+ kernel/bpf/syscall.c     | 154 ++++++++++++++++++++++++++++++++++-----
+ 2 files changed, 143 insertions(+), 19 deletions(-)
+
+diff --git a/include/uapi/linux/bpf.h b/include/uapi/linux/bpf.h
+index 5f39c975..32699938 100644
+--- a/include/uapi/linux/bpf.h
++++ b/include/uapi/linux/bpf.h
+@@ -79,6 +79,8 @@ enum bpf_cmd {
+ 	BPF_PROG_TEST_RUN = 10,
+ 	BPF_PROG_GET_NEXT_ID = 11,
+ 	BPF_MAP_GET_NEXT_ID = 12,
++	BPF_PROG_GET_FD_BY_ID = 13,
++	BPF_MAP_GET_FD_BY_ID = 14,
+ };
+ 
+ enum bpf_map_type {
+@@ -211,7 +213,11 @@ union bpf_attr {
+ 		__u32		attach_flags;
+ 	};
+ 	struct { /* BPF_*_GET_NEXT_ID */
+-		__u32 start_id;
++		union {
++			__u32 start_id;
++			__u32 prog_id;
++			__u32 map_id;
++		};
+ 		__u32 next_id;
+ 	};
+ } __attribute__((aligned(8)));
+diff --git a/kernel/bpf/syscall.c b/kernel/bpf/syscall.c
+index b84d1b8e..9a87e4b8 100644
+--- a/kernel/bpf/syscall.c
++++ b/kernel/bpf/syscall.c
+@@ -136,13 +136,19 @@ static int bpf_map_alloc_id(struct bpf_map *map)
+ 	return id > 0 ? 0 : id;
+ }
+ 
+-static void bpf_map_free_id(struct bpf_map *map)
++static void bpf_map_free_id(struct bpf_map *map, bool do_idr_lock)
+ {
+ 	if (!map->id)
+ 		return;
+-	spin_lock_bh(&map_idr_lock);
++	if (do_idr_lock)
++		spin_lock_bh(&map_idr_lock);
++	else
++		__acquire(&map_idr_lock);
+ 	idr_remove(&map_idr, map->id);
+-	spin_unlock_bh(&map_idr_lock);
++	if (do_idr_lock)
++		spin_unlock_bh(&map_idr_lock);
++	else
++		__release(&map_idr_lock);
+ }
+ 
+ /* called from workqueue */
+@@ -167,15 +173,20 @@ static void bpf_map_put_uref(struct bpf_map *map)
+ /* decrement map refcnt and schedule it for freeing via workqueue
+  * (unrelying map implementation ops->map_free() might sleep)
+  */
+-void bpf_map_put(struct bpf_map *map)
++static void __bpf_map_put(struct bpf_map *map, bool do_idr_lock)
+ {
+ 	if (atomic_dec_and_test(&map->refcnt)) {
+-		bpf_map_free_id(map);
++		bpf_map_free_id(map, do_idr_lock);
+ 		INIT_WORK(&map->work, bpf_map_free_deferred);
+ 		schedule_work(&map->work);
+ 	}
+ }
+ 
++void bpf_map_put(struct bpf_map *map)
++{
++	__bpf_map_put(map, true);
++}
++
+ void bpf_map_put_with_uref(struct bpf_map *map)
+ {
+ 	bpf_map_put_uref(map);
+@@ -307,13 +318,14 @@ static int map_create(union bpf_attr *attr)
+ 		goto free_map;
+ 
+ 	err = bpf_map_new_fd(map, f_flags);
+-	if (err < 0)
+-		goto free_id;
++	if (err < 0) {
++		/* An ID lookup may already own another live reference. */
++		bpf_map_put_with_uref(map);
++		return err;
++	}
+ 
+ 	return err;
+ 
+-free_id:
+-	bpf_map_free_id(map);
+ free_map:
+ 	bpf_map_uncharge_memlock(map);
+ free_map_sec:
+@@ -367,6 +379,22 @@ struct bpf_map *bpf_map_get_with_uref(u32 ufd)
+ 	return map;
+ }
+ 
++/* Caller holds map_idr_lock, so zero-ref objects cannot disappear. */
++static struct bpf_map *bpf_map_inc_not_zero(struct bpf_map *map, bool uref)
++{
++	int refold = __atomic_add_unless(&map->refcnt, 1, 0);
++
++	if (refold >= BPF_MAX_REFCNT) {
++		__bpf_map_put(map, false);
++		return ERR_PTR(-EBUSY);
++	}
++	if (!refold)
++		return ERR_PTR(-ENOENT);
++	if (uref)
++		atomic_inc(&map->usercnt);
++	return map;
++}
++
+ /* helper to convert user pointers passed inside __aligned_u64 fields */
+ static void __user *u64_to_ptr(__u64 val)
+ {
+@@ -746,13 +774,19 @@ static int bpf_prog_alloc_id(struct bpf_prog *prog)
+ 	return id > 0 ? 0 : id;
+ }
+ 
+-static void bpf_prog_free_id(struct bpf_prog *prog)
++static void bpf_prog_free_id(struct bpf_prog *prog, bool do_idr_lock)
+ {
+ 	if (!prog->aux->id)
+ 		return;
+-	spin_lock_bh(&prog_idr_lock);
++	if (do_idr_lock)
++		spin_lock_bh(&prog_idr_lock);
++	else
++		__acquire(&prog_idr_lock);
+ 	idr_remove(&prog_idr, prog->aux->id);
+-	spin_unlock_bh(&prog_idr_lock);
++	if (do_idr_lock)
++		spin_unlock_bh(&prog_idr_lock);
++	else
++		__release(&prog_idr_lock);
+ }
+ 
+ static void __bpf_prog_put_rcu(struct rcu_head *rcu)
+@@ -765,13 +799,18 @@ static void __bpf_prog_put_rcu(struct rcu_head *rcu)
+ 	bpf_prog_free(aux->prog);
+ }
+ 
+-void bpf_prog_put(struct bpf_prog *prog)
++static void __bpf_prog_put(struct bpf_prog *prog, bool do_idr_lock)
+ {
+ 	if (atomic_dec_and_test(&prog->aux->refcnt)) {
+-		bpf_prog_free_id(prog);
++		bpf_prog_free_id(prog, do_idr_lock);
+ 		call_rcu(&prog->aux->rcu, __bpf_prog_put_rcu);
+ 	}
+ }
++void bpf_prog_put(struct bpf_prog *prog)
++{
++	__bpf_prog_put(prog, true);
++}
++
+ EXPORT_SYMBOL_GPL(bpf_prog_put);
+ 
+ static int bpf_prog_release(struct inode *inode, struct file *filp)
+@@ -827,6 +866,20 @@ struct bpf_prog *bpf_prog_inc(struct bpf_prog *prog)
+ 	return bpf_prog_add(prog, 1);
+ }
+ 
++/* Caller holds prog_idr_lock, so zero-ref objects cannot disappear. */
++static struct bpf_prog *bpf_prog_inc_not_zero(struct bpf_prog *prog)
++{
++	int refold = __atomic_add_unless(&prog->aux->refcnt, 1, 0);
++
++	if (refold >= BPF_MAX_REFCNT) {
++		__bpf_prog_put(prog, false);
++		return ERR_PTR(-EBUSY);
++	}
++	if (!refold)
++		return ERR_PTR(-ENOENT);
++	return prog;
++}
++
+ static struct bpf_prog *__bpf_prog_get(u32 ufd, enum bpf_prog_type *type)
+ {
+ 	struct fd f = fdget(ufd);
+@@ -938,13 +991,14 @@ static int bpf_prog_load(union bpf_attr *attr)
+ 		goto free_used_maps;
+ 
+ 	err = bpf_prog_new_fd(prog);
+-	if (err < 0)
+-		goto free_id;
++	if (err < 0) {
++		/* An ID lookup may already own another live reference. */
++		bpf_prog_put(prog);
++		return err;
++	}
+ 
+ 	return err;
+ 
+-free_id:
+-	bpf_prog_free_id(prog);
+ free_used_maps:
+ 	free_used_maps(prog->aux);
+ free_prog:
+@@ -1090,6 +1144,64 @@ static int bpf_obj_get_next_id(const union bpf_attr *attr,
+ 	return err;
+ }
+ 
++#define BPF_MAP_GET_FD_BY_ID_LAST_FIELD map_id
++
++static int bpf_map_get_fd_by_id(const union bpf_attr *attr)
++{
++	struct bpf_map *map;
++	u32 id = attr->map_id;
++	int fd;
++
++	if (CHECK_ATTR(BPF_MAP_GET_FD_BY_ID))
++		return -EINVAL;
++	if (!capable(CAP_SYS_ADMIN))
++		return -EPERM;
++	if (id >= INT_MAX)
++		return -ENOENT;
++	spin_lock_bh(&map_idr_lock);
++	map = idr_find(&map_idr, id);
++	if (map)
++		map = bpf_map_inc_not_zero(map, true);
++	else
++		map = ERR_PTR(-ENOENT);
++	spin_unlock_bh(&map_idr_lock);
++	if (IS_ERR(map))
++		return PTR_ERR(map);
++	fd = bpf_map_new_fd(map, 0);
++	if (fd < 0)
++		bpf_map_put_with_uref(map);
++	return fd;
++}
++
++#define BPF_PROG_GET_FD_BY_ID_LAST_FIELD prog_id
++
++static int bpf_prog_get_fd_by_id(const union bpf_attr *attr)
++{
++	struct bpf_prog *prog;
++	u32 id = attr->prog_id;
++	int fd;
++
++	if (CHECK_ATTR(BPF_PROG_GET_FD_BY_ID))
++		return -EINVAL;
++	if (!capable(CAP_SYS_ADMIN))
++		return -EPERM;
++	if (id >= INT_MAX)
++		return -ENOENT;
++	spin_lock_bh(&prog_idr_lock);
++	prog = idr_find(&prog_idr, id);
++	if (prog)
++		prog = bpf_prog_inc_not_zero(prog);
++	else
++		prog = ERR_PTR(-ENOENT);
++	spin_unlock_bh(&prog_idr_lock);
++	if (IS_ERR(prog))
++		return PTR_ERR(prog);
++	fd = bpf_prog_new_fd(prog);
++	if (fd < 0)
++		bpf_prog_put(prog);
++	return fd;
++}
++
+ SYSCALL_DEFINE3(bpf, int, cmd, union bpf_attr __user *, uattr, unsigned int, size)
+ {
+ 	union bpf_attr attr;
+@@ -1137,6 +1249,12 @@ SYSCALL_DEFINE3(bpf, int, cmd, union bpf_attr __user *, uattr, unsigned int, siz
+ 		return err;
+ 
+ 	switch (cmd) {
++	case BPF_PROG_GET_FD_BY_ID:
++		err = bpf_prog_get_fd_by_id(&attr);
++		break;
++	case BPF_MAP_GET_FD_BY_ID:
++		err = bpf_map_get_fd_by_id(&attr);
++		break;
+ 	case BPF_PROG_GET_NEXT_ID:
+ 		err = bpf_obj_get_next_id(&attr, uattr, &prog_idr, &prog_idr_lock);
+ 		break;
+-- 
+2.43.0
+

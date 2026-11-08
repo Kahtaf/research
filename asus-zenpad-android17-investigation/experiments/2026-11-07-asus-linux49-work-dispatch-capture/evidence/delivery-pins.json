@@ -1,0 +1,210 @@
+{
+  "artifacts/Image.gz-dtb": {
+    "bytes": 7718291,
+    "sha256": "2d64022664c5ff61296446a41a55186f24247fe9287f03a0ca398a6c26e2e3ab"
+  },
+  "artifacts/System.map.gz": {
+    "bytes": 877880,
+    "sha256": "e6de4c14be99f5d1db8f6c9224370b9f8521d35976006d60a47a414ad64cdbb4"
+  },
+  "artifacts/candidate.img": {
+    "bytes": 7981056,
+    "sha256": "404ec624191bb44a8cf126195addcb18e6835dd1431e025db461a1accca1286f"
+  },
+  "artifacts/candidate.p10.raw": {
+    "bytes": 16740352,
+    "sha256": "7418c5d3a43c0b458311d880ec87f0d6b781794998d688153f31c3383f7c3752"
+  },
+  "artifacts/ramdisk.wrapped": {
+    "bytes": 256984,
+    "sha256": "df6406bd884126190ce05c26f097f9d84a36c64e332286fa5aee6225670857d3"
+  },
+  "artifacts/resolved.config": {
+    "bytes": 126443,
+    "sha256": "708a88175ea777c09410000dfe5cf562ccbf764955eb9deaadda7326d0a966e1"
+  },
+  "artifacts/runtime.dtb": {
+    "bytes": 63737,
+    "sha256": "7d8e0c2bd787ad756db9f1bb8b60efc5277fc78c8d401d2b60bafc8dfa7618f2"
+  },
+  "source/adb": {
+    "bytes": 164,
+    "sha256": "820fd0d66e75ee98701798e385f04e48a026ec7abd22ec6a67e9760ed0829e82"
+  },
+  "source/arch/arm64/kernel/asus_entry_tag.h": {
+    "bytes": 513,
+    "sha256": "13bd3a64cc090e1e49acde9819ad314fbad866f0e6535dfb78682445c5f7b21a"
+  },
+  "source/arch/arm64/kernel/asus_retained_trace.c": {
+    "bytes": 26141,
+    "sha256": "7fdf69eb464cc424f8fff6e43bbefb2c4209da0cb95af04fb7ac7136f72901c3"
+  },
+  "source/base/arch/arm64/include/asm/arch_timer.h": {
+    "bytes": 3704,
+    "sha256": "617e79936d3028e62b842c5e2b9499b19e54de5fac4c8c2bd87a9e18cfb0c614"
+  },
+  "source/base/arch/arm64/include/asm/current.h": {
+    "bytes": 503,
+    "sha256": "3c0a8da91feb3df9934ad586cab46c757356e74368cb1cba19cebc2055e825cf"
+  },
+  "source/base/arch/arm64/kernel/asm-offsets.c": {
+    "bytes": 7607,
+    "sha256": "d1eb47dbb6c97bcf61841acd72378ac4044ca5cad9e8265a2f4d4c1c2ef07075"
+  },
+  "source/base/arch/arm64/kernel/asus_entry_tag.h": {
+    "bytes": 513,
+    "sha256": "9af32cb97b0fe829779a1958f0933fe61332eb03e19fd0bacae0673a9da6338b"
+  },
+  "source/base/arch/arm64/kernel/asus_retained_trace.c": {
+    "bytes": 21293,
+    "sha256": "40be697aeb81f2f331089e55afb55a2dc62c2b43b6fe5e397948bc19b084c3d2"
+  },
+  "source/base/arch/arm64/mm/cache.S": {
+    "bytes": 4772,
+    "sha256": "efb6b0ed193019547277403fc58d0ea181f7f794762376953f78955ec5de7354"
+  },
+  "source/base/include/linux/asus_retained_trace.h": {
+    "bytes": 2083,
+    "sha256": "bbe073fb605cbdac2fcdfc6c7ecc23565d4be47d61b88f04240cc618f4b56371"
+  },
+  "source/base/include/linux/kthread.h": {
+    "bytes": 6344,
+    "sha256": "c6b35c06d5b92554e84360a5191f785734407e0541c32c694247371ab34c78e2"
+  },
+  "source/base/include/linux/sched.h": {
+    "bytes": 108659,
+    "sha256": "23bfdbe61befab00f17b5f2242117e031254455d77383d69f7f31379d6a78360"
+  },
+  "source/base/kernel/kthread.c": {
+    "bytes": 33922,
+    "sha256": "8010e5f276b45b4303ff7dca89d2d7f6d5858f3590df34f447e0859009eac82a"
+  },
+  "source/base/kernel/sched/core.c": {
+    "bytes": 229175,
+    "sha256": "0011d79248859aa241a025767ff30ea50002b6e879ca56372468c3ca0c363ec7"
+  },
+  "source/base/kernel/workqueue.c": {
+    "bytes": 160366,
+    "sha256": "68cac7be7b9130b43d1620b758a24419daf913b5ba1c6566907f310f5bc54ab5"
+  },
+  "source/base/kernel/workqueue_internal.h": {
+    "bytes": 2449,
+    "sha256": "1a25c3afc81d43d5c731e796f7375bf059c14445945dc60a80db1eeb6957b9bc"
+  },
+  "source/bootformat.py": {
+    "bytes": 3936,
+    "sha256": "3207680c9c4fdee2c2dc3704cb3564e5c3736c0eb3cae63edb17f6d5fa958017"
+  },
+  "source/changes.patch": {
+    "bytes": 10413,
+    "sha256": "4901433325a0b64ee18c4951a04237e9fb4ce996283ac7de26db337a8d260b9b"
+  },
+  "source/fdt.py": {
+    "bytes": 3024,
+    "sha256": "1bd710a08eae5677689a52042a621f39dcd57e49197749cf2833eead1fc0dcae"
+  },
+  "source/include/linux/asus_retained_trace.h": {
+    "bytes": 2345,
+    "sha256": "984a388d7208c356bc4db4e8e87f522cc81f7e3c044c8fffee421bb6c865ea78"
+  },
+  "source/install.diff": {
+    "bytes": 5402,
+    "sha256": "9c3389ca25b103fda4936696352dc69a009269db8ff5175c2de754ca27472aea"
+  },
+  "source/install.py": {
+    "bytes": 10545,
+    "sha256": "78b3f6eeb65ddb808d4e248356642f3157489cffdb0ad4785a8f2c17e92fbdc1"
+  },
+  "source/kernel/workqueue.c": {
+    "bytes": 160584,
+    "sha256": "3fb24d48d5b68fc7a84d564f3de71e98383ee8eb274e1a9c55d8862a8d3c9f2a"
+  },
+  "source/legacy_adb.py": {
+    "bytes": 1511,
+    "sha256": "6d00836d7e0cc28834f858b0fd6ab5515ffe7b3ecd37a6da6ba1f66b43597731"
+  },
+  "source/package.diff": {
+    "bytes": 7665,
+    "sha256": "ad8651c8adfd346d85766b061c8c9e9e28964f897b8e621088fee14199ad30b8"
+  },
+  "source/work-hook.inc": {
+    "bytes": 187,
+    "sha256": "e999ae4211d25b7bc984e846c4abb7f5be68942512ef6bc8cde4a35a1d36ab9e"
+  },
+  "source/work_capture.inc": {
+    "bytes": 4695,
+    "sha256": "0d9d11f69654c62145d39f38a063e7c0ca104ca408f5a07e2263bdcf96007fff"
+  },
+  "scripts/build_remote.py": {
+    "bytes": 2776,
+    "sha256": "2d9ac46f5608257470d5073dbd35a94e88506385a5a708da7dcd06f3ce059101"
+  },
+  "scripts/check_encoding.py": {
+    "bytes": 6927,
+    "sha256": "93231cc5dd5fda169e181900eef544c26a231730e942693f4f545b29980ff168"
+  },
+  "scripts/decode.py": {
+    "bytes": 4102,
+    "sha256": "65558d4cdcbcd204abacba47dc15f0b35568db012c6cbd56401381f34b2f78a7"
+  },
+  "scripts/decode_switch.py": {
+    "bytes": 7105,
+    "sha256": "a28a46912cea5b77ee090283d71ad7effa5f35beec9a71cd7d93612c9be75db0"
+  },
+  "scripts/decode_work.py": {
+    "bytes": 9022,
+    "sha256": "109acec6ea8a7968ea00635c4e795c57350d34a4359b258661209c278916f030"
+  },
+  "scripts/dispatch.py": {
+    "bytes": 2906,
+    "sha256": "607265d24aabcb8a7fac61ea57f679c91dde520e2211de6ed5e9eaab24cf78f3"
+  },
+  "scripts/fetch_verify.py": {
+    "bytes": 2485,
+    "sha256": "7599a142a4d20c3251599f318b293de9f9ee8fbb160c2d908899258050fc24eb"
+  },
+  "scripts/finalize.py": {
+    "bytes": 15387,
+    "sha256": "c299bc5db70e84443103822d8bb802e9da40a1b3fb0d73227af62258200eaf34"
+  },
+  "scripts/inspect_remote.py": {
+    "bytes": 691,
+    "sha256": "4034567acbf5bae7c90e544d6364fe71212b311671ac80b183435732684ce33d"
+  },
+  "scripts/package.py": {
+    "bytes": 8278,
+    "sha256": "73e5c940e1c649cfb528499563378f138b539b77e13e91f650ce09d3cfb5a5dd"
+  },
+  "scripts/plan_only.py": {
+    "bytes": 3593,
+    "sha256": "46e779b2665dbadc87fa2e3ab16c2567b927155a47ac6fae46a0195ed31da2a5"
+  },
+  "scripts/prepare.py": {
+    "bytes": 3817,
+    "sha256": "bcf1f614b9d7c43f77c9b441a3faa64dd9c9f017022e41ef1624310b3aaee253"
+  },
+  "scripts/preservation_remote.py": {
+    "bytes": 1056,
+    "sha256": "840492fcbb0d691f6d9511052a346af75792c21fbd757a4d99d8b8439b540577"
+  },
+  "scripts/remote_call.py": {
+    "bytes": 365,
+    "sha256": "d3a685db45f19891fda943ed82d0910a89359e76aa0363b1c03e7ef34c81d575"
+  },
+  "scripts/status_remote.py": {
+    "bytes": 316,
+    "sha256": "0bc37d953e61699e50ca6eff6cc066514a391164a0cb5f93eee9a324d991e0d1"
+  },
+  "scripts/symbolize_work.py": {
+    "bytes": 2222,
+    "sha256": "fa6afd187e7dbdafbbb697739d3a7f89e55b76a299121fe52f8e32845b0a2fa2"
+  },
+  "scripts/verify_remote.py": {
+    "bytes": 8641,
+    "sha256": "a2f1e5ca3ca70e8048d9d85aa713aa76630acb5d9162fd5638ad4c1b560fcd9d"
+  },
+  "scripts/vm.py": {
+    "bytes": 2374,
+    "sha256": "83a01d1e7646e741b3a7a25e59c13603cfa00a889c924e374f4f0acd2a94b85f"
+  }
+}

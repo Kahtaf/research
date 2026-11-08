@@ -1,0 +1,81 @@
+--- link-failed/out/.config
++++ requested/out/.config
+@@ -564,7 +564,7 @@
+ # CONFIG_ARM_BIG_LITTLE_CPUFREQ is not set
+ # CONFIG_ARM_KIRKWOOD_CPUFREQ is not set
+ # CONFIG_ARM_MT8173_CPUFREQ is not set
+-# CONFIG_NET is not set
++CONFIG_NET=y
+ CONFIG_HAVE_EBPF_JIT=y
+ 
+ #
+@@ -758,7 +758,7 @@
+ # CONFIG_MTK_PMIC_KPOC_LONGPRESS_TIME_10S is not set
+ # CONFIG_MTK_THERMAL_PA_VIA_ATCMD is not set
+ CONFIG_CLATM_CHOOSE_HIGHER_TARGET_TJ=y
+-CONFIG_VS_BACKLIGHT_COOLER=y
++# CONFIG_VS_BACKLIGHT_COOLER is not set
+ # CONFIG_THERMAL_abc123 is not set
+ CONFIG_VS_BCCT_COOLER=y
+ # CONFIG_THERMAL_KARNAK is not set
+@@ -2723,7 +2723,7 @@
+ CONFIG_HAVE_SYSCALL_TRACEPOINTS=y
+ CONFIG_HAVE_C_RECORDMCOUNT=y
+ CONFIG_TRACING_SUPPORT=y
+-# CONFIG_FTRACE is not set
++CONFIG_FTRACE=y
+ 
+ #
+ # Runtime Testing
+@@ -3012,3 +3012,51 @@
+ # CONFIG_SG_POOL is not set
+ CONFIG_ARCH_HAS_SG_CHAIN=y
+ CONFIG_SBITMAP=y
++
++CONFIG_ENABLE_DEFAULT_TRACERS=y
++
++# CONFIG_FUNCTION_TRACER is not set
++
++# CONFIG_FUNCTION_GRAPH_TRACER is not set
++
++# CONFIG_SCHED_TRACER is not set
++
++# CONFIG_FTRACE_SYSCALLS is not set
++
++# CONFIG_KPROBE_EVENT is not set
++
++# CONFIG_UPROBE_EVENT is not set
++
++# CONFIG_BPF_EVENTS is not set
++
++# CONFIG_FTRACE_STARTUP_TEST is not set
++
++# CONFIG_EVENT_TRACE_TEST_SYSCALLS is not set
++
++CONFIG_DISABLE_TRACE_PRINTK=y
++
++# CONFIG_NETDEVICES is not set
++
++# CONFIG_INET is not set
++
++# CONFIG_IPV6 is not set
++
++# CONFIG_NETFILTER is not set
++
++# CONFIG_PACKET is not set
++
++# CONFIG_UNIX is not set
++
++# CONFIG_WLAN is not set
++
++# CONFIG_WIRELESS is not set
++
++# CONFIG_BT is not set
++
++# CONFIG_RFKILL is not set
++
++# CONFIG_NET_KEY is not set
++
++# CONFIG_NET_SCHED is not set
++
++# CONFIG_NET_CLS_ACT is not set

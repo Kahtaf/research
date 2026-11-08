@@ -1,0 +1,209 @@
+{
+  "current": [],
+  "first": [
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/VendorVoldNativeService.o",
+      "entry": [
+        "20227",
+        "22753",
+        "1794007844250455054",
+        "68736737ce82a489"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/PublicVolume.o",
+      "entry": [
+        "20272",
+        "23497",
+        "1794007844994910744",
+        "1ab3fb4f98888761"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/EmulatedVolume.o",
+      "entry": [
+        "20251",
+        "23969",
+        "1794007845466231379",
+        "1231168a04db54cb"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/Utils.o",
+      "entry": [
+        "20473",
+        "25137",
+        "1794007846635004685",
+        "573518268f9a1e65"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/VoldUtil.o",
+      "entry": [
+        "22971",
+        "25421",
+        "1794007846918073822",
+        "01a398f88b7a6bb3"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/VolumeManager.o",
+      "entry": [
+        "20224",
+        "26403",
+        "1794007847900641680",
+        "b98e9d697f2551d1"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/MetadataCrypt.o",
+      "entry": [
+        "20307",
+        "27380",
+        "1794007848878014899",
+        "376d0abfad5d0e5b"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/WriteBooster.o",
+      "entry": [
+        "25127",
+        "29093",
+        "1794007850590711278",
+        "e1eb58a869d0deb1"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader",
+      "entry": [
+        "25401",
+        "30570",
+        "1794007852067286981",
+        "67826fc8b082dd13"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/Benchmark.o",
+      "entry": [
+        "20379",
+        "30941",
+        "1794007852438927017",
+        "58ec1501b9b24df7"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/VoldNativeService.o",
+      "entry": [
+        "23826",
+        "32529",
+        "1794007854026754548",
+        "7f2b527370c3cdcb"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/NvmeDeviceUtils.o",
+      "entry": [
+        "30569",
+        "33926",
+        "1794007855423197731",
+        "addbd0622f8ec5c9"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/KeyUtil.o",
+      "entry": [
+        "32511",
+        "40387",
+        "1794007861884679445",
+        "0c3c89a7184b8f1b"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/KeyStorage.o",
+      "entry": [
+        "35788",
+        "44110",
+        "1794007865607291681",
+        "d03b8c954a630fde"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/libvold.a",
+      "entry": [
+        "44175",
+        "44610",
+        "1794007866107609835",
+        "2604fa8b78dbde86"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/obj/system/vold/main.o",
+      "entry": [
+        "60277",
+        "65688",
+        "1794007887185932817",
+        "b9b1984e72a0aac9"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader",
+      "entry": [
+        "76009",
+        "76106",
+        "1794007897603540114",
+        "85cbd9230a675136"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader.clippy",
+      "entry": [
+        "85520",
+        "86720",
+        "1794007908217968798",
+        "aa21462dbe348fd7"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold",
+      "entry": [
+        "76670",
+        "89474",
+        "1794007910971403106",
+        "85aa1dc74b19b2ce"
+      ]
+    },
+    {
+      "output": "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/vold",
+      "entry": [
+        "89481",
+        "89694",
+        "1794007911191831174",
+        "83334525a05eb259"
+      ]
+    }
+  ],
+  "full": [],
+  "completed_without_current_requirement": {
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/VendorVoldNativeService.o": 1,
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/PublicVolume.o": 1,
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/model/EmulatedVolume.o": 1,
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/Utils.o": 1,
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/VoldUtil.o": 1,
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/VolumeManager.o": 1,
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/MetadataCrypt.o": 1,
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/WriteBooster.o": 1,
+    "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader": 1,
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/Benchmark.o": 1,
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/VoldNativeService.o": 1,
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/NvmeDeviceUtils.o": 1,
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/KeyUtil.o": 1,
+    "out/soong/.intermediates/system/vold/libvold/android_arm64_armv8-a_static/obj/system/vold/KeyStorage.o": 1,
+    "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/obj/system/vold/main.o": 1,
+    "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader": 1,
+    "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/bpfloader.clippy": 1,
+    "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold": 1,
+    "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/vold": 1
+  },
+  "current_joined": [],
+  "actual_gap": "Current .ninja_log may rotate per invocation; first-phase-only targets must not be silently accepted without a same-entry current join. No transitive dependency hashes were captured at execution."
+}

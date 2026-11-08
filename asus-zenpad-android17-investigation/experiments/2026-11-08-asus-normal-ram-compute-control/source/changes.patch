@@ -1,0 +1,103 @@
+--- 2026-11-08-asus-pid1-fifo-loop-control/source/init.c
++++ 2026-11-08-asus-normal-ram-compute-control/source/init.c
+@@ -5,6 +5,7 @@
+ #include <signal.h>
+ #include <sched.h>
+ #include <stdio.h>
++#include <stdint.h>
+ #include <string.h>
+ #include <sys/mount.h>
+ #include <sys/reboot.h>
+@@ -16,6 +17,7 @@
+ #include <unistd.h>
+ 
+ #define RUN_ID "ef56ad88-6904-4452-90a1-3744beaa3c78"
++#define CONTROL_ID "03f2153c-4faf-41ba-9f66-bcd8d4b1aa9f"
+ #define TAG "ASUS49-SYSCLOCK run=" RUN_ID
+ #define NODE "/primitive-kmsg"
+ #define MAX_LOGS 768
+@@ -156,58 +158,33 @@
+  char v[160];snprintf(v,sizeof(v),"bytes=%zu read_calls=%u lines=%u arch_found=%u emitted=%u parse_or_read_errors=%u eof=%d",used,calls,lines,found,emitted,errors,eof);
+  event("complete","interrupts.snapshot",path,emitted,0,v);
+ }
+-static int observe(void){
+- event("actual","clock.path","CLOCK_MONOTONIC",0,0,"kernel-syscall:syscall(SYS_clock_gettime);vDSO-bypassed");
+- struct timespec initial={0,0},final={0,0};unsigned iterations=0;long long delta=0;int error=0;const char *reason="initial-clock-error";
+- int rc=clock_sample("loop.initial",&initial),valid=!rc;
+- if(!rc){
+-  struct sched_param original={.sched_priority=-1},fifo={.sched_priority=1},actual={.sched_priority=-1};
+-  int policy=(int)syscall(SYS_sched_getscheduler,0),pe=policy<0?errno:0;
+-  int pr=(int)syscall(SYS_sched_getparam,0,&original),pre=pr<0?errno:0;char sv[192];
+-  snprintf(sv,sizeof(sv),"getparam_rc=%d getparam_errno=%d priority=%d",pr,pre,original.sched_priority);
+-  event("actual","sched.original","pid0",policy,pe,sv);
+-  if(policy!=SCHED_OTHER||pr||original.sched_priority!=0){
+-   event("invalid","sched.control","pid0",-1,0,"baseline-refused;require-SCHED_OTHER-priority0;no-RT-exposure");return -1;
++/* Volatile uint32_t makes every recurrence observable; the cap is iterations only. */
++static __attribute__((noinline)) void compute_loop(void){
++ volatile uint32_t checksum=UINT32_C(0x6d2b79f5);uint32_t iterations=0;
++ while(iterations<UINT32_C(2000000)){
++  iterations++;
++  checksum=(checksum*UINT32_C(1664525)+UINT32_C(1013904223))^iterations;
++  if(iterations==500000||iterations==1000000||iterations==1500000){
++   char progress[96];snprintf(progress,sizeof(progress),"iterations=%u checksum=%08x",(unsigned)iterations,(unsigned)checksum);
++   event("actual","runnable.progress","CLOCK_MONOTONIC",0,0,progress);
+   }
+-  int boost=(int)syscall(SYS_sched_setscheduler,0,SCHED_FIFO,&fifo),be=boost<0?errno:0;
+-  event("actual","sched.boost","pid0",boost,be,"requested_policy=1 requested_priority=1");
+-  int observed=(int)syscall(SYS_sched_getscheduler,0),oe=observed<0?errno:0;
+-  pr=(int)syscall(SYS_sched_getparam,0,&actual);pre=pr<0?errno:0;
+-  snprintf(sv,sizeof(sv),"getparam_rc=%d getparam_errno=%d priority=%d",pr,pre,actual.sched_priority);
+-  event("actual","sched.boost.observed","pid0",observed,oe,sv);
+-  int exposed=!boost&&observed==SCHED_FIFO&&!pr&&actual.sched_priority==1;
+-  if(!exposed)event("invalid","sched.control","pid0",-1,0,"boost-noop-or-control-invalid;no-accepted-RT-exposure");
+-  final=initial;reason="iteration-cap";
+-  if(exposed)while(iterations<2000000){
+-   struct timespec next;iterations++;rc=monotonic_clock(&next);
+-   if(rc<0){error=errno;reason="clock-error";break;}
+-   final=next;
+-   delta=((long long)final.tv_sec-initial.tv_sec)*1000000000LL+final.tv_nsec-initial.tv_nsec;
+-   if(iterations==500000||iterations==1000000||iterations==1500000){
+-    char progress[96];snprintf(progress,sizeof(progress),"iterations=%u delta_ns=%lld",iterations,delta);
+-    event("actual","runnable.progress","CLOCK_MONOTONIC",0,0,progress);
+-   }
+-   if(delta<0){reason="counter-regressed";break;}
+-   if(delta>=1500000000LL){reason="counter-target";break;}
+-  }
+-  int restore=(int)syscall(SYS_sched_setscheduler,0,policy,&original),re=restore<0?errno:0;
+-  event("actual","sched.restore","pid0",restore,re,"requested_policy=0 requested_priority=0");
+-  actual.sched_priority=-1;
+-  observed=(int)syscall(SYS_sched_getscheduler,0);oe=observed<0?errno:0;
+-  pr=(int)syscall(SYS_sched_getparam,0,&actual);pre=pr<0?errno:0;
+-  snprintf(sv,sizeof(sv),"getparam_rc=%d getparam_errno=%d priority=%d",pr,pre,actual.sched_priority);
+-  event("actual","sched.restored","pid0",observed,oe,sv);
+-  if(restore||observed!=policy||pr||actual.sched_priority!=original.sched_priority){
+-   event("invalid","sched.control","pid0",-1,0,"restore-failed-or-unverified;finish-reboot-attempt;no-retry");return -1;
+-  }
+-  if(!exposed)return -1;
+-  event("accepted","sched.control","pid0",0,0,"boost-and-restore-verified;loop-outcome-separate");
+- }else error=errno;
+- char sample[96];snprintf(sample,sizeof(sample),"%lld.%09ld sample-valid=%d",(long long)final.tv_sec,final.tv_nsec,valid);
+- event("actual","clock_gettime.final","CLOCK_MONOTONIC",rc,error,sample);
+- char v[256];snprintf(v,sizeof(v),"delta_ns=%lld iterations=%u reason=%s alarm_flag=%d clock_error=%d counter_interval_not_wallclock=1",delta,iterations,reason,(int)alarm_fired,error);
+- event("complete","runnable.loop","CLOCK_MONOTONIC",rc,error,v);
+- return 0;
++ }
++ char v[160];snprintf(v,sizeof(v),"control=" CONTROL_ID " iterations=%u checksum=%08x reason=compute-cap",(unsigned)iterations,(unsigned)checksum);
++ event("complete","runnable.loop","CLOCK_MONOTONIC",0,0,v);
++}
++static __attribute__((noinline)) int observe(void){
++ event("actual","clock.path","CLOCK_MONOTONIC",0,0,"kernel-syscall:syscall(SYS_clock_gettime);vDSO-bypassed;control=" CONTROL_ID ";loop=pure-compute-normal");
++ struct timespec initial={0,0};
++ if(clock_sample("loop.initial",&initial))return -1;
++ struct sched_param original={.sched_priority=-1};
++ int policy=(int)syscall(SYS_sched_getscheduler,0),pe=policy<0?errno:0;
++ int pr=(int)syscall(SYS_sched_getparam,0,&original),pre=pr<0?errno:0;char sv[192];
++ snprintf(sv,sizeof(sv),"getparam_rc=%d getparam_errno=%d priority=%d",pr,pre,original.sched_priority);
++ event("actual","sched.original","pid0",policy,pe,sv);
++ if(policy!=SCHED_OTHER||pr||original.sched_priority!=0){
++  event("invalid","sched.control","pid0",-1,0,"baseline-refused;require-SCHED_OTHER-priority0;no-schedule-mutation");return -1;
++ }
++ compute_loop();return 0;
+ }
+ int main(void){
+  pid_t pid=getpid();if(pid!=1)return 1;

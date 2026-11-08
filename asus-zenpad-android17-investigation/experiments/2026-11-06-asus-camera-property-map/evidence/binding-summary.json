@@ -1,0 +1,25 @@
+{
+  "status": "offline ELF binding witness only; not a loaded or integrated camera library",
+  "source": "/srv/android/asus-camera-arm32-route/public/vendor_lib_libcam_utils.so",
+  "pre_sha256": "be8cb386e5f5ea7045b24017870d85b67774518f6e9ae9efd3ed1c00f5dcdcec",
+  "post_original_sha256": "be8cb386e5f5ea7045b24017870d85b67774518f6e9ae9efd3ed1c00f5dcdcec",
+  "staged": "/srv/android/asus-camera-property-map-20261106/arm/libcam_utils.property-map-WITNESS.so",
+  "staged_sha256": "625bfeb69cdc3118661588264e030d2ec07be96e9f3cf967a66f79eba0e743fa",
+  "mapping": {
+    "_ZN7android11PropertyMap11addPropertyERKNS_7String8ES3_": "_ZN7android11AsusPropMap11addPropertyERKNS_7String8ES3_",
+    "_ZN7android11PropertyMap5clearEv": "_ZN7android11AsusPropMap5clearEv",
+    "_ZN7android11PropertyMapC1Ev": "_ZN7android11AsusPropMapC1Ev",
+    "_ZN7android11PropertyMapD1Ev": "_ZN7android11AsusPropMapD1Ev",
+    "_ZNK7android11PropertyMap11hasPropertyERKNS_7String8E": "_ZNK7android11AsusPropMap11hasPropertyERKNS_7String8E",
+    "_ZNK7android11PropertyMap14tryGetPropertyERKNS_7String8ERS1_": "_ZNK7android11AsusPropMap14tryGetPropertyERKNS_7String8ERS1_",
+    "_ZNK7android11PropertyMap14tryGetPropertyERKNS_7String8ERb": "_ZNK7android11AsusPropMap14tryGetPropertyERKNS_7String8ERb",
+    "_ZNK7android11PropertyMap14tryGetPropertyERKNS_7String8ERf": "_ZNK7android11AsusPropMap14tryGetPropertyERKNS_7String8ERf",
+    "_ZNK7android11PropertyMap14tryGetPropertyERKNS_7String8ERi": "_ZNK7android11AsusPropMap14tryGetPropertyERKNS_7String8ERi"
+  },
+  "preserved_sections": {
+    ".text": "52f14386cf6c26030c70568ec4b8d3fb648956589d9a3a5e16e737af2bae38e8",
+    ".rodata": "d87b256ba5542284d6fd0837ec0198b8ce2bc321196596a63fe233555607562d",
+    ".data": "313588ae36b23498c072b8718f9a3614d9e52b444cdcea74ecd49c93044741b3"
+  },
+  "patchelf_sha256": "35fc95654387035338a74bb8cf62fde3712ec83dd8ca30a768deb714d07f063a"
+}

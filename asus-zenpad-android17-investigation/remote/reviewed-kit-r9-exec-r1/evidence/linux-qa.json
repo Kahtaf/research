@@ -1,0 +1,87 @@
+{
+  "script_sha256": {
+    "check_launch.py": "28bcc231febd91e95f0f6ca0628ce45b9b16c18b90515811d4118aa88f58cfc7",
+    "r3_inputs.py": "5836613ce2b120b0be25744e16db7eb941bd3862a355724438ff1af10fad8ee9",
+    "verify_config_paths.py": "a6619a1e1c1920e9802846b367783fe8fda629d658ded2d7226bfbdd0f3b1cc6",
+    "integrate.py": "d276944defe88bf74a55e52a1ad7697c2dfb814eba964f61195f405d9eb09b27",
+    "graph_context.py": "3cd43739d3da6740b9cdee8f336822174fac6778d5a8b10e52c17096fa827b74",
+    "capture_build_evidence.py": "4a0b76fb849cc3da930b102bc3c4f90ebfd18a2e217558083652efcdb30bf9a2",
+    "verify_zram_context.py": "4580127a2317515e20a092e20d0b0373c55722019bec2b3866cecce94228592f",
+    "verify_google_transformed.py": "d267fc46faf47655df28efa79bf7c00e206f9e169cb979ca2ce8155edb33aeae",
+    "verify_product_r3.py": "5a6a5a4966e3bf3b9b9d33c17a1264cabbe5b139deca1431310ec1c8afd881b4",
+    "verify_input_payload.py": "1d1a7bb1ae24ddc1a73938e01cc6297b2c30ec669db177c8afd1a66475e4862a",
+    "verify_full_images.py": "fdf966f051d6814332a7dfc9d84db37644064e8179469afecde2a7647407cc41",
+    "remote.py": "c22884576a780cbb1ddf5e1b02f0b6e9d6eb5c25f8d9bc82fb077543f05cf4ab",
+    "native_state.py": "f848546eaa3411c3df13c533636ce0bda1827ae373eb260250d157d11a9cbbf3",
+    "seal.py": "d5cc8de58cec9548558a1db430ae5c281913749036ddb63c22f94bf37abdff68",
+    "verify_root_payload.py": "c819e17595d14531d065fbafdab4a44871f34cfb7120490a75e488083e0e74f7",
+    "r8_continuation.py": "1e6260a675dc3f7025cb97681a81e5ed0ac36f5d23f8eb0b28c0e46546e549fb",
+    "frozen_channel.py": "e0f9a3a9c5613b11f63460b89505ad261c732976f0f8d7e2a94d6a1544feaa1c",
+    "cache_lineage.py": "9d372c0659fcc96c39211e39015e905777537e45e9a2dacf592c4d403d8f6b1e",
+    "compiler_channel.py": "f0015e77ac572d88dce5876b4a6999d829090cacfe487b3738cb9b3b37ce5814",
+    "validate_completed_product.py": "efbbc988d3cf59ff98707d5723967a5cfc9fa6fc131055797fabed12b099ea9e",
+    "continuation.py": "e18d5b89e09d4100df7b06cd0f3906ff04c9d302f716da2196063eb9958cdd51",
+    "verify_google_payload.py": "f5ee265b1534b8d9337254c2672ea1bcc56b3e94609f183cb7fedcd2224cb70e",
+    "run_tests.py": "46540e97af1e9711dcbffb5fc87bee896d885b161edd230d3bf8e558a0f6108b",
+    "artifact.py": "58fe1b4a0593f75b89fedc043de5d3090a8054a43446a4658e0bcbfe85d28d01",
+    "ancestor_continuation.py": "965c8dcdeb024cdc59a365542c1193a4701b68386315b9ad44cb0e9851e70be7",
+    "build.sh": "a81b0974d85efc6bc9324a8f11a1ed8f744ab75f4c014e05726aedade76600cd"
+  },
+  "lineage": {
+    "scope": "EXPLICIT_PREPARATION_LINEAGE_ONLY",
+    "outputs": 61,
+    "prior_r8": 38,
+    "qualified_bpf_baseline": 23,
+    "current_native_closure_established": false,
+    "launch_authorized": false,
+    "parent_method_sha256": "202562e1b98a0d9de47f9896b755be10957984c7812d1b9268d3052201cee3ad"
+  },
+  "source_audit": {
+    "active_baseline_files": 0,
+    "kernel_postimages": 276,
+    "radio_changes": 25,
+    "total_product_changes": 43,
+    "input_mapping_files": 3,
+    "sensor_source_files": 12,
+    "platform_source_files": 2,
+    "qualified_bpf_files": 201,
+    "complete_compiled_files": null,
+    "connectivity_files": 3,
+    "scoped_parity": true,
+    "full_service_chain_accepted": false,
+    "flash_ready": false
+  },
+  "selected_edges": 242,
+  "selected_binary_graph_checks": [
+    {
+      "relative": "system/bin/bpfloader",
+      "link_output": "out/soong/.intermediates/system/bpf/loader/bpfloader/android_arm64_armv8-a/unstripped/bpfloader",
+      "source_count": 1
+    },
+    {
+      "relative": "system/bin/vold",
+      "link_output": "out/soong/.intermediates/system/vold/vold/android_arm64_armv8-a/unstripped/vold",
+      "source_count": 1
+    },
+    {
+      "relative": "system/vendor/lib64/hw/sensors.mt8163.so",
+      "link_output": "out/soong/.intermediates/device/asus/p00a/sensors/sensors.mt8163/android_vendor_arm64_armv8-a_shared/unstripped/sensors.mt8163.so",
+      "source_count": 2
+    },
+    {
+      "relative": "system/vendor/lib64/hw/ACCOUNT_REDACTED",
+      "link_output": "out/soong/.intermediates/hardware/interfaces/sensors/1.0/default/android.hardware.sensors@1.0-impl/android_vendor_arm64_armv8-a_shared/unstripped/ACCOUNT_REDACTED",
+      "source_count": 1
+    },
+    {
+      "relative": "system/vendor/bin/hw/android.hardware.sensors@1.0-service",
+      "link_output": "out/soong/.intermediates/hardware/interfaces/sensors/1.0/default/android.hardware.sensors@1.0-service/android_vendor_arm64_armv8-a/unstripped/android.hardware.sensors@1.0-service",
+      "source_count": 1
+    }
+  ],
+  "tests_exit_code": 0,
+  "tests_tail": "t_be_fresh_compile_shortcut (test_lineage.LineageTests.test_changed_qualified_digest_cannot_be_fresh_compile_shortcut) ... ok\ntest_current_failed_action_cannot_fall_back (test_lineage.LineageTests.test_current_failed_action_cannot_fall_back) ... ok\ntest_current_native_closure_positive_is_host_only (test_lineage.LineageTests.test_current_native_closure_positive_is_host_only) ... ok\ntest_current_native_closure_rejects_failed_or_old_phase (test_lineage.LineageTests.test_current_native_closure_rejects_failed_or_old_phase) ... ok\ntest_current_native_closure_requires_explicit_platform_targets (test_lineage.LineageTests.test_current_native_closure_requires_explicit_platform_targets) ... ok\ntest_current_native_closure_requires_full_targets (test_lineage.LineageTests.test_current_native_closure_requires_full_targets) ... ok\ntest_current_wrong_command_cannot_fall_back (test_lineage.LineageTests.test_current_wrong_command_cannot_fall_back) ... ok\ntest_exact_qualified_baseline_has_no_execution_claim (test_lineage.LineageTests.test_exact_qualified_baseline_has_no_execution_claim) ... ok\ntest_failed_full_phase_individual_success_not_product_success (test_lineage.LineageTests.test_failed_full_phase_individual_success_not_product_success) ... ok\ntest_failed_or_pending_completed_command_refused (test_lineage.LineageTests.test_failed_or_pending_completed_command_refused) ... ok\ntest_frozen_ninja_corroboration_required (test_lineage.LineageTests.test_frozen_ninja_corroboration_required) ... ok\ntest_native_bookkeeping_time_is_not_new_execution (test_lineage.LineageTests.test_native_bookkeeping_time_is_not_new_execution) ... ok\ntest_phase_action_error_refused (test_lineage.LineageTests.test_phase_action_error_refused) ... ok\ntest_prior_absent_current_log_and_old_real_time_accepted (test_lineage.LineageTests.test_prior_absent_current_log_and_old_real_time_accepted) ... ok\ntest_real_current_record_preferred_over_prior (test_lineage.LineageTests.test_real_current_record_preferred_over_prior) ... ok\ntest_unknown_qualified_baseline_refused (test_lineage.LineageTests.test_unknown_qualified_baseline_refused) ... ok\ntest_wrong_baseline_elf_machine_refused (test_lineage.LineageTests.test_wrong_baseline_elf_machine_refused) ... ok\ntest_wrong_command_hash_refused (test_lineage.LineageTests.test_wrong_command_hash_refused) ... ok\ntest_wrong_current_graph_refused (test_lineage.LineageTests.test_wrong_current_graph_refused) ... ok\ntest_wrong_digest_refused (test_lineage.LineageTests.test_wrong_digest_refused) ... ok\ntest_wrong_module_refused (test_lineage.LineageTests.test_wrong_module_refused) ... ok\ntest_wrong_output_path_refused (test_lineage.LineageTests.test_wrong_output_path_refused) ... ok\ntest_wrong_response_bytes_refused (test_lineage.LineageTests.test_wrong_response_bytes_refused) ... ok\ntest_wrong_selected_source_refused (test_lineage.LineageTests.test_wrong_selected_source_refused) ... ok\ntest_wrong_source_pin_refused (test_lineage.LineageTests.test_wrong_source_pin_refused) ... ok\ntest_wrong_variant_refused (test_lineage.LineageTests.test_wrong_variant_refused) ... ok\ntest_actual_terminal_requires_parent_acceptance (test_r9.R9Tests.test_actual_terminal_requires_parent_acceptance) ... ok\ntest_atomic_copy_preserves_pointer_and_refuses_repeat (test_r9.R9Tests.test_atomic_copy_preserves_pointer_and_refuses_repeat) ... ok\ntest_block_before_process_lock_source_or_attempt (test_r9.R9Tests.test_block_before_process_lock_source_or_attempt) ... ok\ntest_current_ninja_identity_drift (test_r9.R9Tests.test_current_ninja_identity_drift) ... ok\ntest_each_inherited_identity_change_is_rejected (test_r9.R9Tests.test_each_inherited_identity_change_is_rejected) ... ok\ntest_exact_artifact (test_r9.R9Tests.test_exact_artifact) ... ok\ntest_existing_atomic_temp_is_preserved (test_r9.R9Tests.test_existing_atomic_temp_is_preserved) ... ok\ntest_existing_backup_is_never_overwritten (test_r9.R9Tests.test_existing_backup_is_never_overwritten) ... ok\ntest_frozen_command_tamper (test_r9.R9Tests.test_frozen_command_tamper) ... ok\ntest_hash_matching_invalid_zip (test_r9.R9Tests.test_hash_matching_invalid_zip) ... ok\ntest_manifest_required (test_r9.R9Tests.test_manifest_required) ... ok\ntest_missing_current_ninja_entry (test_r9.R9Tests.test_missing_current_ninja_entry) ... ok\ntest_missing_execution_dependency_receipt (test_r9.R9Tests.test_missing_execution_dependency_receipt) ... ok\ntest_native_attempt_binding_drift (test_r9.R9Tests.test_native_attempt_binding_drift) ... ok\ntest_only_exact_selected_artifact_source_scope (test_r9.R9Tests.test_only_exact_selected_artifact_source_scope) ... ok\ntest_pending_failed_and_dependency_mentions_are_rejected (test_r9.R9Tests.test_pending_failed_and_dependency_mentions_are_rejected) ... ok\ntest_pointer_cannot_be_apk (test_r9.R9Tests.test_pointer_cannot_be_apk) ... ok\ntest_preservation_changed_log_rejected (test_r9.R9Tests.test_preservation_changed_log_rejected) ... ok\ntest_preservation_extra_attempt_file_rejected (test_r9.R9Tests.test_preservation_extra_attempt_file_rejected) ... ok\ntest_prior_attempt_blocks_new_attempt (test_r9.R9Tests.test_prior_attempt_blocks_new_attempt) ... ok\ntest_revision_reuse (test_r9.R9Tests.test_revision_reuse) ... ok\ntest_symlink_rejected (test_r9.R9Tests.test_symlink_rejected) ... ok\ntest_unreviewed_preimage_cannot_be_materialized (test_r9.R9Tests.test_unreviewed_preimage_cannot_be_materialized) ... ok\ntest_wrong_sha (test_r9.R9Tests.test_wrong_sha) ... ok\ntest_wrong_size (test_r9.R9Tests.test_wrong_size) ... ok\ntest_actual_current_property_paths_included (test_root_paths.RootPaths.test_actual_current_property_paths_included) ... ok\ntest_conflicts_rejected_at_each_current_path (test_root_paths.RootPaths.test_conflicts_rejected_at_each_current_path) ... ok\ntest_exact_preimage_demonstrates_previous_gap (test_root_paths.RootPaths.test_exact_preimage_demonstrates_previous_gap) ... ok\n\n----------------------------------------------------------------------\nRan 54 tests in 3.274s\n\nOK\n",
+  "elapsed_seconds": 14.64098327600368,
+  "active_source_changed": false,
+  "native_build_invoked": false
+}

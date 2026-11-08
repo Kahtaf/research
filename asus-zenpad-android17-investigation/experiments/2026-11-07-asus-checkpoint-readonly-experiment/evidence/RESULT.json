@@ -1,0 +1,29 @@
+{
+  "utc": "2026-11-07T21:19:20.116400+00:00",
+  "outcome": "READ_ONLY_CONTRACT_SUPPORTED_CALIBRATION_NOT_YET_PROVEN",
+  "saved_fiq_reader_shipped_binary": "PASS",
+  "old_snapshot_before_current_clear": "PASS",
+  "live_saved_fiq_field_read": "PASS_value_0",
+  "live_reserved_region": "0x44400000 + 0x80000",
+  "static_latest49_DT_guards": "PASS",
+  "corrected_logger_source_receipts": "PASS",
+  "actual_linux49_runtime_guards": "UNKNOWN",
+  "fresh_marker_write_readback_and_reset_retention": "NOT_TESTED",
+  "raw_header_interface": "UNAVAILABLE_no_interface_created",
+  "cached_pc_values": [
+    "0xffffff800810e078",
+    "0xffffff80085b2c54"
+  ],
+  "cached_pc_epoch": "UNKNOWN_not_proof_of_exact_attempt",
+  "boot_id": "8ead30bd-fb07-48fd-a76a-adabf18093a3",
+  "kernel": "3.18.35",
+  "memory_writes": false,
+  "image_writes": false,
+  "reboot": false,
+  "VM_start": false,
+  "diagnostic_command_read_only": true,
+  "existing_root_helper_staging": true,
+  "enforcing_restored": true,
+  "initial_snapshot_correction": "Android head does not support -c. Original errors preserved; remaining failed reads repeated once with bounded dd. Header access not repeated. Initial empty DT/cache output is not admitted as hardware absence.",
+  "next_minimum_experiment": "A stock-controlled marker roundtrip through the existing saved diagnostic field, after establishing a bounded writer; no blind4.9driver/kernel change and no OS flash."
+}

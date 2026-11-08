@@ -1,0 +1,38 @@
+{
+  "arch/arm64/configs/asus_p00a_defconfig": {
+    "after": "423c68c8870d56b843f447dc45c4b63f908143ca8a85c462481a1a161c9a9588",
+    "before": "ae86c367dd8919e3fb55a18209a2075330f49c2b6e83b40226a38c832fd7e01d"
+  },
+  "drivers/misc/mediatek/sensors-1.0/accelerometer/Kconfig": {
+    "after": "68008f8db9d95d07a9c14c657de3c793d850eb3c8adde09fcb43e885ca3921f0",
+    "before": "e7efd9f4fccd41b9b8d58af79eb91261fc441a497ec6ee12a65a0d395475c7d7"
+  },
+  "drivers/misc/mediatek/sensors-1.0/accelerometer/Makefile": {
+    "after": "333f8fe8870f916489a5e7a191e9ac2b368ea3138d07e276da5f0abbcbe3c2c1",
+    "before": "12fe27ee68eb7a64cc56abe7120d932e155c05dae3c1c6d9cfa70a68ea1dfcc1"
+  },
+  "drivers/misc/mediatek/sensors-1.0/accelerometer/accel.c": {
+    "after": "bd93940b74aeef17038b5634a92d18c5059d72262aeec89527761e008061b286",
+    "before": "b18183d44bd25d9e8aeb07d300f6b745b6a113073ffda00c04d01f11eab50c3d"
+  },
+  "drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/Kconfig": {
+    "after": "69d84282bcc16760a13f011c05aa4558d321dda39f8d22bd5f9acc80350d1ec6",
+    "before": null
+  },
+  "drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/Makefile": {
+    "after": "4625975255d6445b6a350c339525382503cc7f60dac72c4a648bef32ae770013",
+    "before": null
+  },
+  "drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/bmc156_acc.c": {
+    "after": "c558aab6e6a886328ef52aa4c54a776b1f518bd9966a8a3e2bdd482b062fd72e",
+    "before": null
+  },
+  "drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/bmc156_acc.h": {
+    "after": "c6108913e3a703cb9f86ce32a450e55f9740a41bba2fd31a2555650a569bbc6c",
+    "before": null
+  },
+  "drivers/misc/mediatek/sensors-1.0/hwmon/sensor_attributes/sensor_attr.c": {
+    "after": "9a6df6aa9e0d2c261d994896a806c9264eaf187a4367a3b0f06bc663cb5b9c36",
+    "before": "e1adb590e4130e8a7ba7ebaca4d9be07435f2e116b6fc8df2c2e620d6d4ff18d"
+  }
+}

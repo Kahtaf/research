@@ -1,0 +1,33 @@
+{
+  "utc": "2026-11-07T20:20:51.123377+00:00",
+  "outcome": "NO_USABLE_LINUX49_BOOT_TRACE",
+  "candidate_p10_sha256": "0b1a3c45751d688ba304743dc74e73f7030586c6fafece32eedf0da39c86455d",
+  "one_recovery_entry": true,
+  "normal_android_return_proven": true,
+  "new_stock_boot_id": "8ead30bd-fb07-48fd-a76a-adabf18093a3",
+  "usb_report_observed": false,
+  "host_inventory_errors": 0,
+  "complete_retained_log_read": true,
+  "retained_summary": {
+    "bytes": 507837,
+    "sha256": "959828bef6a6f27a189e91b83071db438231bcf5c69b463d52210cc9944f6628",
+    "counts": {
+      "logger_markers": 0,
+      "linux49_mentions": 0,
+      "linux318_mentions": 7
+    },
+    "markers": [],
+    "log_identity_lines": [
+      "[    0.000000] -(0)[0:swapper]Linux version 3.18.35 (android@mec15) (gcc version 4.9 20150123 (prerelease) (GCC) ) #1 SMP PREEMPT Thu Aug 9 12:33:25 CST 2018",
+      "[    0.306806]  (2)[1:swapper/0]Unpacking initramfs..."
+    ]
+  },
+  "normal_OS_partition_writes": false,
+  "kernel_changed_for_this_trial": false,
+  "missing_reports_do_not_prove_nonexecution": true,
+  "further_kernel_variants": "STOPPED",
+  "real_blocker": "No reliable early Linux4.9 execution trace or physically qualified4.9 userspace/USB path on this hardware. Full Android17 flash does not yet have a solid boot chance.",
+  "next_useful_input": "A validated early hardware boot trace (for example a working hardware UART capture route) or hardware-proven compatible port kernel; route availability not established.",
+  "tablet_state": "Original Android verified running; diagnostic4.9 remains in recoveryp10; BOOT/SYSTEM/DATA untouched.",
+  "no_fullOS_flash": true
+}

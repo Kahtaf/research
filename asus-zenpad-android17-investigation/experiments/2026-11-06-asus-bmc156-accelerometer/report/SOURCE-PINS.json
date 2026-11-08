@@ -1,0 +1,132 @@
+{
+  "physical_base": {
+    "source": "/srv/android/asus-build-continuation/kernel",
+    "base_commit": "717bb3c9e13ce573cfdd2dda856debd27a0fa17f",
+    "compiled_image_sha256": "46895deb12ec94160ea5af0e85afa89c6de84971db126bb94c60cec1ec3ec401",
+    "resolved_config_sha256": "067090e03ad762344308cebd0a71274d9943e299ded6707051ebfdc075dd045f",
+    "baseline_manifest_sha256": "a1c0a93c9a4b78e9d01bf7940516f11bdf8ca4eb8dc6cf51bbe041c4e343fd7c",
+    "parent_source_chain": {
+      "exact_parent_compiled_r5_source_match": true,
+      "baseline_source_files": 62224,
+      "parent_base_files": 61976,
+      "parent_r5_changes": 268,
+      "parent_base_commit": "717bb3c9e13ce573cfdd2dda856debd27a0fa17f",
+      "snapshot_sha256": "e219c0e87d2cfca252088e06839dbf9cedaa794b3832e3829cf5c96021717315",
+      "parent_source_receipt_sha256": "b207be8fcb6739202fae31f54a987f2d11834d43f618edd2a47c6cc33fe2ebe4",
+      "parent_full_delta_sha256": "3ee1f9835330e1a589c0e93a73fc65ebdb57ffd9b48a8bbbd32a7bc98e0f3f8b"
+    }
+  },
+  "staged": {
+    "remote_fixture": "/srv/android/asus-bmc156-accelerometer-r1",
+    "kernel_patch_sha256": "1f40942ee014bda87c4e4c382b881e27c98b2034b227a06020a7e96126399cec",
+    "pre_post_manifest_sha256": "d238debc70f0c67b204342ac4e6ff183cf07370fc82c4803f8f643d35115ac33",
+    "oem_adaptation_patch_sha256": "fe4a945ead93a9962bde43308868f667008f1b7826d73a342a8849d8887bd4b1",
+    "resolved_config_sha256": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2",
+    "hal_sha256": "d083cc3d4c66a8f72f7ea9821ecc68564c5dfc9d599bed0620db369d318b9731",
+    "kernel_objects": {
+      "drivers/misc/mediatek/sensors-1.0/accelerometer/accel.o": {
+        "bytes": 38520,
+        "sha256": "09d68f64d12d6864f59ef8bee80b147a75dd6cf7d3e5907593d9a3f88eec537c"
+      },
+      "drivers/misc/mediatek/sensors-1.0/accelerometer/bmc156_acc/bmc156_acc.o": {
+        "bytes": 17040,
+        "sha256": "cef8b138def273ba52188129b4e67ea4651002f7999d054d52ee2d49913b4991"
+      },
+      "drivers/misc/mediatek/sensors-1.0/built-in.o": {
+        "bytes": 127784,
+        "sha256": "5a2aa6fed9ae8b1a9ad9bea15e93ee230b14bad6504bedb14705759446e0b958"
+      },
+      "drivers/misc/mediatek/sensors-1.0/hwmon/sensor_attributes/sensor_attr.o": {
+        "bytes": 6232,
+        "sha256": "0ebb5e1cf8941c297a92a5a06f5d9f3ca351427a1442ec57ae4892f7d442228a"
+      }
+    }
+  },
+  "original_oem_files": {
+    "bmc156_acc.c": "d3a43a00419e7c1096e1b216ae665a57a69e7af3ab0ff363240e4aed14a9a609",
+    "Makefile": "13f73ef4dc6030fa5fb1b54cd7a2f507b4e1de15175af519c89a0182efb1ca4c",
+    "Kconfig": "867e3fc1b887739696a21e346ae55fe24f1e230dac8c3dff7b2766dcb1163a34",
+    "bmc156_acc.h": "c6108913e3a703cb9f86ce32a450e55f9740a41bba2fd31a2555650a569bbc6c"
+  },
+  "kernel_abi_sources": {
+    "drivers/misc/mediatek/sensors-1.0/hwmon/include/sensor_event.h": "041df9beda73a7457a8ad948ec18b7cad22a9c3d9b826f7169ff23ba5144da47",
+    "drivers/misc/mediatek/sensors-1.0/accelerometer/inc/accel.h": "8f7e39f17a34c88b66816bd023630b574ba72fd6c367474d24ab480b936de353",
+    "drivers/misc/mediatek/sensors-1.0/accelerometer/inc/cust_acc.h": "47ba21f30c0e86c29bee7626f91fa22ef911f27735580671c0efe5de8a5a3d6f",
+    "drivers/misc/mediatek/sensors-1.0/hwmon/sensor_dts/sensor_dts.c": "26f0cf1ddf747c016d29f5d7fffc4f987d37999142af4a44f55365fe16d79796",
+    "drivers/misc/mediatek/sensors-1.0/hwmon/hwmsen/hwmsen_helper.c": "a1e2d37dd7b57dbad136be4eee250649dd6eeb20e0f6fb01b54655e3e6d84413"
+  },
+  "sdk_repositories": [
+    {
+      "source": "bionic",
+      "commit": "ff3bb041547924ac1a7504e4b3bd3ea18169ca2f",
+      "paths": [
+        "libc/include",
+        "libc/kernel/uapi",
+        "libc/kernel/android/uapi"
+      ]
+    },
+    {
+      "source": "hardware/libhardware",
+      "commit": "d7f13275b6a210f56110b46609a2e83b2feccd99",
+      "paths": [
+        "include",
+        "include_all"
+      ]
+    },
+    {
+      "source": "system/core",
+      "commit": "65d661b1a536701e8b118be4e9728d7b5ca727c9",
+      "paths": [
+        "libcutils/include",
+        "libsystem/include"
+      ]
+    }
+  ],
+  "sdk_libraries": [
+    {
+      "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libc.so",
+      "sha256": "151cc98631ea0621083d98704fed429c75514884ed16c55e91840da3b8d91a2a",
+      "destination": "lib/libc.so"
+    },
+    {
+      "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libdl.so",
+      "sha256": "f074638d52d74bea9ee0add172f776f95025ad2268a28a7cb817ded90f6eb4bd",
+      "destination": "lib/libdl.so"
+    },
+    {
+      "source": "/srv/android/asus-android17-runtime-prereqs/inputs/root/system/lib64/libm.so",
+      "sha256": "8e2e84d5196c3502c2bbeb1d2378002772bd8b145d2d27ba078114a5ceeb00bd",
+      "destination": "lib/libm.so"
+    },
+    {
+      "source": "/srv/android/lineage24/out/soong/.intermediates/bionic/libc/crtbegin_so/android_arm64_armv8-a/crtbegin_so.o",
+      "sha256": "a4d1062890a43a69a9a0ec31d6b180e15bdfdbd16d1248dd38f3b0e3b2315219",
+      "destination": "lib/crtbegin_so.o"
+    },
+    {
+      "source": "/srv/android/lineage24/out/soong/.intermediates/bionic/libc/crtend_so/android_arm64_armv8-a/crtend_so.o",
+      "sha256": "67526086a5d71ae54a431a6419a06c5d87cf951e4b5d58f978d4cc378b08855e",
+      "destination": "lib/crtend_so.o"
+    }
+  ],
+  "sdk_wrapper_and_framework_sources": {
+    "sdk/reference/hardware/interfaces/sensors/1.0/default/Sensors.cpp": "fd9be768a9c3ec0db2a2a68a8e14d87639b15519a41bcf2064aed77afc887680",
+    "sdk/reference/hardware/interfaces/sensors/1.0/default/ACCOUNT_REDACTED": "6f65242d34d0528c23e5dd216e92821ba1c66dc653b60506cf05083e10c7ecf2",
+    "sdk/reference/hardware/interfaces/sensors/1.0/default/Android.bp": "b5367a0c0031d100a53ce083419ba126d812efa9410d4d4ab5c6a35ad8dd3576",
+    "sdk/reference/frameworks/native/services/sensorservice/SensorDevice.cpp": "f2f5f1f434f5772c3b1b4265a655d177f74e87941aa77c510192073c16693e97",
+    "sdk/reference/frameworks/native/services/sensorservice/HidlSensorHalWrapper.cpp": "d1d0c1832f7e828a6dcfb4316aa8cd944e1aa2487fc50710eeb27b4991bc3ec5"
+  },
+  "public_stock_sensor_descriptor": {
+    "source": "/srv/android/asus-hardware-completeness-audit/public-selected/lib64_hw_sensors.mt8163.so",
+    "sha256": "0d0fb39fb1a7b8f59dc67ea2617f60052441610d7012dc8925f2b16c695ed652",
+    "symbol": "325: 000000000002f008  1040 OBJECT  GLOBAL DEFAULT   21 sSensorList",
+    "offset": 184328,
+    "version": 3,
+    "handle": 1,
+    "type": 1,
+    "maxRange": 32.0,
+    "resolution": 0.00390625,
+    "power": 0.12999999523162842,
+    "minDelay": 10000
+  }
+}

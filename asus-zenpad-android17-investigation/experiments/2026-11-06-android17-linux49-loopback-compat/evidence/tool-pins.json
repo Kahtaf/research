@@ -1,0 +1,16 @@
+{
+  "tools": [
+    {
+      "name": "python",
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.14_1/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+      "sha256": "95f75211f35794aa6726febff884339a88756fd89e423a4fbd65aac201145780"
+    },
+    {
+      "name": "clang",
+      "path": "/usr/bin/clang",
+      "sha256": "61e77a2d557f8677a9da3b403c054c8b6e2d2ba5f6389bce100b55b65977df2e"
+    }
+  ],
+  "python_version": "3.13.14 (main, Jun 10 2026, 12:24:04) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "remote_compiler": "Inherited clang-r584948b build command only; no active compiler binary read"
+}

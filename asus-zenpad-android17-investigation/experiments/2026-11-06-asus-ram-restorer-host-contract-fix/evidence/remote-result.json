@@ -1,0 +1,55 @@
+{
+  "tests": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/contract_tests.py"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "test_each_phase_timeout_is_terminal_unknown (__main__.ContractTests.test_each_phase_timeout_is_terminal_unknown) ... ok\ntest_fragment_activity_does_not_extend_phase (__main__.ContractTests.test_fragment_activity_does_not_extend_phase) ... ok\ntest_phase_reset_does_not_extend_operation (__main__.ContractTests.test_phase_reset_does_not_extend_operation) ... ok\ntest_post_rename_sync_failure_and_storage_loss (__main__.ContractTests.test_post_rename_sync_failure_and_storage_loss) ... ok\ntest_success_requires_live_publication_return (__main__.ContractTests.test_success_requires_live_publication_return) ... ok\ntest_unqualified_timing_refused_before_any_request (__main__.ContractTests.test_unqualified_timing_refused_before_any_request) ... ok\ntest_valid_16_second_initial_reply (__main__.ContractTests.test_valid_16_second_initial_reply) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.294s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/host_tests.py"
+      ],
+      "exit": 0,
+      "stdout": "HOST_PROTOCOL_PASS 16\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "tests/host_durability.py"
+      ],
+      "exit": 0,
+      "stdout": "HOST_DURABILITY_PASS 5\n",
+      "stderr": ""
+    }
+  ],
+  "original_pins": {
+    "artifacts/original-recovery.payload": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20",
+    "artifacts/candidate/UNARMED.p10.raw": "e3df64342477816bc9aa2c8bb44cb61adf7a0f910d2d016c339c3250ff8457e3",
+    "artifacts/p10-restore": "1d5c51991fd74129a1aac3694a860fca7c7fbf8d1e22cfa601620248de50b463",
+    "artifacts/session_server": "6b5ed70ed9ed78b0aa012552cfc987413f3854ce48dad01b6ce0bd4ed1755a86",
+    "source/host.py": "7830374c08c78db915099f12c7d635c7df9280fc153e12b165ef54a1d98d6dd3",
+    "source/p10_restore.c": "cddda42708f1444b7d773d57cb7e750a8a34d32e7a78b2c791a096a0a420b943",
+    "tests/session_server.c": "6ae8e4ff9e52d0a9fb7443ca47b328cde24c4282b3684101133cc464db427ec9",
+    "tests/storage.h": "18c911276f71b84d5b6c7bbd1add027422d8b0bddf3ac822c6eb9e52cf4e6b43"
+  },
+  "originals_unchanged": true,
+  "cpu_affinity": [
+    0
+  ],
+  "address_space": [
+    1073741824,
+    1073741824
+  ],
+  "device_operations": false,
+  "target_binaries_changed": false,
+  "phase_timing_physically_qualified": false
+}

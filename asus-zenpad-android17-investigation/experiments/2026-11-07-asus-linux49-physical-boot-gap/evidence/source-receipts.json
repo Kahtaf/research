@@ -1,0 +1,82 @@
+{
+  "arch/arm64/kernel/cpu_ops.c": {
+    "sha256": "f5fb6d65dfa7075332f61e94634de0d4ab2bb390c8323f846ef9855e1a07d426",
+    "r5_sha256": "f5fb6d65dfa7075332f61e94634de0d4ab2bb390c8323f846ef9855e1a07d426",
+    "matches_r5": true
+  },
+  "arch/arm64/kernel/setup.c": {
+    "sha256": "a4747254f2851047eba9520f56c04cbc066e56b439658331fcf6ad4f771c455f",
+    "r5_sha256": "a4747254f2851047eba9520f56c04cbc066e56b439658331fcf6ad4f771c455f",
+    "matches_r5": true
+  },
+  "arch/arm64/kernel/head.S": {
+    "sha256": "f8cc22696326b68e69b4e858dffbe16940c257520a556cd374ba5abee70762c0",
+    "r5_sha256": "f8cc22696326b68e69b4e858dffbe16940c257520a556cd374ba5abee70762c0",
+    "matches_r5": true
+  },
+  "arch/arm64/mm/init.c": {
+    "sha256": "27442b977fa7a209125f3dcee5f2ae9768fc40f9d4e1aa896ad02cfccdd982de",
+    "r5_sha256": "27442b977fa7a209125f3dcee5f2ae9768fc40f9d4e1aa896ad02cfccdd982de",
+    "matches_r5": true
+  },
+  "arch/arm64/kernel/time.c": {
+    "sha256": "3f2a6dbef71d10fecf6f4257d3fdf168d6380fd2e27ca933be7d598943cea993",
+    "r5_sha256": "3f2a6dbef71d10fecf6f4257d3fdf168d6380fd2e27ca933be7d598943cea993",
+    "matches_r5": true
+  },
+  "arch/arm64/kernel/irq.c": {
+    "sha256": "b6c45a4e66c5f8da23c8773a7486f728f23759452c7d1cb3899aa5afff6a1e64",
+    "r5_sha256": "b6c45a4e66c5f8da23c8773a7486f728f23759452c7d1cb3899aa5afff6a1e64",
+    "matches_r5": true
+  },
+  "drivers/firmware/psci.c": {
+    "sha256": "142416b4d183500269fc8fa3adfb78183ac889be29cdd9f9eee4fdae8fd4b781",
+    "r5_sha256": "142416b4d183500269fc8fa3adfb78183ac889be29cdd9f9eee4fdae8fd4b781",
+    "matches_r5": true
+  },
+  "drivers/clocksource/mtk_timer.c": {
+    "sha256": "2b298b9f5b7951104340b20b5591c2496746be088d3bec935a69157ba30ca197",
+    "r5_sha256": "2b298b9f5b7951104340b20b5591c2496746be088d3bec935a69157ba30ca197",
+    "matches_r5": true
+  },
+  "drivers/clocksource/arm_arch_timer.c": {
+    "sha256": "dfec1f39b28dffa4779433e84be9e1a9b13925d80a1bbef0801848857d365b09",
+    "r5_sha256": "dfec1f39b28dffa4779433e84be9e1a9b13925d80a1bbef0801848857d365b09",
+    "matches_r5": true
+  },
+  "drivers/irqchip/irq-gic.c": {
+    "sha256": "8ec4c3c11263e8219367885905c13d72584c9a0a27a53292add17c09e89b1436",
+    "r5_sha256": "8ec4c3c11263e8219367885905c13d72584c9a0a27a53292add17c09e89b1436",
+    "matches_r5": true
+  },
+  "drivers/clk/mediatek/clk-mt8163.c": {
+    "sha256": "e9c54ca7528f3dfb5761bd913b9639448715e14875ca2254e1a24a8748bfd1e6",
+    "r5_sha256": "e9c54ca7528f3dfb5761bd913b9639448715e14875ca2254e1a24a8748bfd1e6",
+    "matches_r5": true
+  },
+  "drivers/clk/mediatek/Makefile": {
+    "sha256": "d888cd380d5434c9f8cd4b429bac72024488d9573821d847ce0c54401964bd89",
+    "r5_sha256": "d888cd380d5434c9f8cd4b429bac72024488d9573821d847ce0c54401964bd89",
+    "matches_r5": true
+  },
+  "drivers/misc/mediatek/base/power/mt8163/mt_psci.c": {
+    "sha256": "e453f34345d538c5ec484659ac2eb822f770a4dea420819ef4e6c24c65e79f5b",
+    "r5_sha256": "e453f34345d538c5ec484659ac2eb822f770a4dea420819ef4e6c24c65e79f5b",
+    "matches_r5": true
+  },
+  "drivers/misc/mediatek/base/power/mt8163/Makefile": {
+    "sha256": "15aa1a28795005637de1987ab78fd01fc59c8b2e3f69c54ce4f541b28dc88061",
+    "r5_sha256": "15aa1a28795005637de1987ab78fd01fc59c8b2e3f69c54ce4f541b28dc88061",
+    "matches_r5": true
+  },
+  "arch/arm64/boot/dts/mediatek/mt8163.dtsi": {
+    "sha256": "a605903380bac77de2d077e002d215e20422f4a9bf6441c9d782fef3e0c2382a",
+    "r5_sha256": "a605903380bac77de2d077e002d215e20422f4a9bf6441c9d782fef3e0c2382a",
+    "matches_r5": true
+  },
+  "arch/arm64/boot/dts/mediatek/asus-p00a.dts": {
+    "sha256": "bb39c36199b6cb92b453c59116d85bc3e6769663792d0ddf7f18e7509d81f572",
+    "r5_sha256": "bb39c36199b6cb92b453c59116d85bc3e6769663792d0ddf7f18e7509d81f572",
+    "matches_r5": true
+  }
+}

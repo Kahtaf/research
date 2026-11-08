@@ -1,0 +1,28 @@
+{
+  "supported": true,
+  "binding": {
+    "/soc/toprgu@10007000": {
+      "compatible": "6d6564696174656b2c6d74383136332d726775006d6564696174656b2c6d74363538392d77647400",
+      "reg": "00000000100070000000000000001000",
+      "interrupts": "000000000000008000000002",
+      "#reset-cells": "00000001",
+      "linux,phandle": "00000056",
+      "phandle": "00000056"
+    }
+  },
+  "baseline_kernel_sha256": "063dad1d9cc03b1c335dd712c9fcb0c36a006e5e99ebee4577e73e669613ac2d",
+  "prerequisites": [
+    "init/main.c: do_basic_setup calls driver_init before do_initcalls",
+    "drivers/base/init.c: driver_init calls platform_bus_init",
+    "drivers/of/platform.c: default DT population is arch_initcall_sync (3s)",
+    "watchdog_core.c: static deferred list/mutex supports pre-miscdev driver registration and is drained by subsys_initcall_sync watchdog_init (4s)",
+    "mtk_wdt_probe: no active IRQ request or clock-get dependency; existing ASUS stop precedes watchdog_register_device",
+    "CONFIG_DOUGLAS and CONFIG_GIZA disabled; module.h maps arch_initcall to module_init for MODULE"
+  ],
+  "patch_scope": "Only module_platform_driver registration macro expanded into equivalent init/exit wrappers, init at arch_initcall",
+  "runtime_probe_timing_proved": false,
+  "watchdog_reset_cause_proved": false,
+  "stock_core_initcall_claim": "Stock mtk_wdt_get_base_addr maps only; no claim that it stops at core_initcall",
+  "source_evidence": "baseline-source-inspection.txt",
+  "physical_availability": "PENDING with root; no install/reboot authorized for worker"
+}

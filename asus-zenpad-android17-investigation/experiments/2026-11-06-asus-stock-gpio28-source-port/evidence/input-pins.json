@@ -1,0 +1,408 @@
+[
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "copy": "preimage/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "sha256": "a6cbff61167f1c3690b2554f4aa59fe365d8bbeb3a7e3ae12999d4266ab3e3b2",
+    "bytes": 117756,
+    "expected": "a6cbff61167f1c3690b2554f4aa59fe365d8bbeb3a7e3ae12999d4266ab3e3b2"
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c",
+    "copy": "preimage/sound/soc/mediatek/mt_soc_audio_8163/AudDrv_Gpio.c",
+    "sha256": "d2381b84a3dfbf8258723d365ec35e17f5ad75b97b9595e883fdf596bc68a7f5",
+    "bytes": 10255,
+    "expected": "d2381b84a3dfbf8258723d365ec35e17f5ad75b97b9595e883fdf596bc68a7f5"
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/inputs/combined/sound/soc/mediatek/Kconfig",
+    "copy": "preimage/sound/soc/mediatek/Kconfig",
+    "sha256": "3be1ee72b1f74fb03bb39d53889b50d5ecba48ae32970316a6801d7e40c6f1dc",
+    "bytes": 6473,
+    "expected": "3be1ee72b1f74fb03bb39d53889b50d5ecba48ae32970316a6801d7e40c6f1dc"
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/inputs/combined/arch/arm64/boot/dts/mediatek/asus-p00a.dts",
+    "copy": "preimage/arch/arm64/boot/dts/mediatek/asus-p00a.dts",
+    "sha256": "bb39c36199b6cb92b453c59116d85bc3e6769663792d0ddf7f18e7509d81f572",
+    "bytes": 29636,
+    "expected": "bb39c36199b6cb92b453c59116d85bc3e6769663792d0ddf7f18e7509d81f572"
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/inputs/bmc/asus_p00a_defconfig",
+    "copy": "preimage/arch/arm64/configs/asus_p00a_defconfig",
+    "sha256": "423c68c8870d56b843f447dc45c4b63f908143ca8a85c462481a1a161c9a9588",
+    "bytes": 11026,
+    "expected": null
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/inputs/bmc/resolved.config",
+    "copy": "preimage/resolved.config",
+    "sha256": "10b212cabd28aad012582e86c64695ccd450650b4e09ec8da30c21e094f377c2",
+    "bytes": 126472,
+    "expected": null
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/linux/gpio.h",
+    "copy": "inputs/api/include/linux/gpio.h",
+    "sha256": "fc71722577cf2fcb54c881f9d167d55c824f75034eb70ce159bf9f25bc5a1c40",
+    "bytes": 5278,
+    "expected": "fc71722577cf2fcb54c881f9d167d55c824f75034eb70ce159bf9f25bc5a1c40"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/linux/gpio/consumer.h",
+    "copy": "inputs/api/include/linux/gpio/consumer.h",
+    "sha256": "c354a5db81ad57d2dcc699b5f9a689020ffb6c1988a284a0372c5f6e6e9a05a7",
+    "bytes": 12342,
+    "expected": "c354a5db81ad57d2dcc699b5f9a689020ffb6c1988a284a0372c5f6e6e9a05a7"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/linux/gpio/driver.h",
+    "copy": "inputs/api/include/linux/gpio/driver.h",
+    "sha256": "e16d7089f281e5cec96088ad89ecf6f7b6b9a2ef80482ec8e1fb8cf6558f1d06",
+    "bytes": 13000,
+    "expected": "e16d7089f281e5cec96088ad89ecf6f7b6b9a2ef80482ec8e1fb8cf6558f1d06"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/asm-generic/gpio.h",
+    "copy": "inputs/api/include/asm-generic/gpio.h",
+    "sha256": "7dae23b5096b2dededcc419f7ae1d9c54e55e7f74bc1e5a14d53472d3f0f0ebb",
+    "bytes": 4519,
+    "expected": "7dae23b5096b2dededcc419f7ae1d9c54e55e7f74bc1e5a14d53472d3f0f0ebb"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/linux/of.h",
+    "copy": "inputs/api/include/linux/of.h",
+    "sha256": "c2d5abf988043aafb9aad7d1ba5ba6bb3d8739333b202527027fe5c38081abc0",
+    "bytes": 38889,
+    "expected": "c2d5abf988043aafb9aad7d1ba5ba6bb3d8739333b202527027fe5c38081abc0"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/linux/of_gpio.h",
+    "copy": "inputs/api/include/linux/of_gpio.h",
+    "sha256": "90b4d32790bc638dd8f90579919de9f1dde665e9095ba3368d611565d08e5fb9",
+    "bytes": 4435,
+    "expected": "90b4d32790bc638dd8f90579919de9f1dde665e9095ba3368d611565d08e5fb9"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/linux/device.h",
+    "copy": "inputs/api/include/linux/device.h",
+    "sha256": "0a28a651066643a67fbf4a9cdea35c3dc3cba0e81949ce1220cb1c43d55a6b5b",
+    "bytes": 49072,
+    "expected": "0a28a651066643a67fbf4a9cdea35c3dc3cba0e81949ce1220cb1c43d55a6b5b"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/sound/soc.h",
+    "copy": "inputs/api/include/sound/soc.h",
+    "sha256": "b3271dc9430d2362329ccec0f78000c14e3224b1848dca61817b4b1d51ec9add",
+    "bytes": 58450,
+    "expected": "b3271dc9430d2362329ccec0f78000c14e3224b1848dca61817b4b1d51ec9add"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/drivers/gpio/gpiolib.c",
+    "copy": "inputs/api/drivers/gpio/gpiolib.c",
+    "sha256": "1d3680d21d6afc6e70a0132e526340c76bdef762a85a18a08d6ef06b98369915",
+    "bytes": 98804,
+    "expected": "1d3680d21d6afc6e70a0132e526340c76bdef762a85a18a08d6ef06b98369915"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/drivers/gpio/gpiolib-of.c",
+    "copy": "inputs/api/drivers/gpio/gpiolib-of.c",
+    "sha256": "d53f71904cb7093ce462a38637f2eb161d2783b895e4d2ec1fe7f41a3d837c84",
+    "bytes": 13421,
+    "expected": "d53f71904cb7093ce462a38637f2eb161d2783b895e4d2ec1fe7f41a3d837c84"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/drivers/gpio/gpiolib-legacy.c",
+    "copy": "inputs/api/drivers/gpio/gpiolib-legacy.c",
+    "sha256": "9a7ec987b8935049ca9c8ff6389faa117533ffa651605642585ed4948a07753e",
+    "bytes": 2457,
+    "expected": "9a7ec987b8935049ca9c8ff6389faa117533ffa651605642585ed4948a07753e"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/drivers/gpio/devres.c",
+    "copy": "inputs/api/drivers/gpio/devres.c",
+    "sha256": "3469a6fe3d743a67f3921bfef69ba24c818bcca14de7e82367f9f70e5905426d",
+    "bytes": 10720,
+    "expected": "3469a6fe3d743a67f3921bfef69ba24c818bcca14de7e82367f9f70e5905426d"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/drivers/base/devres.c",
+    "copy": "inputs/api/drivers/base/devres.c",
+    "sha256": "6789bf0002e3dfb95f067817f921a414a727df0f725da5905c9b7778ad027a00",
+    "bytes": 24935,
+    "expected": "6789bf0002e3dfb95f067817f921a414a727df0f725da5905c9b7778ad027a00"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/drivers/base/dd.c",
+    "copy": "inputs/api/drivers/base/dd.c",
+    "sha256": "2b8746d9d12db781555a7e3a771fa17fbbb92ee1dc36595c4bb6b4a5796726e6",
+    "bytes": 23724,
+    "expected": "2b8746d9d12db781555a7e3a771fa17fbbb92ee1dc36595c4bb6b4a5796726e6"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/drivers/pinctrl/core.c",
+    "copy": "inputs/api/drivers/pinctrl/core.c",
+    "sha256": "022057a6897ba26d0713e095c5f78f8e82ba4141a886000596359166a0428d9f",
+    "bytes": 49570,
+    "expected": "022057a6897ba26d0713e095c5f78f8e82ba4141a886000596359166a0428d9f"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/drivers/pinctrl/pinmux.c",
+    "copy": "inputs/api/drivers/pinctrl/pinmux.c",
+    "sha256": "c4c9fa342cf6e9100d10fe7ed110e545aef7fa190d1eccf861c9c0a468f920e0",
+    "bytes": 17904,
+    "expected": "c4c9fa342cf6e9100d10fe7ed110e545aef7fa190d1eccf861c9c0a468f920e0"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/drivers/pinctrl/mediatek/pinctrl-mtk-common.c",
+    "copy": "inputs/api/drivers/pinctrl/mediatek/pinctrl-mtk-common.c",
+    "sha256": "5f89c2ac60807673a0a165bf26b6019c1a21274b875053257ff6f39b472f4189",
+    "bytes": 70594,
+    "expected": "5f89c2ac60807673a0a165bf26b6019c1a21274b875053257ff6f39b472f4189"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/drivers/pinctrl/mediatek/pinctrl-mtk-mt8163.h",
+    "copy": "inputs/api/drivers/pinctrl/mediatek/pinctrl-mtk-mt8163.h",
+    "sha256": "e5243af25684742c2a0b16044a04104ebd2b2fb9ebf89bf394b5fc4102beca1b",
+    "bytes": 34796,
+    "expected": "e5243af25684742c2a0b16044a04104ebd2b2fb9ebf89bf394b5fc4102beca1b"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/sound/soc/soc-core.c",
+    "copy": "inputs/api/sound/soc/soc-core.c",
+    "sha256": "918395572ef95cc5c5e1a81ca6208540365e7b3e491a4e82bcad66cf324dd328",
+    "bytes": 101776,
+    "expected": "918395572ef95cc5c5e1a81ca6208540365e7b3e491a4e82bcad66cf324dd328"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/arch/arm64/boot/dts/mediatek/mt8163.dtsi",
+    "copy": "inputs/api/arch/arm64/boot/dts/mediatek/mt8163.dtsi",
+    "sha256": "a605903380bac77de2d077e002d215e20422f4a9bf6441c9d782fef3e0c2382a",
+    "bytes": 51729,
+    "expected": "a605903380bac77de2d077e002d215e20422f4a9bf6441c9d782fef3e0c2382a"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/arch/arm64/boot/dts/mediatek/mt8163-pinfunc.h",
+    "copy": "inputs/api/arch/arm64/boot/dts/mediatek/mt8163-pinfunc.h",
+    "sha256": "01138f6a53285f69c16091f9a52cfda74b83692d29dee8d8ffb66e33a880d386",
+    "bytes": 44066,
+    "expected": "01138f6a53285f69c16091f9a52cfda74b83692d29dee8d8ffb66e33a880d386"
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/inputs/stock-public/appended.dtb",
+    "copy": "inputs/research/inputs/stock-public/appended.dtb",
+    "sha256": "77e2d8fbeced5a827ede6c0b8589140e9211d8dc3ca77aaa31a1dd1787a9c455",
+    "bytes": 62482,
+    "expected": null
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/inputs/bmc/asus-p00a.dtb",
+    "copy": "inputs/research/inputs/bmc/asus-p00a.dtb",
+    "sha256": "a099d0538b270e23ec0d034b507eef9248252a3c459a11aa70edb6520bfd2b77",
+    "bytes": 63621,
+    "expected": null
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/inputs/stock/audio_device.xml",
+    "copy": "inputs/research/inputs/stock/audio_device.xml",
+    "sha256": "734480322851caacad72d602ef24d451294b79832db4b8ee08a07bbf9f26938a",
+    "bytes": 9568,
+    "expected": null
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/inputs/stock/AudioParamOptions.xml",
+    "copy": "inputs/research/inputs/stock/AudioParamOptions.xml",
+    "sha256": "fef2413c3aeb56808fe9840d6a95ad7cd2b3a753e20537ed081eb85e6aabb2dc",
+    "bytes": 2401,
+    "expected": null
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/inputs/oem/asus-original/kernel-3.18/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "copy": "inputs/research/inputs/oem/asus-original/kernel-3.18/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_63xx.c",
+    "sha256": "9bf0fa463833741695903b4cf151453ed56b93217ef4efe5011ddf5c24066260",
+    "bytes": 119307,
+    "expected": null
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/evidence/stock-public-selected-symbols.json",
+    "copy": "inputs/research/evidence/stock-public-selected-symbols.json",
+    "sha256": "8467bad69cacd4b0ae84ac5ed3b72d32c8c4872241715c9062c77513b2558b4b",
+    "bytes": 375,
+    "expected": null
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/evidence/stock-public-disassembly.txt",
+    "copy": "inputs/research/evidence/stock-public-disassembly.txt",
+    "sha256": "359c42977ca4663320c65e41ae12ea1b8528bfd00454cad147528c6fc1ade055",
+    "bytes": 33133,
+    "expected": null
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/evidence/stock-public-codec-probe-disassembly.txt",
+    "copy": "inputs/research/evidence/stock-public-codec-probe-disassembly.txt",
+    "sha256": "9cf66bc74af08bd5aef7e46f97713f7f638ce23f74c3d292e7f30abba463f79b",
+    "bytes": 7392,
+    "expected": null
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/evidence/gpio-ownership.json",
+    "copy": "inputs/research/evidence/gpio-ownership.json",
+    "sha256": "ce8c8279c75117fbb6002f1087b806e06da971020cb8c47d7c2e5d459e3dae47",
+    "bytes": 2979,
+    "expected": null
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/evidence/stock-boot-match.json",
+    "copy": "inputs/research/evidence/stock-boot-match.json",
+    "sha256": "2592263307272fac1214ff3597bd8afa1e8c77ca73e0a0c2dd74dc96026f616a",
+    "bytes": 505,
+    "expected": null
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/evidence/address-mapping-controls.json",
+    "copy": "inputs/research/evidence/address-mapping-controls.json",
+    "sha256": "a9fb359ba04677119d230da99d41e16b2cb55281f1a44380d7d3ddf3fec4346d",
+    "bytes": 813,
+    "expected": null
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/evidence/input-pins.json",
+    "copy": "inputs/research/evidence/input-pins.json",
+    "sha256": "88ade42d56d7a17d51161e158e381e92400995956164982c88bd0a525f54ab34",
+    "bytes": 25334,
+    "expected": null
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/report/HANDOFF.md",
+    "copy": "inputs/research/report/HANDOFF.md",
+    "sha256": "6b3d4d260faeafbc8499fe54b4964befa8b6f3be86aad6a4b87aaa358056b9a7",
+    "bytes": 15634,
+    "expected": null
+  },
+  {
+    "original": "2026-11-06-asus-stock-gpio-ownership/evidence/observation-1794011653421961000.json",
+    "copy": "inputs/stock-gpio-ownership.json",
+    "sha256": "d62da74d58121f92723e023ca5ba8e423ab43b53f7da51cf835d1368f2417d3c",
+    "bytes": 2308,
+    "expected": null
+  },
+  {
+    "original": "2026-11-06-asus-bmc156-full-kernel/report/SOURCE-PINS.json",
+    "copy": "inputs/BMC-SOURCE-PINS.json",
+    "sha256": "f6e8b9d198608e507e7a97ae528e5b29a95b54fc3aa03bfb2b3020ce2c9afd03",
+    "bytes": 3940,
+    "expected": null
+  },
+  {
+    "original": "2026-11-06-asus-stock-speaker-topology-reconcile/inputs/combined/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_analog_type.h",
+    "copy": "inputs/api/mt_soc_analog_type.h",
+    "sha256": "27fa5dba131d7cb5e91fe3f072b5b4842a7dc04cfcc4cfa2581d84f2074f403d",
+    "bytes": 5983,
+    "expected": "27fa5dba131d7cb5e91fe3f072b5b4842a7dc04cfcc4cfa2581d84f2074f403d"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/arch/arm64/boot/dts/mediatek/mt8163.dtsi",
+    "copy": "inputs/dt-source/arch/arm64/boot/dts/mediatek/mt8163.dtsi",
+    "sha256": "a605903380bac77de2d077e002d215e20422f4a9bf6441c9d782fef3e0c2382a",
+    "bytes": 51729,
+    "expected": null
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/dt-bindings/clock/mt8163-clk.h",
+    "copy": "inputs/dt-source/include/dt-bindings/clock/mt8163-clk.h",
+    "sha256": "88ca0d673703830da8728634ca03d8695d16bfe6e5cc0ea0bf988e8a37dca64b",
+    "bytes": 8874,
+    "expected": null
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/dt-bindings/power/mt8163-power.h",
+    "copy": "inputs/dt-source/include/dt-bindings/power/mt8163-power.h",
+    "sha256": "2e0c1dfbff8f21f98dab67368b2b32b080e46fb9221be5d230a8d8823a89b724",
+    "bytes": 901,
+    "expected": null
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/dt-bindings/interrupt-controller/irq.h",
+    "copy": "inputs/dt-source/include/dt-bindings/interrupt-controller/irq.h",
+    "sha256": "dd596b1a607b3ef68a85a0741fdf3c63e9a9266e6f8fbd61a739e0f155aa5baa",
+    "bytes": 565,
+    "expected": null
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/dt-bindings/interrupt-controller/arm-gic.h",
+    "copy": "inputs/dt-source/include/dt-bindings/interrupt-controller/arm-gic.h",
+    "sha256": "eb746b91b1c8a357c0b3aa449795ba290b2ee5364bbae6e13dea4e00de7eac73",
+    "bytes": 490,
+    "expected": null
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/dt-bindings/reset-controller/mt8163-resets.h",
+    "copy": "inputs/dt-source/include/dt-bindings/reset-controller/mt8163-resets.h",
+    "sha256": "2333f7502e40e0ce16563b24239cd5e774c7b196aecb75c7271f0fef77558392",
+    "bytes": 1280,
+    "expected": null
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/arch/arm64/boot/dts/mediatek/mt8163-pinfunc.h",
+    "copy": "inputs/dt-source/arch/arm64/boot/dts/mediatek/mt8163-pinfunc.h",
+    "sha256": "01138f6a53285f69c16091f9a52cfda74b83692d29dee8d8ffb66e33a880d386",
+    "bytes": 44066,
+    "expected": null
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/dt-bindings/pinctrl/mt65xx.h",
+    "copy": "inputs/dt-source/include/dt-bindings/pinctrl/mt65xx.h",
+    "sha256": "4762c50d0509720c452ae08bbd23dd16146018d516825bf06f4cf2c5c0c42322",
+    "bytes": 1210,
+    "expected": null
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/arch/arm64/boot/dts/mediatek/mt8163-sched-energy.dtsi",
+    "copy": "inputs/dt-source/arch/arm64/boot/dts/mediatek/mt8163-sched-energy.dtsi",
+    "sha256": "81619dc30f4f9cae287f082ea68f8dbc67f000d0867ed8d5c2c4de0a30bb89f0",
+    "bytes": 1004,
+    "expected": null
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/arch/arm64/boot/dts/mediatek/asus8163_tb_380_m_bat_setting.dtsi",
+    "copy": "inputs/dt-source/arch/arm64/boot/dts/mediatek/asus8163_tb_380_m_bat_setting.dtsi",
+    "sha256": "8ed8a02f230aaa6250e3c168604dff0df76c81d5dd3000c593d63bcc8d14fc26",
+    "bytes": 15092,
+    "expected": null
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/dt-bindings/soc/mt8163-md32.h",
+    "copy": "inputs/dt-source/include/dt-bindings/soc/mt8163-md32.h",
+    "sha256": "f8f9a975584448d4122d51ff47c79fa28b54101a131f7d1d7a47f6745b2a0a1c",
+    "bytes": 905,
+    "expected": null
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/linux/platform_device.h",
+    "copy": "inputs/api/include/linux/platform_device.h",
+    "sha256": "6c1ded422b6c7fcd9b59d04d872a57176f2a35509b74f219681710e7c619b600",
+    "bytes": 12730,
+    "expected": "6c1ded422b6c7fcd9b59d04d872a57176f2a35509b74f219681710e7c619b600"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/include/linux/mutex.h",
+    "copy": "inputs/api/include/linux/mutex.h",
+    "sha256": "7045c45c077baa4c145d9085426e18235b50a1c19928d73759820e6f8de4aa92",
+    "bytes": 5680,
+    "expected": "7045c45c077baa4c145d9085426e18235b50a1c19928d73759820e6f8de4aa92"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_speaker_63xx.c",
+    "copy": "inputs/api/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_codec_speaker_63xx.c",
+    "sha256": "4781a0c95bbd1f6cd547164b32264ee61745b800bb4cde9cbe2d2b74705613ab",
+    "bytes": 3723,
+    "expected": "4781a0c95bbd1f6cd547164b32264ee61745b800bb4cde9cbe2d2b74705613ab"
+  },
+  {
+    "original": "2026-11-05-asus-p00a-power-port/sources/kernel/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_afe_control.c",
+    "copy": "inputs/api/sound/soc/mediatek/mt_soc_audio_8163/mt_soc_afe_control.c",
+    "sha256": "ae453e0b83761d69584454f29f73fdf25aae133497e00c36e5a25f4ff2081a24",
+    "bytes": 124956,
+    "expected": "ae453e0b83761d69584454f29f73fdf25aae133497e00c36e5a25f4ff2081a24"
+  }
+]

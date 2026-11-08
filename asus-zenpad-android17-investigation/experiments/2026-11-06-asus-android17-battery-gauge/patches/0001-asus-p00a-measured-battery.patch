@@ -1,0 +1,437 @@
+diff --git a/arch/arm64/boot/dts/mediatek/asus8163_tb_380_m_bat_setting.dtsi b/arch/arm64/boot/dts/mediatek/asus8163_tb_380_m_bat_setting.dtsi
+--- a/arch/arm64/boot/dts/mediatek/asus8163_tb_380_m_bat_setting.dtsi
++++ b/arch/arm64/boot/dts/mediatek/asus8163_tb_380_m_bat_setting.dtsi
+@@ -52,6 +52,13 @@
+ };
+ 
+ &bat_meter {
++	/* ASUS main pad battery, not the optional UG31xx cover. */
++	vbat_channel_number = <6>;
++	isense_channel_number = <7>;
++	vcharger_channel_number = <4>;
++	vbattemp_channel_number = <5>;
++	swchr_power_path = <1>;
++	rbat_pull_down_r = <30000>;
+ 	/* cust_battery_meter.h */
+ 	/* ADC resistor  */
+ 	r_bat_sense = <4>;
+diff --git a/arch/arm64/configs/asus_p00a_defconfig b/arch/arm64/configs/asus_p00a_defconfig
+--- a/arch/arm64/configs/asus_p00a_defconfig
++++ b/arch/arm64/configs/asus_p00a_defconfig
+@@ -397,6 +397,7 @@
+ # CONFIG_SND_SOC_RT551X is not set
+ 
+ CONFIG_ASUS_P00A_BQ25896=y
++CONFIG_ASUS_P00A_BATTERY_DIAGNOSTIC=y
+ 
+ # CONFIG_THERMAL_KARNAK is not set
+ CONFIG_THERMAL_ASUS_P00A=y
+diff --git a/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/mtk_battery_meter.h b/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/mtk_battery_meter.h
+--- a/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/mtk_battery_meter.h
++++ b/drivers/misc/mediatek/include/mt-plat/mt8163/include/mach/mtk_battery_meter.h
+@@ -58,6 +58,27 @@
+ #endif
+ #define VCHARGER_CHANNEL_NUMBER  2
+ #define VBATTEMP_CHANNEL_NUMBER  3
++
++#ifdef CONFIG_ASUS_P00A_BATTERY_DIAGNOSTIC
++/* ASUS MT6323 routing; channel 0 is unsupported on this PMIC. */
++#undef VBAT_CHANNEL_NUMBER
++#undef ISENSE_CHANNEL_NUMBER
++#undef VCHARGER_CHANNEL_NUMBER
++#undef VBATTEMP_CHANNEL_NUMBER
++#define VBAT_CHANNEL_NUMBER 6
++#define ISENSE_CHANNEL_NUMBER 7
++#define VCHARGER_CHANNEL_NUMBER 4
++#define VBATTEMP_CHANNEL_NUMBER 5
++#ifndef SWCHR_POWER_PATH
++#define SWCHR_POWER_PATH
++#endif
++#ifndef BAT_VOL_USE_ISENSE
++#define BAT_VOL_USE_ISENSE
++#endif
++#ifndef EXTERNAL_SWCHR_SUPPORT
++#define EXTERNAL_SWCHR_SUPPORT
++#endif
++#endif
+ 
+ 
+ /* ADC resistor  */
+diff --git a/drivers/misc/mediatek/power/mt8163/asus_p00a/Makefile b/drivers/misc/mediatek/power/mt8163/asus_p00a/Makefile
+--- a/drivers/misc/mediatek/power/mt8163/asus_p00a/Makefile
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/Makefile
+@@ -1 +1,2 @@
+ obj-y += bq25896.o
++obj-$(CONFIG_ASUS_P00A_BATTERY_DIAGNOSTIC) += battery_diag.o
+diff --git a/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c b/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c
+new file mode 100644
+--- /dev/null
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_diag.c
+@@ -0,0 +1,95 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/* Main pad battery measurements, independent of the unvalidated SW estimator. */
++#include <linux/errno.h>
++#include <linux/kernel.h>
++#include <linux/power/asus_p00a_battery.h>
++
++/* ASUS Z380M 10k battery NTC. This is NOT the AUXADC0 board thermistor. */
++static const int p00a_ntc_ohms[] = {
++	75022, 57926, 45168, 35548, 28224, 22595, 18231, 14820,
++	12133, 10000, 8295, 6922, 5810, 4903, 4160, 3547, 3039
++};
++
++static int p00a_battery_temperature(int mv, int *decic)
++{
++	int parallel, resistance, i;
++
++	if (mv <= 0 || mv >= 1800)
++		return -ERANGE;
++	parallel = 16900 * mv / (1800 - mv);
++	if (parallel >= 30000)
++		return -ERANGE;
++	resistance = parallel * 30000 / (30000 - parallel);
++	if (resistance > p00a_ntc_ohms[0] ||
++	    resistance < p00a_ntc_ohms[ARRAY_SIZE(p00a_ntc_ohms) - 1])
++		return -ERANGE;
++	for (i = 1; i < ARRAY_SIZE(p00a_ntc_ohms); i++) {
++		if (resistance >= p00a_ntc_ohms[i]) {
++			*decic = -200 + (i - 1) * 50 +
++				(p00a_ntc_ohms[i - 1] - resistance) * 50 /
++				(p00a_ntc_ohms[i - 1] - p00a_ntc_ohms[i]);
++			return 0;
++		}
++	}
++	return -ERANGE;
++}
++
++int asus_p00a_battery_get_property(enum power_supply_property property,
++				 union power_supply_propval *val)
++{
++	int present, mv, ret;
++
++	switch (property) {
++	case POWER_SUPPLY_PROP_TECHNOLOGY:
++		val->intval = POWER_SUPPLY_TECHNOLOGY_LION;
++		return 0;
++	case POWER_SUPPLY_PROP_CAPACITY:
++	case POWER_SUPPLY_PROP_CURRENT_NOW:
++	case POWER_SUPPLY_PROP_CURRENT_AVG:
++	case POWER_SUPPLY_PROP_CHARGE_COUNTER:
++	case POWER_SUPPLY_PROP_CHARGE_FULL:
++		return -ENODATA;
++	case POWER_SUPPLY_PROP_PRESENT:
++		return asus_p00a_pmic_present(&val->intval);
++	case POWER_SUPPLY_PROP_STATUS:
++	case POWER_SUPPLY_PROP_HEALTH:
++	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
++	case POWER_SUPPLY_PROP_batt_vol:
++	case POWER_SUPPLY_PROP_TEMP:
++	case POWER_SUPPLY_PROP_batt_temp:
++		break;
++	default:
++		/* Do not leak cached engineering properties as real measurements. */
++		return -ENODATA;
++	}
++	ret = asus_p00a_pmic_present(&present);
++	if (ret)
++		return ret;
++	if (!present)
++		return -ENODATA;
++	switch (property) {
++	case POWER_SUPPLY_PROP_STATUS:
++		return asus_p00a_charger_status(&val->intval);
++	case POWER_SUPPLY_PROP_HEALTH:
++		/* Reading REG0C here would consume the charging guard's fault latch.
++		 * A fitted battery and in-range temperature do not prove good health.
++		 */
++		val->intval = POWER_SUPPLY_HEALTH_UNKNOWN;
++		return 0;
++	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
++	case POWER_SUPPLY_PROP_batt_vol:
++		ret = asus_p00a_pmic_adc(6, 5, &mv);
++		if (ret)
++			return ret;
++		if (mv < 2000 || mv > 5000)
++			return -ERANGE;
++		val->intval = mv * 1000;
++		return 0;
++	case POWER_SUPPLY_PROP_TEMP:
++	case POWER_SUPPLY_PROP_batt_temp:
++		ret = asus_p00a_pmic_adc(5, 5, &mv);
++		return ret ? ret : p00a_battery_temperature(mv, &val->intval);
++	default:
++		return -EINVAL;
++	}
++}
+diff --git a/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_status.inc b/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_status.inc
+new file mode 100644
+--- /dev/null
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/battery_status.inc
+@@ -0,0 +1,47 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++#include <linux/power/asus_p00a_battery.h>
++
++int asus_p00a_charger_status(int *status)
++{
++	unsigned int state, control;
++	int ret;
++
++	mutex_lock(&p00a_global_lock);
++	if (!p00a) {
++		ret = -ENODEV;
++		goto out_global;
++	}
++	mutex_lock(&p00a->lock);
++	if (p00a->limits.suspended) {
++		ret = -ENODATA;
++		goto out;
++	}
++	ret = regmap_read(p00a->map, REG_CONTROL, &control);
++	if (ret)
++		goto out;
++	ret = regmap_read(p00a->map, REG_STATUS, &state);
++	if (ret)
++		goto out;
++	if (!(state & BIT(2)))
++		*status = POWER_SUPPLY_STATUS_DISCHARGING;
++	else if (!(control & CHG_ENABLE))
++		*status = POWER_SUPPLY_STATUS_NOT_CHARGING;
++	else {
++		switch ((state >> 3) & 3) {
++		case 1:
++		case 2:
++			*status = POWER_SUPPLY_STATUS_CHARGING;
++			break;
++		case 3:
++			*status = POWER_SUPPLY_STATUS_FULL;
++			break;
++		default:
++			*status = POWER_SUPPLY_STATUS_NOT_CHARGING;
++		}
++	}
++out:
++	mutex_unlock(&p00a->lock);
++out_global:
++	mutex_unlock(&p00a_global_lock);
++	return ret;
++}
+diff --git a/drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c b/drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c
+--- a/drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/bq25896.c
+@@ -53,6 +53,9 @@
+ };
+ 
+ #include "control.h"
++#ifdef CONFIG_ASUS_P00A_BATTERY_DIAGNOSTIC
++#include "battery_status.inc"
++#endif
+ 
+ int chr_control_interface(int cmd, void *data)
+ {
+diff --git a/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc b/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc
+new file mode 100644
+--- /dev/null
++++ b/drivers/misc/mediatek/power/mt8163/asus_p00a/pmic_battery.inc
+@@ -0,0 +1,112 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/* Included by pmic_mt6323.c to share its ADC serialization and wake source. */
++#include <linux/power/asus_p00a_battery.h>
++
++static int p00a_pmic_result(int ret)
++{
++	return ret > 0 ? -EIO : ret;
++}
++
++/* Bounded version of the MT6323 decimation-delay workaround. */
++static int p00a_pmic_prepare_adc(void)
++{
++	unsigned int delay, busy;
++	unsigned long flags;
++	int ret, poll;
++
++	for (poll = 0; poll < ADC_COUNT_TIMEOUT; poll++) {
++		spin_lock_irqsave(&pmic_adc_lock, flags);
++		ret = p00a_pmic_result(pmic_read_interface_nolock(AUXADC_CON19,
++			&delay, PMIC_RG_ADC_DECI_GDLY_MASK,
++			PMIC_RG_ADC_DECI_GDLY_SHIFT));
++		if (!ret && delay == 1) {
++			ret = p00a_pmic_result(pmic_read_interface_nolock(
++				AUXADC_ADC19, &busy, 0x7fff, 1));
++			if (!ret && !busy)
++				ret = p00a_pmic_result(pmic_config_interface_nolock(
++					AUXADC_CON19, 0, PMIC_RG_ADC_DECI_GDLY_MASK,
++					PMIC_RG_ADC_DECI_GDLY_SHIFT));
++		}
++		spin_unlock_irqrestore(&pmic_adc_lock, flags);
++		if (ret)
++			return ret;
++		if (delay != 1)
++			return 0;
++		usleep_range(1000, 2000);
++	}
++	return -ETIMEDOUT;
++}
++
++int asus_p00a_pmic_present(int *present)
++{
++	unsigned int value;
++	int ret;
++
++	if (!READ_ONCE(pmicAuxadc_irq_lock) || !READ_ONCE(pwrap_regmap))
++		return -ENODATA;
++	ret = p00a_pmic_result(pmic_read_interface(CHR_CON7, &value, 0xffff, 0));
++	if (ret)
++		return ret;
++	/* Do not interpret the detector's reset value as a fitted battery. */
++	if (!(value & BIT(PMIC_RG_BATON_EN_SHIFT)) ||
++	    !(value & BIT(PMIC_BATON_TDET_EN_SHIFT)))
++		return -ENODATA;
++	*present = !(value & BIT(PMIC_RGS_BATON_UNDET_SHIFT));
++	return 0;
++}
++
++int asus_p00a_pmic_adc(unsigned int channel, int samples, int *mv)
++{
++	static const unsigned int output_reg[] = {
++		AUXADC_ADC2, AUXADC_ADC3, AUXADC_ADC1, AUXADC_ADC0
++	};
++	unsigned int raw, sum = 0;
++	int ret, sample, poll;
++
++	if (channel < 4 || channel > 7 || samples < 1 || samples > 32)
++		return -EINVAL;
++	if (!READ_ONCE(pmicAuxadc_irq_lock) || !READ_ONCE(pwrap_regmap))
++		return -ENODATA;
++
++	__pm_stay_awake(pmicAuxadc_irq_lock);
++	mutex_lock(&pmic_adc_mutex);
++	ret = p00a_pmic_prepare_adc();
++	if (ret)
++		goto out;
++	ret = p00a_pmic_result(pmic_config_interface(AUXADC_CON11, 1,
++			PMIC_RG_VBUF_EN_MASK, PMIC_RG_VBUF_EN_SHIFT));
++	if (ret)
++		goto out;
++	for (sample = 0; sample < samples; sample++) {
++		ret = p00a_pmic_result(pmic_config_interface(AUXADC_CON22,
++				0, 1, channel));
++		if (ret)
++			goto out;
++		ret = p00a_pmic_result(pmic_config_interface(AUXADC_CON22,
++				1, 1, channel));
++		if (ret)
++			goto out;
++		udelay(300);
++		for (poll = 0; poll < ADC_COUNT_TIMEOUT; poll++) {
++			ret = p00a_pmic_result(pmic_read_interface(
++				output_reg[channel - 4], &raw, 0xffff, 0));
++			if (ret)
++				goto out;
++			if (raw & BIT(15))
++				break;
++			usleep_range(1000, 2000);
++		}
++		if (poll == ADC_COUNT_TIMEOUT) {
++			ret = -ETIMEDOUT;
++			goto out;
++		}
++		sum += raw & 0x7fff;
++	}
++	/* MT6323 channels 6/7 have a hardware 4:1 voltage divider. */
++	*mv = (sum / samples) * (channel >= 6 ? 4 : 1) * 1800 / 32768;
++	ret = 0;
++out:
++	mutex_unlock(&pmic_adc_mutex);
++	__pm_relax(pmicAuxadc_irq_lock);
++	return ret;
++}
+diff --git a/drivers/misc/mediatek/power/mt8163/pmic_mt6323.c b/drivers/misc/mediatek/power/mt8163/pmic_mt6323.c
+--- a/drivers/misc/mediatek/power/mt8163/pmic_mt6323.c
++++ b/drivers/misc/mediatek/power/mt8163/pmic_mt6323.c
+@@ -280,6 +280,10 @@
+ 	}
+ }
+ 
++#ifdef CONFIG_ASUS_P00A_BATTERY_DIAGNOSTIC
++#include "asus_p00a/pmic_battery.inc"
++#endif
++
+ int PMIC_IMM_GetOneChannelValue(unsigned int dwChannel, int deCount,
+ 				int trimd)
+ {
+@@ -304,6 +308,15 @@
+ 	 * 8 : ACCDET
+ 	 * 9-16 : audio
+ 	 */
++
++#ifdef CONFIG_ASUS_P00A_BATTERY_DIAGNOSTIC
++	if (dwChannel >= 4 && dwChannel <= 7) {
++		int mv, ret;
++
++		ret = asus_p00a_pmic_adc(dwChannel, deCount, &mv);
++		return ret ? ret : mv;
++	}
++#endif
+ 
+ 	/* do not support BATON2 and THR SENSE2 for sw workaround */
+ 	if (dwChannel == 0 || dwChannel == 2)
+diff --git a/drivers/power/supply/mediatek/battery/Kconfig b/drivers/power/supply/mediatek/battery/Kconfig
+--- a/drivers/power/supply/mediatek/battery/Kconfig
++++ b/drivers/power/supply/mediatek/battery/Kconfig
+@@ -302,6 +302,16 @@
+ 	  Set Yes to enable PE+.
+ 	  Set No to disable PE+.
+ 
++config ASUS_P00A_BATTERY_DIAGNOSTIC
++	bool "ASUS P00A measured battery diagnostics"
++	depends on ASUS_P00A_BQ25896 && MTK_PMIC
++	default n
++	help
++	  Expose checked MT6323 battery voltage, temperature and presence plus
++	  BQ25896 charge state on the existing battery power supply. Capacity,
++	  current and charge counters return ENODATA pending software gauge
++	  reconciliation. This does not grant permission to charge.
++
+ config ASUS_P00A_BQ25896
+ 	bool "ASUS P00A BQ25896 pad charging integration"
+ 	depends on I2C && MTK_SMART_BATTERY=y
+diff --git a/drivers/power/supply/mediatek/battery/battery_common.c b/drivers/power/supply/mediatek/battery/battery_common.c
+--- a/drivers/power/supply/mediatek/battery/battery_common.c
++++ b/drivers/power/supply/mediatek/battery/battery_common.c
+@@ -588,12 +588,20 @@
+ extern u8 dock_mode ;
+ #endif
+ 
++#ifdef CONFIG_ASUS_P00A_BATTERY_DIAGNOSTIC
++#include <linux/power/asus_p00a_battery.h>
++#endif
++
+ static int battery_get_property(struct power_supply *psy,
+ 	enum power_supply_property psp, union power_supply_propval *val)
+ {
+ 	int ret = 0;
+ 	struct battery_data *data =
+ 		container_of(psy->desc, struct battery_data, psd);
++
++#ifdef CONFIG_ASUS_P00A_BATTERY_DIAGNOSTIC
++	return asus_p00a_battery_get_property(psp, val);
++#endif
+ 
+ 	switch (psp) {
+ 	case POWER_SUPPLY_PROP_STATUS:
+diff --git a/include/linux/power/asus_p00a_battery.h b/include/linux/power/asus_p00a_battery.h
+new file mode 100644
+--- /dev/null
++++ b/include/linux/power/asus_p00a_battery.h
+@@ -0,0 +1,11 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++#ifndef _ASUS_P00A_BATTERY_H
++#define _ASUS_P00A_BATTERY_H
++#include <linux/power_supply.h>
++
++int asus_p00a_pmic_adc(unsigned int channel, int samples, int *mv);
++int asus_p00a_pmic_present(int *present);
++int asus_p00a_charger_status(int *status);
++int asus_p00a_battery_get_property(enum power_supply_property property,
++				 union power_supply_propval *val);
++#endif

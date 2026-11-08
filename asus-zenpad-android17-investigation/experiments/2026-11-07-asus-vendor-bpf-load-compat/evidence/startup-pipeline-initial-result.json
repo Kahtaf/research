@@ -1,0 +1,35 @@
+{
+  "started_utc": "2026-11-07T15:46:52.820276+00:00",
+  "stages": [
+    {
+      "name": "admit",
+      "args": [],
+      "exit": 0
+    },
+    {
+      "name": "corroborate_boot",
+      "args": [],
+      "exit": 0
+    },
+    {
+      "name": "prepare",
+      "args": [],
+      "exit": 0
+    },
+    {
+      "name": "execute",
+      "args": [
+        "patch"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "verify_cow",
+      "args": [],
+      "exit": 1
+    }
+  ],
+  "actual_os_boots": 0,
+  "candidate_runtime": true,
+  "finished_utc": "2026-11-07T15:46:54.832513+00:00"
+}

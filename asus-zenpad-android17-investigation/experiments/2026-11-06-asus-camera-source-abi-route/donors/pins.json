@@ -1,0 +1,266 @@
+[
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "fb027a5efa741f03e8d1f33a486a365ff38c0724",
+    "path": "frameworks/av/services/camera/libcameraservice/api1/CameraClient.cpp",
+    "url": "https://android.googlesource.com/platform/frameworks/av/+/fb027a5efa741f03e8d1f33a486a365ff38c0724/services/camera/libcameraservice/api1/CameraClient.cpp",
+    "bytes": 40201,
+    "sha256": "bed2b2576cfcf72e32ebd048173bb08979705c28a3326682f597b2ac08d1b4c7"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "fb027a5efa741f03e8d1f33a486a365ff38c0724",
+    "path": "frameworks/av/services/camera/libcameraservice/api1/CameraClient.h",
+    "url": "https://android.googlesource.com/platform/frameworks/av/+/fb027a5efa741f03e8d1f33a486a365ff38c0724/services/camera/libcameraservice/api1/CameraClient.h",
+    "bytes": 8383,
+    "sha256": "967d6681ac77947320213887cd805cc297f98a261548670234d9bb383918ce72"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "fb027a5efa741f03e8d1f33a486a365ff38c0724",
+    "path": "frameworks/av/services/camera/libcameraservice/device1/CameraHardwareInterface.cpp",
+    "url": "https://android.googlesource.com/platform/frameworks/av/+/fb027a5efa741f03e8d1f33a486a365ff38c0724/services/camera/libcameraservice/device1/CameraHardwareInterface.cpp",
+    "bytes": 26889,
+    "sha256": "243f22bdd3553f58acb935ae53128663f4298224bfd930da85e96ba8c6c1f8f2"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "fb027a5efa741f03e8d1f33a486a365ff38c0724",
+    "path": "frameworks/av/services/camera/libcameraservice/device1/CameraHardwareInterface.h",
+    "url": "https://android.googlesource.com/platform/frameworks/av/+/fb027a5efa741f03e8d1f33a486a365ff38c0724/services/camera/libcameraservice/device1/CameraHardwareInterface.h",
+    "bytes": 18493,
+    "sha256": "d6224732d3a52cdcc6742bd141771a62ec8bfada7deb72578e5d84195f61b99d"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "fb027a5efa741f03e8d1f33a486a365ff38c0724",
+    "path": "frameworks/av/services/camera/libcameraservice/common/CameraProviderManager.cpp",
+    "url": "https://android.googlesource.com/platform/frameworks/av/+/fb027a5efa741f03e8d1f33a486a365ff38c0724/services/camera/libcameraservice/common/CameraProviderManager.cpp",
+    "bytes": 54404,
+    "sha256": "8fcbbd238ed68f065442b2a1852112d7cf22bcc8c5103db6e48d2a14daf86c6c"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "fb027a5efa741f03e8d1f33a486a365ff38c0724",
+    "path": "frameworks/av/services/camera/libcameraservice/common/CameraProviderManager.h",
+    "url": "https://android.googlesource.com/platform/frameworks/av/+/fb027a5efa741f03e8d1f33a486a365ff38c0724/services/camera/libcameraservice/common/CameraProviderManager.h",
+    "bytes": 17858,
+    "sha256": "eddc26bc231524e9ade20f6e3a812d30df82a1fd8e6e52cddc33edfe0ad531c8"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "fb027a5efa741f03e8d1f33a486a365ff38c0724",
+    "path": "frameworks/av/services/camera/libcameraservice/CameraService.cpp",
+    "url": "https://android.googlesource.com/platform/frameworks/av/+/fb027a5efa741f03e8d1f33a486a365ff38c0724/services/camera/libcameraservice/CameraService.cpp",
+    "bytes": 114324,
+    "sha256": "bd7842a0956c055aa5de5e50998a1b2b20921b32e4ec237d7b84ad9eb9f1e4c3"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "fb027a5efa741f03e8d1f33a486a365ff38c0724",
+    "path": "frameworks/av/services/camera/libcameraservice/Android.mk",
+    "url": "https://android.googlesource.com/platform/frameworks/av/+/fb027a5efa741f03e8d1f33a486a365ff38c0724/services/camera/libcameraservice/Android.mk",
+    "bytes": 2921,
+    "sha256": "2e3dc7f32235c586cfcb587d0a59ed65e2724653d2c713dffa3132c86c523377"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/CameraManager.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/CameraManager.java",
+    "bytes": 59803,
+    "sha256": "7ff8db9aad48efb73ca8d0659ce0e1812beaef343541e014e530b8884f6c4b2e"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/jni/android_hardware_camera2_legacy_LegacyCameraDevice.cpp",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/jni/android_hardware_camera2_legacy_LegacyCameraDevice.cpp",
+    "bytes": 30692,
+    "sha256": "1f2f51a3502884ebac51f689d90bd39ce841197d3af89c9af9f0caa91a5652cd"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/jni/android_hardware_camera2_legacy_PerfMeasurement.cpp",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/jni/android_hardware_camera2_legacy_PerfMeasurement.cpp",
+    "bytes": 10364,
+    "sha256": "0e767bba309efc29fc31b954abae36c483c4ddfac6094db6732b84fed2cf4e80"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/jni/Android.bp",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/jni/Android.bp",
+    "bytes": 10760,
+    "sha256": "cd37b4c634dc23fa54f102471868154f7781f46637d9a7dbbb6bc8b73e8c142a"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/BurstHolder.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/BurstHolder.java",
+    "bytes": 2924,
+    "sha256": "ac8333e174363dfea76ea63bea88cea68c4a05d6f4898aa4f8162541c26bd1bc"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/CameraDeviceState.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/CameraDeviceState.java",
+    "bytes": 14299,
+    "sha256": "d822d97d284a9879ca10697ec1d452c234b7baf17b200957765d9756ad7c8f27"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/CameraDeviceUserShim.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/CameraDeviceUserShim.java",
+    "bytes": 27408,
+    "sha256": "9fe04348936b8840f38027847d99bfbc49968f13239acee400e96c5c642bc31b"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/CaptureCollector.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/CaptureCollector.java",
+    "bytes": 24726,
+    "sha256": "d6bd3418da2683373260963eb8d9b6f3760fe7715f13f0dff03b56539e11abe7"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/GLThreadManager.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/GLThreadManager.java",
+    "bytes": 9626,
+    "sha256": "e065b3d5b800f76773808b9a4a3249dbb892d3c58356cb93e2268ed4f53c119c"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/LegacyCameraDevice.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/LegacyCameraDevice.java",
+    "bytes": 34886,
+    "sha256": "9108fd72e7cac8b5db923afa6dd805c5dff6aeb1185fa5b2315e8a12f8d2bd8e"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/LegacyExceptionUtils.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/LegacyExceptionUtils.java",
+    "bytes": 5463,
+    "sha256": "bf1ab656f5e39fd9b230ea37bfe06fbdeb374aa9bdd34292404c0f5e40fa4479"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/LegacyFaceDetectMapper.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/LegacyFaceDetectMapper.java",
+    "bytes": 10575,
+    "sha256": "8511e58a0b26486bc72b9564bed447f6d053b20c498ad50f62dac919065f5be4"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/LegacyFocusStateMapper.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/LegacyFocusStateMapper.java",
+    "bytes": 12333,
+    "sha256": "f0097da4e38eae0c9b47fe100b36381a0896f2bcedce2c68b09ee393d1862e42"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/LegacyMetadataMapper.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/LegacyMetadataMapper.java",
+    "bytes": 60739,
+    "sha256": "ad0d7df851d9e76e3bc139e0749f5c873aa30b1f7724d47fed5d6ae885e66e07"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/LegacyRequest.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/LegacyRequest.java",
+    "bytes": 2818,
+    "sha256": "2d6c51de601468fbf3b81e9f00e08e60db8e3b572684c2bd1382fe02d1359946"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/LegacyRequestMapper.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/LegacyRequestMapper.java",
+    "bytes": 27849,
+    "sha256": "48da15ccef27e3beffb5a2693866b23525f3f2abf8517902f7d337fc3296b911"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/LegacyResultMapper.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/LegacyResultMapper.java",
+    "bytes": 19182,
+    "sha256": "cc6c680d1071579eeecb342d12367b66985b0d365dfcea0f569612ead3c29fa9"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/ParameterUtils.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/ParameterUtils.java",
+    "bytes": 42424,
+    "sha256": "e08fb8a2f2cb86ae2c543df497824cbec0e02f26c74258004e53bcbbc169828b"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/PerfMeasurement.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/PerfMeasurement.java",
+    "bytes": 10942,
+    "sha256": "f789faf445ac9425223a06763503b47b3d245b5d0643bf49d8b1311cfc15e9bb"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/RequestHandlerThread.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/RequestHandlerThread.java",
+    "bytes": 3454,
+    "sha256": "c04d0e48c07d104603c6b207301a67f0106c04912b27debfde18fc36291a86fe"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/RequestHolder.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/RequestHolder.java",
+    "bytes": 9446,
+    "sha256": "8a090054e60d8f9c82e4e8a76148743f9dfb4025f2b82e22ae05aec8ac59d2b2"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/RequestQueue.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/RequestQueue.java",
+    "bytes": 6509,
+    "sha256": "51a67d283cd757d2f38ad0b20526e2b7ecdd0d8e74fdf4e3bc6f41238f2faec2"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/RequestThreadManager.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/RequestThreadManager.java",
+    "bytes": 48899,
+    "sha256": "e649fd6c09757c2176fdb68af12c883bfe8ca2651f488d4a29d90ae11f4d5a20"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/SizeAreaComparator.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/SizeAreaComparator.java",
+    "bytes": 2253,
+    "sha256": "9d98a846d451d971da637e2b733124dde04469c75150339ac7fb7272a07500c5"
+  },
+  {
+    "tag": "android-9.0.0_r61",
+    "commit": "ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d",
+    "path": "frameworks/base/core/java/android/hardware/camera2/legacy/SurfaceTextureRenderer.java",
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/ad31dbbdcd76091d7d2d1fc6c863ee17c3bfe87d/core/java/android/hardware/camera2/legacy/SurfaceTextureRenderer.java",
+    "bytes": 34301,
+    "sha256": "20f3f0447c75b2d6abe998858bfe1ebdac82e02096032892787c55437b8db966"
+  }
+]
