@@ -1,0 +1,57 @@
+#!/bin/sh
+# SPDX-License-Identifier: GPL-3.0-only
+set -eu
+browser=${ASUS_BROWSER:-netsurf}
+url=${ASUS_DASHBOARD_URL:-about:blank}
+case "$browser" in
+    netsurf|firefox-esr) ;;
+    *) echo 'ASUS_BROWSER must be netsurf or firefox-esr' >&2; exit 2 ;;
+esac
+command -v "$browser" >/dev/null 2>&1 || { echo "$browser is not installed" >&2; exit 1; }
+export GDK_BACKEND=x11
+if [ "${ASUS_TOUCH_MODE:-}" = libinput ]; then
+    export MOZ_USE_XINPUT2=1
+fi
+if [ "${ASUS_OSK:-}" = onboard ]; then
+    export GNOME_ACCESSIBILITY=1 GSETTINGS_BACKEND=dconf
+    unset NO_AT_BRIDGE
+else
+    export GSETTINGS_BACKEND=memory NO_AT_BRIDGE=1
+fi
+if [ "$browser" = firefox-esr ]; then
+    profile=${ASUS_FIREFOX_PROFILE:-/root/.mozilla/asus-appliance}
+    mkdir -p "$profile"
+    chmod 700 "$profile"
+    # Reusing the launcher must raise the live profile owner on this X session.
+    # Firefox's usual remote activation is unreliable on this legacy stack.
+    owner=$(python3 - "$profile" <<'PY'
+from pathlib import Path
+import sys
+profile=Path(sys.argv[1])
+try:
+    pid=int((profile/'lock').readlink().name.rsplit('+',1)[1])
+    args=Path('/proc',str(pid),'cmdline').read_bytes().split(b'\0')
+    index=args.index(b'--profile')
+    if Path(args[0].decode()).name=='firefox-esr' and args[index+1]==bytes(profile):
+        print(pid)
+except (OSError,ValueError,IndexError):
+    pass
+PY
+)
+    if [ -n "$owner" ]; then
+        window=$(
+            for candidate in $(xdotool search --pid "$owner" --class firefox); do
+                if xprop -id "$candidate" WM_CLASS | grep -q '"Navigator"'; then
+                    echo "$candidate"
+                    break
+                fi
+            done
+        )
+        [ -n "$window" ] || { echo 'Existing Firefox has no window to raise' >&2; exit 1; }
+        xdotool windowmap "$window"
+        exec xdotool windowactivate "$window"
+    fi
+    cp /etc/asus-goodix/firefox-user.js "$profile/user.js"
+    exec firefox-esr --profile "$profile" "$url"
+fi
+exec netsurf "$url"

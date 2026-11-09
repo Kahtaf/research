@@ -1,0 +1,1 @@
+{"status": "REAL_DHCP_RENEWAL_PASS", "dhcpacks_observed": 1, "renew_hook_executed": true, "same_resident_client": true, "ipv4_lease_retained": true, "daemon_stdout_stderr": "/dev/null; initial logs cannot prove renewal"}

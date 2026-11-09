@@ -1,0 +1,17 @@
+{
+  "health": {
+    "alpine": "3.24.4",
+    "kernel": "3.18.35",
+    "uptime_seconds": 6110,
+    "available_memory": "1451648 kB",
+    "requests_saved": 73,
+    "power": {
+      "battery_percent": 83,
+      "battery_status": "Charging",
+      "usb_power_connected": true
+    }
+  },
+  "database_backup_integrity": "ok",
+  "persisted_requests_preserved": true,
+  "sysfs_reads_only": true
+}

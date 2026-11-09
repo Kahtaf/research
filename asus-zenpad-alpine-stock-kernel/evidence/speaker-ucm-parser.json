@@ -1,0 +1,31 @@
+{
+  "status": "ACTUAL_TABLET_READONLY_PARSER_PASS",
+  "alsa_lib": "1.2.15.3-r0",
+  "alsaucm": "1.2.15.2",
+  "master_syntax": 4,
+  "verbs": [
+    "HiFi"
+  ],
+  "devices": [
+    "Speaker"
+  ],
+  "playback_pcm": "hw:0,0",
+  "rate": 48000,
+  "channels": 2,
+  "mixer_before": {
+    "Audio_Speaker_PGA_gain": 1,
+    "Audio_Speaker_class_Switch": 0,
+    "Ext_Speaker_Amp_Switch": 0,
+    "Speaker_Amp_Switch": 0
+  },
+  "mixer_after": {
+    "Audio_Speaker_PGA_gain": 1,
+    "Audio_Speaker_class_Switch": 0,
+    "Ext_Speaker_Amp_Switch": 0,
+    "Speaker_Amp_Switch": 0
+  },
+  "activated": false,
+  "globally_installed": false,
+  "audio_server_installed": false,
+  "automatic_idle_shutdown": "NOT_IMPLEMENTED"
+}

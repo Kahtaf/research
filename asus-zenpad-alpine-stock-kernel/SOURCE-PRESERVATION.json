@@ -1,0 +1,44 @@
+{
+  "status": "PAUSED_SOURCE_ONLY_CHECKPOINT",
+  "date": "2026-11-09",
+  "donor": {
+    "url": "https://github.com/kaantcp/z380m-alpine",
+    "commit": "7218a276f252a59874ab860683c061fa2b856519",
+    "local_nested_repo_clean_at_export": true,
+    "full_tree_included": false,
+    "adaptations": "overlay/goodix/ and authored scripts; original notices retained"
+  },
+  "jwm": {
+    "retrieved_utc": "2026-11-08T21:22:23.073225+00:00",
+    "source_url": "https://github.com/joewing/jwm/releases/download/v2.4.6/jwm-2.4.6.tar.xz",
+    "archive_sha256": "b5871ec28317594b3fa22b83ed5524cc911d498c455eaab3ae68def195dd802d",
+    "archive_sha512": "daf1bf033f2055534bab7ac5a12966df69039d3af2a220d1c9ce2126759019c9e6fea1a50fdf72d30be36d0cd22f243d11010d50f4b0795577b4d74209b82bd6",
+    "archive_bytes": 320232,
+    "alpine_apkbuild_url": "https://raw.githubusercontent.com/alpinelinux/aports/3.24-stable/community/jwm/APKBUILD",
+    "alpine_apkbuild_sha256": "f290ac291026261449fe586edf64344115a006ab8813175fbaa78b8898bd8b63",
+    "source_license": "MIT; original LICENSE and file notices retained"
+  },
+  "ffmpeg": {
+    "upstream_version": "7.1.5",
+    "source_url": "https://ffmpeg.org/releases/ffmpeg-7.1.5.tar.xz",
+    "source_sha256": "de668509caf9e35e3cd162473441fdb29538c6d96ed080292b3cf9e6fc5d558f",
+    "patches_applied": false,
+    "authored_builder_and_gates": "sources/browser-ffmpeg61-validation/",
+    "libavcodec_installed_sha256": "9435c2bd290a63b33d74dde2c366af9bf12bb2916ef47e637619e41caecbf96f",
+    "libavutil_installed_sha256": "0554838b786e990a4155557fd1103c178adf54a7a143f4947917294f01e5fc36",
+    "compiled_files_included": false
+  },
+  "local_state": "Private inputs and all generated images remain on the owner Mac/tablet; Git alone is not their backup",
+  "excluded": [
+    "private/",
+    "artifacts/",
+    "downloads/",
+    "fetched upstream source trees and nested Git metadata",
+    "disk and firmware images",
+    "calibration and network credentials",
+    "browser profiles, history and databases",
+    "compiled programs/libraries",
+    "media fixtures and screenshots",
+    "upstream tarballs and build/QA trees"
+  ]
+}

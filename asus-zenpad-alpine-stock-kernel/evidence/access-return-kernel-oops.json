@@ -1,0 +1,18 @@
+{
+  "status": "STOCK_ANDROID_RECOVERED_AFTER_ALPINE_KERNEL_OOPS",
+  "stock_identity_verified": true,
+  "selinux_after_audits": "Enforcing",
+  "kernel": "3.18.35",
+  "new_boot_observed": true,
+  "boot_sha256": "7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316",
+  "recovery_sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20",
+  "bcb_sha256": "7b3d5382b8a753269520c60f01124f5dcea1a3c2e2e8c304623a46df79d046aa",
+  "bcb_command": "boot-recovery",
+  "bcb_remaining_2016_bytes_zero": true,
+  "retained_oops_pc": "snd_pcm_mmap_data_fault+0x68/0xf0",
+  "retained_oops_thread": "cubeb r~ thread",
+  "retained_uptime_seconds": 4514.113916,
+  "internal_partition_writes_sent": false,
+  "reboot_sent": false,
+  "landscape_physical_gate": "not_run_page_not_visible"
+}

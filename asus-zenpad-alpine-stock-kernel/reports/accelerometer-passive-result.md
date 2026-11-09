@@ -1,0 +1,13 @@
+# Experiment55: passive stock accelerometer observation
+
+Superseding source caveat: actual2018kernel differs from retained2017V4.7.0 source. Do not rely on older driver show/store implementations as exact ABI safety proof. Active sensor/MD32 work is parked; see sensor-hub-blocker.md and opus-accelerometer-baseline.md. The passive observer was reduced to input-core operations only.
+
+A source-reviewed passive m_acc_input evdev read observed0events/0fresh frames over3.002662seconds. Cached ABS axes were allzero and are explicitly NOT fresh samples. The source-proven pure cpsopmode register query returned2 before and after. No active/report/delay/mode/calibration write, ioctl initialization, input grab, display rotation, hardware movement or USB operation occurred. The descriptor was read-only/nonblocking and closed after the deadline. Existing consumers, if any, have independent evdev queues.
+
+Fresh metadata binds I2C2-0011/BMA255 and the platform /sys/bus/platform/drivers/gsensor attribute ABI to retained bmc156_acc.c. m_acc_input is currently event6 (resolved and validated, not blindly hardcoded), m_acc_misc10:34. /sys/android_gsensor is absent, /dev/gsensor exists, /proc/config.gz is absent. Attribute names were inventoried without bulk-reading any content; in particular no cali, gs_cali, resetcali or atd_caligs callback was read.
+
+This is a timeout on existing reporting, not proof of sensor failure. Sol source review found that accactive returns scale1000, accenablenodata/accdelay reads return no state, and cpsopmode cannot reveal active-data/nodata/polling/delay or sensor-hub ownership. ReadSensorData/value/cpsdata auto-enable the sensor and must not be used as innocent queries. READ_RAW_DATA has an error-handling issue and isn't the selected API. See stock-accelerometer-sample-contract.md.
+
+Active sampling currently lacks a truthful old-state/restore contract. Next: Opus source consultation of ONE lead, establishing exclusive known initial state from the exact original driver initialization and our qualified Alpine startup (if defensible), without a new kernel, calibration work, memory probing or speculative variants. Do not activate unless that review provides a concrete reversible contract. Display/touch orientation mapping still needs later physical qualification with suitable handling.
+
+Source-only implementation: scripts/observe-stock-accelerometer.py. Raw metadata/samples remain ignored private/live; sanitized receipt evidence/accelerometer-passive-result.json. Current desktop remains native portrait with pinned SSH, ampsOff and idle PCMclosed; no active rotation marker.

@@ -1,0 +1,467 @@
+#!/usr/bin/env python3
+"""On-demand, fixed quiet browser fixture; the separate prototype owns the route."""
+import argparse
+import fcntl
+import hashlib
+import http.server
+import importlib.machinery
+import importlib.util
+import json
+import os
+from pathlib import Path
+import re
+import secrets
+import signal
+import stat
+import subprocess
+import sys
+import time
+
+RUN = Path('/run/asus-speaker-check')
+SELF = Path('/usr/local/bin/asus-goodix-speaker-check')
+PROTOTYPE = Path('/usr/local/libexec/asus-speaker-route-prototype.py')
+PROTOTYPE_SHA = '61ba304f778cad44a50e0338c1bf0e5a91cd9c6a6ed33572545fd2e7ed0897a1'
+MEDIA = Path('/usr/local/share/asus-goodix/sound.m4a')
+MEDIA_SHA = '2b304ffa302593d2bd2df9f0164f59ceba408f777247ce78a7d41a3cd0fe8888'
+PROFILE = Path('/root/.mozilla/asus-appliance')
+FIREFOX = Path('/usr/lib/firefox-esr/firefox-esr')
+AUDIO = Path('/usr/local/bin/asus-goodix-audio')
+ORIGIN = 'http://127.0.0.1:8089'
+HOST = '127.0.0.1:8089'
+TTL = 15*60
+
+
+def require(value, message='Speaker check unavailable.'):
+    if not value:
+        raise RuntimeError(message)
+
+
+def boot():
+    return Path('/proc/sys/kernel/random/boot_id').read_text().strip()
+
+
+def start(pid):
+    try:
+        fields = Path('/proc', str(pid), 'stat').read_text().rsplit(')', 1)[1].split()
+        return None if fields[0] == 'Z' else fields[19]
+    except FileNotFoundError:
+        return None
+
+
+def command(pid):
+    return [arg.decode() for arg in Path('/proc', str(pid), 'cmdline').read_bytes().split(b'\0')[:-1]]
+
+
+def safe_file(path, expected=None):
+    info = path.lstat()
+    require(stat.S_ISREG(info.st_mode) and info.st_uid == 0 and info.st_mode & 0o022 == 0)
+    data = path.read_bytes()
+    if expected:
+        require(hashlib.sha256(data).hexdigest() == expected)
+    return data
+
+
+def load_source(name, path):
+    safe_file(path)
+    loader = importlib.machinery.SourceFileLoader(name, str(path))
+    spec = importlib.util.spec_from_loader(name, loader)
+    module = importlib.util.module_from_spec(spec)
+    loader.exec_module(module)
+    return module
+
+
+def atomic(path, data):
+    temporary = path.with_name(path.name+'.'+str(os.getpid())+'.new')
+    fd = os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
+    with os.fdopen(fd, 'w') as out:
+        out.write(json.dumps(data, sort_keys=True)+'\n')
+    temporary.replace(path)
+
+
+def process_owned(record, argv):
+    try:
+        return (record['boot_id'] == boot() and type(record['pid']) is int and record['pid'] > 1
+                and start(record['pid']) == record['start']
+                and Path('/proc', str(record['pid']), 'exe').resolve() == Path(sys.executable).resolve()
+                and command(record['pid'])[1:] == argv[1:])
+    except (OSError, KeyError, ValueError):
+        return False
+
+
+def browser_owner():
+    pid = int((PROFILE/'lock').readlink().name.rsplit('+', 1)[1])
+    args = command(pid)
+    require(Path('/proc', str(pid), 'exe').resolve() == FIREFOX)
+    require(args[0] == str(FIREFOX) and args.count('--profile') == 1
+            and args[args.index('--profile')+1] == str(PROFILE))
+    stamp = start(pid)
+    require(stamp is not None)
+    return {'pid': pid, 'start': stamp, 'exe': str(FIREFOX), 'profile': str(PROFILE), 'boot_id': boot()}
+
+
+def server_command():
+    return [sys.executable, str(SELF), 'serve']
+
+
+def server_owned(record):
+    return (record.get('schema') == 1 and record.get('self_sha') == hashlib.sha256(safe_file(SELF)).hexdigest()
+            and process_owned(record, server_command()))
+
+
+def lock_file(name):
+    fd = os.open(RUN/name, os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW, 0o600)
+    info = os.fstat(fd)
+    require(stat.S_ISREG(info.st_mode) and info.st_uid == 0 and info.st_mode & 0o077 == 0)
+    fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    return fd
+
+
+def read_json(path):
+    return json.loads(path.read_text())
+
+
+def arm_authorized(path, headers, token):
+    return (path == '/arm' and headers.get_all('Host', []) == [HOST]
+            and headers.get_all('Origin', []) == [ORIGIN]
+            and headers.get_all('X-CSRF-Token', []) == [token]
+            and headers.get_all('Content-Type', []) == ['application/json']
+            and headers.get('Transfer-Encoding') is None)
+
+
+def payload_nonce(body):
+    data = json.loads(body)
+    require(type(data) is dict and set(data) == {'nonce'} and isinstance(data['nonce'], str)
+            and re.fullmatch(r'[A-Za-z0-9-]{16,64}', data['nonce']))
+    return data['nonce']
+
+
+def route_idle():
+    root = Path('/run/asus-goodix-audio')
+    require(not (root/'route-preimage.json').exists())
+    fd = os.open(root/'route.lock', os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW, 0o600)
+    try:
+        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    finally:
+        os.close(fd)
+
+
+def setup():
+    require(os.geteuid() == 0 and Path(__file__).resolve() == SELF)
+    safe_file(PROTOTYPE, PROTOTYPE_SHA)
+    prototype = load_source('speaker_check_prototype', PROTOTYPE)
+    prototype.identity()
+    RUN.mkdir(mode=0o700, exist_ok=True)
+    prototype.private_dir(RUN)
+    return prototype
+
+
+HTML = '''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Speaker check</title>
+<style nonce="TOKEN">body{font:24px sans-serif;max-width:620px;margin:10vh auto;padding:24px;background:#f6f5ef;color:#222}button{font:inherit;padding:24px;width:100%;margin:20px 0}button:disabled{opacity:.55}#status{min-height:3em;line-height:1.5}</style>
+<h1>Speaker check</h1><p>Play a three-second check with a quiet tone in the middle.</p><button id="play">Play quiet tone</button><p id="status" role="status">Ready.</p><p>Normal desktop sound stays off.</p><audio id="tone" src="/sound.m4a" preload="auto"></audio>
+<script nonce="TOKEN">'use strict';const a=document.querySelector('#tone'),b=document.querySelector('#play'),s=document.querySelector('#status');let busy=false,until=0,failed=false;
+function show(m){s.textContent=m}function update(){b.disabled=busy||failed||Date.now()<until}
+b.addEventListener('click',async e=>{if(!e.isTrusted||busy||failed||Date.now()<until)return;busy=true;document.title='Speaker check';update();show('Preparing quiet tone…');try{a.pause();a.currentTime=0;a.loop=false;a.muted=false;a.volume=1;const nonce=crypto.randomUUID();const r=await fetch('/arm',{method:'POST',headers:{'Content-Type':'application/json','X-CSRF-Token':'TOKEN'},body:JSON.stringify({nonce})});const j=await r.json();if(!r.ok||j.nonce!==nonce||j.armed!==true)throw Error(j.message||'Speaker check unavailable.');until=Date.now()+20000;await a.play();show('Playing quiet tone…')}catch(e){show(e.message||'Speaker check unavailable.');busy=false;update()}});
+a.addEventListener('ended',()=>{busy=false;document.title='Speaker check — finished';show('Finished. If you heard the tone, the check worked.');update()});a.addEventListener('error',()=>{busy=false;document.title='Speaker check — unavailable';show('The quiet tone could not play.');update()});
+setInterval(async()=>{update();try{const r=await fetch('/state');if(!r.ok)throw Error();const j=await r.json();if(j.unavailable||j.stopping){failed=true;update();if(!busy)show(j.message)} }catch(e){failed=true;update();if(!busy)show('This check has closed. Open Speaker check from Apps to try again.')}},1000);b.focus();</script></html>'''
+
+
+class Check:
+    def __init__(self, prototype):
+        self.prototype = prototype
+        self.boot_id = boot()
+        self.profile = browser_owner()
+        self.media = safe_file(MEDIA, MEDIA_SHA)  # Immutable response bytes for this server.
+        self.token = secrets.token_urlsafe(32)
+        self.instance = secrets.token_hex(12)
+        self.session = RUN/('session-'+self.instance)
+        self.session.mkdir(mode=0o700)
+        self.identity = {'schema': 1, 'pid': os.getpid(), 'start': start(os.getpid()),
+                         'boot_id': self.boot_id, 'instance': self.instance,
+                         'self_sha': hashlib.sha256(safe_file(SELF)).hexdigest(),
+                         'profile': self.profile, 'expires_monotonic': time.monotonic()+TTL}
+        self.guardian = None
+        self.active = None
+        self.stop = False
+        self.unavailable = (RUN/'UNAVAILABLE').exists()
+        cooldown = read_json(RUN/'cooldown.json') if (RUN/'cooldown.json').exists() else {}
+        self.last_arm = cooldown.get('monotonic', -100.) if cooldown.get('boot_id') == self.boot_id else -100.
+        self.used = set()
+        self.message = 'Ready.'
+        self.audio = load_source('speaker_check_audio', AUDIO)
+        class BoundedRead:
+            @staticmethod
+            def check_output(argv, *, env=None, text=False, timeout=None):
+                return subprocess.check_output(argv, env=env, text=text, timeout=.5)
+        self.audio.subprocess = BoundedRead
+
+    def save(self, phase):
+        atomic(RUN/'server.json', dict(self.identity, phase=phase))
+
+    def disable(self):
+        self.unavailable = True
+        self.message = 'Speaker check unavailable. Leave other audio paused.'
+        atomic(RUN/'UNAVAILABLE', {'boot_id': self.boot_id, 'reason': 'episode_unverified'})
+
+    def live_prior_guardian(self):
+        # Preserve all history. A dead server is never proof its guardian died.
+        for path in RUN.glob('session-*/active.json'):
+            record = read_json(path)
+            if self.active and record == self.active:
+                continue
+            if (record['boot_id'] == self.boot_id and isinstance(record.get('start'), str)
+                    and record['start'].isdigit() and start(record['pid']) == record['start']):
+                return True
+        return False
+
+    def status(self):
+        return {'instance': self.instance, 'unavailable': self.unavailable,
+                'stopping': self.stop, 'active': self.guardian is not None,
+                'message': self.message}
+
+    def controller_term(self, status):
+        if not self.guardian or self.guardian.poll() is not None:
+            return
+        pid = status.get('controller_pid')
+        if (type(pid) is int and status.get('boot_id') == self.boot_id
+                and status.get('guardian_pid') == self.guardian.pid
+                and status.get('guardian_start') == self.active['start']
+                and start(pid) == status.get('controller_start')):
+            fields = Path('/proc', str(pid), 'stat').read_text().rsplit(')', 1)[1].split()
+            if int(fields[1]) == self.guardian.pid:
+                os.kill(pid, signal.SIGTERM)
+
+    def observe(self):
+        if self.guardian is None:
+            return
+        status_path = Path(self.active['episode'])/'status.json'
+        status = read_json(status_path) if status_path.exists() else {}
+        if status.get('phase') == 'ERROR':
+            self.disable()
+        if self.guardian.poll() is not None:
+            try:
+                require(status.get('phase') == 'DONE' and self.guardian.returncode == 0)
+                route_idle()
+            except Exception:
+                self.disable()
+            self.guardian = None
+        elif self.stop or status.get('phase') == 'OFF':
+            self.controller_term(status)
+
+    def arm(self, nonce):
+        self.observe()
+        require(not self.stop and not self.unavailable and time.monotonic() < self.identity['expires_monotonic'])
+        require(self.guardian is None and not self.live_prior_guardian(), 'A check is still finishing. Try again shortly.')
+        require(nonce not in self.used and time.monotonic()-self.last_arm >= 20,
+                'Wait twenty seconds between checks.')
+        require(boot() == self.boot_id and browser_owner() == self.profile)
+        safe_file(PROTOTYPE, PROTOTYPE_SHA)
+        require(safe_file(MEDIA, MEDIA_SHA) == self.media)
+        require(Path('/etc/asound.conf').read_text() == self.audio.GUARD)
+        pulse = read_json(self.audio.RUN/'state.json')
+        sink = self.audio.verify_sink(pulse)
+        require(sink == 'SUSPENDED' and Path('/proc/asound/card0/pcm0p/sub0/hw_params').read_text().strip() == 'closed',
+                'Pause other audio, wait five seconds, then try again.')
+        route_idle()
+        self.used.add(nonce)
+        self.last_arm = time.monotonic()
+        atomic(RUN/'cooldown.json', {'boot_id': self.boot_id, 'monotonic': self.last_arm})
+        episode = self.session/('episode-'+secrets.token_hex(8))
+        episode.mkdir(mode=0o700)
+        argv = [sys.executable, str(PROTOTYPE), '--episode-dir', str(episode), '--cap-seconds', '6']
+        with (self.session/'guardian.log').open('ab') as log:
+            self.guardian = subprocess.Popen(argv, stdin=subprocess.DEVNULL, stdout=log,
+                                             stderr=subprocess.STDOUT, close_fds=True,
+                                             start_new_session=True)
+        self.active = {'pid': self.guardian.pid, 'start': start(self.guardian.pid),
+                       'boot_id': self.boot_id, 'episode': str(episode)}
+        atomic(self.session/'active.json', self.active)
+        deadline = time.monotonic()+3
+        while time.monotonic() < deadline:
+            self.observe()
+            require(self.guardian is not None and not self.unavailable and not self.stop
+                    and time.monotonic() < self.identity['expires_monotonic'])
+            path = episode/'status.json'
+            if path.exists():
+                status = read_json(path)
+                if (status.get('phase') == 'READY' and status.get('ready') is True
+                        and status.get('guardian_pid') == self.active['pid']
+                        and status.get('guardian_start') == self.active['start']
+                        and status.get('boot_id') == self.boot_id):
+                    self.message = 'Quiet tone ready.'
+                    return {'nonce': nonce, 'armed': True}
+            time.sleep(.025)
+        self.message = 'Speaker check unavailable.'
+        # Never kill the guardian after failed startup. Stop C normally if known;
+        # independent prototype heartbeat/startup/cap deadlines remain in charge.
+        if (episode/'status.json').exists():
+            self.controller_term(read_json(episode/'status.json'))
+        raise RuntimeError(self.message)
+
+    def serve(self):
+        check = self
+        class Handler(http.server.BaseHTTPRequestHandler):
+            def setup(self):
+                super().setup()
+                self.connection.settimeout(1)
+            def reply(self, code, body, kind='application/json'):
+                data = body if isinstance(body, bytes) else json.dumps(body).encode()
+                self.send_response(code)
+                self.send_header('Content-Type', kind)
+                self.send_header('Content-Length', str(len(data)))
+                self.send_header('Cache-Control', 'no-store')
+                self.send_header('X-Frame-Options', 'DENY')
+                self.send_header('X-Content-Type-Options', 'nosniff')
+                self.send_header('Referrer-Policy', 'no-referrer')
+                self.send_header('Content-Security-Policy', "default-src 'none'; script-src 'nonce-"+check.token+"'; style-src 'nonce-"+check.token+"'; connect-src 'self'; media-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'")
+                self.end_headers()
+                self.wfile.write(data)
+            def valid_host(self):
+                return self.headers.get_all('Host', []) == [HOST]
+            def do_GET(self):
+                if not self.valid_host():
+                    return self.reply(403, {})
+                if self.path == '/':
+                    return self.reply(200, HTML.replace('TOKEN', check.token).encode(), 'text/html; charset=utf-8')
+                if self.path == '/sound.m4a':
+                    return self.reply(200, check.media, 'audio/mp4')
+                if self.path == '/state':
+                    return self.reply(200, check.status())
+                self.reply(404, {})
+            def do_POST(self):
+                if not arm_authorized(self.path, self.headers, check.token):
+                    return self.reply(403, {})
+                try:
+                    lengths = self.headers.get_all('Content-Length', [])
+                    require(len(lengths) == 1 and lengths[0].isdigit() and 0 < int(lengths[0]) <= 256)
+                    nonce = payload_nonce(self.rfile.read(int(lengths[0])))
+                    self.reply(200, check.arm(nonce))
+                except Exception as error:
+                    message = str(error) if isinstance(error, RuntimeError) else 'Speaker check unavailable.'
+                    self.reply(409, {'message': message})
+            def log_message(self, *_):
+                pass
+        server = http.server.HTTPServer(('127.0.0.1', 8089), Handler)
+        server.timeout = .1
+        for sig in (signal.SIGTERM, signal.SIGINT, signal.SIGHUP):
+            signal.signal(sig, lambda *_: setattr(self, 'stop', True))
+        self.save('READY')
+        try:
+            while True:
+                self.observe()
+                stop_path = RUN/'STOP'
+                if (time.monotonic() >= self.identity['expires_monotonic'] or
+                        (stop_path.exists() and read_json(stop_path) ==
+                         {key: self.identity[key] for key in ('boot_id', 'pid', 'start', 'instance')})):
+                    self.stop = True
+                if self.stop:
+                    self.message = 'This check has closed. Open Speaker check from Apps to try again.'
+                    self.save('STOPPING')
+                    if self.guardian is None and not self.live_prior_guardian():
+                        break
+                server.handle_request()
+        finally:
+            # Keep ownership until our guardian exits, including ERROR/fail-stop.
+            # No destructor, timeout or server shutdown kills the guardian.
+            self.stop = True
+            while self.guardian is not None:
+                self.observe()
+                time.sleep(.1)
+            server.server_close()
+            self.save('STOPPED')
+
+
+def request_stop(record):
+    require(server_owned(record))
+    atomic(RUN/'STOP', {key: record[key] for key in ('boot_id', 'pid', 'start', 'instance')})
+    deadline = time.monotonic()+12
+    while time.monotonic() < deadline and server_owned(record):
+        time.sleep(.1)
+    require(not server_owned(record), 'A speaker check is still protecting cleanup; it was not killed.')
+
+
+def launch(prototype):
+    try:
+        profile = browser_owner()
+    except (OSError, RuntimeError, ValueError, IndexError):
+        try:
+            lock_pid = int((PROFILE/'lock').readlink().name.rsplit('+', 1)[1])
+        except (OSError, ValueError):
+            lock_pid = None
+        require(lock_pid is None or start(lock_pid) is None, 'The existing browser could not be verified.')
+        env = dict(os.environ, DISPLAY=':0', XAUTHORITY='/run/asus-goodix/Xauthority',
+                   XDG_RUNTIME_DIR='/run/user/0', ASUS_BROWSER='firefox-esr',
+                   ASUS_DASHBOARD_URL=ORIGIN, ASUS_FIREFOX_PROFILE=str(PROFILE))
+        require(Path(env['XAUTHORITY']).is_file() and env.get('DBUS_SESSION_BUS_ADDRESS'),
+                'Open Firefox from Apps, then open Speaker check again.')
+        if Path('/etc/asus-goodix/native-touch').exists() and Path('/etc/asus-goodix/native-touch').read_text().strip() == 'libinput-v1':
+            env['ASUS_TOUCH_MODE'] = 'libinput'
+        if Path('/etc/asus-goodix/automatic-keyboard').exists() and Path('/etc/asus-goodix/automatic-keyboard').read_text().strip() == 'onboard-v1':
+            env['ASUS_OSK'] = 'onboard'
+        with (RUN/'browser-launch.log').open('ab') as log:
+            subprocess.Popen(['/usr/local/bin/asus-goodix-browser'], env=env, stdin=subprocess.DEVNULL,
+                             stdout=log, stderr=subprocess.STDOUT, close_fds=True, start_new_session=True)
+        deadline = time.monotonic()+20
+        while time.monotonic() < deadline:
+            try:
+                profile = browser_owner()
+                break
+            except (OSError, RuntimeError, ValueError, IndexError):
+                time.sleep(.1)
+        else:
+            raise RuntimeError('Firefox is not ready. Open Speaker check again shortly.')
+    state_path = RUN/'server.json'
+    record = read_json(state_path) if state_path.exists() else {}
+    if server_owned(record):
+        if record.get('profile') != profile or record.get('phase') != 'READY' or record['expires_monotonic']-time.monotonic() < 10:
+            request_stop(record)
+            record = {}
+    if not server_owned(record):
+        with (RUN/'server-launch.log').open('ab') as log:
+            child = subprocess.Popen(server_command(), stdin=subprocess.DEVNULL, stdout=log,
+                                     stderr=subprocess.STDOUT, close_fds=True, start_new_session=True)
+        deadline = time.monotonic()+5
+        while time.monotonic() < deadline:
+            require(child.poll() is None)
+            record = read_json(state_path) if state_path.exists() else {}
+            if server_owned(record) and record.get('phase') == 'READY' and record.get('profile') == profile:
+                break
+            time.sleep(.05)
+        else:
+            raise RuntimeError('Speaker check is not ready.')
+    env = dict(os.environ, DISPLAY=':0', XAUTHORITY='/run/asus-goodix/Xauthority', XDG_RUNTIME_DIR='/run/user/0')
+    subprocess.run([sys.executable, '/usr/local/bin/goodix-open-url.py', ORIGIN,
+                    '--expect-title', 'Speaker check', '--timeout', '25'], env=env,
+                   check=True, timeout=35, stdout=subprocess.DEVNULL)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('mode', nargs='?', choices=('launch', 'serve', 'stop'), default='launch')
+    args = parser.parse_args()
+    os.umask(0o077)
+    prototype = setup()
+    if args.mode == 'serve':
+        lock = lock_file('server.lock')
+        try:
+            Check(prototype).serve()
+        finally:
+            os.close(lock)
+    else:
+        lock = lock_file('launch.lock')
+        try:
+            if args.mode == 'launch':
+                launch(prototype)
+            elif (RUN/'server.json').exists():
+                record = read_json(RUN/'server.json')
+                if server_owned(record):
+                    request_stop(record)
+        finally:
+            os.close(lock)
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except Exception as error:
+        print(str(error) if isinstance(error, RuntimeError) else 'Speaker check unavailable.', file=sys.stderr)
+        sys.exit(1)

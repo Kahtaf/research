@@ -1,0 +1,10 @@
+{
+  "status": "CAPSULE_AND_COMMAND_ONLY_DEFAULT_READBACK_VERIFIED_NOT_REBOOTED",
+  "recovery_sha256": "097ea7b81f4c3e847d5aec34834b404b70db7db945031be9082946b922f08a6c",
+  "boot_sha256": "7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316",
+  "bcb_default_sha256": "7b3d5382b8a753269520c60f01124f5dcea1a3c2e2e8c304623a46df79d046aa",
+  "bcb_bytes_changed": "0..31 only",
+  "recovery_arguments": "empty",
+  "stock_return_physically_verified": true,
+  "selinux_restored": "Enforcing"
+}

@@ -1,0 +1,19 @@
+{
+  "status": "TWO_ORDINARY_LINUX_BOOTS_AND_STOCK_RETURN_PHYSICALLY_VERIFIED",
+  "alpine": "3.24.4",
+  "kernel": "3.18.35 aarch64",
+  "root": "owned 2GiB microSD ext4 loop image",
+  "recovery_sha256": "097ea7b81f4c3e847d5aec34834b404b70db7db945031be9082946b922f08a6c",
+  "stock_boot_sha256": "7bb68511b1ade34d24c3e932da7260e6753fa87270bd8249a7218755a5df3316",
+  "bcb_sha256": "7b3d5382b8a753269520c60f01124f5dcea1a3c2e2e8c304623a46df79d046aa",
+  "bcb_recovery_arguments": "empty",
+  "wifi_dhcp_https_pinned_ssh": "PASS",
+  "automatic_firefox_dashboard": "PASS",
+  "os_file_sqlite_persistence": "PASS",
+  "dashboard_request_count_observed": 25,
+  "closed_browser_history_integrity": "ok",
+  "physical_goodix_tap": "owner-confirmed",
+  "cold_power_on": "NOT_TESTED",
+  "automatic_keyboard_gestures_rotation_video_audio": "DEFERRED_OR_UNVERIFIED",
+  "no_bootloader_gpt_factory_partition_replacement": true
+}

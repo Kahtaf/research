@@ -1,0 +1,30 @@
+{
+  "seccomp": 2,
+  "private_libs_confirmed": true,
+  "system_libs_unchanged": true,
+  "result": {
+    "phase": "av-muted",
+    "event": "ten-second-result",
+    "time": 9.86108,
+    "duration": 12.021333,
+    "readyState": 4,
+    "networkState": 1,
+    "paused": false,
+    "ended": false,
+    "muted": true,
+    "width": 640,
+    "height": 360,
+    "totalFrames": 237,
+    "droppedFrames": 0,
+    "error": null
+  },
+  "status": "REAL_STOCK_KERNEL_H264_AAC_PASS",
+  "kernel": "3.18.35",
+  "private_library_hashes": {
+    "libavcodec.so.61": "9435c2bd290a63b33d74dde2c366af9bf12bb2916ef47e637619e41caecbf96f",
+    "libavutil.so.59": "0554838b786e990a4155557fd1103c178adf54a7a143f4947917294f01e5fc36"
+  },
+  "browser_audibility": "NOT_YET_VERIFIED",
+  "youtube": "NOT_YET_TESTED_AFTER_FIX",
+  "profile_quick_check": "ok,15entries on subsequent normal restart"
+}

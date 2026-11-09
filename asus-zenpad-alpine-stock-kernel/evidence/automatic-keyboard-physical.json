@@ -1,0 +1,29 @@
+{
+  "status": "PHYSICAL_GOODIX_KEYBOARD_PASS",
+  "automatic_focus_show_hide": true,
+  "bottom_docking": {
+    "X": 0,
+    "Y": 952,
+    "WIDTH": 800,
+    "HEIGHT": 280
+  },
+  "shown_browser": {
+    "X": 5,
+    "Y": 38,
+    "WIDTH": 790,
+    "HEIGHT": 909
+  },
+  "hidden_browser": {
+    "X": 5,
+    "Y": 38,
+    "WIDTH": 790,
+    "HEIGHT": 1189
+  },
+  "restore_geometry_preserved": true,
+  "onboard_a_key_delivered": true,
+  "keyboard_own_hide_key": true,
+  "physical_touch_typing": "owner-confirmed: all three worked",
+  "browser_received_tablet": true,
+  "physical_bottom_show": true,
+  "physical_done_hide": true
+}

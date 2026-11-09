@@ -1,0 +1,53 @@
+--- a/z380m-touchbridge.c
++++ b/z380m-touchbridge.c
+@@ -424,12 +424,19 @@
+ }
+ 
+ /* ---- commands ---- */
+-static void get_range(long rfd, int *lo, int *hi, int code, int dlo, int dhi)
++static int get_range(long rfd, int *lo, int *hi, int code)
+ {
+     struct input_absinfo absinfo;
+     absinfo.minimum = 0; absinfo.maximum = 0;
+-    if (sys_ioctl((int)rfd, EVIOCGABS(code), (long)&absinfo) == 0 && absinfo.maximum > absinfo.minimum) { *lo = absinfo.minimum; *hi = absinfo.maximum; }
+-    else { *lo = dlo; *hi = dhi; }
++    long r = sys_ioctl((int)rfd, EVIOCGABS(code), (long)&absinfo);
++    /* ASUS Goodix adaptation, 2026-11-08: never substitute donor ELAN ranges. */
++    if (r < 0 || absinfo.maximum <= absinfo.minimum) {
++        fail("touch axis range unavailable", r < 0 ? r : -22);
++        return -1;
++    }
++    *lo = absinfo.minimum;
++    *hi = absinfo.maximum;
++    return 0;
+ }
+ 
+ static struct input_event IB[64];
+@@ -443,8 +450,11 @@
+ 
+     rfd = sys_open(dev, O_RDONLY_);
+     if (rfd < 0) { ps(2, "z380m-touchbridge: cannot open "); ps(2, dev); ps(2, ": "); fail("open", rfd); return 1; }
+-    get_range(rfd, &xmin, &xmax, ABS_MT_POSITION_X, 0, 1472);
+-    get_range(rfd, &ymin, &ymax, ABS_MT_POSITION_Y, 0, 2368);
++    if (get_range(rfd, &xmin, &xmax, ABS_MT_POSITION_X) < 0 ||
++        get_range(rfd, &ymin, &ymax, ABS_MT_POSITION_Y) < 0) {
++        sys_close((int)rfd);
++        return 1;
++    }
+     ts_init(&S, xmin, xmax, ymin, ymax, invx, invy);
+ 
+     if (sink) {
+@@ -497,8 +507,11 @@
+ 
+     rfd = sys_open(dev, O_RDONLY_ | O_NONBLOCK_);
+     if (rfd < 0) { ps(2, "z380m-touchbridge: cannot open "); ps(2, dev); ps(2, ": "); fail("open", rfd); return 1; }
+-    get_range(rfd, &xmin, &xmax, ABS_MT_POSITION_X, 0, 1472);
+-    get_range(rfd, &ymin, &ymax, ABS_MT_POSITION_Y, 0, 2368);
++    if (get_range(rfd, &xmin, &xmax, ABS_MT_POSITION_X) < 0 ||
++        get_range(rfd, &ymin, &ymax, ABS_MT_POSITION_Y) < 0) {
++        sys_close((int)rfd);
++        return 1;
++    }
+     ts_init(&S, xmin, xmax, ymin, ymax, 0, 0);
+     deadline = now_ms() + seconds * 1000;
+     for (;;) {

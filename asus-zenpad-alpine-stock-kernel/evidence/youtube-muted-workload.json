@@ -1,0 +1,14 @@
+{
+  "status": "YOUTUBE_IFRAME_SAMPLE_PLAYBACK_PASS",
+  "sample_id": "M7lc1UVf-VE",
+  "playback_seconds": 15.809640043869019,
+  "reported_quality": "large",
+  "reported_duration_seconds": 1344,
+  "all_playing_samples_muted": true,
+  "player_errors": false,
+  "hardware_access": "RW_INTERLEAVED",
+  "amps_off": true,
+  "new_kernel_oops": false,
+  "physical_audibility": "not tested",
+  "frame_drop_measurement": "not available through cross-origin iframe API"
+}

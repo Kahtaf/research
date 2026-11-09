@@ -1,0 +1,16 @@
+{
+  "finished_utc": "2026-11-08T18:03:46.824571+00:00",
+  "deleted_files": 6250,
+  "deleted_logical_bytes": 18054657799,
+  "deleted_estimated_allocated_bytes": 18054946816,
+  "skipped_files": 17,
+  "before_free_bytes": 11244249088,
+  "after_free_bytes": 29021495296,
+  "free_space_increase_bytes": 17777246208,
+  "stock_backups_preserved": true,
+  "factory_calibration_backups_preserved": true,
+  "source_and_text_reports_preserved": true,
+  "nested_git_repositories_touched": false,
+  "latest_installed_diagnostic_artifacts_preserved": true,
+  "new_tablet_operations": false
+}

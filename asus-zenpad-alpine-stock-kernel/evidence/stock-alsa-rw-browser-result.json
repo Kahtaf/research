@@ -1,0 +1,38 @@
+{
+  "result": {
+    "event": "result",
+    "time": 9.75452,
+    "paused": true,
+    "muted": false,
+    "volume": 0.05,
+    "totalFrames": 235,
+    "droppedFrames": 4,
+    "error": null
+  },
+  "firefox_processes_checked": 10,
+  "firefox_hardware_pcm_fds": false,
+  "hardware_access": "RW_INTERLEAVED",
+  "amps_off": true,
+  "new_kernel_oops": false,
+  "utility_seccomp": 2,
+  "pulse_pcm_mapping_offsets": [
+    "0x80000000",
+    "0x81000000"
+  ],
+  "hardware_data_mmap": false,
+  "browser_stream_confirmed": "PulseAudio native sink input, app Firefox; parent PID matched profile owner",
+  "status": "UNMUTED_DECODING_AND_OUTPUT_PASS_AMPS_OFF",
+  "physical_audibility": "not tested",
+  "persistent_audio_startup": "PASS across ordinary kernel reboot",
+  "ordinary_kernel_reboot": {
+    "ordinary_kernel_reboot": "PASS",
+    "audio_auto_started_before_browser": true,
+    "native_touch_16": true,
+    "portrait_dimensions": "800x1280",
+    "onboard_running": true,
+    "firefox_xi2": true,
+    "amps_off": true,
+    "no_new_kernel_oops": true,
+    "dashboard_requests": 58
+  }
+}

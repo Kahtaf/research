@@ -1,0 +1,12 @@
+{
+  "status": "NO_EXISTING_REPORTS_OBSERVED",
+  "seconds": 3.002661769000042,
+  "event_records": 0,
+  "hardware_mode_before": "2",
+  "hardware_mode_after": "2",
+  "activation_writes": false,
+  "delay_writes": false,
+  "calibration_access": false,
+  "display_changed": false,
+  "fresh_complete_frame_count": 0
+}

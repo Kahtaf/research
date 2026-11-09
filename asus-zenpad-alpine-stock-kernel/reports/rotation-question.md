@@ -1,0 +1,13 @@
+# Next rotation question for Opus5.5
+
+Current goal is latest stable Alpine3.24.4 aarch64 on this tablet's unchanged stock Linux3.18.35, with usable touchscreen dashboard/browser and persistent SSH services. Native input/automatic keyboard/core networking are physically qualified and survived normal boot. Preserve this working baseline; no4.9/kernel, bootloader/GPT/factory writes or new cloud resources.
+
+Display evidence: xf86-video-fbdev0.5.0-r6, Xorg21.1.25, framebuffer800×1280 visible/800×3840 virtual,32bpp,stride3200. No DRM device exposed. Actual RandR advertises minimum=current=maximum800×1280 and supported-rotation mask1/current1 (normal only). Current fbdev session cannot accept a90degree RandR change. No orientation change was attempted.
+
+Input is native libinput1.31.3 with xf86-input-libinput1.5.0 and truthful generated udev metadata, direct16contact class. Actual2contacts/scrollY1320/scale3.218/ok and owner report prove gestures/typing. Device path must be canonical, not alias. Desktop is JWM2.4.6 with small workarea reflow patch, FirefoxESR140.12 and Onboard1.4.4 sharing a D-Bus session. Files are under overlay/goodix and reports/native-goodix-libinput.md. The prior single-pointer bridge is retained as fallback.
+
+Stock legacy accelerometer interface exists: m_acc_misc, accdevnum6, m_acc_input. accactive reads1000 (vender_div scale, not active state). Exact retained stock3.18 accel.c and bmc156_acc sources show enable/report ABI. No sensor enable or calibration attribute was touched. Do not read gs_cali/resetcali: some read-looking attributes write calibration. Do not operate tablet for the consultation.
+
+Question: smallest credible reversible userspace path to whole-screen portrait/landscape rotation, preserving fixed stock kernel and current useful browser/input/keyboard. First establish whether fbdev's existing rotation support can be configured dynamically. If impossible, compare only enough to choose ONE next bounded experiment, using existing compatible components where possible. A nested X11 software-rendered compositor may be a lead, not assumed solution; verify input transforms and OSK implications. Avoid a full distribution swap, historical unmaintained framebuffer compositor or new kernel branch. CSS-only web rotation does not qualify whole-screen rotation. If no practical path exists in scope, state the exact blocker and smallest next action.
+
+Read-only sources may be fetched under this spike; write findings to reports/opus-stock-fbdev-rotation.md. No tablet SSH/ADB/UI commands, no edits to active helpers, no further delegation. Primary sources and concrete positive/negative acceptance gate required.

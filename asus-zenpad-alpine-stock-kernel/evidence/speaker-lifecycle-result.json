@@ -1,0 +1,85 @@
+{
+  "baseline": {
+    "class": 0,
+    "gain": 1
+  },
+  "episodes": [
+    {
+      "name": "normal",
+      "outcome": "controller_eof",
+      "browser_ended": {
+        "event": "ended",
+        "episode": 1,
+        "time": 3.021333,
+        "paused": true,
+        "ended": true,
+        "muted": false,
+        "volume": 0.05,
+        "error": null,
+        "server_monotonic": 5691.187116569
+      },
+      "on_order": [
+        "Audio_Speaker_PGA_gain",
+        "Audio_Speaker_class_Switch",
+        "Speaker_Amp_Switch",
+        "Ext_Speaker_Amp_Switch"
+      ],
+      "off_order": [
+        "Ext_Speaker_Amp_Switch",
+        "Speaker_Amp_Switch"
+      ],
+      "off_pcm_open": true,
+      "gate_off_seconds_after_ready": 3.6206811539996124,
+      "shutdown_seconds_after_observed_idle": 0.14520907699989039,
+      "expiry_seconds_after_sigstop": null,
+      "gate_off_within_6_second_cap": true,
+      "route_lock_released": true,
+      "no_controller_group_survived": true
+    },
+    {
+      "name": "stopped-controller",
+      "outcome": "heartbeat_expired",
+      "browser_ended": {
+        "event": "ended",
+        "episode": 2,
+        "time": 3.021333,
+        "paused": true,
+        "ended": true,
+        "muted": false,
+        "volume": 0.05,
+        "error": null,
+        "server_monotonic": 5700.856632493
+      },
+      "on_order": [
+        "Audio_Speaker_PGA_gain",
+        "Audio_Speaker_class_Switch",
+        "Speaker_Amp_Switch",
+        "Ext_Speaker_Amp_Switch"
+      ],
+      "off_order": [
+        "Ext_Speaker_Amp_Switch",
+        "Speaker_Amp_Switch"
+      ],
+      "off_pcm_open": true,
+      "gate_off_seconds_after_ready": 2.9873183850004352,
+      "shutdown_seconds_after_observed_idle": null,
+      "expiry_seconds_after_sigstop": 2.496648538000045,
+      "gate_off_within_6_second_cap": true,
+      "route_lock_released": true,
+      "no_controller_group_survived": true
+    }
+  ],
+  "physical_audibility": "unconfirmed",
+  "status": "NORMAL_AND_SIGSTOP_CLEANUP_PASS",
+  "pulse_daemon_unchanged": true,
+  "final_pcm": "closed",
+  "final_amps": [
+    0,
+    0
+  ],
+  "prototype_only": true,
+  "persistent_route_enabled": false,
+  "fixture_sha256": "2b304ffa302593d2bd2df9f0164f59ceba408f777247ce78a7d41a3cd0fe8888",
+  "fixture_decoded_peak_dbfs": -39.88623702511363,
+  "page_volume": 0.05
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- SPDX-License-Identifier: GPL-3.0-only -->
+<JWM>
+  <RootMenu onroot="123" height="44">
+    <Program label="Terminal">xterm -fa monospace -fs 18</Program>
+    <Program label="Speaker check">/usr/local/bin/asus-goodix-speaker-check launch</Program>
+  </RootMenu>
+  <!-- JWM maximizes mapped normal windows within its work area, leaving the tray visible. -->
+  <Group>
+    <Type>normal</Type>
+    <Option>maximized</Option>
+  </Group>
+  <WindowStyle><Font>DejaVu Sans:pixelsize=20</Font><Height>38</Height></WindowStyle>
+  <MenuStyle><Font>DejaVu Sans:pixelsize=20</Font></MenuStyle>
+  <Tray x="0" y="-1" height="48" autohide="off">
+    <TrayButton label="Apps">root:1</TrayButton>
+    <TaskList maxwidth="260"/>
+    <Clock format="%H:%M"/>
+  </Tray>
+</JWM>

@@ -1,0 +1,17 @@
+{
+  "trusted_button_to_browser_ended": "PASS",
+  "fixture_peak_dbfs": -39.88623702511363,
+  "page_volume": 1,
+  "episode_count": 1,
+  "normal_cleanup": true,
+  "off_reason": "IDLE",
+  "off_while_pcm_open": true,
+  "off_seconds_after_ready": 3.542962692999936,
+  "mixer_preimage_restored": true,
+  "pulse_daemon_unchanged": true,
+  "physical_audibility": "unconfirmed",
+  "server_stopped": true,
+  "final_pcm": "closed",
+  "final_amps": "off",
+  "dashboard_restored": true
+}

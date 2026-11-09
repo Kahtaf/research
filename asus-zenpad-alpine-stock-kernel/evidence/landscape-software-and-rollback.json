@@ -1,0 +1,22 @@
+{
+  "status": "SOFTWARE_PASS_PHYSICAL_NOT_OBSERVED",
+  "landscape_root": [
+    1280,
+    800
+  ],
+  "browser_css_screen": [
+    1024,
+    640
+  ],
+  "desktop_scaling": 1.25,
+  "native_contacts": 16,
+  "physical_corner_hits": 0,
+  "physical_gestures_or_typing": false,
+  "watchdog_result": "RESTORED_NATIVE_PORTRAIT",
+  "restored_root": [
+    800,
+    1280
+  ],
+  "persistent_rotation_marker": false,
+  "fixtures_stopped": true
+}

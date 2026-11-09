@@ -1,0 +1,19 @@
+{
+  "page_and_media_served": true,
+  "defensive_headers": true,
+  "rejected_requests": {
+    "missing_csrf": 403,
+    "wrong_origin": 403,
+    "wrong_host": 403,
+    "malformed_nonce": 409
+  },
+  "launcher_reused_exact_server": true,
+  "page_navigated": true,
+  "prototype_episodes_spawned": 0,
+  "mixer_values_unchanged": true,
+  "manual_only": true,
+  "server_stopped": true,
+  "normal_dashboard_restored": true,
+  "physical_audibility": "unconfirmed",
+  "positive_arm_and_play_in_new_app": "deferred to owner-operated check"
+}

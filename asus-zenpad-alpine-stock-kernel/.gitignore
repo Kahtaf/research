@@ -1,0 +1,31 @@
+# Private owner/device state and generated artifacts
+/private/
+/artifacts/
+/downloads/
+.DS_Store
+__pycache__/
+*.pyc
+*.img
+*.raw
+*.ext4
+*.apk
+*.so
+*.so.*
+*.o
+*.a
+*.sqlite
+*.sqlite-*
+*.db
+*.pem
+*.key
+.env
+.env.*
+ssh_host_*
+id_rsa*
+id_ed25519*
+# Fetched code stays local; only these authored validation sources are archived.
+/sources/*
+!/sources/browser-ffmpeg61-validation/
+/sources/browser-ffmpeg61-validation/input/
+/evidence/jwm-reflow/*.tar.*
+/evidence/jwm-reflow/qa/jwm-2.4.6/

@@ -1,0 +1,159 @@
+#!/usr/bin/env python3
+"""Own a PulseAudio sink that never maps this stock driver's PCM data buffer."""
+from pathlib import Path
+import fcntl
+import json
+import os
+import signal
+import subprocess
+import sys
+import time
+
+RUN = Path('/run/asus-goodix-audio')
+CONFIG = '''.fail
+load-module module-alsa-sink device=hw:0,0 sink_name=asus_dl1_rw mmap=0 tsched=0 format=s16le rate=48000 channels=2
+load-module module-native-protocol-unix
+set-default-sink asus_dl1_rw
+load-module module-suspend-on-idle timeout=5
+'''
+GUARD = '# asus-alsa-rw-guard-v1\npcm.!default { type hw card 0 device 0 }\nctl.!default { type hw card 0 }\n'
+ENV = dict(os.environ, XDG_RUNTIME_DIR='/run/user/0', PULSE_SERVER='unix:/run/user/0/pulse/native')
+COMMAND = ['pulseaudio', '-n', '-F', str(RUN/'serial.pa'), '--daemonize=no',
+           '--exit-idle-time=-1', '--disallow-exit', '--disallow-module-loading',
+           '--use-pid-file=no', '--realtime=no', '--high-priority=no',
+           '--log-target=file:'+str(RUN/'pulse.log'), '--log-level=info']
+
+
+def process_start(pid):
+    try:
+        fields = Path('/proc', str(pid), 'stat').read_text().rsplit(')', 1)[1].split()
+        if fields[0] == 'Z':
+            return None
+        return fields[19]
+    except FileNotFoundError:
+        return None
+
+
+def owned(state):
+    if state['boot_id'] != Path('/proc/sys/kernel/random/boot_id').read_text().strip():
+        return False
+    pid = state['pid']
+    if process_start(pid) != state['start']:
+        return False
+    assert Path('/proc', str(pid), 'exe').readlink() == Path('/usr/bin/pulseaudio')
+    args = Path('/proc', str(pid), 'cmdline').read_bytes().split(b'\0')
+    assert args[:-1] == [part.encode() for part in COMMAND]
+    return True
+
+
+def amps_off():
+    for name in ('Ext_Speaker_Amp_Switch', 'Speaker_Amp_Switch'):
+        value = subprocess.check_output(['amixer', '-c', '0', 'cget', 'name='+name], text=True)
+        assert ': values=0' in value, 'Speaker route must be off'
+
+
+def verify_sink(state):
+    assert owned(state), 'Owned PulseAudio process unavailable'
+    assert (RUN/'serial.pa').read_text() == CONFIG
+    sinks = subprocess.check_output(['pactl', 'list', 'sinks'], env=ENV, text=True, timeout=3)
+    blocks = sinks.split('Sink #')[1:]
+    assert len(blocks) == 1 and 'Name: asus_dl1_rw' in blocks[0]
+    sink_state = next(line.split(':', 1)[1].strip() for line in blocks[0].splitlines()
+                      if line.strip().startswith('State:'))
+    assert sink_state in ('RUNNING', 'IDLE', 'SUSPENDED')
+    assert 'device.access_mode = "serial"' in sinks
+    params = Path('/proc/asound/card0/pcm0p/sub0/hw_params').read_text()
+    if params.strip() == 'closed':
+        assert sink_state == 'SUSPENDED', 'PCM closed without a suspended sink'
+    else:
+        for expected in ('access: RW_INTERLEAVED', 'format: S16_LE', 'rate: 48000', 'channels: 2'):
+            assert expected in params, params
+        pcm_status = Path('/proc/asound/card0/pcm0p/sub0/status').read_text()
+        owner = next(line.split(':', 1)[1].strip() for line in pcm_status.splitlines()
+                     if line.startswith('owner_pid'))
+        tgid = next(line.split(':', 1)[1].strip()
+                    for line in Path('/proc', owner, 'status').read_text().splitlines()
+                    if line.startswith('Tgid:'))
+        assert int(tgid) == state['pid'], 'PCM belongs to another process'
+    for line in Path('/proc', str(state['pid']), 'maps').read_text().splitlines():
+        if '/dev/snd/pcm' in line:
+            assert int(line.split()[2], 16) in (0x80000000, 0x81000000), line
+    assert 'plug:' not in (RUN/'pulse.log').read_text()
+    return sink_state
+
+
+def stop(state):
+    if owned(state):
+        os.kill(state['pid'], signal.SIGTERM)
+        for _ in range(50):
+            if not owned(state):
+                break
+            time.sleep(.1)
+        else:
+            raise RuntimeError('PulseAudio did not stop after TERM')
+    assert Path('/proc/asound/card0/pcm0p/sub0/status').read_text().strip() == 'closed'
+    amps_off()
+    (RUN/'state.json').unlink(missing_ok=True)
+
+
+def main():
+    assert len(sys.argv) == 2 and sys.argv[1] in ('start', 'stop', 'status')
+    assert os.getuid() == 0 and os.uname().release == '3.18.35'
+    assert Path('/etc/asound.conf').read_text() == GUARD
+    RUN.mkdir(mode=0o700, exist_ok=True)
+    assert not RUN.is_symlink()
+    with (RUN/'lock').open('a') as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        saved = RUN/'state.json'
+        state = json.loads(saved.read_text()) if saved.exists() else None
+        action = sys.argv[1]
+        if action == 'stop':
+            if state:
+                stop(state)
+            print('AUDIO_STOPPED')
+            return
+        if state and owned(state):
+            sink_state = verify_sink(state)
+            print('AUDIO_RW_READY', state['pid'], sink_state)
+            return
+        assert action == 'start', 'Audio is stopped'
+        amps_off()
+        assert Path('/proc/asound/card0/pcm0p/sub0/status').read_text().strip() == 'closed'
+        for proc in Path('/proc').iterdir():
+            if not proc.name.isdecimal():
+                continue
+            try:
+                assert (proc/'exe').readlink() != Path('/usr/bin/pulseaudio'), 'Unowned PulseAudio exists'
+            except FileNotFoundError:
+                pass
+        runtime = Path('/run/user/0')
+        assert runtime.is_dir() and not runtime.is_symlink() and runtime.stat().st_uid == 0
+        (RUN/'serial.pa').write_text(CONFIG)
+        with (RUN/'launcher.log').open('wb') as log:
+            child = subprocess.Popen(COMMAND, env=ENV, stdin=subprocess.DEVNULL,
+                                     stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
+        state = {'pid': child.pid, 'start': process_start(child.pid),
+                 'boot_id': Path('/proc/sys/kernel/random/boot_id').read_text().strip()}
+        try:
+            for _ in range(80):
+                assert child.poll() is None, 'Read audio launcher log'
+                if subprocess.run(['pactl', 'info'], env=ENV, capture_output=True, timeout=2).returncode == 0:
+                    break
+                time.sleep(.1)
+            else:
+                raise RuntimeError('Audio socket not ready')
+            sink_state = verify_sink(state)
+            amps_off()
+            temporary = saved.with_suffix('.new')
+            temporary.write_text(json.dumps(state)+'\n')
+            temporary.replace(saved)
+        except BaseException:
+            if owned(state):
+                child.terminate()
+                child.wait(timeout=5)
+            raise
+        print('AUDIO_RW_READY', child.pid, sink_state)
+
+
+if __name__ == '__main__':
+    main()

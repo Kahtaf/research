@@ -1,0 +1,3 @@
+patching file 'src/place.c'
+patching file 'src/place.h'
+patching file 'src/desktop.c'

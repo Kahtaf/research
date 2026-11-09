@@ -1,0 +1,31 @@
+#!/bin/sh
+# SPDX-License-Identifier: GPL-3.0-only
+set -eu
+[ -n "${DBUS_SESSION_BUS_ADDRESS:-}" ]
+case "${1:-start}" in
+    toggle)
+        exec python3 - <<'PY'
+import dbus
+keyboard=dbus.SessionBus().get_object('org.onboard.Onboard','/org/onboard/Onboard/Keyboard')
+dbus.Interface(keyboard,'org.onboard.Onboard.Keyboard').ToggleVisible()
+PY
+        ;;
+    start) ;;
+    *) echo 'Usage: asus-goodix-osk [start|toggle]' >&2; exit 2;;
+esac
+export GNOME_ACCESSIBILITY=1 GSETTINGS_BACKEND=dconf
+unset NO_AT_BRIDGE
+dbus-update-activation-environment DISPLAY XAUTHORITY XDG_RUNTIME_DIR GNOME_ACCESSIBILITY GSETTINGS_BACKEND
+gsettings set org.gnome.desktop.interface toolkit-accessibility true
+gsettings set org.onboard.auto-show enabled true
+gsettings set org.onboard.window docking-enabled true
+gsettings set org.onboard.window docking-edge bottom
+gsettings set org.onboard.window docking-shrink-workarea true
+gsettings set org.onboard.window.portrait dock-height 280
+gsettings set org.onboard.window.landscape dock-height 280
+gsettings set org.onboard.auto-show reposition-method-docked none
+gsettings set org.onboard.auto-show keyboard-device-detection-enabled false
+gsettings set org.onboard.auto-show tablet-mode-detection-enabled false
+gsettings set org.onboard.auto-show hide-on-key-press false
+gsettings set org.onboard layout Compact
+exec onboard

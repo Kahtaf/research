@@ -1,0 +1,17 @@
+{
+  "scope": "offline exact saved LK analysis; no device operation",
+  "official_lk_bytes": 418048,
+  "official_lk_sha256": "c5b5017ee3efdf018d9b6be7db978f29365c30e60a3fb9173660fda699f7b765",
+  "saved_lk_bytes": 524288,
+  "saved_lk_sha256": "65b7783ea392334f530fe43a341415abf9a2b00358bd73697f940f5df287f348",
+  "saved_prefix_equals_official": true,
+  "saved_tail_zero": true,
+  "runtime_base": "0x41e00000",
+  "file_offset_formula": "address - runtime_base + 512",
+  "boot_mode_pointer_slot": "0x41e652f4",
+  "boot_mode_ram_address": "0x41e68500",
+  "mode_2_dispatch_target": "0x41e1e006",
+  "bcb_clean_sha256": "e5a00aa9991ac8a5ee3109844d84a55583bd20572ad3ffcd42792f3c36b183ad",
+  "bcb_clean_2048_all_zero": true,
+  "physical_persistent_selection_verified": false
+}

@@ -1,0 +1,17 @@
+{
+  "status": "OWNER_PHYSICAL_NATIVE_TOUCH_PASS",
+  "input": "native libinput",
+  "xinput_direct_contacts": 16,
+  "owner_scrolling": true,
+  "owner_pinch_zoom": true,
+  "owner_typing_done": true,
+  "browser_max_contacts": 2,
+  "browser_max_scroll_y": 1320,
+  "browser_max_scale": 3.218343734741211,
+  "browser_min_scale": 1,
+  "browser_typed_ok": true,
+  "pointer_types": [
+    "touch"
+  ],
+  "subsequent_ordinary_boot": "PASS: native16touch, automatickeyboard, WiFi/SSH/dashboard/HTTPS"
+}

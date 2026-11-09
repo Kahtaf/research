@@ -1,0 +1,93 @@
+--- a/src/place.c
++++ b/src/place.c
+@@ -16,6 +16,7 @@
+ #include "settings.h"
+ #include "clientlist.h"
+ #include "misc.h"
++#include "event.h"
+ 
+ typedef struct Strut {
+    ClientNode *client;
+@@ -41,7 +42,6 @@
+ static void SubtractStrutBounds(BoundingBox *box, const ClientNode *np);
+ static void SubtractBounds(const BoundingBox *src, BoundingBox *dest);
+ static void SubtractTrayBounds(BoundingBox *box, unsigned int layer);
+-static void SetWorkarea(void);
+ 
+ /** Startup placement. */
+ void StartupPlacement(void)
+@@ -967,4 +967,43 @@
+                     (unsigned char*)array, settings.desktopCount * 4);
+ 
+    ReleaseStack(array);
+-}
++
++   /* Reflow without MaximizeClient(), which raises and focuses the client.
++    * PlaceMaximizedClient() overwrites restore geometry, so save it here.
++    * Inactive desktops must not use the current desktop's struts.
++    */
++   for(x = 0; x < LAYER_COUNT; x++) {
++      ClientNode *np;
++      for(np = nodes[x]; np; np = np->next) {
++         BoundingBox before, restore;
++         unsigned int status;
++         if(!np->state.maxFlags || !IsClientOnCurrentDesktop(np)
++            || (np->state.status & STAT_FULLSCREEN)) {
++            continue;
++         }
++         before.x = np->x;
++         before.y = np->y;
++         before.width = np->width;
++         before.height = np->height;
++         restore.x = np->oldx;
++         restore.y = np->oldy;
++         restore.width = np->oldWidth;
++         restore.height = np->oldHeight;
++         status = np->state.status;
++         np->state.status &= ~STAT_SHADED;
++         PlaceMaximizedClient(np, np->state.maxFlags);
++         np->state.status = status;
++         np->oldx = restore.x;
++         np->oldy = restore.y;
++         np->oldWidth = restore.width;
++         np->oldHeight = restore.height;
++         if(before.x != np->x || before.y != np->y
++            || before.width != np->width || before.height != np->height) {
++            ResetBorder(np);
++            DrawBorder(np);
++            SendConfigureEvent(np);
++            RequirePagerUpdate();
++         }
++      }
++   }
++}
+--- a/src/place.h
++++ b/src/place.h
+@@ -29,6 +29,9 @@
+ void ShutdownPlacement(void);
+ #define DestroyPlacement()    (void)(0)
+ /*@}*/
++
++/** Update workarea and reflow maximized clients on the current desktop. */
++void SetWorkarea(void);
+ 
+ /** Remove struts associated with a client.
+  * @param np The client.
+--- a/src/desktop.c
++++ b/src/desktop.c
+@@ -21,6 +21,7 @@
+ #include "grab.h"
+ #include "event.h"
+ #include "tray.h"
++#include "place.h"
+ 
+ static char **desktopNames = NULL;
+ static char *showingDesktop = NULL;
+@@ -197,6 +198,7 @@
+ 
+    previousDesktop = currentDesktop;
+    currentDesktop = desktop;
++   SetWorkarea();
+ 
+    SetCardinalAtom(rootWindow, ATOM_NET_CURRENT_DESKTOP, currentDesktop);
+    SetCardinalAtom(rootWindow, ATOM_NET_SHOWING_DESKTOP,

@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-08T18:07:58.424005+00:00",
+  "handoff_files_present": true,
+  "canonical_backup_sizes_match": {
+    "recovery.img": true,
+    "boot.img": true,
+    "system.img": true
+  },
+  "latest_diagnostic_sha256": "b3ff63a119f791e8d38ab75d2586aba52cf77086026cdfb7ff3fab706d1474c1",
+  "retained_stock_GPL_source": true,
+  "research_git_checkout_preserved": true,
+  "remaining_project_command_matches": [],
+  "free_bytes": 28963393536,
+  "no_device_operations_in_handoff": true,
+  "goal_last_observed": "paused; UI clear command queued for handback",
+  "workspace_root_finder_metadata_removed": true,
+  "workspace_root_files": [
+    "AGENTS.md"
+  ]
+}

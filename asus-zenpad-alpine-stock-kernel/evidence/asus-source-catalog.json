@@ -1,0 +1,25 @@
+{
+  "source_url": "https://www.asus.com/supportonly/asus%20zenpad%208.0%20(z380m)/helpdesk_download/",
+  "model": "ASUS ZenPad8.0 Z380M",
+  "source_listings": [
+    {
+      "version": "V4_7_0",
+      "date": "2017-01-05",
+      "size_mb": 682.99
+    },
+    {
+      "version": "V4_2_0",
+      "date": "2016-08-08",
+      "size_mb": 683.05
+    },
+    {
+      "version": "V4_1_1",
+      "date": "2016-07-25",
+      "size_mb": 682.75
+    }
+  ],
+  "matching_2018_V5_3_20_source_listed": false,
+  "binary_firmware_version": "5.3.20.0",
+  "binary_kernel_build_date": "2018-08-09",
+  "new_downloads": false
+}

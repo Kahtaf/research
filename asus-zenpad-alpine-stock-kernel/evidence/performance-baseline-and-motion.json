@@ -1,0 +1,51 @@
+{
+  "status": "baseline_and_reduced_motion_verified",
+  "baseline": {
+    "duration_seconds": 6.112305538999863,
+    "cpu_idle_percent": 98.07,
+    "cpu_iowait_percent": 0.0,
+    "memory": {
+      "MemTotal": "2000192 kB",
+      "MemAvailable": "1429676 kB",
+      "Cached": "963012 kB",
+      "SwapTotal": "0 kB",
+      "SwapFree": "0 kB",
+      "Dirty": "4 kB",
+      "Writeback": "0 kB"
+    },
+    "online_cpu_idle": "0",
+    "governor": "interactive",
+    "root_mount": "ext4,noatime,data=ordered",
+    "display": "Xorg fbdev shadow framebuffer",
+    "per_process_io": "unavailable; zeros in the raw collector are not evidence of no IO"
+  },
+  "cpu_load_check": {
+    "two_workers_exit_status": [
+      0,
+      0
+    ],
+    "online_during_load": "0-2",
+    "control_writes": false,
+    "finding": "stock hps_main automatically onlines secondary CPUs; leave policy unchanged"
+  },
+  "installed_change": {
+    "pref": "ui.prefersReducedMotion",
+    "value": 1,
+    "default_sha256": "bdd58758b57a2a25833a34c4f227c56c636bcaf8bf2663030641b9ef543c7a84",
+    "browser_pid_after": 4603,
+    "closed_history_integrity": "ok",
+    "retained_history_entries": 23,
+    "actual_matchMedia_reduce": true,
+    "actual_respecting_css_animation": "none",
+    "actual_request_status": 200,
+    "probe_stopped": true,
+    "dashboard_restored": true
+  },
+  "speedup_claim": null,
+  "scope_limits": [
+    "Idle baseline only; not a busy-site performance measurement",
+    "No GPU or CPU policy changes",
+    "No overall speedup percentage claimed",
+    "Touch gestures retained in configuration; no new physical confirmation obtained"
+  ]
+}

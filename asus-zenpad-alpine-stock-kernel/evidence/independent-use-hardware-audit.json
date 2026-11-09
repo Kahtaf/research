@@ -1,0 +1,24 @@
+{
+  "kernel": "3.18.35",
+  "keypad": {
+    "event": "event1",
+    "name": "mtk-kpd",
+    "physical_keys": {
+      "power": true,
+      "volume_up": true,
+      "volume_down": true,
+      "sleep": false
+    }
+  },
+  "keypad_capability_is_not_physical_press_test": true,
+  "desktop_key_actions_configured": false,
+  "xorg_auto_add_devices": false,
+  "bluetooth": {
+    "sys_class_present": false,
+    "hci_names": [],
+    "vendor_char_nodes": [],
+    "rfkill": []
+  },
+  "bluez_tools_installed": false,
+  "new_hardware_activation_or_configuration_writes": false
+}

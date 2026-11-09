@@ -1,0 +1,183 @@
+#!/bin/sh
+# SPDX-License-Identifier: GPL-3.0-only
+# Uses z380m-alpine's GPL-3.0-only touch bridge and adapted Xorg configuration.
+set -eu
+seconds=${1:-20}
+case "$seconds" in ''|*[!0-9]*) echo 'Usage: asus-goodix-desktop [0=persistent | 5..120 seconds]' >&2; exit 2;; esac
+[ "$seconds" -eq 0 ] || { [ "$seconds" -ge 5 ] && [ "$seconds" -le 120 ]; }
+if [ -f /etc/asus-goodix/automatic-keyboard ]; then
+    [ "$(cat /etc/asus-goodix/automatic-keyboard)" = onboard-v1 ]
+    command -v onboard >/dev/null
+    export ASUS_OSK=onboard GNOME_ACCESSIBILITY=1 GSETTINGS_BACKEND=dconf
+    unset NO_AT_BRIDGE
+    if [ "${ASUS_GUI_SESSION_BUS:-}" != 1 ]; then
+        exec dbus-run-session -- env ASUS_GUI_SESSION_BUS=1 "$0" "$seconds"
+    fi
+    [ -n "${DBUS_SESSION_BUS_ADDRESS:-}" ]
+fi
+[ -c /dev/fb0 ] && [ -c /dev/uinput ]
+mkdir -p /dev/shm /run/user/0
+case "$(awk '$2 == "/dev/shm" {print $3}' /proc/mounts)" in
+    tmpfs) ;;
+    '') mount -t tmpfs -o size=192m,mode=1777 asus-browser-shm /dev/shm ;;
+    *) echo '/dev/shm already has an unexpected mount; inspect it before starting Firefox' >&2; exit 1 ;;
+esac
+chmod 1777 /dev/shm
+chmod 700 /run/user/0
+[ ! -e /tmp/.X11-unix/X0 ] || { echo 'An X display already owns :0' >&2; exit 1; }
+TOUCH=$(python3 /usr/local/bin/goodix-preflight.py)
+mkdir -p /run/asus-goodix /dev/input /tmp/.X11-unix
+chmod 700 /run/asus-goodix
+[ "$seconds" -ne 0 ] || echo $$ > /run/asus-goodix/desktop.pid
+XPID= BPID= JPID= TPID= NPID= SPID= KPID= AUDIO_STARTED=0
+is_our_child() {
+    [ -n "$1" ] && [ -r "/proc/$1/status" ] &&
+        [ "$(awk '/^PPid:/ {print $2}' "/proc/$1/status" 2>/dev/null)" = "$$" ]
+}
+cleanup() {
+    trap - EXIT INT TERM HUP
+    set +e
+    for child in "$SPID" "$KPID" "$NPID" "$TPID" "$JPID" "$XPID" "$BPID"; do
+        is_our_child "$child" && kill "$child" 2>/dev/null
+    done
+    # Xorg needs time to release the framebuffer and unlink its display socket.
+    for attempt in $(seq 1 50); do
+        is_our_child "$XPID" || break
+        sleep 0.1
+    done
+    # Preserve a Firefox profile even if its parent lingers after TERM.
+    for child in "$SPID" "$KPID" "$TPID" "$JPID" "$XPID" "$BPID"; do
+        is_our_child "$child" && kill -9 "$child" 2>/dev/null
+    done
+    if [ "$AUDIO_STARTED" = 1 ]; then
+        /usr/local/bin/asus-goodix-audio stop
+    fi
+    if [ "$seconds" -eq 0 ] && [ "$(cat /run/asus-goodix/desktop.pid 2>/dev/null)" = "$$" ]; then
+        rm -f /run/asus-goodix/desktop.pid
+    fi
+    rm -f /dev/input/asus-goodix-pointer /dev/input/asus-goodix-native /run/asus-goodix/Xauthority
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+trap 'exit 129' HUP
+if [ -f /etc/asus-goodix/audio ]; then
+    [ "$(cat /etc/asus-goodix/audio)" = pulse-rw-v1 ]
+    /usr/local/bin/asus-goodix-audio start
+    AUDIO_STARTED=1
+fi
+xconfig=/etc/X11/asus-goodix.conf
+export ASUS_TOUCH_MODE=pointer
+if [ -f /etc/asus-goodix/native-touch ]; then
+    [ "$(cat /etc/asus-goodix/native-touch)" = libinput-v1 ]
+    python3 /usr/local/bin/goodix-native-input.py "$TOUCH"
+    xconfig=/run/asus-goodix/native-xorg.conf
+    rotation=/etc/asus-goodix/rotation
+    if [ -f /run/asus-goodix/rotation-trial/REQUEST ]; then
+        rotation=/run/asus-goodix/rotation-trial/REQUEST
+    fi
+    if [ -f "$rotation" ]; then
+        python3 /usr/local/bin/goodix-xorg-config.py /etc/X11/asus-goodix-libinput.conf \
+            --device "$TOUCH" --rotation-file "$rotation" > "$xconfig"
+    else
+        # Keep the already qualified portrait path independent of rotation tooling.
+        sed "s|@GOODIX_DEVICE@|$TOUCH|g" /etc/X11/asus-goodix-libinput.conf > "$xconfig"
+    fi
+    export ASUS_TOUCH_MODE=libinput
+else
+    /usr/local/bin/z380m-touchbridge run -i "$TOUCH" -v > /run/asus-goodix/bridge.log 2>&1 &
+    BPID=$!
+    VDEV=
+    for attempt in 1 2 3 4 5 6 7 8 9 10; do
+        for entry in /sys/class/input/event*; do
+            [ -r "$entry/device/name" ] || continue
+            if [ "$(cat "$entry/device/name")" = z380m-virtual-touch ]; then
+                VDEV=${entry##*/}
+                break
+            fi
+        done
+        [ -n "$VDEV" ] && break
+        kill -0 "$BPID"
+        sleep 0.2
+    done
+    [ -n "$VDEV" ] || { echo 'Bridge virtual input was not created' >&2; exit 1; }
+    if [ ! -c "/dev/input/$VDEV" ]; then
+        numbers=$(cat "/sys/class/input/$VDEV/dev")
+        mknod "/dev/input/$VDEV" c "${numbers%:*}" "${numbers#*:}"
+    fi
+    ln -sfn "/dev/input/$VDEV" /dev/input/asus-goodix-pointer
+fi
+if grep -q vtmaster /proc/tty/drivers; then
+    for minor in 0 1; do [ -c "/dev/tty$minor" ] || mknod "/dev/tty$minor" c 4 "$minor"; done
+else
+    [ -e /dev/tty1 ] || ln -s /dev/null /dev/tty1
+fi
+export DISPLAY=:0 XAUTHORITY=/run/asus-goodix/Xauthority HOME=/root LANG=C.UTF-8
+export XDG_RUNTIME_DIR=/run/user/0
+export ASUS_BROWSER=${ASUS_BROWSER:-netsurf}
+python3 /usr/local/bin/goodix-menu.py /etc/jwm/asus-goodix.xml /run/asus-goodix/jwm.xml
+cookie=$(python3 -c 'import secrets; print(secrets.token_hex(16))')
+xauth -f "$XAUTHORITY" add "$DISPLAY" . "$cookie"
+Xorg :0 -sharevts -novtswitch vt1 -nolisten tcp -noreset -auth "$XAUTHORITY" \
+    -config "$xconfig" -logfile /run/asus-goodix/Xorg.log \
+    > /run/asus-goodix/Xorg.stderr 2>&1 &
+XPID=$!
+for attempt in $(seq 1 50); do
+    [ -S /tmp/.X11-unix/X0 ] && break
+    kill -0 "$XPID"
+    sleep 0.2
+done
+[ -S /tmp/.X11-unix/X0 ]
+xsetroot -solid '#162536' -cursor_name left_ptr
+xset s off s noblank -dpms || true
+wm=jwm
+if [ -f /etc/asus-goodix/jwm-workarea ]; then
+    [ "$(cat /etc/asus-goodix/jwm-workarea)" = jwm-2.4.6-workarea-v1 ]
+    [ -x /usr/local/bin/asus-jwm ]
+    wm=/usr/local/bin/asus-jwm
+fi
+"$wm" -f /run/asus-goodix/jwm.xml > /run/asus-goodix/jwm.log 2>&1 &
+JPID=$!
+if [ "${ASUS_OSK:-}" = onboard ]; then
+    /usr/local/bin/asus-goodix-osk start > /run/asus-goodix/onboard.log 2>&1 &
+    KPID=$!
+    echo "$KPID" > /run/asus-goodix/onboard.pid
+fi
+if [ "$seconds" -ne 0 ]; then
+    xterm -fa monospace -fs 16 -geometry 55x18+12+12 -title 'Alpine on ASUS stock kernel' \
+        -e sh -c 'cat /etc/alpine-release; uname -rm; echo; echo "Standalone Linux desktop; timed session."; exec sh' \
+        > /run/asus-goodix/xterm.log 2>&1 &
+    TPID=$!
+fi
+if [ -n "${ASUS_DASHBOARD_URL:-}" ] && command -v "$ASUS_BROWSER" >/dev/null 2>&1; then
+    /usr/local/bin/asus-goodix-browser > /run/asus-goodix/browser.log 2>&1 &
+    NPID=$!
+    if command -v xdotool >/dev/null 2>&1; then
+        (
+            for attempt in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20; do
+                if windows=$(xdotool search --onlyvisible --pid "$NPID" 2>/dev/null); then
+                    printf '%s\n' "$windows" > /run/asus-goodix/browser-window-ids.txt
+                    # JWM's normal-window rule applies when the window maps; record only real detected windows.
+                    for window in $windows; do
+                        xdotool getwindowname "$window"
+                        xdotool getwindowgeometry --shell "$window"
+                    done > /run/asus-goodix/browser-windows.txt
+                    exit 0
+                fi
+                sleep 1
+            done
+            echo 'No visible browser window detected within 20 seconds' >&2
+        ) > /run/asus-goodix/browser-detect.log 2>&1 &
+        SPID=$!
+    fi
+fi
+if [ "$seconds" -eq 0 ]; then
+    echo 'Standalone desktop running until Xorg exits or this session is stopped'
+    xstatus=0
+    wait "$XPID" || xstatus=$?
+    exit "$xstatus"
+fi
+sleep "$seconds"
+kill -0 "$XPID"
+kill -0 "$JPID"
+echo 'XORG_JWM_SURVIVED; physical touch/click and colour correctness need observation'

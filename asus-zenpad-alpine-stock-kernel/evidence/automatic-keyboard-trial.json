@@ -1,0 +1,21 @@
+{
+  "status": "ISOLATED_SOFTWARE_WORKLOAD_PASS_ON_ACTUAL_TABLET",
+  "alpine": "3.24.4 aarch64",
+  "kernel": "3.18.35",
+  "onboard": "1.4.4.2-r0",
+  "original_firefox_profile_used": false,
+  "bottom_docking": true,
+  "keyboard_geometry_observed": {
+    "x": 0,
+    "y": 1032,
+    "width": 800,
+    "height": 200
+  },
+  "onboard_key_clicked_using": "XTEST mouse event",
+  "physical_keyboard_typing": "NOT_YET_TESTED",
+  "jwm_dynamic_workarea_resize": "FAILED; correction pending",
+  "onboard_key_delivered": "a",
+  "focus_preserved": true,
+  "auto_hide_noneditable": true,
+  "auto_show_input_refocus": true
+}

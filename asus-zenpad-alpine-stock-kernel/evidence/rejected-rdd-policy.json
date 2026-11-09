@@ -1,0 +1,8 @@
+{
+  "status": "REJECTED_AND_REMOVED",
+  "tested_preference": "media.utility-process.enabled=false (default policy)",
+  "failure": "NS_ERROR_DOM_MEDIA_DENIED_IN_NON_UTILITY: RDD is not allowed to perform audio decoding",
+  "source_gate": "RemoteDecoderManagerChild.cpp:343 requires media.allow-audio-non-utility even when utility-process.enabled=false",
+  "rollback": "Exact known policy removed; normal browser restarted; profile quick_check=ok; 15 retained history entries",
+  "isolation": "media.allow-audio-non-utility was never enabled; no filter or kernel changes"
+}

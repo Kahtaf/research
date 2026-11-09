@@ -1,0 +1,15 @@
+# Landscape preparation — offline only
+
+Subsequent result: this preparation was deployed as experiment46. CW rendered at1280×800 with native16-touch; no physical input was recorded before the watchdog restored800×1280 native portrait. No persistent rotation marker exists. See [the current result](media-second-result.md). The offline-only statements below describe preparation history.
+
+2026-11-08. Follow-up to [Opus rotation source review](opus-stock-fbdev-rotation.md). No rotation or accelerometer operation was performed on the tablet.
+
+`overlay/goodix/bin/goodix-xorg-config.py` fills the canonical Goodix device path and accepts only the reviewed `cw-v1` marker. Its landscape output differs from native portrait by exactly two lines: fbdev Rotate=CW and libinput CalibrationMatrix=`0 1 0 -1 0 1 0 0 1`. It requires the qualified32-bit framebuffer template and rejects device aliases and unknown rotation strings. Offline rendering verified these differences and identical portrait output; this does not qualify the display, mapping, performance or physical keyboard in landscape.
+
+The source desktop helper selects this generator only when a known rotation marker exists. The currently qualified no-marker portrait rendering keeps its existing sed path and has no new tool dependency. A RAM-only `/run/asus-goodix/rotation-trial/REQUEST` takes precedence over `/etc/asus-goodix/rotation`. Neither exists on the current tablet. These edits are host-only and have not been deployed.
+
+`scripts/rotation-watchdog.py` is prepared to remove the RAM request and restart native portrait unless accepted. It provides180seconds for startup, then six minutes after an explicit browser-ready receipt. Acceptance requires readiness. A reboot also clears the request, unlike a persistent unqualified orientation marker. It never removes the native-input marker, touches BCB/recovery, writes a sensor/calibration attribute or kills an owner browser profile with SIGKILL. Rollback failure is reported in RAM state for inspection rather than starting another display over a live socket.
+
+Before use, stage the new helper alongside the current desktop and guarded start helper, back up the current userspace helpers privately, and ensure the active speaker test is finished. Start the watchdog and confirm its exact live PID before requesting the rotated desktop. Verify Xorg rotation/shadow log,1280×800 root, direct16-contact class and readiness before opening the physical-check window. The owner gate remains the reviewed four corners/centre, gestures, bottom keyboard and acceptable scrolling; then explicitly demonstrate restoration to portrait. Do not persist a rotation marker or hook the accelerometer before this passes.
+
+Automatic rotation is not implemented. fbdev reads Rotate only at X startup, so this candidate entails a desktop restart per orientation switch. Any automatic policy must account for that interruption; the static landscape proof does not establish a satisfactory automatic-rotation experience.

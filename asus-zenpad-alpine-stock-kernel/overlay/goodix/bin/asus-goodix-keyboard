@@ -1,0 +1,16 @@
+#!/bin/sh
+# SPDX-License-Identifier: GPL-3.0-only
+set -eu
+if [ "${ASUS_OSK:-}" = onboard ]; then
+    exec /usr/local/bin/asus-goodix-osk toggle
+fi
+for keyboard in svkbd-mobile-intl svkbd-mobile svkbd-mobile-plain svkbd-en matchbox-keyboard; do
+    if command -v "$keyboard" >/dev/null 2>&1; then
+        case "$keyboard" in
+            svkbd-*) exec "$keyboard" -d ;;
+            *) exec "$keyboard" ;;
+        esac
+    fi
+done
+echo 'No supported on-screen keyboard is installed' >&2
+exit 1

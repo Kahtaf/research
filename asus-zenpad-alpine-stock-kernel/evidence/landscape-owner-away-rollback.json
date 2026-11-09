@@ -1,0 +1,14 @@
+{
+  "status": "RESTORED_NATIVE_PORTRAIT",
+  "orientation": "800x1280",
+  "physical_check": "DEFERRED_OWNER_AWAY",
+  "handling_constraint": "rotating tablet can disconnect unreliable USB port",
+  "physical_events": {
+    "corner_hits": [],
+    "max_contacts": 0,
+    "typed_ok": false
+  },
+  "accepted": false,
+  "persistent_rotation_selected": false,
+  "wireless_control": "pinned SSH retained"
+}

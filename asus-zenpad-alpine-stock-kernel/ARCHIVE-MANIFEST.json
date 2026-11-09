@@ -1,0 +1,2579 @@
+{
+  "status": "PAUSED_SOURCE_ONLY_ARCHIVE",
+  "date": "2026-11-09",
+  "working_spike": "2026-11-08-asus-alpine-stock-kernel",
+  "files": [
+    {
+      "path": ".gitignore",
+      "type": "file",
+      "bytes": 480,
+      "sha256": "9a4c4461a0587f98a6d996b7309e00cce7683366749b28defaca09cb33fcdd4c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "BUILD-INPUTS.md",
+      "type": "file",
+      "bytes": 4505,
+      "sha256": "f7e98041dff581f961131e5ef2fe74db16b2c1ba59a07750646a63a5a31c4ab3",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "MEMORY.md",
+      "type": "file",
+      "bytes": 16542,
+      "sha256": "35bf43702014d29e1f9af2c66b81dc9b0f5a86527add7f17135c9929ac4cde0f",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "PROMPT.md",
+      "type": "file",
+      "bytes": 3082,
+      "sha256": "a5d1556b95ccb5d48bdae718fc1ee339f3c8b54c2be0ea657ae1cb684a828fa6",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "README.md",
+      "type": "file",
+      "bytes": 4030,
+      "sha256": "db6b0c40021ffd490eda107a3769cfa3c613d2c75fc9236593495b1833fd250b",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "SOURCE-PRESERVATION.json",
+      "type": "file",
+      "bytes": 2145,
+      "sha256": "f2fe70a1a341333e0caef279feacaa4f23fe8f9617beb36cbc153ce01d57f05c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "STATE-AND-RESUME.md",
+      "type": "file",
+      "bytes": 6841,
+      "sha256": "50b75a181754c4dd7c0a2a9a40230a382608977347f1a947685c7aa9eb5d4005",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "UPSTREAM.md",
+      "type": "file",
+      "bytes": 2477,
+      "sha256": "c731b90b0b0d75738292db515d008c13077b324a7002780722553f3f94df8d5d",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/accelerometer-passive-result.json",
+      "type": "file",
+      "bytes": 311,
+      "sha256": "bbff5f21246774bdafa6260f6a6ba6bc81fb37a0e4a9b5adf5e670dc061fb51a",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/access-return-kernel-oops.json",
+      "type": "file",
+      "bytes": 796,
+      "sha256": "b0514c8d6d39d8754689de2e68443e54ae82c53f8352ad86092f7ece59d844c9",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/asus-source-catalog.json",
+      "type": "file",
+      "bytes": 601,
+      "sha256": "b5ffe96096adfb3428bd8db3f6185e599634f287f9f37955a72e328ebf8940c3",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/audio-idle-lifecycle.json",
+      "type": "file",
+      "bytes": 661,
+      "sha256": "d30c66d4c9bf25376d24183586d71fd97c8fe79777dcd928fc112d7eea9dc22e",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/automatic-keyboard-physical.json",
+      "type": "file",
+      "bytes": 617,
+      "sha256": "eec52fd0d39d17c855d97cec355d0ff04c09af8b677f0b7891f772daedc97ea8",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/automatic-keyboard-trial.json",
+      "type": "file",
+      "bytes": 607,
+      "sha256": "85c9309d0c0ca29b29875b6a3acda3948f73d2e0fb80ac5082c8bf8107fe2047",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/boot-control/exact-lk-identity.json",
+      "type": "file",
+      "bytes": 767,
+      "sha256": "4a0f9e3a8f02802cf775bdd0b0899dc0f3cd42cb82b596a2361fd35568a349c5",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/cleanup-summary.json",
+      "type": "file",
+      "bytes": 578,
+      "sha256": "5d5cd06e14c9dcb06e6e67bd8a3dd7d92874142d2bba991e9279b6d4f35dc8b8",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/dashboard-power-result.json",
+      "type": "file",
+      "bytes": 388,
+      "sha256": "fb138f50701b59edecdf6bbe8f3a7bcf3e6ef6a144952d794ad9f2dcff4c2de2",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/dhcp-renewal-proof.json",
+      "type": "file",
+      "bytes": 221,
+      "sha256": "ce262b9549fe3ccfa31c0b751f5b986fd85401617d2c696c25970e271db53ba2",
+      "original_local_mode": "0o600",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/ffmpeg61-offline-gates.json",
+      "type": "file",
+      "bytes": 1801,
+      "sha256": "94d45f4ce350b991db075c8e9854fab93412c764a16d12a17f1057827f5c0c57",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/final-handoff-check.json",
+      "type": "file",
+      "bytes": 656,
+      "sha256": "ae508d55d2947791686434365c4ae804ab342e76e0ce3c6c50c3a265acc26e98",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/independent-use-hardware-audit.json",
+      "type": "file",
+      "bytes": 562,
+      "sha256": "806b75ebd3e8ac48ddf8f419c63770a9918b3600fe0d37bc6544d49611ee777e",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/jwm-reflow/README.md",
+      "type": "file",
+      "bytes": 6450,
+      "sha256": "e8e0d8f0e84e4d1db2a9c758c69f9b4aa215aed9fea6673d45916cb598c92a45",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/jwm-reflow/provenance.json",
+      "type": "file",
+      "bytes": 700,
+      "sha256": "7401232c993c76abf542791cb7536c9efd434ae572335faa40be396c6775c307",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/jwm-reflow/qa/c-syntax.txt",
+      "type": "file",
+      "bytes": 844,
+      "sha256": "2ee277859cc41ccca3980391c2489b50aa321e217e43d36dce1d5ae4d1898c81",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/jwm-reflow/qa/patch-application.txt",
+      "type": "file",
+      "bytes": 86,
+      "sha256": "680a2d3c890ddd4bbde094958a194478d02d64777bb45d18d0cffa136db33a77",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/landscape-owner-away-rollback.json",
+      "type": "file",
+      "bytes": 397,
+      "sha256": "63fd40f90bdc53c4bbcda5f1182278397731fbdbe0ba2aa165971587a5aa2619",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/landscape-software-and-rollback.json",
+      "type": "file",
+      "bytes": 429,
+      "sha256": "d82a835d70d3f6da52ced467b25c704a122ad1d6458a5c69088750693741bc6c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/linux-default-install-receipt.json",
+      "type": "file",
+      "bytes": 497,
+      "sha256": "b9771114e9cc5357d0a888e7acbbd27e05795f935f7191dfd7eaf2784eebdc75",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/md32-passive-result.json",
+      "type": "file",
+      "bytes": 495,
+      "sha256": "1804754e695ab3f3f43e09752e741a1ef7d226c134713e8f8186d13784d56a96",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/media-first-split.json",
+      "type": "file",
+      "bytes": 1527,
+      "sha256": "d2ac7db5f0163463b7849119ef83e697d03bb596ad05456669626083dd899b75",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/native-touch-physical.json",
+      "type": "file",
+      "bytes": 490,
+      "sha256": "ba5b0d32c94dd07c035dca2ce84744f3e7872a26c709af0a1c7b06ce8a56b812",
+      "original_local_mode": "0o600",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/on-demand-speaker-check-playback.json",
+      "type": "file",
+      "bytes": 474,
+      "sha256": "e47102f616ae9cc5b3b590af02aadd38f2f6603ce34166fb808b413e29afc69b",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/on-demand-speaker-check-smoke.json",
+      "type": "file",
+      "bytes": 530,
+      "sha256": "a64ba21bed7455b645c286cf80db558ea3722a4abe8d64b8f2aa0bcd3725cf72",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/paused-capsule-manifest.json",
+      "type": "file",
+      "bytes": 3397,
+      "sha256": "1681a1f681dff856d0c85661548095364bedf10f0ef5807c05e48d5f3efc033e",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/performance-baseline-and-motion.json",
+      "type": "file",
+      "bytes": 1626,
+      "sha256": "1315b05f5eff5ba0e82858df6135723576f87ccf8de1f5fb896384bb7aa63260",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/private-ffmpeg61-playback.json",
+      "type": "file",
+      "bytes": 861,
+      "sha256": "99b5b9a41d7b7e7a135eb447c4a7a6264079d4f58000edd1c4507a517e0ff63f",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/recovery-capsule-permissions-build.json",
+      "type": "file",
+      "bytes": 2568,
+      "sha256": "1a483c1923e26789d694481ca4287b11ad9dd7d859caa217c419d7362d451ec2",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/recovery-deployment-plan.json",
+      "type": "file",
+      "bytes": 779,
+      "sha256": "6e5dcee7d535088ec011fce666122d76aabebe603d6b4a0079e2fbc4fb3932dc",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/recovery-deployment-receipt.json",
+      "type": "file",
+      "bytes": 832,
+      "sha256": "eabb070437b7d9f2e48393434eff16fea1ce5ccdee7840f2d4f804b69f482c06",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/recovery-persistent-final-build.json",
+      "type": "file",
+      "bytes": 3397,
+      "sha256": "583235ceff8703010fea6410ad97a99115039272118bec73b1db25c09d44323a",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/recovery-sd-final-build.json",
+      "type": "file",
+      "bytes": 3397,
+      "sha256": "1681a1f681dff856d0c85661548095364bedf10f0ef5807c05e48d5f3efc033e",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/recovery-sd-gui-build.json",
+      "type": "file",
+      "bytes": 3397,
+      "sha256": "945bd5d872dad89a6f6c571062333a17e8a3d2a6196dc081a93445602f90ddeb",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/recovery-state-build.json",
+      "type": "file",
+      "bytes": 2838,
+      "sha256": "d6fd4870389f981a8b47bbef1a8f2b4b25631851006bedf441f89efc1cd4a4d7",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/recovery-state-comment-fix-build.json",
+      "type": "file",
+      "bytes": 2838,
+      "sha256": "800d5ca8513c7e4107aa24016e8d2bf454a60abff11feee201c76c2c41e9dd95",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/rejected-rdd-policy.json",
+      "type": "file",
+      "bytes": 572,
+      "sha256": "db71a11c0f6887706bfe4a2bc0f8caecee91fac13620781fd49732504ee1ad10",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/sd-system-repeatboot-receipt.json",
+      "type": "file",
+      "bytes": 905,
+      "sha256": "49c136b53a34b3c7690c9aaec3ab290d2cec9734773aa93ce0a638c8f63d1e29",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/speaker-lifecycle-result.json",
+      "type": "file",
+      "bytes": 2328,
+      "sha256": "ffb59489f4f5bd3764eceea63b9a7e8d3f9f2042539626dbc7c522bab0d45cf1",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/speaker-ucm-parser.json",
+      "type": "file",
+      "bytes": 701,
+      "sha256": "3775f8ee1ba1f0b36e3e83db97aadfbff1856e5829b89b34ebc36d71fbec000d",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/stock-alsa-mmap-oops.txt",
+      "type": "file",
+      "bytes": 3094,
+      "sha256": "04bc4b4f36948144d16075ef36027cade0a93774ab07596fcf78899d2420ad28",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/stock-alsa-rw-browser-result.json",
+      "type": "file",
+      "bytes": 1077,
+      "sha256": "940c7a3f0efc9e9a078a2c869ceac13642212cd245b2776a7d1a86481c60dffd",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "evidence/youtube-muted-workload.json",
+      "type": "file",
+      "bytes": 460,
+      "sha256": "02773bd62e3c6820bf899d81405bbdda6b94e2cb5df4183eaf0ffebface7925b",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "licenses/jwm-2.4.6-MIT.txt",
+      "type": "file",
+      "bytes": 1074,
+      "sha256": "107063afcc62a07102659c2a1fd19867ca6dac48db6ea72346ac6c2eadbe8dbf",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "notes.md",
+      "type": "file",
+      "bytes": 2953,
+      "sha256": "bccf9f69aa6b5358771d9cd1e8d0f77900e55df919691dbf75c1af1c62c68085",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/LICENSE",
+      "type": "file",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/README.md",
+      "type": "file",
+      "bytes": 5256,
+      "sha256": "d41797b0884a760c7b06cbc3928bbae218ed957d028315b6852f07ae2669dcda",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/bin/asus-goodix-audio",
+      "type": "file",
+      "bytes": 6752,
+      "sha256": "0e5749f0a43776643924f08d6782888254746ecc289df794c11bbab23382ab00",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/bin/asus-goodix-browser",
+      "type": "file",
+      "bytes": 1999,
+      "sha256": "b351b34e0021965e0a600e989601ea25f5fb6ed9e4898bc1c8ffaf7284dfdc8f",
+      "original_local_mode": "0o755",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/bin/asus-goodix-desktop",
+      "type": "file",
+      "bytes": 7597,
+      "sha256": "f34e8653b69d797241ce4782b6358b313eab1af720cb6ec93b8cc4507ebeac9b",
+      "original_local_mode": "0o755",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/bin/asus-goodix-keyboard",
+      "type": "file",
+      "bytes": 491,
+      "sha256": "faa8041ace5ebcc608ba468bc1ae5b16f872feda2326f561df2ed116bf835128",
+      "original_local_mode": "0o755",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/bin/asus-goodix-osk",
+      "type": "file",
+      "bytes": 1349,
+      "sha256": "df961474e88b1dd54241aa4373249a1ee0a08026882c651befd13940622e0c1b",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/bin/asus-goodix-speaker-check",
+      "type": "file",
+      "bytes": 22710,
+      "sha256": "52e488f0b4130ad8c4e7e03761111efc395c14fbb18da83308b0c88103246283",
+      "original_local_mode": "0o755",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/bin/goodix-menu.py",
+      "type": "file",
+      "bytes": 979,
+      "sha256": "e2414a7a16664b6c915b5b57d2466d9d430c13374ec609f69740e8e035a44a04",
+      "original_local_mode": "0o755",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/bin/goodix-native-input.py",
+      "type": "file",
+      "bytes": 5813,
+      "sha256": "bb2a54abaed58774aeb4fb297281616e691cf605521afb8133970473e561c29b",
+      "original_local_mode": "0o755",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/bin/goodix-open-url.py",
+      "type": "file",
+      "bytes": 2842,
+      "sha256": "3406da06fef8575174d8af01bcc7a2dd0b6f0878fd1b3f55db6baddffb0848fd",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/bin/goodix-preflight.py",
+      "type": "file",
+      "bytes": 1391,
+      "sha256": "d2e671a89a6c0caa83149cca2cb55be49ec4b5a16a0e640372166a292e7de053",
+      "original_local_mode": "0o755",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/bin/goodix-xorg-config.py",
+      "type": "file",
+      "bytes": 1850,
+      "sha256": "05dfcaced28f0a224bff6cae3fede2d6d5cf928a94e13dc3d7a7c8be17bbdbf9",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/build-touchbridge.sh",
+      "type": "file",
+      "bytes": 981,
+      "sha256": "a9ded258d68c86807ffe1d53e80def5db70fea9661c694723f6c926365e8c271",
+      "original_local_mode": "0o755",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/etc/X11/asus-goodix-libinput.conf",
+      "type": "file",
+      "bytes": 1958,
+      "sha256": "ccb4d88c91a0a2869dabae25d8d2f7285513ded9235d4ea46a27e356c65f23c0",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/etc/X11/asus-goodix.conf",
+      "type": "file",
+      "bytes": 1956,
+      "sha256": "7567c67790d8aacbcb10a297ef6e55447d71472ce9db42a80d7e7fe591576f22",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/etc/asus-goodix/firefox-user.js",
+      "type": "file",
+      "bytes": 985,
+      "sha256": "bdd58758b57a2a25833a34c4f227c56c636bcaf8bf2663030641b9ef543c7a84",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/etc/jwm/asus-goodix.xml",
+      "type": "file",
+      "bytes": 781,
+      "sha256": "3635573edc35ff47d5a1cf4fce7050efe6c3214d9e9c76817a1a4cca6b38cc7d",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/jwm-workarea.patch",
+      "type": "file",
+      "bytes": 2857,
+      "sha256": "2c1c43d99057bc4469fde5473ef2e8bfd9dcba9558e01ac6143e200e378fb815",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/touchbridge-no-fallback.patch",
+      "type": "file",
+      "bytes": 2099,
+      "sha256": "87127affb5e1b05291492a357d4adeb293640f8031ebb5efdb862b54a5b2e068",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/ucm2/ASUS/Z380M/HiFi.conf",
+      "type": "file",
+      "bytes": 856,
+      "sha256": "f1ca7396d8570a21d9274514ce0dce08a26a93f2705e8fe2ab79b63f7dbcf191",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/ucm2/ASUS/Z380M/README.md",
+      "type": "file",
+      "bytes": 1597,
+      "sha256": "cd344a866e23f858558918e0e455904c2b76736a3f3fc63ba5bb40a1e2239cb7",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/ucm2/ASUS/Z380M/Z380M.conf",
+      "type": "file",
+      "bytes": 151,
+      "sha256": "611fe6b54b29b30df9e2758e6fc301df0b94aa8878fc7b1a8afab9b4d11cc1e4",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "overlay/goodix/ucm2/conf.d/mt-snd-card/mt-snd-card.conf",
+      "type": "symlink",
+      "bytes": 27,
+      "sha256": "c2d07b273c7f2ffe5772cf7768a9bf70326afb2e2ba7c404594c36275e52ad7e",
+      "original_local_mode": "0o755",
+      "published_mode": "120000",
+      "link_target": "../../ASUS/Z380M/Z380M.conf"
+    },
+    {
+      "path": "overlay/goodix/ucm2/ucm.conf",
+      "type": "file",
+      "bytes": 243,
+      "sha256": "252132a433e91d661963c95963b609135d6da112d4b67aa8b1f215df191de691",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/CHECKPOINT-before-sd.md",
+      "type": "file",
+      "bytes": 6766,
+      "sha256": "80b4a478aed579df8c1799bc2817eb8363288b3d25e2959170301b9201178485",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/CHECKPOINT.md",
+      "type": "file",
+      "bytes": 14534,
+      "sha256": "0fce07a7db3c70ba4b93c04700f7d946836f13595d4baa7f7a3a443cfd6c673c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/DEFERRED-UX.md",
+      "type": "file",
+      "bytes": 3824,
+      "sha256": "a99015c3a476dc3ac94e7046908fc91b62e2eb2d4fb83552754e6a51b5271ccb",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/EXPERIMENTS.md",
+      "type": "file",
+      "bytes": 12923,
+      "sha256": "419f00ccf949c259b31b9006aeacefe2151f03df431cf0c2e3fce6544a63bb28",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/INDEPENDENT-USE.md",
+      "type": "file",
+      "bytes": 5345,
+      "sha256": "f09db661ee2ec824866a80b3ac6d98d79a82d98341261f3984959d619044be47",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/MEMORY-before-sd-checkpoint.md",
+      "type": "file",
+      "bytes": 15241,
+      "sha256": "e5c3fb6c2519eeae6018c3018edb6c463ceab2df4213df8a5fbf3044aca24161",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/MEMORY-through-experiment51.md",
+      "type": "file",
+      "bytes": 22081,
+      "sha256": "85e7c680af4e50df9cb7f04527c058b0a4ad200cc2f553244560be3d7c8bf8a7",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/OPERATING.md",
+      "type": "file",
+      "bytes": 8961,
+      "sha256": "e0c47786fdc87fd162d00d626667ec0dcdc9659ad39bb41446b67c0454b972cf",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/TABLET-INTERFACE.md",
+      "type": "file",
+      "bytes": 6501,
+      "sha256": "8051b351d5eedea50517bec8552dd57a25db4e8c6e34b62b2201c0279a913c9c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/accelerometer-known-baseline-question.md",
+      "type": "file",
+      "bytes": 3996,
+      "sha256": "14a54f27e928f059c3479fab796b0367c83a02d7254a4cda7858e4a0266bc749",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/accelerometer-passive-result.md",
+      "type": "file",
+      "bytes": 2627,
+      "sha256": "8147c45fd932618e7e58fbf938c5247825fb80de3ced438b049c4c24a818c502",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/access-return-kernel-oops.md",
+      "type": "file",
+      "bytes": 2544,
+      "sha256": "8d1ab93d7365bcb75454f18b999885eeccb76294e815473dd97b5136e5f7a29f",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/audio-idle-result.md",
+      "type": "file",
+      "bytes": 2732,
+      "sha256": "9a623fc370bbbc8abd053a70824bbd887b2f3f08044be750bf8267f1384bb9bd",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/automatic-keyboard.md",
+      "type": "file",
+      "bytes": 5535,
+      "sha256": "32cc9693681d64a9c6ec30d75d6aa141ef5ac288d0c71cd842f34a034e54b280",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/dashboard-power-result.md",
+      "type": "file",
+      "bytes": 1692,
+      "sha256": "fc669021c3827f28106e8a87ced443dcca8d6d948118e651ab4f0669db5258ad",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/goodix-desktop-plan.md",
+      "type": "file",
+      "bytes": 6576,
+      "sha256": "97f6fda87fb3f3f9162d4bbe5a7fd5defa079c4ad0dc6de18e93d51f39cd616f",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/interface-recommendation-2026-11-09.md",
+      "type": "file",
+      "bytes": 6862,
+      "sha256": "9fbc3eadf14f41272b30035c27718e6575e780373556ba2e606090b6471a74ae",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/landscape-trial-preparation.md",
+      "type": "file",
+      "bytes": 3022,
+      "sha256": "d13e41653095134ae2c6356a49cd044fc3b43b1be16d9d7ac3c35d759cb2576b",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/linux-default-boot-options.md",
+      "type": "file",
+      "bytes": 8346,
+      "sha256": "28c96ec2c5058a72da1e388ab1d0105de0d07032ba533d8bd0d0ba8bd179cce3",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/media-first-split.md",
+      "type": "file",
+      "bytes": 5798,
+      "sha256": "441239aaa5cf5364ab2313808bc6c50fbbe275f959340b3c4d03e93513e34ceb",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/media-preserve-utility-question.md",
+      "type": "file",
+      "bytes": 3256,
+      "sha256": "8a7a1e3e7813acce0b0cf6b1c6c1ee369dfbe605620f8a983b550ae6cb9014d9",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/media-second-result.md",
+      "type": "file",
+      "bytes": 4637,
+      "sha256": "ab3c6615a73c91bb63c0ac7991f0c5c43be616c91f7b7347bb94fd538533e270",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/media-utility-question.md",
+      "type": "file",
+      "bytes": 2544,
+      "sha256": "fc6ba03f9f3f043b4657e19f4ed35d29861743ad238f902149de5806af80e488",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/native-goodix-libinput.md",
+      "type": "file",
+      "bytes": 2711,
+      "sha256": "e0ab46dfffc5da472c3cc99ab16be6537ca6ab525a022ee2574a2034b8912a53",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/on-demand-speaker-check.md",
+      "type": "file",
+      "bytes": 10443,
+      "sha256": "2224e8cdbb91867653ef19cbb0356d1937f7a7e55524843933280753425f8d38",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/opus-accelerometer-baseline.md",
+      "type": "file",
+      "bytes": 10541,
+      "sha256": "ff5e00aeb6df2619c23180402708a89ae22904be0d1c13d57585bcd1bbacad8a",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/opus-alsa-mmap-oops.md",
+      "type": "file",
+      "bytes": 19262,
+      "sha256": "aeac9a5e5c68e547e12559f7978178fc080cef70dfed083044acd59a5cb8e0f8",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/opus-media-utility.md",
+      "type": "file",
+      "bytes": 14911,
+      "sha256": "d42e5876118f90c86ff8c69e772c6790ceb13d07fc74ba20cd7defbdab81483a",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/opus-preserve-utility-audio.md",
+      "type": "file",
+      "bytes": 16318,
+      "sha256": "53681962ccb32bed16e2529f5c6c82d5c21c98d0244d4106ebfc0302b339ff1c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/opus-speaker-lifecycle.md",
+      "type": "file",
+      "bytes": 17267,
+      "sha256": "55bcb740be46be46ea3824e401862c7ae776001007de89b0518f96c3a3aae4cd",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/opus-stock-fbdev-rotation.md",
+      "type": "file",
+      "bytes": 8134,
+      "sha256": "c89bfe80b1306218ee72db04a83555feefa52e98a0244d1f87181064388f299d",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/opus-wifi-recovery.md",
+      "type": "file",
+      "bytes": 3426,
+      "sha256": "5fcc2c4e9411ef5f50ff9e389f1d4bc58691d3519fac910380953321eb63328c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/opus-wmt-readiness.md",
+      "type": "file",
+      "bytes": 8291,
+      "sha256": "593eb97b4b1a094b17d1bbd4b56eafa2221241760b5e1b45ec051e0154e25200",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/performance-plan.md",
+      "type": "file",
+      "bytes": 4256,
+      "sha256": "14274368fd49d58e2042e3c93cd9abaf3d488d9558c529c1a8ec036555e275df",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/private-ffmpeg61-result.md",
+      "type": "file",
+      "bytes": 6047,
+      "sha256": "48d1152c1cd7ef10182a69fbc97c0c1efc0a295fe81ec425baed6a614307765c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/recovery-capsule.md",
+      "type": "file",
+      "bytes": 9508,
+      "sha256": "9745ea0b2dce6d3c99da0fcdaafbe1ef75fc23086a201b1cea51d9175c5b119c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/recovery-state.md",
+      "type": "file",
+      "bytes": 4676,
+      "sha256": "4fc8c4f3d4c0eb2f2ea067918ccdc7652075709266c967ea6b27aefeab22fa96",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/rotation-question.md",
+      "type": "file",
+      "bytes": 2673,
+      "sha256": "302708203ae059c641ce46abc6cb2e2aba8ddd9ad7a3b7343461d72f432c2bf9",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/sd-root-capsule.md",
+      "type": "file",
+      "bytes": 3611,
+      "sha256": "46f5b4b6779eb8e3051348953ddd35338d05cf062ce03da6a89fa3c63e9ba753",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/sensor-hub-blocker.md",
+      "type": "file",
+      "bytes": 2957,
+      "sha256": "09d415c682ddcd5cee8c4f252915fbbc51ab0001a47dcf2a9e2229e2c5548f65",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/speaker-lifecycle-question.md",
+      "type": "file",
+      "bytes": 5720,
+      "sha256": "f4c82a1e05428439d05453ffcc5fcb41f3994d97bf8fe0f2178def5c9cdd6352",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/speaker-lifecycle-result.md",
+      "type": "file",
+      "bytes": 3363,
+      "sha256": "86286bcf2c771ba56be0870baac3105ac226398a1e8f4935e4071b844b43e1ed",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/speaker-route-prototype.md",
+      "type": "file",
+      "bytes": 7767,
+      "sha256": "c59d8917dc08843bd3fb2c9b35d01a0d0dff0fcb624ceec8661b1595343737a2",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/speaker-ucm-candidate.md",
+      "type": "file",
+      "bytes": 8850,
+      "sha256": "765d3b4359a1bfe7f6ef0d01892f5a43b5dfc65a2c1f444b8355c0ff9140db2d",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/stock-accelerometer-sample-contract.md",
+      "type": "file",
+      "bytes": 12711,
+      "sha256": "4221fc0d1e1c2fbfa21fada5f882f35dc1e866ba253ec9861b73d5ea3c07eecf",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/stock-alsa-rw-result.md",
+      "type": "file",
+      "bytes": 7157,
+      "sha256": "68b7ede349f472a481178da62359016bb294db77a1ef169dad27f33218baa3f7",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/stock-audio-route-audit.md",
+      "type": "file",
+      "bytes": 8303,
+      "sha256": "91d86e19c353e56e7d9542b27990a0492dd993f7f437e4a2ff2479070d6e850b",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/stock-wifi-dependencies.md",
+      "type": "file",
+      "bytes": 7855,
+      "sha256": "2eb5bfef80dd5815bb742d2982ab8b1191c37e1c4b12551a8876e7a9065bf3bd",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "reports/youtube-muted-result.md",
+      "type": "file",
+      "bytes": 1712,
+      "sha256": "241bbd2ad6931241dd11553de9b015db739dd15b5f3d93c2e45627821e312056",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/alpine-openrc-prepare.sh",
+      "type": "file",
+      "bytes": 388,
+      "sha256": "4e552d22658ca61b7f01a2bc48cc9a71886dbef6765b8d7f1e560884127436e3",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/alpine-packages.sh",
+      "type": "file",
+      "bytes": 474,
+      "sha256": "133a85af181bb3663166358928e067a29c12e583ffe219ae06e30debf6d5e471",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/android-wifi-state.sh",
+      "type": "file",
+      "bytes": 359,
+      "sha256": "a7caa9d211c1951c5a243805fd229d9905e54701d6ee4d7361bcac372406dec4",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/asus-alpine-boot-selection.py",
+      "type": "file",
+      "bytes": 2436,
+      "sha256": "4e0933fbccb0dbe55ab82cb4e4957aa7a124bbac74200b22b708f329f3fec520",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/audio-install-tools.sh",
+      "type": "file",
+      "bytes": 299,
+      "sha256": "4fc00e1db96a4e5c1a59dddd8610cf2f56d98080421b263a9d45044ccce94e08",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/audio-membarrier-readonly.sh",
+      "type": "file",
+      "bytes": 561,
+      "sha256": "8ad3b90c20ab22d79e4236b076c070930493f6e3496a3a8ac6e2c027d6c1e7ae",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/audio-tls-fallback-trace.sh",
+      "type": "file",
+      "bytes": 2436,
+      "sha256": "ab6cf9dc90f870753c0088e494e5a479189f145e696d03461db38e0157e03823",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/bind-next-sd-boot.py",
+      "type": "file",
+      "bytes": 2426,
+      "sha256": "9f7781915c1bdef5d4619109b7259d8222834e290f0364ecb55b309bd8fc4a74",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/bionic-help-check.sh",
+      "type": "file",
+      "bytes": 282,
+      "sha256": "51ec75d7ee8494acdd97930bf46faf3b8afcb9b8592b47b6a6233672fed420da",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/bionic-randomness-check.sh",
+      "type": "file",
+      "bytes": 445,
+      "sha256": "3b9a5eea80d8235116e31c7fc2a02dbaa928c4b2b19feb5e80ec3d02fb23146c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/browser-rw-audio-fixture.py",
+      "type": "file",
+      "bytes": 4188,
+      "sha256": "26acc82850b7575a0aa823455bb8a459bf4b067a15774c390b6ae8a82c969bff",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/browser-sound-trial.py",
+      "type": "file",
+      "bytes": 13702,
+      "sha256": "8ec1af22b98ae8ac985aa806db157ea4526a3907209351c9ec47922ec6c7a18e",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/browser-trial-prepare.sh",
+      "type": "file",
+      "bytes": 712,
+      "sha256": "adf74099a56c89d103379cdf2c89cf868c13e4e85082038024cf4d9c5241bd13",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/browser-trial.sh",
+      "type": "file",
+      "bytes": 859,
+      "sha256": "f42ebb32308567ef0198b0634d0ec16aedbd251d1169290be29fe6dc669a51d7",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/browser-workload.py",
+      "type": "file",
+      "bytes": 3413,
+      "sha256": "f978caf8f70f99a707106949942f7cfbe1403b62e434924e4380ba424233db79",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/build-browser-ffmpeg61.sh",
+      "type": "file",
+      "bytes": 784,
+      "sha256": "52cc268765191f37cef79f69a7e20c58a06d609bb991399a15a86bce3576d693",
+      "original_local_mode": "0o755",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/build-jwm-workarea.sh",
+      "type": "file",
+      "bytes": 3338,
+      "sha256": "6a6412fcf3e7e5780cec5859f6a5cff2801bb8dd482d867aae1dec9d07930eb2",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/capsule-serial-rpc.py",
+      "type": "file",
+      "bytes": 3568,
+      "sha256": "6313a863b4557734293f500edf51a20230ae9c7b8207f8de014caf84146624aa",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/capture-rootfs.py",
+      "type": "file",
+      "bytes": 2734,
+      "sha256": "550cbeadc33488489ed9eaaa06e0da7a263ccd80ed0656072ad976ce8607f15a",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/check-osk-typing.sh",
+      "type": "file",
+      "bytes": 1669,
+      "sha256": "43fd6a9aee154f61350e0c0e1d2231b0dea9feaf5253a3d9f446b386f0facd97",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/check-renewal-log.sh",
+      "type": "file",
+      "bytes": 415,
+      "sha256": "64f8f3b0b0b72e32495c1c7cc3dae324dd10c92732a925424a27e8fbab852374",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/cold-boot-preflight.sh",
+      "type": "file",
+      "bytes": 1354,
+      "sha256": "657174f790301403c22474fb91f7887c5229b6042b0624db20ee664ff2e9a0ed",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/cold-launcher-permissions-fix.sh",
+      "type": "file",
+      "bytes": 859,
+      "sha256": "d729029ff727b511a6959001d96d5241b690c84a589a0d8603e54cac470919c1",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/cold-launcher-prerequisites.sh",
+      "type": "file",
+      "bytes": 214,
+      "sha256": "65ca286845f097f1ea276790470b93510b59ed2647004d17f1b1ace09735b3a0",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/cold-native-wifi-connect.sh",
+      "type": "file",
+      "bytes": 924,
+      "sha256": "e66cce91cb0d81438ba492508cbf50da8d9bf7252218dd534798d1a0ccb6909c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/cold-wmt-diagnose.sh",
+      "type": "file",
+      "bytes": 443,
+      "sha256": "9cc038d0770cb13a88cf5163eb6e7dff63dcce61f6c87304f1756530c52e4ebc",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/collect-browser-and-runtime.sh",
+      "type": "file",
+      "bytes": 755,
+      "sha256": "47ae78ae155bd6747046a6b8ceb3685f233c0370528fa366a48c8e2409ace795",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/create-sd-ext4-stage.py",
+      "type": "file",
+      "bytes": 2637,
+      "sha256": "50fe321821c407caf9fd0a9b8811bdf2dd1d6b6e34cc6897e3f1ba24be5eecf3",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/dashboard.py",
+      "type": "file",
+      "bytes": 3424,
+      "sha256": "82453c1114f4746c7e93bd46bc019cbfbc57448e6a3fc43d9fad88b5973b1a21",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/default-audio-output-preflight.sh",
+      "type": "file",
+      "bytes": 1586,
+      "sha256": "558ba9d077427a3ab0aed86ae6430511f2e65307236ea477e8260ca4026da2c7",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/deploy-recovery-capsule.py",
+      "type": "file",
+      "bytes": 6387,
+      "sha256": "d28790d0838a603fc6d3e50b26208e97e45de4a75e41b961b3d5547019195598",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/desktop-packages.sh",
+      "type": "file",
+      "bytes": 342,
+      "sha256": "7cc8c465cd13808bbb5448a0b3588568e961ae077710a55d9201fb5902f970d6",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/desktop-prepare.sh",
+      "type": "file",
+      "bytes": 1181,
+      "sha256": "f89373cfe191e22e636d10e3a9be161a4ceec01c7086e57807266f5ec7e479cf",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/desktop-trial.sh",
+      "type": "file",
+      "bytes": 646,
+      "sha256": "fc99ee6725bc7dfa03be8d11e4dc3a139addd4e66e8ad5cf5ad5afe48c04fee6",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/direct-touch-inventory.sh",
+      "type": "file",
+      "bytes": 1014,
+      "sha256": "cd0fdaecc2ea0633c3f69325aa1578c8fde01be683f17e9ebcd5da3065c50c6d",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/disassemble_lk_recovery.py",
+      "type": "file",
+      "bytes": 2010,
+      "sha256": "5fdf63c13236734e03373347493465577c7e5d56cfba72fbcfe3e8689a509f11",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/enable-cold-wifi-trial.sh",
+      "type": "file",
+      "bytes": 1102,
+      "sha256": "aa5d7acef4147c94f7f297c4351bfb850a73a925c0f5ef0a7bcebdd809ba9b5d",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/enable-dhcp-renewal.sh",
+      "type": "file",
+      "bytes": 695,
+      "sha256": "f95ec48eaabd0b1bfa6a80a53df995465f6edb0eefdeaf4276ae31c93e78e489",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/final-sd-preservation-check.sh",
+      "type": "file",
+      "bytes": 288,
+      "sha256": "9330407c34cc573c9417be52c3f688ce8855bb53149e0af4321e0c0242128646",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/finalize-sd-root.py",
+      "type": "file",
+      "bytes": 2454,
+      "sha256": "e7fda9df9f85e01b35da31a8d40bbb4b175467db2bf4f25a137abfe08931294a",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/finish-keyboard-trial.sh",
+      "type": "file",
+      "bytes": 1814,
+      "sha256": "937cdb21defdd536e2cc81a39cd3f70c76166f016eb3fa55166a8ef846e29dfe",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/finish-owned-browser-close.sh",
+      "type": "file",
+      "bytes": 921,
+      "sha256": "da6e6a5e862778ab9a5530021755b5df3a6ea8ff1e4ca889213d8bbd63577cae",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/firefox-headless-smoke.sh",
+      "type": "file",
+      "bytes": 257,
+      "sha256": "4a58a8a6afc310cc77220a8bd8d95e4f5bb60dc4a815233fbb4ea4726369ea3e",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/firefox-modern-workload.sh",
+      "type": "file",
+      "bytes": 932,
+      "sha256": "4fe7d20f5b6a277e5c923340b562a503d2ecc6f2b03b616ab941b650e860ff61",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/firefox-visible-workload.sh",
+      "type": "file",
+      "bytes": 1775,
+      "sha256": "b9bb393ab73652677e9554beca5c303ba9ccb6c30327097f2cfa1f4f54531270",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/focus-running-landscape-fixture.sh",
+      "type": "file",
+      "bytes": 1312,
+      "sha256": "b07d24b606b4de1beb97b0570ee27307741db8e1710da6af3f87f06ad7e11f11",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/focus-running-osk-fixture.sh",
+      "type": "file",
+      "bytes": 1471,
+      "sha256": "d58c51f1afe90006195defb89538624914d1cada27e1ab9346698dc0bb8e0ee4",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/free-owned-browser-test-space.sh",
+      "type": "file",
+      "bytes": 722,
+      "sha256": "2a40cf2da3e1f1a46de4b87b10582a614d0ed46de33fb5f37146a57e642bad67",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/grow-owned-sd-stage.py",
+      "type": "file",
+      "bytes": 1579,
+      "sha256": "b7a968e06b1bd368729f8100f44a64dfbeae399b8c73b4b4b2b2917ac89cbf06",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/inspect-existing-display.sh",
+      "type": "file",
+      "bytes": 246,
+      "sha256": "25295e7c12e1117acc6a4f188db5977811def1ada3c27f6d132c20653a3eb2c1",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/inspect-landscape-gui.sh",
+      "type": "file",
+      "bytes": 443,
+      "sha256": "dad78827c318883eee4e19ecb46b1e87d33e505dd10e8c4d87cd46ac0df45d15",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/inspect-landscape-stop.sh",
+      "type": "file",
+      "bytes": 546,
+      "sha256": "c5be894e091033447160e0c755af86e9422269da3a77c006638d0664a8bc0610",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/inspect-ram-root-space.sh",
+      "type": "file",
+      "bytes": 797,
+      "sha256": "8365e381b3a11b0f07dd0edd541ec30a74bf22c34977e19c0d85abd6a116df1c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/install-landscape-trial.sh",
+      "type": "file",
+      "bytes": 3732,
+      "sha256": "e8909dd36bf99d33c00bf87336ce8160ba5f63e06de15030507430b564f08b0b",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/install-native-touch-stage.py",
+      "type": "file",
+      "bytes": 2297,
+      "sha256": "c1d3fa1d5fe3c59f33d0586d7fe5542ec7f6fd41eb3fb901c615ce2277c4012f",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/install-onboard-interface.py",
+      "type": "file",
+      "bytes": 3087,
+      "sha256": "43a381465c2e7eef1d66e4a87c914e834297c58c2a8b2c70739d3128e9d2ce2d",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/install-private-firefox-ffmpeg.sh",
+      "type": "file",
+      "bytes": 2123,
+      "sha256": "3d0d7e5dd6e6197868c9571b71db574ac9c3132b16078d5c8a65a58d132dcd3e",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/install-verified-sd-capsule-from-stock.py",
+      "type": "file",
+      "bytes": 6065,
+      "sha256": "9729824872ee1855d0bf8f9d527de20027f3da86a1a65885c4576ba2630b6fe2",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/install-xprop.sh",
+      "type": "file",
+      "bytes": 33,
+      "sha256": "66a0d24844d98a1a2437d0fd080d997ba0138af4400b512e55661a859723c6d1",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/landscape-fixture.py",
+      "type": "file",
+      "bytes": 4830,
+      "sha256": "439da10819b9c4042ae9b2e199df561f88c95273a91cfeb0ae0f8297128caa2b",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/landscape-preflight.sh",
+      "type": "file",
+      "bytes": 974,
+      "sha256": "28d9e8d9bddfafd1f0d95d631df0ccdc6d13fce77b7679894d9f6461066e74ec",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/media-crash-and-config-detail.sh",
+      "type": "file",
+      "bytes": 894,
+      "sha256": "0654287549c973bba5b0b7bdb06349413863910ee7f710facdfecaf41e18a715",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/media-current-status.sh",
+      "type": "file",
+      "bytes": 808,
+      "sha256": "ac3deb0c0415968a67d987ee1f9b5c122fc6f349b03ec47bd1c5d263aba973b1",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/media-fixture.py",
+      "type": "file",
+      "bytes": 6463,
+      "sha256": "caad3964cd9ca7d51645efb61128fa088348b42d50a4a2ff012d7f344aa8eb2b",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/media-readonly-inventory.sh",
+      "type": "file",
+      "bytes": 853,
+      "sha256": "4d46c7b59f7019da42c366792947d0033e87750cf00d78193a9b7c9ae3785e45",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/media-state-and-audio-gate.sh",
+      "type": "file",
+      "bytes": 1348,
+      "sha256": "9d95e4ca035d42bfc062b308b435888741ce0fefb060eafda2535e8f55efcd5c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/media-utility-crash-trace.sh",
+      "type": "file",
+      "bytes": 1535,
+      "sha256": "4298b598097ad31cc05537b442953ecc91763195132cc9c43df0184d04078de1",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/multitouch-fixture.py",
+      "type": "file",
+      "bytes": 3992,
+      "sha256": "a137ae0efcf0574ed933183917fcb7710f9e9bd8e00f3564b307691a1fa690b8",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/native-touch-watchdog.py",
+      "type": "file",
+      "bytes": 2696,
+      "sha256": "e8860dea8952f61fd3d8cb16a105f776dd15b297eb4cbd225a37e7ffa2dd6bba",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/native-wifi-trial-v2.sh",
+      "type": "file",
+      "bytes": 2389,
+      "sha256": "658f81d8c46f578e6f29f3bbed96f8f94e1cb4f61d5f7375b353021c0374eaf4",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/native-wifi-trial.sh",
+      "type": "file",
+      "bytes": 2380,
+      "sha256": "b1ad62b0581d5558c903e5adc000ae9acf88e350d09c3ab6f169a5cd4b35ebef",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/observe-browser-close.sh",
+      "type": "file",
+      "bytes": 529,
+      "sha256": "027caa64dfe40ab2e49925a1737cb9827c0f95a22b5591ee89549a00b6c754ad",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/observe-capsule-serial.py",
+      "type": "file",
+      "bytes": 2742,
+      "sha256": "e16c2ede4abc0dc62ca6e9cd22cd32e6b16af3467507e1e69a47aad346cbd85a",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/observe-first-sd-boot.sh",
+      "type": "file",
+      "bytes": 321,
+      "sha256": "389eb1379766aab17dd1044a0ca40428c3b9d3a63a179830a161124e448c9028",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/observe-jwm-build-preparation.sh",
+      "type": "file",
+      "bytes": 460,
+      "sha256": "b49978f6e14a1cf53ca798edd223ef343d87503975c7f6bd6949339b28b00d5b",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/observe-landscape-trial.sh",
+      "type": "file",
+      "bytes": 1089,
+      "sha256": "4dbe21a5f111d18a61e7687ae23a912cdbd5a47c455350259a7b2a7744512cde",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/observe-onboard-production.sh",
+      "type": "file",
+      "bytes": 367,
+      "sha256": "b3c7c833d96d3c74ae3eecec939b1dbc6ce97765e522ff1d5038ea8f65fc95e1",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/observe-osk-focus-trial.sh",
+      "type": "file",
+      "bytes": 724,
+      "sha256": "8340b69a5fb9de8c53290ae87b199cacb1b45b71f51dee4c879252a80289d97e",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/observe-sd-firefox.sh",
+      "type": "file",
+      "bytes": 750,
+      "sha256": "17384b60c51f51c33c07659e5d0112c051daf78f35aef0bf201c6ae7b90b31f8",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/observe-sd-populated.sh",
+      "type": "file",
+      "bytes": 783,
+      "sha256": "15dfec6f7df55d0062edcf0330b13908a5077589b0b5e112d99285778990ba45",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/observe-stock-accelerometer.py",
+      "type": "file",
+      "bytes": 3037,
+      "sha256": "02a458b138e688dcefb8fceace1d0b101543bccae89d84df43f515abc7bfda02",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/onboard-config-contract.sh",
+      "type": "file",
+      "bytes": 534,
+      "sha256": "6948684d71811e25faad4de17c374365cffbafccea3c7994bd1d29cb893b95aa",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/onboard-runtime-contract.sh",
+      "type": "file",
+      "bytes": 305,
+      "sha256": "0d7b8fc0ea34a5b8cc7bbd44d8b9dcd6f175a12c96a21381dcab0463b00b2a65",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/osk-fixture-server.py",
+      "type": "file",
+      "bytes": 2035,
+      "sha256": "18b401dc3b30f3657cad66fccf0228be0428059495e66e237cc2a7c22bd8b846",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/osk-focus-trial.py",
+      "type": "file",
+      "bytes": 12324,
+      "sha256": "bbc70e353ed9eb83469e5f66053dbf5e46f36059eeee01a8fed0f193e9748e90",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/parse-speaker-ucm-candidate.sh",
+      "type": "file",
+      "bytes": 1826,
+      "sha256": "51dfb9e1c4c4d5ba956d5e00fa6658326295d3a8cf91dcb2412ccbb3042ce8cc",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/persistent-dashboard-health.sh",
+      "type": "file",
+      "bytes": 442,
+      "sha256": "d20efdc652d36e9dcdc37ada42fda52dfa5ca26bba00593ddc4231ac094977a1",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/populate-sd-root.sh",
+      "type": "file",
+      "bytes": 2500,
+      "sha256": "ddb98b0bdfbb6608949bde6c417ed7c96d461fb82bb3341720b7331bbb9c6832",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/post-browser-check.sh",
+      "type": "file",
+      "bytes": 576,
+      "sha256": "5dc2b59f4834824ba4bd1f81b34946e88c94822a1c23f7b494004c3972f7b112",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/post-wifi-and-runtime-check.sh",
+      "type": "file",
+      "bytes": 755,
+      "sha256": "b4cd90b847c7b3a534d5838c9086202b2390f1eba9c1e77598062daa5e97817a",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/pre-clone-observe.sh",
+      "type": "file",
+      "bytes": 274,
+      "sha256": "9515a2af9ffd591ca30a1c185eb3297f7df88b0f06cffbe22e2f47d0e412826d",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/prepare-automatic-keyboard.sh",
+      "type": "file",
+      "bytes": 367,
+      "sha256": "827f321ef767eb463c57323af1a9d556b0a960bb224696bd2414965d9ba70433",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/prepare-direct-touch-probe.sh",
+      "type": "file",
+      "bytes": 90,
+      "sha256": "2c29e665a01161c2cb77380025922527ffef272d372dd0261a4819f6cccfe20c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/prepare-jwm-build.sh",
+      "type": "file",
+      "bytes": 526,
+      "sha256": "27ab2d5c10c8e937839c99eaa6fff55774e8c59769175be0ab1586b41378e2cf",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/prepare-libinput-probe.sh",
+      "type": "file",
+      "bytes": 249,
+      "sha256": "0d9b905f3f624ba09766db8d25d1454ffb07ce90fc9d36a9ca1d11acb933087c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/prepare-media-after-landscape.sh",
+      "type": "file",
+      "bytes": 1124,
+      "sha256": "ecf0c12f268c4bc5c7f90fd883cf2c93f7fa7e4b997877c3652403722b08d034",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/prepare-media-bundle-trial.sh",
+      "type": "file",
+      "bytes": 1304,
+      "sha256": "ba273a1c103b3e6dfd29d5abbf4d79961e1ac2130b4c55b2c182c6f3d738558b",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/prepare-native-touch-stage.sh",
+      "type": "file",
+      "bytes": 90,
+      "sha256": "af2a73c9178151b38eaf318bc8396ee400487210ceee2dcac4aa53501d1cec8a",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/prepare-rw-pulse-trial.sh",
+      "type": "file",
+      "bytes": 1860,
+      "sha256": "990de003e1c894fdfef437dafb505971e5f3338818f5bd32b06502a69d827bd8",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/probe-direct-goodix-xorg.py",
+      "type": "file",
+      "bytes": 2557,
+      "sha256": "9768e9487b4c03f9c9fdef0521a3928f0243d3a03a53877607815dbfe3e34af8",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/probe-goodix-libinput.py",
+      "type": "file",
+      "bytes": 4025,
+      "sha256": "5e69b9d03b40004eda2dfe7301946acb9d911bb34a071016d0c6b736245c2d0c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/promote-and-start-onboard.sh",
+      "type": "file",
+      "bytes": 89,
+      "sha256": "de75f2575a79750672d04950af633fadd61ea87ea7e0f0b3de8816f66e62e5aa",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/promote-jwm-candidate.sh",
+      "type": "file",
+      "bytes": 1201,
+      "sha256": "07916a2402253d9359fb6a79e6b33ebbf9806055491ef07edd99536cc62ed45c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/qualify-private-ffmpeg.sh",
+      "type": "file",
+      "bytes": 1221,
+      "sha256": "7d435feb08612aaae9edd4c1f0fdf319def5918df8a45336f03294867a9e512e",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/qualify-sd-root.sh",
+      "type": "file",
+      "bytes": 2832,
+      "sha256": "40b8e2f54f9a8686624281bfc3fa3aa49e7ac99a0357ccfada713178b228df22",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/raise-existing-firefox.sh",
+      "type": "file",
+      "bytes": 1000,
+      "sha256": "462e4b8903168976979df1328ee1e4372ef3b20a914b2b44924faea9b60cd2f9",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/ram-mount-state.sh",
+      "type": "file",
+      "bytes": 220,
+      "sha256": "f35c6dba685e047fd28150d187eeb8fbfc00cfd7376e3cfb572734e676fe7f09",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/ram-resize-correct.sh",
+      "type": "file",
+      "bytes": 578,
+      "sha256": "4686ad232f01304bc5a735e30195d701a5cff4ccb5d220ffc886ef581954d7e4",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/ram-shell-extract.sh",
+      "type": "file",
+      "bytes": 941,
+      "sha256": "973fc3f8cb612130a752659a954fbd6633d08b0f8a368bb6b8427d9ddd9f1fde",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/ram-shell-prepare.sh",
+      "type": "file",
+      "bytes": 1049,
+      "sha256": "3757580b8bc5c85bfaab44ef52f70053cb61166f1daa004d714e067dbe0a6894",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/read-browser-proof-state.sh",
+      "type": "file",
+      "bytes": 205,
+      "sha256": "8aba6edcbe7f95dbc6c5ab8e9fbcdb360c98491450bcc847535255236e684858",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/read-cold-loader-artifacts.sh",
+      "type": "file",
+      "bytes": 136,
+      "sha256": "90915b27e256b71910f0a9e6d034dbcc7476ee8c7903b34ca620cc01f32ead58",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/read-host-key-format.sh",
+      "type": "file",
+      "bytes": 104,
+      "sha256": "4bab4a2034d4145136d06c0373f29e684138393e50d635ae42546d95bce52796",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/reboot-ram-to-sd-recovery.sh",
+      "type": "file",
+      "bytes": 1337,
+      "sha256": "328b0e81036a68136b00e41a9b0cb8f03fb48da5c19d6d95170a85f68b28ac3b",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/reboot-sd-linux-default.sh",
+      "type": "file",
+      "bytes": 1050,
+      "sha256": "cdf16157a202262d931d844acd9f2675cd69e2b909c90de26c8a4fced98642c4",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/reboot-sd-to-stock.sh",
+      "type": "file",
+      "bytes": 1543,
+      "sha256": "076102092b8309ca53a01c16c49c8baa2a68bdba25002d8ea13f03e12b80dd70",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/recovery-build.py",
+      "type": "file",
+      "bytes": 8375,
+      "sha256": "322adb013d7d969b253e369c6263729ed133799aeece102b40db83f198de76d9",
+      "original_local_mode": "0o755",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/recovery-init.sh",
+      "type": "file",
+      "bytes": 11939,
+      "sha256": "73e7c4fd0e80a8092dc3d24809ae865c3601702e997735ed14904bab50d5c452",
+      "original_local_mode": "0o755",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/recovery-serial-login.sh",
+      "type": "file",
+      "bytes": 447,
+      "sha256": "ad724744c541bd2d96c25c90d8828a4d014b5250584ea73978bdf0fcbde82d73",
+      "original_local_mode": "0o755",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/recovery-start-desktop.sh",
+      "type": "file",
+      "bytes": 1158,
+      "sha256": "e39048ef175284e2421fb2dc9d1de07e15fa784f01c7dd5678dca70ec0b743ec",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/recovery-state.py",
+      "type": "file",
+      "bytes": 8057,
+      "sha256": "5cad06b7218675a33335fece74710a4b570c2d3bd4144092d888010db65c399a",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/recovery-sysinit.sh",
+      "type": "file",
+      "bytes": 4968,
+      "sha256": "e75900d634fc444f3d0106156e673204c5a6e133af455b273624858a33434751",
+      "original_local_mode": "0o755",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/recovery-udhcpc.sh",
+      "type": "file",
+      "bytes": 477,
+      "sha256": "716d7ba0abf1b536ea03bc071d654312fd0e072cb03cc195a33cd4a11f6daf5f",
+      "original_local_mode": "0o755",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/recovery-validate-wmt-loader.py",
+      "type": "file",
+      "bytes": 1613,
+      "sha256": "69503f32040cc2126ccbf0575183b8816b1b40c20b4a0a59564df3cc7559e0da",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/remove-private-firefox-ffmpeg.sh",
+      "type": "file",
+      "bytes": 645,
+      "sha256": "efc8a514258f411371b66464440877e2cdc98b2309231ed36dc98327eb949de8",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/remove-rdd-compat-policy.sh",
+      "type": "file",
+      "bytes": 351,
+      "sha256": "0b9bc4e45ebd54c52b14723c17530d08c94e6e7cadfc4da9c933d897d44c1e1b",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/restart-browser-media-debug.sh",
+      "type": "file",
+      "bytes": 2376,
+      "sha256": "c09d6ffdc41e54ba0d42dc6ad3b2e80ea80fad5b5d4858ae73fb6add7575b9fe",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/restart-browser-normal.sh",
+      "type": "file",
+      "bytes": 2122,
+      "sha256": "30fa9b232f86bc1da5f20317d7922c0ad1be2d4e7f4d10b7ee961b33dd6daa96",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/restore-android-wifi.sh",
+      "type": "file",
+      "bytes": 435,
+      "sha256": "5f86f436675627629e214a0879717ddd753af930a4000b00105b81e29f2be8b1",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/resume-landscape-after-stale-socket.sh",
+      "type": "file",
+      "bytes": 2225,
+      "sha256": "ab4707b2987474acdf2b36baaf310ffd9f6ca9ce46a2707ecf6f612ce3d017ab",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/rotation-watchdog.py",
+      "type": "file",
+      "bytes": 3562,
+      "sha256": "ff13d670b40ff9f78ba6a3c901b9acc2cede5a81935da2818a251fde171e5118",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/run-direct-touch-probe.sh",
+      "type": "file",
+      "bytes": 61,
+      "sha256": "70c03a2371b95677193a05714495405b2af49ad9d59701535219dd2677fc3e8c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/run-finalize-sd-root.sh",
+      "type": "file",
+      "bytes": 53,
+      "sha256": "902273039d6b059ceb0ce52fcb5261a01abea24387c49f2fbaaab88a3e04a96c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/run-grow-owned-sd-stage.sh",
+      "type": "file",
+      "bytes": 36,
+      "sha256": "de6189c025661ee169a5fb43a65b0703585aa7c5c8853baed4940ba57bf19da0",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/run-jwm-workarea-build.sh",
+      "type": "file",
+      "bytes": 76,
+      "sha256": "ef3a8aadbc37a73a857d630bcb79d921f4c83a08f6ef9ab2feb212c6491835cb",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/run-osk-focus-trial.sh",
+      "type": "file",
+      "bytes": 161,
+      "sha256": "e66ca1054bd2725e67ca16d300a7a5bcff571fd75b731ee3ae9b02404cf41e9a",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/run-sd-ext4-stage.sh",
+      "type": "file",
+      "bytes": 37,
+      "sha256": "cea55c76714e70f40fe399608ab6e6a6d8422744cb4390af92350826b91cd1c6",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/run-update-live-recovery.sh",
+      "type": "file",
+      "bytes": 57,
+      "sha256": "9eecbeec5a41ca1e697ed2affd3d7a8ef03187459d1440073b0a959ca0aae8b5",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/sd-build-progress.sh",
+      "type": "file",
+      "bytes": 159,
+      "sha256": "d622c6fc021c03ed1ffdbc8eac6782d6ae1e00b62571153f963b3f1fd154b0fb",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/sd-prepare.sh",
+      "type": "file",
+      "bytes": 3715,
+      "sha256": "f96e5da8a547b1a629911ba4a1773dff4120a134f3de9569a04632c3486d6de8",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/sd-rootfs-snapshot.sh",
+      "type": "file",
+      "bytes": 1319,
+      "sha256": "8587077cb0e076e03b1b941ce5f93120a0e06845c67ee0f4073c2d0dbc9c17a8",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/sd-rootfs-stage.sh",
+      "type": "file",
+      "bytes": 1057,
+      "sha256": "5a66ca5b5335adb4db41a827d227d07afc877488f7f78e2b52a142f236041496",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/speaker-lifecycle-fixture.py",
+      "type": "file",
+      "bytes": 4182,
+      "sha256": "674423cc8f111684404d729721351be040e8a4c8e2f913d2c2faa3fe86201b5f",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/speaker-route-prototype.py",
+      "type": "file",
+      "bytes": 23918,
+      "sha256": "61ba304f778cad44a50e0338c1bf0e5a91cd9c6a6ed33572545fd2e7ed0897a1",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/speaker-tone-trial.py",
+      "type": "file",
+      "bytes": 4939,
+      "sha256": "00aecdd1fecdf19071574347d735c873f495d3efcc812ab30d26725d1dedf37a",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/ssh-bounded-root.sh",
+      "type": "file",
+      "bytes": 108,
+      "sha256": "15b95ffe651ce367e420347148ec81a7007fec82693ebdbfa66ebbada9cefecc",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/ssh-bounded-workload.py",
+      "type": "file",
+      "bytes": 2694,
+      "sha256": "142db024444f040db37772754259de23c2f758827aa500a2e6ad96ae98c8b99a",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/ssh-trial-start.sh",
+      "type": "file",
+      "bytes": 1031,
+      "sha256": "04e66cf5987994a8993c36873b8cd12985eaf796d49d456d15ded596a5a14a49",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/stage-onboard-directory.sh",
+      "type": "file",
+      "bytes": 92,
+      "sha256": "213e4628a2a8a5239745748474d2c126bb4c5aa280b2c4635a03171825c44dae",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/standalone-browser-inventory.sh",
+      "type": "file",
+      "bytes": 183,
+      "sha256": "5fd13bec6ccf061bf7ee805b12c620383a4bc38b76358b3ca5e2a59027b19e99",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/standalone-desktop-prerequisites.sh",
+      "type": "file",
+      "bytes": 261,
+      "sha256": "64d40d0b27f69dbb0e2fe34699ea31ad37e440da1015d8c1663a0bf5d055c0a2",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/standalone-enable-persistence.sh",
+      "type": "file",
+      "bytes": 1040,
+      "sha256": "13c34b428eef52c9237c945b381a023225b74eb2d52a591332ad1a3b2db29723",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/standalone-firefox-install.sh",
+      "type": "file",
+      "bytes": 194,
+      "sha256": "42b3c2783011aabaa3eda146f98f592c10a68a93308203f086d6b90f81531571",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/standalone-gui-observe.sh",
+      "type": "file",
+      "bytes": 502,
+      "sha256": "15fc10549f85a1f82b79b555fa1e7ce94ea6bb7999167e4e4a7deca1935f56fd",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/standalone-gui-start-trace.sh",
+      "type": "file",
+      "bytes": 592,
+      "sha256": "4b1796a8a14fdab374b3476817dde09cdeb54cc43b14e4e443796ac6d412e6a1",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/standalone-gui-start.sh",
+      "type": "file",
+      "bytes": 673,
+      "sha256": "665e27e997d37dc7a7c2057b7e0cd43602b704566ecd90a750162f0526e90957",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/standalone-persistence-finish.sh",
+      "type": "file",
+      "bytes": 421,
+      "sha256": "50786b884fe6dd728277cbb00d5267362228bb6e57006ebea8e2979602db3336",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/standalone-ssh.py",
+      "type": "file",
+      "bytes": 1800,
+      "sha256": "4d8afc2dc8356635d990522a8d28371c6830caa9245365e9684ad5cdec50cc4d",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/start-landscape-fixture.sh",
+      "type": "file",
+      "bytes": 2610,
+      "sha256": "ea17fb8540fcb08ddac15aef9b939ef539485fe87beebc7d85f89a7a5279e3da",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/start-media-fixture.sh",
+      "type": "file",
+      "bytes": 1365,
+      "sha256": "9e78a2dbdb91afb5738635e0b2aec4f8480194166710cc93b9933fa188bded11",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/start-native-touch-fixture.sh",
+      "type": "file",
+      "bytes": 3081,
+      "sha256": "cfe188a19bd0ec0affdd9ec6b0aa53561cccd256821f7a9f0b9274782f2194c7",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/start-onboard-integration-fixture.sh",
+      "type": "file",
+      "bytes": 1787,
+      "sha256": "13cb6b7fe655ad9d3e0d3e9345bc5323d900fcb9b2ea1d78144d42f43b305e98",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/start-rw-pulse-trial.sh",
+      "type": "file",
+      "bytes": 3813,
+      "sha256": "878d0d6e253fb0ce63ee592146484ee3771cf92b78ab0db23214f8a3592a17b8",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/start-youtube-workload.sh",
+      "type": "file",
+      "bytes": 2203,
+      "sha256": "6c937bceec7b0f93621e442154de62378736300559acadff3b7052f97150e0d4",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/stock-inventory.sh",
+      "type": "file",
+      "bytes": 520,
+      "sha256": "70c5b464494e135707f7b2155a93612a08b80f6ccaadf37ec8677c1361b1ddab",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/stop-owned-desktop-for-migration.sh",
+      "type": "file",
+      "bytes": 1775,
+      "sha256": "e1fceb4ad7f5ed47907b5a616c480c7dce56e902d0c6541c077a6ebae695c698",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/stop-owned-media-fixtures.sh",
+      "type": "file",
+      "bytes": 1468,
+      "sha256": "a45842ce33a108d3176b7b185be7711ee7ac8bb6c2b038cc2354f75d072bab47",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/tablet-interface-inventory.sh",
+      "type": "file",
+      "bytes": 676,
+      "sha256": "fa2834e39a60753f1ebda668ed7c8d1f07aa1c4721efcc4dd1de5e62f4213ead",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/trace_lk_recovery.py",
+      "type": "file",
+      "bytes": 3792,
+      "sha256": "df68b6077406d9d7f5fa8f0e136e5908d9cdd676e21e613bec67693bbbc0a7ff",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/update-live-recovery.py",
+      "type": "file",
+      "bytes": 3449,
+      "sha256": "e666f67712ccb90245888bd66569b5e97527674bc657b0ae348d771ea1e74b81",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/vendor-capture-and-ssh-context.sh",
+      "type": "file",
+      "bytes": 816,
+      "sha256": "558f8808154a7d3b3d304b1e948cdb12c36b231f2145c29fe556339156164451",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/vendor-inventory.sh",
+      "type": "file",
+      "bytes": 476,
+      "sha256": "8d0dd97de1ae5ddeff34a62d582d7f207898f959bf2824cae0f495282981ecef",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/verify-audio-idle-lifecycle.sh",
+      "type": "file",
+      "bytes": 4680,
+      "sha256": "fdae9be93c825e81749eec5f0c29a4ec07269876a8cc0d2b64392bd6f64c69b7",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/verify-awake-wifi.sh",
+      "type": "file",
+      "bytes": 295,
+      "sha256": "cf1f15e412af616c86fe6d92201533ef3bd156cd6053ba0574bd89710a583af4",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/verify-browser-rw-output.sh",
+      "type": "file",
+      "bytes": 4010,
+      "sha256": "000c850c2199dd35c2c99acb5f18d90312b0a236fedcec939f043eeee5705318",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/verify-dhcp-renewal.py",
+      "type": "file",
+      "bytes": 2424,
+      "sha256": "1fcce4c5cee49420d4399f9824457c3f917bffda9567c21fb067f1f6d0d32a50",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/verify-native-ui-reboot.sh",
+      "type": "file",
+      "bytes": 2338,
+      "sha256": "82a652ac7dd904b7ca52e07fce7c36410859298db631ab4928544081a043ee43",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/verify-onboard-integration.py",
+      "type": "file",
+      "bytes": 5681,
+      "sha256": "7b4dad11abcb8ec75371ea69baef7983d15af8e1a2dec36663b25f148d036b09",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/verify-private-ffmpeg-playback.sh",
+      "type": "file",
+      "bytes": 2600,
+      "sha256": "2c199b780a92f4df096791516cf40d315956d23c580adf2144719b5eecde1757",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/verify-rdd-media-result.sh",
+      "type": "file",
+      "bytes": 2112,
+      "sha256": "9e086af9a66bcf36c3ce8651297cdcea2fe5783c6a5735766c5bbb71a18d6472",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/verify-real-touch.sh",
+      "type": "file",
+      "bytes": 109,
+      "sha256": "57720745113f0cdb5d047cf0cbce7c24ca5eb70596bcc5a738cf7115a98dfb6b",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/verify-rebooted-sd-workloads.sh",
+      "type": "file",
+      "bytes": 1835,
+      "sha256": "2c66c0e6ae2e495ff93741d10fb86ede3fca495f1fdee3ebee1f2aa63375ce5c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/verify-speaker-lifecycle.py",
+      "type": "file",
+      "bytes": 11964,
+      "sha256": "a1ca7db521bc04f80d72948307c215f9c49aeec6399ede5cac1f87a221b7c0a1",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/wifi-trial-precheck.sh",
+      "type": "file",
+      "bytes": 327,
+      "sha256": "496def36f334b6d20d897e4d82630534e894fdc2bd406d6b966d557f1d631b9d",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/wmt-property-area.py",
+      "type": "file",
+      "bytes": 1698,
+      "sha256": "2b816d610b96c14094744dbc034692b6262f64e9852c42dee42e9820c8dda90d",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/wmt-property-gate-trial.sh",
+      "type": "file",
+      "bytes": 1705,
+      "sha256": "b8e9fa44f474a8d43c9c65a04d92eeb1a28ee5eb776c6ed6b9c0b7b88027f00c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/xwd_to_png.py",
+      "type": "file",
+      "bytes": 1250,
+      "sha256": "e7da556bde18e0f0aa0ac5033242f4a99a6fbdb8ea4e8c0660382814be692e57",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "scripts/youtube-workload.py",
+      "type": "file",
+      "bytes": 3539,
+      "sha256": "ff6b68a7979f6f26b930f97b842c5aff55c7783b9dec02380b5b7529f6ce9c9a",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "sources/browser-ffmpeg61-validation/README.md",
+      "type": "file",
+      "bytes": 864,
+      "sha256": "45de47ecc79ff78d54a24b879f97c1af6690ee295bf9bf517f49bce2d8e07bdb",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "sources/browser-ffmpeg61-validation/build.sh",
+      "type": "file",
+      "bytes": 1745,
+      "sha256": "8b701cc903ceb54b0da6100b261e1d8a4f255d74ec1a9a617b5c12f5abf0f92f",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "sources/browser-ffmpeg61-validation/gates.py",
+      "type": "file",
+      "bytes": 2838,
+      "sha256": "944edc5074b8526715857fe2a3c59d4e971788356cd351ba3bff51613f03bb6d",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "sources/browser-ffmpeg61-validation/harness.c",
+      "type": "file",
+      "bytes": 2847,
+      "sha256": "dec80ff89c7fcd6ac6633beee8cea7333b6910d0df8a546d3f83325b31c662ae",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "tools/check-archive.py",
+      "type": "file",
+      "bytes": 2838,
+      "sha256": "e3cd8072687143d7d5fe2a1d14b7b793aec6726ae45633f04ef9d96b7196fa9c",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    },
+    {
+      "path": "tools/pt_tls.py",
+      "type": "file",
+      "bytes": 1691,
+      "sha256": "6f1edc9cbad4c725dfaec8eeef283de1a6ee2f85f2f53a49450667271fa0ace6",
+      "original_local_mode": "0o644",
+      "published_mode": "0644"
+    }
+  ],
+  "exclusions": "See SOURCE-PRESERVATION.json and BUILD-INPUTS.md. No private inputs, images, media, compiled binaries, fetched source trees or nested Git metadata were copied.",
+  "content_transformation": "Selected regular text files match local source SHA256 at export, and the one internal relative UCM symlink is preserved. Public executable modes are cleared; original modes are recorded.",
+  "auto_generated_repository_summary": "A later _summary.md may be generated by the research repository and is outside this checkpoint manifest."
+}

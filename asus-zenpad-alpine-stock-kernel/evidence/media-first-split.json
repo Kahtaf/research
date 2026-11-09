@@ -1,0 +1,61 @@
+{
+  "status": "LOCAL_MEDIA_SPLIT_REPRODUCED",
+  "video_only": [
+    {
+      "phase": "video-only",
+      "event": "ten-second-result",
+      "time": 9.993077,
+      "duration": 12,
+      "readyState": 4,
+      "networkState": 1,
+      "paused": false,
+      "ended": false,
+      "muted": true,
+      "width": 640,
+      "height": 360,
+      "totalFrames": 240,
+      "droppedFrames": 7,
+      "error": null
+    }
+  ],
+  "av_muted": [
+    {
+      "phase": "av-muted",
+      "event": "error",
+      "time": 0,
+      "duration": 12.021333,
+      "readyState": 1,
+      "networkState": 1,
+      "paused": false,
+      "ended": false,
+      "muted": true,
+      "width": 640,
+      "height": 360,
+      "totalFrames": 0,
+      "droppedFrames": 0,
+      "error": {
+        "code": 3,
+        "message": ""
+      }
+    }
+  ],
+  "browser_error": "NS_ERROR_DOM_MEDIA_REMOTE_DECODER_CRASHED_UTILITY_ERR",
+  "signal_trace": {
+    "fatal_signal": "SIGSYS",
+    "last_trapped_syscall": "tkill",
+    "sandbox_disabled": false
+  },
+  "speaker_pcm": {
+    "status": "PCM_COMPLETED_PHYSICAL_AUDIBILITY_UNVERIFIED",
+    "rate": 48000,
+    "channels": 2,
+    "tone_seconds": 1,
+    "tone_peak_dbfs": -40,
+    "speaker_gpio": 28,
+    "hw_params": "access: RW_INTERLEAVED\nformat: S16_LE\nsubformat: STD\nchannels: 2\nrate: 48000 (48000/1)\nperiod_size: 2304\nbuffer_size: 9216\n",
+    "cleanup_errors": [],
+    "amps_off": true
+  },
+  "speaker_physical_audibility": "OWNER_CONFIRMED: heard the short quiet tone",
+  "youtube_retest": "NOT_DONE"
+}

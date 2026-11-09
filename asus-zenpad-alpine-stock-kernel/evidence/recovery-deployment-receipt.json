@@ -1,0 +1,23 @@
+{
+  "status": "DEPLOYED_READBACK_VERIFIED_NOT_BOOTED",
+  "operation": "recovery-slot RAM boot capsule and removal of stale recovery request",
+  "candidate_sha256": "dac48be3cc2db22e2a099ef3948618f8561d737cc4bc2b49de14cd1ef5816cee",
+  "recovery_rollback_sha256": "902b2f06a01cca574b4aa374e67c4e7f8f0ed53f6e6a55017b6d96351f0f1f20",
+  "bcb_before_sha256": "1dcf1f49c4283b0ff8a3595c695a0cd56dddd8df30f7eb62259b98621c225c0e",
+  "bcb_clean_sha256": "e5a00aa9991ac8a5ee3109844d84a55583bd20572ad3ffcd42792f3c36b183ad",
+  "writes": [
+    {
+      "partition": "para",
+      "offset": 0,
+      "bytes": 2048,
+      "changes": "only recovery argument field"
+    },
+    {
+      "partition": "recovery",
+      "offset": 0,
+      "bytes": 16740352
+    }
+  ],
+  "normal_boot_system_data_gpt_bootloader_factory_unchanged": true,
+  "reboot": false
+}

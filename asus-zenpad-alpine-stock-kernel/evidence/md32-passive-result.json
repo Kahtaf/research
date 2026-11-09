@@ -1,0 +1,15 @@
+{
+  "status": "SENSOR_HUB_LIFECYCLE_UNQUALIFIED",
+  "kernel_log_matches": 0,
+  "md32_interrupt_counts": [
+    0,
+    0,
+    0
+  ],
+  "md32_running_directly_observed": false,
+  "interpretation": "No MD32 activity evidenced in this snapshot; zero IRQs/no retained log matches do not prove core reset state. Alpine startup has no MD32 boot operation.",
+  "sensor_activation_sent": false,
+  "md32_boot_attribute_accessed": false,
+  "calibration_accessed": false,
+  "auto_rotation_selected": false
+}
