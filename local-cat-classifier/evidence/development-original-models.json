@@ -1,0 +1,93 @@
+{
+  "reviewed_bundles": 140,
+  "scored_bundles": 134,
+  "excluded_ambiguous": 6,
+  "support": {
+    "Eli": 51,
+    "Pixel": 41,
+    "No visible cat": 42
+  },
+  "approximate_five_minute_groups": 79,
+  "groups_by_label": {
+    "Eli": 32,
+    "Pixel": 16,
+    "No visible cat": 38
+  },
+  "models": {
+    "Gemini": {
+      "correct_on_all_bundles": 122,
+      "overall_accuracy": 0.9104477611940298,
+      "correct_by_truth": {
+        "Pixel": 38,
+        "Eli": 42,
+        "No visible cat": 42
+      },
+      "correct_on_visible_cats": 80,
+      "visible_cat_identity_accuracy": 0.8695652173913043,
+      "raw_confusion": {
+        "Eli": {
+          "Unknown": 9,
+          "Eli": 42
+        },
+        "Pixel": {
+          "Pixel": 38,
+          "Unknown": 3
+        },
+        "No visible cat": {
+          "Unknown": 42
+        }
+      }
+    },
+    "Large": {
+      "correct_on_all_bundles": 88,
+      "overall_accuracy": 0.6567164179104478,
+      "correct_by_truth": {
+        "Pixel": 23,
+        "Eli": 23,
+        "No visible cat": 42
+      },
+      "correct_on_visible_cats": 46,
+      "visible_cat_identity_accuracy": 0.5,
+      "raw_confusion": {
+        "Eli": {
+          "Unknown": 25,
+          "Eli": 23,
+          "Empty": 3
+        },
+        "Pixel": {
+          "Pixel": 23,
+          "Unknown": 18
+        },
+        "No visible cat": {
+          "Empty": 40,
+          "Unknown": 2
+        }
+      }
+    },
+    "Small": {
+      "correct_on_all_bundles": 85,
+      "overall_accuracy": 0.6343283582089553,
+      "correct_by_truth": {
+        "Pixel": 21,
+        "Eli": 22,
+        "No visible cat": 42
+      },
+      "correct_on_visible_cats": 43,
+      "visible_cat_identity_accuracy": 0.4673913043478261,
+      "raw_confusion": {
+        "Eli": {
+          "Unknown": 29,
+          "Eli": 22
+        },
+        "Pixel": {
+          "Pixel": 21,
+          "Unknown": 20
+        },
+        "No visible cat": {
+          "Empty": 41,
+          "Unknown": 1
+        }
+      }
+    }
+  }
+}

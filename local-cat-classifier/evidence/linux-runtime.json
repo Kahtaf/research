@@ -1,0 +1,88 @@
+{
+  "image": "cat-classifier:multiday",
+  "image_id": "sha256:f15368ce85ab27e5ee4fb29e7bde4973cd4cbf5dfc4739dc46eab3463ee7993f",
+  "platform": "Linux/aarch64",
+  "onnxruntime": "1.32.0",
+  "scope": "Mac-hosted Docker Linux arm64, CPU quota 1, 512 MiB cgroup, no network, five fresh runs per model",
+  "verification": {
+    "bundles": 182,
+    "visible_eli_bundles": 4,
+    "visible_pixel_bundles": 0,
+    "decision_differences": 0,
+    "combined_empty_screen_bypasses": 113
+  },
+  "packed": {
+    "cold_process_medians": {
+      "import_ms": 62.074159,
+      "session_ms": 8.675737,
+      "first_cat_bundle_ms": 42.815597,
+      "after_import_rss_kib": 56852,
+      "after_session_rss_kib": 72872,
+      "process_peak_rss_kib": 94928
+    },
+    "cold_process_min_max": {
+      "import_ms": [
+        50.142329,
+        126.926412
+      ],
+      "session_ms": [
+        7.404316,
+        13.40196
+      ],
+      "first_cat_bundle_ms": [
+        41.447968,
+        48.617075
+      ],
+      "after_import_rss_kib": [
+        56820,
+        56868
+      ],
+      "after_session_rss_kib": [
+        72668,
+        73048
+      ],
+      "process_peak_rss_kib": [
+        94360,
+        94976
+      ]
+    },
+    "verification_peak_rss_kib": 95916
+  },
+  "combined": {
+    "cold_process_medians": {
+      "import_ms": 59.105566,
+      "session_ms": 8.009068,
+      "first_cat_bundle_ms": 45.625107,
+      "after_import_rss_kib": 56868,
+      "after_session_rss_kib": 72992,
+      "process_peak_rss_kib": 92752
+    },
+    "cold_process_min_max": {
+      "import_ms": [
+        52.059711,
+        69.874811
+      ],
+      "session_ms": [
+        7.255982,
+        11.18937
+      ],
+      "first_cat_bundle_ms": [
+        44.859354,
+        47.964656
+      ],
+      "after_import_rss_kib": [
+        56840,
+        56904
+      ],
+      "after_session_rss_kib": [
+        72876,
+        73032
+      ],
+      "process_peak_rss_kib": [
+        92572,
+        92892
+      ]
+    },
+    "verification_peak_rss_kib": 94444
+  }
+}

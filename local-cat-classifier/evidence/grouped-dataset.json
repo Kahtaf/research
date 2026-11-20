@@ -1,0 +1,28 @@
+{
+  "ledger_runs": 3580,
+  "linked_jpegs": 10740,
+  "complete_bundles": 3580,
+  "unique_decoded_images": 10593,
+  "human_reviewed_visit_groups": 21,
+  "human_reviewed_visits": {
+    "Pixel": 14,
+    "Eli": 19
+  },
+  "groups_by_cat": {
+    "Eli": 15,
+    "Pixel": 6
+  },
+  "frame_labels_by_source": {
+    "established_frame_label/Eli": 262,
+    "established_frame_label/Empty": 1758,
+    "established_frame_label/Pixel": 139,
+    "static_weak_empty/Empty": 2905,
+    "unlabeled/None": 11,
+    "automatic_visit_weak_frame/Pixel": 8,
+    "automatic_visit_weak_frame/Eli": 11
+  },
+  "excluded": {
+    "repeated_static_skipped": 4886,
+    "ambiguous_on_visual_review": 2
+  }
+}

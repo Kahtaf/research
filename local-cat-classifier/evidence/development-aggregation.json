@@ -1,0 +1,48 @@
+{
+  "development_replay": {
+    "Gemini": {
+      "Pixel": 38,
+      "Eli": 42,
+      "No visible cat": 42,
+      "visible_cat": 80,
+      "overall": 122
+    },
+    "Small original rule": {
+      "Pixel": 21,
+      "Eli": 22,
+      "No visible cat": 42,
+      "visible_cat": 43,
+      "overall": 85
+    },
+    "Small one-frame rule": {
+      "Eli": 51,
+      "Pixel": 40,
+      "No visible cat": 42,
+      "visible_cat": 91,
+      "overall": 133
+    }
+  },
+  "support": {
+    "Eli": 51,
+    "Pixel": 41,
+    "No visible cat": 42
+  },
+  "fresh_paired": {
+    "paired": {
+      "Gemini": {
+        "correct": 91,
+        "total": 92
+      },
+      "Small one-frame": {
+        "correct": 92,
+        "total": 92
+      }
+    },
+    "independent_eli_groups": 1,
+    "paired_pixel_bundles": 0,
+    "matched_empty_bundles": 88,
+    "latest_reviewed_candidate_start_epoch": 1795193360.180306,
+    "extra_reviewed_bundles": 2,
+    "extra_gemini_paired_bundles": 1
+  }
+}

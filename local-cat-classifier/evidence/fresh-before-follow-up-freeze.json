@@ -1,0 +1,111 @@
+{
+  "support_all": {
+    "Empty": 176,
+    "Eli": 4
+  },
+  "support_paired": {
+    "Empty": 90,
+    "Eli": 4
+  },
+  "paired_five_minute_groups_by_label": {
+    "Eli": 1,
+    "Pixel": 0,
+    "Empty": 33
+  },
+  "exclusions": {},
+  "paired_bundles": {
+    "Frozen Small": {
+      "correct": 94,
+      "n": 94,
+      "correct_by_truth": {
+        "Eli": 4,
+        "Pixel": 0,
+        "Empty": 90
+      },
+      "confusion": {
+        "Eli": {
+          "Eli": 4
+        },
+        "Pixel": {},
+        "Empty": {
+          "Empty": 90
+        }
+      },
+      "false_names_on_empty": 0
+    },
+    "Combined Small": {
+      "correct": 94,
+      "n": 94,
+      "correct_by_truth": {
+        "Eli": 4,
+        "Pixel": 0,
+        "Empty": 90
+      },
+      "confusion": {
+        "Eli": {
+          "Eli": 4
+        },
+        "Pixel": {},
+        "Empty": {
+          "Empty": 90
+        }
+      },
+      "false_names_on_empty": 0
+    },
+    "Gemini": {
+      "correct": 93,
+      "n": 94,
+      "correct_by_truth": {
+        "Eli": 3,
+        "Pixel": 0,
+        "Empty": 90
+      },
+      "confusion": {
+        "Eli": {
+          "Unknown": 1,
+          "Eli": 3
+        },
+        "Pixel": {},
+        "Empty": {
+          "Unknown": 90
+        }
+      },
+      "false_names_on_empty": 0
+    }
+  },
+  "local_false_names_on_all_empty": {
+    "Frozen Small": 0,
+    "Combined Small": 0
+  },
+  "explicit_local_empty_on_all_empty": {
+    "Frozen Small": 176,
+    "Combined Small": 176
+  },
+  "paired_cat_group_results_against_gemini": {
+    "Frozen Small": {
+      "Eli": {
+        "wins": 1,
+        "ties": 0,
+        "losses": 0
+      },
+      "Pixel": {
+        "wins": 0,
+        "ties": 0,
+        "losses": 0
+      }
+    },
+    "Combined Small": {
+      "Eli": {
+        "wins": 1,
+        "ties": 0,
+        "losses": 0
+      },
+      "Pixel": {
+        "wins": 0,
+        "ties": 0,
+        "losses": 0
+      }
+    }
+  },
+  "combined_320_path_bypasses_on_cat": 0
+}

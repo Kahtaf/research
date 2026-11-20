@@ -1,0 +1,59 @@
+{
+  "calibration_labels": {
+    "Eli": 45,
+    "Empty": 45,
+    "Pixel": 45
+  },
+  "artifact_bytes": {
+    "float": 3727650,
+    "int8": 1251353
+  },
+  "evaluations": {
+    "development_stability_only": {
+      "bundles": 140,
+      "identity_equal": 34,
+      "frame_label_equal": 102,
+      "median_max_probability_delta": 0.8749681860208511,
+      "max_probability_delta": 0.9994517196319066
+    },
+    "fresh": {
+      "bundles": 174,
+      "identity_equal": 0,
+      "frame_label_equal": 3,
+      "int8_correct": 0,
+      "float_correct": 174,
+      "median_max_probability_delta": 0.9606157634407282,
+      "max_probability_delta": 0.9983193496591412
+    }
+  },
+  "benchmark": {
+    "scope": "Apple M4, one numerical thread, warmed, three JPEGs from memory",
+    "bundles_per_run": 32,
+    "frame_predictions": {
+      "float": 480,
+      "int8": 480
+    },
+    "errors": 0,
+    "all_run_medians_ms": {
+      "float": [
+        27.529249999999998,
+        27.6656875,
+        27.8142295,
+        27.4761875,
+        27.483688
+      ],
+      "int8": [
+        20.8746875,
+        20.7996875,
+        21.388917,
+        21.298958499999998,
+        21.2718545
+      ]
+    },
+    "median_ms": {
+      "float": 27.529249999999998,
+      "int8": 21.2718545
+    }
+  },
+  "mismatched_bundle_count": 280
+}

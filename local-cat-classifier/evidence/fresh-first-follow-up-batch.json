@@ -1,0 +1,102 @@
+{
+  "support_all": {
+    "Empty": 2
+  },
+  "support_paired": {
+    "Empty": 1
+  },
+  "paired_five_minute_groups_by_label": {
+    "Eli": 0,
+    "Pixel": 0,
+    "Empty": 1
+  },
+  "exclusions": {},
+  "paired_bundles": {
+    "Frozen Small": {
+      "correct": 1,
+      "n": 1,
+      "correct_by_truth": {
+        "Eli": 0,
+        "Pixel": 0,
+        "Empty": 1
+      },
+      "confusion": {
+        "Eli": {},
+        "Pixel": {},
+        "Empty": {
+          "Empty": 1
+        }
+      },
+      "false_names_on_empty": 0
+    },
+    "Combined Small": {
+      "correct": 1,
+      "n": 1,
+      "correct_by_truth": {
+        "Eli": 0,
+        "Pixel": 0,
+        "Empty": 1
+      },
+      "confusion": {
+        "Eli": {},
+        "Pixel": {},
+        "Empty": {
+          "Empty": 1
+        }
+      },
+      "false_names_on_empty": 0
+    },
+    "Gemini": {
+      "correct": 1,
+      "n": 1,
+      "correct_by_truth": {
+        "Eli": 0,
+        "Pixel": 0,
+        "Empty": 1
+      },
+      "confusion": {
+        "Eli": {},
+        "Pixel": {},
+        "Empty": {
+          "Unknown": 1
+        }
+      },
+      "false_names_on_empty": 0
+    }
+  },
+  "local_false_names_on_all_empty": {
+    "Frozen Small": 0,
+    "Combined Small": 0
+  },
+  "explicit_local_empty_on_all_empty": {
+    "Frozen Small": 2,
+    "Combined Small": 2
+  },
+  "paired_cat_group_results_against_gemini": {
+    "Frozen Small": {
+      "Eli": {
+        "wins": 0,
+        "ties": 0,
+        "losses": 0
+      },
+      "Pixel": {
+        "wins": 0,
+        "ties": 0,
+        "losses": 0
+      }
+    },
+    "Combined Small": {
+      "Eli": {
+        "wins": 0,
+        "ties": 0,
+        "losses": 0
+      },
+      "Pixel": {
+        "wins": 0,
+        "ties": 0,
+        "losses": 0
+      }
+    }
+  },
+  "combined_320_path_bypasses_on_cat": 0
+}

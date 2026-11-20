@@ -1,0 +1,275 @@
+{
+  "scope": "the aggregation rule was selected using these development examples; inferential values are descriptive",
+  "development_bundle_correct": {
+    "Small": 133,
+    "Gemini": 122
+  },
+  "development_sensitivity_by_gap_seconds": {
+    "120": {
+      "Eli": {
+        "groups": 33,
+        "bundles": 51,
+        "equal_group_weight_accuracy": {
+          "Small": 1.0,
+          "Gemini": 0.8080808080808081
+        },
+        "group_outcome_by_fraction_correct": {
+          "ties": 24,
+          "Small wins": 9
+        },
+        "descriptive_one_sided_exact_sign_tail": 0.001953125,
+        "first_bundle_correct": {
+          "Small": 33,
+          "Gemini": 28
+        },
+        "last_bundle_correct": {
+          "Small": 33,
+          "Gemini": 25
+        },
+        "any_correct_name_and_no_wrong_name_on_cat_or_no_name_on_empty": {
+          "Small": 33,
+          "Gemini": 29
+        }
+      },
+      "Pixel": {
+        "groups": 17,
+        "bundles": 41,
+        "equal_group_weight_accuracy": {
+          "Small": 0.9803921568627451,
+          "Gemini": 0.946078431372549
+        },
+        "group_outcome_by_fraction_correct": {
+          "Small wins": 3,
+          "ties": 13,
+          "Gemini wins": 1
+        },
+        "descriptive_one_sided_exact_sign_tail": 0.3125,
+        "first_bundle_correct": {
+          "Small": 17,
+          "Gemini": 17
+        },
+        "last_bundle_correct": {
+          "Small": 17,
+          "Gemini": 14
+        },
+        "any_correct_name_and_no_wrong_name_on_cat_or_no_name_on_empty": {
+          "Small": 17,
+          "Gemini": 17
+        }
+      },
+      "Empty": {
+        "groups": 39,
+        "bundles": 42,
+        "equal_group_weight_accuracy": {
+          "Small": 1.0,
+          "Gemini": 1.0
+        },
+        "group_outcome_by_fraction_correct": {
+          "ties": 39
+        },
+        "descriptive_one_sided_exact_sign_tail": null,
+        "first_bundle_correct": {
+          "Small": 39,
+          "Gemini": 39
+        },
+        "last_bundle_correct": {
+          "Small": 39,
+          "Gemini": 39
+        },
+        "any_correct_name_and_no_wrong_name_on_cat_or_no_name_on_empty": {
+          "Small": 39,
+          "Gemini": 39
+        }
+      }
+    },
+    "300": {
+      "Eli": {
+        "groups": 32,
+        "bundles": 51,
+        "equal_group_weight_accuracy": {
+          "Small": 1.0,
+          "Gemini": 0.8020833333333334
+        },
+        "group_outcome_by_fraction_correct": {
+          "ties": 23,
+          "Small wins": 9
+        },
+        "descriptive_one_sided_exact_sign_tail": 0.001953125,
+        "first_bundle_correct": {
+          "Small": 32,
+          "Gemini": 27
+        },
+        "last_bundle_correct": {
+          "Small": 32,
+          "Gemini": 24
+        },
+        "any_correct_name_and_no_wrong_name_on_cat_or_no_name_on_empty": {
+          "Small": 32,
+          "Gemini": 28
+        }
+      },
+      "Pixel": {
+        "groups": 16,
+        "bundles": 41,
+        "equal_group_weight_accuracy": {
+          "Small": 0.984375,
+          "Gemini": 0.9427083333333334
+        },
+        "group_outcome_by_fraction_correct": {
+          "Small wins": 3,
+          "ties": 12,
+          "Gemini wins": 1
+        },
+        "descriptive_one_sided_exact_sign_tail": 0.3125,
+        "first_bundle_correct": {
+          "Small": 16,
+          "Gemini": 16
+        },
+        "last_bundle_correct": {
+          "Small": 16,
+          "Gemini": 13
+        },
+        "any_correct_name_and_no_wrong_name_on_cat_or_no_name_on_empty": {
+          "Small": 16,
+          "Gemini": 16
+        }
+      },
+      "Empty": {
+        "groups": 38,
+        "bundles": 42,
+        "equal_group_weight_accuracy": {
+          "Small": 1.0,
+          "Gemini": 1.0
+        },
+        "group_outcome_by_fraction_correct": {
+          "ties": 38
+        },
+        "descriptive_one_sided_exact_sign_tail": null,
+        "first_bundle_correct": {
+          "Small": 38,
+          "Gemini": 38
+        },
+        "last_bundle_correct": {
+          "Small": 38,
+          "Gemini": 38
+        },
+        "any_correct_name_and_no_wrong_name_on_cat_or_no_name_on_empty": {
+          "Small": 38,
+          "Gemini": 38
+        }
+      }
+    },
+    "600": {
+      "Eli": {
+        "groups": 32,
+        "bundles": 51,
+        "equal_group_weight_accuracy": {
+          "Small": 1.0,
+          "Gemini": 0.8020833333333334
+        },
+        "group_outcome_by_fraction_correct": {
+          "ties": 23,
+          "Small wins": 9
+        },
+        "descriptive_one_sided_exact_sign_tail": 0.001953125,
+        "first_bundle_correct": {
+          "Small": 32,
+          "Gemini": 27
+        },
+        "last_bundle_correct": {
+          "Small": 32,
+          "Gemini": 24
+        },
+        "any_correct_name_and_no_wrong_name_on_cat_or_no_name_on_empty": {
+          "Small": 32,
+          "Gemini": 28
+        }
+      },
+      "Pixel": {
+        "groups": 16,
+        "bundles": 41,
+        "equal_group_weight_accuracy": {
+          "Small": 0.984375,
+          "Gemini": 0.9427083333333334
+        },
+        "group_outcome_by_fraction_correct": {
+          "Small wins": 3,
+          "ties": 12,
+          "Gemini wins": 1
+        },
+        "descriptive_one_sided_exact_sign_tail": 0.3125,
+        "first_bundle_correct": {
+          "Small": 16,
+          "Gemini": 16
+        },
+        "last_bundle_correct": {
+          "Small": 16,
+          "Gemini": 13
+        },
+        "any_correct_name_and_no_wrong_name_on_cat_or_no_name_on_empty": {
+          "Small": 16,
+          "Gemini": 16
+        }
+      },
+      "Empty": {
+        "groups": 37,
+        "bundles": 42,
+        "equal_group_weight_accuracy": {
+          "Small": 1.0,
+          "Gemini": 1.0
+        },
+        "group_outcome_by_fraction_correct": {
+          "ties": 37
+        },
+        "descriptive_one_sided_exact_sign_tail": null,
+        "first_bundle_correct": {
+          "Small": 37,
+          "Gemini": 37
+        },
+        "last_bundle_correct": {
+          "Small": 37,
+          "Gemini": 37
+        },
+        "any_correct_name_and_no_wrong_name_on_cat_or_no_name_on_empty": {
+          "Small": 37,
+          "Gemini": 37
+        }
+      }
+    }
+  },
+  "fresh_support": {
+    "paired_bundles": 95,
+    "visible_cat_groups_before_freeze": {
+      "Eli": 1,
+      "Pixel": 0
+    },
+    "visible_cat_groups_after_freeze": {
+      "Eli": 0,
+      "Pixel": 0
+    },
+    "group_outcomes_before_freeze": {
+      "Eli": {
+        "wins": 1,
+        "ties": 0,
+        "losses": 0
+      },
+      "Pixel": {
+        "wins": 0,
+        "ties": 0,
+        "losses": 0
+      }
+    },
+    "group_outcomes_after_freeze": {
+      "Eli": {
+        "wins": 0,
+        "ties": 0,
+        "losses": 0
+      },
+      "Pixel": {
+        "wins": 0,
+        "ties": 0,
+        "losses": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "export-summary.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-19-retraining/export-summary.json",
+    "source_sha256": "5a71d0ef45b2cf81c221ff58c7ddce8606da5daab77e4b8494bf1294d949c98a"
+  },
+  "gemini-pilot.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-19-retraining/gemini-pilot/summary.json",
+    "source_sha256": "f505b761bf966a400734b48dbcfa1c745b22ad7d075c7ff69798e1d9427e73db"
+  },
+  "grouped-dataset.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-20-ha-labeled-grouped/dataset-summary.json",
+    "source_sha256": "048c6bb1b4cc3195f284265f8d556a1f7530393f6c355e5f0f00da5a25750229"
+  },
+  "development-original-models.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-20-ha-labeled-grouped/larger-test/summary.json",
+    "source_sha256": "9702bc8758b2b1e29ca7f8beb97de4093d0f7f348e03b151234481c972c14c25"
+  },
+  "development-aggregation.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-20-local-identity/rule-versus-gemini.json",
+    "source_sha256": "97265504aa53b5d8751ba543312b4609bcc4ed0404b2e5bd983c23704517202d"
+  },
+  "development-visit-groups.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-20-local-identity/paired-group-audit.json",
+    "source_sha256": "79c6741e7335d6dd78d77df81fd4ae43967b3a023e6350363df32417b8796a69"
+  },
+  "development-screen-and-fallback.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-20-local-identity/combined-heldout-replay.json",
+    "source_sha256": "6441c40963bd961c17a48e62966593485ce9821c94913735d4c43e344bbbeaa9"
+  },
+  "foreground-shortcut.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-20-local-identity/shortcut-results.json",
+    "source_sha256": "e85ddf420ed6cfe38e6220d7a16647611c625cf9eef6579fadfa614818bdc807"
+  },
+  "low-resolution.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-20-local-identity/lower-resolution.json",
+    "source_sha256": "5b968e213f5fa60ccd7b474fe72d73437edb5f1b55754c9c8d687c696bed5bc1"
+  },
+  "int8-attempt.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-20-local-identity/quantization.json",
+    "source_sha256": "16875ed421596925e70ef5c802bcafda94ab18394e0707d8468bc04f422d5ebe"
+  },
+  "packed-weights.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-20-local-identity/packing.json",
+    "source_sha256": "0cb3430475368fad684b6fe07b309802882b6eee8fe574570f9b3c921fb5ff81"
+  },
+  "combined-runtime.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-20-local-identity/combined-results.json",
+    "source_sha256": "bcf9019c33fd76db07e38529030d66cd86fa1eb15fa43d0b0a090ea3412b3fe5"
+  },
+  "linux-runtime.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-20-local-identity/linux-runtime-summary.json",
+    "source_sha256": "df84b8d21318e1e2a521899d0998d23b56f717365ed70b798bae3c1b51d9b25a"
+  },
+  "fresh-before-follow-up-freeze.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-20-local-identity/prospective-comparison-replay.json",
+    "source_sha256": "116fd4107930565e2fdebae5cfd1f25cbf809ccb69883813573db27fe04f0a7c"
+  },
+  "fresh-first-follow-up-batch.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-20-local-identity/prospective-comparison-results.json",
+    "source_sha256": "0b46f5f359556a57eed2cde5fb352323556a70d6910805007c8e7203a5be0003"
+  },
+  "gemini-label-expansion.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-19-retraining/gemini-label-expansion/summary.json",
+    "source_sha256": "b4c8e0296ec1afdc043231c0a5e76baa3e81df60e99e79f7f5beae4682cff9a5"
+  },
+  "empty-retraining.json": {
+    "locator": "private/cat-classifier/multiday/2026-11-19-retraining/gemini-label-expansion/training-comparison.json",
+    "source_sha256": "229713ed98f72ab2de414eae8018c2ca7dd177954d681b1b09768ac0e0969ae2"
+  },
+  "first-72h-shadow.json": {
+    "locator": "apps/cat_classifier/reports/shadow-2026-11-19-assessment.json",
+    "source_sha256": "4c77732d6c21116e7d44515b4e242e21cd52f5d2c0ee82fde671e64df2dff94d"
+  },
+  "second-48h-startup.json": {
+    "locator": "private/cat-classifier/multiday/deploy-small-empty-48h/start.json",
+    "source_sha256": "f83d25c1d33b34e8e0fd65a3fc14cfc9ff52d8651f8bbf7c41fe44e0d0724590"
+  }
+}

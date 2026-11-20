@@ -1,0 +1,55 @@
+{
+  "calibration_labels": {},
+  "artifact_bytes": {
+    "float": 1896048,
+    "small_160": 3727650
+  },
+  "evaluations": {
+    "development_stability_only": {
+      "bundles": 140,
+      "identity_equal": 136,
+      "frame_label_equal": 409,
+      "median_max_probability_delta": 0.00325240658344228,
+      "max_probability_delta": 0.9714446449652314
+    },
+    "fresh": {
+      "bundles": 174,
+      "identity_equal": 173,
+      "frame_label_equal": 522,
+      "small_160_correct": 173,
+      "float_correct": 174,
+      "median_max_probability_delta": 0.002898363396525383,
+      "max_probability_delta": 0.28153885644860566
+    }
+  },
+  "benchmark": {
+    "scope": "Apple M4, one numerical thread, warmed, three JPEGs from memory",
+    "bundles_per_run": 32,
+    "frame_predictions": {
+      "float": 480,
+      "small_160": 480
+    },
+    "errors": 0,
+    "all_run_medians_ms": {
+      "float": [
+        27.9588955,
+        27.835479499999998,
+        27.919187,
+        27.442417,
+        27.936708
+      ],
+      "small_160": [
+        15.6928125,
+        15.601707999999999,
+        15.709937,
+        15.5185625,
+        15.540833500000002
+      ]
+    },
+    "median_ms": {
+      "float": 27.919187,
+      "small_160": 15.601707999999999
+    }
+  },
+  "mismatched_bundle_count": 5
+}

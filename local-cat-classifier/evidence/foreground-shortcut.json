@@ -1,0 +1,60 @@
+{
+  "thresholds": {
+    "mean_top_64": 0.04,
+    "maximum": 0.14
+  },
+  "cohorts": {
+    "development": {
+      "bundles": 140,
+      "bypassed": 10,
+      "identity_changes": 0,
+      "visible_cat_bypassed": 0,
+      "ambiguous_bypassed": 0,
+      "visible_cat_bundles": 92,
+      "bypassed_Empty": 10
+    },
+    "first_fresh_batch": {
+      "bundles": 174,
+      "bypassed": 0,
+      "identity_changes": 0,
+      "visible_cat_bypassed": 0,
+      "ambiguous_bypassed": 0,
+      "visible_cat_bundles": 4
+    }
+  },
+  "templates_bytes": 71843,
+  "benchmark": {
+    "scope": "Apple M4 single-thread, JPEG bytes in memory, 5 interleaved repetitions",
+    "bundles_per_run": 32,
+    "visible_cat_bundles_per_run": 4,
+    "errors": 0,
+    "frame_predictions": {
+      "packed": 480,
+      "packed+shortcut": 480
+    },
+    "all_medians_ms": {
+      "packed": [
+        27.655958,
+        28.041687500000002,
+        29.1112085,
+        28.849271,
+        27.6095835
+      ],
+      "packed+shortcut": [
+        28.6147085,
+        28.6126045,
+        29.7288125,
+        30.2043545,
+        28.7236665
+      ]
+    },
+    "median_ms": {
+      "packed": 28.041687500000002,
+      "packed+shortcut": 28.7236665
+    },
+    "median_cat_path_ms": {
+      "packed": 28.057021,
+      "packed+shortcut": 28.8934785
+    }
+  }
+}

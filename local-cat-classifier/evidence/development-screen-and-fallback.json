@@ -1,0 +1,109 @@
+{
+  "scope": "development replay with fold-specific FP32 screen and full-resolution heads",
+  "empty_threshold": 0.99,
+  "date_held_out_development": {
+    "support": {
+      "Eli": 51,
+      "Pixel": 41,
+      "Empty": 42
+    },
+    "screen_bypasses": {
+      "Empty": 18
+    },
+    "maximum_weakest_empty_score_for_cat_bundles": 0.5099332332611084,
+    "recovered_cat_bundles": 0,
+    "recovered_cat_bundle_screen_bypasses": 0,
+    "combined": {
+      "correct": 133,
+      "n": 134,
+      "correct_by_truth": {
+        "Eli": 51,
+        "Pixel": 40,
+        "Empty": 42
+      },
+      "confusion": {
+        "Eli": {
+          "Eli": 51
+        },
+        "Pixel": {
+          "Pixel": 40,
+          "Unknown": 1
+        },
+        "Empty": {
+          "Empty": 40,
+          "Unknown": 2
+        }
+      },
+      "false_names_on_empty": 0
+    },
+    "gemini_paired": {
+      "correct": 122,
+      "n": 134,
+      "correct_by_truth": {
+        "Eli": 42,
+        "Pixel": 38,
+        "Empty": 42
+      },
+      "confusion": {
+        "Eli": {
+          "Eli": 42,
+          "Unknown": 9
+        },
+        "Pixel": {
+          "Pixel": 38,
+          "Unknown": 3
+        },
+        "Empty": {
+          "Unknown": 42
+        }
+      },
+      "false_names_on_empty": 0
+    }
+  },
+  "reviewed_group_folds_outside_development": {
+    "support": {
+      "Pixel": 8,
+      "Eli": 8
+    },
+    "screen_bypasses": {},
+    "maximum_weakest_empty_score_for_cat_bundles": 0.002565899398177862,
+    "recovered_cat_bundles": 2,
+    "recovered_cat_bundle_screen_bypasses": 0,
+    "combined": {
+      "correct": 16,
+      "n": 16,
+      "correct_by_truth": {
+        "Eli": 8,
+        "Pixel": 8,
+        "Empty": 0
+      },
+      "confusion": {
+        "Eli": {
+          "Eli": 8
+        },
+        "Pixel": {
+          "Pixel": 8
+        },
+        "Empty": {}
+      },
+      "false_names_on_empty": 0
+    },
+    "gemini_paired": {
+      "correct": 3,
+      "n": 3,
+      "correct_by_truth": {
+        "Eli": 3,
+        "Pixel": 0,
+        "Empty": 0
+      },
+      "confusion": {
+        "Eli": {
+          "Eli": 3
+        },
+        "Pixel": {},
+        "Empty": {}
+      },
+      "false_names_on_empty": 0
+    }
+  }
+}

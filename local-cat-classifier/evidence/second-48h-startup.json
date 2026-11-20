@@ -1,0 +1,26 @@
+{
+  "status": "startup verified; outcome pending at snapshot",
+  "plan": {
+    "experiment_id": "ha-small-empty-20261120-48h",
+    "started_at": 1795198619.9952004,
+    "deadline_at": 1795371419.9952004,
+    "protocol_sha256": "ff48187ec76390ee101f0b3180e7aaf0a2c45ae722336932110195d56039e02c",
+    "model_sha256": "56381593f3c174b4c719218cff4bfa1bf4e985e82441e778d70435ce9f1b3712",
+    "policy": {
+      "version": 2,
+      "collector_version": "0.2.3",
+      "threshold": 0.8,
+      "aggregation": "0.99 Empty screen at 160px; one confident cat at 320px with conflict abstention; presence/identity fallback on abstention",
+      "quality_min_p90_p10": 5,
+      "task": "frame identity/presence only",
+      "promotion": "manual review; never automatic"
+    },
+    "maximum_candidates": 10000,
+    "evidence_limit_bytes": 2147483648,
+    "poll_seconds": 30
+  },
+  "app_version": "0.2.3",
+  "tracker_healthy": true,
+  "first_full_scan_completed": true,
+  "first_scan_errors": 0
+}

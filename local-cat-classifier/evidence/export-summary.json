@@ -1,0 +1,13 @@
+{
+  "candidates": 1274,
+  "download_attempts": 3822,
+  "downloaded": 3822,
+  "errors": {},
+  "review_images": {
+    "Needs label": 2132,
+    "Proposed Eli": 105,
+    "Proposed Pixel": 69,
+    "duplicate old or new": 48,
+    "Proposed Neither": 1468
+  }
+}

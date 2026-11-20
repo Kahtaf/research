@@ -1,0 +1,188 @@
+{
+  "experiment_id": "ha-shadow-20261116-72h",
+  "plan": {
+    "experiment_id": "ha-shadow-20261116-72h",
+    "started_at": 1794870940.0609634,
+    "deadline_at": 1795130140.0609634,
+    "protocol_sha256": "30b1652c52c4f48e911626093a191721810d2dd53ac2b93320876f31d3165513",
+    "model_sha256": "31743985b8f82122c58eda4f594be61cb4241561096f1a4aa5fe78998aa18344",
+    "policy": {
+      "version": 1,
+      "collector_version": "0.2.0",
+      "threshold": 0.8,
+      "aggregation": "two of three, no conflicting high-score label",
+      "quality_min_p90_p10": 5,
+      "task": "frame identity/presence only",
+      "promotion": "manual review; never automatic"
+    },
+    "maximum_candidates": 10000,
+    "evidence_limit_bytes": 2147483648,
+    "poll_seconds": 30
+  },
+  "finished": {
+    "reason": "deadline",
+    "at": 1795130140.062396
+  },
+  "collection": {
+    "candidates": 1265,
+    "processed": 1228,
+    "frames": 3684,
+    "processed_fraction": 0.9707509881422924,
+    "local_identity_counts": {
+      "Empty": 1172,
+      "Eli": 12,
+      "Unknown": 34,
+      "Pixel": 10,
+      "Unprocessed": 37
+    },
+    "accepted_among_processed": 0.9723127035830619,
+    "candidate_status_counts": {
+      "done": 1229,
+      "unavailable": 36
+    },
+    "inference_revisions": 1228,
+    "retained_error_types": {
+      "FileNotFoundError": 35,
+      "ValueError": 2
+    },
+    "unprocessed_status_counts": {
+      "done": 1,
+      "unavailable": 36
+    },
+    "unprocessed_boxes": {
+      "cat_litter_left": 19,
+      "cat_litter_right": 18
+    },
+    "pending_baselines": 37,
+    "pending_without_prediction": 37,
+    "oldest_pending_age_hours_at_deadline": 70.30021868540182,
+    "cloud_analysed": 735,
+    "locally_filtered": 493,
+    "local_filter_predictions": {
+      "Empty": 492,
+      "Unknown": 1
+    },
+    "cloud_not_visit_predictions": {
+      "Empty": 679,
+      "Unknown": 18,
+      "Pixel": 4
+    },
+    "baseline_override_count": 4
+  },
+  "agreement": {
+    "comparable_candidates": 30,
+    "per_cat": {
+      "Eli": {
+        "comparable_candidates": 20,
+        "agreed": 12,
+        "abstained": 8,
+        "empty": 0,
+        "wrong_named_cat": 0,
+        "accepted_identity_fraction": 0.6,
+        "provisional_groups": 11
+      },
+      "Pixel": {
+        "comparable_candidates": 10,
+        "agreed": 6,
+        "abstained": 4,
+        "empty": 0,
+        "wrong_named_cat": 0,
+        "accepted_identity_fraction": 0.6,
+        "provisional_groups": 5
+      }
+    },
+    "accepted_wrong_named_cat": 0,
+    "empty_on_cloud_cat_visit": 0,
+    "empty_frames_inside_cloud_cat_visit_bundles": 12,
+    "high_score_empty_frames_inside_cloud_cat_visit_bundles": 9,
+    "known_cat_abstentions_needing_review": 12
+  },
+  "resources": {
+    "evidence_bytes": 192681991,
+    "evidence_limit_bytes": 2147483648,
+    "scan_error_count": 2,
+    "last_scan_seconds_before_deadline": 1.443920612335205,
+    "last_full_scan_seconds_before_deadline": 2631.928990840912,
+    "retained_shadow_stop_count": 7,
+    "retained_paused_stop_count": 6,
+    "guard_restarts_counter": "not exposed by saved report/candidate APIs",
+    "prediction_delay_after_candidate_end_seconds": {
+      "median": 60.067145466804504,
+      "maximum": 2660.7600581645966
+    },
+    "last_prediction_seconds_before_deadline": 864.6481781005859,
+    "guard_summary": {
+      "records": 7,
+      "requested_stop_records": 6,
+      "maximum_sampled_children_rss_bytes": 137338880,
+      "all_paired_shadow_child_returncodes_zero": true,
+      "final_guard": {
+        "reason": null,
+        "peak_children_rss_bytes": 134602752,
+        "returncode": 0,
+        "at": 1795130141.0596228
+      }
+    }
+  },
+  "strata": {
+    "by_box": {
+      "cat_litter_right": 632,
+      "cat_litter_left": 633
+    },
+    "comparable_by_cat_box": {
+      "Eli:cat_litter_left": 9,
+      "Eli:cat_litter_right": 11,
+      "Pixel:cat_litter_right": 6,
+      "Pixel:cat_litter_left": 4
+    },
+    "by_toronto_date": {
+      "2026-11-19": 247,
+      "2026-11-18": 362,
+      "2026-11-17": 576,
+      "2026-11-16": 80
+    }
+  },
+  "saved_user_overrides": {
+    "count": 4,
+    "identity": "Eli",
+    "verdict": "visit",
+    "local_predictions": {
+      "Empty": 1,
+      "Unknown": 3
+    },
+    "interpretation": "One potential Empty-on-cat failure and three abstentions. Saved overrides are separate evidence; crops and footage were not independently inspected in this review."
+  },
+  "independent_review": {
+    "images_visually_inspected": 0,
+    "human_labels_added": 0,
+    "accuracy_recall_precision_false_empty_rate": null,
+    "reason": "HA ingress proxy returns JPEG bytes decoded lossily as text; six priority/control image attempts returned HTTP 200 but no usable image."
+  },
+  "recommendation": {
+    "identity_pilot_ready": false,
+    "disable_gemini_ready": false,
+    "requires_more_independent_groups_per_cat": true,
+    "requires_separate_visit_policy": true
+  },
+  "cleanup": {
+    "app_not_running": true,
+    "supervisor_state": "error",
+    "reason": "Intentional report stop: child code 0, Stop requested guard maps parent exit to 75. Subsequent ingress GET confirmed app not running.",
+    "mode": "report",
+    "boot": "manual",
+    "watchdog": false,
+    "auto_update": false,
+    "tracker_started_healthy": true,
+    "gemini_ai_task_configured": true
+  },
+  "validation": {
+    "all_1265_unique_candidates_exported": true,
+    "bounded_pages": 127,
+    "page_size": 10,
+    "cohort_bounds_verified": true,
+    "all_3684_frame_model_hashes_match": true,
+    "protocol_file_hash_matches": true,
+    "checkpoint_file_hash_matches": true,
+    "report_unchanged_during_report_mode": true
+  }
+}

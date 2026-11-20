@@ -1,0 +1,14 @@
+{
+  "target_images": 860,
+  "model": "gemini-3.1-flash-lite",
+  "labels": {
+    "Eli": 0,
+    "Pixel": 0,
+    "Neither": 860,
+    "Unsure": 0,
+    "Unlabeled": 0
+  },
+  "estimated_standard_paid_tier_usd": 0.7272875,
+  "prompt_tokens": 2903990,
+  "output_and_thought_tokens": 860
+}

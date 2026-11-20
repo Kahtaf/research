@@ -1,0 +1,310 @@
+{
+  "date_held_out": {
+    "support": {
+      "Eli": 51,
+      "Pixel": 41,
+      "Empty": 42
+    },
+    "metrics": {
+      "Current": {
+        "correct": 133,
+        "n": 134,
+        "correct_by_truth": {
+          "Eli": 51,
+          "Pixel": 40,
+          "Empty": 42
+        },
+        "confusion": {
+          "Eli": {
+            "Eli": 51
+          },
+          "Pixel": {
+            "Pixel": 40,
+            "Unknown": 1
+          },
+          "Empty": {
+            "Empty": 40,
+            "Unknown": 2
+          }
+        },
+        "false_names_on_empty": 0
+      },
+      "Extra Empty": {
+        "correct": 133,
+        "n": 134,
+        "correct_by_truth": {
+          "Eli": 51,
+          "Pixel": 40,
+          "Empty": 42
+        },
+        "confusion": {
+          "Eli": {
+            "Eli": 51
+          },
+          "Pixel": {
+            "Pixel": 40,
+            "Unknown": 1
+          },
+          "Empty": {
+            "Empty": 42
+          }
+        },
+        "false_names_on_empty": 0
+      },
+      "Gemini": {
+        "correct": 122,
+        "n": 134,
+        "correct_by_truth": {
+          "Eli": 42,
+          "Pixel": 38,
+          "Empty": 42
+        },
+        "confusion": {
+          "Eli": {
+            "Eli": 42,
+            "Unknown": 9
+          },
+          "Pixel": {
+            "Pixel": 38,
+            "Unknown": 3
+          },
+          "Empty": {
+            "Unknown": 42
+          }
+        },
+        "false_names_on_empty": 0
+      }
+    },
+    "changes": {
+      "Empty: Unknown -> Empty": 2
+    }
+  },
+  "additional_reviewed_groups": {
+    "support": {
+      "Pixel": 8,
+      "Eli": 8
+    },
+    "metrics": {
+      "Current": {
+        "correct": 16,
+        "n": 16,
+        "correct_by_truth": {
+          "Eli": 8,
+          "Pixel": 8,
+          "Empty": 0
+        },
+        "confusion": {
+          "Eli": {
+            "Eli": 8
+          },
+          "Pixel": {
+            "Pixel": 8
+          },
+          "Empty": {}
+        },
+        "false_names_on_empty": 0
+      },
+      "Extra Empty": {
+        "correct": 16,
+        "n": 16,
+        "correct_by_truth": {
+          "Eli": 8,
+          "Pixel": 8,
+          "Empty": 0
+        },
+        "confusion": {
+          "Eli": {
+            "Eli": 8
+          },
+          "Pixel": {
+            "Pixel": 8
+          },
+          "Empty": {}
+        },
+        "false_names_on_empty": 0
+      }
+    },
+    "changes": {}
+  },
+  "added_training_frames_per_fold": {
+    "Dates 2026-11-06 to 2026-11-07": 860,
+    "Dates 2026-11-08 to 2026-11-09": 860,
+    "Dates 2026-11-10 to 2026-11-11": 860,
+    "Dates 2026-11-12 to 2026-11-14": 860,
+    "Dates 2026-11-15 to 2026-11-16": 807,
+    "Dates 2026-11-17 to 2026-11-18": 250,
+    "Dates 2026-11-19": 652,
+    "Group group-03": 860,
+    "Group group-05": 860,
+    "Group group-06": 860,
+    "Group group-11": 860,
+    "Group group-13": 860,
+    "Group group-16": 860
+  },
+  "old_training_counts": {
+    "Eli": 273,
+    "Empty": 4663,
+    "Pixel": 147
+  },
+  "new_training_counts": {
+    "Eli": 273,
+    "Empty": 5523,
+    "Pixel": 147
+  },
+  "fresh_and_archive_replay": {
+    "fresh": {
+      "Current": {
+        "correct": 174,
+        "n": 174,
+        "correct_by_truth": {
+          "Eli": 4,
+          "Pixel": 0,
+          "Empty": 170
+        },
+        "confusion": {
+          "Eli": {
+            "Eli": 4
+          },
+          "Pixel": {},
+          "Empty": {
+            "Empty": 170
+          }
+        },
+        "false_names_on_empty": 0
+      },
+      "Extra Empty": {
+        "correct": 174,
+        "n": 174,
+        "correct_by_truth": {
+          "Eli": 4,
+          "Pixel": 0,
+          "Empty": 170
+        },
+        "confusion": {
+          "Eli": {
+            "Eli": 4
+          },
+          "Pixel": {},
+          "Empty": {
+            "Empty": 170
+          }
+        },
+        "false_names_on_empty": 0
+      }
+    },
+    "continuation-01": {
+      "Current": {
+        "correct": 2,
+        "n": 2,
+        "correct_by_truth": {
+          "Eli": 0,
+          "Pixel": 0,
+          "Empty": 2
+        },
+        "confusion": {
+          "Eli": {},
+          "Pixel": {},
+          "Empty": {
+            "Empty": 2
+          }
+        },
+        "false_names_on_empty": 0
+      },
+      "Extra Empty": {
+        "correct": 2,
+        "n": 2,
+        "correct_by_truth": {
+          "Eli": 0,
+          "Pixel": 0,
+          "Empty": 2
+        },
+        "confusion": {
+          "Eli": {},
+          "Pixel": {},
+          "Empty": {
+            "Empty": 2
+          }
+        },
+        "false_names_on_empty": 0
+      }
+    },
+    "continuation-02": {
+      "Current": {
+        "correct": 4,
+        "n": 4,
+        "correct_by_truth": {
+          "Eli": 0,
+          "Pixel": 0,
+          "Empty": 4
+        },
+        "confusion": {
+          "Eli": {},
+          "Pixel": {},
+          "Empty": {
+            "Empty": 4
+          }
+        },
+        "false_names_on_empty": 0
+      },
+      "Extra Empty": {
+        "correct": 4,
+        "n": 4,
+        "correct_by_truth": {
+          "Eli": 0,
+          "Pixel": 0,
+          "Empty": 4
+        },
+        "confusion": {
+          "Eli": {},
+          "Pixel": {},
+          "Empty": {
+            "Empty": 4
+          }
+        },
+        "false_names_on_empty": 0
+      }
+    },
+    "archive_empty": {
+      "Current": {
+        "correct": 60,
+        "n": 60,
+        "correct_by_truth": {
+          "Eli": 0,
+          "Pixel": 0,
+          "Empty": 60
+        },
+        "confusion": {
+          "Eli": {},
+          "Pixel": {},
+          "Empty": {
+            "Empty": 60
+          }
+        },
+        "false_names_on_empty": 0
+      },
+      "Extra Empty": {
+        "correct": 60,
+        "n": 60,
+        "correct_by_truth": {
+          "Eli": 0,
+          "Pixel": 0,
+          "Empty": 60
+        },
+        "confusion": {
+          "Eli": {},
+          "Pixel": {},
+          "Empty": {
+            "Empty": 60
+          }
+        },
+        "false_names_on_empty": 0
+      }
+    }
+  },
+  "onnx_bytes": 1908020,
+  "first_prospective_batch_replay": {
+    "bundles": 2,
+    "Current_correct": 2,
+    "Extra Empty_correct": 2
+  }
+}
