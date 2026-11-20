@@ -113,7 +113,15 @@ for dirname, commit_date in subdirs_with_dates:
     print()  # Add blank line between entries
 
 ]]]-->
-## 25 research projects
+## 26 research projects
+
+### [local-cat-classifier](https://github.com/Kahtaf/research/tree/main/local-cat-classifier) (2026-11-20)
+
+Engineers developed a lightweight MobileNetV3-based classifier to identify specific cats from fixed home camera crops. By aggregating three-frame bundles and implementing a 1.91 MB ONNX model, the system achieved identification accuracy that exceeded baseline [Gemini API](https://ai.google.dev/gemini-api) results in retrospective tests. The project, hosted on [GitHub](https://github.com/Kahtaf/personal-blog), utilizes a Home Assistant shadow trial to validate model performance in a live environment without interfering with production trackers. Optimization techniques, such as a 160px "screen" and a 320px identity head, allow for efficient inference on local hardware while maintaining sub-20ms latency.
+
+*   MobileNetV3 Small outperformed Gemini (133/134 vs 122/134) in development by using temporal aggregation rules.
+*   Incorporating 860 Gemini-verified "Empty" frames significantly improved model decisiveness and reduced false positives.
+*   The final 1.91 MB ONNX model achieved a median processing time of 16.1 ms on local M4 hardware.
 
 ### [asus-zenpad-alpine-stock-kernel](https://github.com/Kahtaf/research/tree/main/asus-zenpad-alpine-stock-kernel) (2026-11-09)
 
